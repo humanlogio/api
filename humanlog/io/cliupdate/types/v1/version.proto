@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package humanlog.io.cliupdate.types.v1;
+
+message Version {
+  int32 major = 1;
+  int32 minor = 2;
+  int32 patch = 3;
+  repeated string prereleases = 4;
+  string build = 5;
+}
