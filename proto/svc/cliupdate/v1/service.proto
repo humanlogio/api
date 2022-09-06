@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package humanlog.io.cliupdate.svc.v1;
+package svc.cliupdate.v1;
 
-import "humanlog/io/cliupdate/types/v1/version.proto";
+import "types/v1/version.proto";
 
 option go_package = "svc/cliupdate/v1;cliupdatev1";
 
@@ -11,9 +11,9 @@ service UpdateService {
 }
 
 message GetNextUpdateRequest {
-  humanlog.io.cliupdate.types.v1.Version current_version = 1;
+  types.v1.Version current_version = 1;
 }
 
 message GetNextUpdateResponse {
-  humanlog.io.cliupdate.types.v1.Version next_version = 1;
+  types.v1.Version next_version = 1;
 }

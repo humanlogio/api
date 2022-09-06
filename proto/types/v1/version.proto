@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package humanlog.io.cliupdate.types.v1;
+package types.v1;
+
+option go_package = "types/v1;typesv1";
 
 message Version {
   int32 major = 1;
