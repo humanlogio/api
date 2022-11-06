@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+message Machine {
+  int64 id = 1;
+  string name = 2;
+  string operating_system = 3;
+  string architecture = 4;
+}

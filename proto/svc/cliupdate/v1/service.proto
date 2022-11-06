@@ -3,6 +3,8 @@ syntax = "proto3";
 package svc.cliupdate.v1;
 
 import "types/v1/version.proto";
+import "types/v1/account.proto";
+import "types/v1/machine.proto";
 
 option go_package = "svc/cliupdate/v1;cliupdatev1";
 
@@ -12,17 +14,13 @@ service UpdateService {
 
 message GetNextUpdateRequest {
   types.v1.Version current_version = 1;
-  UpdateRequestInfo info = 2;
+  types.v1.Account account = 2;
+  types.v1.Machine machine = 3;
   
 }
 
 message GetNextUpdateResponse {
   types.v1.Version next_version = 1;
-}
-
-message UpdateRequestInfo {
-  string operating_system = 1;
-  string architecture = 2;
-  string machine_id = 3;
-  string account_id = 4;
+  types.v1.Account account = 2;
+  types.v1.Machine machine = 3;
 }
