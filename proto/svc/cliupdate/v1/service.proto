@@ -24,9 +24,10 @@ message GetNextUpdateResponse {
   types.v1.Version next_version = 1;
   string url = 2;
   string sha256 = 3;
+  string signature = 4;
 
   // metadata
-  
+
   types.v1.Account account = 102;
   types.v1.Machine machine = 103;
 }
