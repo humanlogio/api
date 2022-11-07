@@ -22,6 +22,11 @@ message GetNextUpdateRequest {
 
 message GetNextUpdateResponse {
   types.v1.Version next_version = 1;
-  types.v1.Account account = 2;
-  types.v1.Machine machine = 3;
+  string url = 2;
+  string sha256 = 3;
+
+  // metadata
+  
+  types.v1.Account account = 102;
+  types.v1.Machine machine = 103;
 }
