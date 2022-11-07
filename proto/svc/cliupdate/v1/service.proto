@@ -14,8 +14,8 @@ service UpdateService {
 
 message GetNextUpdateRequest {
   types.v1.Version current_version = 1;
-  string account_id = 2;
-  string machine_id = 301;
+  int64 account_id = 2;
+  int64 machine_id = 301;
   string machine_architecture = 302;
   string machine_operating_system = 303;
 }
