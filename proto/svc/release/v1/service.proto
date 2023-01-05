@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package svc.release.v1;
+
+import "types/v1/version.proto";
+
+option go_package = "svc/release/v1;releasev1";
+
+service ReleaseService {
+  rpc CreateRelease(CreateReleaseRequest) returns (CreateReleaseResponse) {}
+}
+
+message CreateReleaseRequest {
+  types.v1.Version version = 1;
+  string url = 2;
+  string sha256 = 3;
+  string signature = 4;
+  string architecture = 5;
+  string operating_system = 6;
+}
+
+message CreateReleaseResponse {}

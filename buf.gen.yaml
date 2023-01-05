@@ -2,7 +2,7 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/humanlog-io/api/go
+    default: github.com/humanlogio/api/go
 plugins:
   - name: go
     out: go

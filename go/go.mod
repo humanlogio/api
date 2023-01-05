@@ -1,4 +1,4 @@
-module github.com/humanlog-io/api/go
+module github.com/humanlogio/api/go
 
 go 1.19
 
