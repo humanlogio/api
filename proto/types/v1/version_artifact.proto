@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+message VersionArtifact {
+  string url = 1;
+  string sha256 = 2;
+  string signature = 3;
+  string architecture = 4;
+  string operating_system = 5;
+}

@@ -27,8 +27,8 @@ const (
 
 // ReleaseServiceClient is a client for the svc.release.v1.ReleaseService service.
 type ReleaseServiceClient interface {
-	CreateRelease(context.Context, *connect_go.Request[v1.CreateReleaseRequest]) (*connect_go.Response[v1.CreateReleaseResponse], error)
-	ListRelease(context.Context, *connect_go.Request[v1.ListReleaseRequest]) (*connect_go.Response[v1.ListReleaseResponse], error)
+	CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error)
+	ListVersionArtifact(context.Context, *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error)
 }
 
 // NewReleaseServiceClient constructs a client for the svc.release.v1.ReleaseService service. By
@@ -41,14 +41,14 @@ type ReleaseServiceClient interface {
 func NewReleaseServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) ReleaseServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &releaseServiceClient{
-		createRelease: connect_go.NewClient[v1.CreateReleaseRequest, v1.CreateReleaseResponse](
+		createVersionArtifact: connect_go.NewClient[v1.CreateVersionArtifactRequest, v1.CreateVersionArtifactResponse](
 			httpClient,
-			baseURL+"/svc.release.v1.ReleaseService/CreateRelease",
+			baseURL+"/svc.release.v1.ReleaseService/CreateVersionArtifact",
 			opts...,
 		),
-		listRelease: connect_go.NewClient[v1.ListReleaseRequest, v1.ListReleaseResponse](
+		listVersionArtifact: connect_go.NewClient[v1.ListVersionArtifactRequest, v1.ListVersionArtifactResponse](
 			httpClient,
-			baseURL+"/svc.release.v1.ReleaseService/ListRelease",
+			baseURL+"/svc.release.v1.ReleaseService/ListVersionArtifact",
 			opts...,
 		),
 	}
@@ -56,24 +56,24 @@ func NewReleaseServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 
 // releaseServiceClient implements ReleaseServiceClient.
 type releaseServiceClient struct {
-	createRelease *connect_go.Client[v1.CreateReleaseRequest, v1.CreateReleaseResponse]
-	listRelease   *connect_go.Client[v1.ListReleaseRequest, v1.ListReleaseResponse]
+	createVersionArtifact *connect_go.Client[v1.CreateVersionArtifactRequest, v1.CreateVersionArtifactResponse]
+	listVersionArtifact   *connect_go.Client[v1.ListVersionArtifactRequest, v1.ListVersionArtifactResponse]
 }
 
-// CreateRelease calls svc.release.v1.ReleaseService.CreateRelease.
-func (c *releaseServiceClient) CreateRelease(ctx context.Context, req *connect_go.Request[v1.CreateReleaseRequest]) (*connect_go.Response[v1.CreateReleaseResponse], error) {
-	return c.createRelease.CallUnary(ctx, req)
+// CreateVersionArtifact calls svc.release.v1.ReleaseService.CreateVersionArtifact.
+func (c *releaseServiceClient) CreateVersionArtifact(ctx context.Context, req *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error) {
+	return c.createVersionArtifact.CallUnary(ctx, req)
 }
 
-// ListRelease calls svc.release.v1.ReleaseService.ListRelease.
-func (c *releaseServiceClient) ListRelease(ctx context.Context, req *connect_go.Request[v1.ListReleaseRequest]) (*connect_go.Response[v1.ListReleaseResponse], error) {
-	return c.listRelease.CallUnary(ctx, req)
+// ListVersionArtifact calls svc.release.v1.ReleaseService.ListVersionArtifact.
+func (c *releaseServiceClient) ListVersionArtifact(ctx context.Context, req *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error) {
+	return c.listVersionArtifact.CallUnary(ctx, req)
 }
 
 // ReleaseServiceHandler is an implementation of the svc.release.v1.ReleaseService service.
 type ReleaseServiceHandler interface {
-	CreateRelease(context.Context, *connect_go.Request[v1.CreateReleaseRequest]) (*connect_go.Response[v1.CreateReleaseResponse], error)
-	ListRelease(context.Context, *connect_go.Request[v1.ListReleaseRequest]) (*connect_go.Response[v1.ListReleaseResponse], error)
+	CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error)
+	ListVersionArtifact(context.Context, *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error)
 }
 
 // NewReleaseServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -83,14 +83,14 @@ type ReleaseServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
 	mux := http.NewServeMux()
-	mux.Handle("/svc.release.v1.ReleaseService/CreateRelease", connect_go.NewUnaryHandler(
-		"/svc.release.v1.ReleaseService/CreateRelease",
-		svc.CreateRelease,
+	mux.Handle("/svc.release.v1.ReleaseService/CreateVersionArtifact", connect_go.NewUnaryHandler(
+		"/svc.release.v1.ReleaseService/CreateVersionArtifact",
+		svc.CreateVersionArtifact,
 		opts...,
 	))
-	mux.Handle("/svc.release.v1.ReleaseService/ListRelease", connect_go.NewUnaryHandler(
-		"/svc.release.v1.ReleaseService/ListRelease",
-		svc.ListRelease,
+	mux.Handle("/svc.release.v1.ReleaseService/ListVersionArtifact", connect_go.NewUnaryHandler(
+		"/svc.release.v1.ReleaseService/ListVersionArtifact",
+		svc.ListVersionArtifact,
 		opts...,
 	))
 	return "/svc.release.v1.ReleaseService/", mux
@@ -99,10 +99,10 @@ func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect_go.Hand
 // UnimplementedReleaseServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedReleaseServiceHandler struct{}
 
-func (UnimplementedReleaseServiceHandler) CreateRelease(context.Context, *connect_go.Request[v1.CreateReleaseRequest]) (*connect_go.Response[v1.CreateReleaseResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.CreateRelease is not implemented"))
+func (UnimplementedReleaseServiceHandler) CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.CreateVersionArtifact is not implemented"))
 }
 
-func (UnimplementedReleaseServiceHandler) ListRelease(context.Context, *connect_go.Request[v1.ListReleaseRequest]) (*connect_go.Response[v1.ListReleaseResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.ListRelease is not implemented"))
+func (UnimplementedReleaseServiceHandler) ListVersionArtifact(context.Context, *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.ListVersionArtifact is not implemented"))
 }

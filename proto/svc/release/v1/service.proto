@@ -3,29 +3,31 @@ syntax = "proto3";
 package svc.release.v1;
 
 import "types/v1/version.proto";
+import "types/v1/version_artifact.proto";
 import "types/v1/cursor.proto";
 
 option go_package = "svc/release/v1;releasev1";
 
 service ReleaseService {
-  rpc CreateRelease(CreateReleaseRequest) returns (CreateReleaseResponse) {}
-  rpc ListRelease(ListReleaseRequest) returns (ListReleaseResponse) {}
+  rpc CreateVersionArtifact(CreateVersionArtifactRequest) returns (CreateVersionArtifactResponse) {}
+  rpc ListVersionArtifact(ListVersionArtifactRequest) returns (ListVersionArtifactResponse) {}
 }
 
-message CreateReleaseRequest {
+message CreateVersionArtifactRequest {
   types.v1.Version version = 1;
-  string url = 2;
-  string sha256 = 3;
-  string signature = 4;
-  string architecture = 5;
-  string operating_system = 6;
+  types.v1.VersionArtifact artifact = 2;
 }
 
-message CreateReleaseResponse {}
+message CreateVersionArtifactResponse {}
 
-message ListReleaseRequest {
+message ListVersionArtifactRequest {
   types.v1.Cursor cursor = 1;
 }
-message ListReleaseResponse {
+message ListVersionArtifactResponse {
   types.v1.Cursor next = 1;
+  message ListItem {
+      types.v1.Version version = 1;
+      repeated types.v1.VersionArtifact artifact = 2;
+  }
+  repeated ListItem items = 2;
 }
