@@ -28,6 +28,7 @@ const (
 // ReleaseServiceClient is a client for the svc.release.v1.ReleaseService service.
 type ReleaseServiceClient interface {
 	CreateRelease(context.Context, *connect_go.Request[v1.CreateReleaseRequest]) (*connect_go.Response[v1.CreateReleaseResponse], error)
+	ListRelease(context.Context, *connect_go.Request[v1.ListReleaseRequest]) (*connect_go.Response[v1.ListReleaseResponse], error)
 }
 
 // NewReleaseServiceClient constructs a client for the svc.release.v1.ReleaseService service. By
@@ -45,12 +46,18 @@ func NewReleaseServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 			baseURL+"/svc.release.v1.ReleaseService/CreateRelease",
 			opts...,
 		),
+		listRelease: connect_go.NewClient[v1.ListReleaseRequest, v1.ListReleaseResponse](
+			httpClient,
+			baseURL+"/svc.release.v1.ReleaseService/ListRelease",
+			opts...,
+		),
 	}
 }
 
 // releaseServiceClient implements ReleaseServiceClient.
 type releaseServiceClient struct {
 	createRelease *connect_go.Client[v1.CreateReleaseRequest, v1.CreateReleaseResponse]
+	listRelease   *connect_go.Client[v1.ListReleaseRequest, v1.ListReleaseResponse]
 }
 
 // CreateRelease calls svc.release.v1.ReleaseService.CreateRelease.
@@ -58,9 +65,15 @@ func (c *releaseServiceClient) CreateRelease(ctx context.Context, req *connect_g
 	return c.createRelease.CallUnary(ctx, req)
 }
 
+// ListRelease calls svc.release.v1.ReleaseService.ListRelease.
+func (c *releaseServiceClient) ListRelease(ctx context.Context, req *connect_go.Request[v1.ListReleaseRequest]) (*connect_go.Response[v1.ListReleaseResponse], error) {
+	return c.listRelease.CallUnary(ctx, req)
+}
+
 // ReleaseServiceHandler is an implementation of the svc.release.v1.ReleaseService service.
 type ReleaseServiceHandler interface {
 	CreateRelease(context.Context, *connect_go.Request[v1.CreateReleaseRequest]) (*connect_go.Response[v1.CreateReleaseResponse], error)
+	ListRelease(context.Context, *connect_go.Request[v1.ListReleaseRequest]) (*connect_go.Response[v1.ListReleaseResponse], error)
 }
 
 // NewReleaseServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -75,6 +88,11 @@ func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect_go.Hand
 		svc.CreateRelease,
 		opts...,
 	))
+	mux.Handle("/svc.release.v1.ReleaseService/ListRelease", connect_go.NewUnaryHandler(
+		"/svc.release.v1.ReleaseService/ListRelease",
+		svc.ListRelease,
+		opts...,
+	))
 	return "/svc.release.v1.ReleaseService/", mux
 }
 
@@ -83,4 +101,8 @@ type UnimplementedReleaseServiceHandler struct{}
 
 func (UnimplementedReleaseServiceHandler) CreateRelease(context.Context, *connect_go.Request[v1.CreateReleaseRequest]) (*connect_go.Response[v1.CreateReleaseResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.CreateRelease is not implemented"))
+}
+
+func (UnimplementedReleaseServiceHandler) ListRelease(context.Context, *connect_go.Request[v1.ListReleaseRequest]) (*connect_go.Response[v1.ListReleaseResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.ListRelease is not implemented"))
 }

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+message Cursor {
+  bytes opaque = 1;
+}

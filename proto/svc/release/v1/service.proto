@@ -3,11 +3,13 @@ syntax = "proto3";
 package svc.release.v1;
 
 import "types/v1/version.proto";
+import "types/v1/cursor.proto";
 
 option go_package = "svc/release/v1;releasev1";
 
 service ReleaseService {
   rpc CreateRelease(CreateReleaseRequest) returns (CreateReleaseResponse) {}
+  rpc ListRelease(ListReleaseRequest) returns (ListReleaseResponse) {}
 }
 
 message CreateReleaseRequest {
@@ -20,3 +22,10 @@ message CreateReleaseRequest {
 }
 
 message CreateReleaseResponse {}
+
+message ListReleaseRequest {
+  types.v1.Cursor cursor = 1;
+}
+message ListReleaseResponse {
+  types.v1.Cursor next = 1;
+}
