@@ -10,6 +10,7 @@ option go_package = "svc/release/v1;releasev1";
 
 service ReleaseService {
   rpc CreateVersionArtifact(CreateVersionArtifactRequest) returns (CreateVersionArtifactResponse) {}
+  rpc DeleteVersionArtifact(DeleteVersionArtifactRequest) returns (DeleteVersionArtifactResponse) {}
   rpc ListVersionArtifact(ListVersionArtifactRequest) returns (ListVersionArtifactResponse) {}
 }
 
@@ -19,6 +20,13 @@ message CreateVersionArtifactRequest {
 }
 
 message CreateVersionArtifactResponse {}
+
+message DeleteVersionArtifactRequest {
+  types.v1.Version version = 1;
+  types.v1.VersionArtifact artifact = 2;
+}
+
+message DeleteVersionArtifactResponse {}
 
 message ListVersionArtifactRequest {
   types.v1.Cursor cursor = 1;

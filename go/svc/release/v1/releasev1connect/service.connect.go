@@ -28,6 +28,7 @@ const (
 // ReleaseServiceClient is a client for the svc.release.v1.ReleaseService service.
 type ReleaseServiceClient interface {
 	CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error)
+	DeleteVersionArtifact(context.Context, *connect_go.Request[v1.DeleteVersionArtifactRequest]) (*connect_go.Response[v1.DeleteVersionArtifactResponse], error)
 	ListVersionArtifact(context.Context, *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error)
 }
 
@@ -46,6 +47,11 @@ func NewReleaseServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 			baseURL+"/svc.release.v1.ReleaseService/CreateVersionArtifact",
 			opts...,
 		),
+		deleteVersionArtifact: connect_go.NewClient[v1.DeleteVersionArtifactRequest, v1.DeleteVersionArtifactResponse](
+			httpClient,
+			baseURL+"/svc.release.v1.ReleaseService/DeleteVersionArtifact",
+			opts...,
+		),
 		listVersionArtifact: connect_go.NewClient[v1.ListVersionArtifactRequest, v1.ListVersionArtifactResponse](
 			httpClient,
 			baseURL+"/svc.release.v1.ReleaseService/ListVersionArtifact",
@@ -57,12 +63,18 @@ func NewReleaseServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 // releaseServiceClient implements ReleaseServiceClient.
 type releaseServiceClient struct {
 	createVersionArtifact *connect_go.Client[v1.CreateVersionArtifactRequest, v1.CreateVersionArtifactResponse]
+	deleteVersionArtifact *connect_go.Client[v1.DeleteVersionArtifactRequest, v1.DeleteVersionArtifactResponse]
 	listVersionArtifact   *connect_go.Client[v1.ListVersionArtifactRequest, v1.ListVersionArtifactResponse]
 }
 
 // CreateVersionArtifact calls svc.release.v1.ReleaseService.CreateVersionArtifact.
 func (c *releaseServiceClient) CreateVersionArtifact(ctx context.Context, req *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error) {
 	return c.createVersionArtifact.CallUnary(ctx, req)
+}
+
+// DeleteVersionArtifact calls svc.release.v1.ReleaseService.DeleteVersionArtifact.
+func (c *releaseServiceClient) DeleteVersionArtifact(ctx context.Context, req *connect_go.Request[v1.DeleteVersionArtifactRequest]) (*connect_go.Response[v1.DeleteVersionArtifactResponse], error) {
+	return c.deleteVersionArtifact.CallUnary(ctx, req)
 }
 
 // ListVersionArtifact calls svc.release.v1.ReleaseService.ListVersionArtifact.
@@ -73,6 +85,7 @@ func (c *releaseServiceClient) ListVersionArtifact(ctx context.Context, req *con
 // ReleaseServiceHandler is an implementation of the svc.release.v1.ReleaseService service.
 type ReleaseServiceHandler interface {
 	CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error)
+	DeleteVersionArtifact(context.Context, *connect_go.Request[v1.DeleteVersionArtifactRequest]) (*connect_go.Response[v1.DeleteVersionArtifactResponse], error)
 	ListVersionArtifact(context.Context, *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error)
 }
 
@@ -88,6 +101,11 @@ func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect_go.Hand
 		svc.CreateVersionArtifact,
 		opts...,
 	))
+	mux.Handle("/svc.release.v1.ReleaseService/DeleteVersionArtifact", connect_go.NewUnaryHandler(
+		"/svc.release.v1.ReleaseService/DeleteVersionArtifact",
+		svc.DeleteVersionArtifact,
+		opts...,
+	))
 	mux.Handle("/svc.release.v1.ReleaseService/ListVersionArtifact", connect_go.NewUnaryHandler(
 		"/svc.release.v1.ReleaseService/ListVersionArtifact",
 		svc.ListVersionArtifact,
@@ -101,6 +119,10 @@ type UnimplementedReleaseServiceHandler struct{}
 
 func (UnimplementedReleaseServiceHandler) CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.CreateVersionArtifact is not implemented"))
+}
+
+func (UnimplementedReleaseServiceHandler) DeleteVersionArtifact(context.Context, *connect_go.Request[v1.DeleteVersionArtifactRequest]) (*connect_go.Response[v1.DeleteVersionArtifactResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.DeleteVersionArtifact is not implemented"))
 }
 
 func (UnimplementedReleaseServiceHandler) ListVersionArtifact(context.Context, *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error) {
