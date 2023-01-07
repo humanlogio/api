@@ -15,23 +15,27 @@ service ReleaseService {
 }
 
 message CreateVersionArtifactRequest {
-  types.v1.Version version = 1;
-  types.v1.VersionArtifact artifact = 2;
+  string project_name = 1;
+  types.v1.Version version = 2;
+  types.v1.VersionArtifact artifact = 3;
 }
 
 message CreateVersionArtifactResponse {}
 
 message DeleteVersionArtifactRequest {
-  types.v1.Version version = 1;
-  types.v1.VersionArtifact artifact = 2;
+  string project_name = 1;
+  types.v1.Version version = 2;
+  types.v1.VersionArtifact artifact = 3;
 }
 
 message DeleteVersionArtifactResponse {}
 
 message ListVersionArtifactRequest {
-  types.v1.Cursor cursor = 1;
-  int64 limit = 2;
+  string project_name = 1;
+  types.v1.Cursor cursor = 2;
+  int64 limit = 3;
 }
+
 message ListVersionArtifactResponse {
   types.v1.Cursor next = 1;
   message ListItem {
