@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+message ReleaseChannel {
+  string name = 1;
+  int32 priority = 2;
+}

@@ -4,15 +4,61 @@ package svc.release.v1;
 
 import "types/v1/version.proto";
 import "types/v1/version_artifact.proto";
+import "types/v1/release_channel.proto";
 import "types/v1/cursor.proto";
 
 option go_package = "svc/release/v1;releasev1";
 
 service ReleaseService {
+  rpc CreateReleaseChannel(CreateReleaseChannelRequest) returns (CreateReleaseChannelResponse) {}
+  rpc ListReleaseChannel(ListReleaseChannelRequest) returns (ListReleaseChannelResponse) {}
+
+  rpc PublishVersion(PublishVersionRequest) returns (PublishVersionResponse) {}
+  rpc UnpublishVersion(UnpublishVersionRequest) returns (UnpublishVersionResponse) {}
+
   rpc CreateVersionArtifact(CreateVersionArtifactRequest) returns (CreateVersionArtifactResponse) {}
   rpc DeleteVersionArtifact(DeleteVersionArtifactRequest) returns (DeleteVersionArtifactResponse) {}
   rpc ListVersionArtifact(ListVersionArtifactRequest) returns (ListVersionArtifactResponse) {}
 }
+
+message CreateReleaseChannelRequest {
+  string project_name = 1;
+  string channel_name = 2;
+  int32 channel_priority = 3;
+}
+
+message CreateReleaseChannelResponse {}
+
+message ListReleaseChannelRequest {
+  string project_name = 1;
+  types.v1.Cursor cursor = 2;
+  int64 limit = 3;
+}
+
+message ListReleaseChannelResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+      types.v1.ReleaseChannel release_channel = 1;
+  }
+  repeated ListItem items = 2;
+}
+
+
+message PublishVersionRequest {
+  string project_name = 1;
+  string release_channel_name = 2;
+  types.v1.Version version = 3;
+}
+
+message PublishVersionResponse {}
+
+message UnpublishVersionRequest {
+  string project_name = 1;
+  string release_channel_name = 2;
+  types.v1.Version version = 3;
+}
+
+message UnpublishVersionResponse {}
 
 message CreateVersionArtifactRequest {
   string project_name = 1;

@@ -27,6 +27,10 @@ const (
 
 // ReleaseServiceClient is a client for the svc.release.v1.ReleaseService service.
 type ReleaseServiceClient interface {
+	CreateReleaseChannel(context.Context, *connect_go.Request[v1.CreateReleaseChannelRequest]) (*connect_go.Response[v1.CreateReleaseChannelResponse], error)
+	ListReleaseChannel(context.Context, *connect_go.Request[v1.ListReleaseChannelRequest]) (*connect_go.Response[v1.ListReleaseChannelResponse], error)
+	PublishVersion(context.Context, *connect_go.Request[v1.PublishVersionRequest]) (*connect_go.Response[v1.PublishVersionResponse], error)
+	UnpublishVersion(context.Context, *connect_go.Request[v1.UnpublishVersionRequest]) (*connect_go.Response[v1.UnpublishVersionResponse], error)
 	CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error)
 	DeleteVersionArtifact(context.Context, *connect_go.Request[v1.DeleteVersionArtifactRequest]) (*connect_go.Response[v1.DeleteVersionArtifactResponse], error)
 	ListVersionArtifact(context.Context, *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error)
@@ -42,6 +46,26 @@ type ReleaseServiceClient interface {
 func NewReleaseServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) ReleaseServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &releaseServiceClient{
+		createReleaseChannel: connect_go.NewClient[v1.CreateReleaseChannelRequest, v1.CreateReleaseChannelResponse](
+			httpClient,
+			baseURL+"/svc.release.v1.ReleaseService/CreateReleaseChannel",
+			opts...,
+		),
+		listReleaseChannel: connect_go.NewClient[v1.ListReleaseChannelRequest, v1.ListReleaseChannelResponse](
+			httpClient,
+			baseURL+"/svc.release.v1.ReleaseService/ListReleaseChannel",
+			opts...,
+		),
+		publishVersion: connect_go.NewClient[v1.PublishVersionRequest, v1.PublishVersionResponse](
+			httpClient,
+			baseURL+"/svc.release.v1.ReleaseService/PublishVersion",
+			opts...,
+		),
+		unpublishVersion: connect_go.NewClient[v1.UnpublishVersionRequest, v1.UnpublishVersionResponse](
+			httpClient,
+			baseURL+"/svc.release.v1.ReleaseService/UnpublishVersion",
+			opts...,
+		),
 		createVersionArtifact: connect_go.NewClient[v1.CreateVersionArtifactRequest, v1.CreateVersionArtifactResponse](
 			httpClient,
 			baseURL+"/svc.release.v1.ReleaseService/CreateVersionArtifact",
@@ -62,9 +86,33 @@ func NewReleaseServiceClient(httpClient connect_go.HTTPClient, baseURL string, o
 
 // releaseServiceClient implements ReleaseServiceClient.
 type releaseServiceClient struct {
+	createReleaseChannel  *connect_go.Client[v1.CreateReleaseChannelRequest, v1.CreateReleaseChannelResponse]
+	listReleaseChannel    *connect_go.Client[v1.ListReleaseChannelRequest, v1.ListReleaseChannelResponse]
+	publishVersion        *connect_go.Client[v1.PublishVersionRequest, v1.PublishVersionResponse]
+	unpublishVersion      *connect_go.Client[v1.UnpublishVersionRequest, v1.UnpublishVersionResponse]
 	createVersionArtifact *connect_go.Client[v1.CreateVersionArtifactRequest, v1.CreateVersionArtifactResponse]
 	deleteVersionArtifact *connect_go.Client[v1.DeleteVersionArtifactRequest, v1.DeleteVersionArtifactResponse]
 	listVersionArtifact   *connect_go.Client[v1.ListVersionArtifactRequest, v1.ListVersionArtifactResponse]
+}
+
+// CreateReleaseChannel calls svc.release.v1.ReleaseService.CreateReleaseChannel.
+func (c *releaseServiceClient) CreateReleaseChannel(ctx context.Context, req *connect_go.Request[v1.CreateReleaseChannelRequest]) (*connect_go.Response[v1.CreateReleaseChannelResponse], error) {
+	return c.createReleaseChannel.CallUnary(ctx, req)
+}
+
+// ListReleaseChannel calls svc.release.v1.ReleaseService.ListReleaseChannel.
+func (c *releaseServiceClient) ListReleaseChannel(ctx context.Context, req *connect_go.Request[v1.ListReleaseChannelRequest]) (*connect_go.Response[v1.ListReleaseChannelResponse], error) {
+	return c.listReleaseChannel.CallUnary(ctx, req)
+}
+
+// PublishVersion calls svc.release.v1.ReleaseService.PublishVersion.
+func (c *releaseServiceClient) PublishVersion(ctx context.Context, req *connect_go.Request[v1.PublishVersionRequest]) (*connect_go.Response[v1.PublishVersionResponse], error) {
+	return c.publishVersion.CallUnary(ctx, req)
+}
+
+// UnpublishVersion calls svc.release.v1.ReleaseService.UnpublishVersion.
+func (c *releaseServiceClient) UnpublishVersion(ctx context.Context, req *connect_go.Request[v1.UnpublishVersionRequest]) (*connect_go.Response[v1.UnpublishVersionResponse], error) {
+	return c.unpublishVersion.CallUnary(ctx, req)
 }
 
 // CreateVersionArtifact calls svc.release.v1.ReleaseService.CreateVersionArtifact.
@@ -84,6 +132,10 @@ func (c *releaseServiceClient) ListVersionArtifact(ctx context.Context, req *con
 
 // ReleaseServiceHandler is an implementation of the svc.release.v1.ReleaseService service.
 type ReleaseServiceHandler interface {
+	CreateReleaseChannel(context.Context, *connect_go.Request[v1.CreateReleaseChannelRequest]) (*connect_go.Response[v1.CreateReleaseChannelResponse], error)
+	ListReleaseChannel(context.Context, *connect_go.Request[v1.ListReleaseChannelRequest]) (*connect_go.Response[v1.ListReleaseChannelResponse], error)
+	PublishVersion(context.Context, *connect_go.Request[v1.PublishVersionRequest]) (*connect_go.Response[v1.PublishVersionResponse], error)
+	UnpublishVersion(context.Context, *connect_go.Request[v1.UnpublishVersionRequest]) (*connect_go.Response[v1.UnpublishVersionResponse], error)
 	CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error)
 	DeleteVersionArtifact(context.Context, *connect_go.Request[v1.DeleteVersionArtifactRequest]) (*connect_go.Response[v1.DeleteVersionArtifactResponse], error)
 	ListVersionArtifact(context.Context, *connect_go.Request[v1.ListVersionArtifactRequest]) (*connect_go.Response[v1.ListVersionArtifactResponse], error)
@@ -96,6 +148,26 @@ type ReleaseServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
 	mux := http.NewServeMux()
+	mux.Handle("/svc.release.v1.ReleaseService/CreateReleaseChannel", connect_go.NewUnaryHandler(
+		"/svc.release.v1.ReleaseService/CreateReleaseChannel",
+		svc.CreateReleaseChannel,
+		opts...,
+	))
+	mux.Handle("/svc.release.v1.ReleaseService/ListReleaseChannel", connect_go.NewUnaryHandler(
+		"/svc.release.v1.ReleaseService/ListReleaseChannel",
+		svc.ListReleaseChannel,
+		opts...,
+	))
+	mux.Handle("/svc.release.v1.ReleaseService/PublishVersion", connect_go.NewUnaryHandler(
+		"/svc.release.v1.ReleaseService/PublishVersion",
+		svc.PublishVersion,
+		opts...,
+	))
+	mux.Handle("/svc.release.v1.ReleaseService/UnpublishVersion", connect_go.NewUnaryHandler(
+		"/svc.release.v1.ReleaseService/UnpublishVersion",
+		svc.UnpublishVersion,
+		opts...,
+	))
 	mux.Handle("/svc.release.v1.ReleaseService/CreateVersionArtifact", connect_go.NewUnaryHandler(
 		"/svc.release.v1.ReleaseService/CreateVersionArtifact",
 		svc.CreateVersionArtifact,
@@ -116,6 +188,22 @@ func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect_go.Hand
 
 // UnimplementedReleaseServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedReleaseServiceHandler struct{}
+
+func (UnimplementedReleaseServiceHandler) CreateReleaseChannel(context.Context, *connect_go.Request[v1.CreateReleaseChannelRequest]) (*connect_go.Response[v1.CreateReleaseChannelResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.CreateReleaseChannel is not implemented"))
+}
+
+func (UnimplementedReleaseServiceHandler) ListReleaseChannel(context.Context, *connect_go.Request[v1.ListReleaseChannelRequest]) (*connect_go.Response[v1.ListReleaseChannelResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.ListReleaseChannel is not implemented"))
+}
+
+func (UnimplementedReleaseServiceHandler) PublishVersion(context.Context, *connect_go.Request[v1.PublishVersionRequest]) (*connect_go.Response[v1.PublishVersionResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.PublishVersion is not implemented"))
+}
+
+func (UnimplementedReleaseServiceHandler) UnpublishVersion(context.Context, *connect_go.Request[v1.UnpublishVersionRequest]) (*connect_go.Response[v1.UnpublishVersionResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.UnpublishVersion is not implemented"))
+}
 
 func (UnimplementedReleaseServiceHandler) CreateVersionArtifact(context.Context, *connect_go.Request[v1.CreateVersionArtifactRequest]) (*connect_go.Response[v1.CreateVersionArtifactResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("svc.release.v1.ReleaseService.CreateVersionArtifact is not implemented"))

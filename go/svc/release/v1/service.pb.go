@@ -21,6 +21,427 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CreateReleaseChannelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProjectName     string `protobuf:"bytes,1,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	ChannelName     string `protobuf:"bytes,2,opt,name=channel_name,json=channelName,proto3" json:"channel_name,omitempty"`
+	ChannelPriority int32  `protobuf:"varint,3,opt,name=channel_priority,json=channelPriority,proto3" json:"channel_priority,omitempty"`
+}
+
+func (x *CreateReleaseChannelRequest) Reset() {
+	*x = CreateReleaseChannelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[0]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateReleaseChannelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateReleaseChannelRequest) ProtoMessage() {}
+
+func (x *CreateReleaseChannelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[0]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateReleaseChannelRequest.ProtoReflect.Descriptor instead.
+func (*CreateReleaseChannelRequest) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CreateReleaseChannelRequest) GetProjectName() string {
+	if x != nil {
+		return x.ProjectName
+	}
+	return ""
+}
+
+func (x *CreateReleaseChannelRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *CreateReleaseChannelRequest) GetChannelPriority() int32 {
+	if x != nil {
+		return x.ChannelPriority
+	}
+	return 0
+}
+
+type CreateReleaseChannelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *CreateReleaseChannelResponse) Reset() {
+	*x = CreateReleaseChannelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateReleaseChannelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateReleaseChannelResponse) ProtoMessage() {}
+
+func (x *CreateReleaseChannelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateReleaseChannelResponse.ProtoReflect.Descriptor instead.
+func (*CreateReleaseChannelResponse) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{1}
+}
+
+type ListReleaseChannelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProjectName string     `protobuf:"bytes,1,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	Cursor      *v1.Cursor `protobuf:"bytes,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
+	Limit       int64      `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+}
+
+func (x *ListReleaseChannelRequest) Reset() {
+	*x = ListReleaseChannelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListReleaseChannelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListReleaseChannelRequest) ProtoMessage() {}
+
+func (x *ListReleaseChannelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListReleaseChannelRequest.ProtoReflect.Descriptor instead.
+func (*ListReleaseChannelRequest) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ListReleaseChannelRequest) GetProjectName() string {
+	if x != nil {
+		return x.ProjectName
+	}
+	return ""
+}
+
+func (x *ListReleaseChannelRequest) GetCursor() *v1.Cursor {
+	if x != nil {
+		return x.Cursor
+	}
+	return nil
+}
+
+func (x *ListReleaseChannelRequest) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+type ListReleaseChannelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Next  *v1.Cursor                             `protobuf:"bytes,1,opt,name=next,proto3" json:"next,omitempty"`
+	Items []*ListReleaseChannelResponse_ListItem `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+}
+
+func (x *ListReleaseChannelResponse) Reset() {
+	*x = ListReleaseChannelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListReleaseChannelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListReleaseChannelResponse) ProtoMessage() {}
+
+func (x *ListReleaseChannelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListReleaseChannelResponse.ProtoReflect.Descriptor instead.
+func (*ListReleaseChannelResponse) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ListReleaseChannelResponse) GetNext() *v1.Cursor {
+	if x != nil {
+		return x.Next
+	}
+	return nil
+}
+
+func (x *ListReleaseChannelResponse) GetItems() []*ListReleaseChannelResponse_ListItem {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type PublishVersionRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProjectName        string      `protobuf:"bytes,1,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	ReleaseChannelName string      `protobuf:"bytes,2,opt,name=release_channel_name,json=releaseChannelName,proto3" json:"release_channel_name,omitempty"`
+	Version            *v1.Version `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+}
+
+func (x *PublishVersionRequest) Reset() {
+	*x = PublishVersionRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PublishVersionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PublishVersionRequest) ProtoMessage() {}
+
+func (x *PublishVersionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PublishVersionRequest.ProtoReflect.Descriptor instead.
+func (*PublishVersionRequest) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *PublishVersionRequest) GetProjectName() string {
+	if x != nil {
+		return x.ProjectName
+	}
+	return ""
+}
+
+func (x *PublishVersionRequest) GetReleaseChannelName() string {
+	if x != nil {
+		return x.ReleaseChannelName
+	}
+	return ""
+}
+
+func (x *PublishVersionRequest) GetVersion() *v1.Version {
+	if x != nil {
+		return x.Version
+	}
+	return nil
+}
+
+type PublishVersionResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *PublishVersionResponse) Reset() {
+	*x = PublishVersionResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *PublishVersionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PublishVersionResponse) ProtoMessage() {}
+
+func (x *PublishVersionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PublishVersionResponse.ProtoReflect.Descriptor instead.
+func (*PublishVersionResponse) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{5}
+}
+
+type UnpublishVersionRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProjectName        string      `protobuf:"bytes,1,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	ReleaseChannelName string      `protobuf:"bytes,2,opt,name=release_channel_name,json=releaseChannelName,proto3" json:"release_channel_name,omitempty"`
+	Version            *v1.Version `protobuf:"bytes,3,opt,name=version,proto3" json:"version,omitempty"`
+}
+
+func (x *UnpublishVersionRequest) Reset() {
+	*x = UnpublishVersionRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnpublishVersionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnpublishVersionRequest) ProtoMessage() {}
+
+func (x *UnpublishVersionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnpublishVersionRequest.ProtoReflect.Descriptor instead.
+func (*UnpublishVersionRequest) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UnpublishVersionRequest) GetProjectName() string {
+	if x != nil {
+		return x.ProjectName
+	}
+	return ""
+}
+
+func (x *UnpublishVersionRequest) GetReleaseChannelName() string {
+	if x != nil {
+		return x.ReleaseChannelName
+	}
+	return ""
+}
+
+func (x *UnpublishVersionRequest) GetVersion() *v1.Version {
+	if x != nil {
+		return x.Version
+	}
+	return nil
+}
+
+type UnpublishVersionResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *UnpublishVersionResponse) Reset() {
+	*x = UnpublishVersionResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnpublishVersionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnpublishVersionResponse) ProtoMessage() {}
+
+func (x *UnpublishVersionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnpublishVersionResponse.ProtoReflect.Descriptor instead.
+func (*UnpublishVersionResponse) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{7}
+}
+
 type CreateVersionArtifactRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -34,7 +455,7 @@ type CreateVersionArtifactRequest struct {
 func (x *CreateVersionArtifactRequest) Reset() {
 	*x = CreateVersionArtifactRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_release_v1_service_proto_msgTypes[0]
+		mi := &file_svc_release_v1_service_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -47,7 +468,7 @@ func (x *CreateVersionArtifactRequest) String() string {
 func (*CreateVersionArtifactRequest) ProtoMessage() {}
 
 func (x *CreateVersionArtifactRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_release_v1_service_proto_msgTypes[0]
+	mi := &file_svc_release_v1_service_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +481,7 @@ func (x *CreateVersionArtifactRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVersionArtifactRequest.ProtoReflect.Descriptor instead.
 func (*CreateVersionArtifactRequest) Descriptor() ([]byte, []int) {
-	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{0}
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CreateVersionArtifactRequest) GetProjectName() string {
@@ -93,7 +514,7 @@ type CreateVersionArtifactResponse struct {
 func (x *CreateVersionArtifactResponse) Reset() {
 	*x = CreateVersionArtifactResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_release_v1_service_proto_msgTypes[1]
+		mi := &file_svc_release_v1_service_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -106,7 +527,7 @@ func (x *CreateVersionArtifactResponse) String() string {
 func (*CreateVersionArtifactResponse) ProtoMessage() {}
 
 func (x *CreateVersionArtifactResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_release_v1_service_proto_msgTypes[1]
+	mi := &file_svc_release_v1_service_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119,7 +540,7 @@ func (x *CreateVersionArtifactResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVersionArtifactResponse.ProtoReflect.Descriptor instead.
 func (*CreateVersionArtifactResponse) Descriptor() ([]byte, []int) {
-	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{1}
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{9}
 }
 
 type DeleteVersionArtifactRequest struct {
@@ -135,7 +556,7 @@ type DeleteVersionArtifactRequest struct {
 func (x *DeleteVersionArtifactRequest) Reset() {
 	*x = DeleteVersionArtifactRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_release_v1_service_proto_msgTypes[2]
+		mi := &file_svc_release_v1_service_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -148,7 +569,7 @@ func (x *DeleteVersionArtifactRequest) String() string {
 func (*DeleteVersionArtifactRequest) ProtoMessage() {}
 
 func (x *DeleteVersionArtifactRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_release_v1_service_proto_msgTypes[2]
+	mi := &file_svc_release_v1_service_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -161,7 +582,7 @@ func (x *DeleteVersionArtifactRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteVersionArtifactRequest.ProtoReflect.Descriptor instead.
 func (*DeleteVersionArtifactRequest) Descriptor() ([]byte, []int) {
-	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{2}
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteVersionArtifactRequest) GetProjectName() string {
@@ -194,7 +615,7 @@ type DeleteVersionArtifactResponse struct {
 func (x *DeleteVersionArtifactResponse) Reset() {
 	*x = DeleteVersionArtifactResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_release_v1_service_proto_msgTypes[3]
+		mi := &file_svc_release_v1_service_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -207,7 +628,7 @@ func (x *DeleteVersionArtifactResponse) String() string {
 func (*DeleteVersionArtifactResponse) ProtoMessage() {}
 
 func (x *DeleteVersionArtifactResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_release_v1_service_proto_msgTypes[3]
+	mi := &file_svc_release_v1_service_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -220,7 +641,7 @@ func (x *DeleteVersionArtifactResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteVersionArtifactResponse.ProtoReflect.Descriptor instead.
 func (*DeleteVersionArtifactResponse) Descriptor() ([]byte, []int) {
-	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{3}
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{11}
 }
 
 type ListVersionArtifactRequest struct {
@@ -236,7 +657,7 @@ type ListVersionArtifactRequest struct {
 func (x *ListVersionArtifactRequest) Reset() {
 	*x = ListVersionArtifactRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_release_v1_service_proto_msgTypes[4]
+		mi := &file_svc_release_v1_service_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -249,7 +670,7 @@ func (x *ListVersionArtifactRequest) String() string {
 func (*ListVersionArtifactRequest) ProtoMessage() {}
 
 func (x *ListVersionArtifactRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_release_v1_service_proto_msgTypes[4]
+	mi := &file_svc_release_v1_service_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -262,7 +683,7 @@ func (x *ListVersionArtifactRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVersionArtifactRequest.ProtoReflect.Descriptor instead.
 func (*ListVersionArtifactRequest) Descriptor() ([]byte, []int) {
-	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{4}
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListVersionArtifactRequest) GetProjectName() string {
@@ -298,7 +719,7 @@ type ListVersionArtifactResponse struct {
 func (x *ListVersionArtifactResponse) Reset() {
 	*x = ListVersionArtifactResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_release_v1_service_proto_msgTypes[5]
+		mi := &file_svc_release_v1_service_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -311,7 +732,7 @@ func (x *ListVersionArtifactResponse) String() string {
 func (*ListVersionArtifactResponse) ProtoMessage() {}
 
 func (x *ListVersionArtifactResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_release_v1_service_proto_msgTypes[5]
+	mi := &file_svc_release_v1_service_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -324,7 +745,7 @@ func (x *ListVersionArtifactResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVersionArtifactResponse.ProtoReflect.Descriptor instead.
 func (*ListVersionArtifactResponse) Descriptor() ([]byte, []int) {
-	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{5}
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListVersionArtifactResponse) GetNext() *v1.Cursor {
@@ -341,6 +762,53 @@ func (x *ListVersionArtifactResponse) GetItems() []*ListVersionArtifactResponse_
 	return nil
 }
 
+type ListReleaseChannelResponse_ListItem struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ReleaseChannel *v1.ReleaseChannel `protobuf:"bytes,1,opt,name=release_channel,json=releaseChannel,proto3" json:"release_channel,omitempty"`
+}
+
+func (x *ListReleaseChannelResponse_ListItem) Reset() {
+	*x = ListReleaseChannelResponse_ListItem{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_svc_release_v1_service_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListReleaseChannelResponse_ListItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListReleaseChannelResponse_ListItem) ProtoMessage() {}
+
+func (x *ListReleaseChannelResponse_ListItem) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_release_v1_service_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListReleaseChannelResponse_ListItem.ProtoReflect.Descriptor instead.
+func (*ListReleaseChannelResponse_ListItem) Descriptor() ([]byte, []int) {
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{3, 0}
+}
+
+func (x *ListReleaseChannelResponse_ListItem) GetReleaseChannel() *v1.ReleaseChannel {
+	if x != nil {
+		return x.ReleaseChannel
+	}
+	return nil
+}
+
 type ListVersionArtifactResponse_ListItem struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -353,7 +821,7 @@ type ListVersionArtifactResponse_ListItem struct {
 func (x *ListVersionArtifactResponse_ListItem) Reset() {
 	*x = ListVersionArtifactResponse_ListItem{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_svc_release_v1_service_proto_msgTypes[6]
+		mi := &file_svc_release_v1_service_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -366,7 +834,7 @@ func (x *ListVersionArtifactResponse_ListItem) String() string {
 func (*ListVersionArtifactResponse_ListItem) ProtoMessage() {}
 
 func (x *ListVersionArtifactResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_release_v1_service_proto_msgTypes[6]
+	mi := &file_svc_release_v1_service_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -379,7 +847,7 @@ func (x *ListVersionArtifactResponse_ListItem) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use ListVersionArtifactResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListVersionArtifactResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{5, 0}
+	return file_svc_release_v1_service_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *ListVersionArtifactResponse_ListItem) GetVersion() *v1.Version {
@@ -405,8 +873,66 @@ var file_svc_release_v1_service_proto_rawDesc = []byte{
 	0x74, 0x79, 0x70, 0x65, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2f, 0x76, 0x31,
 	0x2f, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x5f, 0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
-	0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x15, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2f, 0x76,
-	0x31, 0x2f, 0x63, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xa5,
+	0x74, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2f, 0x76,
+	0x31, 0x2f, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x5f, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x15, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2f, 0x76,
+	0x31, 0x2f, 0x63, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x8e,
+	0x01, 0x0a, 0x1b, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21,
+	0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4e, 0x61, 0x6d,
+	0x65, 0x12, 0x21, 0x0a, 0x0c, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x5f, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x29, 0x0a, 0x10, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x5f,
+	0x70, 0x72, 0x69, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f,
+	0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x50, 0x72, 0x69, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x22,
+	0x1e, 0x0a, 0x1c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x7e, 0x0a, 0x19, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x0c,
+	0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12,
+	0x28, 0x0a, 0x06, 0x63, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x10, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x75, 0x72, 0x73, 0x6f,
+	0x72, 0x52, 0x06, 0x63, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x12, 0x14, 0x0a, 0x05, 0x6c, 0x69, 0x6d,
+	0x69, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x22,
+	0xdc, 0x01, 0x0a, 0x1a, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24,
+	0x0a, 0x04, 0x6e, 0x65, 0x78, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x75, 0x72, 0x73, 0x6f, 0x72, 0x52, 0x04,
+	0x6e, 0x65, 0x78, 0x74, 0x12, 0x49, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x02, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x33, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x1a,
+	0x4d, 0x0a, 0x08, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x41, 0x0a, 0x0f, 0x72,
+	0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x5f, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e,
+	0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x0e,
+	0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x22, 0x99,
+	0x01, 0x0a, 0x15, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f,
+	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x6a,
+	0x65, 0x63, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b,
+	0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x30, 0x0a, 0x14, 0x72,
+	0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x5f, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x5f, 0x6e,
+	0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x72, 0x65, 0x6c, 0x65, 0x61,
+	0x73, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x2b, 0x0a,
+	0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11,
+	0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f,
+	0x6e, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x22, 0x18, 0x0a, 0x16, 0x50, 0x75,
+	0x62, 0x6c, 0x69, 0x73, 0x68, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x9b, 0x01, 0x0a, 0x17, 0x55, 0x6e, 0x70, 0x75, 0x62, 0x6c, 0x69,
+	0x73, 0x68, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x21, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4e,
+	0x61, 0x6d, 0x65, 0x12, 0x30, 0x0a, 0x14, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x5f, 0x63,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x12, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x2b, 0x0a, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76,
+	0x31, 0x2e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x07, 0x76, 0x65, 0x72, 0x73, 0x69,
+	0x6f, 0x6e, 0x22, 0x1a, 0x0a, 0x18, 0x55, 0x6e, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x56,
+	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xa5,
 	0x01, 0x0a, 0x1c, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
 	0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
 	0x21, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18,
@@ -456,8 +982,35 @@ var file_svc_release_v1_service_proto_rawDesc = []byte{
 	0x61, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32,
 	0x19, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x65, 0x72, 0x73, 0x69,
 	0x6f, 0x6e, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63, 0x74, 0x52, 0x09, 0x61, 0x72, 0x74, 0x69,
-	0x66, 0x61, 0x63, 0x74, 0x73, 0x32, 0xf2, 0x02, 0x0a, 0x0e, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73,
-	0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x76, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61,
+	0x66, 0x61, 0x63, 0x74, 0x73, 0x32, 0xa2, 0x06, 0x0a, 0x0e, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73,
+	0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x73, 0x0a, 0x14, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x12, 0x2b, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x2e, 0x76,
+	0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e,
+	0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x43,
+	0x72, 0x65, 0x61, 0x74, 0x65, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x6d, 0x0a,
+	0x12, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x12, 0x29, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2a,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x61, 0x0a, 0x0e,
+	0x50, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x25,
+	0x2e, 0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x50, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65,
+	0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x56, 0x65,
+	0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12,
+	0x67, 0x0a, 0x10, 0x55, 0x6e, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x56, 0x65, 0x72, 0x73,
+	0x69, 0x6f, 0x6e, 0x12, 0x27, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x6e, 0x70, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x56, 0x65,
+	0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x28, 0x2e, 0x73,
+	0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x6e,
+	0x70, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x76, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61,
 	0x74, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x41, 0x72, 0x74, 0x69, 0x66, 0x61, 0x63,
 	0x74, 0x12, 0x2c, 0x2e, 0x73, 0x76, 0x63, 0x2e, 0x72, 0x65, 0x6c, 0x65, 0x61, 0x73, 0x65, 0x2e,
 	0x76, 0x31, 0x2e, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
@@ -506,40 +1059,64 @@ func file_svc_release_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_release_v1_service_proto_rawDescData
 }
 
-var file_svc_release_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_svc_release_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_svc_release_v1_service_proto_goTypes = []interface{}{
-	(*CreateVersionArtifactRequest)(nil),         // 0: svc.release.v1.CreateVersionArtifactRequest
-	(*CreateVersionArtifactResponse)(nil),        // 1: svc.release.v1.CreateVersionArtifactResponse
-	(*DeleteVersionArtifactRequest)(nil),         // 2: svc.release.v1.DeleteVersionArtifactRequest
-	(*DeleteVersionArtifactResponse)(nil),        // 3: svc.release.v1.DeleteVersionArtifactResponse
-	(*ListVersionArtifactRequest)(nil),           // 4: svc.release.v1.ListVersionArtifactRequest
-	(*ListVersionArtifactResponse)(nil),          // 5: svc.release.v1.ListVersionArtifactResponse
-	(*ListVersionArtifactResponse_ListItem)(nil), // 6: svc.release.v1.ListVersionArtifactResponse.ListItem
-	(*v1.Version)(nil),                           // 7: types.v1.Version
-	(*v1.VersionArtifact)(nil),                   // 8: types.v1.VersionArtifact
-	(*v1.Cursor)(nil),                            // 9: types.v1.Cursor
+	(*CreateReleaseChannelRequest)(nil),          // 0: svc.release.v1.CreateReleaseChannelRequest
+	(*CreateReleaseChannelResponse)(nil),         // 1: svc.release.v1.CreateReleaseChannelResponse
+	(*ListReleaseChannelRequest)(nil),            // 2: svc.release.v1.ListReleaseChannelRequest
+	(*ListReleaseChannelResponse)(nil),           // 3: svc.release.v1.ListReleaseChannelResponse
+	(*PublishVersionRequest)(nil),                // 4: svc.release.v1.PublishVersionRequest
+	(*PublishVersionResponse)(nil),               // 5: svc.release.v1.PublishVersionResponse
+	(*UnpublishVersionRequest)(nil),              // 6: svc.release.v1.UnpublishVersionRequest
+	(*UnpublishVersionResponse)(nil),             // 7: svc.release.v1.UnpublishVersionResponse
+	(*CreateVersionArtifactRequest)(nil),         // 8: svc.release.v1.CreateVersionArtifactRequest
+	(*CreateVersionArtifactResponse)(nil),        // 9: svc.release.v1.CreateVersionArtifactResponse
+	(*DeleteVersionArtifactRequest)(nil),         // 10: svc.release.v1.DeleteVersionArtifactRequest
+	(*DeleteVersionArtifactResponse)(nil),        // 11: svc.release.v1.DeleteVersionArtifactResponse
+	(*ListVersionArtifactRequest)(nil),           // 12: svc.release.v1.ListVersionArtifactRequest
+	(*ListVersionArtifactResponse)(nil),          // 13: svc.release.v1.ListVersionArtifactResponse
+	(*ListReleaseChannelResponse_ListItem)(nil),  // 14: svc.release.v1.ListReleaseChannelResponse.ListItem
+	(*ListVersionArtifactResponse_ListItem)(nil), // 15: svc.release.v1.ListVersionArtifactResponse.ListItem
+	(*v1.Cursor)(nil),                            // 16: types.v1.Cursor
+	(*v1.Version)(nil),                           // 17: types.v1.Version
+	(*v1.VersionArtifact)(nil),                   // 18: types.v1.VersionArtifact
+	(*v1.ReleaseChannel)(nil),                    // 19: types.v1.ReleaseChannel
 }
 var file_svc_release_v1_service_proto_depIdxs = []int32{
-	7,  // 0: svc.release.v1.CreateVersionArtifactRequest.version:type_name -> types.v1.Version
-	8,  // 1: svc.release.v1.CreateVersionArtifactRequest.artifact:type_name -> types.v1.VersionArtifact
-	7,  // 2: svc.release.v1.DeleteVersionArtifactRequest.version:type_name -> types.v1.Version
-	8,  // 3: svc.release.v1.DeleteVersionArtifactRequest.artifact:type_name -> types.v1.VersionArtifact
-	9,  // 4: svc.release.v1.ListVersionArtifactRequest.cursor:type_name -> types.v1.Cursor
-	9,  // 5: svc.release.v1.ListVersionArtifactResponse.next:type_name -> types.v1.Cursor
-	6,  // 6: svc.release.v1.ListVersionArtifactResponse.items:type_name -> svc.release.v1.ListVersionArtifactResponse.ListItem
-	7,  // 7: svc.release.v1.ListVersionArtifactResponse.ListItem.version:type_name -> types.v1.Version
-	8,  // 8: svc.release.v1.ListVersionArtifactResponse.ListItem.artifacts:type_name -> types.v1.VersionArtifact
-	0,  // 9: svc.release.v1.ReleaseService.CreateVersionArtifact:input_type -> svc.release.v1.CreateVersionArtifactRequest
-	2,  // 10: svc.release.v1.ReleaseService.DeleteVersionArtifact:input_type -> svc.release.v1.DeleteVersionArtifactRequest
-	4,  // 11: svc.release.v1.ReleaseService.ListVersionArtifact:input_type -> svc.release.v1.ListVersionArtifactRequest
-	1,  // 12: svc.release.v1.ReleaseService.CreateVersionArtifact:output_type -> svc.release.v1.CreateVersionArtifactResponse
-	3,  // 13: svc.release.v1.ReleaseService.DeleteVersionArtifact:output_type -> svc.release.v1.DeleteVersionArtifactResponse
-	5,  // 14: svc.release.v1.ReleaseService.ListVersionArtifact:output_type -> svc.release.v1.ListVersionArtifactResponse
-	12, // [12:15] is the sub-list for method output_type
-	9,  // [9:12] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	16, // 0: svc.release.v1.ListReleaseChannelRequest.cursor:type_name -> types.v1.Cursor
+	16, // 1: svc.release.v1.ListReleaseChannelResponse.next:type_name -> types.v1.Cursor
+	14, // 2: svc.release.v1.ListReleaseChannelResponse.items:type_name -> svc.release.v1.ListReleaseChannelResponse.ListItem
+	17, // 3: svc.release.v1.PublishVersionRequest.version:type_name -> types.v1.Version
+	17, // 4: svc.release.v1.UnpublishVersionRequest.version:type_name -> types.v1.Version
+	17, // 5: svc.release.v1.CreateVersionArtifactRequest.version:type_name -> types.v1.Version
+	18, // 6: svc.release.v1.CreateVersionArtifactRequest.artifact:type_name -> types.v1.VersionArtifact
+	17, // 7: svc.release.v1.DeleteVersionArtifactRequest.version:type_name -> types.v1.Version
+	18, // 8: svc.release.v1.DeleteVersionArtifactRequest.artifact:type_name -> types.v1.VersionArtifact
+	16, // 9: svc.release.v1.ListVersionArtifactRequest.cursor:type_name -> types.v1.Cursor
+	16, // 10: svc.release.v1.ListVersionArtifactResponse.next:type_name -> types.v1.Cursor
+	15, // 11: svc.release.v1.ListVersionArtifactResponse.items:type_name -> svc.release.v1.ListVersionArtifactResponse.ListItem
+	19, // 12: svc.release.v1.ListReleaseChannelResponse.ListItem.release_channel:type_name -> types.v1.ReleaseChannel
+	17, // 13: svc.release.v1.ListVersionArtifactResponse.ListItem.version:type_name -> types.v1.Version
+	18, // 14: svc.release.v1.ListVersionArtifactResponse.ListItem.artifacts:type_name -> types.v1.VersionArtifact
+	0,  // 15: svc.release.v1.ReleaseService.CreateReleaseChannel:input_type -> svc.release.v1.CreateReleaseChannelRequest
+	2,  // 16: svc.release.v1.ReleaseService.ListReleaseChannel:input_type -> svc.release.v1.ListReleaseChannelRequest
+	4,  // 17: svc.release.v1.ReleaseService.PublishVersion:input_type -> svc.release.v1.PublishVersionRequest
+	6,  // 18: svc.release.v1.ReleaseService.UnpublishVersion:input_type -> svc.release.v1.UnpublishVersionRequest
+	8,  // 19: svc.release.v1.ReleaseService.CreateVersionArtifact:input_type -> svc.release.v1.CreateVersionArtifactRequest
+	10, // 20: svc.release.v1.ReleaseService.DeleteVersionArtifact:input_type -> svc.release.v1.DeleteVersionArtifactRequest
+	12, // 21: svc.release.v1.ReleaseService.ListVersionArtifact:input_type -> svc.release.v1.ListVersionArtifactRequest
+	1,  // 22: svc.release.v1.ReleaseService.CreateReleaseChannel:output_type -> svc.release.v1.CreateReleaseChannelResponse
+	3,  // 23: svc.release.v1.ReleaseService.ListReleaseChannel:output_type -> svc.release.v1.ListReleaseChannelResponse
+	5,  // 24: svc.release.v1.ReleaseService.PublishVersion:output_type -> svc.release.v1.PublishVersionResponse
+	7,  // 25: svc.release.v1.ReleaseService.UnpublishVersion:output_type -> svc.release.v1.UnpublishVersionResponse
+	9,  // 26: svc.release.v1.ReleaseService.CreateVersionArtifact:output_type -> svc.release.v1.CreateVersionArtifactResponse
+	11, // 27: svc.release.v1.ReleaseService.DeleteVersionArtifact:output_type -> svc.release.v1.DeleteVersionArtifactResponse
+	13, // 28: svc.release.v1.ReleaseService.ListVersionArtifact:output_type -> svc.release.v1.ListVersionArtifactResponse
+	22, // [22:29] is the sub-list for method output_type
+	15, // [15:22] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_svc_release_v1_service_proto_init() }
@@ -549,7 +1126,7 @@ func file_svc_release_v1_service_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_svc_release_v1_service_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateVersionArtifactRequest); i {
+			switch v := v.(*CreateReleaseChannelRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -561,7 +1138,7 @@ func file_svc_release_v1_service_proto_init() {
 			}
 		}
 		file_svc_release_v1_service_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CreateVersionArtifactResponse); i {
+			switch v := v.(*CreateReleaseChannelResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -573,7 +1150,7 @@ func file_svc_release_v1_service_proto_init() {
 			}
 		}
 		file_svc_release_v1_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteVersionArtifactRequest); i {
+			switch v := v.(*ListReleaseChannelRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -585,7 +1162,7 @@ func file_svc_release_v1_service_proto_init() {
 			}
 		}
 		file_svc_release_v1_service_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteVersionArtifactResponse); i {
+			switch v := v.(*ListReleaseChannelResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -597,7 +1174,7 @@ func file_svc_release_v1_service_proto_init() {
 			}
 		}
 		file_svc_release_v1_service_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListVersionArtifactRequest); i {
+			switch v := v.(*PublishVersionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -609,7 +1186,7 @@ func file_svc_release_v1_service_proto_init() {
 			}
 		}
 		file_svc_release_v1_service_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListVersionArtifactResponse); i {
+			switch v := v.(*PublishVersionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -621,6 +1198,114 @@ func file_svc_release_v1_service_proto_init() {
 			}
 		}
 		file_svc_release_v1_service_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnpublishVersionRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnpublishVersionResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateVersionArtifactRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateVersionArtifactResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteVersionArtifactRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteVersionArtifactResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListVersionArtifactRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListVersionArtifactResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListReleaseChannelResponse_ListItem); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_svc_release_v1_service_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ListVersionArtifactResponse_ListItem); i {
 			case 0:
 				return &v.state
@@ -639,7 +1324,7 @@ func file_svc_release_v1_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_svc_release_v1_service_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
