@@ -3,6 +3,7 @@ syntax = "proto3";
 package svc.cliupdate.v1;
 
 import "types/v1/version.proto";
+import "types/v1/version_artifact.proto";
 import "types/v1/meta.proto";
 
 option go_package = "svc/cliupdate/v1;cliupdatev1";
@@ -22,9 +23,7 @@ message GetNextUpdateRequest {
 
 message GetNextUpdateResponse {
   types.v1.Version next_version = 1;
-  string url = 2;
-  string sha256 = 3;
-  string signature = 4;
+  types.v1.VersionArtifact next_artifact = 2;
 
   types.v1.ResMeta meta = 1000;
 }
