@@ -3,8 +3,7 @@ syntax = "proto3";
 package svc.cliupdate.v1;
 
 import "types/v1/version.proto";
-import "types/v1/account.proto";
-import "types/v1/machine.proto";
+import "types/v1/meta.proto";
 
 option go_package = "svc/cliupdate/v1;cliupdatev1";
 
@@ -14,11 +13,11 @@ service UpdateService {
 
 message GetNextUpdateRequest {
   string project_name = 1;
-  types.v1.Version current_version = 21;
-  int64 account_id = 3;
-  int64 machine_id = 401;
-  string machine_architecture = 402;
-  string machine_operating_system = 403;
+  types.v1.Version current_version = 2;
+  string machine_architecture = 3;
+  string machine_operating_system = 4;
+
+  types.v1.ReqMeta meta = 1000;
 }
 
 message GetNextUpdateResponse {
@@ -27,8 +26,5 @@ message GetNextUpdateResponse {
   string sha256 = 3;
   string signature = 4;
 
-  // metadata
-
-  types.v1.Account account = 102;
-  types.v1.Machine machine = 103;
+  types.v1.ResMeta meta = 1000;
 }
