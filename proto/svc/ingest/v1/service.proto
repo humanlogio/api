@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package svc.ingest.v1;
+
+import "types/v1/logevent.proto";
+import "google/protobuf/duration.proto";
+
+option go_package = "svc/ingest/v1;ingestv1";
+
+service IngestService {
+  rpc GetHeartbeat(GetHeartbeatRequest) returns (GetHeartbeatResponse);
+  rpc Ingest(IngestRequest) returns (IngestResponse);
+  rpc IngestStream(stream IngestStreamRequest) returns (IngestStreamResponse);
+  rpc IngestBidiStream(stream IngestBidiStreamRequest) returns (stream IngestBidiStreamResponse);
+}
+
+message GetHeartbeatRequest {
+  // may change the heartbeat if specified
+  optional uint64 machine_id = 1;
+  optional uint64 session_id = 2;
+}
+message GetHeartbeatResponse {
+  google.protobuf.Duration heartbeat_in = 1;
+}
+
+message IngestRequest {
+  uint64 machine_id = 1;
+  // session ID, unique per machine.
+  // if not specified, one will be returned
+  uint64 session_id = 2;
+  repeated types.v1.LogEvent events = 3;
+}
+
+message IngestResponse {
+  uint64 session_id = 1;
+  google.protobuf.Duration heartbeat_in = 2;
+}
+
+message IngestStreamRequest {
+  // only evaluated on the first message
+  uint64 machine_id = 1;
+  // session ID, unique per machine
+  uint64 session_id = 2;
+  repeated types.v1.LogEvent events = 3;
+}
+
+message IngestStreamResponse {
+  uint64 session_id = 1;
+  google.protobuf.Duration heartbeat_in = 2;
+}
+
+message IngestBidiStreamRequest {
+  repeated types.v1.LogEvent events = 1;
+  // only evaluated on the first message
+  uint64 machine_id = 2;
+  // Optional session ID to mark as resuming.
+  uint64 resume_session_id = 3;
+}
+
+message IngestBidiStreamResponse {
+  uint64 session_id = 1;
+  google.protobuf.Duration heartbeat_in = 2;
+}

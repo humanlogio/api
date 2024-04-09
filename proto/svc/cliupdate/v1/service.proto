@@ -17,6 +17,7 @@ message GetNextUpdateRequest {
   types.v1.Version current_version = 2;
   string machine_architecture = 3;
   string machine_operating_system = 4;
+  optional string release_channel_name = 5;
 
   types.v1.ReqMeta meta = 1000;
 }

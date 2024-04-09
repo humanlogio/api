@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package svc.account.v1;
+
+option go_package = "svc/account/v1;accountv1";
+
+import "types/v1/account.proto";
+import "types/v1/cursor.proto";
+import "types/v1/machine.proto";
+
+service AccountService {
+  rpc ListMachine(ListMachineRequest) returns (ListMachineResponse);
+}
+
+message ListMachineRequest {
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+  int64 account_id = 3;
+}
+
+message ListMachineResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.Machine machine = 1;
+  }
+  repeated ListItem items = 2;
+}

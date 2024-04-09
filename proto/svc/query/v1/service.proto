@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package svc.query.v1;
+
+import "types/v1/session.proto";
+import "types/v1/logevent.proto";
+import "types/v1/logquery.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
+
+option go_package = "svc/query/v1;queryv1";
+
+service QueryService {
+  rpc SummarizeEvents(SummarizeEventsRequest) returns (SummarizeEventsResponse);
+
+  rpc WatchQuery(WatchQueryRequest) returns (stream WatchQueryResponse);
+}
+
+message SummarizeEventsRequest {
+  int64 account_id = 1;
+  optional google.protobuf.Timestamp from = 2;
+  optional google.protobuf.Timestamp to = 3;
+  uint32 bucket_count = 4;
+}
+
+message SummarizeEventsResponse {
+  google.protobuf.Duration bucket_width = 1;
+  repeated Bucket buckets = 2;
+
+  message Bucket {
+    google.protobuf.Timestamp ts = 1;
+    uint64 event_count = 2;
+  }
+}
+
+message WatchQueryRequest {
+  int64 account_id = 1;
+  types.v1.LogQuery query = 2;
+}
+
+message WatchQueryResponse {
+  repeated types.v1.LogEventGroup events = 1;
+}
