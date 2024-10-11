@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package svc.user.v1;
+
+option go_package = "svc/user/v1;userv1";
+
+import "types/v1/user.proto";
+import "types/v1/cursor.proto";
+import "types/v1/organization.proto";
+
+service UserService {
+  rpc Whoami(WhoamiRequest) returns (WhoamiResponse) {}
+  rpc GetLogoutURL(GetLogoutURLRequest) returns (GetLogoutURLResponse) {}
+
+  rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse) {}
+  rpc ListOrganization(ListOrganizationRequest) returns (ListOrganizationResponse) {}
+}
+
+message WhoamiRequest{}
+message WhoamiResponse{
+  types.v1.User user = 1;
+  types.v1.Organization current_organization = 2;
+}
+
+message GetLogoutURLRequest{}
+
+message GetLogoutURLResponse{
+  string logout_url = 1;
+}
+
+
+message CreateOrganizationRequest{
+  string name = 1;
+}
+
+message CreateOrganizationResponse{
+  types.v1.Organization organization = 1;
+}
+
+message ListOrganizationRequest{
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+}
+
+message ListOrganizationResponse{
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.Organization organization = 1;
+  }
+  repeated ListItem items = 2;
+}

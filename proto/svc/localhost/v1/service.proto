@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package svc.localhost.v1;
+
+import "types/v1/version.proto";
+import "types/v1/meta.proto";
+
+option go_package = "svc/localhost/v1;localhostv1";
+
+service LocalhostService {
+  rpc Ping(PingRequest) returns (PingResponse);
+}
+
+message PingRequest {}
+message PingResponse {
+  types.v1.Version client_version = 1;
+  string architecture = 2;
+  string operating_system = 3;
+  types.v1.ResMeta meta = 1000;
+}

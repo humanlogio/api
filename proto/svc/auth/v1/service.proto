@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package svc.auth.v1;
+
+option go_package = "svc/auth/v1;authv1";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "types/v1/account.proto";
+import "types/v1/meta.proto";
+import "types/v1/user_token.proto";
+import "types/v1/version.proto";
+
+service AuthService {
+  rpc GetAuthURL(GetAuthURLRequest) returns (GetAuthURLResponse) {}
+  rpc BeginDeviceAuth(BeginDeviceAuthRequest) returns (BeginDeviceAuthResponse) {}
+  rpc CompleteDeviceAuth(CompleteDeviceAuthRequest) returns (CompleteDeviceAuthResponse) {}
+}
+
+message GetAuthURLRequest {
+  // optional: if an org is specified
+  string organization_id = 1;
+  string return_to_url = 2;
+  LocalhostViaBrowser localhost = 3;
+}
+
+message LocalhostViaBrowser {
+  optional int64 claim_account_id = 1;
+  optional int64 claim_machine_id = 2;
+  string architecture = 3;
+  string operating_system = 4;
+  types.v1.Version using_version = 5;
+}
+
+message GetAuthURLResponse {
+  string auth_url = 1;
+}
+
+message BeginDeviceAuthRequest {
+  string organization = 1;
+}
+
+message BeginDeviceAuthResponse {
+  string url = 1;
+  // device_code must be used to retrieve an authenticated user token with `CompleteDeviceAuth`
+  string device_code = 2;
+  string user_code = 3;
+  google.protobuf.Timestamp expires_at = 4;
+  google.protobuf.Duration poll_interval = 5;
+}
+
+message CompleteDeviceAuthRequest {
+  // device_code is returned when calling `BeginDeviceAuth` and allows an auth flow
+  // to retrieve the user token that is generated when a user is authenticated
+  string device_code = 1;
+  string user_code = 2;
+  optional int64 claim_account_id = 3;
+  optional int64 claim_machine_id = 4;
+  string architecture = 5;
+  string operating_system = 6;
+}
+
+message CompleteDeviceAuthResponse {
+  types.v1.UserToken token = 1;
+  int64 account_id = 2;
+  int64 machine_id = 3;
+}

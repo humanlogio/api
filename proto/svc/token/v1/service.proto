@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package svc.token.v1;
+
+option go_package = "svc/token/v1;tokenv1";
+
+import "google/protobuf/timestamp.proto";
+import "types/v1/account_token.proto";
+import "types/v1/cursor.proto";
+
+service TokenService {
+  rpc GenerateAccountToken(GenerateAccountTokenRequest) returns (GenerateAccountTokenResponse) {}
+  rpc RevokeAccountToken(RevokeAccountTokenRequest) returns (RevokeAccountTokenResponse) {}
+  rpc GetAccountToken(GetAccountTokenRequest) returns (GetAccountTokenResponse) {}
+  rpc ListAccountToken(ListAccountTokenRequest) returns (ListAccountTokenResponse) {}
+}
+
+message GenerateAccountTokenRequest {
+  int64 account_id = 1;
+  google.protobuf.Timestamp expires_at = 2;
+  repeated types.v1.AccountRole roles = 3;
+}
+
+message GenerateAccountTokenResponse {
+  types.v1.AccountToken token = 1;
+}
+
+message RevokeAccountTokenRequest {
+  int64 account_id = 1;
+  int64 token_id = 2;
+}
+
+message RevokeAccountTokenResponse {
+}
+
+
+message GetAccountTokenRequest {
+  int64 account_id = 1;
+  int64 token_id = 2;
+}
+
+message GetAccountTokenResponse {
+  types.v1.AccountToken token = 1;
+}
+
+message ListAccountTokenRequest {
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+  int64 account_id = 3;
+}
+
+message ListAccountTokenResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.AccountToken token = 1;
+  }
+  repeated ListItem items = 2;
+}

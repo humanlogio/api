@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+import "google/protobuf/timestamp.proto";
+
+message LogEventGroup {
+  int64 machine_id = 1;
+  int64 session_id = 2;
+  repeated types.v1.LogEvent logs = 3;
+}
+
+message LogEvent {
+  google.protobuf.Timestamp parsed_at = 1;
+  bytes raw = 2;
+  StructuredLogEvent structured = 3;
+}
+
+message StructuredLogEvent {
+  google.protobuf.Timestamp timestamp = 1;
+  string lvl = 2;
+  string msg = 3;
+  repeated KV kvs = 4;
+}
+
+message KV {
+  string key = 1;
+  string value = 2;
+}

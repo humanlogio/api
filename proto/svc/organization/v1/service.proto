@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package svc.organization.v1;
+
+option go_package = "svc/organization/v1;organizationv1";
+
+import "types/v1/account.proto";
+import "types/v1/cursor.proto";
+import "types/v1/organization.proto";
+import "types/v1/user.proto";
+
+service OrganizationService {
+  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
+  rpc ListAccount(ListAccountRequest) returns (ListAccountResponse) {}
+
+  rpc ListUser(ListUserRequest) returns (ListUserResponse) {}
+  rpc InviteUser(InviteUserRequest) returns (InviteUserResponse) {}
+  rpc RevokeUser(RevokeUserRequest) returns (RevokeUserResponse) {}
+}
+
+message CreateAccountRequest {
+  int64 organization_id = 1;
+  string account_name = 2;
+}
+
+message CreateAccountResponse {
+  types.v1.Account account = 1;
+}
+
+message ListAccountRequest{
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+  int64 organization_id = 3;
+}
+
+message ListAccountResponse{
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.Account account = 1;
+  }
+  repeated ListItem items = 2;
+}
+
+message ListUserRequest{
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+  int64 organization_id = 3;
+}
+
+message ListUserResponse{
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.User user = 1;
+  }
+  repeated ListItem items = 2;
+}
+
+message InviteUserRequest{
+  int64 organization_id = 1;
+  int64 user_email = 2;
+}
+message InviteUserResponse{}
+
+message RevokeUserRequest{
+  int64 organization_id = 1;
+  int64 user_id = 2;
+}
+message RevokeUserResponse{}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+import "google/protobuf/timestamp.proto";
+
+message LogQuery {
+  google.protobuf.Timestamp from = 1;
+  google.protobuf.Timestamp to = 2;
+}

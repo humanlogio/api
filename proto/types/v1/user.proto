@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+import "google/protobuf/timestamp.proto";
+
+message User {
+  int64 id = 1;
+  string email = 2;
+  string profile_picture_url = 3;
+  string first_name = 4;
+  string last_name = 5;
+  bool email_verified = 6;
+  google.protobuf.Timestamp created_at = 7;
+}
