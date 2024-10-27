@@ -20,6 +20,11 @@ export class LogQuery extends Message<LogQuery> {
    */
   to?: Timestamp;
 
+  /**
+   * @generated from field: string query = 100;
+   */
+  query = "";
+
   constructor(data?: PartialMessage<LogQuery>) {
     super();
     proto3.util.initPartial(data, this);
@@ -30,6 +35,7 @@ export class LogQuery extends Message<LogQuery> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "from", kind: "message", T: Timestamp },
     { no: 2, name: "to", kind: "message", T: Timestamp },
+    { no: 100, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LogQuery {
