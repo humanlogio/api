@@ -1,26 +1,27 @@
-version: v1
+version: v2
 managed:
   enabled: true
-  go_package_prefix:
-    default: github.com/humanlogio/api/go
+  override:
+    - file_option: go_package_prefix
+      value: github.com/humanlogio/api/go
 plugins:
-  - plugin: buf.build/protocolbuffers/go
+  - local: protoc-gen-go
     out: go
     opt: paths=source_relative
-  - plugin: buf.build/connectrpc/go
+  - local: protoc-gen-connect-go
     out: go
     opt: paths=source_relative
-  - name: es
+  - local: protoc-gen-es
     out: js
     opt:
       - target=ts
       - import_extension=none
-  - name: connect-es
+  - local: protoc-gen-connect-es
     out: js
     opt:
       - target=ts
       - import_extension=none
-  - name: connect-query
+  - local: protoc-gen-connect-query
     out: js
     opt:
       - target=ts

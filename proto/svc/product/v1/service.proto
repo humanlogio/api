@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package svc.product.v1;
+
+import "types/v1/product.proto";
+import "types/v1/cursor.proto";
+
+option go_package = "svc/product/v1;productv1";
+
+service ProductService {
+  rpc ListProduct(ListProductRequest) returns (ListProductResponse);
+}
+
+
+message ListProductRequest {
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+  string category = 3;
+}
+
+message ListProductResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.Product product = 1;
+  }
+  repeated ListItem items = 2;
+}
