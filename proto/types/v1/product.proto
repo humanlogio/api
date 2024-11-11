@@ -4,28 +4,20 @@ package types.v1;
 
 option go_package = "types/v1;typesv1";
 
+import "types/v1/price.proto";
 import "google/protobuf/timestamp.proto";
 
 message Product {
   google.protobuf.Timestamp created_at = 100;
+  google.protobuf.Timestamp updated_at = 101;
 
   string stripe_id = 1;
-  string default_price_stripe_id = 2;
+  types.v1.Price default_price = 2;
   string name = 3;
   string description = 4;
   repeated MarketingFeature marketing_features = 5;
 
   message MarketingFeature {
     string name = 1;
-  }
-  message DefaultPrice {
-    message Recurring {
-      string interval = 1;
-      int64 interval_count = 2;
-    }
-
-    string currency = 1;
-    int64 unit_amount = 2;
-    Recurring recurring = 3;
   }
 }

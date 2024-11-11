@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+import "google/protobuf/timestamp.proto";
+
+message Price {
+  google.protobuf.Timestamp created_at = 100;
+  message Recurring {
+    string interval = 1;
+    int64 interval_count = 2;
+    int64 trial_period_days = 3;
+  }
+
+  string stripe_id = 1;
+  string currency = 2;
+  int64 unit_amount = 3;
+  Recurring recurring = 4;
+  string lookup_key = 5;
+}

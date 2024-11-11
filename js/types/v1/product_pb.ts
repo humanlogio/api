@@ -4,7 +4,8 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Price } from "./price_pb";
 
 /**
  * @generated from message types.v1.Product
@@ -16,14 +17,19 @@ export class Product extends Message<Product> {
   createdAt?: Timestamp;
 
   /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 101;
+   */
+  updatedAt?: Timestamp;
+
+  /**
    * @generated from field: string stripe_id = 1;
    */
   stripeId = "";
 
   /**
-   * @generated from field: string default_price_stripe_id = 2;
+   * @generated from field: types.v1.Price default_price = 2;
    */
-  defaultPriceStripeId = "";
+  defaultPrice?: Price;
 
   /**
    * @generated from field: string name = 3;
@@ -49,8 +55,9 @@ export class Product extends Message<Product> {
   static readonly typeName = "types.v1.Product";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 100, name: "created_at", kind: "message", T: Timestamp },
+    { no: 101, name: "updated_at", kind: "message", T: Timestamp },
     { no: 1, name: "stripe_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "default_price_stripe_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "default_price", kind: "message", T: Price },
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "marketing_features", kind: "message", T: Product_MarketingFeature, repeated: true },
@@ -107,98 +114,6 @@ export class Product_MarketingFeature extends Message<Product_MarketingFeature> 
 
   static equals(a: Product_MarketingFeature | PlainMessage<Product_MarketingFeature> | undefined, b: Product_MarketingFeature | PlainMessage<Product_MarketingFeature> | undefined): boolean {
     return proto3.util.equals(Product_MarketingFeature, a, b);
-  }
-}
-
-/**
- * @generated from message types.v1.Product.DefaultPrice
- */
-export class Product_DefaultPrice extends Message<Product_DefaultPrice> {
-  /**
-   * @generated from field: string currency = 1;
-   */
-  currency = "";
-
-  /**
-   * @generated from field: int64 unit_amount = 2;
-   */
-  unitAmount = protoInt64.zero;
-
-  /**
-   * @generated from field: types.v1.Product.DefaultPrice.Recurring recurring = 3;
-   */
-  recurring?: Product_DefaultPrice_Recurring;
-
-  constructor(data?: PartialMessage<Product_DefaultPrice>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.Product.DefaultPrice";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "currency", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "unit_amount", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "recurring", kind: "message", T: Product_DefaultPrice_Recurring },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Product_DefaultPrice {
-    return new Product_DefaultPrice().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Product_DefaultPrice {
-    return new Product_DefaultPrice().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Product_DefaultPrice {
-    return new Product_DefaultPrice().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Product_DefaultPrice | PlainMessage<Product_DefaultPrice> | undefined, b: Product_DefaultPrice | PlainMessage<Product_DefaultPrice> | undefined): boolean {
-    return proto3.util.equals(Product_DefaultPrice, a, b);
-  }
-}
-
-/**
- * @generated from message types.v1.Product.DefaultPrice.Recurring
- */
-export class Product_DefaultPrice_Recurring extends Message<Product_DefaultPrice_Recurring> {
-  /**
-   * @generated from field: string interval = 1;
-   */
-  interval = "";
-
-  /**
-   * @generated from field: int64 interval_count = 2;
-   */
-  intervalCount = protoInt64.zero;
-
-  constructor(data?: PartialMessage<Product_DefaultPrice_Recurring>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.Product.DefaultPrice.Recurring";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "interval", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "interval_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Product_DefaultPrice_Recurring {
-    return new Product_DefaultPrice_Recurring().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Product_DefaultPrice_Recurring {
-    return new Product_DefaultPrice_Recurring().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Product_DefaultPrice_Recurring {
-    return new Product_DefaultPrice_Recurring().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Product_DefaultPrice_Recurring | PlainMessage<Product_DefaultPrice_Recurring> | undefined, b: Product_DefaultPrice_Recurring | PlainMessage<Product_DefaultPrice_Recurring> | undefined): boolean {
-    return proto3.util.equals(Product_DefaultPrice_Recurring, a, b);
   }
 }
 
