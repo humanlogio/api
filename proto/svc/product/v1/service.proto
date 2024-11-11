@@ -3,6 +3,7 @@ syntax = "proto3";
 package svc.product.v1;
 
 import "types/v1/product.proto";
+import "types/v1/price.proto";
 import "types/v1/cursor.proto";
 
 option go_package = "svc/product/v1;productv1";
@@ -22,6 +23,7 @@ message ListProductResponse {
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.Product product = 1;
+    repeated types.v1.Price prices = 2;
   }
   repeated ListItem items = 2;
 }

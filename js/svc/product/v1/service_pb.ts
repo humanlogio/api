@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { Product } from "../../../types/v1/product_pb";
+import { Price } from "../../../types/v1/price_pb";
 
 /**
  * @generated from message svc.product.v1.ListProductRequest
@@ -109,6 +110,11 @@ export class ListProductResponse_ListItem extends Message<ListProductResponse_Li
    */
   product?: Product;
 
+  /**
+   * @generated from field: repeated types.v1.Price prices = 2;
+   */
+  prices: Price[] = [];
+
   constructor(data?: PartialMessage<ListProductResponse_ListItem>) {
     super();
     proto3.util.initPartial(data, this);
@@ -118,6 +124,7 @@ export class ListProductResponse_ListItem extends Message<ListProductResponse_Li
   static readonly typeName = "svc.product.v1.ListProductResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "product", kind: "message", T: Product },
+    { no: 2, name: "prices", kind: "message", T: Price, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListProductResponse_ListItem {
