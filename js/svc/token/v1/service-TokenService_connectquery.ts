@@ -4,59 +4,59 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { GenerateAccountTokenRequest, GenerateAccountTokenResponse, GetAccountTokenRequest, GetAccountTokenResponse, ListAccountTokenRequest, ListAccountTokenResponse, RevokeAccountTokenRequest, RevokeAccountTokenResponse } from "./service_pb";
+import { GenerateEnvironmentTokenRequest, GenerateEnvironmentTokenResponse, GetEnvironmentTokenRequest, GetEnvironmentTokenResponse, ListEnvironmentTokenRequest, ListEnvironmentTokenResponse, RevokeEnvironmentTokenRequest, RevokeEnvironmentTokenResponse } from "./service_pb";
 
 /**
- * @generated from rpc svc.token.v1.TokenService.GenerateAccountToken
+ * @generated from rpc svc.token.v1.TokenService.GenerateEnvironmentToken
  */
-export const generateAccountToken = {
-  localName: "generateAccountToken",
-  name: "GenerateAccountToken",
+export const generateEnvironmentToken = {
+  localName: "generateEnvironmentToken",
+  name: "GenerateEnvironmentToken",
   kind: MethodKind.Unary,
-  I: GenerateAccountTokenRequest,
-  O: GenerateAccountTokenResponse,
+  I: GenerateEnvironmentTokenRequest,
+  O: GenerateEnvironmentTokenResponse,
   service: {
     typeName: "svc.token.v1.TokenService"
   }
 } as const;
 
 /**
- * @generated from rpc svc.token.v1.TokenService.RevokeAccountToken
+ * @generated from rpc svc.token.v1.TokenService.RevokeEnvironmentToken
  */
-export const revokeAccountToken = {
-  localName: "revokeAccountToken",
-  name: "RevokeAccountToken",
+export const revokeEnvironmentToken = {
+  localName: "revokeEnvironmentToken",
+  name: "RevokeEnvironmentToken",
   kind: MethodKind.Unary,
-  I: RevokeAccountTokenRequest,
-  O: RevokeAccountTokenResponse,
+  I: RevokeEnvironmentTokenRequest,
+  O: RevokeEnvironmentTokenResponse,
   service: {
     typeName: "svc.token.v1.TokenService"
   }
 } as const;
 
 /**
- * @generated from rpc svc.token.v1.TokenService.GetAccountToken
+ * @generated from rpc svc.token.v1.TokenService.GetEnvironmentToken
  */
-export const getAccountToken = {
-  localName: "getAccountToken",
-  name: "GetAccountToken",
+export const getEnvironmentToken = {
+  localName: "getEnvironmentToken",
+  name: "GetEnvironmentToken",
   kind: MethodKind.Unary,
-  I: GetAccountTokenRequest,
-  O: GetAccountTokenResponse,
+  I: GetEnvironmentTokenRequest,
+  O: GetEnvironmentTokenResponse,
   service: {
     typeName: "svc.token.v1.TokenService"
   }
 } as const;
 
 /**
- * @generated from rpc svc.token.v1.TokenService.ListAccountToken
+ * @generated from rpc svc.token.v1.TokenService.ListEnvironmentToken
  */
-export const listAccountToken = {
-  localName: "listAccountToken",
-  name: "ListAccountToken",
+export const listEnvironmentToken = {
+  localName: "listEnvironmentToken",
+  name: "ListEnvironmentToken",
   kind: MethodKind.Unary,
-  I: ListAccountTokenRequest,
-  O: ListAccountTokenResponse,
+  I: ListEnvironmentTokenRequest,
+  O: ListEnvironmentTokenResponse,
   service: {
     typeName: "svc.token.v1.TokenService"
   }

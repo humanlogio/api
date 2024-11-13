@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateAccountRequest, CreateAccountResponse, InviteUserRequest, InviteUserResponse, ListAccountRequest, ListAccountResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateEnvironmentRequest, CreateEnvironmentResponse, InviteUserRequest, InviteUserResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -13,21 +13,21 @@ export const OrganizationService = {
   typeName: "svc.organization.v1.OrganizationService",
   methods: {
     /**
-     * @generated from rpc svc.organization.v1.OrganizationService.CreateAccount
+     * @generated from rpc svc.organization.v1.OrganizationService.CreateEnvironment
      */
-    createAccount: {
-      name: "CreateAccount",
-      I: CreateAccountRequest,
-      O: CreateAccountResponse,
+    createEnvironment: {
+      name: "CreateEnvironment",
+      I: CreateEnvironmentRequest,
+      O: CreateEnvironmentResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc svc.organization.v1.OrganizationService.ListAccount
+     * @generated from rpc svc.organization.v1.OrganizationService.ListEnvironment
      */
-    listAccount: {
-      name: "ListAccount",
-      I: ListAccountRequest,
-      O: ListAccountResponse,
+    listEnvironment: {
+      name: "ListEnvironment",
+      I: ListEnvironmentRequest,
+      O: ListEnvironmentResponse,
       kind: MethodKind.Unary,
     },
     /**

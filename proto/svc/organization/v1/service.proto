@@ -4,39 +4,39 @@ package svc.organization.v1;
 
 option go_package = "svc/organization/v1;organizationv1";
 
-import "types/v1/account.proto";
+import "types/v1/environment.proto";
 import "types/v1/cursor.proto";
 import "types/v1/organization.proto";
 import "types/v1/user.proto";
 
 service OrganizationService {
-  rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {}
-  rpc ListAccount(ListAccountRequest) returns (ListAccountResponse) {}
+  rpc CreateEnvironment(CreateEnvironmentRequest) returns (CreateEnvironmentResponse) {}
+  rpc ListEnvironment(ListEnvironmentRequest) returns (ListEnvironmentResponse) {}
 
   rpc ListUser(ListUserRequest) returns (ListUserResponse) {}
   rpc InviteUser(InviteUserRequest) returns (InviteUserResponse) {}
   rpc RevokeUser(RevokeUserRequest) returns (RevokeUserResponse) {}
 }
 
-message CreateAccountRequest {
+message CreateEnvironmentRequest {
   int64 organization_id = 1;
-  string account_name = 2;
+  string environment_name = 2;
 }
 
-message CreateAccountResponse {
-  types.v1.Account account = 1;
+message CreateEnvironmentResponse {
+  types.v1.Environment environment = 1;
 }
 
-message ListAccountRequest{
+message ListEnvironmentRequest{
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
   int64 organization_id = 3;
 }
 
-message ListAccountResponse{
+message ListEnvironmentResponse{
   types.v1.Cursor next = 1;
   message ListItem {
-    types.v1.Account account = 1;
+    types.v1.Environment environment = 1;
   }
   repeated ListItem items = 2;
 }

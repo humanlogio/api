@@ -33,35 +33,35 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// TokenServiceGenerateAccountTokenProcedure is the fully-qualified name of the TokenService's
-	// GenerateAccountToken RPC.
-	TokenServiceGenerateAccountTokenProcedure = "/svc.token.v1.TokenService/GenerateAccountToken"
-	// TokenServiceRevokeAccountTokenProcedure is the fully-qualified name of the TokenService's
-	// RevokeAccountToken RPC.
-	TokenServiceRevokeAccountTokenProcedure = "/svc.token.v1.TokenService/RevokeAccountToken"
-	// TokenServiceGetAccountTokenProcedure is the fully-qualified name of the TokenService's
-	// GetAccountToken RPC.
-	TokenServiceGetAccountTokenProcedure = "/svc.token.v1.TokenService/GetAccountToken"
-	// TokenServiceListAccountTokenProcedure is the fully-qualified name of the TokenService's
-	// ListAccountToken RPC.
-	TokenServiceListAccountTokenProcedure = "/svc.token.v1.TokenService/ListAccountToken"
+	// TokenServiceGenerateEnvironmentTokenProcedure is the fully-qualified name of the TokenService's
+	// GenerateEnvironmentToken RPC.
+	TokenServiceGenerateEnvironmentTokenProcedure = "/svc.token.v1.TokenService/GenerateEnvironmentToken"
+	// TokenServiceRevokeEnvironmentTokenProcedure is the fully-qualified name of the TokenService's
+	// RevokeEnvironmentToken RPC.
+	TokenServiceRevokeEnvironmentTokenProcedure = "/svc.token.v1.TokenService/RevokeEnvironmentToken"
+	// TokenServiceGetEnvironmentTokenProcedure is the fully-qualified name of the TokenService's
+	// GetEnvironmentToken RPC.
+	TokenServiceGetEnvironmentTokenProcedure = "/svc.token.v1.TokenService/GetEnvironmentToken"
+	// TokenServiceListEnvironmentTokenProcedure is the fully-qualified name of the TokenService's
+	// ListEnvironmentToken RPC.
+	TokenServiceListEnvironmentTokenProcedure = "/svc.token.v1.TokenService/ListEnvironmentToken"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
-	tokenServiceServiceDescriptor                    = v1.File_svc_token_v1_service_proto.Services().ByName("TokenService")
-	tokenServiceGenerateAccountTokenMethodDescriptor = tokenServiceServiceDescriptor.Methods().ByName("GenerateAccountToken")
-	tokenServiceRevokeAccountTokenMethodDescriptor   = tokenServiceServiceDescriptor.Methods().ByName("RevokeAccountToken")
-	tokenServiceGetAccountTokenMethodDescriptor      = tokenServiceServiceDescriptor.Methods().ByName("GetAccountToken")
-	tokenServiceListAccountTokenMethodDescriptor     = tokenServiceServiceDescriptor.Methods().ByName("ListAccountToken")
+	tokenServiceServiceDescriptor                        = v1.File_svc_token_v1_service_proto.Services().ByName("TokenService")
+	tokenServiceGenerateEnvironmentTokenMethodDescriptor = tokenServiceServiceDescriptor.Methods().ByName("GenerateEnvironmentToken")
+	tokenServiceRevokeEnvironmentTokenMethodDescriptor   = tokenServiceServiceDescriptor.Methods().ByName("RevokeEnvironmentToken")
+	tokenServiceGetEnvironmentTokenMethodDescriptor      = tokenServiceServiceDescriptor.Methods().ByName("GetEnvironmentToken")
+	tokenServiceListEnvironmentTokenMethodDescriptor     = tokenServiceServiceDescriptor.Methods().ByName("ListEnvironmentToken")
 )
 
 // TokenServiceClient is a client for the svc.token.v1.TokenService service.
 type TokenServiceClient interface {
-	GenerateAccountToken(context.Context, *connect.Request[v1.GenerateAccountTokenRequest]) (*connect.Response[v1.GenerateAccountTokenResponse], error)
-	RevokeAccountToken(context.Context, *connect.Request[v1.RevokeAccountTokenRequest]) (*connect.Response[v1.RevokeAccountTokenResponse], error)
-	GetAccountToken(context.Context, *connect.Request[v1.GetAccountTokenRequest]) (*connect.Response[v1.GetAccountTokenResponse], error)
-	ListAccountToken(context.Context, *connect.Request[v1.ListAccountTokenRequest]) (*connect.Response[v1.ListAccountTokenResponse], error)
+	GenerateEnvironmentToken(context.Context, *connect.Request[v1.GenerateEnvironmentTokenRequest]) (*connect.Response[v1.GenerateEnvironmentTokenResponse], error)
+	RevokeEnvironmentToken(context.Context, *connect.Request[v1.RevokeEnvironmentTokenRequest]) (*connect.Response[v1.RevokeEnvironmentTokenResponse], error)
+	GetEnvironmentToken(context.Context, *connect.Request[v1.GetEnvironmentTokenRequest]) (*connect.Response[v1.GetEnvironmentTokenResponse], error)
+	ListEnvironmentToken(context.Context, *connect.Request[v1.ListEnvironmentTokenRequest]) (*connect.Response[v1.ListEnvironmentTokenResponse], error)
 }
 
 // NewTokenServiceClient constructs a client for the svc.token.v1.TokenService service. By default,
@@ -74,28 +74,28 @@ type TokenServiceClient interface {
 func NewTokenServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) TokenServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &tokenServiceClient{
-		generateAccountToken: connect.NewClient[v1.GenerateAccountTokenRequest, v1.GenerateAccountTokenResponse](
+		generateEnvironmentToken: connect.NewClient[v1.GenerateEnvironmentTokenRequest, v1.GenerateEnvironmentTokenResponse](
 			httpClient,
-			baseURL+TokenServiceGenerateAccountTokenProcedure,
-			connect.WithSchema(tokenServiceGenerateAccountTokenMethodDescriptor),
+			baseURL+TokenServiceGenerateEnvironmentTokenProcedure,
+			connect.WithSchema(tokenServiceGenerateEnvironmentTokenMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
-		revokeAccountToken: connect.NewClient[v1.RevokeAccountTokenRequest, v1.RevokeAccountTokenResponse](
+		revokeEnvironmentToken: connect.NewClient[v1.RevokeEnvironmentTokenRequest, v1.RevokeEnvironmentTokenResponse](
 			httpClient,
-			baseURL+TokenServiceRevokeAccountTokenProcedure,
-			connect.WithSchema(tokenServiceRevokeAccountTokenMethodDescriptor),
+			baseURL+TokenServiceRevokeEnvironmentTokenProcedure,
+			connect.WithSchema(tokenServiceRevokeEnvironmentTokenMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
-		getAccountToken: connect.NewClient[v1.GetAccountTokenRequest, v1.GetAccountTokenResponse](
+		getEnvironmentToken: connect.NewClient[v1.GetEnvironmentTokenRequest, v1.GetEnvironmentTokenResponse](
 			httpClient,
-			baseURL+TokenServiceGetAccountTokenProcedure,
-			connect.WithSchema(tokenServiceGetAccountTokenMethodDescriptor),
+			baseURL+TokenServiceGetEnvironmentTokenProcedure,
+			connect.WithSchema(tokenServiceGetEnvironmentTokenMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
-		listAccountToken: connect.NewClient[v1.ListAccountTokenRequest, v1.ListAccountTokenResponse](
+		listEnvironmentToken: connect.NewClient[v1.ListEnvironmentTokenRequest, v1.ListEnvironmentTokenResponse](
 			httpClient,
-			baseURL+TokenServiceListAccountTokenProcedure,
-			connect.WithSchema(tokenServiceListAccountTokenMethodDescriptor),
+			baseURL+TokenServiceListEnvironmentTokenProcedure,
+			connect.WithSchema(tokenServiceListEnvironmentTokenMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -103,38 +103,38 @@ func NewTokenServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 
 // tokenServiceClient implements TokenServiceClient.
 type tokenServiceClient struct {
-	generateAccountToken *connect.Client[v1.GenerateAccountTokenRequest, v1.GenerateAccountTokenResponse]
-	revokeAccountToken   *connect.Client[v1.RevokeAccountTokenRequest, v1.RevokeAccountTokenResponse]
-	getAccountToken      *connect.Client[v1.GetAccountTokenRequest, v1.GetAccountTokenResponse]
-	listAccountToken     *connect.Client[v1.ListAccountTokenRequest, v1.ListAccountTokenResponse]
+	generateEnvironmentToken *connect.Client[v1.GenerateEnvironmentTokenRequest, v1.GenerateEnvironmentTokenResponse]
+	revokeEnvironmentToken   *connect.Client[v1.RevokeEnvironmentTokenRequest, v1.RevokeEnvironmentTokenResponse]
+	getEnvironmentToken      *connect.Client[v1.GetEnvironmentTokenRequest, v1.GetEnvironmentTokenResponse]
+	listEnvironmentToken     *connect.Client[v1.ListEnvironmentTokenRequest, v1.ListEnvironmentTokenResponse]
 }
 
-// GenerateAccountToken calls svc.token.v1.TokenService.GenerateAccountToken.
-func (c *tokenServiceClient) GenerateAccountToken(ctx context.Context, req *connect.Request[v1.GenerateAccountTokenRequest]) (*connect.Response[v1.GenerateAccountTokenResponse], error) {
-	return c.generateAccountToken.CallUnary(ctx, req)
+// GenerateEnvironmentToken calls svc.token.v1.TokenService.GenerateEnvironmentToken.
+func (c *tokenServiceClient) GenerateEnvironmentToken(ctx context.Context, req *connect.Request[v1.GenerateEnvironmentTokenRequest]) (*connect.Response[v1.GenerateEnvironmentTokenResponse], error) {
+	return c.generateEnvironmentToken.CallUnary(ctx, req)
 }
 
-// RevokeAccountToken calls svc.token.v1.TokenService.RevokeAccountToken.
-func (c *tokenServiceClient) RevokeAccountToken(ctx context.Context, req *connect.Request[v1.RevokeAccountTokenRequest]) (*connect.Response[v1.RevokeAccountTokenResponse], error) {
-	return c.revokeAccountToken.CallUnary(ctx, req)
+// RevokeEnvironmentToken calls svc.token.v1.TokenService.RevokeEnvironmentToken.
+func (c *tokenServiceClient) RevokeEnvironmentToken(ctx context.Context, req *connect.Request[v1.RevokeEnvironmentTokenRequest]) (*connect.Response[v1.RevokeEnvironmentTokenResponse], error) {
+	return c.revokeEnvironmentToken.CallUnary(ctx, req)
 }
 
-// GetAccountToken calls svc.token.v1.TokenService.GetAccountToken.
-func (c *tokenServiceClient) GetAccountToken(ctx context.Context, req *connect.Request[v1.GetAccountTokenRequest]) (*connect.Response[v1.GetAccountTokenResponse], error) {
-	return c.getAccountToken.CallUnary(ctx, req)
+// GetEnvironmentToken calls svc.token.v1.TokenService.GetEnvironmentToken.
+func (c *tokenServiceClient) GetEnvironmentToken(ctx context.Context, req *connect.Request[v1.GetEnvironmentTokenRequest]) (*connect.Response[v1.GetEnvironmentTokenResponse], error) {
+	return c.getEnvironmentToken.CallUnary(ctx, req)
 }
 
-// ListAccountToken calls svc.token.v1.TokenService.ListAccountToken.
-func (c *tokenServiceClient) ListAccountToken(ctx context.Context, req *connect.Request[v1.ListAccountTokenRequest]) (*connect.Response[v1.ListAccountTokenResponse], error) {
-	return c.listAccountToken.CallUnary(ctx, req)
+// ListEnvironmentToken calls svc.token.v1.TokenService.ListEnvironmentToken.
+func (c *tokenServiceClient) ListEnvironmentToken(ctx context.Context, req *connect.Request[v1.ListEnvironmentTokenRequest]) (*connect.Response[v1.ListEnvironmentTokenResponse], error) {
+	return c.listEnvironmentToken.CallUnary(ctx, req)
 }
 
 // TokenServiceHandler is an implementation of the svc.token.v1.TokenService service.
 type TokenServiceHandler interface {
-	GenerateAccountToken(context.Context, *connect.Request[v1.GenerateAccountTokenRequest]) (*connect.Response[v1.GenerateAccountTokenResponse], error)
-	RevokeAccountToken(context.Context, *connect.Request[v1.RevokeAccountTokenRequest]) (*connect.Response[v1.RevokeAccountTokenResponse], error)
-	GetAccountToken(context.Context, *connect.Request[v1.GetAccountTokenRequest]) (*connect.Response[v1.GetAccountTokenResponse], error)
-	ListAccountToken(context.Context, *connect.Request[v1.ListAccountTokenRequest]) (*connect.Response[v1.ListAccountTokenResponse], error)
+	GenerateEnvironmentToken(context.Context, *connect.Request[v1.GenerateEnvironmentTokenRequest]) (*connect.Response[v1.GenerateEnvironmentTokenResponse], error)
+	RevokeEnvironmentToken(context.Context, *connect.Request[v1.RevokeEnvironmentTokenRequest]) (*connect.Response[v1.RevokeEnvironmentTokenResponse], error)
+	GetEnvironmentToken(context.Context, *connect.Request[v1.GetEnvironmentTokenRequest]) (*connect.Response[v1.GetEnvironmentTokenResponse], error)
+	ListEnvironmentToken(context.Context, *connect.Request[v1.ListEnvironmentTokenRequest]) (*connect.Response[v1.ListEnvironmentTokenResponse], error)
 }
 
 // NewTokenServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -143,40 +143,40 @@ type TokenServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewTokenServiceHandler(svc TokenServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
-	tokenServiceGenerateAccountTokenHandler := connect.NewUnaryHandler(
-		TokenServiceGenerateAccountTokenProcedure,
-		svc.GenerateAccountToken,
-		connect.WithSchema(tokenServiceGenerateAccountTokenMethodDescriptor),
+	tokenServiceGenerateEnvironmentTokenHandler := connect.NewUnaryHandler(
+		TokenServiceGenerateEnvironmentTokenProcedure,
+		svc.GenerateEnvironmentToken,
+		connect.WithSchema(tokenServiceGenerateEnvironmentTokenMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
-	tokenServiceRevokeAccountTokenHandler := connect.NewUnaryHandler(
-		TokenServiceRevokeAccountTokenProcedure,
-		svc.RevokeAccountToken,
-		connect.WithSchema(tokenServiceRevokeAccountTokenMethodDescriptor),
+	tokenServiceRevokeEnvironmentTokenHandler := connect.NewUnaryHandler(
+		TokenServiceRevokeEnvironmentTokenProcedure,
+		svc.RevokeEnvironmentToken,
+		connect.WithSchema(tokenServiceRevokeEnvironmentTokenMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
-	tokenServiceGetAccountTokenHandler := connect.NewUnaryHandler(
-		TokenServiceGetAccountTokenProcedure,
-		svc.GetAccountToken,
-		connect.WithSchema(tokenServiceGetAccountTokenMethodDescriptor),
+	tokenServiceGetEnvironmentTokenHandler := connect.NewUnaryHandler(
+		TokenServiceGetEnvironmentTokenProcedure,
+		svc.GetEnvironmentToken,
+		connect.WithSchema(tokenServiceGetEnvironmentTokenMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
-	tokenServiceListAccountTokenHandler := connect.NewUnaryHandler(
-		TokenServiceListAccountTokenProcedure,
-		svc.ListAccountToken,
-		connect.WithSchema(tokenServiceListAccountTokenMethodDescriptor),
+	tokenServiceListEnvironmentTokenHandler := connect.NewUnaryHandler(
+		TokenServiceListEnvironmentTokenProcedure,
+		svc.ListEnvironmentToken,
+		connect.WithSchema(tokenServiceListEnvironmentTokenMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.token.v1.TokenService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case TokenServiceGenerateAccountTokenProcedure:
-			tokenServiceGenerateAccountTokenHandler.ServeHTTP(w, r)
-		case TokenServiceRevokeAccountTokenProcedure:
-			tokenServiceRevokeAccountTokenHandler.ServeHTTP(w, r)
-		case TokenServiceGetAccountTokenProcedure:
-			tokenServiceGetAccountTokenHandler.ServeHTTP(w, r)
-		case TokenServiceListAccountTokenProcedure:
-			tokenServiceListAccountTokenHandler.ServeHTTP(w, r)
+		case TokenServiceGenerateEnvironmentTokenProcedure:
+			tokenServiceGenerateEnvironmentTokenHandler.ServeHTTP(w, r)
+		case TokenServiceRevokeEnvironmentTokenProcedure:
+			tokenServiceRevokeEnvironmentTokenHandler.ServeHTTP(w, r)
+		case TokenServiceGetEnvironmentTokenProcedure:
+			tokenServiceGetEnvironmentTokenHandler.ServeHTTP(w, r)
+		case TokenServiceListEnvironmentTokenProcedure:
+			tokenServiceListEnvironmentTokenHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -186,18 +186,18 @@ func NewTokenServiceHandler(svc TokenServiceHandler, opts ...connect.HandlerOpti
 // UnimplementedTokenServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedTokenServiceHandler struct{}
 
-func (UnimplementedTokenServiceHandler) GenerateAccountToken(context.Context, *connect.Request[v1.GenerateAccountTokenRequest]) (*connect.Response[v1.GenerateAccountTokenResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.token.v1.TokenService.GenerateAccountToken is not implemented"))
+func (UnimplementedTokenServiceHandler) GenerateEnvironmentToken(context.Context, *connect.Request[v1.GenerateEnvironmentTokenRequest]) (*connect.Response[v1.GenerateEnvironmentTokenResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.token.v1.TokenService.GenerateEnvironmentToken is not implemented"))
 }
 
-func (UnimplementedTokenServiceHandler) RevokeAccountToken(context.Context, *connect.Request[v1.RevokeAccountTokenRequest]) (*connect.Response[v1.RevokeAccountTokenResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.token.v1.TokenService.RevokeAccountToken is not implemented"))
+func (UnimplementedTokenServiceHandler) RevokeEnvironmentToken(context.Context, *connect.Request[v1.RevokeEnvironmentTokenRequest]) (*connect.Response[v1.RevokeEnvironmentTokenResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.token.v1.TokenService.RevokeEnvironmentToken is not implemented"))
 }
 
-func (UnimplementedTokenServiceHandler) GetAccountToken(context.Context, *connect.Request[v1.GetAccountTokenRequest]) (*connect.Response[v1.GetAccountTokenResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.token.v1.TokenService.GetAccountToken is not implemented"))
+func (UnimplementedTokenServiceHandler) GetEnvironmentToken(context.Context, *connect.Request[v1.GetEnvironmentTokenRequest]) (*connect.Response[v1.GetEnvironmentTokenResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.token.v1.TokenService.GetEnvironmentToken is not implemented"))
 }
 
-func (UnimplementedTokenServiceHandler) ListAccountToken(context.Context, *connect.Request[v1.ListAccountTokenRequest]) (*connect.Response[v1.ListAccountTokenResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.token.v1.TokenService.ListAccountToken is not implemented"))
+func (UnimplementedTokenServiceHandler) ListEnvironmentToken(context.Context, *connect.Request[v1.ListEnvironmentTokenRequest]) (*connect.Response[v1.ListEnvironmentTokenResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.token.v1.TokenService.ListEnvironmentToken is not implemented"))
 }

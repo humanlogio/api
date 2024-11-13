@@ -4,7 +4,7 @@ package types.v1;
 
 option go_package = "types/v1;typesv1";
 
-message Account {
+message Environment {
   int64 id = 1;
   string name = 2;
 }

@@ -11,9 +11,9 @@ import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
  */
 export class Session extends Message<Session> {
   /**
-   * @generated from field: int64 account_id = 1;
+   * @generated from field: int64 environment_id = 1;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: int64 machine_id = 2;
@@ -53,7 +53,7 @@ export class Session extends Message<Session> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Session";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 3, name: "session_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 4, name: "log_event_count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },

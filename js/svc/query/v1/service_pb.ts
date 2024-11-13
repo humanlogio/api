@@ -13,9 +13,9 @@ import { LogEventGroup } from "../../../types/v1/logevent_pb";
  */
 export class SummarizeEventsRequest extends Message<SummarizeEventsRequest> {
   /**
-   * @generated from field: int64 account_id = 1;
+   * @generated from field: int64 environment_id = 1;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: optional google.protobuf.Timestamp from = 2;
@@ -40,7 +40,7 @@ export class SummarizeEventsRequest extends Message<SummarizeEventsRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.query.v1.SummarizeEventsRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "from", kind: "message", T: Timestamp, opt: true },
     { no: 3, name: "to", kind: "message", T: Timestamp, opt: true },
     { no: 4, name: "bucket_count", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
@@ -154,9 +154,9 @@ export class SummarizeEventsResponse_Bucket extends Message<SummarizeEventsRespo
  */
 export class WatchQueryRequest extends Message<WatchQueryRequest> {
   /**
-   * @generated from field: int64 account_id = 1;
+   * @generated from field: int64 environment_id = 1;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: types.v1.LogQuery query = 2;
@@ -171,7 +171,7 @@ export class WatchQueryRequest extends Message<WatchQueryRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.query.v1.WatchQueryRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "query", kind: "message", T: LogQuery },
   ]);
 

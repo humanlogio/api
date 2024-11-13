@@ -17,7 +17,7 @@ service QueryService {
 }
 
 message SummarizeEventsRequest {
-  int64 account_id = 1;
+  int64 environment_id = 1;
   optional google.protobuf.Timestamp from = 2;
   optional google.protobuf.Timestamp to = 3;
   uint32 bucket_count = 4;
@@ -34,7 +34,7 @@ message SummarizeEventsResponse {
 }
 
 message WatchQueryRequest {
-  int64 account_id = 1;
+  int64 environment_id = 1;
   types.v1.LogQuery query = 2;
 }
 

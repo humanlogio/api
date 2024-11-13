@@ -4,31 +4,31 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateAccountRequest, CreateAccountResponse, InviteUserRequest, InviteUserResponse, ListAccountRequest, ListAccountResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateEnvironmentRequest, CreateEnvironmentResponse, InviteUserRequest, InviteUserResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 
 /**
- * @generated from rpc svc.organization.v1.OrganizationService.CreateAccount
+ * @generated from rpc svc.organization.v1.OrganizationService.CreateEnvironment
  */
-export const createAccount = {
-  localName: "createAccount",
-  name: "CreateAccount",
+export const createEnvironment = {
+  localName: "createEnvironment",
+  name: "CreateEnvironment",
   kind: MethodKind.Unary,
-  I: CreateAccountRequest,
-  O: CreateAccountResponse,
+  I: CreateEnvironmentRequest,
+  O: CreateEnvironmentResponse,
   service: {
     typeName: "svc.organization.v1.OrganizationService"
   }
 } as const;
 
 /**
- * @generated from rpc svc.organization.v1.OrganizationService.ListAccount
+ * @generated from rpc svc.organization.v1.OrganizationService.ListEnvironment
  */
-export const listAccount = {
-  localName: "listAccount",
-  name: "ListAccount",
+export const listEnvironment = {
+  localName: "listEnvironment",
+  name: "ListEnvironment",
   kind: MethodKind.Unary,
-  I: ListAccountRequest,
-  O: ListAccountResponse,
+  I: ListEnvironmentRequest,
+  O: ListEnvironmentResponse,
   service: {
     typeName: "svc.organization.v1.OrganizationService"
   }

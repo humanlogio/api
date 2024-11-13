@@ -5,17 +5,17 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { AccountRole, AccountToken } from "../../../types/v1/account_token_pb";
+import { EnvironmentRole, EnvironmentToken } from "../../../types/v1/environment_token_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 
 /**
- * @generated from message svc.token.v1.GenerateAccountTokenRequest
+ * @generated from message svc.token.v1.GenerateEnvironmentTokenRequest
  */
-export class GenerateAccountTokenRequest extends Message<GenerateAccountTokenRequest> {
+export class GenerateEnvironmentTokenRequest extends Message<GenerateEnvironmentTokenRequest> {
   /**
-   * @generated from field: int64 account_id = 1;
+   * @generated from field: int64 environment_id = 1;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: google.protobuf.Timestamp expires_at = 2;
@@ -23,235 +23,235 @@ export class GenerateAccountTokenRequest extends Message<GenerateAccountTokenReq
   expiresAt?: Timestamp;
 
   /**
-   * @generated from field: repeated types.v1.AccountRole roles = 3;
+   * @generated from field: repeated types.v1.EnvironmentRole roles = 3;
    */
-  roles: AccountRole[] = [];
+  roles: EnvironmentRole[] = [];
 
-  constructor(data?: PartialMessage<GenerateAccountTokenRequest>) {
+  constructor(data?: PartialMessage<GenerateEnvironmentTokenRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.GenerateAccountTokenRequest";
+  static readonly typeName = "svc.token.v1.GenerateEnvironmentTokenRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "expires_at", kind: "message", T: Timestamp },
-    { no: 3, name: "roles", kind: "enum", T: proto3.getEnumType(AccountRole), repeated: true },
+    { no: 3, name: "roles", kind: "enum", T: proto3.getEnumType(EnvironmentRole), repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenerateAccountTokenRequest {
-    return new GenerateAccountTokenRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenerateEnvironmentTokenRequest {
+    return new GenerateEnvironmentTokenRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GenerateAccountTokenRequest {
-    return new GenerateAccountTokenRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GenerateEnvironmentTokenRequest {
+    return new GenerateEnvironmentTokenRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GenerateAccountTokenRequest {
-    return new GenerateAccountTokenRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GenerateEnvironmentTokenRequest {
+    return new GenerateEnvironmentTokenRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenerateAccountTokenRequest | PlainMessage<GenerateAccountTokenRequest> | undefined, b: GenerateAccountTokenRequest | PlainMessage<GenerateAccountTokenRequest> | undefined): boolean {
-    return proto3.util.equals(GenerateAccountTokenRequest, a, b);
+  static equals(a: GenerateEnvironmentTokenRequest | PlainMessage<GenerateEnvironmentTokenRequest> | undefined, b: GenerateEnvironmentTokenRequest | PlainMessage<GenerateEnvironmentTokenRequest> | undefined): boolean {
+    return proto3.util.equals(GenerateEnvironmentTokenRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.token.v1.GenerateAccountTokenResponse
+ * @generated from message svc.token.v1.GenerateEnvironmentTokenResponse
  */
-export class GenerateAccountTokenResponse extends Message<GenerateAccountTokenResponse> {
+export class GenerateEnvironmentTokenResponse extends Message<GenerateEnvironmentTokenResponse> {
   /**
-   * @generated from field: types.v1.AccountToken token = 1;
+   * @generated from field: types.v1.EnvironmentToken token = 1;
    */
-  token?: AccountToken;
+  token?: EnvironmentToken;
 
-  constructor(data?: PartialMessage<GenerateAccountTokenResponse>) {
+  constructor(data?: PartialMessage<GenerateEnvironmentTokenResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.GenerateAccountTokenResponse";
+  static readonly typeName = "svc.token.v1.GenerateEnvironmentTokenResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token", kind: "message", T: AccountToken },
+    { no: 1, name: "token", kind: "message", T: EnvironmentToken },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenerateAccountTokenResponse {
-    return new GenerateAccountTokenResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GenerateEnvironmentTokenResponse {
+    return new GenerateEnvironmentTokenResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GenerateAccountTokenResponse {
-    return new GenerateAccountTokenResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GenerateEnvironmentTokenResponse {
+    return new GenerateEnvironmentTokenResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GenerateAccountTokenResponse {
-    return new GenerateAccountTokenResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GenerateEnvironmentTokenResponse {
+    return new GenerateEnvironmentTokenResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GenerateAccountTokenResponse | PlainMessage<GenerateAccountTokenResponse> | undefined, b: GenerateAccountTokenResponse | PlainMessage<GenerateAccountTokenResponse> | undefined): boolean {
-    return proto3.util.equals(GenerateAccountTokenResponse, a, b);
+  static equals(a: GenerateEnvironmentTokenResponse | PlainMessage<GenerateEnvironmentTokenResponse> | undefined, b: GenerateEnvironmentTokenResponse | PlainMessage<GenerateEnvironmentTokenResponse> | undefined): boolean {
+    return proto3.util.equals(GenerateEnvironmentTokenResponse, a, b);
   }
 }
 
 /**
- * @generated from message svc.token.v1.RevokeAccountTokenRequest
+ * @generated from message svc.token.v1.RevokeEnvironmentTokenRequest
  */
-export class RevokeAccountTokenRequest extends Message<RevokeAccountTokenRequest> {
+export class RevokeEnvironmentTokenRequest extends Message<RevokeEnvironmentTokenRequest> {
   /**
-   * @generated from field: int64 account_id = 1;
+   * @generated from field: int64 environment_id = 1;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: int64 token_id = 2;
    */
   tokenId = protoInt64.zero;
 
-  constructor(data?: PartialMessage<RevokeAccountTokenRequest>) {
+  constructor(data?: PartialMessage<RevokeEnvironmentTokenRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.RevokeAccountTokenRequest";
+  static readonly typeName = "svc.token.v1.RevokeEnvironmentTokenRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "token_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevokeAccountTokenRequest {
-    return new RevokeAccountTokenRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevokeEnvironmentTokenRequest {
+    return new RevokeEnvironmentTokenRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RevokeAccountTokenRequest {
-    return new RevokeAccountTokenRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RevokeEnvironmentTokenRequest {
+    return new RevokeEnvironmentTokenRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RevokeAccountTokenRequest {
-    return new RevokeAccountTokenRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RevokeEnvironmentTokenRequest {
+    return new RevokeEnvironmentTokenRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RevokeAccountTokenRequest | PlainMessage<RevokeAccountTokenRequest> | undefined, b: RevokeAccountTokenRequest | PlainMessage<RevokeAccountTokenRequest> | undefined): boolean {
-    return proto3.util.equals(RevokeAccountTokenRequest, a, b);
+  static equals(a: RevokeEnvironmentTokenRequest | PlainMessage<RevokeEnvironmentTokenRequest> | undefined, b: RevokeEnvironmentTokenRequest | PlainMessage<RevokeEnvironmentTokenRequest> | undefined): boolean {
+    return proto3.util.equals(RevokeEnvironmentTokenRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.token.v1.RevokeAccountTokenResponse
+ * @generated from message svc.token.v1.RevokeEnvironmentTokenResponse
  */
-export class RevokeAccountTokenResponse extends Message<RevokeAccountTokenResponse> {
-  constructor(data?: PartialMessage<RevokeAccountTokenResponse>) {
+export class RevokeEnvironmentTokenResponse extends Message<RevokeEnvironmentTokenResponse> {
+  constructor(data?: PartialMessage<RevokeEnvironmentTokenResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.RevokeAccountTokenResponse";
+  static readonly typeName = "svc.token.v1.RevokeEnvironmentTokenResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevokeAccountTokenResponse {
-    return new RevokeAccountTokenResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevokeEnvironmentTokenResponse {
+    return new RevokeEnvironmentTokenResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RevokeAccountTokenResponse {
-    return new RevokeAccountTokenResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RevokeEnvironmentTokenResponse {
+    return new RevokeEnvironmentTokenResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RevokeAccountTokenResponse {
-    return new RevokeAccountTokenResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RevokeEnvironmentTokenResponse {
+    return new RevokeEnvironmentTokenResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: RevokeAccountTokenResponse | PlainMessage<RevokeAccountTokenResponse> | undefined, b: RevokeAccountTokenResponse | PlainMessage<RevokeAccountTokenResponse> | undefined): boolean {
-    return proto3.util.equals(RevokeAccountTokenResponse, a, b);
+  static equals(a: RevokeEnvironmentTokenResponse | PlainMessage<RevokeEnvironmentTokenResponse> | undefined, b: RevokeEnvironmentTokenResponse | PlainMessage<RevokeEnvironmentTokenResponse> | undefined): boolean {
+    return proto3.util.equals(RevokeEnvironmentTokenResponse, a, b);
   }
 }
 
 /**
- * @generated from message svc.token.v1.GetAccountTokenRequest
+ * @generated from message svc.token.v1.GetEnvironmentTokenRequest
  */
-export class GetAccountTokenRequest extends Message<GetAccountTokenRequest> {
+export class GetEnvironmentTokenRequest extends Message<GetEnvironmentTokenRequest> {
   /**
-   * @generated from field: int64 account_id = 1;
+   * @generated from field: int64 environment_id = 1;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: int64 token_id = 2;
    */
   tokenId = protoInt64.zero;
 
-  constructor(data?: PartialMessage<GetAccountTokenRequest>) {
+  constructor(data?: PartialMessage<GetEnvironmentTokenRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.GetAccountTokenRequest";
+  static readonly typeName = "svc.token.v1.GetEnvironmentTokenRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "token_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetAccountTokenRequest {
-    return new GetAccountTokenRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEnvironmentTokenRequest {
+    return new GetEnvironmentTokenRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetAccountTokenRequest {
-    return new GetAccountTokenRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEnvironmentTokenRequest {
+    return new GetEnvironmentTokenRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetAccountTokenRequest {
-    return new GetAccountTokenRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEnvironmentTokenRequest {
+    return new GetEnvironmentTokenRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetAccountTokenRequest | PlainMessage<GetAccountTokenRequest> | undefined, b: GetAccountTokenRequest | PlainMessage<GetAccountTokenRequest> | undefined): boolean {
-    return proto3.util.equals(GetAccountTokenRequest, a, b);
+  static equals(a: GetEnvironmentTokenRequest | PlainMessage<GetEnvironmentTokenRequest> | undefined, b: GetEnvironmentTokenRequest | PlainMessage<GetEnvironmentTokenRequest> | undefined): boolean {
+    return proto3.util.equals(GetEnvironmentTokenRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.token.v1.GetAccountTokenResponse
+ * @generated from message svc.token.v1.GetEnvironmentTokenResponse
  */
-export class GetAccountTokenResponse extends Message<GetAccountTokenResponse> {
+export class GetEnvironmentTokenResponse extends Message<GetEnvironmentTokenResponse> {
   /**
-   * @generated from field: types.v1.AccountToken token = 1;
+   * @generated from field: types.v1.EnvironmentToken token = 1;
    */
-  token?: AccountToken;
+  token?: EnvironmentToken;
 
-  constructor(data?: PartialMessage<GetAccountTokenResponse>) {
+  constructor(data?: PartialMessage<GetEnvironmentTokenResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.GetAccountTokenResponse";
+  static readonly typeName = "svc.token.v1.GetEnvironmentTokenResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token", kind: "message", T: AccountToken },
+    { no: 1, name: "token", kind: "message", T: EnvironmentToken },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetAccountTokenResponse {
-    return new GetAccountTokenResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEnvironmentTokenResponse {
+    return new GetEnvironmentTokenResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetAccountTokenResponse {
-    return new GetAccountTokenResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEnvironmentTokenResponse {
+    return new GetEnvironmentTokenResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetAccountTokenResponse {
-    return new GetAccountTokenResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEnvironmentTokenResponse {
+    return new GetEnvironmentTokenResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: GetAccountTokenResponse | PlainMessage<GetAccountTokenResponse> | undefined, b: GetAccountTokenResponse | PlainMessage<GetAccountTokenResponse> | undefined): boolean {
-    return proto3.util.equals(GetAccountTokenResponse, a, b);
+  static equals(a: GetEnvironmentTokenResponse | PlainMessage<GetEnvironmentTokenResponse> | undefined, b: GetEnvironmentTokenResponse | PlainMessage<GetEnvironmentTokenResponse> | undefined): boolean {
+    return proto3.util.equals(GetEnvironmentTokenResponse, a, b);
   }
 }
 
 /**
- * @generated from message svc.token.v1.ListAccountTokenRequest
+ * @generated from message svc.token.v1.ListEnvironmentTokenRequest
  */
-export class ListAccountTokenRequest extends Message<ListAccountTokenRequest> {
+export class ListEnvironmentTokenRequest extends Message<ListEnvironmentTokenRequest> {
   /**
    * @generated from field: types.v1.Cursor cursor = 1;
    */
@@ -263,117 +263,117 @@ export class ListAccountTokenRequest extends Message<ListAccountTokenRequest> {
   limit = 0;
 
   /**
-   * @generated from field: int64 account_id = 3;
+   * @generated from field: int64 environment_id = 3;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
-  constructor(data?: PartialMessage<ListAccountTokenRequest>) {
+  constructor(data?: PartialMessage<ListEnvironmentTokenRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.ListAccountTokenRequest";
+  static readonly typeName = "svc.token.v1.ListEnvironmentTokenRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAccountTokenRequest {
-    return new ListAccountTokenRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEnvironmentTokenRequest {
+    return new ListEnvironmentTokenRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAccountTokenRequest {
-    return new ListAccountTokenRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListEnvironmentTokenRequest {
+    return new ListEnvironmentTokenRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAccountTokenRequest {
-    return new ListAccountTokenRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListEnvironmentTokenRequest {
+    return new ListEnvironmentTokenRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAccountTokenRequest | PlainMessage<ListAccountTokenRequest> | undefined, b: ListAccountTokenRequest | PlainMessage<ListAccountTokenRequest> | undefined): boolean {
-    return proto3.util.equals(ListAccountTokenRequest, a, b);
+  static equals(a: ListEnvironmentTokenRequest | PlainMessage<ListEnvironmentTokenRequest> | undefined, b: ListEnvironmentTokenRequest | PlainMessage<ListEnvironmentTokenRequest> | undefined): boolean {
+    return proto3.util.equals(ListEnvironmentTokenRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.token.v1.ListAccountTokenResponse
+ * @generated from message svc.token.v1.ListEnvironmentTokenResponse
  */
-export class ListAccountTokenResponse extends Message<ListAccountTokenResponse> {
+export class ListEnvironmentTokenResponse extends Message<ListEnvironmentTokenResponse> {
   /**
    * @generated from field: types.v1.Cursor next = 1;
    */
   next?: Cursor;
 
   /**
-   * @generated from field: repeated svc.token.v1.ListAccountTokenResponse.ListItem items = 2;
+   * @generated from field: repeated svc.token.v1.ListEnvironmentTokenResponse.ListItem items = 2;
    */
-  items: ListAccountTokenResponse_ListItem[] = [];
+  items: ListEnvironmentTokenResponse_ListItem[] = [];
 
-  constructor(data?: PartialMessage<ListAccountTokenResponse>) {
+  constructor(data?: PartialMessage<ListEnvironmentTokenResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.ListAccountTokenResponse";
+  static readonly typeName = "svc.token.v1.ListEnvironmentTokenResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "next", kind: "message", T: Cursor },
-    { no: 2, name: "items", kind: "message", T: ListAccountTokenResponse_ListItem, repeated: true },
+    { no: 2, name: "items", kind: "message", T: ListEnvironmentTokenResponse_ListItem, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAccountTokenResponse {
-    return new ListAccountTokenResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEnvironmentTokenResponse {
+    return new ListEnvironmentTokenResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAccountTokenResponse {
-    return new ListAccountTokenResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListEnvironmentTokenResponse {
+    return new ListEnvironmentTokenResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAccountTokenResponse {
-    return new ListAccountTokenResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListEnvironmentTokenResponse {
+    return new ListEnvironmentTokenResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAccountTokenResponse | PlainMessage<ListAccountTokenResponse> | undefined, b: ListAccountTokenResponse | PlainMessage<ListAccountTokenResponse> | undefined): boolean {
-    return proto3.util.equals(ListAccountTokenResponse, a, b);
+  static equals(a: ListEnvironmentTokenResponse | PlainMessage<ListEnvironmentTokenResponse> | undefined, b: ListEnvironmentTokenResponse | PlainMessage<ListEnvironmentTokenResponse> | undefined): boolean {
+    return proto3.util.equals(ListEnvironmentTokenResponse, a, b);
   }
 }
 
 /**
- * @generated from message svc.token.v1.ListAccountTokenResponse.ListItem
+ * @generated from message svc.token.v1.ListEnvironmentTokenResponse.ListItem
  */
-export class ListAccountTokenResponse_ListItem extends Message<ListAccountTokenResponse_ListItem> {
+export class ListEnvironmentTokenResponse_ListItem extends Message<ListEnvironmentTokenResponse_ListItem> {
   /**
-   * @generated from field: types.v1.AccountToken token = 1;
+   * @generated from field: types.v1.EnvironmentToken token = 1;
    */
-  token?: AccountToken;
+  token?: EnvironmentToken;
 
-  constructor(data?: PartialMessage<ListAccountTokenResponse_ListItem>) {
+  constructor(data?: PartialMessage<ListEnvironmentTokenResponse_ListItem>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.token.v1.ListAccountTokenResponse.ListItem";
+  static readonly typeName = "svc.token.v1.ListEnvironmentTokenResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "token", kind: "message", T: AccountToken },
+    { no: 1, name: "token", kind: "message", T: EnvironmentToken },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAccountTokenResponse_ListItem {
-    return new ListAccountTokenResponse_ListItem().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEnvironmentTokenResponse_ListItem {
+    return new ListEnvironmentTokenResponse_ListItem().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAccountTokenResponse_ListItem {
-    return new ListAccountTokenResponse_ListItem().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListEnvironmentTokenResponse_ListItem {
+    return new ListEnvironmentTokenResponse_ListItem().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAccountTokenResponse_ListItem {
-    return new ListAccountTokenResponse_ListItem().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListEnvironmentTokenResponse_ListItem {
+    return new ListEnvironmentTokenResponse_ListItem().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAccountTokenResponse_ListItem | PlainMessage<ListAccountTokenResponse_ListItem> | undefined, b: ListAccountTokenResponse_ListItem | PlainMessage<ListAccountTokenResponse_ListItem> | undefined): boolean {
-    return proto3.util.equals(ListAccountTokenResponse_ListItem, a, b);
+  static equals(a: ListEnvironmentTokenResponse_ListItem | PlainMessage<ListEnvironmentTokenResponse_ListItem> | undefined, b: ListEnvironmentTokenResponse_ListItem | PlainMessage<ListEnvironmentTokenResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListEnvironmentTokenResponse_ListItem, a, b);
   }
 }
 

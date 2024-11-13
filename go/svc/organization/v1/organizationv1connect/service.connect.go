@@ -33,12 +33,12 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// OrganizationServiceCreateAccountProcedure is the fully-qualified name of the
-	// OrganizationService's CreateAccount RPC.
-	OrganizationServiceCreateAccountProcedure = "/svc.organization.v1.OrganizationService/CreateAccount"
-	// OrganizationServiceListAccountProcedure is the fully-qualified name of the OrganizationService's
-	// ListAccount RPC.
-	OrganizationServiceListAccountProcedure = "/svc.organization.v1.OrganizationService/ListAccount"
+	// OrganizationServiceCreateEnvironmentProcedure is the fully-qualified name of the
+	// OrganizationService's CreateEnvironment RPC.
+	OrganizationServiceCreateEnvironmentProcedure = "/svc.organization.v1.OrganizationService/CreateEnvironment"
+	// OrganizationServiceListEnvironmentProcedure is the fully-qualified name of the
+	// OrganizationService's ListEnvironment RPC.
+	OrganizationServiceListEnvironmentProcedure = "/svc.organization.v1.OrganizationService/ListEnvironment"
 	// OrganizationServiceListUserProcedure is the fully-qualified name of the OrganizationService's
 	// ListUser RPC.
 	OrganizationServiceListUserProcedure = "/svc.organization.v1.OrganizationService/ListUser"
@@ -52,18 +52,18 @@ const (
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
-	organizationServiceServiceDescriptor             = v1.File_svc_organization_v1_service_proto.Services().ByName("OrganizationService")
-	organizationServiceCreateAccountMethodDescriptor = organizationServiceServiceDescriptor.Methods().ByName("CreateAccount")
-	organizationServiceListAccountMethodDescriptor   = organizationServiceServiceDescriptor.Methods().ByName("ListAccount")
-	organizationServiceListUserMethodDescriptor      = organizationServiceServiceDescriptor.Methods().ByName("ListUser")
-	organizationServiceInviteUserMethodDescriptor    = organizationServiceServiceDescriptor.Methods().ByName("InviteUser")
-	organizationServiceRevokeUserMethodDescriptor    = organizationServiceServiceDescriptor.Methods().ByName("RevokeUser")
+	organizationServiceServiceDescriptor                 = v1.File_svc_organization_v1_service_proto.Services().ByName("OrganizationService")
+	organizationServiceCreateEnvironmentMethodDescriptor = organizationServiceServiceDescriptor.Methods().ByName("CreateEnvironment")
+	organizationServiceListEnvironmentMethodDescriptor   = organizationServiceServiceDescriptor.Methods().ByName("ListEnvironment")
+	organizationServiceListUserMethodDescriptor          = organizationServiceServiceDescriptor.Methods().ByName("ListUser")
+	organizationServiceInviteUserMethodDescriptor        = organizationServiceServiceDescriptor.Methods().ByName("InviteUser")
+	organizationServiceRevokeUserMethodDescriptor        = organizationServiceServiceDescriptor.Methods().ByName("RevokeUser")
 )
 
 // OrganizationServiceClient is a client for the svc.organization.v1.OrganizationService service.
 type OrganizationServiceClient interface {
-	CreateAccount(context.Context, *connect.Request[v1.CreateAccountRequest]) (*connect.Response[v1.CreateAccountResponse], error)
-	ListAccount(context.Context, *connect.Request[v1.ListAccountRequest]) (*connect.Response[v1.ListAccountResponse], error)
+	CreateEnvironment(context.Context, *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error)
+	ListEnvironment(context.Context, *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error)
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
 	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
 	RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error)
@@ -79,16 +79,16 @@ type OrganizationServiceClient interface {
 func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) OrganizationServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &organizationServiceClient{
-		createAccount: connect.NewClient[v1.CreateAccountRequest, v1.CreateAccountResponse](
+		createEnvironment: connect.NewClient[v1.CreateEnvironmentRequest, v1.CreateEnvironmentResponse](
 			httpClient,
-			baseURL+OrganizationServiceCreateAccountProcedure,
-			connect.WithSchema(organizationServiceCreateAccountMethodDescriptor),
+			baseURL+OrganizationServiceCreateEnvironmentProcedure,
+			connect.WithSchema(organizationServiceCreateEnvironmentMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
-		listAccount: connect.NewClient[v1.ListAccountRequest, v1.ListAccountResponse](
+		listEnvironment: connect.NewClient[v1.ListEnvironmentRequest, v1.ListEnvironmentResponse](
 			httpClient,
-			baseURL+OrganizationServiceListAccountProcedure,
-			connect.WithSchema(organizationServiceListAccountMethodDescriptor),
+			baseURL+OrganizationServiceListEnvironmentProcedure,
+			connect.WithSchema(organizationServiceListEnvironmentMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
 		listUser: connect.NewClient[v1.ListUserRequest, v1.ListUserResponse](
@@ -114,21 +114,21 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 
 // organizationServiceClient implements OrganizationServiceClient.
 type organizationServiceClient struct {
-	createAccount *connect.Client[v1.CreateAccountRequest, v1.CreateAccountResponse]
-	listAccount   *connect.Client[v1.ListAccountRequest, v1.ListAccountResponse]
-	listUser      *connect.Client[v1.ListUserRequest, v1.ListUserResponse]
-	inviteUser    *connect.Client[v1.InviteUserRequest, v1.InviteUserResponse]
-	revokeUser    *connect.Client[v1.RevokeUserRequest, v1.RevokeUserResponse]
+	createEnvironment *connect.Client[v1.CreateEnvironmentRequest, v1.CreateEnvironmentResponse]
+	listEnvironment   *connect.Client[v1.ListEnvironmentRequest, v1.ListEnvironmentResponse]
+	listUser          *connect.Client[v1.ListUserRequest, v1.ListUserResponse]
+	inviteUser        *connect.Client[v1.InviteUserRequest, v1.InviteUserResponse]
+	revokeUser        *connect.Client[v1.RevokeUserRequest, v1.RevokeUserResponse]
 }
 
-// CreateAccount calls svc.organization.v1.OrganizationService.CreateAccount.
-func (c *organizationServiceClient) CreateAccount(ctx context.Context, req *connect.Request[v1.CreateAccountRequest]) (*connect.Response[v1.CreateAccountResponse], error) {
-	return c.createAccount.CallUnary(ctx, req)
+// CreateEnvironment calls svc.organization.v1.OrganizationService.CreateEnvironment.
+func (c *organizationServiceClient) CreateEnvironment(ctx context.Context, req *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error) {
+	return c.createEnvironment.CallUnary(ctx, req)
 }
 
-// ListAccount calls svc.organization.v1.OrganizationService.ListAccount.
-func (c *organizationServiceClient) ListAccount(ctx context.Context, req *connect.Request[v1.ListAccountRequest]) (*connect.Response[v1.ListAccountResponse], error) {
-	return c.listAccount.CallUnary(ctx, req)
+// ListEnvironment calls svc.organization.v1.OrganizationService.ListEnvironment.
+func (c *organizationServiceClient) ListEnvironment(ctx context.Context, req *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error) {
+	return c.listEnvironment.CallUnary(ctx, req)
 }
 
 // ListUser calls svc.organization.v1.OrganizationService.ListUser.
@@ -149,8 +149,8 @@ func (c *organizationServiceClient) RevokeUser(ctx context.Context, req *connect
 // OrganizationServiceHandler is an implementation of the svc.organization.v1.OrganizationService
 // service.
 type OrganizationServiceHandler interface {
-	CreateAccount(context.Context, *connect.Request[v1.CreateAccountRequest]) (*connect.Response[v1.CreateAccountResponse], error)
-	ListAccount(context.Context, *connect.Request[v1.ListAccountRequest]) (*connect.Response[v1.ListAccountResponse], error)
+	CreateEnvironment(context.Context, *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error)
+	ListEnvironment(context.Context, *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error)
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
 	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
 	RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error)
@@ -162,16 +162,16 @@ type OrganizationServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
-	organizationServiceCreateAccountHandler := connect.NewUnaryHandler(
-		OrganizationServiceCreateAccountProcedure,
-		svc.CreateAccount,
-		connect.WithSchema(organizationServiceCreateAccountMethodDescriptor),
+	organizationServiceCreateEnvironmentHandler := connect.NewUnaryHandler(
+		OrganizationServiceCreateEnvironmentProcedure,
+		svc.CreateEnvironment,
+		connect.WithSchema(organizationServiceCreateEnvironmentMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
-	organizationServiceListAccountHandler := connect.NewUnaryHandler(
-		OrganizationServiceListAccountProcedure,
-		svc.ListAccount,
-		connect.WithSchema(organizationServiceListAccountMethodDescriptor),
+	organizationServiceListEnvironmentHandler := connect.NewUnaryHandler(
+		OrganizationServiceListEnvironmentProcedure,
+		svc.ListEnvironment,
+		connect.WithSchema(organizationServiceListEnvironmentMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceListUserHandler := connect.NewUnaryHandler(
@@ -194,10 +194,10 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 	)
 	return "/svc.organization.v1.OrganizationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case OrganizationServiceCreateAccountProcedure:
-			organizationServiceCreateAccountHandler.ServeHTTP(w, r)
-		case OrganizationServiceListAccountProcedure:
-			organizationServiceListAccountHandler.ServeHTTP(w, r)
+		case OrganizationServiceCreateEnvironmentProcedure:
+			organizationServiceCreateEnvironmentHandler.ServeHTTP(w, r)
+		case OrganizationServiceListEnvironmentProcedure:
+			organizationServiceListEnvironmentHandler.ServeHTTP(w, r)
 		case OrganizationServiceListUserProcedure:
 			organizationServiceListUserHandler.ServeHTTP(w, r)
 		case OrganizationServiceInviteUserProcedure:
@@ -213,12 +213,12 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 // UnimplementedOrganizationServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedOrganizationServiceHandler struct{}
 
-func (UnimplementedOrganizationServiceHandler) CreateAccount(context.Context, *connect.Request[v1.CreateAccountRequest]) (*connect.Response[v1.CreateAccountResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.CreateAccount is not implemented"))
+func (UnimplementedOrganizationServiceHandler) CreateEnvironment(context.Context, *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.CreateEnvironment is not implemented"))
 }
 
-func (UnimplementedOrganizationServiceHandler) ListAccount(context.Context, *connect.Request[v1.ListAccountRequest]) (*connect.Response[v1.ListAccountResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.ListAccount is not implemented"))
+func (UnimplementedOrganizationServiceHandler) ListEnvironment(context.Context, *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.ListEnvironment is not implemented"))
 }
 
 func (UnimplementedOrganizationServiceHandler) ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error) {

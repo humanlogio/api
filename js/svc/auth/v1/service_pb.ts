@@ -64,9 +64,9 @@ export class GetAuthURLRequest extends Message<GetAuthURLRequest> {
  */
 export class LocalhostViaBrowser extends Message<LocalhostViaBrowser> {
   /**
-   * @generated from field: optional int64 claim_account_id = 1;
+   * @generated from field: optional int64 claim_environment_id = 1;
    */
-  claimAccountId?: bigint;
+  claimEnvironmentId?: bigint;
 
   /**
    * @generated from field: optional int64 claim_machine_id = 2;
@@ -96,7 +96,7 @@ export class LocalhostViaBrowser extends Message<LocalhostViaBrowser> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.auth.v1.LocalhostViaBrowser";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "claim_account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 1, name: "claim_environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 2, name: "claim_machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 3, name: "architecture", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "operating_system", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -275,9 +275,9 @@ export class CompleteDeviceAuthRequest extends Message<CompleteDeviceAuthRequest
   userCode = "";
 
   /**
-   * @generated from field: optional int64 claim_account_id = 3;
+   * @generated from field: optional int64 claim_environment_id = 3;
    */
-  claimAccountId?: bigint;
+  claimEnvironmentId?: bigint;
 
   /**
    * @generated from field: optional int64 claim_machine_id = 4;
@@ -304,7 +304,7 @@ export class CompleteDeviceAuthRequest extends Message<CompleteDeviceAuthRequest
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "device_code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "user_code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "claim_account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
+    { no: 3, name: "claim_environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 4, name: "claim_machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 5, name: "architecture", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "operating_system", kind: "scalar", T: 9 /* ScalarType.STRING */ },
@@ -337,9 +337,9 @@ export class CompleteDeviceAuthResponse extends Message<CompleteDeviceAuthRespon
   token?: UserToken;
 
   /**
-   * @generated from field: int64 account_id = 2;
+   * @generated from field: int64 environment_id = 2;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: int64 machine_id = 3;
@@ -355,7 +355,7 @@ export class CompleteDeviceAuthResponse extends Message<CompleteDeviceAuthRespon
   static readonly typeName = "svc.auth.v1.CompleteDeviceAuthResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "token", kind: "message", T: UserToken },
-    { no: 2, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 3, name: "machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 

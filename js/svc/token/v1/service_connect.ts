@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GenerateAccountTokenRequest, GenerateAccountTokenResponse, GetAccountTokenRequest, GetAccountTokenResponse, ListAccountTokenRequest, ListAccountTokenResponse, RevokeAccountTokenRequest, RevokeAccountTokenResponse } from "./service_pb";
+import { GenerateEnvironmentTokenRequest, GenerateEnvironmentTokenResponse, GetEnvironmentTokenRequest, GetEnvironmentTokenResponse, ListEnvironmentTokenRequest, ListEnvironmentTokenResponse, RevokeEnvironmentTokenRequest, RevokeEnvironmentTokenResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -13,39 +13,39 @@ export const TokenService = {
   typeName: "svc.token.v1.TokenService",
   methods: {
     /**
-     * @generated from rpc svc.token.v1.TokenService.GenerateAccountToken
+     * @generated from rpc svc.token.v1.TokenService.GenerateEnvironmentToken
      */
-    generateAccountToken: {
-      name: "GenerateAccountToken",
-      I: GenerateAccountTokenRequest,
-      O: GenerateAccountTokenResponse,
+    generateEnvironmentToken: {
+      name: "GenerateEnvironmentToken",
+      I: GenerateEnvironmentTokenRequest,
+      O: GenerateEnvironmentTokenResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc svc.token.v1.TokenService.RevokeAccountToken
+     * @generated from rpc svc.token.v1.TokenService.RevokeEnvironmentToken
      */
-    revokeAccountToken: {
-      name: "RevokeAccountToken",
-      I: RevokeAccountTokenRequest,
-      O: RevokeAccountTokenResponse,
+    revokeEnvironmentToken: {
+      name: "RevokeEnvironmentToken",
+      I: RevokeEnvironmentTokenRequest,
+      O: RevokeEnvironmentTokenResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc svc.token.v1.TokenService.GetAccountToken
+     * @generated from rpc svc.token.v1.TokenService.GetEnvironmentToken
      */
-    getAccountToken: {
-      name: "GetAccountToken",
-      I: GetAccountTokenRequest,
-      O: GetAccountTokenResponse,
+    getEnvironmentToken: {
+      name: "GetEnvironmentToken",
+      I: GetEnvironmentTokenRequest,
+      O: GetEnvironmentTokenResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc svc.token.v1.TokenService.ListAccountToken
+     * @generated from rpc svc.token.v1.TokenService.ListEnvironmentToken
      */
-    listAccountToken: {
-      name: "ListAccountToken",
-      I: ListAccountTokenRequest,
-      O: ListAccountTokenResponse,
+    listEnvironmentToken: {
+      name: "ListEnvironmentToken",
+      I: ListEnvironmentTokenRequest,
+      O: ListEnvironmentTokenResponse,
       kind: MethodKind.Unary,
     },
   }

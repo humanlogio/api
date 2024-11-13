@@ -11,9 +11,9 @@ import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
  */
 export class ReqMeta extends Message<ReqMeta> {
   /**
-   * @generated from field: int64 account_id = 1;
+   * @generated from field: int64 environment_id = 1;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: int64 machine_id = 2;
@@ -28,7 +28,7 @@ export class ReqMeta extends Message<ReqMeta> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.ReqMeta";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
@@ -54,9 +54,9 @@ export class ReqMeta extends Message<ReqMeta> {
  */
 export class ResMeta extends Message<ResMeta> {
   /**
-   * @generated from field: int64 account_id = 1;
+   * @generated from field: int64 environment_id = 1;
    */
-  accountId = protoInt64.zero;
+  environmentId = protoInt64.zero;
 
   /**
    * @generated from field: int64 machine_id = 2;
@@ -71,7 +71,7 @@ export class ResMeta extends Message<ResMeta> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.ResMeta";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 

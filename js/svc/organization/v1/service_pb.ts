@@ -5,94 +5,94 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Account } from "../../../types/v1/account_pb";
+import { Environment } from "../../../types/v1/environment_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { User } from "../../../types/v1/user_pb";
 
 /**
- * @generated from message svc.organization.v1.CreateAccountRequest
+ * @generated from message svc.organization.v1.CreateEnvironmentRequest
  */
-export class CreateAccountRequest extends Message<CreateAccountRequest> {
+export class CreateEnvironmentRequest extends Message<CreateEnvironmentRequest> {
   /**
    * @generated from field: int64 organization_id = 1;
    */
   organizationId = protoInt64.zero;
 
   /**
-   * @generated from field: string account_name = 2;
+   * @generated from field: string environment_name = 2;
    */
-  accountName = "";
+  environmentName = "";
 
-  constructor(data?: PartialMessage<CreateAccountRequest>) {
+  constructor(data?: PartialMessage<CreateEnvironmentRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.organization.v1.CreateAccountRequest";
+  static readonly typeName = "svc.organization.v1.CreateEnvironmentRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "account_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAccountRequest {
-    return new CreateAccountRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEnvironmentRequest {
+    return new CreateEnvironmentRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateAccountRequest {
-    return new CreateAccountRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateEnvironmentRequest {
+    return new CreateEnvironmentRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateAccountRequest {
-    return new CreateAccountRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateEnvironmentRequest {
+    return new CreateEnvironmentRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateAccountRequest | PlainMessage<CreateAccountRequest> | undefined, b: CreateAccountRequest | PlainMessage<CreateAccountRequest> | undefined): boolean {
-    return proto3.util.equals(CreateAccountRequest, a, b);
+  static equals(a: CreateEnvironmentRequest | PlainMessage<CreateEnvironmentRequest> | undefined, b: CreateEnvironmentRequest | PlainMessage<CreateEnvironmentRequest> | undefined): boolean {
+    return proto3.util.equals(CreateEnvironmentRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.organization.v1.CreateAccountResponse
+ * @generated from message svc.organization.v1.CreateEnvironmentResponse
  */
-export class CreateAccountResponse extends Message<CreateAccountResponse> {
+export class CreateEnvironmentResponse extends Message<CreateEnvironmentResponse> {
   /**
-   * @generated from field: types.v1.Account account = 1;
+   * @generated from field: types.v1.Environment environment = 1;
    */
-  account?: Account;
+  environment?: Environment;
 
-  constructor(data?: PartialMessage<CreateAccountResponse>) {
+  constructor(data?: PartialMessage<CreateEnvironmentResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.organization.v1.CreateAccountResponse";
+  static readonly typeName = "svc.organization.v1.CreateEnvironmentResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account", kind: "message", T: Account },
+    { no: 1, name: "environment", kind: "message", T: Environment },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAccountResponse {
-    return new CreateAccountResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEnvironmentResponse {
+    return new CreateEnvironmentResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateAccountResponse {
-    return new CreateAccountResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateEnvironmentResponse {
+    return new CreateEnvironmentResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateAccountResponse {
-    return new CreateAccountResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateEnvironmentResponse {
+    return new CreateEnvironmentResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: CreateAccountResponse | PlainMessage<CreateAccountResponse> | undefined, b: CreateAccountResponse | PlainMessage<CreateAccountResponse> | undefined): boolean {
-    return proto3.util.equals(CreateAccountResponse, a, b);
+  static equals(a: CreateEnvironmentResponse | PlainMessage<CreateEnvironmentResponse> | undefined, b: CreateEnvironmentResponse | PlainMessage<CreateEnvironmentResponse> | undefined): boolean {
+    return proto3.util.equals(CreateEnvironmentResponse, a, b);
   }
 }
 
 /**
- * @generated from message svc.organization.v1.ListAccountRequest
+ * @generated from message svc.organization.v1.ListEnvironmentRequest
  */
-export class ListAccountRequest extends Message<ListAccountRequest> {
+export class ListEnvironmentRequest extends Message<ListEnvironmentRequest> {
   /**
    * @generated from field: types.v1.Cursor cursor = 1;
    */
@@ -108,113 +108,113 @@ export class ListAccountRequest extends Message<ListAccountRequest> {
    */
   organizationId = protoInt64.zero;
 
-  constructor(data?: PartialMessage<ListAccountRequest>) {
+  constructor(data?: PartialMessage<ListEnvironmentRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.organization.v1.ListAccountRequest";
+  static readonly typeName = "svc.organization.v1.ListEnvironmentRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAccountRequest {
-    return new ListAccountRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEnvironmentRequest {
+    return new ListEnvironmentRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAccountRequest {
-    return new ListAccountRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListEnvironmentRequest {
+    return new ListEnvironmentRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAccountRequest {
-    return new ListAccountRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListEnvironmentRequest {
+    return new ListEnvironmentRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAccountRequest | PlainMessage<ListAccountRequest> | undefined, b: ListAccountRequest | PlainMessage<ListAccountRequest> | undefined): boolean {
-    return proto3.util.equals(ListAccountRequest, a, b);
+  static equals(a: ListEnvironmentRequest | PlainMessage<ListEnvironmentRequest> | undefined, b: ListEnvironmentRequest | PlainMessage<ListEnvironmentRequest> | undefined): boolean {
+    return proto3.util.equals(ListEnvironmentRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.organization.v1.ListAccountResponse
+ * @generated from message svc.organization.v1.ListEnvironmentResponse
  */
-export class ListAccountResponse extends Message<ListAccountResponse> {
+export class ListEnvironmentResponse extends Message<ListEnvironmentResponse> {
   /**
    * @generated from field: types.v1.Cursor next = 1;
    */
   next?: Cursor;
 
   /**
-   * @generated from field: repeated svc.organization.v1.ListAccountResponse.ListItem items = 2;
+   * @generated from field: repeated svc.organization.v1.ListEnvironmentResponse.ListItem items = 2;
    */
-  items: ListAccountResponse_ListItem[] = [];
+  items: ListEnvironmentResponse_ListItem[] = [];
 
-  constructor(data?: PartialMessage<ListAccountResponse>) {
+  constructor(data?: PartialMessage<ListEnvironmentResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.organization.v1.ListAccountResponse";
+  static readonly typeName = "svc.organization.v1.ListEnvironmentResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "next", kind: "message", T: Cursor },
-    { no: 2, name: "items", kind: "message", T: ListAccountResponse_ListItem, repeated: true },
+    { no: 2, name: "items", kind: "message", T: ListEnvironmentResponse_ListItem, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAccountResponse {
-    return new ListAccountResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEnvironmentResponse {
+    return new ListEnvironmentResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAccountResponse {
-    return new ListAccountResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListEnvironmentResponse {
+    return new ListEnvironmentResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAccountResponse {
-    return new ListAccountResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListEnvironmentResponse {
+    return new ListEnvironmentResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAccountResponse | PlainMessage<ListAccountResponse> | undefined, b: ListAccountResponse | PlainMessage<ListAccountResponse> | undefined): boolean {
-    return proto3.util.equals(ListAccountResponse, a, b);
+  static equals(a: ListEnvironmentResponse | PlainMessage<ListEnvironmentResponse> | undefined, b: ListEnvironmentResponse | PlainMessage<ListEnvironmentResponse> | undefined): boolean {
+    return proto3.util.equals(ListEnvironmentResponse, a, b);
   }
 }
 
 /**
- * @generated from message svc.organization.v1.ListAccountResponse.ListItem
+ * @generated from message svc.organization.v1.ListEnvironmentResponse.ListItem
  */
-export class ListAccountResponse_ListItem extends Message<ListAccountResponse_ListItem> {
+export class ListEnvironmentResponse_ListItem extends Message<ListEnvironmentResponse_ListItem> {
   /**
-   * @generated from field: types.v1.Account account = 1;
+   * @generated from field: types.v1.Environment environment = 1;
    */
-  account?: Account;
+  environment?: Environment;
 
-  constructor(data?: PartialMessage<ListAccountResponse_ListItem>) {
+  constructor(data?: PartialMessage<ListEnvironmentResponse_ListItem>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.organization.v1.ListAccountResponse.ListItem";
+  static readonly typeName = "svc.organization.v1.ListEnvironmentResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "account", kind: "message", T: Account },
+    { no: 1, name: "environment", kind: "message", T: Environment },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAccountResponse_ListItem {
-    return new ListAccountResponse_ListItem().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEnvironmentResponse_ListItem {
+    return new ListEnvironmentResponse_ListItem().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAccountResponse_ListItem {
-    return new ListAccountResponse_ListItem().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListEnvironmentResponse_ListItem {
+    return new ListEnvironmentResponse_ListItem().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAccountResponse_ListItem {
-    return new ListAccountResponse_ListItem().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListEnvironmentResponse_ListItem {
+    return new ListEnvironmentResponse_ListItem().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAccountResponse_ListItem | PlainMessage<ListAccountResponse_ListItem> | undefined, b: ListAccountResponse_ListItem | PlainMessage<ListAccountResponse_ListItem> | undefined): boolean {
-    return proto3.util.equals(ListAccountResponse_ListItem, a, b);
+  static equals(a: ListEnvironmentResponse_ListItem | PlainMessage<ListEnvironmentResponse_ListItem> | undefined, b: ListEnvironmentResponse_ListItem | PlainMessage<ListEnvironmentResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListEnvironmentResponse_ListItem, a, b);
   }
 }
 
