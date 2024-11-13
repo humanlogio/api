@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Version } from "../../../types/v1/version_pb";
 import { UserToken } from "../../../types/v1/user_token_pb";
 
@@ -64,27 +64,17 @@ export class GetAuthURLRequest extends Message<GetAuthURLRequest> {
  */
 export class LocalhostViaBrowser extends Message<LocalhostViaBrowser> {
   /**
-   * @generated from field: optional int64 claim_environment_id = 1;
-   */
-  claimEnvironmentId?: bigint;
-
-  /**
-   * @generated from field: optional int64 claim_machine_id = 2;
-   */
-  claimMachineId?: bigint;
-
-  /**
-   * @generated from field: string architecture = 3;
+   * @generated from field: string architecture = 1;
    */
   architecture = "";
 
   /**
-   * @generated from field: string operating_system = 4;
+   * @generated from field: string operating_system = 2;
    */
   operatingSystem = "";
 
   /**
-   * @generated from field: types.v1.Version using_version = 5;
+   * @generated from field: types.v1.Version using_version = 3;
    */
   usingVersion?: Version;
 
@@ -96,11 +86,9 @@ export class LocalhostViaBrowser extends Message<LocalhostViaBrowser> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.auth.v1.LocalhostViaBrowser";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "claim_environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
-    { no: 2, name: "claim_machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
-    { no: 3, name: "architecture", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "operating_system", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 5, name: "using_version", kind: "message", T: Version },
+    { no: 1, name: "architecture", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "operating_system", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "using_version", kind: "message", T: Version },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LocalhostViaBrowser {
@@ -275,16 +263,6 @@ export class CompleteDeviceAuthRequest extends Message<CompleteDeviceAuthRequest
   userCode = "";
 
   /**
-   * @generated from field: optional int64 claim_environment_id = 3;
-   */
-  claimEnvironmentId?: bigint;
-
-  /**
-   * @generated from field: optional int64 claim_machine_id = 4;
-   */
-  claimMachineId?: bigint;
-
-  /**
    * @generated from field: string architecture = 5;
    */
   architecture = "";
@@ -304,8 +282,6 @@ export class CompleteDeviceAuthRequest extends Message<CompleteDeviceAuthRequest
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "device_code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "user_code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "claim_environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
-    { no: 4, name: "claim_machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
     { no: 5, name: "architecture", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "operating_system", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
@@ -336,16 +312,6 @@ export class CompleteDeviceAuthResponse extends Message<CompleteDeviceAuthRespon
    */
   token?: UserToken;
 
-  /**
-   * @generated from field: int64 environment_id = 2;
-   */
-  environmentId = protoInt64.zero;
-
-  /**
-   * @generated from field: int64 machine_id = 3;
-   */
-  machineId = protoInt64.zero;
-
   constructor(data?: PartialMessage<CompleteDeviceAuthResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -355,8 +321,6 @@ export class CompleteDeviceAuthResponse extends Message<CompleteDeviceAuthRespon
   static readonly typeName = "svc.auth.v1.CompleteDeviceAuthResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "token", kind: "message", T: UserToken },
-    { no: 2, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 3, name: "machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CompleteDeviceAuthResponse {

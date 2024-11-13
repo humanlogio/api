@@ -25,11 +25,9 @@ message GetAuthURLRequest {
 }
 
 message LocalhostViaBrowser {
-  optional int64 claim_environment_id = 1;
-  optional int64 claim_machine_id = 2;
-  string architecture = 3;
-  string operating_system = 4;
-  types.v1.Version using_version = 5;
+  string architecture = 1;
+  string operating_system = 2;
+  types.v1.Version using_version = 3;
 }
 
 message GetAuthURLResponse {
@@ -54,14 +52,10 @@ message CompleteDeviceAuthRequest {
   // to retrieve the user token that is generated when a user is authenticated
   string device_code = 1;
   string user_code = 2;
-  optional int64 claim_environment_id = 3;
-  optional int64 claim_machine_id = 4;
   string architecture = 5;
   string operating_system = 6;
 }
 
 message CompleteDeviceAuthResponse {
   types.v1.UserToken token = 1;
-  int64 environment_id = 2;
-  int64 machine_id = 3;
 }
