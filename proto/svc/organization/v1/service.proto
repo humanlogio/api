@@ -25,8 +25,7 @@ service OrganizationService {
 }
 
 message CreateEnvironmentRequest {
-  int64 organization_id = 1;
-  string environment_name = 2;
+  string environment_name = 1;
 }
 
 message CreateEnvironmentResponse {
@@ -36,7 +35,6 @@ message CreateEnvironmentResponse {
 message ListEnvironmentRequest{
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
-  int64 organization_id = 3;
 }
 
 message ListEnvironmentResponse{
@@ -50,7 +48,6 @@ message ListEnvironmentResponse{
 message ListUserRequest{
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
-  int64 organization_id = 3;
 }
 
 message ListUserResponse{
@@ -62,20 +59,16 @@ message ListUserResponse{
 }
 
 message InviteUserRequest{
-  int64 organization_id = 1;
-  int64 user_email = 2;
+  int64 user_email = 1;
 }
 message InviteUserResponse{}
 
 message RevokeUserRequest{
-  int64 organization_id = 1;
-  int64 user_id = 2;
+  int64 user_id = 1;
 }
 message RevokeUserResponse{}
 
-message GetStripePublishableKeyRequest{
-  int64 organization_id = 1;
-}
+message GetStripePublishableKeyRequest{}
 message GetStripePublishableKeyResponse{
   string stripe_publishable_key = 2;
 }
@@ -83,7 +76,6 @@ message GetStripePublishableKeyResponse{
 message ListPaymentMethodRequest{
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
-  int64 organization_id = 3;
 }
 message ListPaymentMethodResponse{
   types.v1.Cursor next = 1;

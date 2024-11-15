@@ -15,12 +15,7 @@ import { PaymentMethod } from "../../../types/v1/payment_method_pb";
  */
 export class CreateEnvironmentRequest extends Message<CreateEnvironmentRequest> {
   /**
-   * @generated from field: int64 organization_id = 1;
-   */
-  organizationId = protoInt64.zero;
-
-  /**
-   * @generated from field: string environment_name = 2;
+   * @generated from field: string environment_name = 1;
    */
   environmentName = "";
 
@@ -32,8 +27,7 @@ export class CreateEnvironmentRequest extends Message<CreateEnvironmentRequest> 
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.organization.v1.CreateEnvironmentRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "environment_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "environment_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEnvironmentRequest {
@@ -104,11 +98,6 @@ export class ListEnvironmentRequest extends Message<ListEnvironmentRequest> {
    */
   limit = 0;
 
-  /**
-   * @generated from field: int64 organization_id = 3;
-   */
-  organizationId = protoInt64.zero;
-
   constructor(data?: PartialMessage<ListEnvironmentRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -119,7 +108,6 @@ export class ListEnvironmentRequest extends Message<ListEnvironmentRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEnvironmentRequest {
@@ -233,11 +221,6 @@ export class ListUserRequest extends Message<ListUserRequest> {
    */
   limit = 0;
 
-  /**
-   * @generated from field: int64 organization_id = 3;
-   */
-  organizationId = protoInt64.zero;
-
   constructor(data?: PartialMessage<ListUserRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -248,7 +231,6 @@ export class ListUserRequest extends Message<ListUserRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListUserRequest {
@@ -353,12 +335,7 @@ export class ListUserResponse_ListItem extends Message<ListUserResponse_ListItem
  */
 export class InviteUserRequest extends Message<InviteUserRequest> {
   /**
-   * @generated from field: int64 organization_id = 1;
-   */
-  organizationId = protoInt64.zero;
-
-  /**
-   * @generated from field: int64 user_email = 2;
+   * @generated from field: int64 user_email = 1;
    */
   userEmail = protoInt64.zero;
 
@@ -370,8 +347,7 @@ export class InviteUserRequest extends Message<InviteUserRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.organization.v1.InviteUserRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "user_email", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "user_email", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): InviteUserRequest {
@@ -427,12 +403,7 @@ export class InviteUserResponse extends Message<InviteUserResponse> {
  */
 export class RevokeUserRequest extends Message<RevokeUserRequest> {
   /**
-   * @generated from field: int64 organization_id = 1;
-   */
-  organizationId = protoInt64.zero;
-
-  /**
-   * @generated from field: int64 user_id = 2;
+   * @generated from field: int64 user_id = 1;
    */
   userId = protoInt64.zero;
 
@@ -444,8 +415,7 @@ export class RevokeUserRequest extends Message<RevokeUserRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.organization.v1.RevokeUserRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "user_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "user_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RevokeUserRequest {
@@ -500,11 +470,6 @@ export class RevokeUserResponse extends Message<RevokeUserResponse> {
  * @generated from message svc.organization.v1.GetStripePublishableKeyRequest
  */
 export class GetStripePublishableKeyRequest extends Message<GetStripePublishableKeyRequest> {
-  /**
-   * @generated from field: int64 organization_id = 1;
-   */
-  organizationId = protoInt64.zero;
-
   constructor(data?: PartialMessage<GetStripePublishableKeyRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -513,7 +478,6 @@ export class GetStripePublishableKeyRequest extends Message<GetStripePublishable
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.organization.v1.GetStripePublishableKeyRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStripePublishableKeyRequest {
@@ -584,11 +548,6 @@ export class ListPaymentMethodRequest extends Message<ListPaymentMethodRequest> 
    */
   limit = 0;
 
-  /**
-   * @generated from field: int64 organization_id = 3;
-   */
-  organizationId = protoInt64.zero;
-
   constructor(data?: PartialMessage<ListPaymentMethodRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -599,7 +558,6 @@ export class ListPaymentMethodRequest extends Message<ListPaymentMethodRequest> 
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPaymentMethodRequest {
