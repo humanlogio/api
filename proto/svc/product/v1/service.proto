@@ -26,4 +26,5 @@ message ListProductResponse {
     repeated types.v1.Price prices = 2;
   }
   repeated ListItem items = 2;
+  types.v1.Product default_product = 3;
 }

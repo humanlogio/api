@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateEnvironmentRequest, CreateEnvironmentResponse, InviteUserRequest, InviteUserResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateEnvironmentRequest, CreateEnvironmentResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -55,6 +55,26 @@ export const OrganizationService = {
       name: "RevokeUser",
       I: RevokeUserRequest,
       O: RevokeUserResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * payment
+     *
+     * @generated from rpc svc.organization.v1.OrganizationService.GetStripePublishableKey
+     */
+    getStripePublishableKey: {
+      name: "GetStripePublishableKey",
+      I: GetStripePublishableKeyRequest,
+      O: GetStripePublishableKeyResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.organization.v1.OrganizationService.ListPaymentMethod
+     */
+    listPaymentMethod: {
+      name: "ListPaymentMethod",
+      I: ListPaymentMethodRequest,
+      O: ListPaymentMethodResponse,
       kind: MethodKind.Unary,
     },
   }

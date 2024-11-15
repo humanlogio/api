@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@bufbuild/buf": "^1.46.0",
+    "@bufbuild/buf": "^1.47.2",
     "@bufbuild/protoc-gen-es": "^1.10.0",
     "@connectrpc/connect": "^1.6.1",
     "@connectrpc/connect-query": "^1.4.2",

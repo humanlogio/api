@@ -8,6 +8,7 @@ import "types/v1/environment.proto";
 import "types/v1/cursor.proto";
 import "types/v1/organization.proto";
 import "types/v1/user.proto";
+import "types/v1/payment_method.proto";
 
 service OrganizationService {
   rpc CreateEnvironment(CreateEnvironmentRequest) returns (CreateEnvironmentResponse) {}
@@ -16,6 +17,11 @@ service OrganizationService {
   rpc ListUser(ListUserRequest) returns (ListUserResponse) {}
   rpc InviteUser(InviteUserRequest) returns (InviteUserResponse) {}
   rpc RevokeUser(RevokeUserRequest) returns (RevokeUserResponse) {}
+
+
+  // payment
+  rpc GetStripePublishableKey(GetStripePublishableKeyRequest) returns (GetStripePublishableKeyResponse) {}
+  rpc ListPaymentMethod(ListPaymentMethodRequest) returns (ListPaymentMethodResponse) {}
 }
 
 message CreateEnvironmentRequest {
@@ -66,3 +72,23 @@ message RevokeUserRequest{
   int64 user_id = 2;
 }
 message RevokeUserResponse{}
+
+message GetStripePublishableKeyRequest{
+  int64 organization_id = 1;
+}
+message GetStripePublishableKeyResponse{
+  string stripe_publishable_key = 2;
+}
+
+message ListPaymentMethodRequest{
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+  int64 organization_id = 3;
+}
+message ListPaymentMethodResponse{
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.PaymentMethod payment_method = 1;
+  }
+  repeated ListItem items = 2;
+}

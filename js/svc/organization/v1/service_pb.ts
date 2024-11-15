@@ -8,6 +8,7 @@ import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { Environment } from "../../../types/v1/environment_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { User } from "../../../types/v1/user_pb";
+import { PaymentMethod } from "../../../types/v1/payment_method_pb";
 
 /**
  * @generated from message svc.organization.v1.CreateEnvironmentRequest
@@ -492,6 +493,209 @@ export class RevokeUserResponse extends Message<RevokeUserResponse> {
 
   static equals(a: RevokeUserResponse | PlainMessage<RevokeUserResponse> | undefined, b: RevokeUserResponse | PlainMessage<RevokeUserResponse> | undefined): boolean {
     return proto3.util.equals(RevokeUserResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.GetStripePublishableKeyRequest
+ */
+export class GetStripePublishableKeyRequest extends Message<GetStripePublishableKeyRequest> {
+  /**
+   * @generated from field: int64 organization_id = 1;
+   */
+  organizationId = protoInt64.zero;
+
+  constructor(data?: PartialMessage<GetStripePublishableKeyRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.GetStripePublishableKeyRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStripePublishableKeyRequest {
+    return new GetStripePublishableKeyRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetStripePublishableKeyRequest {
+    return new GetStripePublishableKeyRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetStripePublishableKeyRequest {
+    return new GetStripePublishableKeyRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetStripePublishableKeyRequest | PlainMessage<GetStripePublishableKeyRequest> | undefined, b: GetStripePublishableKeyRequest | PlainMessage<GetStripePublishableKeyRequest> | undefined): boolean {
+    return proto3.util.equals(GetStripePublishableKeyRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.GetStripePublishableKeyResponse
+ */
+export class GetStripePublishableKeyResponse extends Message<GetStripePublishableKeyResponse> {
+  /**
+   * @generated from field: string stripe_publishable_key = 2;
+   */
+  stripePublishableKey = "";
+
+  constructor(data?: PartialMessage<GetStripePublishableKeyResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.GetStripePublishableKeyResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 2, name: "stripe_publishable_key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStripePublishableKeyResponse {
+    return new GetStripePublishableKeyResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetStripePublishableKeyResponse {
+    return new GetStripePublishableKeyResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetStripePublishableKeyResponse {
+    return new GetStripePublishableKeyResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetStripePublishableKeyResponse | PlainMessage<GetStripePublishableKeyResponse> | undefined, b: GetStripePublishableKeyResponse | PlainMessage<GetStripePublishableKeyResponse> | undefined): boolean {
+    return proto3.util.equals(GetStripePublishableKeyResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.ListPaymentMethodRequest
+ */
+export class ListPaymentMethodRequest extends Message<ListPaymentMethodRequest> {
+  /**
+   * @generated from field: types.v1.Cursor cursor = 1;
+   */
+  cursor?: Cursor;
+
+  /**
+   * @generated from field: int32 limit = 2;
+   */
+  limit = 0;
+
+  /**
+   * @generated from field: int64 organization_id = 3;
+   */
+  organizationId = protoInt64.zero;
+
+  constructor(data?: PartialMessage<ListPaymentMethodRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.ListPaymentMethodRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "cursor", kind: "message", T: Cursor },
+    { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "organization_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPaymentMethodRequest {
+    return new ListPaymentMethodRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPaymentMethodRequest {
+    return new ListPaymentMethodRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPaymentMethodRequest {
+    return new ListPaymentMethodRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListPaymentMethodRequest | PlainMessage<ListPaymentMethodRequest> | undefined, b: ListPaymentMethodRequest | PlainMessage<ListPaymentMethodRequest> | undefined): boolean {
+    return proto3.util.equals(ListPaymentMethodRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.ListPaymentMethodResponse
+ */
+export class ListPaymentMethodResponse extends Message<ListPaymentMethodResponse> {
+  /**
+   * @generated from field: types.v1.Cursor next = 1;
+   */
+  next?: Cursor;
+
+  /**
+   * @generated from field: repeated svc.organization.v1.ListPaymentMethodResponse.ListItem items = 2;
+   */
+  items: ListPaymentMethodResponse_ListItem[] = [];
+
+  constructor(data?: PartialMessage<ListPaymentMethodResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.ListPaymentMethodResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "next", kind: "message", T: Cursor },
+    { no: 2, name: "items", kind: "message", T: ListPaymentMethodResponse_ListItem, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPaymentMethodResponse {
+    return new ListPaymentMethodResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPaymentMethodResponse {
+    return new ListPaymentMethodResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPaymentMethodResponse {
+    return new ListPaymentMethodResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListPaymentMethodResponse | PlainMessage<ListPaymentMethodResponse> | undefined, b: ListPaymentMethodResponse | PlainMessage<ListPaymentMethodResponse> | undefined): boolean {
+    return proto3.util.equals(ListPaymentMethodResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.ListPaymentMethodResponse.ListItem
+ */
+export class ListPaymentMethodResponse_ListItem extends Message<ListPaymentMethodResponse_ListItem> {
+  /**
+   * @generated from field: types.v1.PaymentMethod payment_method = 1;
+   */
+  paymentMethod?: PaymentMethod;
+
+  constructor(data?: PartialMessage<ListPaymentMethodResponse_ListItem>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.ListPaymentMethodResponse.ListItem";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "payment_method", kind: "message", T: PaymentMethod },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPaymentMethodResponse_ListItem {
+    return new ListPaymentMethodResponse_ListItem().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPaymentMethodResponse_ListItem {
+    return new ListPaymentMethodResponse_ListItem().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPaymentMethodResponse_ListItem {
+    return new ListPaymentMethodResponse_ListItem().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListPaymentMethodResponse_ListItem | PlainMessage<ListPaymentMethodResponse_ListItem> | undefined, b: ListPaymentMethodResponse_ListItem | PlainMessage<ListPaymentMethodResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListPaymentMethodResponse_ListItem, a, b);
   }
 }
 

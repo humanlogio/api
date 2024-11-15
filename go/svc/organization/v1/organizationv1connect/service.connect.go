@@ -48,16 +48,24 @@ const (
 	// OrganizationServiceRevokeUserProcedure is the fully-qualified name of the OrganizationService's
 	// RevokeUser RPC.
 	OrganizationServiceRevokeUserProcedure = "/svc.organization.v1.OrganizationService/RevokeUser"
+	// OrganizationServiceGetStripePublishableKeyProcedure is the fully-qualified name of the
+	// OrganizationService's GetStripePublishableKey RPC.
+	OrganizationServiceGetStripePublishableKeyProcedure = "/svc.organization.v1.OrganizationService/GetStripePublishableKey"
+	// OrganizationServiceListPaymentMethodProcedure is the fully-qualified name of the
+	// OrganizationService's ListPaymentMethod RPC.
+	OrganizationServiceListPaymentMethodProcedure = "/svc.organization.v1.OrganizationService/ListPaymentMethod"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
 var (
-	organizationServiceServiceDescriptor                 = v1.File_svc_organization_v1_service_proto.Services().ByName("OrganizationService")
-	organizationServiceCreateEnvironmentMethodDescriptor = organizationServiceServiceDescriptor.Methods().ByName("CreateEnvironment")
-	organizationServiceListEnvironmentMethodDescriptor   = organizationServiceServiceDescriptor.Methods().ByName("ListEnvironment")
-	organizationServiceListUserMethodDescriptor          = organizationServiceServiceDescriptor.Methods().ByName("ListUser")
-	organizationServiceInviteUserMethodDescriptor        = organizationServiceServiceDescriptor.Methods().ByName("InviteUser")
-	organizationServiceRevokeUserMethodDescriptor        = organizationServiceServiceDescriptor.Methods().ByName("RevokeUser")
+	organizationServiceServiceDescriptor                       = v1.File_svc_organization_v1_service_proto.Services().ByName("OrganizationService")
+	organizationServiceCreateEnvironmentMethodDescriptor       = organizationServiceServiceDescriptor.Methods().ByName("CreateEnvironment")
+	organizationServiceListEnvironmentMethodDescriptor         = organizationServiceServiceDescriptor.Methods().ByName("ListEnvironment")
+	organizationServiceListUserMethodDescriptor                = organizationServiceServiceDescriptor.Methods().ByName("ListUser")
+	organizationServiceInviteUserMethodDescriptor              = organizationServiceServiceDescriptor.Methods().ByName("InviteUser")
+	organizationServiceRevokeUserMethodDescriptor              = organizationServiceServiceDescriptor.Methods().ByName("RevokeUser")
+	organizationServiceGetStripePublishableKeyMethodDescriptor = organizationServiceServiceDescriptor.Methods().ByName("GetStripePublishableKey")
+	organizationServiceListPaymentMethodMethodDescriptor       = organizationServiceServiceDescriptor.Methods().ByName("ListPaymentMethod")
 )
 
 // OrganizationServiceClient is a client for the svc.organization.v1.OrganizationService service.
@@ -67,6 +75,9 @@ type OrganizationServiceClient interface {
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
 	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
 	RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error)
+	// payment
+	GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error)
+	ListPaymentMethod(context.Context, *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error)
 }
 
 // NewOrganizationServiceClient constructs a client for the svc.organization.v1.OrganizationService
@@ -109,16 +120,30 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(organizationServiceRevokeUserMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		getStripePublishableKey: connect.NewClient[v1.GetStripePublishableKeyRequest, v1.GetStripePublishableKeyResponse](
+			httpClient,
+			baseURL+OrganizationServiceGetStripePublishableKeyProcedure,
+			connect.WithSchema(organizationServiceGetStripePublishableKeyMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		listPaymentMethod: connect.NewClient[v1.ListPaymentMethodRequest, v1.ListPaymentMethodResponse](
+			httpClient,
+			baseURL+OrganizationServiceListPaymentMethodProcedure,
+			connect.WithSchema(organizationServiceListPaymentMethodMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // organizationServiceClient implements OrganizationServiceClient.
 type organizationServiceClient struct {
-	createEnvironment *connect.Client[v1.CreateEnvironmentRequest, v1.CreateEnvironmentResponse]
-	listEnvironment   *connect.Client[v1.ListEnvironmentRequest, v1.ListEnvironmentResponse]
-	listUser          *connect.Client[v1.ListUserRequest, v1.ListUserResponse]
-	inviteUser        *connect.Client[v1.InviteUserRequest, v1.InviteUserResponse]
-	revokeUser        *connect.Client[v1.RevokeUserRequest, v1.RevokeUserResponse]
+	createEnvironment       *connect.Client[v1.CreateEnvironmentRequest, v1.CreateEnvironmentResponse]
+	listEnvironment         *connect.Client[v1.ListEnvironmentRequest, v1.ListEnvironmentResponse]
+	listUser                *connect.Client[v1.ListUserRequest, v1.ListUserResponse]
+	inviteUser              *connect.Client[v1.InviteUserRequest, v1.InviteUserResponse]
+	revokeUser              *connect.Client[v1.RevokeUserRequest, v1.RevokeUserResponse]
+	getStripePublishableKey *connect.Client[v1.GetStripePublishableKeyRequest, v1.GetStripePublishableKeyResponse]
+	listPaymentMethod       *connect.Client[v1.ListPaymentMethodRequest, v1.ListPaymentMethodResponse]
 }
 
 // CreateEnvironment calls svc.organization.v1.OrganizationService.CreateEnvironment.
@@ -146,6 +171,16 @@ func (c *organizationServiceClient) RevokeUser(ctx context.Context, req *connect
 	return c.revokeUser.CallUnary(ctx, req)
 }
 
+// GetStripePublishableKey calls svc.organization.v1.OrganizationService.GetStripePublishableKey.
+func (c *organizationServiceClient) GetStripePublishableKey(ctx context.Context, req *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error) {
+	return c.getStripePublishableKey.CallUnary(ctx, req)
+}
+
+// ListPaymentMethod calls svc.organization.v1.OrganizationService.ListPaymentMethod.
+func (c *organizationServiceClient) ListPaymentMethod(ctx context.Context, req *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error) {
+	return c.listPaymentMethod.CallUnary(ctx, req)
+}
+
 // OrganizationServiceHandler is an implementation of the svc.organization.v1.OrganizationService
 // service.
 type OrganizationServiceHandler interface {
@@ -154,6 +189,9 @@ type OrganizationServiceHandler interface {
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
 	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
 	RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error)
+	// payment
+	GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error)
+	ListPaymentMethod(context.Context, *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error)
 }
 
 // NewOrganizationServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -192,6 +230,18 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 		connect.WithSchema(organizationServiceRevokeUserMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	organizationServiceGetStripePublishableKeyHandler := connect.NewUnaryHandler(
+		OrganizationServiceGetStripePublishableKeyProcedure,
+		svc.GetStripePublishableKey,
+		connect.WithSchema(organizationServiceGetStripePublishableKeyMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	organizationServiceListPaymentMethodHandler := connect.NewUnaryHandler(
+		OrganizationServiceListPaymentMethodProcedure,
+		svc.ListPaymentMethod,
+		connect.WithSchema(organizationServiceListPaymentMethodMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.organization.v1.OrganizationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case OrganizationServiceCreateEnvironmentProcedure:
@@ -204,6 +254,10 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 			organizationServiceInviteUserHandler.ServeHTTP(w, r)
 		case OrganizationServiceRevokeUserProcedure:
 			organizationServiceRevokeUserHandler.ServeHTTP(w, r)
+		case OrganizationServiceGetStripePublishableKeyProcedure:
+			organizationServiceGetStripePublishableKeyHandler.ServeHTTP(w, r)
+		case OrganizationServiceListPaymentMethodProcedure:
+			organizationServiceListPaymentMethodHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -231,4 +285,12 @@ func (UnimplementedOrganizationServiceHandler) InviteUser(context.Context, *conn
 
 func (UnimplementedOrganizationServiceHandler) RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.RevokeUser is not implemented"))
+}
+
+func (UnimplementedOrganizationServiceHandler) GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.GetStripePublishableKey is not implemented"))
+}
+
+func (UnimplementedOrganizationServiceHandler) ListPaymentMethod(context.Context, *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.ListPaymentMethod is not implemented"))
 }

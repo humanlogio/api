@@ -72,6 +72,11 @@ export class ListProductResponse extends Message<ListProductResponse> {
    */
   items: ListProductResponse_ListItem[] = [];
 
+  /**
+   * @generated from field: types.v1.Product default_product = 3;
+   */
+  defaultProduct?: Product;
+
   constructor(data?: PartialMessage<ListProductResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -82,6 +87,7 @@ export class ListProductResponse extends Message<ListProductResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "next", kind: "message", T: Cursor },
     { no: 2, name: "items", kind: "message", T: ListProductResponse_ListItem, repeated: true },
+    { no: 3, name: "default_product", kind: "message", T: Product },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListProductResponse {

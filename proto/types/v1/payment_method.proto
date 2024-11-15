@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package types.v1;
+
+option go_package = "types/v1;typesv1";
+
+import "google/protobuf/timestamp.proto";
+
+message Address {
+	string city = 1;
+	string country = 2;
+	string line1 = 3;
+	string line2 = 4;
+	string postal_code = 5;
+	string state = 6;
+}
+
+message PaymentMethod {
+  message Card {
+    enum Brand {
+      unknown = 0;
+      amex = 1;
+      diners = 2;
+      discover = 3;
+      jcb = 4;
+      mastercard = 5;
+      unionpay = 6;
+      visa = 7;
+    }
+    Brand brand = 1;
+    string country = 2;
+    string display_brandh = 3;
+    int64 exp_month = 4;
+    int64 exp_year = 5;
+    string last4 = 6;
+  }
+
+  message BillingDetails {
+    Address address = 1;
+    string email = 2;
+    string name = 3;
+    string phone = 4;
+  }
+
+  google.protobuf.Timestamp created_at = 100;
+
+  string stripe_id = 1;
+  oneof type {
+    Card card = 200;
+  }
+  BillingDetails billing_details = 3;
+}
