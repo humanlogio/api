@@ -282,6 +282,11 @@ export class ListOrganizationResponse extends Message<ListOrganizationResponse> 
    */
   items: ListOrganizationResponse_ListItem[] = [];
 
+  /**
+   * @generated from field: types.v1.Organization default_organization = 3;
+   */
+  defaultOrganization?: Organization;
+
   constructor(data?: PartialMessage<ListOrganizationResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -292,6 +297,7 @@ export class ListOrganizationResponse extends Message<ListOrganizationResponse> 
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "next", kind: "message", T: Cursor },
     { no: 2, name: "items", kind: "message", T: ListOrganizationResponse_ListItem, repeated: true },
+    { no: 3, name: "default_organization", kind: "message", T: Organization },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListOrganizationResponse {

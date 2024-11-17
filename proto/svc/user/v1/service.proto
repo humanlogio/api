@@ -48,4 +48,5 @@ message ListOrganizationResponse{
     types.v1.Organization organization = 1;
   }
   repeated ListItem items = 2;
+  types.v1.Organization default_organization = 3;
 }
