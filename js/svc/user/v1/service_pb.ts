@@ -54,6 +54,11 @@ export class WhoamiResponse extends Message<WhoamiResponse> {
    */
   currentOrganization?: Organization;
 
+  /**
+   * @generated from field: types.v1.Organization default_organization = 3;
+   */
+  defaultOrganization?: Organization;
+
   constructor(data?: PartialMessage<WhoamiResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -64,6 +69,7 @@ export class WhoamiResponse extends Message<WhoamiResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user", kind: "message", T: User },
     { no: 2, name: "current_organization", kind: "message", T: Organization },
+    { no: 3, name: "default_organization", kind: "message", T: Organization },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WhoamiResponse {

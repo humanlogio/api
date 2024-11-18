@@ -20,6 +20,7 @@ message WhoamiRequest{}
 message WhoamiResponse{
   types.v1.User user = 1;
   types.v1.Organization current_organization = 2;
+  types.v1.Organization default_organization = 3;
 }
 
 message GetLogoutURLRequest{}
