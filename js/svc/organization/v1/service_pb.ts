@@ -535,6 +535,74 @@ export class GetStripePublishableKeyResponse extends Message<GetStripePublishabl
 }
 
 /**
+ * @generated from message svc.organization.v1.CreateStripeCustomerSessionRequest
+ */
+export class CreateStripeCustomerSessionRequest extends Message<CreateStripeCustomerSessionRequest> {
+  constructor(data?: PartialMessage<CreateStripeCustomerSessionRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.CreateStripeCustomerSessionRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateStripeCustomerSessionRequest {
+    return new CreateStripeCustomerSessionRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateStripeCustomerSessionRequest {
+    return new CreateStripeCustomerSessionRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateStripeCustomerSessionRequest {
+    return new CreateStripeCustomerSessionRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateStripeCustomerSessionRequest | PlainMessage<CreateStripeCustomerSessionRequest> | undefined, b: CreateStripeCustomerSessionRequest | PlainMessage<CreateStripeCustomerSessionRequest> | undefined): boolean {
+    return proto3.util.equals(CreateStripeCustomerSessionRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.CreateStripeCustomerSessionResponse
+ */
+export class CreateStripeCustomerSessionResponse extends Message<CreateStripeCustomerSessionResponse> {
+  /**
+   * @generated from field: string customer_session_client_secret = 1;
+   */
+  customerSessionClientSecret = "";
+
+  constructor(data?: PartialMessage<CreateStripeCustomerSessionResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.CreateStripeCustomerSessionResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "customer_session_client_secret", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateStripeCustomerSessionResponse {
+    return new CreateStripeCustomerSessionResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateStripeCustomerSessionResponse {
+    return new CreateStripeCustomerSessionResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateStripeCustomerSessionResponse {
+    return new CreateStripeCustomerSessionResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateStripeCustomerSessionResponse | PlainMessage<CreateStripeCustomerSessionResponse> | undefined, b: CreateStripeCustomerSessionResponse | PlainMessage<CreateStripeCustomerSessionResponse> | undefined): boolean {
+    return proto3.util.equals(CreateStripeCustomerSessionResponse, a, b);
+  }
+}
+
+/**
  * @generated from message svc.organization.v1.ListPaymentMethodRequest
  */
 export class ListPaymentMethodRequest extends Message<ListPaymentMethodRequest> {

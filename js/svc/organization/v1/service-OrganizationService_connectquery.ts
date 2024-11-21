@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateEnvironmentRequest, CreateEnvironmentResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.organization.v1.OrganizationService.CreateEnvironment
@@ -87,6 +87,20 @@ export const getStripePublishableKey = {
   kind: MethodKind.Unary,
   I: GetStripePublishableKeyRequest,
   O: GetStripePublishableKeyResponse,
+  service: {
+    typeName: "svc.organization.v1.OrganizationService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.organization.v1.OrganizationService.CreateStripeCustomerSession
+ */
+export const createStripeCustomerSession = {
+  localName: "createStripeCustomerSession",
+  name: "CreateStripeCustomerSession",
+  kind: MethodKind.Unary,
+  I: CreateStripeCustomerSessionRequest,
+  O: CreateStripeCustomerSessionResponse,
   service: {
     typeName: "svc.organization.v1.OrganizationService"
   }

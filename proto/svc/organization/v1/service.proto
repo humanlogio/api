@@ -21,6 +21,7 @@ service OrganizationService {
 
   // payment
   rpc GetStripePublishableKey(GetStripePublishableKeyRequest) returns (GetStripePublishableKeyResponse) {}
+  rpc CreateStripeCustomerSession(CreateStripeCustomerSessionRequest) returns (CreateStripeCustomerSessionResponse) {}
   rpc ListPaymentMethod(ListPaymentMethodRequest) returns (ListPaymentMethodResponse) {}
 }
 
@@ -71,6 +72,11 @@ message RevokeUserResponse{}
 message GetStripePublishableKeyRequest{}
 message GetStripePublishableKeyResponse{
   string stripe_publishable_key = 2;
+}
+
+message CreateStripeCustomerSessionRequest{}
+message CreateStripeCustomerSessionResponse{
+  string customer_session_client_secret = 1;
 }
 
 message ListPaymentMethodRequest{
