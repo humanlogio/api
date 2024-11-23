@@ -19,6 +19,17 @@ export class CreateEnvironmentRequest extends Message<CreateEnvironmentRequest> 
    */
   environmentName = "";
 
+  /**
+   * @generated from oneof svc.organization.v1.CreateEnvironmentRequest.payment
+   */
+  payment: {
+    /**
+     * @generated from field: svc.organization.v1.CreateEnvironmentRequest.Stripe stripe = 201;
+     */
+    value: CreateEnvironmentRequest_Stripe;
+    case: "stripe";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
   constructor(data?: PartialMessage<CreateEnvironmentRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -28,6 +39,7 @@ export class CreateEnvironmentRequest extends Message<CreateEnvironmentRequest> 
   static readonly typeName = "svc.organization.v1.CreateEnvironmentRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environment_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 201, name: "stripe", kind: "message", T: CreateEnvironmentRequest_Stripe, oneof: "payment" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEnvironmentRequest {
@@ -48,6 +60,49 @@ export class CreateEnvironmentRequest extends Message<CreateEnvironmentRequest> 
 }
 
 /**
+ * @generated from message svc.organization.v1.CreateEnvironmentRequest.Stripe
+ */
+export class CreateEnvironmentRequest_Stripe extends Message<CreateEnvironmentRequest_Stripe> {
+  /**
+   * @generated from field: string confirmation_token = 1;
+   */
+  confirmationToken = "";
+
+  /**
+   * @generated from field: string price_id = 2;
+   */
+  priceId = "";
+
+  constructor(data?: PartialMessage<CreateEnvironmentRequest_Stripe>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.CreateEnvironmentRequest.Stripe";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "confirmation_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "price_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEnvironmentRequest_Stripe {
+    return new CreateEnvironmentRequest_Stripe().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateEnvironmentRequest_Stripe {
+    return new CreateEnvironmentRequest_Stripe().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateEnvironmentRequest_Stripe {
+    return new CreateEnvironmentRequest_Stripe().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateEnvironmentRequest_Stripe | PlainMessage<CreateEnvironmentRequest_Stripe> | undefined, b: CreateEnvironmentRequest_Stripe | PlainMessage<CreateEnvironmentRequest_Stripe> | undefined): boolean {
+    return proto3.util.equals(CreateEnvironmentRequest_Stripe, a, b);
+  }
+}
+
+/**
  * @generated from message svc.organization.v1.CreateEnvironmentResponse
  */
 export class CreateEnvironmentResponse extends Message<CreateEnvironmentResponse> {
@@ -55,6 +110,17 @@ export class CreateEnvironmentResponse extends Message<CreateEnvironmentResponse
    * @generated from field: types.v1.Environment environment = 1;
    */
   environment?: Environment;
+
+  /**
+   * @generated from oneof svc.organization.v1.CreateEnvironmentResponse.payment
+   */
+  payment: {
+    /**
+     * @generated from field: svc.organization.v1.CreateEnvironmentResponse.Stripe stripe = 201;
+     */
+    value: CreateEnvironmentResponse_Stripe;
+    case: "stripe";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<CreateEnvironmentResponse>) {
     super();
@@ -65,6 +131,7 @@ export class CreateEnvironmentResponse extends Message<CreateEnvironmentResponse
   static readonly typeName = "svc.organization.v1.CreateEnvironmentResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environment", kind: "message", T: Environment },
+    { no: 201, name: "stripe", kind: "message", T: CreateEnvironmentResponse_Stripe, oneof: "payment" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEnvironmentResponse {
@@ -81,6 +148,49 @@ export class CreateEnvironmentResponse extends Message<CreateEnvironmentResponse
 
   static equals(a: CreateEnvironmentResponse | PlainMessage<CreateEnvironmentResponse> | undefined, b: CreateEnvironmentResponse | PlainMessage<CreateEnvironmentResponse> | undefined): boolean {
     return proto3.util.equals(CreateEnvironmentResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.CreateEnvironmentResponse.Stripe
+ */
+export class CreateEnvironmentResponse_Stripe extends Message<CreateEnvironmentResponse_Stripe> {
+  /**
+   * @generated from field: string status = 1;
+   */
+  status = "";
+
+  /**
+   * @generated from field: string client_secret = 2;
+   */
+  clientSecret = "";
+
+  constructor(data?: PartialMessage<CreateEnvironmentResponse_Stripe>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.CreateEnvironmentResponse.Stripe";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "client_secret", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateEnvironmentResponse_Stripe {
+    return new CreateEnvironmentResponse_Stripe().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateEnvironmentResponse_Stripe {
+    return new CreateEnvironmentResponse_Stripe().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateEnvironmentResponse_Stripe {
+    return new CreateEnvironmentResponse_Stripe().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateEnvironmentResponse_Stripe | PlainMessage<CreateEnvironmentResponse_Stripe> | undefined, b: CreateEnvironmentResponse_Stripe | PlainMessage<CreateEnvironmentResponse_Stripe> | undefined): boolean {
+    return proto3.util.equals(CreateEnvironmentResponse_Stripe, a, b);
   }
 }
 
