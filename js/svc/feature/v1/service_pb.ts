@@ -48,14 +48,9 @@ export class HasFeatureRequest extends Message<HasFeatureRequest> {
  */
 export class HasFeatureResponse extends Message<HasFeatureResponse> {
   /**
-   * @generated from field: bool enabled = 1;
+   * @generated from field: bool available = 1;
    */
-  enabled = false;
-
-  /**
-   * @generated from field: svc.feature.v1.HasFeatureResponse.Via via = 2;
-   */
-  via = HasFeatureResponse_Via.Unspecified;
+  available = false;
 
   constructor(data?: PartialMessage<HasFeatureResponse>) {
     super();
@@ -65,8 +60,7 @@ export class HasFeatureResponse extends Message<HasFeatureResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.feature.v1.HasFeatureResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "enabled", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 2, name: "via", kind: "enum", T: proto3.getEnumType(HasFeatureResponse_Via) },
+    { no: 1, name: "available", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): HasFeatureResponse {
@@ -85,30 +79,4 @@ export class HasFeatureResponse extends Message<HasFeatureResponse> {
     return proto3.util.equals(HasFeatureResponse, a, b);
   }
 }
-
-/**
- * @generated from enum svc.feature.v1.HasFeatureResponse.Via
- */
-export enum HasFeatureResponse_Via {
-  /**
-   * @generated from enum value: Unspecified = 0;
-   */
-  Unspecified = 0,
-
-  /**
-   * @generated from enum value: Env = 1;
-   */
-  Env = 1,
-
-  /**
-   * @generated from enum value: Org = 2;
-   */
-  Org = 2,
-}
-// Retrieve enum metadata with: proto3.getEnumType(HasFeatureResponse_Via)
-proto3.util.setEnumType(HasFeatureResponse_Via, "svc.feature.v1.HasFeatureResponse.Via", [
-  { no: 0, name: "Unspecified" },
-  { no: 1, name: "Env" },
-  { no: 2, name: "Org" },
-]);
 

@@ -13,12 +13,5 @@ message HasFeatureRequest {
 }
 
 message HasFeatureResponse {
-  bool enabled = 1;
-  Via via = 2;
-
-  enum Via {
-    Unspecified = 0;
-    Env = 1;
-    Org = 2;
-  }
+  bool available = 1;
 }
