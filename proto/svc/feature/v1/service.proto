@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package svc.feature.v1;
+
+option go_package = "svc/feature/v1;featurev1";
+
+service FeatureService {
+  rpc HasFeature(HasFeatureRequest) returns (HasFeatureResponse);
+}
+
+message HasFeatureRequest {
+  string feature = 1;
+}
+
+message HasFeatureResponse {
+  bool enabled = 1;
+  Via via = 2;
+
+  enum Via {
+    Unspecified = 0;
+    Env = 1;
+    Org = 2;
+  }
+}
