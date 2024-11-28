@@ -47,14 +47,14 @@ export class Product extends Message<Product> {
   marketingFeatures: Product_MarketingFeature[] = [];
 
   /**
-   * @generated from field: bool is_new_env = 6;
-   */
-  isNewEnv = false;
-
-  /**
-   * @generated from field: string cta_link = 7;
+   * @generated from field: string cta_link = 6;
    */
   ctaLink = "";
+
+  /**
+   * @generated from field: types.v1.Product.Scope scope = 7;
+   */
+  scope = Product_Scope.Unknown;
 
   constructor(data?: PartialMessage<Product>) {
     super();
@@ -71,8 +71,8 @@ export class Product extends Message<Product> {
     { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 5, name: "marketing_features", kind: "message", T: Product_MarketingFeature, repeated: true },
-    { no: 6, name: "is_new_env", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
-    { no: 7, name: "cta_link", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 6, name: "cta_link", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "scope", kind: "enum", T: proto3.getEnumType(Product_Scope) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Product {
@@ -91,6 +91,32 @@ export class Product extends Message<Product> {
     return proto3.util.equals(Product, a, b);
   }
 }
+
+/**
+ * @generated from enum types.v1.Product.Scope
+ */
+export enum Product_Scope {
+  /**
+   * @generated from enum value: Unknown = 0;
+   */
+  Unknown = 0,
+
+  /**
+   * @generated from enum value: Environment = 1;
+   */
+  Environment = 1,
+
+  /**
+   * @generated from enum value: Organization = 2;
+   */
+  Organization = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(Product_Scope)
+proto3.util.setEnumType(Product_Scope, "types.v1.Product.Scope", [
+  { no: 0, name: "Unknown" },
+  { no: 1, name: "Environment" },
+  { no: 2, name: "Organization" },
+]);
 
 /**
  * @generated from message types.v1.Product.MarketingFeature

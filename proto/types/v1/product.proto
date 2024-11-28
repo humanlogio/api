@@ -16,10 +16,15 @@ message Product {
   string name = 3;
   string description = 4;
   repeated MarketingFeature marketing_features = 5;
-  bool is_new_env = 6;
-  string cta_link = 7;
+  string cta_link = 6;
+  Scope scope = 7;
 
   message MarketingFeature {
     string name = 1;
+  }
+  enum Scope {
+    Unknown = 0;
+    Environment = 1;
+    Organization = 2;
   }
 }
