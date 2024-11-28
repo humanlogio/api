@@ -48,15 +48,18 @@ const (
 	// OrganizationServiceRevokeUserProcedure is the fully-qualified name of the OrganizationService's
 	// RevokeUser RPC.
 	OrganizationServiceRevokeUserProcedure = "/svc.organization.v1.OrganizationService/RevokeUser"
+	// OrganizationServiceCreateAddonSubscriptionProcedure is the fully-qualified name of the
+	// OrganizationService's CreateAddonSubscription RPC.
+	OrganizationServiceCreateAddonSubscriptionProcedure = "/svc.organization.v1.OrganizationService/CreateAddonSubscription"
+	// OrganizationServiceListAddonSubscriptionProcedure is the fully-qualified name of the
+	// OrganizationService's ListAddonSubscription RPC.
+	OrganizationServiceListAddonSubscriptionProcedure = "/svc.organization.v1.OrganizationService/ListAddonSubscription"
 	// OrganizationServiceGetStripePublishableKeyProcedure is the fully-qualified name of the
 	// OrganizationService's GetStripePublishableKey RPC.
 	OrganizationServiceGetStripePublishableKeyProcedure = "/svc.organization.v1.OrganizationService/GetStripePublishableKey"
 	// OrganizationServiceCreateStripeCustomerSessionProcedure is the fully-qualified name of the
 	// OrganizationService's CreateStripeCustomerSession RPC.
 	OrganizationServiceCreateStripeCustomerSessionProcedure = "/svc.organization.v1.OrganizationService/CreateStripeCustomerSession"
-	// OrganizationServiceListPaymentMethodProcedure is the fully-qualified name of the
-	// OrganizationService's ListPaymentMethod RPC.
-	OrganizationServiceListPaymentMethodProcedure = "/svc.organization.v1.OrganizationService/ListPaymentMethod"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -67,9 +70,10 @@ var (
 	organizationServiceListUserMethodDescriptor                    = organizationServiceServiceDescriptor.Methods().ByName("ListUser")
 	organizationServiceInviteUserMethodDescriptor                  = organizationServiceServiceDescriptor.Methods().ByName("InviteUser")
 	organizationServiceRevokeUserMethodDescriptor                  = organizationServiceServiceDescriptor.Methods().ByName("RevokeUser")
+	organizationServiceCreateAddonSubscriptionMethodDescriptor     = organizationServiceServiceDescriptor.Methods().ByName("CreateAddonSubscription")
+	organizationServiceListAddonSubscriptionMethodDescriptor       = organizationServiceServiceDescriptor.Methods().ByName("ListAddonSubscription")
 	organizationServiceGetStripePublishableKeyMethodDescriptor     = organizationServiceServiceDescriptor.Methods().ByName("GetStripePublishableKey")
 	organizationServiceCreateStripeCustomerSessionMethodDescriptor = organizationServiceServiceDescriptor.Methods().ByName("CreateStripeCustomerSession")
-	organizationServiceListPaymentMethodMethodDescriptor           = organizationServiceServiceDescriptor.Methods().ByName("ListPaymentMethod")
 )
 
 // OrganizationServiceClient is a client for the svc.organization.v1.OrganizationService service.
@@ -79,10 +83,11 @@ type OrganizationServiceClient interface {
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
 	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
 	RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error)
+	CreateAddonSubscription(context.Context, *connect.Request[v1.CreateAddonSubscriptionRequest]) (*connect.Response[v1.CreateAddonSubscriptionResponse], error)
+	ListAddonSubscription(context.Context, *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error)
 	// payment
 	GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error)
 	CreateStripeCustomerSession(context.Context, *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error)
-	ListPaymentMethod(context.Context, *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error)
 }
 
 // NewOrganizationServiceClient constructs a client for the svc.organization.v1.OrganizationService
@@ -125,6 +130,18 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(organizationServiceRevokeUserMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		createAddonSubscription: connect.NewClient[v1.CreateAddonSubscriptionRequest, v1.CreateAddonSubscriptionResponse](
+			httpClient,
+			baseURL+OrganizationServiceCreateAddonSubscriptionProcedure,
+			connect.WithSchema(organizationServiceCreateAddonSubscriptionMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		listAddonSubscription: connect.NewClient[v1.ListAddonSubscriptionRequest, v1.ListAddonSubscriptionResponse](
+			httpClient,
+			baseURL+OrganizationServiceListAddonSubscriptionProcedure,
+			connect.WithSchema(organizationServiceListAddonSubscriptionMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 		getStripePublishableKey: connect.NewClient[v1.GetStripePublishableKeyRequest, v1.GetStripePublishableKeyResponse](
 			httpClient,
 			baseURL+OrganizationServiceGetStripePublishableKeyProcedure,
@@ -137,12 +154,6 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(organizationServiceCreateStripeCustomerSessionMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
-		listPaymentMethod: connect.NewClient[v1.ListPaymentMethodRequest, v1.ListPaymentMethodResponse](
-			httpClient,
-			baseURL+OrganizationServiceListPaymentMethodProcedure,
-			connect.WithSchema(organizationServiceListPaymentMethodMethodDescriptor),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
@@ -153,9 +164,10 @@ type organizationServiceClient struct {
 	listUser                    *connect.Client[v1.ListUserRequest, v1.ListUserResponse]
 	inviteUser                  *connect.Client[v1.InviteUserRequest, v1.InviteUserResponse]
 	revokeUser                  *connect.Client[v1.RevokeUserRequest, v1.RevokeUserResponse]
+	createAddonSubscription     *connect.Client[v1.CreateAddonSubscriptionRequest, v1.CreateAddonSubscriptionResponse]
+	listAddonSubscription       *connect.Client[v1.ListAddonSubscriptionRequest, v1.ListAddonSubscriptionResponse]
 	getStripePublishableKey     *connect.Client[v1.GetStripePublishableKeyRequest, v1.GetStripePublishableKeyResponse]
 	createStripeCustomerSession *connect.Client[v1.CreateStripeCustomerSessionRequest, v1.CreateStripeCustomerSessionResponse]
-	listPaymentMethod           *connect.Client[v1.ListPaymentMethodRequest, v1.ListPaymentMethodResponse]
 }
 
 // CreateEnvironment calls svc.organization.v1.OrganizationService.CreateEnvironment.
@@ -183,6 +195,16 @@ func (c *organizationServiceClient) RevokeUser(ctx context.Context, req *connect
 	return c.revokeUser.CallUnary(ctx, req)
 }
 
+// CreateAddonSubscription calls svc.organization.v1.OrganizationService.CreateAddonSubscription.
+func (c *organizationServiceClient) CreateAddonSubscription(ctx context.Context, req *connect.Request[v1.CreateAddonSubscriptionRequest]) (*connect.Response[v1.CreateAddonSubscriptionResponse], error) {
+	return c.createAddonSubscription.CallUnary(ctx, req)
+}
+
+// ListAddonSubscription calls svc.organization.v1.OrganizationService.ListAddonSubscription.
+func (c *organizationServiceClient) ListAddonSubscription(ctx context.Context, req *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error) {
+	return c.listAddonSubscription.CallUnary(ctx, req)
+}
+
 // GetStripePublishableKey calls svc.organization.v1.OrganizationService.GetStripePublishableKey.
 func (c *organizationServiceClient) GetStripePublishableKey(ctx context.Context, req *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error) {
 	return c.getStripePublishableKey.CallUnary(ctx, req)
@@ -194,11 +216,6 @@ func (c *organizationServiceClient) CreateStripeCustomerSession(ctx context.Cont
 	return c.createStripeCustomerSession.CallUnary(ctx, req)
 }
 
-// ListPaymentMethod calls svc.organization.v1.OrganizationService.ListPaymentMethod.
-func (c *organizationServiceClient) ListPaymentMethod(ctx context.Context, req *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error) {
-	return c.listPaymentMethod.CallUnary(ctx, req)
-}
-
 // OrganizationServiceHandler is an implementation of the svc.organization.v1.OrganizationService
 // service.
 type OrganizationServiceHandler interface {
@@ -207,10 +224,11 @@ type OrganizationServiceHandler interface {
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
 	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
 	RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error)
+	CreateAddonSubscription(context.Context, *connect.Request[v1.CreateAddonSubscriptionRequest]) (*connect.Response[v1.CreateAddonSubscriptionResponse], error)
+	ListAddonSubscription(context.Context, *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error)
 	// payment
 	GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error)
 	CreateStripeCustomerSession(context.Context, *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error)
-	ListPaymentMethod(context.Context, *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error)
 }
 
 // NewOrganizationServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -249,6 +267,18 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 		connect.WithSchema(organizationServiceRevokeUserMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	organizationServiceCreateAddonSubscriptionHandler := connect.NewUnaryHandler(
+		OrganizationServiceCreateAddonSubscriptionProcedure,
+		svc.CreateAddonSubscription,
+		connect.WithSchema(organizationServiceCreateAddonSubscriptionMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	organizationServiceListAddonSubscriptionHandler := connect.NewUnaryHandler(
+		OrganizationServiceListAddonSubscriptionProcedure,
+		svc.ListAddonSubscription,
+		connect.WithSchema(organizationServiceListAddonSubscriptionMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	organizationServiceGetStripePublishableKeyHandler := connect.NewUnaryHandler(
 		OrganizationServiceGetStripePublishableKeyProcedure,
 		svc.GetStripePublishableKey,
@@ -259,12 +289,6 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 		OrganizationServiceCreateStripeCustomerSessionProcedure,
 		svc.CreateStripeCustomerSession,
 		connect.WithSchema(organizationServiceCreateStripeCustomerSessionMethodDescriptor),
-		connect.WithHandlerOptions(opts...),
-	)
-	organizationServiceListPaymentMethodHandler := connect.NewUnaryHandler(
-		OrganizationServiceListPaymentMethodProcedure,
-		svc.ListPaymentMethod,
-		connect.WithSchema(organizationServiceListPaymentMethodMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.organization.v1.OrganizationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -279,12 +303,14 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 			organizationServiceInviteUserHandler.ServeHTTP(w, r)
 		case OrganizationServiceRevokeUserProcedure:
 			organizationServiceRevokeUserHandler.ServeHTTP(w, r)
+		case OrganizationServiceCreateAddonSubscriptionProcedure:
+			organizationServiceCreateAddonSubscriptionHandler.ServeHTTP(w, r)
+		case OrganizationServiceListAddonSubscriptionProcedure:
+			organizationServiceListAddonSubscriptionHandler.ServeHTTP(w, r)
 		case OrganizationServiceGetStripePublishableKeyProcedure:
 			organizationServiceGetStripePublishableKeyHandler.ServeHTTP(w, r)
 		case OrganizationServiceCreateStripeCustomerSessionProcedure:
 			organizationServiceCreateStripeCustomerSessionHandler.ServeHTTP(w, r)
-		case OrganizationServiceListPaymentMethodProcedure:
-			organizationServiceListPaymentMethodHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -314,14 +340,18 @@ func (UnimplementedOrganizationServiceHandler) RevokeUser(context.Context, *conn
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.RevokeUser is not implemented"))
 }
 
+func (UnimplementedOrganizationServiceHandler) CreateAddonSubscription(context.Context, *connect.Request[v1.CreateAddonSubscriptionRequest]) (*connect.Response[v1.CreateAddonSubscriptionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.CreateAddonSubscription is not implemented"))
+}
+
+func (UnimplementedOrganizationServiceHandler) ListAddonSubscription(context.Context, *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.ListAddonSubscription is not implemented"))
+}
+
 func (UnimplementedOrganizationServiceHandler) GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.GetStripePublishableKey is not implemented"))
 }
 
 func (UnimplementedOrganizationServiceHandler) CreateStripeCustomerSession(context.Context, *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.CreateStripeCustomerSession is not implemented"))
-}
-
-func (UnimplementedOrganizationServiceHandler) ListPaymentMethod(context.Context, *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.ListPaymentMethod is not implemented"))
 }

@@ -7,8 +7,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { Environment } from "../../../types/v1/environment_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
+import { Product } from "../../../types/v1/product_pb";
 import { User } from "../../../types/v1/user_pb";
-import { PaymentMethod } from "../../../types/v1/payment_method_pb";
 
 /**
  * @generated from message svc.organization.v1.CreateEnvironmentRequest
@@ -289,6 +289,11 @@ export class ListEnvironmentResponse_ListItem extends Message<ListEnvironmentRes
    */
   environment?: Environment;
 
+  /**
+   * @generated from field: types.v1.Product product = 2;
+   */
+  product?: Product;
+
   constructor(data?: PartialMessage<ListEnvironmentResponse_ListItem>) {
     super();
     proto3.util.initPartial(data, this);
@@ -298,6 +303,7 @@ export class ListEnvironmentResponse_ListItem extends Message<ListEnvironmentRes
   static readonly typeName = "svc.organization.v1.ListEnvironmentResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environment", kind: "message", T: Environment },
+    { no: 2, name: "product", kind: "message", T: Product },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListEnvironmentResponse_ListItem {
@@ -713,9 +719,181 @@ export class CreateStripeCustomerSessionResponse extends Message<CreateStripeCus
 }
 
 /**
- * @generated from message svc.organization.v1.ListPaymentMethodRequest
+ * @generated from message svc.organization.v1.CreateAddonSubscriptionRequest
  */
-export class ListPaymentMethodRequest extends Message<ListPaymentMethodRequest> {
+export class CreateAddonSubscriptionRequest extends Message<CreateAddonSubscriptionRequest> {
+  /**
+   * @generated from oneof svc.organization.v1.CreateAddonSubscriptionRequest.payment
+   */
+  payment: {
+    /**
+     * @generated from field: svc.organization.v1.CreateAddonSubscriptionRequest.Stripe stripe = 201;
+     */
+    value: CreateAddonSubscriptionRequest_Stripe;
+    case: "stripe";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<CreateAddonSubscriptionRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.CreateAddonSubscriptionRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 201, name: "stripe", kind: "message", T: CreateAddonSubscriptionRequest_Stripe, oneof: "payment" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAddonSubscriptionRequest {
+    return new CreateAddonSubscriptionRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateAddonSubscriptionRequest {
+    return new CreateAddonSubscriptionRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateAddonSubscriptionRequest {
+    return new CreateAddonSubscriptionRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateAddonSubscriptionRequest | PlainMessage<CreateAddonSubscriptionRequest> | undefined, b: CreateAddonSubscriptionRequest | PlainMessage<CreateAddonSubscriptionRequest> | undefined): boolean {
+    return proto3.util.equals(CreateAddonSubscriptionRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.CreateAddonSubscriptionRequest.Stripe
+ */
+export class CreateAddonSubscriptionRequest_Stripe extends Message<CreateAddonSubscriptionRequest_Stripe> {
+  /**
+   * @generated from field: string status = 1;
+   */
+  status = "";
+
+  /**
+   * @generated from field: string client_secret = 2;
+   */
+  clientSecret = "";
+
+  constructor(data?: PartialMessage<CreateAddonSubscriptionRequest_Stripe>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.CreateAddonSubscriptionRequest.Stripe";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "client_secret", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAddonSubscriptionRequest_Stripe {
+    return new CreateAddonSubscriptionRequest_Stripe().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateAddonSubscriptionRequest_Stripe {
+    return new CreateAddonSubscriptionRequest_Stripe().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateAddonSubscriptionRequest_Stripe {
+    return new CreateAddonSubscriptionRequest_Stripe().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateAddonSubscriptionRequest_Stripe | PlainMessage<CreateAddonSubscriptionRequest_Stripe> | undefined, b: CreateAddonSubscriptionRequest_Stripe | PlainMessage<CreateAddonSubscriptionRequest_Stripe> | undefined): boolean {
+    return proto3.util.equals(CreateAddonSubscriptionRequest_Stripe, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.CreateAddonSubscriptionResponse
+ */
+export class CreateAddonSubscriptionResponse extends Message<CreateAddonSubscriptionResponse> {
+  /**
+   * @generated from oneof svc.organization.v1.CreateAddonSubscriptionResponse.payment
+   */
+  payment: {
+    /**
+     * @generated from field: svc.organization.v1.CreateAddonSubscriptionResponse.Stripe stripe = 201;
+     */
+    value: CreateAddonSubscriptionResponse_Stripe;
+    case: "stripe";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<CreateAddonSubscriptionResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.CreateAddonSubscriptionResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 201, name: "stripe", kind: "message", T: CreateAddonSubscriptionResponse_Stripe, oneof: "payment" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAddonSubscriptionResponse {
+    return new CreateAddonSubscriptionResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateAddonSubscriptionResponse {
+    return new CreateAddonSubscriptionResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateAddonSubscriptionResponse {
+    return new CreateAddonSubscriptionResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateAddonSubscriptionResponse | PlainMessage<CreateAddonSubscriptionResponse> | undefined, b: CreateAddonSubscriptionResponse | PlainMessage<CreateAddonSubscriptionResponse> | undefined): boolean {
+    return proto3.util.equals(CreateAddonSubscriptionResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.CreateAddonSubscriptionResponse.Stripe
+ */
+export class CreateAddonSubscriptionResponse_Stripe extends Message<CreateAddonSubscriptionResponse_Stripe> {
+  /**
+   * @generated from field: string status = 1;
+   */
+  status = "";
+
+  /**
+   * @generated from field: string client_secret = 2;
+   */
+  clientSecret = "";
+
+  constructor(data?: PartialMessage<CreateAddonSubscriptionResponse_Stripe>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.CreateAddonSubscriptionResponse.Stripe";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "client_secret", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAddonSubscriptionResponse_Stripe {
+    return new CreateAddonSubscriptionResponse_Stripe().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateAddonSubscriptionResponse_Stripe {
+    return new CreateAddonSubscriptionResponse_Stripe().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateAddonSubscriptionResponse_Stripe {
+    return new CreateAddonSubscriptionResponse_Stripe().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateAddonSubscriptionResponse_Stripe | PlainMessage<CreateAddonSubscriptionResponse_Stripe> | undefined, b: CreateAddonSubscriptionResponse_Stripe | PlainMessage<CreateAddonSubscriptionResponse_Stripe> | undefined): boolean {
+    return proto3.util.equals(CreateAddonSubscriptionResponse_Stripe, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.ListAddonSubscriptionRequest
+ */
+export class ListAddonSubscriptionRequest extends Message<ListAddonSubscriptionRequest> {
   /**
    * @generated from field: types.v1.Cursor cursor = 1;
    */
@@ -726,112 +904,112 @@ export class ListPaymentMethodRequest extends Message<ListPaymentMethodRequest> 
    */
   limit = 0;
 
-  constructor(data?: PartialMessage<ListPaymentMethodRequest>) {
+  constructor(data?: PartialMessage<ListAddonSubscriptionRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.organization.v1.ListPaymentMethodRequest";
+  static readonly typeName = "svc.organization.v1.ListAddonSubscriptionRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPaymentMethodRequest {
-    return new ListPaymentMethodRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAddonSubscriptionRequest {
+    return new ListAddonSubscriptionRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPaymentMethodRequest {
-    return new ListPaymentMethodRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAddonSubscriptionRequest {
+    return new ListAddonSubscriptionRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPaymentMethodRequest {
-    return new ListPaymentMethodRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAddonSubscriptionRequest {
+    return new ListAddonSubscriptionRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListPaymentMethodRequest | PlainMessage<ListPaymentMethodRequest> | undefined, b: ListPaymentMethodRequest | PlainMessage<ListPaymentMethodRequest> | undefined): boolean {
-    return proto3.util.equals(ListPaymentMethodRequest, a, b);
+  static equals(a: ListAddonSubscriptionRequest | PlainMessage<ListAddonSubscriptionRequest> | undefined, b: ListAddonSubscriptionRequest | PlainMessage<ListAddonSubscriptionRequest> | undefined): boolean {
+    return proto3.util.equals(ListAddonSubscriptionRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.organization.v1.ListPaymentMethodResponse
+ * @generated from message svc.organization.v1.ListAddonSubscriptionResponse
  */
-export class ListPaymentMethodResponse extends Message<ListPaymentMethodResponse> {
+export class ListAddonSubscriptionResponse extends Message<ListAddonSubscriptionResponse> {
   /**
    * @generated from field: types.v1.Cursor next = 1;
    */
   next?: Cursor;
 
   /**
-   * @generated from field: repeated svc.organization.v1.ListPaymentMethodResponse.ListItem items = 2;
+   * @generated from field: repeated svc.organization.v1.ListAddonSubscriptionResponse.ListItem items = 2;
    */
-  items: ListPaymentMethodResponse_ListItem[] = [];
+  items: ListAddonSubscriptionResponse_ListItem[] = [];
 
-  constructor(data?: PartialMessage<ListPaymentMethodResponse>) {
+  constructor(data?: PartialMessage<ListAddonSubscriptionResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.organization.v1.ListPaymentMethodResponse";
+  static readonly typeName = "svc.organization.v1.ListAddonSubscriptionResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "next", kind: "message", T: Cursor },
-    { no: 2, name: "items", kind: "message", T: ListPaymentMethodResponse_ListItem, repeated: true },
+    { no: 2, name: "items", kind: "message", T: ListAddonSubscriptionResponse_ListItem, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPaymentMethodResponse {
-    return new ListPaymentMethodResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAddonSubscriptionResponse {
+    return new ListAddonSubscriptionResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPaymentMethodResponse {
-    return new ListPaymentMethodResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAddonSubscriptionResponse {
+    return new ListAddonSubscriptionResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPaymentMethodResponse {
-    return new ListPaymentMethodResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAddonSubscriptionResponse {
+    return new ListAddonSubscriptionResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListPaymentMethodResponse | PlainMessage<ListPaymentMethodResponse> | undefined, b: ListPaymentMethodResponse | PlainMessage<ListPaymentMethodResponse> | undefined): boolean {
-    return proto3.util.equals(ListPaymentMethodResponse, a, b);
+  static equals(a: ListAddonSubscriptionResponse | PlainMessage<ListAddonSubscriptionResponse> | undefined, b: ListAddonSubscriptionResponse | PlainMessage<ListAddonSubscriptionResponse> | undefined): boolean {
+    return proto3.util.equals(ListAddonSubscriptionResponse, a, b);
   }
 }
 
 /**
- * @generated from message svc.organization.v1.ListPaymentMethodResponse.ListItem
+ * @generated from message svc.organization.v1.ListAddonSubscriptionResponse.ListItem
  */
-export class ListPaymentMethodResponse_ListItem extends Message<ListPaymentMethodResponse_ListItem> {
+export class ListAddonSubscriptionResponse_ListItem extends Message<ListAddonSubscriptionResponse_ListItem> {
   /**
-   * @generated from field: types.v1.PaymentMethod payment_method = 1;
+   * @generated from field: types.v1.Product product = 1;
    */
-  paymentMethod?: PaymentMethod;
+  product?: Product;
 
-  constructor(data?: PartialMessage<ListPaymentMethodResponse_ListItem>) {
+  constructor(data?: PartialMessage<ListAddonSubscriptionResponse_ListItem>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.organization.v1.ListPaymentMethodResponse.ListItem";
+  static readonly typeName = "svc.organization.v1.ListAddonSubscriptionResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "payment_method", kind: "message", T: PaymentMethod },
+    { no: 1, name: "product", kind: "message", T: Product },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListPaymentMethodResponse_ListItem {
-    return new ListPaymentMethodResponse_ListItem().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAddonSubscriptionResponse_ListItem {
+    return new ListAddonSubscriptionResponse_ListItem().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListPaymentMethodResponse_ListItem {
-    return new ListPaymentMethodResponse_ListItem().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAddonSubscriptionResponse_ListItem {
+    return new ListAddonSubscriptionResponse_ListItem().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListPaymentMethodResponse_ListItem {
-    return new ListPaymentMethodResponse_ListItem().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAddonSubscriptionResponse_ListItem {
+    return new ListAddonSubscriptionResponse_ListItem().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListPaymentMethodResponse_ListItem | PlainMessage<ListPaymentMethodResponse_ListItem> | undefined, b: ListPaymentMethodResponse_ListItem | PlainMessage<ListPaymentMethodResponse_ListItem> | undefined): boolean {
-    return proto3.util.equals(ListPaymentMethodResponse_ListItem, a, b);
+  static equals(a: ListAddonSubscriptionResponse_ListItem | PlainMessage<ListAddonSubscriptionResponse_ListItem> | undefined, b: ListAddonSubscriptionResponse_ListItem | PlainMessage<ListAddonSubscriptionResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListAddonSubscriptionResponse_ListItem, a, b);
   }
 }
 

@@ -8,7 +8,7 @@ import "types/v1/environment.proto";
 import "types/v1/cursor.proto";
 import "types/v1/organization.proto";
 import "types/v1/user.proto";
-import "types/v1/payment_method.proto";
+import "types/v1/product.proto";
 
 service OrganizationService {
   rpc CreateEnvironment(CreateEnvironmentRequest) returns (CreateEnvironmentResponse) {}
@@ -18,10 +18,12 @@ service OrganizationService {
   rpc InviteUser(InviteUserRequest) returns (InviteUserResponse) {}
   rpc RevokeUser(RevokeUserRequest) returns (RevokeUserResponse) {}
 
+  rpc CreateAddonSubscription(CreateAddonSubscriptionRequest) returns (CreateAddonSubscriptionResponse) {}
+  rpc ListAddonSubscription(ListAddonSubscriptionRequest) returns (ListAddonSubscriptionResponse) {}
+
   // payment
   rpc GetStripePublishableKey(GetStripePublishableKeyRequest) returns (GetStripePublishableKeyResponse) {}
   rpc CreateStripeCustomerSession(CreateStripeCustomerSessionRequest) returns (CreateStripeCustomerSessionResponse) {}
-  rpc ListPaymentMethod(ListPaymentMethodRequest) returns (ListPaymentMethodResponse) {}
 }
 
 message CreateEnvironmentRequest {
@@ -57,6 +59,7 @@ message ListEnvironmentResponse{
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.Environment environment = 1;
+    types.v1.Product product = 2;
   }
   repeated ListItem items = 2;
 }
@@ -94,14 +97,33 @@ message CreateStripeCustomerSessionResponse{
   string customer_session_client_secret = 1;
 }
 
-message ListPaymentMethodRequest{
+message CreateAddonSubscriptionRequest {
+  message Stripe {
+    string status = 1;
+    string client_secret = 2;
+  }
+  oneof payment {
+    Stripe stripe = 201;
+  }
+}
+message CreateAddonSubscriptionResponse {
+  message Stripe {
+    string status = 1;
+    string client_secret = 2;
+  }
+  oneof payment {
+    Stripe stripe = 201;
+  }
+}
+
+message ListAddonSubscriptionRequest {
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
 }
-message ListPaymentMethodResponse{
+message ListAddonSubscriptionResponse {
   types.v1.Cursor next = 1;
   message ListItem {
-    types.v1.PaymentMethod payment_method = 1;
+    types.v1.Product product = 1;
   }
   repeated ListItem items = 2;
 }

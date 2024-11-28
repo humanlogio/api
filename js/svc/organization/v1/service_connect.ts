@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -58,6 +58,24 @@ export const OrganizationService = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc svc.organization.v1.OrganizationService.CreateAddonSubscription
+     */
+    createAddonSubscription: {
+      name: "CreateAddonSubscription",
+      I: CreateAddonSubscriptionRequest,
+      O: CreateAddonSubscriptionResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.organization.v1.OrganizationService.ListAddonSubscription
+     */
+    listAddonSubscription: {
+      name: "ListAddonSubscription",
+      I: ListAddonSubscriptionRequest,
+      O: ListAddonSubscriptionResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
      * payment
      *
      * @generated from rpc svc.organization.v1.OrganizationService.GetStripePublishableKey
@@ -75,15 +93,6 @@ export const OrganizationService = {
       name: "CreateStripeCustomerSession",
       I: CreateStripeCustomerSessionRequest,
       O: CreateStripeCustomerSessionResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc svc.organization.v1.OrganizationService.ListPaymentMethod
-     */
-    listPaymentMethod: {
-      name: "ListPaymentMethod",
-      I: ListPaymentMethodRequest,
-      O: ListPaymentMethodResponse,
       kind: MethodKind.Unary,
     },
   }
