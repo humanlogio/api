@@ -91,9 +91,11 @@ message RevokeUserResponse {}
 
 message CreateAddonSubscriptionRequest {
   message Stripe {
-    string status = 1;
-    string client_secret = 2;
+    string confirmation_token = 1;
+    string price_id = 2;
   }
+
+  string environment_name = 1;
   oneof payment {
     Stripe stripe = 201;
   }

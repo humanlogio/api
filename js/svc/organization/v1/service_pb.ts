@@ -588,6 +588,11 @@ export class RevokeUserResponse extends Message<RevokeUserResponse> {
  */
 export class CreateAddonSubscriptionRequest extends Message<CreateAddonSubscriptionRequest> {
   /**
+   * @generated from field: string environment_name = 1;
+   */
+  environmentName = "";
+
+  /**
    * @generated from oneof svc.organization.v1.CreateAddonSubscriptionRequest.payment
    */
   payment: {
@@ -606,6 +611,7 @@ export class CreateAddonSubscriptionRequest extends Message<CreateAddonSubscript
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.organization.v1.CreateAddonSubscriptionRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "environment_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 201, name: "stripe", kind: "message", T: CreateAddonSubscriptionRequest_Stripe, oneof: "payment" },
   ]);
 
@@ -631,14 +637,14 @@ export class CreateAddonSubscriptionRequest extends Message<CreateAddonSubscript
  */
 export class CreateAddonSubscriptionRequest_Stripe extends Message<CreateAddonSubscriptionRequest_Stripe> {
   /**
-   * @generated from field: string status = 1;
+   * @generated from field: string confirmation_token = 1;
    */
-  status = "";
+  confirmationToken = "";
 
   /**
-   * @generated from field: string client_secret = 2;
+   * @generated from field: string price_id = 2;
    */
-  clientSecret = "";
+  priceId = "";
 
   constructor(data?: PartialMessage<CreateAddonSubscriptionRequest_Stripe>) {
     super();
@@ -648,8 +654,8 @@ export class CreateAddonSubscriptionRequest_Stripe extends Message<CreateAddonSu
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.organization.v1.CreateAddonSubscriptionRequest.Stripe";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "status", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "client_secret", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "confirmation_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "price_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAddonSubscriptionRequest_Stripe {
