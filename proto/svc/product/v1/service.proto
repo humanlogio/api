@@ -2,16 +2,15 @@ syntax = "proto3";
 
 package svc.product.v1;
 
-import "types/v1/product.proto";
-import "types/v1/price.proto";
 import "types/v1/cursor.proto";
+import "types/v1/price.proto";
+import "types/v1/product.proto";
 
 option go_package = "svc/product/v1;productv1";
 
 service ProductService {
   rpc ListProduct(ListProductRequest) returns (ListProductResponse);
 }
-
 
 message ListProductRequest {
   types.v1.Cursor cursor = 1;

@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package svc.query.v1;
 
-import "types/v1/session.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 import "types/v1/logevent.proto";
 import "types/v1/logquery.proto";
-import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
+import "types/v1/session.proto";
 
 option go_package = "svc/query/v1;queryv1";
 

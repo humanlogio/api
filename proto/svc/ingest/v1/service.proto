@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package svc.ingest.v1;
 
-import "types/v1/logevent.proto";
 import "google/protobuf/duration.proto";
+import "types/v1/logevent.proto";
 
 option go_package = "svc/ingest/v1;ingestv1";
 

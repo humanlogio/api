@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package svc.cliupdate.v1;
 
+import "types/v1/meta.proto";
 import "types/v1/version.proto";
 import "types/v1/version_artifact.proto";
-import "types/v1/meta.proto";
 
 option go_package = "svc/cliupdate/v1;cliupdatev1";
 

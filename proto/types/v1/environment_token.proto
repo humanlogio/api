@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package types.v1;
 
-option go_package = "types/v1;typesv1";
-
 import "google/protobuf/timestamp.proto";
+
+option go_package = "types/v1;typesv1";
 
 message EnvironmentToken {
   int64 environment_id = 1;

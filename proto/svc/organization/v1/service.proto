@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package svc.organization.v1;
 
-option go_package = "svc/organization/v1;organizationv1";
-
-import "types/v1/environment.proto";
 import "types/v1/cursor.proto";
+import "types/v1/environment.proto";
 import "types/v1/organization.proto";
-import "types/v1/user.proto";
 import "types/v1/product.proto";
+import "types/v1/user.proto";
+
+option go_package = "svc/organization/v1;organizationv1";
 
 service OrganizationService {
   rpc CreateEnvironment(CreateEnvironmentRequest) returns (CreateEnvironmentResponse) {}
@@ -24,6 +24,7 @@ service OrganizationService {
   // payment
   rpc GetStripePublishableKey(GetStripePublishableKeyRequest) returns (GetStripePublishableKeyResponse) {}
   rpc CreateStripeCustomerSession(CreateStripeCustomerSessionRequest) returns (CreateStripeCustomerSessionResponse) {}
+  rpc ListPaymentMethod(ListPaymentMethodRequest) returns (ListPaymentMethodResponse) {}
 }
 
 message CreateEnvironmentRequest {
@@ -50,12 +51,12 @@ message CreateEnvironmentResponse {
   }
 }
 
-message ListEnvironmentRequest{
+message ListEnvironmentRequest {
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
 }
 
-message ListEnvironmentResponse{
+message ListEnvironmentResponse {
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.Environment environment = 1;
@@ -64,12 +65,12 @@ message ListEnvironmentResponse{
   repeated ListItem items = 2;
 }
 
-message ListUserRequest{
+message ListUserRequest {
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
 }
 
-message ListUserResponse{
+message ListUserResponse {
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.User user = 1;
@@ -77,25 +78,15 @@ message ListUserResponse{
   repeated ListItem items = 2;
 }
 
-message InviteUserRequest{
+message InviteUserRequest {
   int64 user_email = 1;
 }
-message InviteUserResponse{}
+message InviteUserResponse {}
 
-message RevokeUserRequest{
+message RevokeUserRequest {
   int64 user_id = 1;
 }
-message RevokeUserResponse{}
-
-message GetStripePublishableKeyRequest{}
-message GetStripePublishableKeyResponse{
-  string stripe_publishable_key = 2;
-}
-
-message CreateStripeCustomerSessionRequest{}
-message CreateStripeCustomerSessionResponse{
-  string customer_session_client_secret = 1;
-}
+message RevokeUserResponse {}
 
 message CreateAddonSubscriptionRequest {
   message Stripe {
@@ -124,6 +115,28 @@ message ListAddonSubscriptionResponse {
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.Product product = 1;
+  }
+  repeated ListItem items = 2;
+}
+
+message GetStripePublishableKeyRequest {}
+message GetStripePublishableKeyResponse {
+  string stripe_publishable_key = 2;
+}
+
+message CreateStripeCustomerSessionRequest {}
+message CreateStripeCustomerSessionResponse {
+  string customer_session_client_secret = 1;
+}
+
+message ListPaymentMethodRequest {
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+}
+message ListPaymentMethodResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.PaymentMethod payment_method = 1;
   }
   repeated ListItem items = 2;
 }

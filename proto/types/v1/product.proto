@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package types.v1;
 
-option go_package = "types/v1;typesv1";
-
-import "types/v1/price.proto";
 import "google/protobuf/timestamp.proto";
+import "types/v1/price.proto";
+
+option go_package = "types/v1;typesv1";
 
 message Product {
   google.protobuf.Timestamp created_at = 100;

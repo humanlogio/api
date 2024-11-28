@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package svc.auth.v1;
 
-option go_package = "svc/auth/v1;authv1";
-
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "types/v1/environment.proto";
 import "types/v1/meta.proto";
 import "types/v1/user_token.proto";
 import "types/v1/version.proto";
+
+option go_package = "svc/auth/v1;authv1";
 
 service AuthService {
   rpc GetAuthURL(GetAuthURLRequest) returns (GetAuthURLResponse) {}

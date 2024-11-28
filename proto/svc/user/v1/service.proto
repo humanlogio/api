@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package svc.user.v1;
 
-option go_package = "svc/user/v1;userv1";
-
-import "types/v1/user.proto";
 import "types/v1/cursor.proto";
 import "types/v1/organization.proto";
+import "types/v1/user.proto";
+
+option go_package = "svc/user/v1;userv1";
 
 service UserService {
   rpc Whoami(WhoamiRequest) returns (WhoamiResponse) {}
@@ -16,34 +16,33 @@ service UserService {
   rpc ListOrganization(ListOrganizationRequest) returns (ListOrganizationResponse) {}
 }
 
-message WhoamiRequest{}
-message WhoamiResponse{
+message WhoamiRequest {}
+message WhoamiResponse {
   types.v1.User user = 1;
   types.v1.Organization current_organization = 2;
   types.v1.Organization default_organization = 3;
 }
 
-message GetLogoutURLRequest{}
+message GetLogoutURLRequest {}
 
-message GetLogoutURLResponse{
+message GetLogoutURLResponse {
   string logout_url = 1;
 }
 
-
-message CreateOrganizationRequest{
+message CreateOrganizationRequest {
   string name = 1;
 }
 
-message CreateOrganizationResponse{
+message CreateOrganizationResponse {
   types.v1.Organization organization = 1;
 }
 
-message ListOrganizationRequest{
+message ListOrganizationRequest {
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
 }
 
-message ListOrganizationResponse{
+message ListOrganizationResponse {
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.Organization organization = 1;

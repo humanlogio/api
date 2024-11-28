@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package svc.token.v1;
 
-option go_package = "svc/token/v1;tokenv1";
-
 import "google/protobuf/timestamp.proto";
-import "types/v1/environment_token.proto";
 import "types/v1/cursor.proto";
+import "types/v1/environment_token.proto";
+
+option go_package = "svc/token/v1;tokenv1";
 
 service TokenService {
   rpc GenerateEnvironmentToken(GenerateEnvironmentTokenRequest) returns (GenerateEnvironmentTokenResponse) {}
@@ -30,9 +30,7 @@ message RevokeEnvironmentTokenRequest {
   int64 token_id = 2;
 }
 
-message RevokeEnvironmentTokenResponse {
-}
-
+message RevokeEnvironmentTokenResponse {}
 
 message GetEnvironmentTokenRequest {
   int64 environment_id = 1;

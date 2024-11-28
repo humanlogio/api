@@ -2,17 +2,17 @@ syntax = "proto3";
 
 package types.v1;
 
-option go_package = "types/v1;typesv1";
-
 import "google/protobuf/timestamp.proto";
 
+option go_package = "types/v1;typesv1";
+
 message Address {
-	string city = 1;
-	string country = 2;
-	string line1 = 3;
-	string line2 = 4;
-	string postal_code = 5;
-	string state = 6;
+  string city = 1;
+  string country = 2;
+  string line1 = 3;
+  string line2 = 4;
+  string postal_code = 5;
+  string state = 6;
 }
 
 message PaymentMethod {

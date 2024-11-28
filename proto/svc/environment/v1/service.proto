@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package svc.environment.v1;
 
-option go_package = "svc/environment/v1;environmentv1";
-
-import "types/v1/environment.proto";
 import "types/v1/cursor.proto";
+import "types/v1/environment.proto";
 import "types/v1/machine.proto";
+
+option go_package = "svc/environment/v1;environmentv1";
 
 service EnvironmentService {
   rpc ListMachine(ListMachineRequest) returns (ListMachineResponse);
