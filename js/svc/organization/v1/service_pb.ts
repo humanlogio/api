@@ -642,12 +642,7 @@ export class CreateAddonSubscriptionRequest_Stripe extends Message<CreateAddonSu
   confirmationToken = "";
 
   /**
-   * @generated from field: string product_id = 2;
-   */
-  productId = "";
-
-  /**
-   * @generated from field: string price_id = 3;
+   * @generated from field: string price_id = 2;
    */
   priceId = "";
 
@@ -660,8 +655,7 @@ export class CreateAddonSubscriptionRequest_Stripe extends Message<CreateAddonSu
   static readonly typeName = "svc.organization.v1.CreateAddonSubscriptionRequest.Stripe";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "confirmation_token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "product_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "price_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "price_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAddonSubscriptionRequest_Stripe {
