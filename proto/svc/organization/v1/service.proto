@@ -92,7 +92,8 @@ message RevokeUserResponse {}
 message CreateAddonSubscriptionRequest {
   message Stripe {
     string confirmation_token = 1;
-    string price_id = 2;
+    string product_id = 2;
+    string price_id = 3;
   }
 
   string environment_name = 1;
