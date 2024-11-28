@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.organization.v1.OrganizationService.CreateEnvironment
@@ -129,6 +129,20 @@ export const createStripeCustomerSession = {
   kind: MethodKind.Unary,
   I: CreateStripeCustomerSessionRequest,
   O: CreateStripeCustomerSessionResponse,
+  service: {
+    typeName: "svc.organization.v1.OrganizationService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.organization.v1.OrganizationService.ListPaymentMethod
+ */
+export const listPaymentMethod = {
+  localName: "listPaymentMethod",
+  name: "ListPaymentMethod",
+  kind: MethodKind.Unary,
+  I: ListPaymentMethodRequest,
+  O: ListPaymentMethodResponse,
   service: {
     typeName: "svc.organization.v1.OrganizationService"
   }

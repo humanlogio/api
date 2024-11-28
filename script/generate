@@ -24,6 +24,7 @@ function main() {
     go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
 
     export PATH=${PATH}:${root}/node_modules/.bin
+    buf format -w
     buf generate
 }
 

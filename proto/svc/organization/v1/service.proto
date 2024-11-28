@@ -5,6 +5,7 @@ package svc.organization.v1;
 import "types/v1/cursor.proto";
 import "types/v1/environment.proto";
 import "types/v1/organization.proto";
+import "types/v1/payment_method.proto";
 import "types/v1/product.proto";
 import "types/v1/user.proto";
 
