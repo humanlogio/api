@@ -588,11 +588,6 @@ export class RevokeUserResponse extends Message<RevokeUserResponse> {
  */
 export class CreateAddonSubscriptionRequest extends Message<CreateAddonSubscriptionRequest> {
   /**
-   * @generated from field: string environment_name = 1;
-   */
-  environmentName = "";
-
-  /**
    * @generated from oneof svc.organization.v1.CreateAddonSubscriptionRequest.payment
    */
   payment: {
@@ -611,7 +606,6 @@ export class CreateAddonSubscriptionRequest extends Message<CreateAddonSubscript
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.organization.v1.CreateAddonSubscriptionRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "environment_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 201, name: "stripe", kind: "message", T: CreateAddonSubscriptionRequest_Stripe, oneof: "payment" },
   ]);
 
