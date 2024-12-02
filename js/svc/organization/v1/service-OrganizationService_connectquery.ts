@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetEnvironmentRequest, GetEnvironmentResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.organization.v1.OrganizationService.CreateEnvironment
@@ -15,6 +15,20 @@ export const createEnvironment = {
   kind: MethodKind.Unary,
   I: CreateEnvironmentRequest,
   O: CreateEnvironmentResponse,
+  service: {
+    typeName: "svc.organization.v1.OrganizationService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.organization.v1.OrganizationService.GetEnvironment
+ */
+export const getEnvironment = {
+  localName: "getEnvironment",
+  name: "GetEnvironment",
+  kind: MethodKind.Unary,
+  I: GetEnvironmentRequest,
+  O: GetEnvironmentResponse,
   service: {
     typeName: "svc.organization.v1.OrganizationService"
   }

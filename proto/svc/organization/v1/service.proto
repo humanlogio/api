@@ -13,6 +13,7 @@ option go_package = "svc/organization/v1;organizationv1";
 
 service OrganizationService {
   rpc CreateEnvironment(CreateEnvironmentRequest) returns (CreateEnvironmentResponse) {}
+  rpc GetEnvironment(GetEnvironmentRequest) returns (GetEnvironmentResponse) {}
   rpc ListEnvironment(ListEnvironmentRequest) returns (ListEnvironmentResponse) {}
 
   rpc ListUser(ListUserRequest) returns (ListUserResponse) {}
@@ -50,6 +51,17 @@ message CreateEnvironmentResponse {
   oneof payment {
     Stripe stripe = 201;
   }
+}
+
+message GetEnvironmentRequest {
+  oneof by {
+    int64 id = 1;
+    string name = 2;
+  }
+}
+
+message GetEnvironmentResponse {
+  types.v1.Environment environment = 1;
 }
 
 message ListEnvironmentRequest {

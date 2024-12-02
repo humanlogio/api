@@ -196,6 +196,93 @@ export class CreateEnvironmentResponse_Stripe extends Message<CreateEnvironmentR
 }
 
 /**
+ * @generated from message svc.organization.v1.GetEnvironmentRequest
+ */
+export class GetEnvironmentRequest extends Message<GetEnvironmentRequest> {
+  /**
+   * @generated from oneof svc.organization.v1.GetEnvironmentRequest.by
+   */
+  by: {
+    /**
+     * @generated from field: int64 id = 1;
+     */
+    value: bigint;
+    case: "id";
+  } | {
+    /**
+     * @generated from field: string name = 2;
+     */
+    value: string;
+    case: "name";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<GetEnvironmentRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.GetEnvironmentRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "by" },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "by" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEnvironmentRequest {
+    return new GetEnvironmentRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEnvironmentRequest {
+    return new GetEnvironmentRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEnvironmentRequest {
+    return new GetEnvironmentRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEnvironmentRequest | PlainMessage<GetEnvironmentRequest> | undefined, b: GetEnvironmentRequest | PlainMessage<GetEnvironmentRequest> | undefined): boolean {
+    return proto3.util.equals(GetEnvironmentRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.GetEnvironmentResponse
+ */
+export class GetEnvironmentResponse extends Message<GetEnvironmentResponse> {
+  /**
+   * @generated from field: types.v1.Environment environment = 1;
+   */
+  environment?: Environment;
+
+  constructor(data?: PartialMessage<GetEnvironmentResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.GetEnvironmentResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "environment", kind: "message", T: Environment },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetEnvironmentResponse {
+    return new GetEnvironmentResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetEnvironmentResponse {
+    return new GetEnvironmentResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetEnvironmentResponse {
+    return new GetEnvironmentResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetEnvironmentResponse | PlainMessage<GetEnvironmentResponse> | undefined, b: GetEnvironmentResponse | PlainMessage<GetEnvironmentResponse> | undefined): boolean {
+    return proto3.util.equals(GetEnvironmentResponse, a, b);
+  }
+}
+
+/**
  * @generated from message svc.organization.v1.ListEnvironmentRequest
  */
 export class ListEnvironmentRequest extends Message<ListEnvironmentRequest> {

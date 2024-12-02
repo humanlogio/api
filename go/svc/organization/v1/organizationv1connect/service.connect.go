@@ -36,6 +36,9 @@ const (
 	// OrganizationServiceCreateEnvironmentProcedure is the fully-qualified name of the
 	// OrganizationService's CreateEnvironment RPC.
 	OrganizationServiceCreateEnvironmentProcedure = "/svc.organization.v1.OrganizationService/CreateEnvironment"
+	// OrganizationServiceGetEnvironmentProcedure is the fully-qualified name of the
+	// OrganizationService's GetEnvironment RPC.
+	OrganizationServiceGetEnvironmentProcedure = "/svc.organization.v1.OrganizationService/GetEnvironment"
 	// OrganizationServiceListEnvironmentProcedure is the fully-qualified name of the
 	// OrganizationService's ListEnvironment RPC.
 	OrganizationServiceListEnvironmentProcedure = "/svc.organization.v1.OrganizationService/ListEnvironment"
@@ -69,6 +72,7 @@ const (
 var (
 	organizationServiceServiceDescriptor                           = v1.File_svc_organization_v1_service_proto.Services().ByName("OrganizationService")
 	organizationServiceCreateEnvironmentMethodDescriptor           = organizationServiceServiceDescriptor.Methods().ByName("CreateEnvironment")
+	organizationServiceGetEnvironmentMethodDescriptor              = organizationServiceServiceDescriptor.Methods().ByName("GetEnvironment")
 	organizationServiceListEnvironmentMethodDescriptor             = organizationServiceServiceDescriptor.Methods().ByName("ListEnvironment")
 	organizationServiceListUserMethodDescriptor                    = organizationServiceServiceDescriptor.Methods().ByName("ListUser")
 	organizationServiceInviteUserMethodDescriptor                  = organizationServiceServiceDescriptor.Methods().ByName("InviteUser")
@@ -83,6 +87,7 @@ var (
 // OrganizationServiceClient is a client for the svc.organization.v1.OrganizationService service.
 type OrganizationServiceClient interface {
 	CreateEnvironment(context.Context, *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error)
+	GetEnvironment(context.Context, *connect.Request[v1.GetEnvironmentRequest]) (*connect.Response[v1.GetEnvironmentResponse], error)
 	ListEnvironment(context.Context, *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error)
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
 	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
@@ -109,6 +114,12 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			httpClient,
 			baseURL+OrganizationServiceCreateEnvironmentProcedure,
 			connect.WithSchema(organizationServiceCreateEnvironmentMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		getEnvironment: connect.NewClient[v1.GetEnvironmentRequest, v1.GetEnvironmentResponse](
+			httpClient,
+			baseURL+OrganizationServiceGetEnvironmentProcedure,
+			connect.WithSchema(organizationServiceGetEnvironmentMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
 		listEnvironment: connect.NewClient[v1.ListEnvironmentRequest, v1.ListEnvironmentResponse](
@@ -171,6 +182,7 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 // organizationServiceClient implements OrganizationServiceClient.
 type organizationServiceClient struct {
 	createEnvironment           *connect.Client[v1.CreateEnvironmentRequest, v1.CreateEnvironmentResponse]
+	getEnvironment              *connect.Client[v1.GetEnvironmentRequest, v1.GetEnvironmentResponse]
 	listEnvironment             *connect.Client[v1.ListEnvironmentRequest, v1.ListEnvironmentResponse]
 	listUser                    *connect.Client[v1.ListUserRequest, v1.ListUserResponse]
 	inviteUser                  *connect.Client[v1.InviteUserRequest, v1.InviteUserResponse]
@@ -185,6 +197,11 @@ type organizationServiceClient struct {
 // CreateEnvironment calls svc.organization.v1.OrganizationService.CreateEnvironment.
 func (c *organizationServiceClient) CreateEnvironment(ctx context.Context, req *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error) {
 	return c.createEnvironment.CallUnary(ctx, req)
+}
+
+// GetEnvironment calls svc.organization.v1.OrganizationService.GetEnvironment.
+func (c *organizationServiceClient) GetEnvironment(ctx context.Context, req *connect.Request[v1.GetEnvironmentRequest]) (*connect.Response[v1.GetEnvironmentResponse], error) {
+	return c.getEnvironment.CallUnary(ctx, req)
 }
 
 // ListEnvironment calls svc.organization.v1.OrganizationService.ListEnvironment.
@@ -237,6 +254,7 @@ func (c *organizationServiceClient) ListPaymentMethod(ctx context.Context, req *
 // service.
 type OrganizationServiceHandler interface {
 	CreateEnvironment(context.Context, *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error)
+	GetEnvironment(context.Context, *connect.Request[v1.GetEnvironmentRequest]) (*connect.Response[v1.GetEnvironmentResponse], error)
 	ListEnvironment(context.Context, *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error)
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
 	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
@@ -259,6 +277,12 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 		OrganizationServiceCreateEnvironmentProcedure,
 		svc.CreateEnvironment,
 		connect.WithSchema(organizationServiceCreateEnvironmentMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	organizationServiceGetEnvironmentHandler := connect.NewUnaryHandler(
+		OrganizationServiceGetEnvironmentProcedure,
+		svc.GetEnvironment,
+		connect.WithSchema(organizationServiceGetEnvironmentMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceListEnvironmentHandler := connect.NewUnaryHandler(
@@ -319,6 +343,8 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 		switch r.URL.Path {
 		case OrganizationServiceCreateEnvironmentProcedure:
 			organizationServiceCreateEnvironmentHandler.ServeHTTP(w, r)
+		case OrganizationServiceGetEnvironmentProcedure:
+			organizationServiceGetEnvironmentHandler.ServeHTTP(w, r)
 		case OrganizationServiceListEnvironmentProcedure:
 			organizationServiceListEnvironmentHandler.ServeHTTP(w, r)
 		case OrganizationServiceListUserProcedure:
@@ -348,6 +374,10 @@ type UnimplementedOrganizationServiceHandler struct{}
 
 func (UnimplementedOrganizationServiceHandler) CreateEnvironment(context.Context, *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.CreateEnvironment is not implemented"))
+}
+
+func (UnimplementedOrganizationServiceHandler) GetEnvironment(context.Context, *connect.Request[v1.GetEnvironmentRequest]) (*connect.Response[v1.GetEnvironmentResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.GetEnvironment is not implemented"))
 }
 
 func (UnimplementedOrganizationServiceHandler) ListEnvironment(context.Context, *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error) {
