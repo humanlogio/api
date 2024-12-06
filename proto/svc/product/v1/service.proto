@@ -16,6 +16,9 @@ message ListProductRequest {
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
   string category = 3;
+
+  // filters
+  types.v1.Product.Scope scope = 400;
 }
 
 message ListProductResponse {

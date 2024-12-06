@@ -6,7 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { Cursor } from "../../../types/v1/cursor_pb";
-import { Product } from "../../../types/v1/product_pb";
+import { Product, Product_Scope } from "../../../types/v1/product_pb";
 import { Price } from "../../../types/v1/price_pb";
 
 /**
@@ -28,6 +28,13 @@ export class ListProductRequest extends Message<ListProductRequest> {
    */
   category = "";
 
+  /**
+   * filters
+   *
+   * @generated from field: types.v1.Product.Scope scope = 400;
+   */
+  scope = Product_Scope.Unknown;
+
   constructor(data?: PartialMessage<ListProductRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -39,6 +46,7 @@ export class ListProductRequest extends Message<ListProductRequest> {
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "category", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 400, name: "scope", kind: "enum", T: proto3.getEnumType(Product_Scope) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListProductRequest {
