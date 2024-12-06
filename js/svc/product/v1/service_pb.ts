@@ -31,9 +31,9 @@ export class ListProductRequest extends Message<ListProductRequest> {
   /**
    * filters
    *
-   * @generated from field: types.v1.Product.Scope scope = 400;
+   * @generated from field: optional types.v1.Product.Scope scope = 400;
    */
-  scope = Product_Scope.Unknown;
+  scope?: Product_Scope;
 
   constructor(data?: PartialMessage<ListProductRequest>) {
     super();
@@ -46,7 +46,7 @@ export class ListProductRequest extends Message<ListProductRequest> {
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "category", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 400, name: "scope", kind: "enum", T: proto3.getEnumType(Product_Scope) },
+    { no: 400, name: "scope", kind: "enum", T: proto3.getEnumType(Product_Scope), opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListProductRequest {

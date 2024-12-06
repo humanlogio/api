@@ -18,7 +18,7 @@ message ListProductRequest {
   string category = 3;
 
   // filters
-  types.v1.Product.Scope scope = 400;
+  optional types.v1.Product.Scope scope = 400;
 }
 
 message ListProductResponse {
