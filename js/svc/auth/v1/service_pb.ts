@@ -15,9 +15,21 @@ export class GetAuthURLRequest extends Message<GetAuthURLRequest> {
   /**
    * optional: if an org is specified
    *
-   * @generated from field: string organization_id = 1;
+   * @generated from oneof svc.auth.v1.GetAuthURLRequest.organization
    */
-  organizationId = "";
+  organization: {
+    /**
+     * @generated from field: int64 by_id = 100;
+     */
+    value: bigint;
+    case: "byId";
+  } | {
+    /**
+     * @generated from field: string by_name = 101;
+     */
+    value: string;
+    case: "byName";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
    * @generated from field: string return_to_url = 2;
@@ -37,7 +49,8 @@ export class GetAuthURLRequest extends Message<GetAuthURLRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.auth.v1.GetAuthURLRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "organization_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 100, name: "by_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "organization" },
+    { no: 101, name: "by_name", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "organization" },
     { no: 2, name: "return_to_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "localhost", kind: "message", T: LocalhostViaBrowser },
   ]);
