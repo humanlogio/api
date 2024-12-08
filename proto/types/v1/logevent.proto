@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package types.v1;
 
+import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "types/v1;typesv1";
@@ -27,5 +28,26 @@ message StructuredLogEvent {
 
 message KV {
   string key = 1;
-  string value = 2;
+  Val value = 2;
+}
+
+message Val {
+  oneof kind {
+    string str = 1;
+    double f64 = 2;
+    int64 i64 = 3;
+    bool bool = 4;
+    Arr arr = 5;
+    Obj obj = 6;
+    google.protobuf.Timestamp ts = 7;
+    google.protobuf.Duration dur = 8;
+  }
+}
+
+message Obj {
+  repeated KV kvs = 1;
+}
+
+message Arr {
+  repeated Val items = 1;
 }
