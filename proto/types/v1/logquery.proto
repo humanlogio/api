@@ -3,12 +3,61 @@ syntax = "proto3";
 package types.v1;
 
 import "google/protobuf/timestamp.proto";
+import "types/v1/types.proto";
 
 option go_package = "types/v1;typesv1";
+
+// kv["user.id"] == 42 | group_by(kv["group"]) | kv["access_level"] == "admin" | timechart
 
 message LogQuery {
   google.protobuf.Timestamp from = 1;
   google.protobuf.Timestamp to = 2;
 
-  string query = 100;
+  Expr query = 100;
+}
+
+message Expr {
+  oneof expr {
+    Val literal = 1;
+    UnaryOp unary = 2;
+    BinaryOp binary = 3;
+    FuncCall func_call = 4;
+  }
+  optional Expr next = 5;
+}
+
+message UnaryOp {
+  enum Operator {
+    INVALID = 0;
+    NOT = 1;
+  }
+  Operator op = 1;
+  Expr arg = 2;
+}
+
+message BinaryOp {
+  enum Operator {
+    INVALID = 0;
+    LOG_AND = 101;
+    LOG_OR = 102;
+    LOG_XOR = 201;
+    NUM_ADD = 202;
+    NUM_SUB = 203;
+    NUM_DIV = 204;
+    NUM_MUL = 205;
+    CMP_EQ = 301;
+    CMP_NOTEQ = 302;
+    CMP_GT = 303;
+    CMP_GTE = 304;
+    CMP_LT = 305;
+    CMP_LTE = 306;
+  }
+  Expr lhs = 1;
+  Operator op = 2;
+  Expr rhs = 3;
+}
+
+message FuncCall {
+  string name = 1;
+  repeated Expr args = 2;
 }
