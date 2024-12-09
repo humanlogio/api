@@ -329,29 +329,24 @@ export enum BinaryOp_Operator {
   LOG_OR = 102,
 
   /**
-   * @generated from enum value: LOG_XOR = 201;
+   * @generated from enum value: NUM_ADD = 201;
    */
-  LOG_XOR = 201,
+  NUM_ADD = 201,
 
   /**
-   * @generated from enum value: NUM_ADD = 202;
+   * @generated from enum value: NUM_SUB = 202;
    */
-  NUM_ADD = 202,
+  NUM_SUB = 202,
 
   /**
-   * @generated from enum value: NUM_SUB = 203;
+   * @generated from enum value: NUM_DIV = 203;
    */
-  NUM_SUB = 203,
+  NUM_DIV = 203,
 
   /**
-   * @generated from enum value: NUM_DIV = 204;
+   * @generated from enum value: NUM_MUL = 204;
    */
-  NUM_DIV = 204,
-
-  /**
-   * @generated from enum value: NUM_MUL = 205;
-   */
-  NUM_MUL = 205,
+  NUM_MUL = 204,
 
   /**
    * @generated from enum value: CMP_EQ = 301;
@@ -387,17 +382,21 @@ export enum BinaryOp_Operator {
    * @generated from enum value: SET_IN = 401;
    */
   SET_IN = 401,
+
+  /**
+   * @generated from enum value: SET_NOTIN = 402;
+   */
+  SET_NOTIN = 402,
 }
 // Retrieve enum metadata with: proto3.getEnumType(BinaryOp_Operator)
 proto3.util.setEnumType(BinaryOp_Operator, "types.v1.BinaryOp.Operator", [
   { no: 0, name: "INVALID" },
   { no: 101, name: "LOG_AND" },
   { no: 102, name: "LOG_OR" },
-  { no: 201, name: "LOG_XOR" },
-  { no: 202, name: "NUM_ADD" },
-  { no: 203, name: "NUM_SUB" },
-  { no: 204, name: "NUM_DIV" },
-  { no: 205, name: "NUM_MUL" },
+  { no: 201, name: "NUM_ADD" },
+  { no: 202, name: "NUM_SUB" },
+  { no: 203, name: "NUM_DIV" },
+  { no: 204, name: "NUM_MUL" },
   { no: 301, name: "CMP_EQ" },
   { no: 302, name: "CMP_NOTEQ" },
   { no: 303, name: "CMP_GT" },
@@ -405,6 +404,7 @@ proto3.util.setEnumType(BinaryOp_Operator, "types.v1.BinaryOp.Operator", [
   { no: 305, name: "CMP_LT" },
   { no: 306, name: "CMP_LTE" },
   { no: 401, name: "SET_IN" },
+  { no: 402, name: "SET_NOTIN" },
 ]);
 
 /**
