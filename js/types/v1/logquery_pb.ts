@@ -22,7 +22,12 @@ export class LogQuery extends Message<LogQuery> {
   to?: Timestamp;
 
   /**
-   * @generated from field: types.v1.Expr query = 100;
+   * @generated from field: types.v1.Context context = 100;
+   */
+  context?: Context;
+
+  /**
+   * @generated from field: types.v1.Expr query = 101;
    */
   query?: Expr;
 
@@ -36,7 +41,8 @@ export class LogQuery extends Message<LogQuery> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "from", kind: "message", T: Timestamp },
     { no: 2, name: "to", kind: "message", T: Timestamp },
-    { no: 100, name: "query", kind: "message", T: Expr },
+    { no: 100, name: "context", kind: "message", T: Context },
+    { no: 101, name: "query", kind: "message", T: Expr },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LogQuery {
@@ -57,6 +63,49 @@ export class LogQuery extends Message<LogQuery> {
 }
 
 /**
+ * @generated from message types.v1.Context
+ */
+export class Context extends Message<Context> {
+  /**
+   * @generated from field: optional types.v1.Expr machine_id = 101;
+   */
+  machineId?: Expr;
+
+  /**
+   * @generated from field: optional types.v1.Expr session_id = 102;
+   */
+  sessionId?: Expr;
+
+  constructor(data?: PartialMessage<Context>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Context";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "machine_id", kind: "message", T: Expr, opt: true },
+    { no: 102, name: "session_id", kind: "message", T: Expr, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Context {
+    return new Context().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Context {
+    return new Context().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Context {
+    return new Context().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Context | PlainMessage<Context> | undefined, b: Context | PlainMessage<Context> | undefined): boolean {
+    return proto3.util.equals(Context, a, b);
+  }
+}
+
+/**
  * @generated from message types.v1.Expr
  */
 export class Expr extends Message<Expr> {
@@ -65,34 +114,53 @@ export class Expr extends Message<Expr> {
    */
   expr: {
     /**
-     * @generated from field: types.v1.Val literal = 1;
+     * @generated from field: types.v1.Val literal = 101;
      */
     value: Val;
     case: "literal";
   } | {
     /**
-     * @generated from field: types.v1.UnaryOp unary = 2;
+     * @generated from field: types.v1.UnaryOp unary = 102;
      */
     value: UnaryOp;
     case: "unary";
   } | {
     /**
-     * @generated from field: types.v1.BinaryOp binary = 3;
+     * @generated from field: types.v1.BinaryOp binary = 103;
      */
     value: BinaryOp;
     case: "binary";
   } | {
     /**
-     * @generated from field: types.v1.FuncCall func_call = 4;
+     * @generated from field: types.v1.FuncCall func_call = 104;
      */
     value: FuncCall;
     case: "funcCall";
+  } | {
+    /**
+     * @generated from field: types.v1.Identifier identifier = 105;
+     */
+    value: Identifier;
+    case: "identifier";
+  } | {
+    /**
+     * @generated from field: types.v1.Selector selector = 106;
+     */
+    value: Selector;
+    case: "selector";
+  } | {
+    /**
+     * @generated from field: types.v1.Indexor indexor = 107;
+     */
+    value: Indexor;
+    case: "indexor";
+  } | {
+    /**
+     * @generated from field: types.v1.Pipe pipe = 108;
+     */
+    value: Pipe;
+    case: "pipe";
   } | { case: undefined; value?: undefined } = { case: undefined };
-
-  /**
-   * @generated from field: optional types.v1.Expr next = 5;
-   */
-  next?: Expr;
 
   constructor(data?: PartialMessage<Expr>) {
     super();
@@ -102,11 +170,14 @@ export class Expr extends Message<Expr> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Expr";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "literal", kind: "message", T: Val, oneof: "expr" },
-    { no: 2, name: "unary", kind: "message", T: UnaryOp, oneof: "expr" },
-    { no: 3, name: "binary", kind: "message", T: BinaryOp, oneof: "expr" },
-    { no: 4, name: "func_call", kind: "message", T: FuncCall, oneof: "expr" },
-    { no: 5, name: "next", kind: "message", T: Expr, opt: true },
+    { no: 101, name: "literal", kind: "message", T: Val, oneof: "expr" },
+    { no: 102, name: "unary", kind: "message", T: UnaryOp, oneof: "expr" },
+    { no: 103, name: "binary", kind: "message", T: BinaryOp, oneof: "expr" },
+    { no: 104, name: "func_call", kind: "message", T: FuncCall, oneof: "expr" },
+    { no: 105, name: "identifier", kind: "message", T: Identifier, oneof: "expr" },
+    { no: 106, name: "selector", kind: "message", T: Selector, oneof: "expr" },
+    { no: 107, name: "indexor", kind: "message", T: Indexor, oneof: "expr" },
+    { no: 108, name: "pipe", kind: "message", T: Pipe, oneof: "expr" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expr {
@@ -311,6 +382,11 @@ export enum BinaryOp_Operator {
    * @generated from enum value: CMP_LTE = 306;
    */
   CMP_LTE = 306,
+
+  /**
+   * @generated from enum value: SET_IN = 401;
+   */
+  SET_IN = 401,
 }
 // Retrieve enum metadata with: proto3.getEnumType(BinaryOp_Operator)
 proto3.util.setEnumType(BinaryOp_Operator, "types.v1.BinaryOp.Operator", [
@@ -328,6 +404,7 @@ proto3.util.setEnumType(BinaryOp_Operator, "types.v1.BinaryOp.Operator", [
   { no: 304, name: "CMP_GTE" },
   { no: 305, name: "CMP_LT" },
   { no: 306, name: "CMP_LTE" },
+  { no: 401, name: "SET_IN" },
 ]);
 
 /**
@@ -370,6 +447,172 @@ export class FuncCall extends Message<FuncCall> {
 
   static equals(a: FuncCall | PlainMessage<FuncCall> | undefined, b: FuncCall | PlainMessage<FuncCall> | undefined): boolean {
     return proto3.util.equals(FuncCall, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Identifier
+ */
+export class Identifier extends Message<Identifier> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  constructor(data?: PartialMessage<Identifier>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Identifier";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Identifier {
+    return new Identifier().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Identifier {
+    return new Identifier().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Identifier {
+    return new Identifier().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Identifier | PlainMessage<Identifier> | undefined, b: Identifier | PlainMessage<Identifier> | undefined): boolean {
+    return proto3.util.equals(Identifier, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Selector
+ */
+export class Selector extends Message<Selector> {
+  /**
+   * @generated from field: types.v1.Expr x = 1;
+   */
+  x?: Expr;
+
+  /**
+   * @generated from field: types.v1.Identifier identifier = 2;
+   */
+  identifier?: Identifier;
+
+  constructor(data?: PartialMessage<Selector>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Selector";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "x", kind: "message", T: Expr },
+    { no: 2, name: "identifier", kind: "message", T: Identifier },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Selector {
+    return new Selector().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Selector {
+    return new Selector().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Selector {
+    return new Selector().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Selector | PlainMessage<Selector> | undefined, b: Selector | PlainMessage<Selector> | undefined): boolean {
+    return proto3.util.equals(Selector, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Indexor
+ */
+export class Indexor extends Message<Indexor> {
+  /**
+   * @generated from field: types.v1.Expr x = 1;
+   */
+  x?: Expr;
+
+  /**
+   * @generated from field: types.v1.Expr index = 2;
+   */
+  index?: Expr;
+
+  constructor(data?: PartialMessage<Indexor>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Indexor";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "x", kind: "message", T: Expr },
+    { no: 2, name: "index", kind: "message", T: Expr },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Indexor {
+    return new Indexor().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Indexor {
+    return new Indexor().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Indexor {
+    return new Indexor().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Indexor | PlainMessage<Indexor> | undefined, b: Indexor | PlainMessage<Indexor> | undefined): boolean {
+    return proto3.util.equals(Indexor, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Pipe
+ */
+export class Pipe extends Message<Pipe> {
+  /**
+   * @generated from field: types.v1.Expr head = 1;
+   */
+  head?: Expr;
+
+  /**
+   * @generated from field: types.v1.Expr tail = 2;
+   */
+  tail?: Expr;
+
+  constructor(data?: PartialMessage<Pipe>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Pipe";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "head", kind: "message", T: Expr },
+    { no: 2, name: "tail", kind: "message", T: Expr },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Pipe {
+    return new Pipe().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Pipe {
+    return new Pipe().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Pipe {
+    return new Pipe().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Pipe | PlainMessage<Pipe> | undefined, b: Pipe | PlainMessage<Pipe> | undefined): boolean {
+    return proto3.util.equals(Pipe, a, b);
   }
 }
 

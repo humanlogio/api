@@ -13,17 +13,26 @@ message LogQuery {
   google.protobuf.Timestamp from = 1;
   google.protobuf.Timestamp to = 2;
 
-  Expr query = 100;
+  Context context = 100;
+  Expr query = 101;
+}
+
+message Context {
+  optional Expr machine_id = 101;
+  optional Expr session_id = 102;
 }
 
 message Expr {
   oneof expr {
-    Val literal = 1;
-    UnaryOp unary = 2;
-    BinaryOp binary = 3;
-    FuncCall func_call = 4;
+    Val literal = 101;
+    UnaryOp unary = 102;
+    BinaryOp binary = 103;
+    FuncCall func_call = 104;
+    Identifier identifier = 105;
+    Selector selector = 106;
+    Indexor indexor = 107;
+    Pipe pipe = 108;
   }
-  optional Expr next = 5;
 }
 
 message UnaryOp {
@@ -51,6 +60,7 @@ message BinaryOp {
     CMP_GTE = 304;
     CMP_LT = 305;
     CMP_LTE = 306;
+    SET_IN = 401;
   }
   Expr lhs = 1;
   Operator op = 2;
@@ -60,4 +70,23 @@ message BinaryOp {
 message FuncCall {
   string name = 1;
   repeated Expr args = 2;
+}
+
+message Identifier {
+  string name = 1;
+}
+
+message Selector {
+  Expr x = 1;
+  Identifier identifier = 2;
+}
+
+message Indexor {
+  Expr x = 1;
+  Expr index = 2;
+}
+
+message Pipe {
+  Expr head = 1;
+  Expr tail = 2;
 }

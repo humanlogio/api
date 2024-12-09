@@ -27,7 +27,7 @@ func ValBool(v bool) *Val {
 	return &Val{Kind: &Val_Bool{Bool: v}}
 }
 
-func ValArr(v []*Val) *Val {
+func ValArr(v ...*Val) *Val {
 	return &Val{Kind: &Val_Arr{Arr: &Arr{
 		Items: v,
 	}}}
