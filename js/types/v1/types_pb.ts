@@ -7,6 +7,68 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * @generated from enum types.v1.VarType
+ */
+export enum VarType {
+  /**
+   * @generated from enum value: unknown = 0;
+   */
+  unknown = 0,
+
+  /**
+   * @generated from enum value: str = 1;
+   */
+  str = 1,
+
+  /**
+   * @generated from enum value: f64 = 2;
+   */
+  f64 = 2,
+
+  /**
+   * @generated from enum value: i64 = 3;
+   */
+  i64 = 3,
+
+  /**
+   * @generated from enum value: bool = 4;
+   */
+  bool = 4,
+
+  /**
+   * @generated from enum value: arr = 5;
+   */
+  arr = 5,
+
+  /**
+   * @generated from enum value: obj = 6;
+   */
+  obj = 6,
+
+  /**
+   * @generated from enum value: ts = 7;
+   */
+  ts = 7,
+
+  /**
+   * @generated from enum value: dur = 8;
+   */
+  dur = 8,
+}
+// Retrieve enum metadata with: proto3.getEnumType(VarType)
+proto3.util.setEnumType(VarType, "types.v1.VarType", [
+  { no: 0, name: "unknown" },
+  { no: 1, name: "str" },
+  { no: 2, name: "f64" },
+  { no: 3, name: "i64" },
+  { no: 4, name: "bool" },
+  { no: 5, name: "arr" },
+  { no: 6, name: "obj" },
+  { no: 7, name: "ts" },
+  { no: 8, name: "dur" },
+]);
+
+/**
  * @generated from message types.v1.KV
  */
 export class KV extends Message<KV> {
@@ -54,53 +116,58 @@ export class KV extends Message<KV> {
  */
 export class Val extends Message<Val> {
   /**
+   * @generated from field: types.v1.VarType type = 100;
+   */
+  type = VarType.unknown;
+
+  /**
    * @generated from oneof types.v1.Val.kind
    */
   kind: {
     /**
-     * @generated from field: string str = 1;
+     * @generated from field: string str = 201;
      */
     value: string;
     case: "str";
   } | {
     /**
-     * @generated from field: double f64 = 2;
+     * @generated from field: double f64 = 202;
      */
     value: number;
     case: "f64";
   } | {
     /**
-     * @generated from field: int64 i64 = 3;
+     * @generated from field: int64 i64 = 203;
      */
     value: bigint;
     case: "i64";
   } | {
     /**
-     * @generated from field: bool bool = 4;
+     * @generated from field: bool bool = 204;
      */
     value: boolean;
     case: "bool";
   } | {
     /**
-     * @generated from field: types.v1.Arr arr = 5;
+     * @generated from field: types.v1.Arr arr = 205;
      */
     value: Arr;
     case: "arr";
   } | {
     /**
-     * @generated from field: types.v1.Obj obj = 6;
+     * @generated from field: types.v1.Obj obj = 206;
      */
     value: Obj;
     case: "obj";
   } | {
     /**
-     * @generated from field: google.protobuf.Timestamp ts = 7;
+     * @generated from field: google.protobuf.Timestamp ts = 207;
      */
     value: Timestamp;
     case: "ts";
   } | {
     /**
-     * @generated from field: google.protobuf.Duration dur = 8;
+     * @generated from field: google.protobuf.Duration dur = 208;
      */
     value: Duration;
     case: "dur";
@@ -114,14 +181,15 @@ export class Val extends Message<Val> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Val";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
-    { no: 2, name: "f64", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind" },
-    { no: 3, name: "i64", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "kind" },
-    { no: 4, name: "bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
-    { no: 5, name: "arr", kind: "message", T: Arr, oneof: "kind" },
-    { no: 6, name: "obj", kind: "message", T: Obj, oneof: "kind" },
-    { no: 7, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
-    { no: 8, name: "dur", kind: "message", T: Duration, oneof: "kind" },
+    { no: 100, name: "type", kind: "enum", T: proto3.getEnumType(VarType) },
+    { no: 201, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 202, name: "f64", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind" },
+    { no: 203, name: "i64", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "kind" },
+    { no: 204, name: "bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
+    { no: 205, name: "arr", kind: "message", T: Arr, oneof: "kind" },
+    { no: 206, name: "obj", kind: "message", T: Obj, oneof: "kind" },
+    { no: 207, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
+    { no: 208, name: "dur", kind: "message", T: Duration, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Val {

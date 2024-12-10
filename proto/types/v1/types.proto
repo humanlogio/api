@@ -5,21 +5,34 @@ package types.v1;
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
+enum VarType {
+  unknown = 0;
+  str = 1;
+  f64 = 2;
+  i64 = 3;
+  bool = 4;
+  arr = 5;
+  obj = 6;
+  ts = 7;
+  dur = 8;
+}
+
 message KV {
   string key = 1;
   Val value = 2;
 }
 
 message Val {
+  VarType type = 100;
   oneof kind {
-    string str = 1;
-    double f64 = 2;
-    int64 i64 = 3;
-    bool bool = 4;
-    Arr arr = 5;
-    Obj obj = 6;
-    google.protobuf.Timestamp ts = 7;
-    google.protobuf.Duration dur = 8;
+    string str = 201;
+    double f64 = 202;
+    int64 i64 = 203;
+    bool bool = 204;
+    Arr arr = 205;
+    Obj obj = 206;
+    google.protobuf.Timestamp ts = 207;
+    google.protobuf.Duration dur = 208;
   }
 }
 
