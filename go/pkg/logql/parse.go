@@ -1,4 +1,4 @@
-package lang
+package logql
 
 import (
 	typesv1 "github.com/humanlogio/api/go/types/v1"

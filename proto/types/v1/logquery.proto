@@ -29,7 +29,7 @@ message Expr {
     BinaryOp binary = 103;
     FuncCall func_call = 104;
     Identifier identifier = 105;
-    Selector selector = 106;
+    Selector selector = 106; // msg.hello.world
     Indexor indexor = 107;
     Pipe pipe = 108;
   }

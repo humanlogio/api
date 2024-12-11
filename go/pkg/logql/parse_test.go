@@ -1,4 +1,4 @@
-package lang
+package logql
 
 import (
 	"encoding/json"

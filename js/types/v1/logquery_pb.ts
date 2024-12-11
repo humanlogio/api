@@ -144,6 +144,8 @@ export class Expr extends Message<Expr> {
     case: "identifier";
   } | {
     /**
+     * msg.hello.world
+     *
      * @generated from field: types.v1.Selector selector = 106;
      */
     value: Selector;

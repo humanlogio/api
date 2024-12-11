@@ -410,7 +410,7 @@ type Expr_Identifier struct {
 }
 
 type Expr_Selector struct {
-	Selector *Selector `protobuf:"bytes,106,opt,name=selector,proto3,oneof"`
+	Selector *Selector `protobuf:"bytes,106,opt,name=selector,proto3,oneof"` // msg.hello.world
 }
 
 type Expr_Indexor struct {
