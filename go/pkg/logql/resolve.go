@@ -8,6 +8,43 @@ import (
 	typesv1 "github.com/humanlogio/api/go/types/v1"
 )
 
+func VisitScalars(v *typesv1.Val, onScalar func(keys []string, scalar *typesv1.Val) error, prefixes ...string) error {
+	return visitScalars(prefixes, v, onScalar)
+}
+
+func visitScalars(keys []string, v *typesv1.Val, onScalar func(keys []string, scalar *typesv1.Val) error) error {
+	switch val := v.Kind.(type) {
+	case *typesv1.Val_Str:
+		return onScalar(keys, v)
+	case *typesv1.Val_F64:
+		return onScalar(keys, v)
+	case *typesv1.Val_I64:
+		return onScalar(keys, v)
+	case *typesv1.Val_Bool:
+		return onScalar(keys, v)
+	case *typesv1.Val_Ts:
+		return onScalar(keys, v)
+	case *typesv1.Val_Dur:
+		return onScalar(keys, v)
+	case *typesv1.Val_Arr:
+		for i, item := range val.Arr.Items {
+			k := strconv.Itoa(i)
+			if err := onScalar(append(keys, k), item); err != nil {
+				return fmt.Errorf("arr[%d] %v", i, err)
+			}
+		}
+	case *typesv1.Val_Obj:
+		for _, kval := range val.Obj.Kvs {
+			if err := onScalar(append(keys, kval.Key), kval.Value); err != nil {
+				return fmt.Errorf("obj[%q] %v", kval.Key, err)
+			}
+		}
+	default:
+		return fmt.Errorf("unsupported type %v", val)
+	}
+	return nil
+}
+
 type MakeMap func(prefixes []string, kvs []*typesv1.KV, mkMap MakeMap, mkSlice MakeSlice, setVal func([]string, any) error) error
 type MakeSlice func(prefixes []string, items []*typesv1.Val, mkMap MakeMap, mkSlice MakeSlice, setVal func([]string, any) error) error
 
