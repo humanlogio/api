@@ -39,6 +39,7 @@ message UnaryOp {
   enum Operator {
     INVALID = 0;
     NOT = 1;
+    NEG = 2;
   }
   Operator op = 1;
   Expr arg = 2;

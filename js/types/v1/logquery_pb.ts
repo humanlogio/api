@@ -255,11 +255,17 @@ export enum UnaryOp_Operator {
    * @generated from enum value: NOT = 1;
    */
   NOT = 1,
+
+  /**
+   * @generated from enum value: NEG = 2;
+   */
+  NEG = 2,
 }
 // Retrieve enum metadata with: proto3.getEnumType(UnaryOp_Operator)
 proto3.util.setEnumType(UnaryOp_Operator, "types.v1.UnaryOp.Operator", [
   { no: 0, name: "INVALID" },
   { no: 1, name: "NOT" },
+  { no: 2, name: "NEG" },
 ]);
 
 /**
