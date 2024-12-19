@@ -41,6 +41,10 @@ func ValTime(v time.Time) *Val {
 	return &Val{Type: VarType_ts, Kind: &Val_Ts{Ts: timestamppb.New(v)}}
 }
 
+func ValTimestamp(v *timestamppb.Timestamp) *Val {
+	return &Val{Type: VarType_ts, Kind: &Val_Ts{Ts: v}}
+}
+
 func ValDuration(v time.Duration) *Val {
 	return &Val{Type: VarType_dur, Kind: &Val_Dur{Dur: durationpb.New(v)}}
 }
