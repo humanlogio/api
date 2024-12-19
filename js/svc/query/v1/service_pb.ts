@@ -163,6 +163,11 @@ export class WatchQueryRequest extends Message<WatchQueryRequest> {
    */
   query?: LogQuery;
 
+  /**
+   * @generated from field: svc.query.v1.WatchQueryRequest.UnstablePlaintext plaintext_query = 201;
+   */
+  plaintextQuery?: WatchQueryRequest_UnstablePlaintext;
+
   constructor(data?: PartialMessage<WatchQueryRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -173,6 +178,7 @@ export class WatchQueryRequest extends Message<WatchQueryRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "query", kind: "message", T: LogQuery },
+    { no: 201, name: "plaintext_query", kind: "message", T: WatchQueryRequest_UnstablePlaintext },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchQueryRequest {
@@ -189,6 +195,55 @@ export class WatchQueryRequest extends Message<WatchQueryRequest> {
 
   static equals(a: WatchQueryRequest | PlainMessage<WatchQueryRequest> | undefined, b: WatchQueryRequest | PlainMessage<WatchQueryRequest> | undefined): boolean {
     return proto3.util.equals(WatchQueryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.WatchQueryRequest.UnstablePlaintext
+ */
+export class WatchQueryRequest_UnstablePlaintext extends Message<WatchQueryRequest_UnstablePlaintext> {
+  /**
+   * @generated from field: google.protobuf.Timestamp from = 1;
+   */
+  from?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp to = 2;
+   */
+  to?: Timestamp;
+
+  /**
+   * @generated from field: string query = 3;
+   */
+  query = "";
+
+  constructor(data?: PartialMessage<WatchQueryRequest_UnstablePlaintext>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.WatchQueryRequest.UnstablePlaintext";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "from", kind: "message", T: Timestamp },
+    { no: 2, name: "to", kind: "message", T: Timestamp },
+    { no: 3, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchQueryRequest_UnstablePlaintext {
+    return new WatchQueryRequest_UnstablePlaintext().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WatchQueryRequest_UnstablePlaintext {
+    return new WatchQueryRequest_UnstablePlaintext().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WatchQueryRequest_UnstablePlaintext {
+    return new WatchQueryRequest_UnstablePlaintext().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: WatchQueryRequest_UnstablePlaintext | PlainMessage<WatchQueryRequest_UnstablePlaintext> | undefined, b: WatchQueryRequest_UnstablePlaintext | PlainMessage<WatchQueryRequest_UnstablePlaintext> | undefined): boolean {
+    return proto3.util.equals(WatchQueryRequest_UnstablePlaintext, a, b);
   }
 }
 

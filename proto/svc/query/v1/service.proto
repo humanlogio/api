@@ -35,7 +35,15 @@ message SummarizeEventsResponse {
 
 message WatchQueryRequest {
   int64 environment_id = 1;
+
+  message UnstablePlaintext {
+    google.protobuf.Timestamp from = 1;
+    google.protobuf.Timestamp to = 2;
+    string query = 3;
+  }
+
   types.v1.LogQuery query = 2;
+  UnstablePlaintext plaintext_query = 201;
 }
 
 message WatchQueryResponse {
