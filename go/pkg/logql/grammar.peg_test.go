@@ -19,6 +19,7 @@ func TestParse(t *testing.T) {
 		want *v1.LogQuery
 		err  error
 	}{
+		{`{session=1734666428038101000} msg="AuthenticateUser"`, q(nil, nil, qctx(nil, eq(id("session"), i64(1734666428038101000))), eq(id("msg"), str("AuthenticateUser"))), nil},
 		{`{from=2006-01-02T15:04:05.999999999+07:00}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil, nil), nil},
 		{`{from=2006-01-02T15:04:05+07:00}`, q(ts("2006-01-02T15:04:05+07:00"), nil, nil, nil), nil},
 		{`{to=2006-01-02T15:04:05.999999999+07:00}`, q(nil, ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil), nil},

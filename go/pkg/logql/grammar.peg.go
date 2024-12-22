@@ -787,7 +787,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 
 	_rules = [...]func() bool{
 		nil,
-		/* 0 Grammar <- <(Space ((Expr Action0) / QueryContext / ((QueryContext MustSpace)? Expr Action1))? EOF)> */
+		/* 0 Grammar <- <(Space ((Expr Action0) / ((QueryContext MustSpace)? Expr Action1) / QueryContext)? EOF)> */
 		func() bool {
 			position0, tokenIndex0 := position, tokenIndex
 			{
@@ -808,12 +808,6 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 						goto l4
 					l5:
 						position, tokenIndex = position4, tokenIndex4
-						if !_rules[ruleQueryContext]() {
-							goto l6
-						}
-						goto l4
-					l6:
-						position, tokenIndex = position4, tokenIndex4
 						{
 							position7, tokenIndex7 := position, tokenIndex
 							if !_rules[ruleQueryContext]() {
@@ -828,9 +822,15 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 						}
 					l8:
 						if !_rules[ruleExpr]() {
-							goto l2
+							goto l6
 						}
 						if !_rules[ruleAction1]() {
+							goto l6
+						}
+						goto l4
+					l6:
+						position, tokenIndex = position4, tokenIndex4
+						if !_rules[ruleQueryContext]() {
 							goto l2
 						}
 					}
@@ -850,7 +850,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position0, tokenIndex0
 			return false
 		},
-		/* 1 QueryContext <- <(L_SQUIGGLY Space QueryContextItem+ R_SQUIGGLY Space)> */
+		/* 1 QueryContext <- <(L_SQUIGGLY Space QueryContextItem+ R_SQUIGGLY)> */
 		func() bool {
 			position9, tokenIndex9 := position, tokenIndex
 			{
@@ -875,9 +875,6 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 					position, tokenIndex = position12, tokenIndex12
 				}
 				if !_rules[ruleR_SQUIGGLY]() {
-					goto l9
-				}
-				if !_rules[ruleSpace]() {
 					goto l9
 				}
 				add(ruleQueryContext, position10)
@@ -3665,7 +3662,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position307, tokenIndex307
 			return false
 		},
-		/* 63 R_SQUIGGLY <- <('}' Space)> */
+		/* 63 R_SQUIGGLY <- <'}'> */
 		func() bool {
 			position309, tokenIndex309 := position, tokenIndex
 			{
@@ -3674,9 +3671,6 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 					goto l309
 				}
 				position++
-				if !_rules[ruleSpace]() {
-					goto l309
-				}
 				add(ruleR_SQUIGGLY, position310)
 			}
 			return true

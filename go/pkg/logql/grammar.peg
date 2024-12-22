@@ -34,12 +34,12 @@ type logQL Peg {
 
 Grammar
   <-  Space ( Expr                                 { p.SetQuery(p.popExpr()) }
-            / QueryContext
             / (QueryContext MustSpace)? Expr       { p.SetQuery(p.popExpr()) }
+            / QueryContext
             )? EOF
 
 QueryContext
-  <- L_SQUIGGLY Space QueryContextItem+ R_SQUIGGLY Space
+  <- L_SQUIGGLY Space QueryContextItem+ R_SQUIGGLY
 
 QueryContextItem <- ( QueryMachineContext
                     / QuerySessionContext
@@ -196,7 +196,7 @@ R_PARENS    <- ')' Space
 L_BRACKET   <- '[' Space
 R_BRACKET   <- ']' Space
 L_SQUIGGLY  <- '{' Space
-R_SQUIGGLY  <- '}' Space
+R_SQUIGGLY  <- '}'
 COLON       <- ':' Space
 COMMA       <- ',' Space
 
