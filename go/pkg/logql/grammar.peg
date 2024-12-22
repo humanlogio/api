@@ -1,0 +1,207 @@
+package logql
+
+import (
+  "github.com/humanlogio/api/go/types/v1"
+  "time"
+)
+
+type logQL Peg {
+  // the query being built
+  LogQuery *typesv1.LogQuery
+
+  // stack for recursive generic structures
+  Exprs []*typesv1.Expr
+
+  // scratch space, not needed but `Literal` being a type is convenient
+  Literal *typesv1.Val
+
+  // scalars
+  String string
+  F64 float64
+  I64 int64
+  Bool bool
+  Timestamp time.Time
+  Duration time.Duration
+
+  // stack for non-expr recursive structures
+  Arrs [][]*typesv1.Val
+  ObjsKVs [][]*typesv1.KV
+  FuncCalls []*typesv1.FuncCall
+
+  // errors seen along the way
+  err error
+}
+
+Grammar
+  <-  Space ( Expr                                 { p.SetQuery(p.popExpr()) }
+            / QueryContext
+            / (QueryContext MustSpace)? Expr       { p.SetQuery(p.popExpr()) }
+            )? EOF
+
+QueryContext
+  <- L_SQUIGGLY Space QueryContextItem+ R_SQUIGGLY Space
+
+QueryContextItem <- ( QueryMachineContext
+                    / QuerySessionContext
+                    / QueryFrom
+                    / QueryTo
+                    ) Space
+
+QueryFrom           <- 'from' Space CMP_EQ Space Timestamp  { p.SetFrom(p.Timestamp) }
+QueryTo             <- 'to' Space CMP_EQ Space Timestamp    { p.SetTo(p.Timestamp) }
+
+QueryMachineContext <- 'machine' Space  ( CMP_EQ Space Expr       { p.SetContextMachine(typesv1.BinaryOp_CMP_EQ, p.popExpr()) }
+                                        / CMP_NOTEQ Space Expr    { p.SetContextMachine(typesv1.BinaryOp_CMP_NOTEQ, p.popExpr()) }
+                                        / SET_IN Space Expr       { p.SetContextMachine(typesv1.BinaryOp_SET_IN, p.popExpr()) }
+                                        / SET_NOTIN Space Expr    { p.SetContextMachine(typesv1.BinaryOp_SET_NOTIN, p.popExpr()) }
+                                        )
+
+QuerySessionContext <- 'session' Space  ( CMP_EQ Space Expr       { p.SetContextSession(typesv1.BinaryOp_CMP_EQ, p.popExpr()) }
+                                        / CMP_NOTEQ Space Expr    { p.SetContextSession(typesv1.BinaryOp_CMP_NOTEQ, p.popExpr()) }
+                                        / SET_IN Space Expr       { p.SetContextSession(typesv1.BinaryOp_SET_IN, p.popExpr()) }
+                                        / SET_NOTIN Space Expr    { p.SetContextSession(typesv1.BinaryOp_SET_NOTIN, p.popExpr()) }
+                                        )
+
+Expr <- Expr1 ( Space PIPE Space Expr1        { tail, head := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprPipe(head, tail)) }
+              / Space NUM_ADD Expr1 Space     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_ADD, rhs)) }
+              / Space NUM_SUB Expr1 Space     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_SUB, rhs)) }
+              )*
+
+Expr1 <- Expr2  ( Space NUM_MUL Expr2 Space   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_MUL, rhs)) }
+                / Space NUM_DIV Expr2 Space   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_DIV, rhs)) }
+                )*
+
+Expr2 <- Expr3  ( Space LOG_AND Expr3 Space   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_LOG_AND, rhs)) }
+                / Space LOG_OR Expr3 Space    { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_LOG_OR, rhs)) }
+                )*
+
+Expr3 <- Expr4  ( Space CMP_EQ Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_EQ, rhs)) }
+                / Space CMP_NOTEQ Expr4   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_NOTEQ, rhs)) }
+                / Space CMP_GT Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GT, rhs)) }
+                / Space CMP_GTE Expr4     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GTE, rhs)) }
+                / Space CMP_LT Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LT, rhs)) }
+                / Space CMP_LTE Expr4     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LTE, rhs)) }
+                / Space SET_IN Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_IN, rhs)) }
+                / Space SET_NOTIN Expr4   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_NOTIN, rhs)) }
+                )*
+
+Expr4 <- Expr5  ( Space L_BRACKET Expr5 R_BRACKET { index, x := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprIndexor(x, index)) }
+                / Space DOT <SelectorId>          { selector, x := text, p.popExpr(); p.pushExpr(typesv1.ExprSelector(x, selector)) }
+                )*
+
+Expr5 <-  L_PARENS Expr R_PARENS Space
+        / NOT Literal Space                 { p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NOT, typesv1.ExprLiteral(p.Literal))); p.Literal = nil }
+        / NOT L_PARENS Expr R_PARENS Space  { arg := p.popExpr(); p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NOT, arg)) }
+        / NEG Literal Space                 { p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NEG, typesv1.ExprLiteral(p.Literal))); p.Literal = nil }
+        / NEG L_PARENS Expr R_PARENS Space  { arg := p.popExpr(); p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NEG, arg)) }
+        / Literal Space                     { p.pushExpr(typesv1.ExprLiteral(p.Literal)); p.Literal = nil }
+        / Identifier Space
+        / FuncCall Space
+
+Literal
+  <- String           { p.Literal = typesv1.ValStr(p.String) }
+  / 'dur:'? Duration  { p.Literal = typesv1.ValDuration(p.Duration) }
+  / 'ts:'? Timestamp  { p.Literal = typesv1.ValTime(p.Timestamp) }
+  / F64               { p.Literal = typesv1.ValF64(p.F64) }
+  / I64               { p.Literal = typesv1.ValI64(p.I64) }
+  / Bool              { p.Literal = typesv1.ValBool(p.Bool) }
+  / Array             { p.Literal = typesv1.ValArr(p.popArray()...) }
+  / Object            { p.Literal = typesv1.ValObj(p.popObj()...) }
+
+FuncCall <- { p.pushFunc() }
+            FuncName '(' FuncArgs? ')' Space
+            { p.pushExpr(p.popFunc()) }
+
+FuncName <- !ReservedKeyword < [[a-z_]] ([[a-z_]] / [0-9])* > { p.setFuncName(text) }
+FuncArgs <- FuncArg ( Space ',' Space FuncArg )* Space
+FuncArg  <- Expr                                              { p.addFuncArg(p.popExpr()) }
+
+Identifier
+  <- 'lvl'  { p.pushExpr(typesv1.ExprIdentifier("lvl")) }
+  / 'msg'   { p.pushExpr(typesv1.ExprIdentifier("msg")) }
+  / 'kv'    { p.pushExpr(typesv1.ExprIdentifier("kv")) }
+
+
+String
+  <- <'"' StringChar* '"'>          { p.String = p.parseString(text) }
+
+SelectorId <- [a-zA-Z_][a-zA-Z0-9_]*
+
+F64
+  <- <Digits '.' Digits? Exponent?> { p.F64 = p.parseFloat64(text) }
+  / <'.' Digits Exponent?>          { p.F64 = p.parseFloat64(text) }
+  / <Digits Exponent>               { p.F64 = p.parseFloat64(text) }
+
+I64
+  <- '0'                   { p.I64 = 0 }
+  / <[1-9] ([_]* [0-9])* > { p.I64 = p.parseInt64(text) }
+
+Bool
+  <- 'true'                         { p.Bool = true }
+  / 'false'                         { p.Bool = false }
+
+ReservedKeyword <-  (Identifier / Bool)
+
+Array      <- L_BRACKET                              { p.pushArray() }
+              ( ArrayItem ( COMMA ArrayItem )* )?
+              R_BRACKET
+ArrayItem  <- Literal                                { p.addArrItem(p.Literal); p.Literal = nil }
+
+Object     <- L_SQUIGGLY                             { p.pushObj() }
+              ( ObjectItem ( COMMA ObjectItem )* )?
+              R_SQUIGGLY
+ObjectItem <- ObjectKey COLON Literal                { p.closeObjItem(p.Literal); p.Literal = nil }
+ObjectKey  <- String                                 { p.startObjItem(p.String) }
+
+
+Duration  <- F64 <('us'/'µs'/'ms'/'s'/'m'/'h')>      { p.Duration = p.parseDurationF64(p.F64, text) }
+          /  I64 <('ns'/'us'/'µs'/'ms'/'s'/'m'/'h')> { p.Duration = p.parseDurationI64(p.I64, text) }
+
+Timestamp <- <RFC3339Nano>  { p.Timestamp = p.parseTime(time.RFC3339Nano, text) }
+
+StringChar <- '\\' ['\"?\\%abfnrtv] / ![\"\n\\] .
+
+Exponent <- [eE] [+\-]? Digits
+
+Digits <- [0-9]([_]*[0-9])*
+
+// "2006-01-02T15:04:05.999999999Z07:00"
+RFC3339Nano         <- RFC3339NanoDate 'T' RFC3339NanoTime RFC3339NanoTimezone
+RFC3339NanoDate     <- Number '-' Number '-' Number
+RFC3339NanoTime     <- Number ':' Number ':' Number ('.' Number)?
+RFC3339NanoTimezone <- 'Z' / '+' Number ':' Number
+
+Number <- < [0-9]+ >
+
+NOT         <- '!' Space
+NEG         <- '-' Space
+NUM_ADD     <- '+' Space
+NUM_SUB     <- '-' Space
+NUM_DIV     <- '/' Space
+NUM_MUL     <- '*' Space
+LOG_AND     <- '&&' Space
+LOG_OR      <- '||' Space
+CMP_EQ      <- '=' Space
+CMP_NOTEQ   <- '!=' Space
+CMP_GT      <- '>' Space
+CMP_GTE     <- '>=' Space
+CMP_LT      <- '<' Space
+CMP_LTE     <- '<=' Space
+SET_IN      <- 'in' Space
+SET_NOTIN   <- 'not in' Space
+PIPE        <- '|' Space
+DOT         <- '.' Space
+L_PARENS    <- '(' Space
+R_PARENS    <- ')' Space
+L_BRACKET   <- '[' Space
+R_BRACKET   <- ']' Space
+L_SQUIGGLY  <- '{' Space
+R_SQUIGGLY  <- '}' Space
+COLON       <- ':' Space
+COMMA       <- ',' Space
+
+Space      <- Whitespace*
+MustSpace  <- Whitespace+
+Whitespace <- ' ' / '\t' / EOL
+EOL        <- '\r\n' / '\n' / '\r'
+EOF        <- !.

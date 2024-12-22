@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 eval "$(pkgx --shellcode)"
 root=$(git rev-parse --show-toplevel)
 
 function main() {
+    env +go
     env +buf
     env +npm
     env +npx
     env +node@20
 
+    generate_peg
+    generate_protobuf
+}
+
+function generate_protobuf() {
     npm install \
         --save-dev \
         @connectrpc/connect \
@@ -26,6 +32,11 @@ function main() {
     export PATH=${PATH}:${root}/node_modules/.bin
     buf format -w
     buf generate
+}
+
+function generate_peg() {
+    go install github.com/pointlander/peg@latest
+    peg ${root}/go/pkg/logql/grammar.peg
 }
 
 main
