@@ -38,6 +38,10 @@ const (
 	QueryServiceSummarizeEventsProcedure = "/svc.query.v1.QueryService/SummarizeEvents"
 	// QueryServiceWatchQueryProcedure is the fully-qualified name of the QueryService's WatchQuery RPC.
 	QueryServiceWatchQueryProcedure = "/svc.query.v1.QueryService/WatchQuery"
+	// QueryServiceParseProcedure is the fully-qualified name of the QueryService's Parse RPC.
+	QueryServiceParseProcedure = "/svc.query.v1.QueryService/Parse"
+	// QueryServiceQueryProcedure is the fully-qualified name of the QueryService's Query RPC.
+	QueryServiceQueryProcedure = "/svc.query.v1.QueryService/Query"
 )
 
 // These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
@@ -45,12 +49,16 @@ var (
 	queryServiceServiceDescriptor               = v1.File_svc_query_v1_service_proto.Services().ByName("QueryService")
 	queryServiceSummarizeEventsMethodDescriptor = queryServiceServiceDescriptor.Methods().ByName("SummarizeEvents")
 	queryServiceWatchQueryMethodDescriptor      = queryServiceServiceDescriptor.Methods().ByName("WatchQuery")
+	queryServiceParseMethodDescriptor           = queryServiceServiceDescriptor.Methods().ByName("Parse")
+	queryServiceQueryMethodDescriptor           = queryServiceServiceDescriptor.Methods().ByName("Query")
 )
 
 // QueryServiceClient is a client for the svc.query.v1.QueryService service.
 type QueryServiceClient interface {
 	SummarizeEvents(context.Context, *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error)
 	WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest]) (*connect.ServerStreamForClient[v1.WatchQueryResponse], error)
+	Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error)
+	Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error)
 }
 
 // NewQueryServiceClient constructs a client for the svc.query.v1.QueryService service. By default,
@@ -75,6 +83,18 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(queryServiceWatchQueryMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		parse: connect.NewClient[v1.ParseRequest, v1.ParseResponse](
+			httpClient,
+			baseURL+QueryServiceParseProcedure,
+			connect.WithSchema(queryServiceParseMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
+		query: connect.NewClient[v1.QueryRequest, v1.QueryResponse](
+			httpClient,
+			baseURL+QueryServiceQueryProcedure,
+			connect.WithSchema(queryServiceQueryMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -82,6 +102,8 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 type queryServiceClient struct {
 	summarizeEvents *connect.Client[v1.SummarizeEventsRequest, v1.SummarizeEventsResponse]
 	watchQuery      *connect.Client[v1.WatchQueryRequest, v1.WatchQueryResponse]
+	parse           *connect.Client[v1.ParseRequest, v1.ParseResponse]
+	query           *connect.Client[v1.QueryRequest, v1.QueryResponse]
 }
 
 // SummarizeEvents calls svc.query.v1.QueryService.SummarizeEvents.
@@ -94,10 +116,22 @@ func (c *queryServiceClient) WatchQuery(ctx context.Context, req *connect.Reques
 	return c.watchQuery.CallServerStream(ctx, req)
 }
 
+// Parse calls svc.query.v1.QueryService.Parse.
+func (c *queryServiceClient) Parse(ctx context.Context, req *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error) {
+	return c.parse.CallUnary(ctx, req)
+}
+
+// Query calls svc.query.v1.QueryService.Query.
+func (c *queryServiceClient) Query(ctx context.Context, req *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error) {
+	return c.query.CallUnary(ctx, req)
+}
+
 // QueryServiceHandler is an implementation of the svc.query.v1.QueryService service.
 type QueryServiceHandler interface {
 	SummarizeEvents(context.Context, *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error)
 	WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest], *connect.ServerStream[v1.WatchQueryResponse]) error
+	Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error)
+	Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error)
 }
 
 // NewQueryServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -118,12 +152,28 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(queryServiceWatchQueryMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	queryServiceParseHandler := connect.NewUnaryHandler(
+		QueryServiceParseProcedure,
+		svc.Parse,
+		connect.WithSchema(queryServiceParseMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
+	queryServiceQueryHandler := connect.NewUnaryHandler(
+		QueryServiceQueryProcedure,
+		svc.Query,
+		connect.WithSchema(queryServiceQueryMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.query.v1.QueryService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case QueryServiceSummarizeEventsProcedure:
 			queryServiceSummarizeEventsHandler.ServeHTTP(w, r)
 		case QueryServiceWatchQueryProcedure:
 			queryServiceWatchQueryHandler.ServeHTTP(w, r)
+		case QueryServiceParseProcedure:
+			queryServiceParseHandler.ServeHTTP(w, r)
+		case QueryServiceQueryProcedure:
+			queryServiceQueryHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -139,4 +189,12 @@ func (UnimplementedQueryServiceHandler) SummarizeEvents(context.Context, *connec
 
 func (UnimplementedQueryServiceHandler) WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest], *connect.ServerStream[v1.WatchQueryResponse]) error {
 	return connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.WatchQuery is not implemented"))
+}
+
+func (UnimplementedQueryServiceHandler) Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.Parse is not implemented"))
+}
+
+func (UnimplementedQueryServiceHandler) Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.Query is not implemented"))
 }

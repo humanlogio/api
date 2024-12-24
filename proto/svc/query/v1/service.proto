@@ -4,9 +4,12 @@ package svc.query.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
+import "types/v1/cursor.proto";
 import "types/v1/logevent.proto";
 import "types/v1/logquery.proto";
+import "types/v1/query.proto";
 import "types/v1/session.proto";
+import "types/v1/types.proto";
 
 option go_package = "svc/query/v1;queryv1";
 
@@ -14,6 +17,15 @@ service QueryService {
   rpc SummarizeEvents(SummarizeEventsRequest) returns (SummarizeEventsResponse);
 
   rpc WatchQuery(WatchQueryRequest) returns (stream WatchQueryResponse);
+
+  // rpc CreateWatch(CreateWatchRequest) returns (CreateWatchResponse);
+  // rpc GetWatch(GetWatchRequest) returns (GetWatchResponse);
+  // rpc UpdateWatch(UpdateWatchRequest) returns (UpdateWatchResponse);
+  // rpc ListWatch(ListWatchRequest) returns (ListWatchResponse);
+  // rpc DeleteWatch(DeleteWatchRequest) returns (GetWatchResponse);
+
+  rpc Parse(ParseRequest) returns (ParseResponse);
+  rpc Query(QueryRequest) returns (QueryResponse);
 }
 
 message SummarizeEventsRequest {
@@ -48,4 +60,24 @@ message WatchQueryRequest {
 
 message WatchQueryResponse {
   repeated types.v1.LogEventGroup events = 1;
+}
+
+message ParseRequest {
+  string query = 1;
+}
+
+message ParseResponse {
+  types.v1.LogQuery query = 1;
+}
+
+message QueryRequest {
+  int64 environment_id = 101;
+  types.v1.Cursor cursor = 102;
+  int32 limit = 103;
+  types.v1.LogQuery query = 2;
+}
+
+message QueryResponse {
+  types.v1.Cursor next = 100;
+  types.v1.Data data = 200;
 }
