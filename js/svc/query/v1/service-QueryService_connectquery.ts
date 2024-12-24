@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { SummarizeEventsRequest, SummarizeEventsResponse } from "./service_pb";
+import { ParseRequest, ParseResponse, QueryRequest, QueryResponse, SummarizeEventsRequest, SummarizeEventsResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.query.v1.QueryService.SummarizeEvents
@@ -15,6 +15,34 @@ export const summarizeEvents = {
   kind: MethodKind.Unary,
   I: SummarizeEventsRequest,
   O: SummarizeEventsResponse,
+  service: {
+    typeName: "svc.query.v1.QueryService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.query.v1.QueryService.Parse
+ */
+export const parse = {
+  localName: "parse",
+  name: "Parse",
+  kind: MethodKind.Unary,
+  I: ParseRequest,
+  O: ParseResponse,
+  service: {
+    typeName: "svc.query.v1.QueryService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.query.v1.QueryService.Query
+ */
+export const query = {
+  localName: "query",
+  name: "Query",
+  kind: MethodKind.Unary,
+  I: QueryRequest,
+  O: QueryResponse,
   service: {
     typeName: "svc.query.v1.QueryService"
   }

@@ -4,9 +4,11 @@ package svc.query.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
+import "types/v1/cursor.proto";
 import "types/v1/logevent.proto";
 import "types/v1/logquery.proto";
 import "types/v1/session.proto";
+import "types/v1/types.proto";
 
 option go_package = "svc/query/v1;queryv1";
 
@@ -14,6 +16,9 @@ service QueryService {
   rpc SummarizeEvents(SummarizeEventsRequest) returns (SummarizeEventsResponse);
 
   rpc WatchQuery(WatchQueryRequest) returns (stream WatchQueryResponse);
+
+  rpc Parse(ParseRequest) returns (ParseResponse);
+  rpc Query(QueryRequest) returns (QueryResponse);
 }
 
 message SummarizeEventsRequest {
@@ -48,4 +53,78 @@ message WatchQueryRequest {
 
 message WatchQueryResponse {
   repeated types.v1.LogEventGroup events = 1;
+}
+
+message ParseRequest {
+  string query = 1;
+}
+
+message ParseResponse {
+  types.v1.LogQuery query = 1;
+}
+
+message QueryRequest {
+  int64 environment_id = 101;
+  types.v1.Cursor cursor = 102;
+  int32 limit = 103;
+  types.v1.LogQuery query = 2;
+}
+
+message QueryResponse {
+  types.v1.Cursor next = 100;
+  Data data = 200;
+}
+
+message Data {
+  // Schema schema = 1;
+  oneof shape {
+    // subqueries means that the result must be obtained by re-issuing
+    // more queries.
+    SubQueries subqueries = 201;
+    // tabular is data that has a table header, followed by rows that match the
+    // header
+    Tabular tabular = 301;
+    // scalar timeseries data is a list of [ts, scalar] where scalar is usually
+    // a numeric value
+    ScalarTimeseries scalar_timeseries = 401;
+    // vector timeseries data is a list of [ts, [scalar0, ..., scalarN]] where
+    // scalar is usually a numeric value
+    VectorTimeseries vector_timeseries = 402;
+  }
+}
+
+message SubQueries {
+  repeated types.v1.LogQuery queries = 1;
+}
+
+message Tabular {
+  types.v1.Obj context = 1;
+  oneof shape {
+    types.v1.LogEventGroup log_events = 201;
+    types.v1.Table free_form = 202;
+  }
+}
+
+message ScalarTimeseries {
+  types.v1.Obj context = 1;
+  // scalars will contain only this type of value
+  types.v1.VarType type = 2;
+  repeated ScalarTimestamp scalars = 3;
+}
+
+message ScalarTimestamp {
+  google.protobuf.Timestamp ts = 1;
+  types.v1.Scalar scalar = 2;
+}
+
+message VectorTimeseries {
+  types.v1.Obj context = 1;
+  // vectors will contain only this type of value
+  types.v1.VarType type = 2;
+  repeated VectorTimestamp vectors = 3;
+}
+
+message VectorTimestamp {
+  google.protobuf.Timestamp ts = 1;
+  repeated types.v1.Scalar vector = 2;
 }

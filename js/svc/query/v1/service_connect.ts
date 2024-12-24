@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { SummarizeEventsRequest, SummarizeEventsResponse, WatchQueryRequest, WatchQueryResponse } from "./service_pb";
+import { ParseRequest, ParseResponse, QueryRequest, QueryResponse, SummarizeEventsRequest, SummarizeEventsResponse, WatchQueryRequest, WatchQueryResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -29,6 +29,24 @@ export const QueryService = {
       I: WatchQueryRequest,
       O: WatchQueryResponse,
       kind: MethodKind.ServerStreaming,
+    },
+    /**
+     * @generated from rpc svc.query.v1.QueryService.Parse
+     */
+    parse: {
+      name: "Parse",
+      I: ParseRequest,
+      O: ParseResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.query.v1.QueryService.Query
+     */
+    query: {
+      name: "Query",
+      I: QueryRequest,
+      O: QueryResponse,
+      kind: MethodKind.Unary,
     },
   }
 } as const;
