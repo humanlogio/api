@@ -43,3 +43,33 @@ message Obj {
 message Arr {
   repeated Val items = 1;
 }
+
+message Scalar {
+  VarType type = 100;
+  oneof kind {
+    string str = 201;
+    double f64 = 202;
+    int64 i64 = 203;
+    bool bool = 204;
+    google.protobuf.Timestamp ts = 207;
+    google.protobuf.Duration dur = 208;
+  }
+}
+
+message FlatKV {
+  string key = 1;
+  Scalar value = 2;
+}
+
+message FlatArr {
+  repeated Scalar items = 1;
+}
+
+message Table {
+  message Column {
+    string name = 1;
+    VarType type = 2;
+  }
+  repeated Column columns = 1;
+  repeated FlatArr rows = 2;
+}

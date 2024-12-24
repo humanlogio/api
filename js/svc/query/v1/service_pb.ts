@@ -7,6 +7,8 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { LogQuery } from "../../../types/v1/logquery_pb";
 import { LogEventGroup } from "../../../types/v1/logevent_pb";
+import { Cursor } from "../../../types/v1/cursor_pb";
+import { Data } from "../../../types/v1/query_pb";
 
 /**
  * @generated from message svc.query.v1.SummarizeEventsRequest
@@ -281,6 +283,178 @@ export class WatchQueryResponse extends Message<WatchQueryResponse> {
 
   static equals(a: WatchQueryResponse | PlainMessage<WatchQueryResponse> | undefined, b: WatchQueryResponse | PlainMessage<WatchQueryResponse> | undefined): boolean {
     return proto3.util.equals(WatchQueryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.ParseRequest
+ */
+export class ParseRequest extends Message<ParseRequest> {
+  /**
+   * @generated from field: string query = 1;
+   */
+  query = "";
+
+  constructor(data?: PartialMessage<ParseRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.ParseRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseRequest {
+    return new ParseRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParseRequest {
+    return new ParseRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParseRequest {
+    return new ParseRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ParseRequest | PlainMessage<ParseRequest> | undefined, b: ParseRequest | PlainMessage<ParseRequest> | undefined): boolean {
+    return proto3.util.equals(ParseRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.ParseResponse
+ */
+export class ParseResponse extends Message<ParseResponse> {
+  /**
+   * @generated from field: types.v1.LogQuery query = 1;
+   */
+  query?: LogQuery;
+
+  constructor(data?: PartialMessage<ParseResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.ParseResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "query", kind: "message", T: LogQuery },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseResponse {
+    return new ParseResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParseResponse {
+    return new ParseResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParseResponse {
+    return new ParseResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ParseResponse | PlainMessage<ParseResponse> | undefined, b: ParseResponse | PlainMessage<ParseResponse> | undefined): boolean {
+    return proto3.util.equals(ParseResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.QueryRequest
+ */
+export class QueryRequest extends Message<QueryRequest> {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: types.v1.Cursor cursor = 102;
+   */
+  cursor?: Cursor;
+
+  /**
+   * @generated from field: int32 limit = 103;
+   */
+  limit = 0;
+
+  /**
+   * @generated from field: types.v1.LogQuery query = 2;
+   */
+  query?: LogQuery;
+
+  constructor(data?: PartialMessage<QueryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.QueryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "cursor", kind: "message", T: Cursor },
+    { no: 103, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "query", kind: "message", T: LogQuery },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRequest {
+    return new QueryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryRequest {
+    return new QueryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryRequest {
+    return new QueryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QueryRequest | PlainMessage<QueryRequest> | undefined, b: QueryRequest | PlainMessage<QueryRequest> | undefined): boolean {
+    return proto3.util.equals(QueryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.QueryResponse
+ */
+export class QueryResponse extends Message<QueryResponse> {
+  /**
+   * @generated from field: types.v1.Cursor next = 100;
+   */
+  next?: Cursor;
+
+  /**
+   * @generated from field: types.v1.Data data = 200;
+   */
+  data?: Data;
+
+  constructor(data?: PartialMessage<QueryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.QueryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 100, name: "next", kind: "message", T: Cursor },
+    { no: 200, name: "data", kind: "message", T: Data },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryResponse {
+    return new QueryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryResponse {
+    return new QueryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryResponse {
+    return new QueryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QueryResponse | PlainMessage<QueryResponse> | undefined, b: QueryResponse | PlainMessage<QueryResponse> | undefined): boolean {
+    return proto3.util.equals(QueryResponse, a, b);
   }
 }
 
