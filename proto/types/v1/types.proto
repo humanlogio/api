@@ -5,16 +5,28 @@ package types.v1;
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
-enum VarType {
+enum ScalarType {
   unknown = 0;
   str = 1;
   f64 = 2;
   i64 = 3;
   bool = 4;
-  arr = 5;
-  obj = 6;
-  ts = 7;
-  dur = 8;
+  ts = 5;
+  dur = 6;
+}
+
+message VarType {
+  message ArrayType {
+    VarType items = 1;
+  }
+  message ObjectType {
+    map<string, VarType> kvs = 1;
+  }
+  oneof type {
+    ScalarType scalar = 1;
+    ArrayType array = 2;
+    ObjectType object = 3;
+  }
 }
 
 message KV {
@@ -65,11 +77,58 @@ message FlatArr {
   repeated Scalar items = 1;
 }
 
-message Table {
+message TableType {
   message Column {
     string name = 1;
     VarType type = 2;
   }
   repeated Column columns = 1;
+}
+
+message Table {
+  TableType type = 1;
   repeated FlatArr rows = 2;
+}
+
+message DataStreamType {
+  oneof type {
+    MultiDataStreamType multi = 1;
+    TabularType tabular = 2;
+    ScalarTimeseriesType scalar_timeseries = 3;
+    VectorTimeseriesType vector_timeseries = 4;
+  }
+}
+
+message MultiDataStreamType {
+  DataStreamType streams = 1;
+}
+
+message TabularType {
+  message LogEventType {
+    // log events contain,
+    // - machine_id
+    // - session_id
+    // - event_id (for ordering only within a machine/session pair
+    // - parsed_at (timestamp of when the log event was parsed)
+    // - timestamp (from a value found in the log, otherwise parsed_at)
+    // - level
+    // - message
+    // - key-value pairs
+  }
+  oneof type {
+    TableType table = 1;
+    LogEventType log_events = 2;
+  }
+}
+
+message ScalarTimeseriesType {
+  // each row will contain a timestamp along with a scalar
+  // value of this type
+  ScalarType type = 1;
+}
+
+message VectorTimeseriesType {
+  // each row will contain a timestamp along with a vector
+  // where each element is of this type
+  ScalarType vector_element_type = 1;
 }

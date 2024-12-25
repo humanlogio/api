@@ -5,9 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
-import { LogQuery } from "./logquery_pb";
-import { Obj, Scalar, Table, VarType } from "./types_pb";
 import { LogEventGroup } from "./logevent_pb";
+import { Obj, Scalar, Table, VarType } from "./types_pb";
 
 /**
  * @generated from message types.v1.Data
@@ -19,15 +18,6 @@ export class Data extends Message<Data> {
    * @generated from oneof types.v1.Data.shape
    */
   shape: {
-    /**
-     * subqueries means that the result must be obtained by re-issuing
-     * more queries.
-     *
-     * @generated from field: types.v1.SubQueries subqueries = 201;
-     */
-    value: SubQueries;
-    case: "subqueries";
-  } | {
     /**
      * tabular is data that has a table header, followed by rows that match the
      * header
@@ -64,7 +54,6 @@ export class Data extends Message<Data> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Data";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 201, name: "subqueries", kind: "message", T: SubQueries, oneof: "shape" },
     { no: 301, name: "tabular", kind: "message", T: Tabular, oneof: "shape" },
     { no: 401, name: "scalar_timeseries", kind: "message", T: ScalarTimeseries, oneof: "shape" },
     { no: 402, name: "vector_timeseries", kind: "message", T: VectorTimeseries, oneof: "shape" },
@@ -88,51 +77,9 @@ export class Data extends Message<Data> {
 }
 
 /**
- * @generated from message types.v1.SubQueries
- */
-export class SubQueries extends Message<SubQueries> {
-  /**
-   * @generated from field: repeated types.v1.LogQuery queries = 1;
-   */
-  queries: LogQuery[] = [];
-
-  constructor(data?: PartialMessage<SubQueries>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.SubQueries";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "queries", kind: "message", T: LogQuery, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SubQueries {
-    return new SubQueries().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SubQueries {
-    return new SubQueries().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SubQueries {
-    return new SubQueries().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: SubQueries | PlainMessage<SubQueries> | undefined, b: SubQueries | PlainMessage<SubQueries> | undefined): boolean {
-    return proto3.util.equals(SubQueries, a, b);
-  }
-}
-
-/**
  * @generated from message types.v1.Tabular
  */
 export class Tabular extends Message<Tabular> {
-  /**
-   * @generated from field: types.v1.Obj context = 1;
-   */
-  context?: Obj;
-
   /**
    * @generated from oneof types.v1.Tabular.shape
    */
@@ -158,7 +105,6 @@ export class Tabular extends Message<Tabular> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Tabular";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "context", kind: "message", T: Obj },
     { no: 201, name: "log_events", kind: "message", T: LogEventGroup, oneof: "shape" },
     { no: 202, name: "free_form", kind: "message", T: Table, oneof: "shape" },
   ]);
@@ -185,16 +131,11 @@ export class Tabular extends Message<Tabular> {
  */
 export class ScalarTimeseries extends Message<ScalarTimeseries> {
   /**
-   * @generated from field: types.v1.Obj context = 1;
-   */
-  context?: Obj;
-
-  /**
    * scalars will contain only this type of value
    *
    * @generated from field: types.v1.VarType type = 2;
    */
-  type = VarType.unknown;
+  type?: VarType;
 
   /**
    * @generated from field: repeated types.v1.ScalarTimestamp scalars = 3;
@@ -209,8 +150,7 @@ export class ScalarTimeseries extends Message<ScalarTimeseries> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.ScalarTimeseries";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "context", kind: "message", T: Obj },
-    { no: 2, name: "type", kind: "enum", T: proto3.getEnumType(VarType) },
+    { no: 2, name: "type", kind: "message", T: VarType },
     { no: 3, name: "scalars", kind: "message", T: ScalarTimestamp, repeated: true },
   ]);
 
@@ -288,7 +228,7 @@ export class VectorTimeseries extends Message<VectorTimeseries> {
    *
    * @generated from field: types.v1.VarType type = 2;
    */
-  type = VarType.unknown;
+  type?: VarType;
 
   /**
    * @generated from field: repeated types.v1.VectorTimestamp vectors = 3;
@@ -304,7 +244,7 @@ export class VectorTimeseries extends Message<VectorTimeseries> {
   static readonly typeName = "types.v1.VectorTimeseries";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "context", kind: "message", T: Obj },
-    { no: 2, name: "type", kind: "enum", T: proto3.getEnumType(VarType) },
+    { no: 2, name: "type", kind: "message", T: VarType },
     { no: 3, name: "vectors", kind: "message", T: VectorTimestamp, repeated: true },
   ]);
 
