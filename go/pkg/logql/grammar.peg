@@ -181,7 +181,7 @@ NUM_DIV     <- '/' Space
 NUM_MUL     <- '*' Space
 LOG_AND     <- '&&' Space
 LOG_OR      <- '||' Space
-CMP_EQ      <- '=' Space
+CMP_EQ      <- '==' Space
 CMP_NOTEQ   <- '!=' Space
 CMP_GT      <- '>' Space
 CMP_GTE     <- '>=' Space
