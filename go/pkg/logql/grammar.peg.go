@@ -3341,11 +3341,15 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position277, tokenIndex277
 			return false
 		},
-		/* 48 CMP_EQ <- <('=' Space)> */
+		/* 48 CMP_EQ <- <('=' '=' Space)> */
 		func() bool {
 			position279, tokenIndex279 := position, tokenIndex
 			{
 				position280 := position
+				if buffer[position] != rune('=') {
+					goto l279
+				}
+				position++
 				if buffer[position] != rune('=') {
 					goto l279
 				}
