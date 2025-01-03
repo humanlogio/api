@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
+	typesv1 "github.com/humanlogio/api/go/types/v1"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -19,127 +20,277 @@ func TestParse(t *testing.T) {
 		want *v1.LogQuery
 		err  error
 	}{
-		{`{session==1734666428038101000} msg=="AuthenticateUser"`, q(nil, nil, qctx(nil, eq(id("session"), i64(1734666428038101000))), eq(id("msg"), str("AuthenticateUser"))), nil},
-		{`{from==2006-01-02T15:04:05.999999999+07:00}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil, nil), nil},
-		{`{from==2006-01-02T15:04:05+07:00}`, q(ts("2006-01-02T15:04:05+07:00"), nil, nil, nil), nil},
-		{`{to==2006-01-02T15:04:05.999999999+07:00}`, q(nil, ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil), nil},
-		{`{to==2006-01-02T15:04:05+07:00}`, q(nil, ts("2006-01-02T15:04:05+07:00"), nil, nil), nil},
-		{`{from==2006-01-02T15:04:07+07:00 to==2006-01-02T15:04:05+07:00}`, q(ts("2006-01-02T15:04:07+07:00"), ts("2006-01-02T15:04:05+07:00"), nil, nil), nil},
-		{`{	from	==	2006-01-02T15:04:05.999999999+07:00}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil, nil), nil},
-		{`{	from	==	2006-01-02T15:04:05.999999999+07:00		}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil, nil), nil},
-		{`{	from	==	2006-01-02T15:04:05.999999999+07:00		to	==	2006-01-02T15:04:05.999999999+07:00		}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil), nil},
-		{`{session==1}`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
-		{`{session == 1}`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
-		{`{session ==1}`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
-		{`{session== 1}`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
-		{`{ session  == 1 }`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
-		{`{machine==1}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
-		{`{machine == 1}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
-		{`{machine ==1}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
-		{`{machine== 1}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
-		{`{ machine  == 1 }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
-		{`{machine==1 session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{machine ==1 session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{machine==1 session ==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{machine==1 session== 2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{ machine==1 session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{ machine ==1 session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{ machine==1 session ==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{ machine==1 session== 2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{ machine==1 session==2   }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{ machine ==1 session==2   }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{ machine==1 session ==2   }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{ machine==1 session== 2   }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{machine==1	session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{machine	==1	session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{machine==1	session	==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`{machine==1	session==	2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
-		{`lvl`, q(nil, nil, nil, id("lvl")), nil},
-		{`msg`, q(nil, nil, nil, id("msg")), nil},
-		{`kv`, q(nil, nil, nil, id("kv")), nil},
-		{`"hello world"`, q(nil, nil, nil, str("hello world")), nil},
-		{`true`, q(nil, nil, nil, boo(true)), nil},
-		{`false`, q(nil, nil, nil, boo(false)), nil},
-		{`.110`, q(nil, nil, nil, f64(.11)), nil},
-		{`1111.0`, q(nil, nil, nil, f64(1111)), nil},
-		{`10.3e9`, q(nil, nil, nil, f64(10.3e9)), nil},
-		{`-0`, q(nil, nil, nil, neg(i64(0))), nil},
-		{`-10000`, q(nil, nil, nil, neg(i64(10000))), nil},
-		{`0`, q(nil, nil, nil, i64(0)), nil},
-		{`1`, q(nil, nil, nil, i64(1)), nil},
-		{`-1`, q(nil, nil, nil, neg(i64(1))), nil},
-		{`""`, q(nil, nil, nil, str("")), nil},
-		{`"hello world"`, q(nil, nil, nil, str("hello world")), nil},
-		{`"hello world\n\t"`, q(nil, nil, nil, str("hello world\n\t")), nil},
-		{`2006-01-02T15:04:05.999999999+07:00`, q(nil, nil, nil, tse("2006-01-02T15:04:05.999999999+07:00")), nil},
-		{`ts:2006-01-02T15:04:05.999999999+07:00`, q(nil, nil, nil, tse("2006-01-02T15:04:05.999999999+07:00")), nil},
-		{`{"hello":"world", "hello2":1}`, q(nil, nil, nil, obj(kv("hello", v1.ValStr("world")), kv("hello2", v1.ValI64(1)))), nil},
-		{`{"hello":"world"}`, q(nil, nil, nil, obj(kv("hello", v1.ValStr("world")))), nil},
-		{`{"hello":1}`, q(nil, nil, nil, obj(kv("hello", v1.ValI64(1)))), nil},
-		{`{"hello":ts:2006-01-02T15:04:05.999999999+07:00}`, q(nil, nil, nil, obj(kv("hello", v1.ValTimestamp(ts("2006-01-02T15:04:05.999999999+07:00"))))), nil},
-		{`{"hello":2006-01-02T15:04:05.999999999+07:00}`, q(nil, nil, nil, obj(kv("hello", v1.ValTimestamp(ts("2006-01-02T15:04:05.999999999+07:00"))))), nil},
-		{`{}`, q(nil, nil, nil, obj()), nil},
-		{`[]`, q(nil, nil, nil, arr()), nil},
-		{`[1, "deux", 3.0]`, q(nil, nil, nil, arr(v1.ValI64(1), v1.ValStr("deux"), v1.ValF64(3.0))), nil},
-		{`[[]]`, q(nil, nil, nil, arr(v1.ValArr())), nil},
-		{`[[],[]]`, q(nil, nil, nil, arr(v1.ValArr(), v1.ValArr())), nil},
-		{`[[1]]`, q(nil, nil, nil, arr(v1.ValArr(v1.ValI64(1)))), nil},
-		{`[[],[1],[2,3]]`, q(nil, nil, nil, arr(v1.ValArr(), v1.ValArr(v1.ValI64(1)), v1.ValArr(v1.ValI64(2), v1.ValI64(3)))), nil},
-		{`[{}]`, q(nil, nil, nil, arr(v1.ValObj())), nil},
-		{`[{"hello":[]}]`, q(nil, nil, nil, arr(v1.ValObj(kv("hello", v1.ValArr())))), nil},
-		{`[{"hello":[{},{}]}]`, q(nil, nil, nil, arr(v1.ValObj(kv("hello", v1.ValArr(v1.ValObj(), v1.ValObj()))))), nil},
-		{`1000s`, q(nil, nil, nil, dure(1000*time.Second)), nil},
-		{`1.5us`, q(nil, nil, nil, dure(1500*time.Nanosecond)), nil},
-		{`1.5µs`, q(nil, nil, nil, dure(1500*time.Nanosecond)), nil},
-		{`1.5ms`, q(nil, nil, nil, dure(1500*time.Microsecond)), nil},
-		{`15ns`, q(nil, nil, nil, dure(15*time.Nanosecond)), nil},
-		{`1.5s`, q(nil, nil, nil, dure(1500*time.Millisecond)), nil},
-		{`-1.5s`, q(nil, nil, nil, neg(dure(1500*time.Millisecond))), nil},
-		{`-1.5m`, q(nil, nil, nil, neg(dure(90*time.Second))), nil},
-		{`-1.5h`, q(nil, nil, nil, neg(dure(90*time.Minute))), nil},
-		{`now()`, q(nil, nil, nil, fn("now")), nil},
-		{`now(1h)`, q(nil, nil, nil, fn("now", dure(1*time.Hour))), nil},
-		{`fn(fn1(),fn2(fn3()))`, q(nil, nil, nil, fn("fn", fn("fn1"), fn("fn2", fn("fn3")))), nil},
-		{`len(msg)`, q(nil, nil, nil, fn("len", id("msg"))), nil},
-		{`!true`, q(nil, nil, nil, not(boo(true))), nil},
-		{`! true`, q(nil, nil, nil, not(boo(true))), nil},
-		{`!(eval())`, q(nil, nil, nil, not(fn("eval"))), nil},
-		{`!( eval())`, q(nil, nil, nil, not(fn("eval"))), nil},
-		{`1 + 2`, q(nil, nil, nil, add(i64(1), i64(2))), nil},
-		{`1 + 2 + 3`, q(nil, nil, nil, add(add(i64(1), i64(2)), i64(3))), nil},
-		{`1 - 2`, q(nil, nil, nil, sub(i64(1), i64(2))), nil},
-		{`1 - 2 - 3`, q(nil, nil, nil, sub(sub(i64(1), i64(2)), i64(3))), nil},
-		{`1 * 2`, q(nil, nil, nil, mul(i64(1), i64(2))), nil},
-		{`-1 * 2`, q(nil, nil, nil, mul(neg(i64(1)), i64(2))), nil},
-		{`1 / 2`, q(nil, nil, nil, div(i64(1), i64(2))), nil},
-		{`1 + 2 * 3`, q(nil, nil, nil, add(i64(1), mul(i64(2), i64(3)))), nil},
-		{`1 - 2 * 3`, q(nil, nil, nil, sub(i64(1), mul(i64(2), i64(3)))), nil},
-		{`1 + 2 / 3`, q(nil, nil, nil, add(i64(1), div(i64(2), i64(3)))), nil},
-		{`1 - 2 / 3`, q(nil, nil, nil, sub(i64(1), div(i64(2), i64(3)))), nil},
-		{`1 == 2`, q(nil, nil, nil, eq(i64(1), i64(2))), nil},
-		{`1 != 2`, q(nil, nil, nil, noteq(i64(1), i64(2))), nil},
-		{`1 > 2`, q(nil, nil, nil, gt(i64(1), i64(2))), nil},
-		{`1 >= 2`, q(nil, nil, nil, gte(i64(1), i64(2))), nil},
-		{`1 < 2`, q(nil, nil, nil, lt(i64(1), i64(2))), nil},
-		{`1 <= 2`, q(nil, nil, nil, lte(i64(1), i64(2))), nil},
-		{`true && false`, q(nil, nil, nil, and(boo(true), boo(false))), nil},
-		{`true || false`, q(nil, nil, nil, or(boo(true), boo(false))), nil},
-		{`true && 1 > 2`, q(nil, nil, nil, and(boo(true), gt(i64(1), i64(2)))), nil},
-		{`1 > 2 && true`, q(nil, nil, nil, and(gt(i64(1), i64(2)), boo(true))), nil},
-		{`!true || false`, q(nil, nil, nil, or(not(boo(true)), boo(false))), nil},
-		{`!(true || false)`, q(nil, nil, nil, not(or(boo(true), boo(false)))), nil},
-		{`true && !false`, q(nil, nil, nil, and(boo(true), not(boo(false)))), nil},
-		{`!(true && false)`, q(nil, nil, nil, not(and(boo(true), boo(false)))), nil},
-		{`1 in [1,2,3]`, q(nil, nil, nil, setin(i64(1), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3)))), nil},
-		{`1 not in [1,2,3]`, q(nil, nil, nil, setnotin(i64(1), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3)))), nil},
-		{`true || false || 1`, q(nil, nil, nil, or(or(boo(true), boo(false)), i64(1))), nil},
-		{`len(msg) > 0 | true`, q(nil, nil, nil, pipe(gt(fn("len", id("msg")), i64(0)), boo(true))), nil},
-		{`len(msg) > 0 | true | lvl in [1,2,3]`, q(nil, nil, nil, pipe(pipe(gt(fn("len", id("msg")), i64(0)), boo(true)), setin(id("lvl"), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3))))), nil},
-		{`kv["hello"]["world"][0]`, q(nil, nil, nil, idx(idx(idx(id("kv"), str("hello")), str("world")), i64(0))), nil},
-		{` (  kv ["hello"] ["world"] [0]  ) `, q(nil, nil, nil, idx(idx(idx(id("kv"), str("hello")), str("world")), i64(0))), nil},
-		{`msg=="hello world" | len(lvl) > 0`, q(nil, nil, nil, pipe(eq(id("msg"), str("hello world")), gt(fn("len", id("lvl")), i64(0)))), nil},
-		{`kv.hello.world`, q(nil, nil, nil, selector(selector(id("kv"), "hello"), "world")), nil},
-		{`lvl.k.v | len(lvl)`, q(nil, nil, nil, pipe(selector(selector(id("lvl"), "k"), "v"), fn("len", id("lvl")))), nil},
+		{`{ from == now()-1s }`, q(tr(sub(fn("now"), dure(time.Second)), nil), nil, nil), nil},
+		{
+			`{session==1734666428038101000} filter msg=="AuthenticateUser"`,
+			q(
+				nil,
+				qctx(nil, eq(id("session"), i64(1734666428038101000))),
+				stmts(
+					filter(
+						eq(
+							id("msg"),
+							str("AuthenticateUser"),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`{session==1734666428038101000} filter msg=="AuthenticateUser" | filter msg=="AuthenticateUser"`,
+			q(
+				nil,
+				qctx(nil, eq(id("session"), i64(1734666428038101000))),
+				stmts(
+					filter(
+						eq(
+							id("msg"),
+							str("AuthenticateUser"),
+						),
+					),
+					filter(
+						eq(
+							id("msg"),
+							str("AuthenticateUser"),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`{session==1734666428038101000} where msg=="AuthenticateUser"`,
+			q(
+				nil,
+				qctx(nil, eq(id("session"), i64(1734666428038101000))),
+				stmts(
+					filter(
+						eq(
+							id("msg"),
+							str("AuthenticateUser"),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`where msg=="AuthenticateUser"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					filter(
+						eq(
+							id("msg"),
+							str("AuthenticateUser"),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`summarize count()`,
+			q(
+				nil,
+				nil,
+				stmts(
+					summarize(
+						fnc("count"),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`summarize count() by msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					summarize(
+						fnc("count"),
+						id("msg"),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`summarize count() by msg,lvl`,
+			q(
+				nil,
+				nil,
+				stmts(
+					summarize(
+						fnc("count"),
+						id("msg"),
+						id("lvl"),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`where msg=="request start" | summarize avg(kv["req_ms"]) by msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					filter(
+						eq(
+							id("msg"),
+							str("request start"),
+						),
+					),
+					summarize(
+						fnc("avg",
+							idx(id("kv"), str("req_ms")),
+						),
+						id("msg"),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`project msg_len = len(msg)`,
+			q(
+				nil,
+				nil,
+				stmts(
+					project(
+						projection(
+							"msg_len",
+							fn("len", id("msg")),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		// {`{from==2006-01-02T15:04:05.999999999+07:00}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil, nil), nil},
+		// {`{from==2006-01-02T15:04:05+07:00}`, q(ts("2006-01-02T15:04:05+07:00"), nil, nil, nil), nil},
+		// {`{to==2006-01-02T15:04:05.999999999+07:00}`, q(nil, ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil), nil},
+		// {`{to==2006-01-02T15:04:05+07:00}`, q(nil, ts("2006-01-02T15:04:05+07:00"), nil, nil), nil},
+		// {`{from==2006-01-02T15:04:07+07:00 to==2006-01-02T15:04:05+07:00}`, q(ts("2006-01-02T15:04:07+07:00"), ts("2006-01-02T15:04:05+07:00"), nil, nil), nil},
+		// {`{	from	==	2006-01-02T15:04:05.999999999+07:00}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil, nil), nil},
+		// {`{	from	==	2006-01-02T15:04:05.999999999+07:00		}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil, nil), nil},
+		// {`{	from	==	2006-01-02T15:04:05.999999999+07:00		to	==	2006-01-02T15:04:05.999999999+07:00		}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil), nil},
+		// {`{session==1}`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
+		// {`{session == 1}`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
+		// {`{session ==1}`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
+		// {`{session== 1}`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
+		// {`{ session  == 1 }`, q(nil, nil, qctx(nil, eq(id("session"), i64(1))), nil), nil},
+		// {`{machine==1}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
+		// {`{machine == 1}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
+		// {`{machine ==1}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
+		// {`{machine== 1}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
+		// {`{ machine  == 1 }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), nil), nil), nil},
+		// {`{machine==1 session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{machine ==1 session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{machine==1 session ==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{machine==1 session== 2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{ machine==1 session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{ machine ==1 session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{ machine==1 session ==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{ machine==1 session== 2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{ machine==1 session==2   }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{ machine ==1 session==2   }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{ machine==1 session ==2   }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{ machine==1 session== 2   }`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{machine==1	session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{machine	==1	session==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{machine==1	session	==2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`{machine==1	session==	2}`, q(nil, nil, qctx(eq(id("machine"), i64(1)), eq(id("session"), i64(2))), nil), nil},
+		// {`lvl`, q(nil, nil, nil, id("lvl")), nil},
+		// {`msg`, q(nil, nil, nil, id("msg")), nil},
+		// {`kv`, q(nil, nil, nil, id("kv")), nil},
+		// {`"hello world"`, q(nil, nil, nil, str("hello world")), nil},
+		// {`true`, q(nil, nil, nil, boo(true)), nil},
+		// {`false`, q(nil, nil, nil, boo(false)), nil},
+		// {`.110`, q(nil, nil, nil, f64(.11)), nil},
+		// {`1111.0`, q(nil, nil, nil, f64(1111)), nil},
+		// {`10.3e9`, q(nil, nil, nil, f64(10.3e9)), nil},
+		// {`-0`, q(nil, nil, nil, neg(i64(0))), nil},
+		// {`-10000`, q(nil, nil, nil, neg(i64(10000))), nil},
+		// {`0`, q(nil, nil, nil, i64(0)), nil},
+		// {`1`, q(nil, nil, nil, i64(1)), nil},
+		// {`-1`, q(nil, nil, nil, neg(i64(1))), nil},
+		// {`""`, q(nil, nil, nil, str("")), nil},
+		// {`"hello world"`, q(nil, nil, nil, str("hello world")), nil},
+		// {`"hello world\n\t"`, q(nil, nil, nil, str("hello world\n\t")), nil},
+		// {`2006-01-02T15:04:05.999999999+07:00`, q(nil, nil, nil, tse("2006-01-02T15:04:05.999999999+07:00")), nil},
+		// {`ts:2006-01-02T15:04:05.999999999+07:00`, q(nil, nil, nil, tse("2006-01-02T15:04:05.999999999+07:00")), nil},
+		// {`{"hello":"world", "hello2":1}`, q(nil, nil, nil, obj(kv("hello", v1.ValStr("world")), kv("hello2", v1.ValI64(1)))), nil},
+		// {`{"hello":"world"}`, q(nil, nil, nil, obj(kv("hello", v1.ValStr("world")))), nil},
+		// {`{"hello":1}`, q(nil, nil, nil, obj(kv("hello", v1.ValI64(1)))), nil},
+		// {`{"hello":ts:2006-01-02T15:04:05.999999999+07:00}`, q(nil, nil, nil, obj(kv("hello", v1.ValTimestamp(ts("2006-01-02T15:04:05.999999999+07:00"))))), nil},
+		// {`{"hello":2006-01-02T15:04:05.999999999+07:00}`, q(nil, nil, nil, obj(kv("hello", v1.ValTimestamp(ts("2006-01-02T15:04:05.999999999+07:00"))))), nil},
+		// {`{}`, q(nil, nil, nil, obj()), nil},
+		// {`[]`, q(nil, nil, nil, arr()), nil},
+		// {`[1, "deux", 3.0]`, q(nil, nil, nil, arr(v1.ValI64(1), v1.ValStr("deux"), v1.ValF64(3.0))), nil},
+		// {`[[]]`, q(nil, nil, nil, arr(v1.ValArr())), nil},
+		// {`[[],[]]`, q(nil, nil, nil, arr(v1.ValArr(), v1.ValArr())), nil},
+		// {`[[1]]`, q(nil, nil, nil, arr(v1.ValArr(v1.ValI64(1)))), nil},
+		// {`[[],[1],[2,3]]`, q(nil, nil, nil, arr(v1.ValArr(), v1.ValArr(v1.ValI64(1)), v1.ValArr(v1.ValI64(2), v1.ValI64(3)))), nil},
+		// {`[{}]`, q(nil, nil, nil, arr(v1.ValObj())), nil},
+		// {`[{"hello":[]}]`, q(nil, nil, nil, arr(v1.ValObj(kv("hello", v1.ValArr())))), nil},
+		// {`[{"hello":[{},{}]}]`, q(nil, nil, nil, arr(v1.ValObj(kv("hello", v1.ValArr(v1.ValObj(), v1.ValObj()))))), nil},
+		// {`1000s`, q(nil, nil, nil, dure(1000*time.Second)), nil},
+		// {`1.5us`, q(nil, nil, nil, dure(1500*time.Nanosecond)), nil},
+		// {`1.5µs`, q(nil, nil, nil, dure(1500*time.Nanosecond)), nil},
+		// {`1.5ms`, q(nil, nil, nil, dure(1500*time.Microsecond)), nil},
+		// {`15ns`, q(nil, nil, nil, dure(15*time.Nanosecond)), nil},
+		// {`1.5s`, q(nil, nil, nil, dure(1500*time.Millisecond)), nil},
+		// {`-1.5s`, q(nil, nil, nil, neg(dure(1500*time.Millisecond))), nil},
+		// {`-1.5m`, q(nil, nil, nil, neg(dure(90*time.Second))), nil},
+		// {`-1.5h`, q(nil, nil, nil, neg(dure(90*time.Minute))), nil},
+		// {`now()`, q(nil, nil, nil, fn("now")), nil},
+		// {`now(1h)`, q(nil, nil, nil, fn("now", dure(1*time.Hour))), nil},
+		// {`fn(fn1(),fn2(fn3()))`, q(nil, nil, nil, fn("fn", fn("fn1"), fn("fn2", fn("fn3")))), nil},
+		// {`len(msg)`, q(nil, nil, nil, fn("len", id("msg"))), nil},
+		// {`!true`, q(nil, nil, nil, not(boo(true))), nil},
+		// {`! true`, q(nil, nil, nil, not(boo(true))), nil},
+		// {`!(eval())`, q(nil, nil, nil, not(fn("eval"))), nil},
+		// {`!( eval())`, q(nil, nil, nil, not(fn("eval"))), nil},
+		// {`1 + 2`, q(nil, nil, nil, add(i64(1), i64(2))), nil},
+		// {`1 + 2 + 3`, q(nil, nil, nil, add(add(i64(1), i64(2)), i64(3))), nil},
+		// {`1 - 2`, q(nil, nil, nil, sub(i64(1), i64(2))), nil},
+		// {`1 - 2 - 3`, q(nil, nil, nil, sub(sub(i64(1), i64(2)), i64(3))), nil},
+		// {`1 * 2`, q(nil, nil, nil, mul(i64(1), i64(2))), nil},
+		// {`-1 * 2`, q(nil, nil, nil, mul(neg(i64(1)), i64(2))), nil},
+		// {`1 / 2`, q(nil, nil, nil, div(i64(1), i64(2))), nil},
+		// {`1 + 2 * 3`, q(nil, nil, nil, add(i64(1), mul(i64(2), i64(3)))), nil},
+		// {`1 - 2 * 3`, q(nil, nil, nil, sub(i64(1), mul(i64(2), i64(3)))), nil},
+		// {`1 + 2 / 3`, q(nil, nil, nil, add(i64(1), div(i64(2), i64(3)))), nil},
+		// {`1 - 2 / 3`, q(nil, nil, nil, sub(i64(1), div(i64(2), i64(3)))), nil},
+		// {`1 == 2`, q(nil, nil, nil, eq(i64(1), i64(2))), nil},
+		// {`1 != 2`, q(nil, nil, nil, noteq(i64(1), i64(2))), nil},
+		// {`1 > 2`, q(nil, nil, nil, gt(i64(1), i64(2))), nil},
+		// {`1 >= 2`, q(nil, nil, nil, gte(i64(1), i64(2))), nil},
+		// {`1 < 2`, q(nil, nil, nil, lt(i64(1), i64(2))), nil},
+		// {`1 <= 2`, q(nil, nil, nil, lte(i64(1), i64(2))), nil},
+		// {`true && false`, q(nil, nil, nil, and(boo(true), boo(false))), nil},
+		// {`true || false`, q(nil, nil, nil, or(boo(true), boo(false))), nil},
+		// {`true && 1 > 2`, q(nil, nil, nil, and(boo(true), gt(i64(1), i64(2)))), nil},
+		// {`1 > 2 && true`, q(nil, nil, nil, and(gt(i64(1), i64(2)), boo(true))), nil},
+		// {`!true || false`, q(nil, nil, nil, or(not(boo(true)), boo(false))), nil},
+		// {`!(true || false)`, q(nil, nil, nil, not(or(boo(true), boo(false)))), nil},
+		// {`true && !false`, q(nil, nil, nil, and(boo(true), not(boo(false)))), nil},
+		// {`!(true && false)`, q(nil, nil, nil, not(and(boo(true), boo(false)))), nil},
+		// {`1 in [1,2,3]`, q(nil, nil, nil, setin(i64(1), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3)))), nil},
+		// {`1 not in [1,2,3]`, q(nil, nil, nil, setnotin(i64(1), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3)))), nil},
+		// {`true || false || 1`, q(nil, nil, nil, or(or(boo(true), boo(false)), i64(1))), nil},
+		// {`len(msg) > 0 | true`, q(nil, nil, nil, pipe(gt(fn("len", id("msg")), i64(0)), boo(true))), nil},
+		// {`len(msg) > 0 | true | lvl in [1,2,3]`, q(nil, nil, nil, pipe(pipe(gt(fn("len", id("msg")), i64(0)), boo(true)), setin(id("lvl"), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3))))), nil},
+		// {`kv["hello"]["world"][0]`, q(nil, nil, nil, idx(idx(idx(id("kv"), str("hello")), str("world")), i64(0))), nil},
+		// {` (  kv ["hello"] ["world"] [0]  ) `, q(nil, nil, nil, idx(idx(idx(id("kv"), str("hello")), str("world")), i64(0))), nil},
+		// {`msg=="hello world" | len(lvl) > 0`, q(nil, nil, nil, pipe(eq(id("msg"), str("hello world")), gt(fn("len", id("lvl")), i64(0)))), nil},
+		// {`kv.hello.world`, q(nil, nil, nil, selector(selector(id("kv"), "hello"), "world")), nil},
+		// {`lvl.k.v | len(lvl)`, q(nil, nil, nil, pipe(selector(selector(id("lvl"), "k"), "v"), fn("len", id("lvl")))), nil},
 		// not supported yet (not hard, just a lot of noisy work)
 		// {`{"hello":now()}`, nil, nil},
 	}
@@ -185,8 +336,47 @@ func dure(v time.Duration) *v1.Expr {
 	return v1.ExprLiteral(v1.ValDuration(v))
 }
 
-func q(f, t *timestamppb.Timestamp, ctx *v1.Context, e *v1.Expr) *v1.LogQuery {
-	return &v1.LogQuery{From: f, To: t, Context: ctx, Query: e}
+func q(tr *v1.Timerange, ctx *v1.Context, s *v1.Statements) *v1.LogQuery {
+	return &v1.LogQuery{Timerange: tr, Context: ctx, Query: s}
+}
+
+func stmts(stmts ...*v1.Statement) *v1.Statements {
+	return &v1.Statements{Statements: stmts}
+}
+
+func filter(e *v1.Expr) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Filter{
+		Filter: &v1.FilterOperator{Expr: e},
+	}}
+}
+
+func projection(column string, value *v1.Expr) *v1.ProjectOperator_Projection {
+	return &v1.ProjectOperator_Projection{
+		Column: &v1.Identifier{Name: column},
+		Value:  value,
+	}
+}
+
+func project(pjs ...*v1.ProjectOperator_Projection) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Project{
+		Project: &v1.ProjectOperator{Projections: pjs},
+	}}
+}
+
+func summarize(fn *v1.FuncCall, by ...*v1.Expr) *v1.Statement {
+	op := &v1.SummarizeOperator{
+		AggregateFunction: fn,
+	}
+	if len(by) > 0 {
+		op.By = &v1.SummarizeOperator_ByOperator{Scalars: by}
+	}
+	return &v1.Statement{Stmt: &v1.Statement_Summarize{
+		Summarize: op,
+	}}
+}
+
+func tr(from, to *v1.Expr) *v1.Timerange {
+	return &typesv1.Timerange{From: from, To: to}
 }
 
 func qctx(m, s *v1.Expr) *v1.Context {
@@ -257,10 +447,6 @@ func setnotin(lhs, rhs *v1.Expr) *v1.Expr {
 	return v1.ExprBinary(lhs, v1.BinaryOp_SET_NOTIN, rhs)
 }
 
-func pipe(head, tail *v1.Expr) *v1.Expr {
-	return v1.ExprPipe(head, tail)
-}
-
 func selector(x *v1.Expr, id string) *v1.Expr {
 	return v1.ExprSelector(x, id)
 }
@@ -299,6 +485,10 @@ func arr(v ...*v1.Val) *v1.Expr {
 
 func fn(name string, e ...*v1.Expr) *v1.Expr {
 	return v1.ExprFuncCall(name, e...)
+}
+
+func fnc(name string, e ...*v1.Expr) *v1.FuncCall {
+	return &v1.FuncCall{Name: name, Args: e}
 }
 
 func idx(x *v1.Expr, index *v1.Expr) *v1.Expr {
