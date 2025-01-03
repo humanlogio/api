@@ -45,10 +45,3 @@ func ExprIndexor(x *Expr, index *Expr) *Expr {
 		Index: index,
 	}}}
 }
-
-func ExprPipe(head, tail *Expr) *Expr {
-	return &Expr{Expr: &Expr_Pipe{Pipe: &Pipe{
-		Head: head,
-		Tail: tail,
-	}}}
-}

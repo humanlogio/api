@@ -14,7 +14,7 @@ function main() {
     # env +node@20
 
     generate_peg
-    generate_protobuf
+    # generate_protobuf
 }
 
 function generate_protobuf() {
