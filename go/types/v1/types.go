@@ -16,6 +16,68 @@ func EqualTypes(a, b *VarType) bool {
 	return proto.Equal(a, b)
 }
 
+func EqualVal(a, b *Val) bool {
+	switch ak := a.Kind.(type) {
+	default:
+		return false
+	case *Val_Str:
+		return ak.Str == b.GetStr()
+	case *Val_F64:
+		return ak.F64 == b.GetF64()
+	case *Val_I64:
+		return ak.I64 == b.GetI64()
+	case *Val_Bool:
+		return ak.Bool == b.GetBool()
+	case *Val_Ts:
+		return ak.Ts.AsTime().Equal(b.GetTs().AsTime())
+	case *Val_Dur:
+		return ak.Dur == b.GetDur()
+	case *Val_Arr:
+		if len(ak.Arr.Items) != len(b.GetArr().Items) {
+			return false
+		}
+		for i, ael := range ak.Arr.Items {
+			bel := b.GetArr().Items[i]
+			if !EqualVal(ael, bel) {
+				return false
+			}
+		}
+		return true
+	case *Val_Obj:
+		if len(ak.Obj.Kvs) != len(b.GetObj().Kvs) {
+			return false
+		}
+		// for simplicity, order matters
+		// TODO: make it so the order doesn't matter
+		for i, akv := range ak.Obj.Kvs {
+			bkv := b.GetObj().Kvs[i]
+			if akv.Key != bkv.Key {
+				return false
+			}
+			if !EqualVal(akv.Value, bkv.Value) {
+				return false
+			}
+		}
+		return true
+	case *Val_Map:
+		if len(ak.Map.Entries) != len(b.GetMap().Entries) {
+			return false
+		}
+		// for simplicity, order matters
+		// TODO: make it so the order doesn't matter
+		for i, akv := range ak.Map.Entries {
+			bkv := b.GetMap().Entries[i]
+			if !EqualVal(akv.Key, bkv.Key) {
+				return false
+			}
+			if !EqualVal(akv.Value, bkv.Value) {
+				return false
+			}
+		}
+		return true
+	}
+}
+
 func TypeUnknown() *VarType {
 	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_unknown}}
 }
@@ -68,6 +130,10 @@ func TypeObjFromKVs(v ...*KV) *VarType {
 		types[kv.Key] = kv.Value.Type
 	}
 	return TypeObj(types)
+}
+
+func TypeMap(k, v *VarType) *VarType {
+	return &VarType{Type: &VarType_Map{Map: &VarType_MapType{Key: k, Value: v}}}
 }
 
 func ValStr(v string) *Val {

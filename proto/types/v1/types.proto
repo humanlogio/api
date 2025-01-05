@@ -22,10 +22,15 @@ message VarType {
   message ObjectType {
     map<string, VarType> kvs = 1;
   }
+  message MapType {
+    VarType key = 1;
+    VarType value = 2;
+  }
   oneof type {
     ScalarType scalar = 1;
     ArrayType array = 2;
     ObjectType object = 3;
+    MapType map = 4;
   }
 }
 
@@ -41,10 +46,11 @@ message Val {
     double f64 = 202;
     int64 i64 = 203;
     bool bool = 204;
-    Arr arr = 205;
-    Obj obj = 206;
-    google.protobuf.Timestamp ts = 207;
-    google.protobuf.Duration dur = 208;
+    google.protobuf.Timestamp ts = 205;
+    google.protobuf.Duration dur = 206;
+    Arr arr = 207;
+    Obj obj = 208;
+    Map map = 209;
   }
 }
 
@@ -54,6 +60,14 @@ message Obj {
 
 message Arr {
   repeated Val items = 1;
+}
+
+message Map {
+  message Entry {
+    Val key = 1;
+    Val value = 2;
+  }
+  repeated Entry entries = 1;
 }
 
 message Scalar {
@@ -94,8 +108,8 @@ message DataStreamType {
   oneof type {
     MultiDataStreamType multi = 1;
     TabularType tabular = 2;
-    ScalarTimeseriesType scalar_timeseries = 3;
-    VectorTimeseriesType vector_timeseries = 4;
+    VarType single_value = 3;
+    Timeseries timeseries = 5;
   }
 }
 
@@ -121,14 +135,8 @@ message TabularType {
   }
 }
 
-message ScalarTimeseriesType {
-  // each row will contain a timestamp along with a scalar
+message Timeseries {
+  // each row will contain a timestamp along with a value
   // value of this type
-  ScalarType type = 1;
-}
-
-message VectorTimeseriesType {
-  // each row will contain a timestamp along with a vector
-  // where each element is of this type
-  ScalarType vector_element_type = 1;
+  VarType type = 1;
 }
