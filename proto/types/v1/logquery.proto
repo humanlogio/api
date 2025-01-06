@@ -28,6 +28,7 @@ message Context {
 message Statements {
   // statements are `|` separated
   repeated Statement statements = 1;
+  RenderStatement render = 2;
 }
 
 message Statement {
@@ -56,6 +57,19 @@ message ProjectOperator {
     optional Expr value = 2;
   }
   repeated Projection projections = 1;
+}
+
+message RenderStatement {
+  oneof stmt {
+    SplitOperator split = 1;
+  }
+}
+
+message SplitOperator {
+  message ByOperator {
+    repeated Expr scalars = 1;
+  }
+  ByOperator by = 2;
 }
 
 message Expr {

@@ -153,6 +153,11 @@ export class Statements extends Message<Statements> {
    */
   statements: Statement[] = [];
 
+  /**
+   * @generated from field: types.v1.RenderStatement render = 2;
+   */
+  render?: RenderStatement;
+
   constructor(data?: PartialMessage<Statements>) {
     super();
     proto3.util.initPartial(data, this);
@@ -162,6 +167,7 @@ export class Statements extends Message<Statements> {
   static readonly typeName = "types.v1.Statements";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "statements", kind: "message", T: Statement, repeated: true },
+    { no: 2, name: "render", kind: "message", T: RenderStatement },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Statements {
@@ -432,6 +438,123 @@ export class ProjectOperator_Projection extends Message<ProjectOperator_Projecti
 
   static equals(a: ProjectOperator_Projection | PlainMessage<ProjectOperator_Projection> | undefined, b: ProjectOperator_Projection | PlainMessage<ProjectOperator_Projection> | undefined): boolean {
     return proto3.util.equals(ProjectOperator_Projection, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.RenderStatement
+ */
+export class RenderStatement extends Message<RenderStatement> {
+  /**
+   * @generated from oneof types.v1.RenderStatement.stmt
+   */
+  stmt: {
+    /**
+     * @generated from field: types.v1.SplitOperator split = 1;
+     */
+    value: SplitOperator;
+    case: "split";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<RenderStatement>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.RenderStatement";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "split", kind: "message", T: SplitOperator, oneof: "stmt" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RenderStatement {
+    return new RenderStatement().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RenderStatement {
+    return new RenderStatement().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RenderStatement {
+    return new RenderStatement().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RenderStatement | PlainMessage<RenderStatement> | undefined, b: RenderStatement | PlainMessage<RenderStatement> | undefined): boolean {
+    return proto3.util.equals(RenderStatement, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SplitOperator
+ */
+export class SplitOperator extends Message<SplitOperator> {
+  /**
+   * @generated from field: types.v1.SplitOperator.ByOperator by = 2;
+   */
+  by?: SplitOperator_ByOperator;
+
+  constructor(data?: PartialMessage<SplitOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SplitOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 2, name: "by", kind: "message", T: SplitOperator_ByOperator },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SplitOperator {
+    return new SplitOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SplitOperator {
+    return new SplitOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SplitOperator {
+    return new SplitOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SplitOperator | PlainMessage<SplitOperator> | undefined, b: SplitOperator | PlainMessage<SplitOperator> | undefined): boolean {
+    return proto3.util.equals(SplitOperator, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SplitOperator.ByOperator
+ */
+export class SplitOperator_ByOperator extends Message<SplitOperator_ByOperator> {
+  /**
+   * @generated from field: repeated types.v1.Expr scalars = 1;
+   */
+  scalars: Expr[] = [];
+
+  constructor(data?: PartialMessage<SplitOperator_ByOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SplitOperator.ByOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "scalars", kind: "message", T: Expr, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SplitOperator_ByOperator {
+    return new SplitOperator_ByOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SplitOperator_ByOperator {
+    return new SplitOperator_ByOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SplitOperator_ByOperator {
+    return new SplitOperator_ByOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SplitOperator_ByOperator | PlainMessage<SplitOperator_ByOperator> | undefined, b: SplitOperator_ByOperator | PlainMessage<SplitOperator_ByOperator> | undefined): boolean {
+    return proto3.util.equals(SplitOperator_ByOperator, a, b);
   }
 }
 

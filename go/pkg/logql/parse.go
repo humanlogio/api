@@ -145,6 +145,18 @@ func (p *logQL) addProjectStatement(op *typesv1.ProjectOperator) {
 	})
 }
 
+func (p *logQL) setRenderSplitByStatement(op *typesv1.SplitOperator) {
+	if p.LogQuery == nil {
+		p.LogQuery = new(typesv1.LogQuery)
+	}
+	if p.LogQuery.Query == nil {
+		p.LogQuery.Query = new(typesv1.Statements)
+	}
+	p.LogQuery.Query.Render = &typesv1.RenderStatement{
+		Stmt: &typesv1.RenderStatement_Split{Split: op},
+	}
+}
+
 func (p *logQL) setFilterOp(e *typesv1.Expr) {
 	p.FilterOp = &typesv1.FilterOperator{Expr: e}
 }
@@ -172,6 +184,14 @@ func (p *logQL) startProjectOpArg(id string) {
 
 func (p *logQL) setProjectOpArgValue(e *typesv1.Expr) {
 	p.ProjectOp.Projections[len(p.ProjectOp.Projections)-1].Value = e
+}
+
+func (p *logQL) startRenderSplitOp() {
+	p.SplitByOp = &typesv1.SplitOperator{By: &typesv1.SplitOperator_ByOperator{}}
+}
+
+func (p *logQL) addRenderSplitByOp(e *typesv1.Expr) {
+	p.SplitByOp.By.Scalars = append(p.SplitByOp.By.Scalars, e)
 }
 
 func (p *logQL) parseString(text string) string {

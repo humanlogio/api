@@ -14,11 +14,15 @@ type logQL Peg {
 
   // accumulate statements
   Stmts []*typesv1.Statement
+  RenderStmt *typesv1.RenderStatement
 
   // scratch space for table operators
   FilterOp    *typesv1.FilterOperator
   SummarizeOp *typesv1.SummarizeOperator
   ProjectOp   *typesv1.ProjectOperator
+
+  // scratch space for render statements
+  SplitByOp *typesv1.SplitOperator
 
   // scratch space, not needed but `Literal` being a type is convenient
   Literal *typesv1.Val
@@ -41,10 +45,10 @@ type logQL Peg {
 }
 
 Grammar
-  <-  Space ( Statements                                 { p.SetQuery(p.Stmts) }
+  <-  Space ( Statements                                { p.SetQuery(p.Stmts) }
             / (QueryContext MustSpace )? Statements       { p.SetQuery(p.Stmts) }
             / QueryContext
-            )? EOF
+            )? RenderStatement? EOF
 
 QueryContext
   <- L_SQUIGGLY Space QueryContextItem+ R_SQUIGGLY
@@ -75,17 +79,23 @@ Statement  <- ('filter' / 'where') MustSpace FilterOperator         { p.addFilte
               / 'summarize' MustSpace SummarizeOperator             { p.addSummarizeStatement(p.SummarizeOp) }
               / 'project' MustSpace ProjectOperator                 { p.addProjectStatement(p.ProjectOp) }
 
+RenderStatement <- Space PIPE Space 'render' MustSpace RenderSplitOperator { p.setRenderSplitByStatement(p.SplitByOp) }
+
 FilterOperator <- Expr { p.setFilterOp(p.popExpr()) }
 
-SummarizeOperator <- FuncCall { p.startSummarizeOp(p.popFunc()) }
-                    ( ByOperator )?
-ByOperator        <- 'by' MustSpace ByOperatorArg ( Space ',' Space ByOperatorArg )* Space
-ByOperatorArg     <- Expr                                                         { p.addSummarizeByOp(p.popExpr()) }
+SummarizeOperator      <- FuncCall { p.startSummarizeOp(p.popFunc()) }
+                         ( SummarizeByOperator )?
+SummarizeByOperator    <- 'by' MustSpace SummarizeByOperatorArg ( Space ',' Space SummarizeByOperatorArg )* Space
+SummarizeByOperatorArg <- Expr { p.addSummarizeByOp(p.popExpr()) }
 
 ProjectOperator   <-  { p.startProjectOp() }
                       ProjectArg (Space ',' Space ProjectArg)* Space
 ProjectArg        <-  Identifier                                     { p.startProjectOpArg(text) }
                       (Space '=' Space Expr)?                        { p.setProjectOpArgValue(p.popExpr()) }
+
+RenderSplitOperator      <- 'split' {p.startRenderSplitOp()} MustSpace RenderSplitByOperator
+RenderSplitByOperator    <- 'by' MustSpace RenderSplitByOperatorArg ( Space ',' Space RenderSplitByOperatorArg )* Space
+RenderSplitByOperatorArg <- Expr { p.addRenderSplitByOp(p.popExpr()) }
 
 Expr <- Expr1 ( Space NUM_ADD Expr1 Space     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_ADD, rhs)) }
               / Space NUM_SUB Expr1 Space     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_SUB, rhs)) }

@@ -171,6 +171,35 @@ func TestParse(t *testing.T) {
 			),
 			nil,
 		},
+		{
+			`| render split by msg`,
+			q(
+				nil,
+				nil,
+				render(
+					nil,
+					splitby(
+						id("msg"),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`filter true | render split by msg`,
+			q(
+				nil, nil,
+				render(
+					stmts(
+						filter(boo(true)),
+					),
+					splitby(
+						id("msg"),
+					),
+				),
+			),
+			nil,
+		},
 		// {`{from==2006-01-02T15:04:05.999999999+07:00}`, q(ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil, nil), nil},
 		// {`{from==2006-01-02T15:04:05+07:00}`, q(ts("2006-01-02T15:04:05+07:00"), nil, nil, nil), nil},
 		// {`{to==2006-01-02T15:04:05.999999999+07:00}`, q(nil, ts("2006-01-02T15:04:05.999999999+07:00"), nil, nil), nil},
@@ -342,6 +371,22 @@ func q(tr *v1.Timerange, ctx *v1.Context, s *v1.Statements) *v1.LogQuery {
 
 func stmts(stmts ...*v1.Statement) *v1.Statements {
 	return &v1.Statements{Statements: stmts}
+}
+
+func splitby(scalars ...*v1.Expr) *v1.RenderStatement {
+	return &v1.RenderStatement{Stmt: &v1.RenderStatement_Split{
+		Split: &v1.SplitOperator{By: &v1.SplitOperator_ByOperator{
+			Scalars: scalars,
+		}},
+	}}
+}
+
+func render(stmts *v1.Statements, render *v1.RenderStatement) *v1.Statements {
+	if stmts == nil {
+		stmts = new(v1.Statements)
+	}
+	stmts.Render = render
+	return stmts
 }
 
 func filter(e *v1.Expr) *v1.Statement {
