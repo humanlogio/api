@@ -75,6 +75,9 @@ func EqualVal(a, b *Val) bool {
 			}
 		}
 		return true
+	case *Val_Null:
+		_, ok := b.Kind.(*Val_Null)
+		return ok
 	}
 }
 
@@ -136,6 +139,10 @@ func TypeMap(k, v *VarType) *VarType {
 	return &VarType{Type: &VarType_Map{Map: &VarType_MapType{Key: k, Value: v}}}
 }
 
+func TypeNull() *VarType {
+	return &VarType{Type: &VarType_Null_{}}
+}
+
 func ValStr(v string) *Val {
 	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_str}}
 	return &Val{Type: typ, Kind: &Val_Str{Str: v}}
@@ -183,4 +190,8 @@ func ValArr(v ...*Val) *Val {
 
 func ValObj(v ...*KV) *Val {
 	return &Val{Type: TypeObjFromKVs(v...), Kind: &Val_Obj{Obj: &Obj{Kvs: v}}}
+}
+
+func ValNull() *Val {
+	return &Val{Type: TypeNull(), Kind: &Val_Null{}}
 }

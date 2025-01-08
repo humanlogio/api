@@ -87,6 +87,12 @@ export class VarType extends Message<VarType> {
      */
     value: VarType_MapType;
     case: "map";
+  } | {
+    /**
+     * @generated from field: types.v1.VarType.Null null = 5;
+     */
+    value: VarType_Null;
+    case: "null";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<VarType>) {
@@ -101,6 +107,7 @@ export class VarType extends Message<VarType> {
     { no: 2, name: "array", kind: "message", T: VarType_ArrayType, oneof: "type" },
     { no: 3, name: "object", kind: "message", T: VarType_ObjectType, oneof: "type" },
     { no: 4, name: "map", kind: "message", T: VarType_MapType, oneof: "type" },
+    { no: 5, name: "null", kind: "message", T: VarType_Null, oneof: "type" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VarType {
@@ -238,6 +245,37 @@ export class VarType_MapType extends Message<VarType_MapType> {
 }
 
 /**
+ * @generated from message types.v1.VarType.Null
+ */
+export class VarType_Null extends Message<VarType_Null> {
+  constructor(data?: PartialMessage<VarType_Null>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.VarType.Null";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VarType_Null {
+    return new VarType_Null().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VarType_Null {
+    return new VarType_Null().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VarType_Null {
+    return new VarType_Null().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: VarType_Null | PlainMessage<VarType_Null> | undefined, b: VarType_Null | PlainMessage<VarType_Null> | undefined): boolean {
+    return proto3.util.equals(VarType_Null, a, b);
+  }
+}
+
+/**
  * @generated from message types.v1.KV
  */
 export class KV extends Message<KV> {
@@ -346,6 +384,12 @@ export class Val extends Message<Val> {
      */
     value: Map;
     case: "map";
+  } | {
+    /**
+     * @generated from field: types.v1.Null null = 210;
+     */
+    value: Null;
+    case: "null";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Val>) {
@@ -366,6 +410,7 @@ export class Val extends Message<Val> {
     { no: 207, name: "arr", kind: "message", T: Arr, oneof: "kind" },
     { no: 208, name: "obj", kind: "message", T: Obj, oneof: "kind" },
     { no: 209, name: "map", kind: "message", T: Map, oneof: "kind" },
+    { no: 210, name: "null", kind: "message", T: Null, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Val {
@@ -536,6 +581,37 @@ export class Map_Entry extends Message<Map_Entry> {
 
   static equals(a: Map_Entry | PlainMessage<Map_Entry> | undefined, b: Map_Entry | PlainMessage<Map_Entry> | undefined): boolean {
     return proto3.util.equals(Map_Entry, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Null
+ */
+export class Null extends Message<Null> {
+  constructor(data?: PartialMessage<Null>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Null";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Null {
+    return new Null().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Null {
+    return new Null().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Null {
+    return new Null().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Null | PlainMessage<Null> | undefined, b: Null | PlainMessage<Null> | undefined): boolean {
+    return proto3.util.equals(Null, a, b);
   }
 }
 

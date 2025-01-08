@@ -26,11 +26,13 @@ message VarType {
     VarType key = 1;
     VarType value = 2;
   }
+  message Null {}
   oneof type {
     ScalarType scalar = 1;
     ArrayType array = 2;
     ObjectType object = 3;
     MapType map = 4;
+    Null null = 5;
   }
 }
 
@@ -51,6 +53,7 @@ message Val {
     Arr arr = 207;
     Obj obj = 208;
     Map map = 209;
+    Null null = 210;
   }
 }
 
@@ -69,6 +72,8 @@ message Map {
   }
   repeated Entry entries = 1;
 }
+
+message Null {}
 
 message Scalar {
   VarType type = 100;
