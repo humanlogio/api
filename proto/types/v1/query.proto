@@ -10,8 +10,14 @@ import "types/v1/types.proto";
 option go_package = "types/v1;typesv1";
 
 message Data {
+  message SubQueries {
+    repeated types.v1.LogQuery queries = 1;
+  }
+
   // Schema schema = 1;
   oneof shape {
+    // SubQueries need to be further queried to obtain actual data.
+    SubQueries subqueries = 201;
     // tabular is data that has a table header, followed by rows that match the
     // header
     Tabular tabular = 301;

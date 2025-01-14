@@ -78,19 +78,6 @@ message QueryRequest {
 }
 
 message QueryResponse {
-  message SubQueries {
-    repeated types.v1.LogQuery queries = 1;
-  }
-  message Stream {
-    types.v1.Cursor next = 100;
-    types.v1.Data data = 200;
-  }
-  oneof result {
-    // subqueries means that the result must be obtained by re-issuing
-    // more queries.
-    SubQueries subqueries = 101;
-    // stream means that the result is a stream of data that can be
-    // consumed by a client.
-    Stream stream = 102;
-  }
+  types.v1.Cursor next = 100;
+  types.v1.Data data = 200;
 }

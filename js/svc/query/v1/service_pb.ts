@@ -420,27 +420,14 @@ export class QueryRequest extends Message<QueryRequest> {
  */
 export class QueryResponse extends Message<QueryResponse> {
   /**
-   * @generated from oneof svc.query.v1.QueryResponse.result
+   * @generated from field: types.v1.Cursor next = 100;
    */
-  result: {
-    /**
-     * subqueries means that the result must be obtained by re-issuing
-     * more queries.
-     *
-     * @generated from field: svc.query.v1.QueryResponse.SubQueries subqueries = 101;
-     */
-    value: QueryResponse_SubQueries;
-    case: "subqueries";
-  } | {
-    /**
-     * stream means that the result is a stream of data that can be
-     * consumed by a client.
-     *
-     * @generated from field: svc.query.v1.QueryResponse.Stream stream = 102;
-     */
-    value: QueryResponse_Stream;
-    case: "stream";
-  } | { case: undefined; value?: undefined } = { case: undefined };
+  next?: Cursor;
+
+  /**
+   * @generated from field: types.v1.Data data = 200;
+   */
+  data?: Data;
 
   constructor(data?: PartialMessage<QueryResponse>) {
     super();
@@ -450,8 +437,8 @@ export class QueryResponse extends Message<QueryResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.query.v1.QueryResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 101, name: "subqueries", kind: "message", T: QueryResponse_SubQueries, oneof: "result" },
-    { no: 102, name: "stream", kind: "message", T: QueryResponse_Stream, oneof: "result" },
+    { no: 100, name: "next", kind: "message", T: Cursor },
+    { no: 200, name: "data", kind: "message", T: Data },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryResponse {
@@ -468,86 +455,6 @@ export class QueryResponse extends Message<QueryResponse> {
 
   static equals(a: QueryResponse | PlainMessage<QueryResponse> | undefined, b: QueryResponse | PlainMessage<QueryResponse> | undefined): boolean {
     return proto3.util.equals(QueryResponse, a, b);
-  }
-}
-
-/**
- * @generated from message svc.query.v1.QueryResponse.SubQueries
- */
-export class QueryResponse_SubQueries extends Message<QueryResponse_SubQueries> {
-  /**
-   * @generated from field: repeated types.v1.LogQuery queries = 1;
-   */
-  queries: LogQuery[] = [];
-
-  constructor(data?: PartialMessage<QueryResponse_SubQueries>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.query.v1.QueryResponse.SubQueries";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "queries", kind: "message", T: LogQuery, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryResponse_SubQueries {
-    return new QueryResponse_SubQueries().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryResponse_SubQueries {
-    return new QueryResponse_SubQueries().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryResponse_SubQueries {
-    return new QueryResponse_SubQueries().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryResponse_SubQueries | PlainMessage<QueryResponse_SubQueries> | undefined, b: QueryResponse_SubQueries | PlainMessage<QueryResponse_SubQueries> | undefined): boolean {
-    return proto3.util.equals(QueryResponse_SubQueries, a, b);
-  }
-}
-
-/**
- * @generated from message svc.query.v1.QueryResponse.Stream
- */
-export class QueryResponse_Stream extends Message<QueryResponse_Stream> {
-  /**
-   * @generated from field: types.v1.Cursor next = 100;
-   */
-  next?: Cursor;
-
-  /**
-   * @generated from field: types.v1.Data data = 200;
-   */
-  data?: Data;
-
-  constructor(data?: PartialMessage<QueryResponse_Stream>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.query.v1.QueryResponse.Stream";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 100, name: "next", kind: "message", T: Cursor },
-    { no: 200, name: "data", kind: "message", T: Data },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryResponse_Stream {
-    return new QueryResponse_Stream().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryResponse_Stream {
-    return new QueryResponse_Stream().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryResponse_Stream {
-    return new QueryResponse_Stream().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: QueryResponse_Stream | PlainMessage<QueryResponse_Stream> | undefined, b: QueryResponse_Stream | PlainMessage<QueryResponse_Stream> | undefined): boolean {
-    return proto3.util.equals(QueryResponse_Stream, a, b);
   }
 }
 

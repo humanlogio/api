@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { LogQuery } from "./logquery_pb";
 import { LogEventGroup } from "./logevent_pb";
 import { Obj, Scalar, Table, VarType } from "./types_pb";
 
@@ -18,6 +19,14 @@ export class Data extends Message<Data> {
    * @generated from oneof types.v1.Data.shape
    */
   shape: {
+    /**
+     * SubQueries need to be further queried to obtain actual data.
+     *
+     * @generated from field: types.v1.Data.SubQueries subqueries = 201;
+     */
+    value: Data_SubQueries;
+    case: "subqueries";
+  } | {
     /**
      * tabular is data that has a table header, followed by rows that match the
      * header
@@ -54,6 +63,7 @@ export class Data extends Message<Data> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Data";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 201, name: "subqueries", kind: "message", T: Data_SubQueries, oneof: "shape" },
     { no: 301, name: "tabular", kind: "message", T: Tabular, oneof: "shape" },
     { no: 401, name: "scalar_timeseries", kind: "message", T: ScalarTimeseries, oneof: "shape" },
     { no: 402, name: "vector_timeseries", kind: "message", T: VectorTimeseries, oneof: "shape" },
@@ -73,6 +83,43 @@ export class Data extends Message<Data> {
 
   static equals(a: Data | PlainMessage<Data> | undefined, b: Data | PlainMessage<Data> | undefined): boolean {
     return proto3.util.equals(Data, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Data.SubQueries
+ */
+export class Data_SubQueries extends Message<Data_SubQueries> {
+  /**
+   * @generated from field: repeated types.v1.LogQuery queries = 1;
+   */
+  queries: LogQuery[] = [];
+
+  constructor(data?: PartialMessage<Data_SubQueries>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Data.SubQueries";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "queries", kind: "message", T: LogQuery, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Data_SubQueries {
+    return new Data_SubQueries().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Data_SubQueries {
+    return new Data_SubQueries().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Data_SubQueries {
+    return new Data_SubQueries().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Data_SubQueries | PlainMessage<Data_SubQueries> | undefined, b: Data_SubQueries | PlainMessage<Data_SubQueries> | undefined): boolean {
+    return proto3.util.equals(Data_SubQueries, a, b);
   }
 }
 
