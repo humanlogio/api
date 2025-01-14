@@ -57,6 +57,73 @@ export class LogEventGroup extends Message<LogEventGroup> {
 }
 
 /**
+ * @generated from message types.v1.IngestedLogEvent
+ */
+export class IngestedLogEvent extends Message<IngestedLogEvent> {
+  /**
+   * @generated from field: int64 machine_id = 1;
+   */
+  machineId = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 session_id = 2;
+   */
+  sessionId = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 event_id = 3;
+   */
+  eventId = protoInt64.zero;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp parsed_at = 4;
+   */
+  parsedAt?: Timestamp;
+
+  /**
+   * @generated from field: bytes raw = 5;
+   */
+  raw = new Uint8Array(0);
+
+  /**
+   * @generated from field: types.v1.StructuredLogEvent structured = 6;
+   */
+  structured?: StructuredLogEvent;
+
+  constructor(data?: PartialMessage<IngestedLogEvent>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.IngestedLogEvent";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "session_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 3, name: "event_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 4, name: "parsed_at", kind: "message", T: Timestamp },
+    { no: 5, name: "raw", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 6, name: "structured", kind: "message", T: StructuredLogEvent },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IngestedLogEvent {
+    return new IngestedLogEvent().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IngestedLogEvent {
+    return new IngestedLogEvent().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IngestedLogEvent {
+    return new IngestedLogEvent().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: IngestedLogEvent | PlainMessage<IngestedLogEvent> | undefined, b: IngestedLogEvent | PlainMessage<IngestedLogEvent> | undefined): boolean {
+    return proto3.util.equals(IngestedLogEvent, a, b);
+  }
+}
+
+/**
  * @generated from message types.v1.LogEvent
  */
 export class LogEvent extends Message<LogEvent> {

@@ -32,7 +32,7 @@ message Data {
 
 message Tabular {
   oneof shape {
-    LogEventGroup log_events = 201;
+    LogEvents log_events = 201;
     Table free_form = 202;
   }
 }
@@ -41,6 +41,10 @@ message ScalarTimeseries {
   // scalars will contain only this type of value
   VarType type = 2;
   repeated ScalarTimestamp scalars = 3;
+}
+
+message LogEvents {
+  repeated IngestedLogEvent events = 1;
 }
 
 message ScalarTimestamp {

@@ -6,8 +6,8 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { LogQuery } from "./logquery_pb";
-import { LogEventGroup } from "./logevent_pb";
 import { Obj, Scalar, Table, VarType } from "./types_pb";
+import { IngestedLogEvent } from "./logevent_pb";
 
 /**
  * @generated from message types.v1.Data
@@ -132,9 +132,9 @@ export class Tabular extends Message<Tabular> {
    */
   shape: {
     /**
-     * @generated from field: types.v1.LogEventGroup log_events = 201;
+     * @generated from field: types.v1.LogEvents log_events = 201;
      */
-    value: LogEventGroup;
+    value: LogEvents;
     case: "logEvents";
   } | {
     /**
@@ -152,7 +152,7 @@ export class Tabular extends Message<Tabular> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Tabular";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 201, name: "log_events", kind: "message", T: LogEventGroup, oneof: "shape" },
+    { no: 201, name: "log_events", kind: "message", T: LogEvents, oneof: "shape" },
     { no: 202, name: "free_form", kind: "message", T: Table, oneof: "shape" },
   ]);
 
@@ -215,6 +215,43 @@ export class ScalarTimeseries extends Message<ScalarTimeseries> {
 
   static equals(a: ScalarTimeseries | PlainMessage<ScalarTimeseries> | undefined, b: ScalarTimeseries | PlainMessage<ScalarTimeseries> | undefined): boolean {
     return proto3.util.equals(ScalarTimeseries, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.LogEvents
+ */
+export class LogEvents extends Message<LogEvents> {
+  /**
+   * @generated from field: repeated types.v1.IngestedLogEvent events = 1;
+   */
+  events: IngestedLogEvent[] = [];
+
+  constructor(data?: PartialMessage<LogEvents>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.LogEvents";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "events", kind: "message", T: IngestedLogEvent, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): LogEvents {
+    return new LogEvents().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): LogEvents {
+    return new LogEvents().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): LogEvents {
+    return new LogEvents().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: LogEvents | PlainMessage<LogEvents> | undefined, b: LogEvents | PlainMessage<LogEvents> | undefined): boolean {
+    return proto3.util.equals(LogEvents, a, b);
   }
 }
 
