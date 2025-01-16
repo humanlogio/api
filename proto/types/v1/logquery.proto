@@ -10,16 +10,66 @@ option go_package = "types/v1;typesv1";
 // kv["user.id"] == 42 | group_by(kv["group"]) | kv["access_level"] == "admin" | timechart
 
 message LogQuery {
-  google.protobuf.Timestamp from = 1;
-  google.protobuf.Timestamp to = 2;
+  Timerange timerange = 1;
+  Context context = 2;
+  Statements query = 3;
+}
 
-  Context context = 100;
-  Expr query = 101;
+message Timerange {
+  Expr from = 1;
+  optional Expr to = 2;
 }
 
 message Context {
   optional Expr machine_id = 101;
   optional Expr session_id = 102;
+}
+
+message Statements {
+  // statements are `|` separated
+  repeated Statement statements = 1;
+  RenderStatement render = 2;
+}
+
+message Statement {
+  oneof stmt {
+    FilterOperator filter = 1;
+    SummarizeOperator summarize = 2;
+    ProjectOperator project = 3;
+  }
+}
+
+message FilterOperator {
+  Expr expr = 1;
+}
+
+message SummarizeOperator {
+  message ByOperator {
+    repeated Expr scalars = 1;
+  }
+  FuncCall aggregate_function = 1;
+  optional ByOperator by = 2;
+}
+
+message ProjectOperator {
+  message Projection {
+    Identifier column = 1;
+    optional Expr value = 2;
+  }
+  repeated Projection projections = 1;
+}
+
+message RenderStatement {
+  oneof stmt {
+    SplitOperator split = 1;
+  }
+}
+
+message SplitOperator {
+  message ByOperator {
+    repeated Expr scalars = 1;
+  }
+  ByOperator by = 2;
 }
 
 message Expr {
@@ -30,8 +80,7 @@ message Expr {
     FuncCall func_call = 104;
     Identifier identifier = 105;
     Selector selector = 106; // msg.hello.world
-    Indexor indexor = 107;
-    Pipe pipe = 108;
+    Indexor indexor = 107; // kvs['hello']
   }
 }
 
@@ -85,9 +134,4 @@ message Selector {
 message Indexor {
   Expr x = 1;
   Expr index = 2;
-}
-
-message Pipe {
-  Expr head = 1;
-  Expr tail = 2;
 }

@@ -22,72 +22,196 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type VarType int32
+type ScalarType int32
 
 const (
-	VarType_unknown VarType = 0
-	VarType_str     VarType = 1
-	VarType_f64     VarType = 2
-	VarType_i64     VarType = 3
-	VarType_bool    VarType = 4
-	VarType_arr     VarType = 5
-	VarType_obj     VarType = 6
-	VarType_ts      VarType = 7
-	VarType_dur     VarType = 8
+	ScalarType_unknown ScalarType = 0
+	ScalarType_str     ScalarType = 1
+	ScalarType_f64     ScalarType = 2
+	ScalarType_i64     ScalarType = 3
+	ScalarType_bool    ScalarType = 4
+	ScalarType_ts      ScalarType = 5
+	ScalarType_dur     ScalarType = 6
 )
 
-// Enum value maps for VarType.
+// Enum value maps for ScalarType.
 var (
-	VarType_name = map[int32]string{
+	ScalarType_name = map[int32]string{
 		0: "unknown",
 		1: "str",
 		2: "f64",
 		3: "i64",
 		4: "bool",
-		5: "arr",
-		6: "obj",
-		7: "ts",
-		8: "dur",
+		5: "ts",
+		6: "dur",
 	}
-	VarType_value = map[string]int32{
+	ScalarType_value = map[string]int32{
 		"unknown": 0,
 		"str":     1,
 		"f64":     2,
 		"i64":     3,
 		"bool":    4,
-		"arr":     5,
-		"obj":     6,
-		"ts":      7,
-		"dur":     8,
+		"ts":      5,
+		"dur":     6,
 	}
 )
 
-func (x VarType) Enum() *VarType {
-	p := new(VarType)
+func (x ScalarType) Enum() *ScalarType {
+	p := new(ScalarType)
 	*p = x
 	return p
 }
 
-func (x VarType) String() string {
+func (x ScalarType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (VarType) Descriptor() protoreflect.EnumDescriptor {
+func (ScalarType) Descriptor() protoreflect.EnumDescriptor {
 	return file_types_v1_types_proto_enumTypes[0].Descriptor()
 }
 
-func (VarType) Type() protoreflect.EnumType {
+func (ScalarType) Type() protoreflect.EnumType {
 	return &file_types_v1_types_proto_enumTypes[0]
 }
 
-func (x VarType) Number() protoreflect.EnumNumber {
+func (x ScalarType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use VarType.Descriptor instead.
-func (VarType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use ScalarType.Descriptor instead.
+func (ScalarType) EnumDescriptor() ([]byte, []int) {
 	return file_types_v1_types_proto_rawDescGZIP(), []int{0}
 }
+
+type VarType struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Type:
+	//
+	//	*VarType_Scalar
+	//	*VarType_Array
+	//	*VarType_Object
+	//	*VarType_Map
+	//	*VarType_Null_
+	Type          isVarType_Type `protobuf_oneof:"type"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VarType) Reset() {
+	*x = VarType{}
+	mi := &file_types_v1_types_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VarType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VarType) ProtoMessage() {}
+
+func (x *VarType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VarType.ProtoReflect.Descriptor instead.
+func (*VarType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *VarType) GetType() isVarType_Type {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *VarType) GetScalar() ScalarType {
+	if x != nil {
+		if x, ok := x.Type.(*VarType_Scalar); ok {
+			return x.Scalar
+		}
+	}
+	return ScalarType_unknown
+}
+
+func (x *VarType) GetArray() *VarType_ArrayType {
+	if x != nil {
+		if x, ok := x.Type.(*VarType_Array); ok {
+			return x.Array
+		}
+	}
+	return nil
+}
+
+func (x *VarType) GetObject() *VarType_ObjectType {
+	if x != nil {
+		if x, ok := x.Type.(*VarType_Object); ok {
+			return x.Object
+		}
+	}
+	return nil
+}
+
+func (x *VarType) GetMap() *VarType_MapType {
+	if x != nil {
+		if x, ok := x.Type.(*VarType_Map); ok {
+			return x.Map
+		}
+	}
+	return nil
+}
+
+func (x *VarType) GetNull() *VarType_Null {
+	if x != nil {
+		if x, ok := x.Type.(*VarType_Null_); ok {
+			return x.Null
+		}
+	}
+	return nil
+}
+
+type isVarType_Type interface {
+	isVarType_Type()
+}
+
+type VarType_Scalar struct {
+	Scalar ScalarType `protobuf:"varint,1,opt,name=scalar,proto3,enum=types.v1.ScalarType,oneof"`
+}
+
+type VarType_Array struct {
+	Array *VarType_ArrayType `protobuf:"bytes,2,opt,name=array,proto3,oneof"`
+}
+
+type VarType_Object struct {
+	Object *VarType_ObjectType `protobuf:"bytes,3,opt,name=object,proto3,oneof"`
+}
+
+type VarType_Map struct {
+	Map *VarType_MapType `protobuf:"bytes,4,opt,name=map,proto3,oneof"`
+}
+
+type VarType_Null_ struct {
+	Null *VarType_Null `protobuf:"bytes,5,opt,name=null,proto3,oneof"`
+}
+
+func (*VarType_Scalar) isVarType_Type() {}
+
+func (*VarType_Array) isVarType_Type() {}
+
+func (*VarType_Object) isVarType_Type() {}
+
+func (*VarType_Map) isVarType_Type() {}
+
+func (*VarType_Null_) isVarType_Type() {}
 
 type KV struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -99,7 +223,7 @@ type KV struct {
 
 func (x *KV) Reset() {
 	*x = KV{}
-	mi := &file_types_v1_types_proto_msgTypes[0]
+	mi := &file_types_v1_types_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111,7 +235,7 @@ func (x *KV) String() string {
 func (*KV) ProtoMessage() {}
 
 func (x *KV) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[0]
+	mi := &file_types_v1_types_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124,7 +248,7 @@ func (x *KV) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KV.ProtoReflect.Descriptor instead.
 func (*KV) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{0}
+	return file_types_v1_types_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *KV) GetKey() string {
@@ -143,17 +267,19 @@ func (x *KV) GetValue() *Val {
 
 type Val struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	Type  VarType                `protobuf:"varint,100,opt,name=type,proto3,enum=types.v1.VarType" json:"type,omitempty"`
+	Type  *VarType               `protobuf:"bytes,100,opt,name=type,proto3" json:"type,omitempty"`
 	// Types that are valid to be assigned to Kind:
 	//
 	//	*Val_Str
 	//	*Val_F64
 	//	*Val_I64
 	//	*Val_Bool
-	//	*Val_Arr
-	//	*Val_Obj
 	//	*Val_Ts
 	//	*Val_Dur
+	//	*Val_Arr
+	//	*Val_Obj
+	//	*Val_Map
+	//	*Val_Null
 	Kind          isVal_Kind `protobuf_oneof:"kind"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -161,7 +287,7 @@ type Val struct {
 
 func (x *Val) Reset() {
 	*x = Val{}
-	mi := &file_types_v1_types_proto_msgTypes[1]
+	mi := &file_types_v1_types_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -173,7 +299,7 @@ func (x *Val) String() string {
 func (*Val) ProtoMessage() {}
 
 func (x *Val) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[1]
+	mi := &file_types_v1_types_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -186,14 +312,14 @@ func (x *Val) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Val.ProtoReflect.Descriptor instead.
 func (*Val) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{1}
+	return file_types_v1_types_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Val) GetType() VarType {
+func (x *Val) GetType() *VarType {
 	if x != nil {
 		return x.Type
 	}
-	return VarType_unknown
+	return nil
 }
 
 func (x *Val) GetKind() isVal_Kind {
@@ -239,6 +365,24 @@ func (x *Val) GetBool() bool {
 	return false
 }
 
+func (x *Val) GetTs() *timestamppb.Timestamp {
+	if x != nil {
+		if x, ok := x.Kind.(*Val_Ts); ok {
+			return x.Ts
+		}
+	}
+	return nil
+}
+
+func (x *Val) GetDur() *durationpb.Duration {
+	if x != nil {
+		if x, ok := x.Kind.(*Val_Dur); ok {
+			return x.Dur
+		}
+	}
+	return nil
+}
+
 func (x *Val) GetArr() *Arr {
 	if x != nil {
 		if x, ok := x.Kind.(*Val_Arr); ok {
@@ -257,19 +401,19 @@ func (x *Val) GetObj() *Obj {
 	return nil
 }
 
-func (x *Val) GetTs() *timestamppb.Timestamp {
+func (x *Val) GetMap() *Map {
 	if x != nil {
-		if x, ok := x.Kind.(*Val_Ts); ok {
-			return x.Ts
+		if x, ok := x.Kind.(*Val_Map); ok {
+			return x.Map
 		}
 	}
 	return nil
 }
 
-func (x *Val) GetDur() *durationpb.Duration {
+func (x *Val) GetNull() *Null {
 	if x != nil {
-		if x, ok := x.Kind.(*Val_Dur); ok {
-			return x.Dur
+		if x, ok := x.Kind.(*Val_Null); ok {
+			return x.Null
 		}
 	}
 	return nil
@@ -295,20 +439,28 @@ type Val_Bool struct {
 	Bool bool `protobuf:"varint,204,opt,name=bool,proto3,oneof"`
 }
 
-type Val_Arr struct {
-	Arr *Arr `protobuf:"bytes,205,opt,name=arr,proto3,oneof"`
-}
-
-type Val_Obj struct {
-	Obj *Obj `protobuf:"bytes,206,opt,name=obj,proto3,oneof"`
-}
-
 type Val_Ts struct {
-	Ts *timestamppb.Timestamp `protobuf:"bytes,207,opt,name=ts,proto3,oneof"`
+	Ts *timestamppb.Timestamp `protobuf:"bytes,205,opt,name=ts,proto3,oneof"`
 }
 
 type Val_Dur struct {
-	Dur *durationpb.Duration `protobuf:"bytes,208,opt,name=dur,proto3,oneof"`
+	Dur *durationpb.Duration `protobuf:"bytes,206,opt,name=dur,proto3,oneof"`
+}
+
+type Val_Arr struct {
+	Arr *Arr `protobuf:"bytes,207,opt,name=arr,proto3,oneof"`
+}
+
+type Val_Obj struct {
+	Obj *Obj `protobuf:"bytes,208,opt,name=obj,proto3,oneof"`
+}
+
+type Val_Map struct {
+	Map *Map `protobuf:"bytes,209,opt,name=map,proto3,oneof"`
+}
+
+type Val_Null struct {
+	Null *Null `protobuf:"bytes,210,opt,name=null,proto3,oneof"`
 }
 
 func (*Val_Str) isVal_Kind() {}
@@ -319,13 +471,17 @@ func (*Val_I64) isVal_Kind() {}
 
 func (*Val_Bool) isVal_Kind() {}
 
+func (*Val_Ts) isVal_Kind() {}
+
+func (*Val_Dur) isVal_Kind() {}
+
 func (*Val_Arr) isVal_Kind() {}
 
 func (*Val_Obj) isVal_Kind() {}
 
-func (*Val_Ts) isVal_Kind() {}
+func (*Val_Map) isVal_Kind() {}
 
-func (*Val_Dur) isVal_Kind() {}
+func (*Val_Null) isVal_Kind() {}
 
 type Obj struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -336,7 +492,7 @@ type Obj struct {
 
 func (x *Obj) Reset() {
 	*x = Obj{}
-	mi := &file_types_v1_types_proto_msgTypes[2]
+	mi := &file_types_v1_types_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -348,7 +504,7 @@ func (x *Obj) String() string {
 func (*Obj) ProtoMessage() {}
 
 func (x *Obj) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[2]
+	mi := &file_types_v1_types_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -361,7 +517,7 @@ func (x *Obj) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Obj.ProtoReflect.Descriptor instead.
 func (*Obj) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{2}
+	return file_types_v1_types_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Obj) GetKvs() []*KV {
@@ -380,7 +536,7 @@ type Arr struct {
 
 func (x *Arr) Reset() {
 	*x = Arr{}
-	mi := &file_types_v1_types_proto_msgTypes[3]
+	mi := &file_types_v1_types_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -392,7 +548,7 @@ func (x *Arr) String() string {
 func (*Arr) ProtoMessage() {}
 
 func (x *Arr) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[3]
+	mi := &file_types_v1_types_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -405,7 +561,7 @@ func (x *Arr) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Arr.ProtoReflect.Descriptor instead.
 func (*Arr) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{3}
+	return file_types_v1_types_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Arr) GetItems() []*Val {
@@ -413,6 +569,1034 @@ func (x *Arr) GetItems() []*Val {
 		return x.Items
 	}
 	return nil
+}
+
+type Map struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Entries       []*Map_Entry           `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Map) Reset() {
+	*x = Map{}
+	mi := &file_types_v1_types_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Map) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Map) ProtoMessage() {}
+
+func (x *Map) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Map.ProtoReflect.Descriptor instead.
+func (*Map) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *Map) GetEntries() []*Map_Entry {
+	if x != nil {
+		return x.Entries
+	}
+	return nil
+}
+
+type Null struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Null) Reset() {
+	*x = Null{}
+	mi := &file_types_v1_types_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Null) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Null) ProtoMessage() {}
+
+func (x *Null) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Null.ProtoReflect.Descriptor instead.
+func (*Null) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{6}
+}
+
+type Scalar struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Type  *VarType               `protobuf:"bytes,100,opt,name=type,proto3" json:"type,omitempty"`
+	// Types that are valid to be assigned to Kind:
+	//
+	//	*Scalar_Str
+	//	*Scalar_F64
+	//	*Scalar_I64
+	//	*Scalar_Bool
+	//	*Scalar_Ts
+	//	*Scalar_Dur
+	Kind          isScalar_Kind `protobuf_oneof:"kind"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Scalar) Reset() {
+	*x = Scalar{}
+	mi := &file_types_v1_types_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Scalar) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Scalar) ProtoMessage() {}
+
+func (x *Scalar) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Scalar.ProtoReflect.Descriptor instead.
+func (*Scalar) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *Scalar) GetType() *VarType {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *Scalar) GetKind() isScalar_Kind {
+	if x != nil {
+		return x.Kind
+	}
+	return nil
+}
+
+func (x *Scalar) GetStr() string {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_Str); ok {
+			return x.Str
+		}
+	}
+	return ""
+}
+
+func (x *Scalar) GetF64() float64 {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_F64); ok {
+			return x.F64
+		}
+	}
+	return 0
+}
+
+func (x *Scalar) GetI64() int64 {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_I64); ok {
+			return x.I64
+		}
+	}
+	return 0
+}
+
+func (x *Scalar) GetBool() bool {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_Bool); ok {
+			return x.Bool
+		}
+	}
+	return false
+}
+
+func (x *Scalar) GetTs() *timestamppb.Timestamp {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_Ts); ok {
+			return x.Ts
+		}
+	}
+	return nil
+}
+
+func (x *Scalar) GetDur() *durationpb.Duration {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_Dur); ok {
+			return x.Dur
+		}
+	}
+	return nil
+}
+
+type isScalar_Kind interface {
+	isScalar_Kind()
+}
+
+type Scalar_Str struct {
+	Str string `protobuf:"bytes,201,opt,name=str,proto3,oneof"`
+}
+
+type Scalar_F64 struct {
+	F64 float64 `protobuf:"fixed64,202,opt,name=f64,proto3,oneof"`
+}
+
+type Scalar_I64 struct {
+	I64 int64 `protobuf:"varint,203,opt,name=i64,proto3,oneof"`
+}
+
+type Scalar_Bool struct {
+	Bool bool `protobuf:"varint,204,opt,name=bool,proto3,oneof"`
+}
+
+type Scalar_Ts struct {
+	Ts *timestamppb.Timestamp `protobuf:"bytes,207,opt,name=ts,proto3,oneof"`
+}
+
+type Scalar_Dur struct {
+	Dur *durationpb.Duration `protobuf:"bytes,208,opt,name=dur,proto3,oneof"`
+}
+
+func (*Scalar_Str) isScalar_Kind() {}
+
+func (*Scalar_F64) isScalar_Kind() {}
+
+func (*Scalar_I64) isScalar_Kind() {}
+
+func (*Scalar_Bool) isScalar_Kind() {}
+
+func (*Scalar_Ts) isScalar_Kind() {}
+
+func (*Scalar_Dur) isScalar_Kind() {}
+
+type FlatKV struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value         *Scalar                `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FlatKV) Reset() {
+	*x = FlatKV{}
+	mi := &file_types_v1_types_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FlatKV) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FlatKV) ProtoMessage() {}
+
+func (x *FlatKV) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FlatKV.ProtoReflect.Descriptor instead.
+func (*FlatKV) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *FlatKV) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *FlatKV) GetValue() *Scalar {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+type FlatArr struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         []*Scalar              `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FlatArr) Reset() {
+	*x = FlatArr{}
+	mi := &file_types_v1_types_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FlatArr) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FlatArr) ProtoMessage() {}
+
+func (x *FlatArr) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FlatArr.ProtoReflect.Descriptor instead.
+func (*FlatArr) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *FlatArr) GetItems() []*Scalar {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type TableType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Columns       []*TableType_Column    `protobuf:"bytes,1,rep,name=columns,proto3" json:"columns,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TableType) Reset() {
+	*x = TableType{}
+	mi := &file_types_v1_types_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TableType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TableType) ProtoMessage() {}
+
+func (x *TableType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TableType.ProtoReflect.Descriptor instead.
+func (*TableType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *TableType) GetColumns() []*TableType_Column {
+	if x != nil {
+		return x.Columns
+	}
+	return nil
+}
+
+type Table struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          *TableType             `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	Rows          []*FlatArr             `protobuf:"bytes,2,rep,name=rows,proto3" json:"rows,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Table) Reset() {
+	*x = Table{}
+	mi := &file_types_v1_types_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Table) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Table) ProtoMessage() {}
+
+func (x *Table) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Table.ProtoReflect.Descriptor instead.
+func (*Table) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *Table) GetType() *TableType {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *Table) GetRows() []*FlatArr {
+	if x != nil {
+		return x.Rows
+	}
+	return nil
+}
+
+type DataStreamType struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Type:
+	//
+	//	*DataStreamType_Multi
+	//	*DataStreamType_Tabular
+	//	*DataStreamType_SingleValue
+	//	*DataStreamType_Timeseries
+	Type          isDataStreamType_Type `protobuf_oneof:"type"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DataStreamType) Reset() {
+	*x = DataStreamType{}
+	mi := &file_types_v1_types_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DataStreamType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DataStreamType) ProtoMessage() {}
+
+func (x *DataStreamType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DataStreamType.ProtoReflect.Descriptor instead.
+func (*DataStreamType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *DataStreamType) GetType() isDataStreamType_Type {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *DataStreamType) GetMulti() *MultiDataStreamType {
+	if x != nil {
+		if x, ok := x.Type.(*DataStreamType_Multi); ok {
+			return x.Multi
+		}
+	}
+	return nil
+}
+
+func (x *DataStreamType) GetTabular() *TabularType {
+	if x != nil {
+		if x, ok := x.Type.(*DataStreamType_Tabular); ok {
+			return x.Tabular
+		}
+	}
+	return nil
+}
+
+func (x *DataStreamType) GetSingleValue() *VarType {
+	if x != nil {
+		if x, ok := x.Type.(*DataStreamType_SingleValue); ok {
+			return x.SingleValue
+		}
+	}
+	return nil
+}
+
+func (x *DataStreamType) GetTimeseries() *Timeseries {
+	if x != nil {
+		if x, ok := x.Type.(*DataStreamType_Timeseries); ok {
+			return x.Timeseries
+		}
+	}
+	return nil
+}
+
+type isDataStreamType_Type interface {
+	isDataStreamType_Type()
+}
+
+type DataStreamType_Multi struct {
+	Multi *MultiDataStreamType `protobuf:"bytes,1,opt,name=multi,proto3,oneof"`
+}
+
+type DataStreamType_Tabular struct {
+	Tabular *TabularType `protobuf:"bytes,2,opt,name=tabular,proto3,oneof"`
+}
+
+type DataStreamType_SingleValue struct {
+	SingleValue *VarType `protobuf:"bytes,3,opt,name=single_value,json=singleValue,proto3,oneof"`
+}
+
+type DataStreamType_Timeseries struct {
+	Timeseries *Timeseries `protobuf:"bytes,5,opt,name=timeseries,proto3,oneof"`
+}
+
+func (*DataStreamType_Multi) isDataStreamType_Type() {}
+
+func (*DataStreamType_Tabular) isDataStreamType_Type() {}
+
+func (*DataStreamType_SingleValue) isDataStreamType_Type() {}
+
+func (*DataStreamType_Timeseries) isDataStreamType_Type() {}
+
+type MultiDataStreamType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Streams       *DataStreamType        `protobuf:"bytes,1,opt,name=streams,proto3" json:"streams,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MultiDataStreamType) Reset() {
+	*x = MultiDataStreamType{}
+	mi := &file_types_v1_types_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MultiDataStreamType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MultiDataStreamType) ProtoMessage() {}
+
+func (x *MultiDataStreamType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MultiDataStreamType.ProtoReflect.Descriptor instead.
+func (*MultiDataStreamType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *MultiDataStreamType) GetStreams() *DataStreamType {
+	if x != nil {
+		return x.Streams
+	}
+	return nil
+}
+
+type TabularType struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Type:
+	//
+	//	*TabularType_Table
+	//	*TabularType_LogEvents
+	Type          isTabularType_Type `protobuf_oneof:"type"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TabularType) Reset() {
+	*x = TabularType{}
+	mi := &file_types_v1_types_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TabularType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TabularType) ProtoMessage() {}
+
+func (x *TabularType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TabularType.ProtoReflect.Descriptor instead.
+func (*TabularType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *TabularType) GetType() isTabularType_Type {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *TabularType) GetTable() *TableType {
+	if x != nil {
+		if x, ok := x.Type.(*TabularType_Table); ok {
+			return x.Table
+		}
+	}
+	return nil
+}
+
+func (x *TabularType) GetLogEvents() *TabularType_LogEventType {
+	if x != nil {
+		if x, ok := x.Type.(*TabularType_LogEvents); ok {
+			return x.LogEvents
+		}
+	}
+	return nil
+}
+
+type isTabularType_Type interface {
+	isTabularType_Type()
+}
+
+type TabularType_Table struct {
+	Table *TableType `protobuf:"bytes,1,opt,name=table,proto3,oneof"`
+}
+
+type TabularType_LogEvents struct {
+	LogEvents *TabularType_LogEventType `protobuf:"bytes,2,opt,name=log_events,json=logEvents,proto3,oneof"`
+}
+
+func (*TabularType_Table) isTabularType_Type() {}
+
+func (*TabularType_LogEvents) isTabularType_Type() {}
+
+type Timeseries struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// each row will contain a timestamp along with a value
+	// value of this type
+	Type          *VarType `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Timeseries) Reset() {
+	*x = Timeseries{}
+	mi := &file_types_v1_types_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Timeseries) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Timeseries) ProtoMessage() {}
+
+func (x *Timeseries) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Timeseries.ProtoReflect.Descriptor instead.
+func (*Timeseries) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *Timeseries) GetType() *VarType {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+type VarType_ArrayType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Items         *VarType               `protobuf:"bytes,1,opt,name=items,proto3" json:"items,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VarType_ArrayType) Reset() {
+	*x = VarType_ArrayType{}
+	mi := &file_types_v1_types_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VarType_ArrayType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VarType_ArrayType) ProtoMessage() {}
+
+func (x *VarType_ArrayType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VarType_ArrayType.ProtoReflect.Descriptor instead.
+func (*VarType_ArrayType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{0, 0}
+}
+
+func (x *VarType_ArrayType) GetItems() *VarType {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
+type VarType_ObjectType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Kvs           map[string]*VarType    `protobuf:"bytes,1,rep,name=kvs,proto3" json:"kvs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VarType_ObjectType) Reset() {
+	*x = VarType_ObjectType{}
+	mi := &file_types_v1_types_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VarType_ObjectType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VarType_ObjectType) ProtoMessage() {}
+
+func (x *VarType_ObjectType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VarType_ObjectType.ProtoReflect.Descriptor instead.
+func (*VarType_ObjectType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{0, 1}
+}
+
+func (x *VarType_ObjectType) GetKvs() map[string]*VarType {
+	if x != nil {
+		return x.Kvs
+	}
+	return nil
+}
+
+type VarType_MapType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           *VarType               `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value         *VarType               `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VarType_MapType) Reset() {
+	*x = VarType_MapType{}
+	mi := &file_types_v1_types_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VarType_MapType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VarType_MapType) ProtoMessage() {}
+
+func (x *VarType_MapType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VarType_MapType.ProtoReflect.Descriptor instead.
+func (*VarType_MapType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{0, 2}
+}
+
+func (x *VarType_MapType) GetKey() *VarType {
+	if x != nil {
+		return x.Key
+	}
+	return nil
+}
+
+func (x *VarType_MapType) GetValue() *VarType {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+type VarType_Null struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VarType_Null) Reset() {
+	*x = VarType_Null{}
+	mi := &file_types_v1_types_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VarType_Null) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VarType_Null) ProtoMessage() {}
+
+func (x *VarType_Null) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VarType_Null.ProtoReflect.Descriptor instead.
+func (*VarType_Null) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{0, 3}
+}
+
+type Map_Entry struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           *Val                   `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value         *Val                   `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Map_Entry) Reset() {
+	*x = Map_Entry{}
+	mi := &file_types_v1_types_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Map_Entry) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Map_Entry) ProtoMessage() {}
+
+func (x *Map_Entry) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Map_Entry.ProtoReflect.Descriptor instead.
+func (*Map_Entry) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{5, 0}
+}
+
+func (x *Map_Entry) GetKey() *Val {
+	if x != nil {
+		return x.Key
+	}
+	return nil
+}
+
+func (x *Map_Entry) GetValue() *Val {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+type TableType_Column struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Type          *VarType               `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TableType_Column) Reset() {
+	*x = TableType_Column{}
+	mi := &file_types_v1_types_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TableType_Column) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TableType_Column) ProtoMessage() {}
+
+func (x *TableType_Column) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TableType_Column.ProtoReflect.Descriptor instead.
+func (*TableType_Column) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{10, 0}
+}
+
+func (x *TableType_Column) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *TableType_Column) GetType() *VarType {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+type TabularType_LogEventType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TabularType_LogEventType) Reset() {
+	*x = TabularType_LogEventType{}
+	mi := &file_types_v1_types_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TabularType_LogEventType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TabularType_LogEventType) ProtoMessage() {}
+
+func (x *TabularType_LogEventType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TabularType_LogEventType.ProtoReflect.Descriptor instead.
+func (*TabularType_LogEventType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{14, 0}
 }
 
 var File_types_v1_types_proto protoreflect.FileDescriptor
@@ -424,50 +1608,168 @@ var file_types_v1_types_proto_rawDesc = []byte{
 	0x66, 0x2f, 0x64, 0x75, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
 	0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x22, 0x3b, 0x0a, 0x02, 0x4b, 0x56, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x23, 0x0a, 0x05, 0x76, 0x61, 0x6c,
-	0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
-	0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x6c, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0xb1,
-	0x02, 0x0a, 0x03, 0x56, 0x61, 0x6c, 0x12, 0x25, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x64,
-	0x20, 0x01, 0x28, 0x0e, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e,
-	0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x13, 0x0a,
-	0x03, 0x73, 0x74, 0x72, 0x18, 0xc9, 0x01, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x03, 0x73,
-	0x74, 0x72, 0x12, 0x13, 0x0a, 0x03, 0x66, 0x36, 0x34, 0x18, 0xca, 0x01, 0x20, 0x01, 0x28, 0x01,
-	0x48, 0x00, 0x52, 0x03, 0x66, 0x36, 0x34, 0x12, 0x13, 0x0a, 0x03, 0x69, 0x36, 0x34, 0x18, 0xcb,
-	0x01, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52, 0x03, 0x69, 0x36, 0x34, 0x12, 0x15, 0x0a, 0x04,
-	0x62, 0x6f, 0x6f, 0x6c, 0x18, 0xcc, 0x01, 0x20, 0x01, 0x28, 0x08, 0x48, 0x00, 0x52, 0x04, 0x62,
-	0x6f, 0x6f, 0x6c, 0x12, 0x22, 0x0a, 0x03, 0x61, 0x72, 0x72, 0x18, 0xcd, 0x01, 0x20, 0x01, 0x28,
-	0x0b, 0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x72, 0x72,
-	0x48, 0x00, 0x52, 0x03, 0x61, 0x72, 0x72, 0x12, 0x22, 0x0a, 0x03, 0x6f, 0x62, 0x6a, 0x18, 0xce,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
-	0x2e, 0x4f, 0x62, 0x6a, 0x48, 0x00, 0x52, 0x03, 0x6f, 0x62, 0x6a, 0x12, 0x2d, 0x0a, 0x02, 0x74,
-	0x73, 0x18, 0xcf, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x6f, 0x22, 0xb5, 0x04, 0x0a, 0x07, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12, 0x2e, 0x0a,
+	0x06, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x14, 0x2e,
+	0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x54,
+	0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x06, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x12, 0x33, 0x0a,
+	0x05, 0x61, 0x72, 0x72, 0x61, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x2e,
+	0x41, 0x72, 0x72, 0x61, 0x79, 0x54, 0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x05, 0x61, 0x72, 0x72,
+	0x61, 0x79, 0x12, 0x36, 0x0a, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61,
+	0x72, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65,
+	0x48, 0x00, 0x52, 0x06, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x12, 0x2d, 0x0a, 0x03, 0x6d, 0x61,
+	0x70, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
+	0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x4d, 0x61, 0x70, 0x54, 0x79,
+	0x70, 0x65, 0x48, 0x00, 0x52, 0x03, 0x6d, 0x61, 0x70, 0x12, 0x2c, 0x0a, 0x04, 0x6e, 0x75, 0x6c,
+	0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
+	0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x4e, 0x75, 0x6c, 0x6c, 0x48,
+	0x00, 0x52, 0x04, 0x6e, 0x75, 0x6c, 0x6c, 0x1a, 0x34, 0x0a, 0x09, 0x41, 0x72, 0x72, 0x61, 0x79,
+	0x54, 0x79, 0x70, 0x65, 0x12, 0x27, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56,
+	0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x1a, 0x90, 0x01,
+	0x0a, 0x0a, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x37, 0x0a, 0x03,
+	0x6b, 0x76, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x4f, 0x62, 0x6a,
+	0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x4b, 0x76, 0x73, 0x45, 0x6e, 0x74, 0x72, 0x79,
+	0x52, 0x03, 0x6b, 0x76, 0x73, 0x1a, 0x49, 0x0a, 0x08, 0x4b, 0x76, 0x73, 0x45, 0x6e, 0x74, 0x72,
+	0x79, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x6b, 0x65, 0x79, 0x12, 0x27, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61,
+	0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01,
+	0x1a, 0x57, 0x0a, 0x07, 0x4d, 0x61, 0x70, 0x54, 0x79, 0x70, 0x65, 0x12, 0x23, 0x0a, 0x03, 0x6b,
+	0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
+	0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x03, 0x6b, 0x65, 0x79,
+	0x12, 0x27, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79,
+	0x70, 0x65, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x1a, 0x06, 0x0a, 0x04, 0x4e, 0x75, 0x6c,
+	0x6c, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x3b, 0x0a, 0x02, 0x4b, 0x56, 0x12,
+	0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65,
+	0x79, 0x12, 0x23, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x6c, 0x52,
+	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0xfc, 0x02, 0x0a, 0x03, 0x56, 0x61, 0x6c, 0x12, 0x25,
+	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x64, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52,
+	0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x13, 0x0a, 0x03, 0x73, 0x74, 0x72, 0x18, 0xc9, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x03, 0x73, 0x74, 0x72, 0x12, 0x13, 0x0a, 0x03, 0x66, 0x36,
+	0x34, 0x18, 0xca, 0x01, 0x20, 0x01, 0x28, 0x01, 0x48, 0x00, 0x52, 0x03, 0x66, 0x36, 0x34, 0x12,
+	0x13, 0x0a, 0x03, 0x69, 0x36, 0x34, 0x18, 0xcb, 0x01, 0x20, 0x01, 0x28, 0x03, 0x48, 0x00, 0x52,
+	0x03, 0x69, 0x36, 0x34, 0x12, 0x15, 0x0a, 0x04, 0x62, 0x6f, 0x6f, 0x6c, 0x18, 0xcc, 0x01, 0x20,
+	0x01, 0x28, 0x08, 0x48, 0x00, 0x52, 0x04, 0x62, 0x6f, 0x6f, 0x6c, 0x12, 0x2d, 0x0a, 0x02, 0x74,
+	0x73, 0x18, 0xcd, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
 	0x74, 0x61, 0x6d, 0x70, 0x48, 0x00, 0x52, 0x02, 0x74, 0x73, 0x12, 0x2e, 0x0a, 0x03, 0x64, 0x75,
-	0x72, 0x18, 0xd0, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x72, 0x18, 0xce, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75, 0x72, 0x61, 0x74,
-	0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x03, 0x64, 0x75, 0x72, 0x42, 0x06, 0x0a, 0x04, 0x6b, 0x69,
-	0x6e, 0x64, 0x22, 0x25, 0x0a, 0x03, 0x4f, 0x62, 0x6a, 0x12, 0x1e, 0x0a, 0x03, 0x6b, 0x76, 0x73,
-	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76,
-	0x31, 0x2e, 0x4b, 0x56, 0x52, 0x03, 0x6b, 0x76, 0x73, 0x22, 0x2a, 0x0a, 0x03, 0x41, 0x72, 0x72,
-	0x12, 0x23, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x6c, 0x52, 0x05,
-	0x69, 0x74, 0x65, 0x6d, 0x73, 0x2a, 0x5e, 0x0a, 0x07, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65,
-	0x12, 0x0b, 0x0a, 0x07, 0x75, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x10, 0x00, 0x12, 0x07, 0x0a,
-	0x03, 0x73, 0x74, 0x72, 0x10, 0x01, 0x12, 0x07, 0x0a, 0x03, 0x66, 0x36, 0x34, 0x10, 0x02, 0x12,
-	0x07, 0x0a, 0x03, 0x69, 0x36, 0x34, 0x10, 0x03, 0x12, 0x08, 0x0a, 0x04, 0x62, 0x6f, 0x6f, 0x6c,
-	0x10, 0x04, 0x12, 0x07, 0x0a, 0x03, 0x61, 0x72, 0x72, 0x10, 0x05, 0x12, 0x07, 0x0a, 0x03, 0x6f,
-	0x62, 0x6a, 0x10, 0x06, 0x12, 0x06, 0x0a, 0x02, 0x74, 0x73, 0x10, 0x07, 0x12, 0x07, 0x0a, 0x03,
-	0x64, 0x75, 0x72, 0x10, 0x08, 0x42, 0x8a, 0x01, 0x0a, 0x0c, 0x63, 0x6f, 0x6d, 0x2e, 0x74, 0x79,
-	0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x42, 0x0a, 0x54, 0x79, 0x70, 0x65, 0x73, 0x50, 0x72, 0x6f,
-	0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
-	0x2f, 0x68, 0x75, 0x6d, 0x61, 0x6e, 0x6c, 0x6f, 0x67, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f,
-	0x67, 0x6f, 0x2f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2f, 0x76, 0x31, 0x3b, 0x74, 0x79, 0x70, 0x65,
-	0x73, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x54, 0x58, 0x58, 0xaa, 0x02, 0x08, 0x54, 0x79, 0x70, 0x65,
-	0x73, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x08, 0x54, 0x79, 0x70, 0x65, 0x73, 0x5c, 0x56, 0x31, 0xe2,
-	0x02, 0x14, 0x54, 0x79, 0x70, 0x65, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x09, 0x54, 0x79, 0x70, 0x65, 0x73, 0x3a, 0x3a,
-	0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x03, 0x64, 0x75, 0x72, 0x12, 0x22, 0x0a, 0x03, 0x61, 0x72,
+	0x72, 0x18, 0xcf, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
+	0x2e, 0x76, 0x31, 0x2e, 0x41, 0x72, 0x72, 0x48, 0x00, 0x52, 0x03, 0x61, 0x72, 0x72, 0x12, 0x22,
+	0x0a, 0x03, 0x6f, 0x62, 0x6a, 0x18, 0xd0, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4f, 0x62, 0x6a, 0x48, 0x00, 0x52, 0x03, 0x6f,
+	0x62, 0x6a, 0x12, 0x22, 0x0a, 0x03, 0x6d, 0x61, 0x70, 0x18, 0xd1, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x61, 0x70, 0x48,
+	0x00, 0x52, 0x03, 0x6d, 0x61, 0x70, 0x12, 0x25, 0x0a, 0x04, 0x6e, 0x75, 0x6c, 0x6c, 0x18, 0xd2,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
+	0x2e, 0x4e, 0x75, 0x6c, 0x6c, 0x48, 0x00, 0x52, 0x04, 0x6e, 0x75, 0x6c, 0x6c, 0x42, 0x06, 0x0a,
+	0x04, 0x6b, 0x69, 0x6e, 0x64, 0x22, 0x25, 0x0a, 0x03, 0x4f, 0x62, 0x6a, 0x12, 0x1e, 0x0a, 0x03,
+	0x6b, 0x76, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0c, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4b, 0x56, 0x52, 0x03, 0x6b, 0x76, 0x73, 0x22, 0x2a, 0x0a, 0x03,
+	0x41, 0x72, 0x72, 0x12, 0x23, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61,
+	0x6c, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x83, 0x01, 0x0a, 0x03, 0x4d, 0x61, 0x70,
+	0x12, 0x2d, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x13, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x61, 0x70,
+	0x2e, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x1a,
+	0x4d, 0x0a, 0x05, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x1f, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
+	0x2e, 0x56, 0x61, 0x6c, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x23, 0x0a, 0x05, 0x76, 0x61, 0x6c,
+	0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
+	0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x6c, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x06,
+	0x0a, 0x04, 0x4e, 0x75, 0x6c, 0x6c, 0x22, 0xec, 0x01, 0x0a, 0x06, 0x53, 0x63, 0x61, 0x6c, 0x61,
+	0x72, 0x12, 0x25, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x64, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79,
+	0x70, 0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x13, 0x0a, 0x03, 0x73, 0x74, 0x72, 0x18,
+	0xc9, 0x01, 0x20, 0x01, 0x28, 0x09, 0x48, 0x00, 0x52, 0x03, 0x73, 0x74, 0x72, 0x12, 0x13, 0x0a,
+	0x03, 0x66, 0x36, 0x34, 0x18, 0xca, 0x01, 0x20, 0x01, 0x28, 0x01, 0x48, 0x00, 0x52, 0x03, 0x66,
+	0x36, 0x34, 0x12, 0x13, 0x0a, 0x03, 0x69, 0x36, 0x34, 0x18, 0xcb, 0x01, 0x20, 0x01, 0x28, 0x03,
+	0x48, 0x00, 0x52, 0x03, 0x69, 0x36, 0x34, 0x12, 0x15, 0x0a, 0x04, 0x62, 0x6f, 0x6f, 0x6c, 0x18,
+	0xcc, 0x01, 0x20, 0x01, 0x28, 0x08, 0x48, 0x00, 0x52, 0x04, 0x62, 0x6f, 0x6f, 0x6c, 0x12, 0x2d,
+	0x0a, 0x02, 0x74, 0x73, 0x18, 0xcf, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69,
+	0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x48, 0x00, 0x52, 0x02, 0x74, 0x73, 0x12, 0x2e, 0x0a,
+	0x03, 0x64, 0x75, 0x72, 0x18, 0xd0, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x67, 0x6f,
+	0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x44, 0x75,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x03, 0x64, 0x75, 0x72, 0x42, 0x06, 0x0a,
+	0x04, 0x6b, 0x69, 0x6e, 0x64, 0x22, 0x42, 0x0a, 0x06, 0x46, 0x6c, 0x61, 0x74, 0x4b, 0x56, 0x12,
+	0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65,
+	0x79, 0x12, 0x26, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x10, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x63, 0x61, 0x6c,
+	0x61, 0x72, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x31, 0x0a, 0x07, 0x46, 0x6c, 0x61,
+	0x74, 0x41, 0x72, 0x72, 0x12, 0x26, 0x0a, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x10, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53,
+	0x63, 0x61, 0x6c, 0x61, 0x72, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x86, 0x01, 0x0a,
+	0x09, 0x54, 0x61, 0x62, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x34, 0x0a, 0x07, 0x63, 0x6f,
+	0x6c, 0x75, 0x6d, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x74, 0x79,
+	0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x2e, 0x43, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x52, 0x07, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x73,
+	0x1a, 0x43, 0x0a, 0x06, 0x43, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x25,
+	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52,
+	0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x57, 0x0a, 0x05, 0x54, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x27,
+	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x6c, 0x65, 0x54, 0x79, 0x70,
+	0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x25, 0x0a, 0x04, 0x72, 0x6f, 0x77, 0x73, 0x18,
+	0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
+	0x2e, 0x46, 0x6c, 0x61, 0x74, 0x41, 0x72, 0x72, 0x52, 0x04, 0x72, 0x6f, 0x77, 0x73, 0x22, 0xf2,
+	0x01, 0x0a, 0x0e, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70,
+	0x65, 0x12, 0x35, 0x0a, 0x05, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x75, 0x6c, 0x74,
+	0x69, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x48,
+	0x00, 0x52, 0x05, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x12, 0x31, 0x0a, 0x07, 0x74, 0x61, 0x62, 0x75,
+	0x6c, 0x61, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65,
+	0x48, 0x00, 0x52, 0x07, 0x74, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x12, 0x36, 0x0a, 0x0c, 0x73,
+	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72,
+	0x54, 0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x0b, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x56, 0x61,
+	0x6c, 0x75, 0x65, 0x12, 0x36, 0x0a, 0x0a, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x65, 0x72, 0x69, 0x65,
+	0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
+	0x76, 0x31, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x65, 0x72, 0x69, 0x65, 0x73, 0x48, 0x00, 0x52,
+	0x0a, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x65, 0x72, 0x69, 0x65, 0x73, 0x42, 0x06, 0x0a, 0x04, 0x74,
+	0x79, 0x70, 0x65, 0x22, 0x49, 0x0a, 0x13, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x44, 0x61, 0x74, 0x61,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x12, 0x32, 0x0a, 0x07, 0x73, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74, 0x79,
+	0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x73, 0x22, 0x97,
+	0x01, 0x0a, 0x0b, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12, 0x2b,
+	0x0a, 0x05, 0x74, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e,
+	0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x6c, 0x65, 0x54, 0x79,
+	0x70, 0x65, 0x48, 0x00, 0x52, 0x05, 0x74, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x43, 0x0a, 0x0a, 0x6c,
+	0x6f, 0x67, 0x5f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x22, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x75, 0x6c,
+	0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x4c, 0x6f, 0x67, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x54,
+	0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x09, 0x6c, 0x6f, 0x67, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73,
+	0x1a, 0x0e, 0x0a, 0x0c, 0x4c, 0x6f, 0x67, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65,
+	0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x33, 0x0a, 0x0a, 0x54, 0x69, 0x6d, 0x65,
+	0x73, 0x65, 0x72, 0x69, 0x65, 0x73, 0x12, 0x25, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e,
+	0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x2a, 0x4f, 0x0a,
+	0x0a, 0x53, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x12, 0x0b, 0x0a, 0x07, 0x75,
+	0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03, 0x73, 0x74, 0x72, 0x10,
+	0x01, 0x12, 0x07, 0x0a, 0x03, 0x66, 0x36, 0x34, 0x10, 0x02, 0x12, 0x07, 0x0a, 0x03, 0x69, 0x36,
+	0x34, 0x10, 0x03, 0x12, 0x08, 0x0a, 0x04, 0x62, 0x6f, 0x6f, 0x6c, 0x10, 0x04, 0x12, 0x06, 0x0a,
+	0x02, 0x74, 0x73, 0x10, 0x05, 0x12, 0x07, 0x0a, 0x03, 0x64, 0x75, 0x72, 0x10, 0x06, 0x42, 0x8a,
+	0x01, 0x0a, 0x0c, 0x63, 0x6f, 0x6d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x42,
+	0x0a, 0x54, 0x79, 0x70, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x2d, 0x67,
+	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x68, 0x75, 0x6d, 0x61, 0x6e, 0x6c,
+	0x6f, 0x67, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x6f, 0x2f, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2f, 0x76, 0x31, 0x3b, 0x74, 0x79, 0x70, 0x65, 0x73, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x54,
+	0x58, 0x58, 0xaa, 0x02, 0x08, 0x54, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x08,
+	0x54, 0x79, 0x70, 0x65, 0x73, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x14, 0x54, 0x79, 0x70, 0x65, 0x73,
+	0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea,
+	0x02, 0x09, 0x54, 0x79, 0x70, 0x65, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -483,30 +1785,82 @@ func file_types_v1_types_proto_rawDescGZIP() []byte {
 }
 
 var file_types_v1_types_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_types_v1_types_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_types_v1_types_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_types_v1_types_proto_goTypes = []any{
-	(VarType)(0),                  // 0: types.v1.VarType
-	(*KV)(nil),                    // 1: types.v1.KV
-	(*Val)(nil),                   // 2: types.v1.Val
-	(*Obj)(nil),                   // 3: types.v1.Obj
-	(*Arr)(nil),                   // 4: types.v1.Arr
-	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),   // 6: google.protobuf.Duration
+	(ScalarType)(0),                  // 0: types.v1.ScalarType
+	(*VarType)(nil),                  // 1: types.v1.VarType
+	(*KV)(nil),                       // 2: types.v1.KV
+	(*Val)(nil),                      // 3: types.v1.Val
+	(*Obj)(nil),                      // 4: types.v1.Obj
+	(*Arr)(nil),                      // 5: types.v1.Arr
+	(*Map)(nil),                      // 6: types.v1.Map
+	(*Null)(nil),                     // 7: types.v1.Null
+	(*Scalar)(nil),                   // 8: types.v1.Scalar
+	(*FlatKV)(nil),                   // 9: types.v1.FlatKV
+	(*FlatArr)(nil),                  // 10: types.v1.FlatArr
+	(*TableType)(nil),                // 11: types.v1.TableType
+	(*Table)(nil),                    // 12: types.v1.Table
+	(*DataStreamType)(nil),           // 13: types.v1.DataStreamType
+	(*MultiDataStreamType)(nil),      // 14: types.v1.MultiDataStreamType
+	(*TabularType)(nil),              // 15: types.v1.TabularType
+	(*Timeseries)(nil),               // 16: types.v1.Timeseries
+	(*VarType_ArrayType)(nil),        // 17: types.v1.VarType.ArrayType
+	(*VarType_ObjectType)(nil),       // 18: types.v1.VarType.ObjectType
+	(*VarType_MapType)(nil),          // 19: types.v1.VarType.MapType
+	(*VarType_Null)(nil),             // 20: types.v1.VarType.Null
+	nil,                              // 21: types.v1.VarType.ObjectType.KvsEntry
+	(*Map_Entry)(nil),                // 22: types.v1.Map.Entry
+	(*TableType_Column)(nil),         // 23: types.v1.TableType.Column
+	(*TabularType_LogEventType)(nil), // 24: types.v1.TabularType.LogEventType
+	(*timestamppb.Timestamp)(nil),    // 25: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),      // 26: google.protobuf.Duration
 }
 var file_types_v1_types_proto_depIdxs = []int32{
-	2, // 0: types.v1.KV.value:type_name -> types.v1.Val
-	0, // 1: types.v1.Val.type:type_name -> types.v1.VarType
-	4, // 2: types.v1.Val.arr:type_name -> types.v1.Arr
-	3, // 3: types.v1.Val.obj:type_name -> types.v1.Obj
-	5, // 4: types.v1.Val.ts:type_name -> google.protobuf.Timestamp
-	6, // 5: types.v1.Val.dur:type_name -> google.protobuf.Duration
-	1, // 6: types.v1.Obj.kvs:type_name -> types.v1.KV
-	2, // 7: types.v1.Arr.items:type_name -> types.v1.Val
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	0,  // 0: types.v1.VarType.scalar:type_name -> types.v1.ScalarType
+	17, // 1: types.v1.VarType.array:type_name -> types.v1.VarType.ArrayType
+	18, // 2: types.v1.VarType.object:type_name -> types.v1.VarType.ObjectType
+	19, // 3: types.v1.VarType.map:type_name -> types.v1.VarType.MapType
+	20, // 4: types.v1.VarType.null:type_name -> types.v1.VarType.Null
+	3,  // 5: types.v1.KV.value:type_name -> types.v1.Val
+	1,  // 6: types.v1.Val.type:type_name -> types.v1.VarType
+	25, // 7: types.v1.Val.ts:type_name -> google.protobuf.Timestamp
+	26, // 8: types.v1.Val.dur:type_name -> google.protobuf.Duration
+	5,  // 9: types.v1.Val.arr:type_name -> types.v1.Arr
+	4,  // 10: types.v1.Val.obj:type_name -> types.v1.Obj
+	6,  // 11: types.v1.Val.map:type_name -> types.v1.Map
+	7,  // 12: types.v1.Val.null:type_name -> types.v1.Null
+	2,  // 13: types.v1.Obj.kvs:type_name -> types.v1.KV
+	3,  // 14: types.v1.Arr.items:type_name -> types.v1.Val
+	22, // 15: types.v1.Map.entries:type_name -> types.v1.Map.Entry
+	1,  // 16: types.v1.Scalar.type:type_name -> types.v1.VarType
+	25, // 17: types.v1.Scalar.ts:type_name -> google.protobuf.Timestamp
+	26, // 18: types.v1.Scalar.dur:type_name -> google.protobuf.Duration
+	8,  // 19: types.v1.FlatKV.value:type_name -> types.v1.Scalar
+	8,  // 20: types.v1.FlatArr.items:type_name -> types.v1.Scalar
+	23, // 21: types.v1.TableType.columns:type_name -> types.v1.TableType.Column
+	11, // 22: types.v1.Table.type:type_name -> types.v1.TableType
+	10, // 23: types.v1.Table.rows:type_name -> types.v1.FlatArr
+	14, // 24: types.v1.DataStreamType.multi:type_name -> types.v1.MultiDataStreamType
+	15, // 25: types.v1.DataStreamType.tabular:type_name -> types.v1.TabularType
+	1,  // 26: types.v1.DataStreamType.single_value:type_name -> types.v1.VarType
+	16, // 27: types.v1.DataStreamType.timeseries:type_name -> types.v1.Timeseries
+	13, // 28: types.v1.MultiDataStreamType.streams:type_name -> types.v1.DataStreamType
+	11, // 29: types.v1.TabularType.table:type_name -> types.v1.TableType
+	24, // 30: types.v1.TabularType.log_events:type_name -> types.v1.TabularType.LogEventType
+	1,  // 31: types.v1.Timeseries.type:type_name -> types.v1.VarType
+	1,  // 32: types.v1.VarType.ArrayType.items:type_name -> types.v1.VarType
+	21, // 33: types.v1.VarType.ObjectType.kvs:type_name -> types.v1.VarType.ObjectType.KvsEntry
+	1,  // 34: types.v1.VarType.MapType.key:type_name -> types.v1.VarType
+	1,  // 35: types.v1.VarType.MapType.value:type_name -> types.v1.VarType
+	1,  // 36: types.v1.VarType.ObjectType.KvsEntry.value:type_name -> types.v1.VarType
+	3,  // 37: types.v1.Map.Entry.key:type_name -> types.v1.Val
+	3,  // 38: types.v1.Map.Entry.value:type_name -> types.v1.Val
+	1,  // 39: types.v1.TableType.Column.type:type_name -> types.v1.VarType
+	40, // [40:40] is the sub-list for method output_type
+	40, // [40:40] is the sub-list for method input_type
+	40, // [40:40] is the sub-list for extension type_name
+	40, // [40:40] is the sub-list for extension extendee
+	0,  // [0:40] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_types_proto_init() }
@@ -514,15 +1868,42 @@ func file_types_v1_types_proto_init() {
 	if File_types_v1_types_proto != nil {
 		return
 	}
-	file_types_v1_types_proto_msgTypes[1].OneofWrappers = []any{
+	file_types_v1_types_proto_msgTypes[0].OneofWrappers = []any{
+		(*VarType_Scalar)(nil),
+		(*VarType_Array)(nil),
+		(*VarType_Object)(nil),
+		(*VarType_Map)(nil),
+		(*VarType_Null_)(nil),
+	}
+	file_types_v1_types_proto_msgTypes[2].OneofWrappers = []any{
 		(*Val_Str)(nil),
 		(*Val_F64)(nil),
 		(*Val_I64)(nil),
 		(*Val_Bool)(nil),
-		(*Val_Arr)(nil),
-		(*Val_Obj)(nil),
 		(*Val_Ts)(nil),
 		(*Val_Dur)(nil),
+		(*Val_Arr)(nil),
+		(*Val_Obj)(nil),
+		(*Val_Map)(nil),
+		(*Val_Null)(nil),
+	}
+	file_types_v1_types_proto_msgTypes[7].OneofWrappers = []any{
+		(*Scalar_Str)(nil),
+		(*Scalar_F64)(nil),
+		(*Scalar_I64)(nil),
+		(*Scalar_Bool)(nil),
+		(*Scalar_Ts)(nil),
+		(*Scalar_Dur)(nil),
+	}
+	file_types_v1_types_proto_msgTypes[12].OneofWrappers = []any{
+		(*DataStreamType_Multi)(nil),
+		(*DataStreamType_Tabular)(nil),
+		(*DataStreamType_SingleValue)(nil),
+		(*DataStreamType_Timeseries)(nil),
+	}
+	file_types_v1_types_proto_msgTypes[14].OneofWrappers = []any{
+		(*TabularType_Table)(nil),
+		(*TabularType_LogEvents)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -530,7 +1911,7 @@ func file_types_v1_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_types_v1_types_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   4,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

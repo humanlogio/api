@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/timestamp.proto";
+import "types/v1/logevent.proto";
+import "types/v1/logquery.proto";
+import "types/v1/types.proto";
+
+option go_package = "types/v1;typesv1";
+
+message Data {
+  message SubQueries {
+    repeated types.v1.LogQuery queries = 1;
+  }
+
+  // Schema schema = 1;
+  oneof shape {
+    // SubQueries need to be further queried to obtain actual data.
+    SubQueries subqueries = 201;
+    // tabular is data that has a table header, followed by rows that match the
+    // header
+    Tabular tabular = 301;
+    // scalar timeseries data is a list of [ts, scalar] where scalar is usually
+    // a numeric value
+    ScalarTimeseries scalar_timeseries = 401;
+    // vector timeseries data is a list of [ts, [scalar0, ..., scalarN]] where
+    // scalar is usually a numeric value
+    VectorTimeseries vector_timeseries = 402;
+  }
+}
+
+message Tabular {
+  oneof shape {
+    LogEvents log_events = 201;
+    Table free_form = 202;
+  }
+}
+
+message ScalarTimeseries {
+  // scalars will contain only this type of value
+  VarType type = 2;
+  repeated ScalarTimestamp scalars = 3;
+}
+
+message LogEvents {
+  repeated IngestedLogEvent events = 1;
+}
+
+message ScalarTimestamp {
+  google.protobuf.Timestamp ts = 1;
+  Scalar scalar = 2;
+}
+
+message VectorTimeseries {
+  Obj context = 1;
+  // vectors will contain only this type of value
+  VarType type = 2;
+  repeated VectorTimestamp vectors = 3;
+}
+
+message VectorTimestamp {
+  google.protobuf.Timestamp ts = 1;
+  repeated Scalar vector = 2;
+}

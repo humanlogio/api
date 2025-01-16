@@ -5,16 +5,35 @@ package types.v1;
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
-enum VarType {
+enum ScalarType {
   unknown = 0;
   str = 1;
   f64 = 2;
   i64 = 3;
   bool = 4;
-  arr = 5;
-  obj = 6;
-  ts = 7;
-  dur = 8;
+  ts = 5;
+  dur = 6;
+}
+
+message VarType {
+  message ArrayType {
+    VarType items = 1;
+  }
+  message ObjectType {
+    map<string, VarType> kvs = 1;
+  }
+  message MapType {
+    VarType key = 1;
+    VarType value = 2;
+  }
+  message Null {}
+  oneof type {
+    ScalarType scalar = 1;
+    ArrayType array = 2;
+    ObjectType object = 3;
+    MapType map = 4;
+    Null null = 5;
+  }
 }
 
 message KV {
@@ -29,10 +48,12 @@ message Val {
     double f64 = 202;
     int64 i64 = 203;
     bool bool = 204;
-    Arr arr = 205;
-    Obj obj = 206;
-    google.protobuf.Timestamp ts = 207;
-    google.protobuf.Duration dur = 208;
+    google.protobuf.Timestamp ts = 205;
+    google.protobuf.Duration dur = 206;
+    Arr arr = 207;
+    Obj obj = 208;
+    Map map = 209;
+    Null null = 210;
   }
 }
 
@@ -42,4 +63,85 @@ message Obj {
 
 message Arr {
   repeated Val items = 1;
+}
+
+message Map {
+  message Entry {
+    Val key = 1;
+    Val value = 2;
+  }
+  repeated Entry entries = 1;
+}
+
+message Null {}
+
+message Scalar {
+  VarType type = 100;
+  oneof kind {
+    string str = 201;
+    double f64 = 202;
+    int64 i64 = 203;
+    bool bool = 204;
+    google.protobuf.Timestamp ts = 207;
+    google.protobuf.Duration dur = 208;
+  }
+}
+
+message FlatKV {
+  string key = 1;
+  Scalar value = 2;
+}
+
+message FlatArr {
+  repeated Scalar items = 1;
+}
+
+message TableType {
+  message Column {
+    string name = 1;
+    VarType type = 2;
+  }
+  repeated Column columns = 1;
+}
+
+message Table {
+  TableType type = 1;
+  repeated FlatArr rows = 2;
+}
+
+message DataStreamType {
+  oneof type {
+    MultiDataStreamType multi = 1;
+    TabularType tabular = 2;
+    VarType single_value = 3;
+    Timeseries timeseries = 5;
+  }
+}
+
+message MultiDataStreamType {
+  DataStreamType streams = 1;
+}
+
+message TabularType {
+  message LogEventType {
+    // log events contain,
+    // - machine_id
+    // - session_id
+    // - event_id (for ordering only within a machine/session pair
+    // - parsed_at (timestamp of when the log event was parsed)
+    // - timestamp (from a value found in the log, otherwise parsed_at)
+    // - level
+    // - message
+    // - key-value pairs
+  }
+  oneof type {
+    TableType table = 1;
+    LogEventType log_events = 2;
+  }
+}
+
+message Timeseries {
+  // each row will contain a timestamp along with a value
+  // value of this type
+  VarType type = 1;
 }

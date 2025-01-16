@@ -6,7 +6,6 @@ import (
 	"time"
 
 	typesv1 "github.com/humanlogio/api/go/types/v1"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func log(str string, args ...any) {
@@ -22,15 +21,15 @@ func Parse(input string) (_ *typesv1.LogQuery, err error) {
 		return nil, fmt.Errorf("parsing query: %v (%#v)", err, err)
 	}
 	defer func() {
-		e := recover()
-		if e != nil {
-			switch et := e.(type) {
-			case error:
-				err = et
-			default:
-				panic(e)
-			}
-		}
+		// e := recover()
+		// if e != nil {
+		// 	switch et := e.(type) {
+		// 	case error:
+		// 		err = et
+		// 	default:
+		// 		panic(e)
+		// 	}
+		// }
 	}()
 	p.Execute()
 	if p.err != nil {
@@ -42,36 +41,42 @@ func Parse(input string) (_ *typesv1.LogQuery, err error) {
 	return p.LogQuery, err
 }
 
-func (p *logQL) SetQuery(expr *typesv1.Expr) {
+func (p *logQL) SetQuery(stmts []*typesv1.Statement) {
 	if p.LogQuery == nil {
 		p.LogQuery = new(typesv1.LogQuery)
 	}
 	if p.err != nil {
-		p.err = fmt.Errorf("invalid `from`: %v", p.err)
+		p.err = fmt.Errorf("invalid query: %v", p.err)
 	} else {
-		p.LogQuery.Query = expr
+		p.LogQuery.Query = &typesv1.Statements{Statements: stmts}
 	}
 }
 
-func (p *logQL) SetFrom(t time.Time) {
+func (p *logQL) SetFrom(expr *typesv1.Expr) {
 	if p.LogQuery == nil {
 		p.LogQuery = new(typesv1.LogQuery)
+	}
+	if p.LogQuery.Timerange == nil {
+		p.LogQuery.Timerange = new(typesv1.Timerange)
 	}
 	if p.err != nil {
 		p.err = fmt.Errorf("invalid `from`: %v", p.err)
 	} else {
-		p.LogQuery.From = timestamppb.New(t)
+		p.LogQuery.Timerange.From = expr
 	}
 }
 
-func (p *logQL) SetTo(t time.Time) {
+func (p *logQL) SetTo(expr *typesv1.Expr) {
 	if p.LogQuery == nil {
 		p.LogQuery = new(typesv1.LogQuery)
+	}
+	if p.LogQuery.Timerange == nil {
+		p.LogQuery.Timerange = new(typesv1.Timerange)
 	}
 	if p.err != nil {
 		p.err = fmt.Errorf("invalid `to`: %v", p.err)
 	} else {
-		p.LogQuery.To = timestamppb.New(t)
+		p.LogQuery.Timerange.To = expr
 	}
 }
 
@@ -120,6 +125,73 @@ func (p *logQL) popExpr() *typesv1.Expr {
 	out := p.Exprs[cur]
 	p.Exprs = p.Exprs[:cur]
 	return out
+}
+
+func (p *logQL) addFilterStatement(op *typesv1.FilterOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Filter{Filter: op},
+	})
+}
+
+func (p *logQL) addSummarizeStatement(op *typesv1.SummarizeOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Summarize{Summarize: op},
+	})
+}
+
+func (p *logQL) addProjectStatement(op *typesv1.ProjectOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Project{Project: op},
+	})
+}
+
+func (p *logQL) setRenderSplitByStatement(op *typesv1.SplitOperator) {
+	if p.LogQuery == nil {
+		p.LogQuery = new(typesv1.LogQuery)
+	}
+	if p.LogQuery.Query == nil {
+		p.LogQuery.Query = new(typesv1.Statements)
+	}
+	p.LogQuery.Query.Render = &typesv1.RenderStatement{
+		Stmt: &typesv1.RenderStatement_Split{Split: op},
+	}
+}
+
+func (p *logQL) setFilterOp(e *typesv1.Expr) {
+	p.FilterOp = &typesv1.FilterOperator{Expr: e}
+}
+
+func (p *logQL) startSummarizeOp(fn *typesv1.FuncCall) {
+	p.SummarizeOp = &typesv1.SummarizeOperator{AggregateFunction: fn}
+}
+
+func (p *logQL) addSummarizeByOp(e *typesv1.Expr) {
+	if p.SummarizeOp.By == nil {
+		p.SummarizeOp.By = &typesv1.SummarizeOperator_ByOperator{}
+	}
+	p.SummarizeOp.By.Scalars = append(p.SummarizeOp.By.Scalars, e)
+}
+
+func (p *logQL) startProjectOp() {
+	p.ProjectOp = &typesv1.ProjectOperator{}
+}
+
+func (p *logQL) startProjectOpArg(id string) {
+	p.ProjectOp.Projections = append(p.ProjectOp.Projections, &typesv1.ProjectOperator_Projection{
+		Column: &typesv1.Identifier{Name: id},
+	})
+}
+
+func (p *logQL) setProjectOpArgValue(e *typesv1.Expr) {
+	p.ProjectOp.Projections[len(p.ProjectOp.Projections)-1].Value = e
+}
+
+func (p *logQL) startRenderSplitOp() {
+	p.SplitByOp = &typesv1.SplitOperator{By: &typesv1.SplitOperator_ByOperator{}}
+}
+
+func (p *logQL) addRenderSplitByOp(e *typesv1.Expr) {
+	p.SplitByOp.By.Scalars = append(p.SplitByOp.By.Scalars, e)
 }
 
 func (p *logQL) parseString(text string) string {
@@ -246,9 +318,9 @@ func (p *logQL) addFuncArg(e *typesv1.Expr) {
 	p.FuncCalls[cur].Args = append(p.FuncCalls[cur].Args, e)
 }
 
-func (p *logQL) popFunc() *typesv1.Expr {
+func (p *logQL) popFunc() *typesv1.FuncCall {
 	cur := len(p.FuncCalls) - 1
 	pop := p.FuncCalls[cur]
 	p.FuncCalls = p.FuncCalls[:cur]
-	return typesv1.ExprFuncCall(pop.Name, pop.Args...)
+	return pop
 }

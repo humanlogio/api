@@ -7,9 +7,9 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
 
 /**
- * @generated from enum types.v1.VarType
+ * @generated from enum types.v1.ScalarType
  */
-export enum VarType {
+export enum ScalarType {
   /**
    * @generated from enum value: unknown = 0;
    */
@@ -36,37 +36,244 @@ export enum VarType {
   bool = 4,
 
   /**
-   * @generated from enum value: arr = 5;
+   * @generated from enum value: ts = 5;
    */
-  arr = 5,
+  ts = 5,
 
   /**
-   * @generated from enum value: obj = 6;
+   * @generated from enum value: dur = 6;
    */
-  obj = 6,
-
-  /**
-   * @generated from enum value: ts = 7;
-   */
-  ts = 7,
-
-  /**
-   * @generated from enum value: dur = 8;
-   */
-  dur = 8,
+  dur = 6,
 }
-// Retrieve enum metadata with: proto3.getEnumType(VarType)
-proto3.util.setEnumType(VarType, "types.v1.VarType", [
+// Retrieve enum metadata with: proto3.getEnumType(ScalarType)
+proto3.util.setEnumType(ScalarType, "types.v1.ScalarType", [
   { no: 0, name: "unknown" },
   { no: 1, name: "str" },
   { no: 2, name: "f64" },
   { no: 3, name: "i64" },
   { no: 4, name: "bool" },
-  { no: 5, name: "arr" },
-  { no: 6, name: "obj" },
-  { no: 7, name: "ts" },
-  { no: 8, name: "dur" },
+  { no: 5, name: "ts" },
+  { no: 6, name: "dur" },
 ]);
+
+/**
+ * @generated from message types.v1.VarType
+ */
+export class VarType extends Message<VarType> {
+  /**
+   * @generated from oneof types.v1.VarType.type
+   */
+  type: {
+    /**
+     * @generated from field: types.v1.ScalarType scalar = 1;
+     */
+    value: ScalarType;
+    case: "scalar";
+  } | {
+    /**
+     * @generated from field: types.v1.VarType.ArrayType array = 2;
+     */
+    value: VarType_ArrayType;
+    case: "array";
+  } | {
+    /**
+     * @generated from field: types.v1.VarType.ObjectType object = 3;
+     */
+    value: VarType_ObjectType;
+    case: "object";
+  } | {
+    /**
+     * @generated from field: types.v1.VarType.MapType map = 4;
+     */
+    value: VarType_MapType;
+    case: "map";
+  } | {
+    /**
+     * @generated from field: types.v1.VarType.Null null = 5;
+     */
+    value: VarType_Null;
+    case: "null";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<VarType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.VarType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "scalar", kind: "enum", T: proto3.getEnumType(ScalarType), oneof: "type" },
+    { no: 2, name: "array", kind: "message", T: VarType_ArrayType, oneof: "type" },
+    { no: 3, name: "object", kind: "message", T: VarType_ObjectType, oneof: "type" },
+    { no: 4, name: "map", kind: "message", T: VarType_MapType, oneof: "type" },
+    { no: 5, name: "null", kind: "message", T: VarType_Null, oneof: "type" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VarType {
+    return new VarType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VarType {
+    return new VarType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VarType {
+    return new VarType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: VarType | PlainMessage<VarType> | undefined, b: VarType | PlainMessage<VarType> | undefined): boolean {
+    return proto3.util.equals(VarType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.VarType.ArrayType
+ */
+export class VarType_ArrayType extends Message<VarType_ArrayType> {
+  /**
+   * @generated from field: types.v1.VarType items = 1;
+   */
+  items?: VarType;
+
+  constructor(data?: PartialMessage<VarType_ArrayType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.VarType.ArrayType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "items", kind: "message", T: VarType },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VarType_ArrayType {
+    return new VarType_ArrayType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VarType_ArrayType {
+    return new VarType_ArrayType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VarType_ArrayType {
+    return new VarType_ArrayType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: VarType_ArrayType | PlainMessage<VarType_ArrayType> | undefined, b: VarType_ArrayType | PlainMessage<VarType_ArrayType> | undefined): boolean {
+    return proto3.util.equals(VarType_ArrayType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.VarType.ObjectType
+ */
+export class VarType_ObjectType extends Message<VarType_ObjectType> {
+  /**
+   * @generated from field: map<string, types.v1.VarType> kvs = 1;
+   */
+  kvs: { [key: string]: VarType } = {};
+
+  constructor(data?: PartialMessage<VarType_ObjectType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.VarType.ObjectType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "kvs", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: VarType} },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VarType_ObjectType {
+    return new VarType_ObjectType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VarType_ObjectType {
+    return new VarType_ObjectType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VarType_ObjectType {
+    return new VarType_ObjectType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: VarType_ObjectType | PlainMessage<VarType_ObjectType> | undefined, b: VarType_ObjectType | PlainMessage<VarType_ObjectType> | undefined): boolean {
+    return proto3.util.equals(VarType_ObjectType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.VarType.MapType
+ */
+export class VarType_MapType extends Message<VarType_MapType> {
+  /**
+   * @generated from field: types.v1.VarType key = 1;
+   */
+  key?: VarType;
+
+  /**
+   * @generated from field: types.v1.VarType value = 2;
+   */
+  value?: VarType;
+
+  constructor(data?: PartialMessage<VarType_MapType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.VarType.MapType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "key", kind: "message", T: VarType },
+    { no: 2, name: "value", kind: "message", T: VarType },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VarType_MapType {
+    return new VarType_MapType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VarType_MapType {
+    return new VarType_MapType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VarType_MapType {
+    return new VarType_MapType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: VarType_MapType | PlainMessage<VarType_MapType> | undefined, b: VarType_MapType | PlainMessage<VarType_MapType> | undefined): boolean {
+    return proto3.util.equals(VarType_MapType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.VarType.Null
+ */
+export class VarType_Null extends Message<VarType_Null> {
+  constructor(data?: PartialMessage<VarType_Null>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.VarType.Null";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): VarType_Null {
+    return new VarType_Null().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): VarType_Null {
+    return new VarType_Null().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): VarType_Null {
+    return new VarType_Null().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: VarType_Null | PlainMessage<VarType_Null> | undefined, b: VarType_Null | PlainMessage<VarType_Null> | undefined): boolean {
+    return proto3.util.equals(VarType_Null, a, b);
+  }
+}
 
 /**
  * @generated from message types.v1.KV
@@ -118,7 +325,7 @@ export class Val extends Message<Val> {
   /**
    * @generated from field: types.v1.VarType type = 100;
    */
-  type = VarType.unknown;
+  type?: VarType;
 
   /**
    * @generated from oneof types.v1.Val.kind
@@ -149,28 +356,40 @@ export class Val extends Message<Val> {
     case: "bool";
   } | {
     /**
-     * @generated from field: types.v1.Arr arr = 205;
-     */
-    value: Arr;
-    case: "arr";
-  } | {
-    /**
-     * @generated from field: types.v1.Obj obj = 206;
-     */
-    value: Obj;
-    case: "obj";
-  } | {
-    /**
-     * @generated from field: google.protobuf.Timestamp ts = 207;
+     * @generated from field: google.protobuf.Timestamp ts = 205;
      */
     value: Timestamp;
     case: "ts";
   } | {
     /**
-     * @generated from field: google.protobuf.Duration dur = 208;
+     * @generated from field: google.protobuf.Duration dur = 206;
      */
     value: Duration;
     case: "dur";
+  } | {
+    /**
+     * @generated from field: types.v1.Arr arr = 207;
+     */
+    value: Arr;
+    case: "arr";
+  } | {
+    /**
+     * @generated from field: types.v1.Obj obj = 208;
+     */
+    value: Obj;
+    case: "obj";
+  } | {
+    /**
+     * @generated from field: types.v1.Map map = 209;
+     */
+    value: Map;
+    case: "map";
+  } | {
+    /**
+     * @generated from field: types.v1.Null null = 210;
+     */
+    value: Null;
+    case: "null";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Val>) {
@@ -181,15 +400,17 @@ export class Val extends Message<Val> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Val";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 100, name: "type", kind: "enum", T: proto3.getEnumType(VarType) },
+    { no: 100, name: "type", kind: "message", T: VarType },
     { no: 201, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
     { no: 202, name: "f64", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind" },
     { no: 203, name: "i64", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "kind" },
     { no: 204, name: "bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
-    { no: 205, name: "arr", kind: "message", T: Arr, oneof: "kind" },
-    { no: 206, name: "obj", kind: "message", T: Obj, oneof: "kind" },
-    { no: 207, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
-    { no: 208, name: "dur", kind: "message", T: Duration, oneof: "kind" },
+    { no: 205, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
+    { no: 206, name: "dur", kind: "message", T: Duration, oneof: "kind" },
+    { no: 207, name: "arr", kind: "message", T: Arr, oneof: "kind" },
+    { no: 208, name: "obj", kind: "message", T: Obj, oneof: "kind" },
+    { no: 209, name: "map", kind: "message", T: Map, oneof: "kind" },
+    { no: 210, name: "null", kind: "message", T: Null, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Val {
@@ -280,6 +501,636 @@ export class Arr extends Message<Arr> {
 
   static equals(a: Arr | PlainMessage<Arr> | undefined, b: Arr | PlainMessage<Arr> | undefined): boolean {
     return proto3.util.equals(Arr, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Map
+ */
+export class Map extends Message<Map> {
+  /**
+   * @generated from field: repeated types.v1.Map.Entry entries = 1;
+   */
+  entries: Map_Entry[] = [];
+
+  constructor(data?: PartialMessage<Map>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Map";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "entries", kind: "message", T: Map_Entry, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Map {
+    return new Map().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Map {
+    return new Map().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Map {
+    return new Map().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Map | PlainMessage<Map> | undefined, b: Map | PlainMessage<Map> | undefined): boolean {
+    return proto3.util.equals(Map, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Map.Entry
+ */
+export class Map_Entry extends Message<Map_Entry> {
+  /**
+   * @generated from field: types.v1.Val key = 1;
+   */
+  key?: Val;
+
+  /**
+   * @generated from field: types.v1.Val value = 2;
+   */
+  value?: Val;
+
+  constructor(data?: PartialMessage<Map_Entry>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Map.Entry";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "key", kind: "message", T: Val },
+    { no: 2, name: "value", kind: "message", T: Val },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Map_Entry {
+    return new Map_Entry().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Map_Entry {
+    return new Map_Entry().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Map_Entry {
+    return new Map_Entry().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Map_Entry | PlainMessage<Map_Entry> | undefined, b: Map_Entry | PlainMessage<Map_Entry> | undefined): boolean {
+    return proto3.util.equals(Map_Entry, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Null
+ */
+export class Null extends Message<Null> {
+  constructor(data?: PartialMessage<Null>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Null";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Null {
+    return new Null().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Null {
+    return new Null().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Null {
+    return new Null().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Null | PlainMessage<Null> | undefined, b: Null | PlainMessage<Null> | undefined): boolean {
+    return proto3.util.equals(Null, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Scalar
+ */
+export class Scalar extends Message<Scalar> {
+  /**
+   * @generated from field: types.v1.VarType type = 100;
+   */
+  type?: VarType;
+
+  /**
+   * @generated from oneof types.v1.Scalar.kind
+   */
+  kind: {
+    /**
+     * @generated from field: string str = 201;
+     */
+    value: string;
+    case: "str";
+  } | {
+    /**
+     * @generated from field: double f64 = 202;
+     */
+    value: number;
+    case: "f64";
+  } | {
+    /**
+     * @generated from field: int64 i64 = 203;
+     */
+    value: bigint;
+    case: "i64";
+  } | {
+    /**
+     * @generated from field: bool bool = 204;
+     */
+    value: boolean;
+    case: "bool";
+  } | {
+    /**
+     * @generated from field: google.protobuf.Timestamp ts = 207;
+     */
+    value: Timestamp;
+    case: "ts";
+  } | {
+    /**
+     * @generated from field: google.protobuf.Duration dur = 208;
+     */
+    value: Duration;
+    case: "dur";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<Scalar>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Scalar";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 100, name: "type", kind: "message", T: VarType },
+    { no: 201, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 202, name: "f64", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind" },
+    { no: 203, name: "i64", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "kind" },
+    { no: 204, name: "bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
+    { no: 207, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
+    { no: 208, name: "dur", kind: "message", T: Duration, oneof: "kind" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Scalar {
+    return new Scalar().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Scalar {
+    return new Scalar().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Scalar {
+    return new Scalar().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Scalar | PlainMessage<Scalar> | undefined, b: Scalar | PlainMessage<Scalar> | undefined): boolean {
+    return proto3.util.equals(Scalar, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.FlatKV
+ */
+export class FlatKV extends Message<FlatKV> {
+  /**
+   * @generated from field: string key = 1;
+   */
+  key = "";
+
+  /**
+   * @generated from field: types.v1.Scalar value = 2;
+   */
+  value?: Scalar;
+
+  constructor(data?: PartialMessage<FlatKV>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.FlatKV";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "value", kind: "message", T: Scalar },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FlatKV {
+    return new FlatKV().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FlatKV {
+    return new FlatKV().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FlatKV {
+    return new FlatKV().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FlatKV | PlainMessage<FlatKV> | undefined, b: FlatKV | PlainMessage<FlatKV> | undefined): boolean {
+    return proto3.util.equals(FlatKV, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.FlatArr
+ */
+export class FlatArr extends Message<FlatArr> {
+  /**
+   * @generated from field: repeated types.v1.Scalar items = 1;
+   */
+  items: Scalar[] = [];
+
+  constructor(data?: PartialMessage<FlatArr>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.FlatArr";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "items", kind: "message", T: Scalar, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FlatArr {
+    return new FlatArr().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FlatArr {
+    return new FlatArr().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FlatArr {
+    return new FlatArr().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FlatArr | PlainMessage<FlatArr> | undefined, b: FlatArr | PlainMessage<FlatArr> | undefined): boolean {
+    return proto3.util.equals(FlatArr, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.TableType
+ */
+export class TableType extends Message<TableType> {
+  /**
+   * @generated from field: repeated types.v1.TableType.Column columns = 1;
+   */
+  columns: TableType_Column[] = [];
+
+  constructor(data?: PartialMessage<TableType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TableType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "columns", kind: "message", T: TableType_Column, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TableType {
+    return new TableType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TableType {
+    return new TableType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TableType {
+    return new TableType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TableType | PlainMessage<TableType> | undefined, b: TableType | PlainMessage<TableType> | undefined): boolean {
+    return proto3.util.equals(TableType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.TableType.Column
+ */
+export class TableType_Column extends Message<TableType_Column> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: types.v1.VarType type = 2;
+   */
+  type?: VarType;
+
+  constructor(data?: PartialMessage<TableType_Column>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TableType.Column";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "type", kind: "message", T: VarType },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TableType_Column {
+    return new TableType_Column().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TableType_Column {
+    return new TableType_Column().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TableType_Column {
+    return new TableType_Column().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TableType_Column | PlainMessage<TableType_Column> | undefined, b: TableType_Column | PlainMessage<TableType_Column> | undefined): boolean {
+    return proto3.util.equals(TableType_Column, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Table
+ */
+export class Table extends Message<Table> {
+  /**
+   * @generated from field: types.v1.TableType type = 1;
+   */
+  type?: TableType;
+
+  /**
+   * @generated from field: repeated types.v1.FlatArr rows = 2;
+   */
+  rows: FlatArr[] = [];
+
+  constructor(data?: PartialMessage<Table>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Table";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "type", kind: "message", T: TableType },
+    { no: 2, name: "rows", kind: "message", T: FlatArr, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Table {
+    return new Table().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Table {
+    return new Table().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Table {
+    return new Table().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Table | PlainMessage<Table> | undefined, b: Table | PlainMessage<Table> | undefined): boolean {
+    return proto3.util.equals(Table, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.DataStreamType
+ */
+export class DataStreamType extends Message<DataStreamType> {
+  /**
+   * @generated from oneof types.v1.DataStreamType.type
+   */
+  type: {
+    /**
+     * @generated from field: types.v1.MultiDataStreamType multi = 1;
+     */
+    value: MultiDataStreamType;
+    case: "multi";
+  } | {
+    /**
+     * @generated from field: types.v1.TabularType tabular = 2;
+     */
+    value: TabularType;
+    case: "tabular";
+  } | {
+    /**
+     * @generated from field: types.v1.VarType single_value = 3;
+     */
+    value: VarType;
+    case: "singleValue";
+  } | {
+    /**
+     * @generated from field: types.v1.Timeseries timeseries = 5;
+     */
+    value: Timeseries;
+    case: "timeseries";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<DataStreamType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.DataStreamType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "multi", kind: "message", T: MultiDataStreamType, oneof: "type" },
+    { no: 2, name: "tabular", kind: "message", T: TabularType, oneof: "type" },
+    { no: 3, name: "single_value", kind: "message", T: VarType, oneof: "type" },
+    { no: 5, name: "timeseries", kind: "message", T: Timeseries, oneof: "type" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DataStreamType {
+    return new DataStreamType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DataStreamType {
+    return new DataStreamType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DataStreamType {
+    return new DataStreamType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DataStreamType | PlainMessage<DataStreamType> | undefined, b: DataStreamType | PlainMessage<DataStreamType> | undefined): boolean {
+    return proto3.util.equals(DataStreamType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.MultiDataStreamType
+ */
+export class MultiDataStreamType extends Message<MultiDataStreamType> {
+  /**
+   * @generated from field: types.v1.DataStreamType streams = 1;
+   */
+  streams?: DataStreamType;
+
+  constructor(data?: PartialMessage<MultiDataStreamType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.MultiDataStreamType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "streams", kind: "message", T: DataStreamType },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MultiDataStreamType {
+    return new MultiDataStreamType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MultiDataStreamType {
+    return new MultiDataStreamType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MultiDataStreamType {
+    return new MultiDataStreamType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: MultiDataStreamType | PlainMessage<MultiDataStreamType> | undefined, b: MultiDataStreamType | PlainMessage<MultiDataStreamType> | undefined): boolean {
+    return proto3.util.equals(MultiDataStreamType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.TabularType
+ */
+export class TabularType extends Message<TabularType> {
+  /**
+   * @generated from oneof types.v1.TabularType.type
+   */
+  type: {
+    /**
+     * @generated from field: types.v1.TableType table = 1;
+     */
+    value: TableType;
+    case: "table";
+  } | {
+    /**
+     * @generated from field: types.v1.TabularType.LogEventType log_events = 2;
+     */
+    value: TabularType_LogEventType;
+    case: "logEvents";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<TabularType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TabularType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "table", kind: "message", T: TableType, oneof: "type" },
+    { no: 2, name: "log_events", kind: "message", T: TabularType_LogEventType, oneof: "type" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TabularType {
+    return new TabularType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TabularType {
+    return new TabularType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TabularType {
+    return new TabularType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TabularType | PlainMessage<TabularType> | undefined, b: TabularType | PlainMessage<TabularType> | undefined): boolean {
+    return proto3.util.equals(TabularType, a, b);
+  }
+}
+
+/**
+ * log events contain,
+ * - machine_id
+ * - session_id
+ * - event_id (for ordering only within a machine/session pair
+ * - parsed_at (timestamp of when the log event was parsed)
+ * - timestamp (from a value found in the log, otherwise parsed_at)
+ * - level
+ * - message
+ * - key-value pairs
+ *
+ * @generated from message types.v1.TabularType.LogEventType
+ */
+export class TabularType_LogEventType extends Message<TabularType_LogEventType> {
+  constructor(data?: PartialMessage<TabularType_LogEventType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TabularType.LogEventType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TabularType_LogEventType {
+    return new TabularType_LogEventType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TabularType_LogEventType {
+    return new TabularType_LogEventType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TabularType_LogEventType {
+    return new TabularType_LogEventType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TabularType_LogEventType | PlainMessage<TabularType_LogEventType> | undefined, b: TabularType_LogEventType | PlainMessage<TabularType_LogEventType> | undefined): boolean {
+    return proto3.util.equals(TabularType_LogEventType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Timeseries
+ */
+export class Timeseries extends Message<Timeseries> {
+  /**
+   * each row will contain a timestamp along with a value
+   * value of this type
+   *
+   * @generated from field: types.v1.VarType type = 1;
+   */
+  type?: VarType;
+
+  constructor(data?: PartialMessage<Timeseries>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Timeseries";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "type", kind: "message", T: VarType },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Timeseries {
+    return new Timeseries().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Timeseries {
+    return new Timeseries().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Timeseries {
+    return new Timeseries().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Timeseries | PlainMessage<Timeseries> | undefined, b: Timeseries | PlainMessage<Timeseries> | undefined): boolean {
+    return proto3.util.equals(Timeseries, a, b);
   }
 }
 
