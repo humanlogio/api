@@ -14,13 +14,14 @@ message Data {
     repeated types.v1.LogQuery queries = 1;
   }
 
-  // Schema schema = 1;
   oneof shape {
     // SubQueries need to be further queried to obtain actual data.
-    SubQueries subqueries = 201;
+    SubQueries subqueries = 101;
     // tabular is data that has a table header, followed by rows that match the
     // header
-    Tabular tabular = 301;
+    Tabular tabular = 201;
+    // single_value is a single value
+    Val single_value = 301;
     // scalar timeseries data is a list of [ts, scalar] where scalar is usually
     // a numeric value
     ScalarTimeseries scalar_timeseries = 401;

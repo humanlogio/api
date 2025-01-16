@@ -5,8 +5,8 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Obj, Scalar, Table, Val, VarType } from "./types_pb";
 import { LogQuery } from "./logquery_pb";
-import { Obj, Scalar, Table, VarType } from "./types_pb";
 import { IngestedLogEvent } from "./logevent_pb";
 
 /**
@@ -14,15 +14,13 @@ import { IngestedLogEvent } from "./logevent_pb";
  */
 export class Data extends Message<Data> {
   /**
-   * Schema schema = 1;
-   *
    * @generated from oneof types.v1.Data.shape
    */
   shape: {
     /**
      * SubQueries need to be further queried to obtain actual data.
      *
-     * @generated from field: types.v1.Data.SubQueries subqueries = 201;
+     * @generated from field: types.v1.Data.SubQueries subqueries = 101;
      */
     value: Data_SubQueries;
     case: "subqueries";
@@ -31,10 +29,18 @@ export class Data extends Message<Data> {
      * tabular is data that has a table header, followed by rows that match the
      * header
      *
-     * @generated from field: types.v1.Tabular tabular = 301;
+     * @generated from field: types.v1.Tabular tabular = 201;
      */
     value: Tabular;
     case: "tabular";
+  } | {
+    /**
+     * single_value is a single value
+     *
+     * @generated from field: types.v1.Val single_value = 301;
+     */
+    value: Val;
+    case: "singleValue";
   } | {
     /**
      * scalar timeseries data is a list of [ts, scalar] where scalar is usually
@@ -63,8 +69,9 @@ export class Data extends Message<Data> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Data";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 201, name: "subqueries", kind: "message", T: Data_SubQueries, oneof: "shape" },
-    { no: 301, name: "tabular", kind: "message", T: Tabular, oneof: "shape" },
+    { no: 101, name: "subqueries", kind: "message", T: Data_SubQueries, oneof: "shape" },
+    { no: 201, name: "tabular", kind: "message", T: Tabular, oneof: "shape" },
+    { no: 301, name: "single_value", kind: "message", T: Val, oneof: "shape" },
     { no: 401, name: "scalar_timeseries", kind: "message", T: ScalarTimeseries, oneof: "shape" },
     { no: 402, name: "vector_timeseries", kind: "message", T: VectorTimeseries, oneof: "shape" },
   ]);
