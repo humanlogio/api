@@ -23,7 +23,9 @@ message WhoamiResponse {
   types.v1.Organization default_organization = 3;
 }
 
-message GetLogoutURLRequest {}
+message GetLogoutURLRequest {
+  string return_to = 1;
+}
 
 message GetLogoutURLResponse {
   string logout_url = 1;

@@ -38,12 +38,6 @@ const (
 	ProductServiceListProductProcedure = "/svc.product.v1.ProductService/ListProduct"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	productServiceServiceDescriptor           = v1.File_svc_product_v1_service_proto.Services().ByName("ProductService")
-	productServiceListProductMethodDescriptor = productServiceServiceDescriptor.Methods().ByName("ListProduct")
-)
-
 // ProductServiceClient is a client for the svc.product.v1.ProductService service.
 type ProductServiceClient interface {
 	ListProduct(context.Context, *connect.Request[v1.ListProductRequest]) (*connect.Response[v1.ListProductResponse], error)
@@ -58,11 +52,12 @@ type ProductServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewProductServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) ProductServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	productServiceMethods := v1.File_svc_product_v1_service_proto.Services().ByName("ProductService").Methods()
 	return &productServiceClient{
 		listProduct: connect.NewClient[v1.ListProductRequest, v1.ListProductResponse](
 			httpClient,
 			baseURL+ProductServiceListProductProcedure,
-			connect.WithSchema(productServiceListProductMethodDescriptor),
+			connect.WithSchema(productServiceMethods.ByName("ListProduct")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -89,10 +84,11 @@ type ProductServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewProductServiceHandler(svc ProductServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	productServiceMethods := v1.File_svc_product_v1_service_proto.Services().ByName("ProductService").Methods()
 	productServiceListProductHandler := connect.NewUnaryHandler(
 		ProductServiceListProductProcedure,
 		svc.ListProduct,
-		connect.WithSchema(productServiceListProductMethodDescriptor),
+		connect.WithSchema(productServiceMethods.ByName("ListProduct")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.product.v1.ProductService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

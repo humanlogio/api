@@ -37,12 +37,6 @@ const (
 	LocalhostServicePingProcedure = "/svc.localhost.v1.LocalhostService/Ping"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	localhostServiceServiceDescriptor    = v1.File_svc_localhost_v1_service_proto.Services().ByName("LocalhostService")
-	localhostServicePingMethodDescriptor = localhostServiceServiceDescriptor.Methods().ByName("Ping")
-)
-
 // LocalhostServiceClient is a client for the svc.localhost.v1.LocalhostService service.
 type LocalhostServiceClient interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
@@ -57,11 +51,12 @@ type LocalhostServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewLocalhostServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) LocalhostServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	localhostServiceMethods := v1.File_svc_localhost_v1_service_proto.Services().ByName("LocalhostService").Methods()
 	return &localhostServiceClient{
 		ping: connect.NewClient[v1.PingRequest, v1.PingResponse](
 			httpClient,
 			baseURL+LocalhostServicePingProcedure,
-			connect.WithSchema(localhostServicePingMethodDescriptor),
+			connect.WithSchema(localhostServiceMethods.ByName("Ping")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -88,10 +83,11 @@ type LocalhostServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	localhostServiceMethods := v1.File_svc_localhost_v1_service_proto.Services().ByName("LocalhostService").Methods()
 	localhostServicePingHandler := connect.NewUnaryHandler(
 		LocalhostServicePingProcedure,
 		svc.Ping,
-		connect.WithSchema(localhostServicePingMethodDescriptor),
+		connect.WithSchema(localhostServiceMethods.ByName("Ping")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.localhost.v1.LocalhostService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

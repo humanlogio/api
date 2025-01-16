@@ -47,15 +47,6 @@ const (
 	TokenServiceListEnvironmentTokenProcedure = "/svc.token.v1.TokenService/ListEnvironmentToken"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	tokenServiceServiceDescriptor                        = v1.File_svc_token_v1_service_proto.Services().ByName("TokenService")
-	tokenServiceGenerateEnvironmentTokenMethodDescriptor = tokenServiceServiceDescriptor.Methods().ByName("GenerateEnvironmentToken")
-	tokenServiceRevokeEnvironmentTokenMethodDescriptor   = tokenServiceServiceDescriptor.Methods().ByName("RevokeEnvironmentToken")
-	tokenServiceGetEnvironmentTokenMethodDescriptor      = tokenServiceServiceDescriptor.Methods().ByName("GetEnvironmentToken")
-	tokenServiceListEnvironmentTokenMethodDescriptor     = tokenServiceServiceDescriptor.Methods().ByName("ListEnvironmentToken")
-)
-
 // TokenServiceClient is a client for the svc.token.v1.TokenService service.
 type TokenServiceClient interface {
 	GenerateEnvironmentToken(context.Context, *connect.Request[v1.GenerateEnvironmentTokenRequest]) (*connect.Response[v1.GenerateEnvironmentTokenResponse], error)
@@ -73,29 +64,30 @@ type TokenServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewTokenServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) TokenServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	tokenServiceMethods := v1.File_svc_token_v1_service_proto.Services().ByName("TokenService").Methods()
 	return &tokenServiceClient{
 		generateEnvironmentToken: connect.NewClient[v1.GenerateEnvironmentTokenRequest, v1.GenerateEnvironmentTokenResponse](
 			httpClient,
 			baseURL+TokenServiceGenerateEnvironmentTokenProcedure,
-			connect.WithSchema(tokenServiceGenerateEnvironmentTokenMethodDescriptor),
+			connect.WithSchema(tokenServiceMethods.ByName("GenerateEnvironmentToken")),
 			connect.WithClientOptions(opts...),
 		),
 		revokeEnvironmentToken: connect.NewClient[v1.RevokeEnvironmentTokenRequest, v1.RevokeEnvironmentTokenResponse](
 			httpClient,
 			baseURL+TokenServiceRevokeEnvironmentTokenProcedure,
-			connect.WithSchema(tokenServiceRevokeEnvironmentTokenMethodDescriptor),
+			connect.WithSchema(tokenServiceMethods.ByName("RevokeEnvironmentToken")),
 			connect.WithClientOptions(opts...),
 		),
 		getEnvironmentToken: connect.NewClient[v1.GetEnvironmentTokenRequest, v1.GetEnvironmentTokenResponse](
 			httpClient,
 			baseURL+TokenServiceGetEnvironmentTokenProcedure,
-			connect.WithSchema(tokenServiceGetEnvironmentTokenMethodDescriptor),
+			connect.WithSchema(tokenServiceMethods.ByName("GetEnvironmentToken")),
 			connect.WithClientOptions(opts...),
 		),
 		listEnvironmentToken: connect.NewClient[v1.ListEnvironmentTokenRequest, v1.ListEnvironmentTokenResponse](
 			httpClient,
 			baseURL+TokenServiceListEnvironmentTokenProcedure,
-			connect.WithSchema(tokenServiceListEnvironmentTokenMethodDescriptor),
+			connect.WithSchema(tokenServiceMethods.ByName("ListEnvironmentToken")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -143,28 +135,29 @@ type TokenServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewTokenServiceHandler(svc TokenServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	tokenServiceMethods := v1.File_svc_token_v1_service_proto.Services().ByName("TokenService").Methods()
 	tokenServiceGenerateEnvironmentTokenHandler := connect.NewUnaryHandler(
 		TokenServiceGenerateEnvironmentTokenProcedure,
 		svc.GenerateEnvironmentToken,
-		connect.WithSchema(tokenServiceGenerateEnvironmentTokenMethodDescriptor),
+		connect.WithSchema(tokenServiceMethods.ByName("GenerateEnvironmentToken")),
 		connect.WithHandlerOptions(opts...),
 	)
 	tokenServiceRevokeEnvironmentTokenHandler := connect.NewUnaryHandler(
 		TokenServiceRevokeEnvironmentTokenProcedure,
 		svc.RevokeEnvironmentToken,
-		connect.WithSchema(tokenServiceRevokeEnvironmentTokenMethodDescriptor),
+		connect.WithSchema(tokenServiceMethods.ByName("RevokeEnvironmentToken")),
 		connect.WithHandlerOptions(opts...),
 	)
 	tokenServiceGetEnvironmentTokenHandler := connect.NewUnaryHandler(
 		TokenServiceGetEnvironmentTokenProcedure,
 		svc.GetEnvironmentToken,
-		connect.WithSchema(tokenServiceGetEnvironmentTokenMethodDescriptor),
+		connect.WithSchema(tokenServiceMethods.ByName("GetEnvironmentToken")),
 		connect.WithHandlerOptions(opts...),
 	)
 	tokenServiceListEnvironmentTokenHandler := connect.NewUnaryHandler(
 		TokenServiceListEnvironmentTokenProcedure,
 		svc.ListEnvironmentToken,
-		connect.WithSchema(tokenServiceListEnvironmentTokenMethodDescriptor),
+		connect.WithSchema(tokenServiceMethods.ByName("ListEnvironmentToken")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.token.v1.TokenService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

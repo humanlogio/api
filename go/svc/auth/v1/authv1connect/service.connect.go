@@ -43,14 +43,6 @@ const (
 	AuthServiceCompleteDeviceAuthProcedure = "/svc.auth.v1.AuthService/CompleteDeviceAuth"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	authServiceServiceDescriptor                  = v1.File_svc_auth_v1_service_proto.Services().ByName("AuthService")
-	authServiceGetAuthURLMethodDescriptor         = authServiceServiceDescriptor.Methods().ByName("GetAuthURL")
-	authServiceBeginDeviceAuthMethodDescriptor    = authServiceServiceDescriptor.Methods().ByName("BeginDeviceAuth")
-	authServiceCompleteDeviceAuthMethodDescriptor = authServiceServiceDescriptor.Methods().ByName("CompleteDeviceAuth")
-)
-
 // AuthServiceClient is a client for the svc.auth.v1.AuthService service.
 type AuthServiceClient interface {
 	GetAuthURL(context.Context, *connect.Request[v1.GetAuthURLRequest]) (*connect.Response[v1.GetAuthURLResponse], error)
@@ -67,23 +59,24 @@ type AuthServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewAuthServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) AuthServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	authServiceMethods := v1.File_svc_auth_v1_service_proto.Services().ByName("AuthService").Methods()
 	return &authServiceClient{
 		getAuthURL: connect.NewClient[v1.GetAuthURLRequest, v1.GetAuthURLResponse](
 			httpClient,
 			baseURL+AuthServiceGetAuthURLProcedure,
-			connect.WithSchema(authServiceGetAuthURLMethodDescriptor),
+			connect.WithSchema(authServiceMethods.ByName("GetAuthURL")),
 			connect.WithClientOptions(opts...),
 		),
 		beginDeviceAuth: connect.NewClient[v1.BeginDeviceAuthRequest, v1.BeginDeviceAuthResponse](
 			httpClient,
 			baseURL+AuthServiceBeginDeviceAuthProcedure,
-			connect.WithSchema(authServiceBeginDeviceAuthMethodDescriptor),
+			connect.WithSchema(authServiceMethods.ByName("BeginDeviceAuth")),
 			connect.WithClientOptions(opts...),
 		),
 		completeDeviceAuth: connect.NewClient[v1.CompleteDeviceAuthRequest, v1.CompleteDeviceAuthResponse](
 			httpClient,
 			baseURL+AuthServiceCompleteDeviceAuthProcedure,
-			connect.WithSchema(authServiceCompleteDeviceAuthMethodDescriptor),
+			connect.WithSchema(authServiceMethods.ByName("CompleteDeviceAuth")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -124,22 +117,23 @@ type AuthServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewAuthServiceHandler(svc AuthServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	authServiceMethods := v1.File_svc_auth_v1_service_proto.Services().ByName("AuthService").Methods()
 	authServiceGetAuthURLHandler := connect.NewUnaryHandler(
 		AuthServiceGetAuthURLProcedure,
 		svc.GetAuthURL,
-		connect.WithSchema(authServiceGetAuthURLMethodDescriptor),
+		connect.WithSchema(authServiceMethods.ByName("GetAuthURL")),
 		connect.WithHandlerOptions(opts...),
 	)
 	authServiceBeginDeviceAuthHandler := connect.NewUnaryHandler(
 		AuthServiceBeginDeviceAuthProcedure,
 		svc.BeginDeviceAuth,
-		connect.WithSchema(authServiceBeginDeviceAuthMethodDescriptor),
+		connect.WithSchema(authServiceMethods.ByName("BeginDeviceAuth")),
 		connect.WithHandlerOptions(opts...),
 	)
 	authServiceCompleteDeviceAuthHandler := connect.NewUnaryHandler(
 		AuthServiceCompleteDeviceAuthProcedure,
 		svc.CompleteDeviceAuth,
-		connect.WithSchema(authServiceCompleteDeviceAuthMethodDescriptor),
+		connect.WithSchema(authServiceMethods.ByName("CompleteDeviceAuth")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.auth.v1.AuthService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

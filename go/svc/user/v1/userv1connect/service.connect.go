@@ -46,15 +46,6 @@ const (
 	UserServiceListOrganizationProcedure = "/svc.user.v1.UserService/ListOrganization"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	userServiceServiceDescriptor                  = v1.File_svc_user_v1_service_proto.Services().ByName("UserService")
-	userServiceWhoamiMethodDescriptor             = userServiceServiceDescriptor.Methods().ByName("Whoami")
-	userServiceGetLogoutURLMethodDescriptor       = userServiceServiceDescriptor.Methods().ByName("GetLogoutURL")
-	userServiceCreateOrganizationMethodDescriptor = userServiceServiceDescriptor.Methods().ByName("CreateOrganization")
-	userServiceListOrganizationMethodDescriptor   = userServiceServiceDescriptor.Methods().ByName("ListOrganization")
-)
-
 // UserServiceClient is a client for the svc.user.v1.UserService service.
 type UserServiceClient interface {
 	Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error)
@@ -72,29 +63,30 @@ type UserServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewUserServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) UserServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	userServiceMethods := v1.File_svc_user_v1_service_proto.Services().ByName("UserService").Methods()
 	return &userServiceClient{
 		whoami: connect.NewClient[v1.WhoamiRequest, v1.WhoamiResponse](
 			httpClient,
 			baseURL+UserServiceWhoamiProcedure,
-			connect.WithSchema(userServiceWhoamiMethodDescriptor),
+			connect.WithSchema(userServiceMethods.ByName("Whoami")),
 			connect.WithClientOptions(opts...),
 		),
 		getLogoutURL: connect.NewClient[v1.GetLogoutURLRequest, v1.GetLogoutURLResponse](
 			httpClient,
 			baseURL+UserServiceGetLogoutURLProcedure,
-			connect.WithSchema(userServiceGetLogoutURLMethodDescriptor),
+			connect.WithSchema(userServiceMethods.ByName("GetLogoutURL")),
 			connect.WithClientOptions(opts...),
 		),
 		createOrganization: connect.NewClient[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse](
 			httpClient,
 			baseURL+UserServiceCreateOrganizationProcedure,
-			connect.WithSchema(userServiceCreateOrganizationMethodDescriptor),
+			connect.WithSchema(userServiceMethods.ByName("CreateOrganization")),
 			connect.WithClientOptions(opts...),
 		),
 		listOrganization: connect.NewClient[v1.ListOrganizationRequest, v1.ListOrganizationResponse](
 			httpClient,
 			baseURL+UserServiceListOrganizationProcedure,
-			connect.WithSchema(userServiceListOrganizationMethodDescriptor),
+			connect.WithSchema(userServiceMethods.ByName("ListOrganization")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -142,28 +134,29 @@ type UserServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	userServiceMethods := v1.File_svc_user_v1_service_proto.Services().ByName("UserService").Methods()
 	userServiceWhoamiHandler := connect.NewUnaryHandler(
 		UserServiceWhoamiProcedure,
 		svc.Whoami,
-		connect.WithSchema(userServiceWhoamiMethodDescriptor),
+		connect.WithSchema(userServiceMethods.ByName("Whoami")),
 		connect.WithHandlerOptions(opts...),
 	)
 	userServiceGetLogoutURLHandler := connect.NewUnaryHandler(
 		UserServiceGetLogoutURLProcedure,
 		svc.GetLogoutURL,
-		connect.WithSchema(userServiceGetLogoutURLMethodDescriptor),
+		connect.WithSchema(userServiceMethods.ByName("GetLogoutURL")),
 		connect.WithHandlerOptions(opts...),
 	)
 	userServiceCreateOrganizationHandler := connect.NewUnaryHandler(
 		UserServiceCreateOrganizationProcedure,
 		svc.CreateOrganization,
-		connect.WithSchema(userServiceCreateOrganizationMethodDescriptor),
+		connect.WithSchema(userServiceMethods.ByName("CreateOrganization")),
 		connect.WithHandlerOptions(opts...),
 	)
 	userServiceListOrganizationHandler := connect.NewUnaryHandler(
 		UserServiceListOrganizationProcedure,
 		svc.ListOrganization,
-		connect.WithSchema(userServiceListOrganizationMethodDescriptor),
+		connect.WithSchema(userServiceMethods.ByName("ListOrganization")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.user.v1.UserService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

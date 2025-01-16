@@ -38,12 +38,6 @@ const (
 	UpdateServiceGetNextUpdateProcedure = "/svc.cliupdate.v1.UpdateService/GetNextUpdate"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	updateServiceServiceDescriptor             = v1.File_svc_cliupdate_v1_service_proto.Services().ByName("UpdateService")
-	updateServiceGetNextUpdateMethodDescriptor = updateServiceServiceDescriptor.Methods().ByName("GetNextUpdate")
-)
-
 // UpdateServiceClient is a client for the svc.cliupdate.v1.UpdateService service.
 type UpdateServiceClient interface {
 	GetNextUpdate(context.Context, *connect.Request[v1.GetNextUpdateRequest]) (*connect.Response[v1.GetNextUpdateResponse], error)
@@ -58,11 +52,12 @@ type UpdateServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewUpdateServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) UpdateServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	updateServiceMethods := v1.File_svc_cliupdate_v1_service_proto.Services().ByName("UpdateService").Methods()
 	return &updateServiceClient{
 		getNextUpdate: connect.NewClient[v1.GetNextUpdateRequest, v1.GetNextUpdateResponse](
 			httpClient,
 			baseURL+UpdateServiceGetNextUpdateProcedure,
-			connect.WithSchema(updateServiceGetNextUpdateMethodDescriptor),
+			connect.WithSchema(updateServiceMethods.ByName("GetNextUpdate")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -89,10 +84,11 @@ type UpdateServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewUpdateServiceHandler(svc UpdateServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	updateServiceMethods := v1.File_svc_cliupdate_v1_service_proto.Services().ByName("UpdateService").Methods()
 	updateServiceGetNextUpdateHandler := connect.NewUnaryHandler(
 		UpdateServiceGetNextUpdateProcedure,
 		svc.GetNextUpdate,
-		connect.WithSchema(updateServiceGetNextUpdateMethodDescriptor),
+		connect.WithSchema(updateServiceMethods.ByName("GetNextUpdate")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.cliupdate.v1.UpdateService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

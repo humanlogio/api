@@ -38,12 +38,6 @@ const (
 	FeatureServiceHasFeatureProcedure = "/svc.feature.v1.FeatureService/HasFeature"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	featureServiceServiceDescriptor          = v1.File_svc_feature_v1_service_proto.Services().ByName("FeatureService")
-	featureServiceHasFeatureMethodDescriptor = featureServiceServiceDescriptor.Methods().ByName("HasFeature")
-)
-
 // FeatureServiceClient is a client for the svc.feature.v1.FeatureService service.
 type FeatureServiceClient interface {
 	HasFeature(context.Context, *connect.Request[v1.HasFeatureRequest]) (*connect.Response[v1.HasFeatureResponse], error)
@@ -58,11 +52,12 @@ type FeatureServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewFeatureServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) FeatureServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	featureServiceMethods := v1.File_svc_feature_v1_service_proto.Services().ByName("FeatureService").Methods()
 	return &featureServiceClient{
 		hasFeature: connect.NewClient[v1.HasFeatureRequest, v1.HasFeatureResponse](
 			httpClient,
 			baseURL+FeatureServiceHasFeatureProcedure,
-			connect.WithSchema(featureServiceHasFeatureMethodDescriptor),
+			connect.WithSchema(featureServiceMethods.ByName("HasFeature")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -89,10 +84,11 @@ type FeatureServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewFeatureServiceHandler(svc FeatureServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	featureServiceMethods := v1.File_svc_feature_v1_service_proto.Services().ByName("FeatureService").Methods()
 	featureServiceHasFeatureHandler := connect.NewUnaryHandler(
 		FeatureServiceHasFeatureProcedure,
 		svc.HasFeature,
-		connect.WithSchema(featureServiceHasFeatureMethodDescriptor),
+		connect.WithSchema(featureServiceMethods.ByName("HasFeature")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.feature.v1.FeatureService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

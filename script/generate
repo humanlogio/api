@@ -2,16 +2,16 @@
 
 set -e
 
-eval "$(pkgx --shellcode)"
+# eval "$(pkgx --shellcode)"
 root=$(git rev-parse --show-toplevel)
 
 function main() {
     pushd ${root}
-    env +go
-    env +buf
-    env +npm
-    env +npx
-    env +node@20
+    # env +go
+    # env +buf
+    # env +npm
+    # env +npx
+    # env +node@20
 
     generate_peg
     generate_protobuf
@@ -27,12 +27,12 @@ function generate_protobuf() {
         @bufbuild/protoc-gen-es \
         @bufbuild/buf
 
-    go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-    go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
+    pkgx go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+    pkgx go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
 
     export PATH=${PATH}:${root}/node_modules/.bin
-    buf format -w
-    buf generate
+    pkgx buf format -w
+    pkgx buf generate
 }
 
 function generate_peg() {

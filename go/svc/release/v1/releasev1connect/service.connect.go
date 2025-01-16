@@ -56,18 +56,6 @@ const (
 	ReleaseServiceListVersionArtifactProcedure = "/svc.release.v1.ReleaseService/ListVersionArtifact"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	releaseServiceServiceDescriptor                     = v1.File_svc_release_v1_service_proto.Services().ByName("ReleaseService")
-	releaseServiceCreateReleaseChannelMethodDescriptor  = releaseServiceServiceDescriptor.Methods().ByName("CreateReleaseChannel")
-	releaseServiceListReleaseChannelMethodDescriptor    = releaseServiceServiceDescriptor.Methods().ByName("ListReleaseChannel")
-	releaseServicePublishVersionMethodDescriptor        = releaseServiceServiceDescriptor.Methods().ByName("PublishVersion")
-	releaseServiceUnpublishVersionMethodDescriptor      = releaseServiceServiceDescriptor.Methods().ByName("UnpublishVersion")
-	releaseServiceCreateVersionArtifactMethodDescriptor = releaseServiceServiceDescriptor.Methods().ByName("CreateVersionArtifact")
-	releaseServiceDeleteVersionArtifactMethodDescriptor = releaseServiceServiceDescriptor.Methods().ByName("DeleteVersionArtifact")
-	releaseServiceListVersionArtifactMethodDescriptor   = releaseServiceServiceDescriptor.Methods().ByName("ListVersionArtifact")
-)
-
 // ReleaseServiceClient is a client for the svc.release.v1.ReleaseService service.
 type ReleaseServiceClient interface {
 	CreateReleaseChannel(context.Context, *connect.Request[v1.CreateReleaseChannelRequest]) (*connect.Response[v1.CreateReleaseChannelResponse], error)
@@ -88,47 +76,48 @@ type ReleaseServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewReleaseServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) ReleaseServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	releaseServiceMethods := v1.File_svc_release_v1_service_proto.Services().ByName("ReleaseService").Methods()
 	return &releaseServiceClient{
 		createReleaseChannel: connect.NewClient[v1.CreateReleaseChannelRequest, v1.CreateReleaseChannelResponse](
 			httpClient,
 			baseURL+ReleaseServiceCreateReleaseChannelProcedure,
-			connect.WithSchema(releaseServiceCreateReleaseChannelMethodDescriptor),
+			connect.WithSchema(releaseServiceMethods.ByName("CreateReleaseChannel")),
 			connect.WithClientOptions(opts...),
 		),
 		listReleaseChannel: connect.NewClient[v1.ListReleaseChannelRequest, v1.ListReleaseChannelResponse](
 			httpClient,
 			baseURL+ReleaseServiceListReleaseChannelProcedure,
-			connect.WithSchema(releaseServiceListReleaseChannelMethodDescriptor),
+			connect.WithSchema(releaseServiceMethods.ByName("ListReleaseChannel")),
 			connect.WithClientOptions(opts...),
 		),
 		publishVersion: connect.NewClient[v1.PublishVersionRequest, v1.PublishVersionResponse](
 			httpClient,
 			baseURL+ReleaseServicePublishVersionProcedure,
-			connect.WithSchema(releaseServicePublishVersionMethodDescriptor),
+			connect.WithSchema(releaseServiceMethods.ByName("PublishVersion")),
 			connect.WithClientOptions(opts...),
 		),
 		unpublishVersion: connect.NewClient[v1.UnpublishVersionRequest, v1.UnpublishVersionResponse](
 			httpClient,
 			baseURL+ReleaseServiceUnpublishVersionProcedure,
-			connect.WithSchema(releaseServiceUnpublishVersionMethodDescriptor),
+			connect.WithSchema(releaseServiceMethods.ByName("UnpublishVersion")),
 			connect.WithClientOptions(opts...),
 		),
 		createVersionArtifact: connect.NewClient[v1.CreateVersionArtifactRequest, v1.CreateVersionArtifactResponse](
 			httpClient,
 			baseURL+ReleaseServiceCreateVersionArtifactProcedure,
-			connect.WithSchema(releaseServiceCreateVersionArtifactMethodDescriptor),
+			connect.WithSchema(releaseServiceMethods.ByName("CreateVersionArtifact")),
 			connect.WithClientOptions(opts...),
 		),
 		deleteVersionArtifact: connect.NewClient[v1.DeleteVersionArtifactRequest, v1.DeleteVersionArtifactResponse](
 			httpClient,
 			baseURL+ReleaseServiceDeleteVersionArtifactProcedure,
-			connect.WithSchema(releaseServiceDeleteVersionArtifactMethodDescriptor),
+			connect.WithSchema(releaseServiceMethods.ByName("DeleteVersionArtifact")),
 			connect.WithClientOptions(opts...),
 		),
 		listVersionArtifact: connect.NewClient[v1.ListVersionArtifactRequest, v1.ListVersionArtifactResponse](
 			httpClient,
 			baseURL+ReleaseServiceListVersionArtifactProcedure,
-			connect.WithSchema(releaseServiceListVersionArtifactMethodDescriptor),
+			connect.WithSchema(releaseServiceMethods.ByName("ListVersionArtifact")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -197,46 +186,47 @@ type ReleaseServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewReleaseServiceHandler(svc ReleaseServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	releaseServiceMethods := v1.File_svc_release_v1_service_proto.Services().ByName("ReleaseService").Methods()
 	releaseServiceCreateReleaseChannelHandler := connect.NewUnaryHandler(
 		ReleaseServiceCreateReleaseChannelProcedure,
 		svc.CreateReleaseChannel,
-		connect.WithSchema(releaseServiceCreateReleaseChannelMethodDescriptor),
+		connect.WithSchema(releaseServiceMethods.ByName("CreateReleaseChannel")),
 		connect.WithHandlerOptions(opts...),
 	)
 	releaseServiceListReleaseChannelHandler := connect.NewUnaryHandler(
 		ReleaseServiceListReleaseChannelProcedure,
 		svc.ListReleaseChannel,
-		connect.WithSchema(releaseServiceListReleaseChannelMethodDescriptor),
+		connect.WithSchema(releaseServiceMethods.ByName("ListReleaseChannel")),
 		connect.WithHandlerOptions(opts...),
 	)
 	releaseServicePublishVersionHandler := connect.NewUnaryHandler(
 		ReleaseServicePublishVersionProcedure,
 		svc.PublishVersion,
-		connect.WithSchema(releaseServicePublishVersionMethodDescriptor),
+		connect.WithSchema(releaseServiceMethods.ByName("PublishVersion")),
 		connect.WithHandlerOptions(opts...),
 	)
 	releaseServiceUnpublishVersionHandler := connect.NewUnaryHandler(
 		ReleaseServiceUnpublishVersionProcedure,
 		svc.UnpublishVersion,
-		connect.WithSchema(releaseServiceUnpublishVersionMethodDescriptor),
+		connect.WithSchema(releaseServiceMethods.ByName("UnpublishVersion")),
 		connect.WithHandlerOptions(opts...),
 	)
 	releaseServiceCreateVersionArtifactHandler := connect.NewUnaryHandler(
 		ReleaseServiceCreateVersionArtifactProcedure,
 		svc.CreateVersionArtifact,
-		connect.WithSchema(releaseServiceCreateVersionArtifactMethodDescriptor),
+		connect.WithSchema(releaseServiceMethods.ByName("CreateVersionArtifact")),
 		connect.WithHandlerOptions(opts...),
 	)
 	releaseServiceDeleteVersionArtifactHandler := connect.NewUnaryHandler(
 		ReleaseServiceDeleteVersionArtifactProcedure,
 		svc.DeleteVersionArtifact,
-		connect.WithSchema(releaseServiceDeleteVersionArtifactMethodDescriptor),
+		connect.WithSchema(releaseServiceMethods.ByName("DeleteVersionArtifact")),
 		connect.WithHandlerOptions(opts...),
 	)
 	releaseServiceListVersionArtifactHandler := connect.NewUnaryHandler(
 		ReleaseServiceListVersionArtifactProcedure,
 		svc.ListVersionArtifact,
-		connect.WithSchema(releaseServiceListVersionArtifactMethodDescriptor),
+		connect.WithSchema(releaseServiceMethods.ByName("ListVersionArtifact")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.release.v1.ReleaseService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

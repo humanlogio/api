@@ -38,12 +38,6 @@ const (
 	EnvironmentServiceListMachineProcedure = "/svc.environment.v1.EnvironmentService/ListMachine"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	environmentServiceServiceDescriptor           = v1.File_svc_environment_v1_service_proto.Services().ByName("EnvironmentService")
-	environmentServiceListMachineMethodDescriptor = environmentServiceServiceDescriptor.Methods().ByName("ListMachine")
-)
-
 // EnvironmentServiceClient is a client for the svc.environment.v1.EnvironmentService service.
 type EnvironmentServiceClient interface {
 	ListMachine(context.Context, *connect.Request[v1.ListMachineRequest]) (*connect.Response[v1.ListMachineResponse], error)
@@ -58,11 +52,12 @@ type EnvironmentServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewEnvironmentServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) EnvironmentServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	environmentServiceMethods := v1.File_svc_environment_v1_service_proto.Services().ByName("EnvironmentService").Methods()
 	return &environmentServiceClient{
 		listMachine: connect.NewClient[v1.ListMachineRequest, v1.ListMachineResponse](
 			httpClient,
 			baseURL+EnvironmentServiceListMachineProcedure,
-			connect.WithSchema(environmentServiceListMachineMethodDescriptor),
+			connect.WithSchema(environmentServiceMethods.ByName("ListMachine")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -90,10 +85,11 @@ type EnvironmentServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewEnvironmentServiceHandler(svc EnvironmentServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	environmentServiceMethods := v1.File_svc_environment_v1_service_proto.Services().ByName("EnvironmentService").Methods()
 	environmentServiceListMachineHandler := connect.NewUnaryHandler(
 		EnvironmentServiceListMachineProcedure,
 		svc.ListMachine,
-		connect.WithSchema(environmentServiceListMachineMethodDescriptor),
+		connect.WithSchema(environmentServiceMethods.ByName("ListMachine")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.environment.v1.EnvironmentService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

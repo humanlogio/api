@@ -93,6 +93,11 @@ export class WhoamiResponse extends Message<WhoamiResponse> {
  * @generated from message svc.user.v1.GetLogoutURLRequest
  */
 export class GetLogoutURLRequest extends Message<GetLogoutURLRequest> {
+  /**
+   * @generated from field: string return_to = 1;
+   */
+  returnTo = "";
+
   constructor(data?: PartialMessage<GetLogoutURLRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -101,6 +106,7 @@ export class GetLogoutURLRequest extends Message<GetLogoutURLRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.user.v1.GetLogoutURLRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "return_to", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLogoutURLRequest {

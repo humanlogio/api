@@ -46,15 +46,6 @@ const (
 	IngestServiceIngestBidiStreamProcedure = "/svc.ingest.v1.IngestService/IngestBidiStream"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	ingestServiceServiceDescriptor                = v1.File_svc_ingest_v1_service_proto.Services().ByName("IngestService")
-	ingestServiceGetHeartbeatMethodDescriptor     = ingestServiceServiceDescriptor.Methods().ByName("GetHeartbeat")
-	ingestServiceIngestMethodDescriptor           = ingestServiceServiceDescriptor.Methods().ByName("Ingest")
-	ingestServiceIngestStreamMethodDescriptor     = ingestServiceServiceDescriptor.Methods().ByName("IngestStream")
-	ingestServiceIngestBidiStreamMethodDescriptor = ingestServiceServiceDescriptor.Methods().ByName("IngestBidiStream")
-)
-
 // IngestServiceClient is a client for the svc.ingest.v1.IngestService service.
 type IngestServiceClient interface {
 	GetHeartbeat(context.Context, *connect.Request[v1.GetHeartbeatRequest]) (*connect.Response[v1.GetHeartbeatResponse], error)
@@ -72,29 +63,30 @@ type IngestServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewIngestServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) IngestServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	ingestServiceMethods := v1.File_svc_ingest_v1_service_proto.Services().ByName("IngestService").Methods()
 	return &ingestServiceClient{
 		getHeartbeat: connect.NewClient[v1.GetHeartbeatRequest, v1.GetHeartbeatResponse](
 			httpClient,
 			baseURL+IngestServiceGetHeartbeatProcedure,
-			connect.WithSchema(ingestServiceGetHeartbeatMethodDescriptor),
+			connect.WithSchema(ingestServiceMethods.ByName("GetHeartbeat")),
 			connect.WithClientOptions(opts...),
 		),
 		ingest: connect.NewClient[v1.IngestRequest, v1.IngestResponse](
 			httpClient,
 			baseURL+IngestServiceIngestProcedure,
-			connect.WithSchema(ingestServiceIngestMethodDescriptor),
+			connect.WithSchema(ingestServiceMethods.ByName("Ingest")),
 			connect.WithClientOptions(opts...),
 		),
 		ingestStream: connect.NewClient[v1.IngestStreamRequest, v1.IngestStreamResponse](
 			httpClient,
 			baseURL+IngestServiceIngestStreamProcedure,
-			connect.WithSchema(ingestServiceIngestStreamMethodDescriptor),
+			connect.WithSchema(ingestServiceMethods.ByName("IngestStream")),
 			connect.WithClientOptions(opts...),
 		),
 		ingestBidiStream: connect.NewClient[v1.IngestBidiStreamRequest, v1.IngestBidiStreamResponse](
 			httpClient,
 			baseURL+IngestServiceIngestBidiStreamProcedure,
-			connect.WithSchema(ingestServiceIngestBidiStreamMethodDescriptor),
+			connect.WithSchema(ingestServiceMethods.ByName("IngestBidiStream")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -142,28 +134,29 @@ type IngestServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewIngestServiceHandler(svc IngestServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	ingestServiceMethods := v1.File_svc_ingest_v1_service_proto.Services().ByName("IngestService").Methods()
 	ingestServiceGetHeartbeatHandler := connect.NewUnaryHandler(
 		IngestServiceGetHeartbeatProcedure,
 		svc.GetHeartbeat,
-		connect.WithSchema(ingestServiceGetHeartbeatMethodDescriptor),
+		connect.WithSchema(ingestServiceMethods.ByName("GetHeartbeat")),
 		connect.WithHandlerOptions(opts...),
 	)
 	ingestServiceIngestHandler := connect.NewUnaryHandler(
 		IngestServiceIngestProcedure,
 		svc.Ingest,
-		connect.WithSchema(ingestServiceIngestMethodDescriptor),
+		connect.WithSchema(ingestServiceMethods.ByName("Ingest")),
 		connect.WithHandlerOptions(opts...),
 	)
 	ingestServiceIngestStreamHandler := connect.NewClientStreamHandler(
 		IngestServiceIngestStreamProcedure,
 		svc.IngestStream,
-		connect.WithSchema(ingestServiceIngestStreamMethodDescriptor),
+		connect.WithSchema(ingestServiceMethods.ByName("IngestStream")),
 		connect.WithHandlerOptions(opts...),
 	)
 	ingestServiceIngestBidiStreamHandler := connect.NewBidiStreamHandler(
 		IngestServiceIngestBidiStreamProcedure,
 		svc.IngestBidiStream,
-		connect.WithSchema(ingestServiceIngestBidiStreamMethodDescriptor),
+		connect.WithSchema(ingestServiceMethods.ByName("IngestBidiStream")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.ingest.v1.IngestService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

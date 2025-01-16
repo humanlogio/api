@@ -68,22 +68,6 @@ const (
 	OrganizationServiceListPaymentMethodProcedure = "/svc.organization.v1.OrganizationService/ListPaymentMethod"
 )
 
-// These variables are the protoreflect.Descriptor objects for the RPCs defined in this package.
-var (
-	organizationServiceServiceDescriptor                           = v1.File_svc_organization_v1_service_proto.Services().ByName("OrganizationService")
-	organizationServiceCreateEnvironmentMethodDescriptor           = organizationServiceServiceDescriptor.Methods().ByName("CreateEnvironment")
-	organizationServiceGetEnvironmentMethodDescriptor              = organizationServiceServiceDescriptor.Methods().ByName("GetEnvironment")
-	organizationServiceListEnvironmentMethodDescriptor             = organizationServiceServiceDescriptor.Methods().ByName("ListEnvironment")
-	organizationServiceListUserMethodDescriptor                    = organizationServiceServiceDescriptor.Methods().ByName("ListUser")
-	organizationServiceInviteUserMethodDescriptor                  = organizationServiceServiceDescriptor.Methods().ByName("InviteUser")
-	organizationServiceRevokeUserMethodDescriptor                  = organizationServiceServiceDescriptor.Methods().ByName("RevokeUser")
-	organizationServiceCreateAddonSubscriptionMethodDescriptor     = organizationServiceServiceDescriptor.Methods().ByName("CreateAddonSubscription")
-	organizationServiceListAddonSubscriptionMethodDescriptor       = organizationServiceServiceDescriptor.Methods().ByName("ListAddonSubscription")
-	organizationServiceGetStripePublishableKeyMethodDescriptor     = organizationServiceServiceDescriptor.Methods().ByName("GetStripePublishableKey")
-	organizationServiceCreateStripeCustomerSessionMethodDescriptor = organizationServiceServiceDescriptor.Methods().ByName("CreateStripeCustomerSession")
-	organizationServiceListPaymentMethodMethodDescriptor           = organizationServiceServiceDescriptor.Methods().ByName("ListPaymentMethod")
-)
-
 // OrganizationServiceClient is a client for the svc.organization.v1.OrganizationService service.
 type OrganizationServiceClient interface {
 	CreateEnvironment(context.Context, *connect.Request[v1.CreateEnvironmentRequest]) (*connect.Response[v1.CreateEnvironmentResponse], error)
@@ -109,71 +93,72 @@ type OrganizationServiceClient interface {
 // http://api.acme.com or https://acme.com/grpc).
 func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string, opts ...connect.ClientOption) OrganizationServiceClient {
 	baseURL = strings.TrimRight(baseURL, "/")
+	organizationServiceMethods := v1.File_svc_organization_v1_service_proto.Services().ByName("OrganizationService").Methods()
 	return &organizationServiceClient{
 		createEnvironment: connect.NewClient[v1.CreateEnvironmentRequest, v1.CreateEnvironmentResponse](
 			httpClient,
 			baseURL+OrganizationServiceCreateEnvironmentProcedure,
-			connect.WithSchema(organizationServiceCreateEnvironmentMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("CreateEnvironment")),
 			connect.WithClientOptions(opts...),
 		),
 		getEnvironment: connect.NewClient[v1.GetEnvironmentRequest, v1.GetEnvironmentResponse](
 			httpClient,
 			baseURL+OrganizationServiceGetEnvironmentProcedure,
-			connect.WithSchema(organizationServiceGetEnvironmentMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("GetEnvironment")),
 			connect.WithClientOptions(opts...),
 		),
 		listEnvironment: connect.NewClient[v1.ListEnvironmentRequest, v1.ListEnvironmentResponse](
 			httpClient,
 			baseURL+OrganizationServiceListEnvironmentProcedure,
-			connect.WithSchema(organizationServiceListEnvironmentMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("ListEnvironment")),
 			connect.WithClientOptions(opts...),
 		),
 		listUser: connect.NewClient[v1.ListUserRequest, v1.ListUserResponse](
 			httpClient,
 			baseURL+OrganizationServiceListUserProcedure,
-			connect.WithSchema(organizationServiceListUserMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("ListUser")),
 			connect.WithClientOptions(opts...),
 		),
 		inviteUser: connect.NewClient[v1.InviteUserRequest, v1.InviteUserResponse](
 			httpClient,
 			baseURL+OrganizationServiceInviteUserProcedure,
-			connect.WithSchema(organizationServiceInviteUserMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("InviteUser")),
 			connect.WithClientOptions(opts...),
 		),
 		revokeUser: connect.NewClient[v1.RevokeUserRequest, v1.RevokeUserResponse](
 			httpClient,
 			baseURL+OrganizationServiceRevokeUserProcedure,
-			connect.WithSchema(organizationServiceRevokeUserMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("RevokeUser")),
 			connect.WithClientOptions(opts...),
 		),
 		createAddonSubscription: connect.NewClient[v1.CreateAddonSubscriptionRequest, v1.CreateAddonSubscriptionResponse](
 			httpClient,
 			baseURL+OrganizationServiceCreateAddonSubscriptionProcedure,
-			connect.WithSchema(organizationServiceCreateAddonSubscriptionMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("CreateAddonSubscription")),
 			connect.WithClientOptions(opts...),
 		),
 		listAddonSubscription: connect.NewClient[v1.ListAddonSubscriptionRequest, v1.ListAddonSubscriptionResponse](
 			httpClient,
 			baseURL+OrganizationServiceListAddonSubscriptionProcedure,
-			connect.WithSchema(organizationServiceListAddonSubscriptionMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("ListAddonSubscription")),
 			connect.WithClientOptions(opts...),
 		),
 		getStripePublishableKey: connect.NewClient[v1.GetStripePublishableKeyRequest, v1.GetStripePublishableKeyResponse](
 			httpClient,
 			baseURL+OrganizationServiceGetStripePublishableKeyProcedure,
-			connect.WithSchema(organizationServiceGetStripePublishableKeyMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("GetStripePublishableKey")),
 			connect.WithClientOptions(opts...),
 		),
 		createStripeCustomerSession: connect.NewClient[v1.CreateStripeCustomerSessionRequest, v1.CreateStripeCustomerSessionResponse](
 			httpClient,
 			baseURL+OrganizationServiceCreateStripeCustomerSessionProcedure,
-			connect.WithSchema(organizationServiceCreateStripeCustomerSessionMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("CreateStripeCustomerSession")),
 			connect.WithClientOptions(opts...),
 		),
 		listPaymentMethod: connect.NewClient[v1.ListPaymentMethodRequest, v1.ListPaymentMethodResponse](
 			httpClient,
 			baseURL+OrganizationServiceListPaymentMethodProcedure,
-			connect.WithSchema(organizationServiceListPaymentMethodMethodDescriptor),
+			connect.WithSchema(organizationServiceMethods.ByName("ListPaymentMethod")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -273,70 +258,71 @@ type OrganizationServiceHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
+	organizationServiceMethods := v1.File_svc_organization_v1_service_proto.Services().ByName("OrganizationService").Methods()
 	organizationServiceCreateEnvironmentHandler := connect.NewUnaryHandler(
 		OrganizationServiceCreateEnvironmentProcedure,
 		svc.CreateEnvironment,
-		connect.WithSchema(organizationServiceCreateEnvironmentMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("CreateEnvironment")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceGetEnvironmentHandler := connect.NewUnaryHandler(
 		OrganizationServiceGetEnvironmentProcedure,
 		svc.GetEnvironment,
-		connect.WithSchema(organizationServiceGetEnvironmentMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("GetEnvironment")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceListEnvironmentHandler := connect.NewUnaryHandler(
 		OrganizationServiceListEnvironmentProcedure,
 		svc.ListEnvironment,
-		connect.WithSchema(organizationServiceListEnvironmentMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("ListEnvironment")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceListUserHandler := connect.NewUnaryHandler(
 		OrganizationServiceListUserProcedure,
 		svc.ListUser,
-		connect.WithSchema(organizationServiceListUserMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("ListUser")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceInviteUserHandler := connect.NewUnaryHandler(
 		OrganizationServiceInviteUserProcedure,
 		svc.InviteUser,
-		connect.WithSchema(organizationServiceInviteUserMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("InviteUser")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceRevokeUserHandler := connect.NewUnaryHandler(
 		OrganizationServiceRevokeUserProcedure,
 		svc.RevokeUser,
-		connect.WithSchema(organizationServiceRevokeUserMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("RevokeUser")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceCreateAddonSubscriptionHandler := connect.NewUnaryHandler(
 		OrganizationServiceCreateAddonSubscriptionProcedure,
 		svc.CreateAddonSubscription,
-		connect.WithSchema(organizationServiceCreateAddonSubscriptionMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("CreateAddonSubscription")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceListAddonSubscriptionHandler := connect.NewUnaryHandler(
 		OrganizationServiceListAddonSubscriptionProcedure,
 		svc.ListAddonSubscription,
-		connect.WithSchema(organizationServiceListAddonSubscriptionMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("ListAddonSubscription")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceGetStripePublishableKeyHandler := connect.NewUnaryHandler(
 		OrganizationServiceGetStripePublishableKeyProcedure,
 		svc.GetStripePublishableKey,
-		connect.WithSchema(organizationServiceGetStripePublishableKeyMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("GetStripePublishableKey")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceCreateStripeCustomerSessionHandler := connect.NewUnaryHandler(
 		OrganizationServiceCreateStripeCustomerSessionProcedure,
 		svc.CreateStripeCustomerSession,
-		connect.WithSchema(organizationServiceCreateStripeCustomerSessionMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("CreateStripeCustomerSession")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceListPaymentMethodHandler := connect.NewUnaryHandler(
 		OrganizationServiceListPaymentMethodProcedure,
 		svc.ListPaymentMethod,
-		connect.WithSchema(organizationServiceListPaymentMethodMethodDescriptor),
+		connect.WithSchema(organizationServiceMethods.ByName("ListPaymentMethod")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.organization.v1.OrganizationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
