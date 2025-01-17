@@ -188,6 +188,12 @@ func ValArr(v ...*Val) *Val {
 	}}}
 }
 
+func ValMap(kt, vt *VarType, v ...*Map_Entry) *Val {
+	return &Val{Type: TypeMap(kt, vt), Kind: &Val_Map{Map: &Map{
+		Entries: v,
+	}}}
+}
+
 func ValObj(v ...*KV) *Val {
 	return &Val{Type: TypeObjFromKVs(v...), Kind: &Val_Obj{Obj: &Obj{Kvs: v}}}
 }
