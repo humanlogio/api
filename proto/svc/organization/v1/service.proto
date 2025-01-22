@@ -7,6 +7,7 @@ import "types/v1/environment.proto";
 import "types/v1/organization.proto";
 import "types/v1/payment_method.proto";
 import "types/v1/product.proto";
+import "types/v1/subscription.proto";
 import "types/v1/user.proto";
 
 option go_package = "svc/organization/v1;organizationv1";
@@ -130,6 +131,7 @@ message ListAddonSubscriptionResponse {
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.Product product = 1;
+    types.v1.Subscription subscription = 2;
   }
   repeated ListItem items = 2;
 }

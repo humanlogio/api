@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/timestamp.proto";
+import "types/v1/payment_method.proto";
+
+option go_package = "types/v1;typesv1";
+
+message Subscription {
+  enum Status {
+    Unknown = 0;
+    Active = 1;
+    Canceled = 2;
+    Incomplete = 3;
+    IncompleteExpired = 4;
+    PastDue = 5;
+    Paused = 6;
+    Trialing = 7;
+    Unpaid = 8;
+  }
+
+  google.protobuf.Timestamp created_at = 100;
+
+  string stripe_id = 1;
+  types.v1.PaymentMethod default_payment_method = 2;
+  Status status = 3;
+
+  google.protobuf.Timestamp current_period_start_at = 201;
+  google.protobuf.Timestamp current_period_end_at = 202;
+
+  google.protobuf.Timestamp cancel_at = 301;
+  google.protobuf.Timestamp canceled_at = 302;
+
+  google.protobuf.Timestamp ended_at = 401;
+}

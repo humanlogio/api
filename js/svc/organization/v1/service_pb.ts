@@ -9,6 +9,7 @@ import { Environment } from "../../../types/v1/environment_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { Product } from "../../../types/v1/product_pb";
 import { User } from "../../../types/v1/user_pb";
+import { Subscription } from "../../../types/v1/subscription_pb";
 import { PaymentMethod } from "../../../types/v1/payment_method_pb";
 
 /**
@@ -937,6 +938,11 @@ export class ListAddonSubscriptionResponse_ListItem extends Message<ListAddonSub
    */
   product?: Product;
 
+  /**
+   * @generated from field: types.v1.Subscription subscription = 2;
+   */
+  subscription?: Subscription;
+
   constructor(data?: PartialMessage<ListAddonSubscriptionResponse_ListItem>) {
     super();
     proto3.util.initPartial(data, this);
@@ -946,6 +952,7 @@ export class ListAddonSubscriptionResponse_ListItem extends Message<ListAddonSub
   static readonly typeName = "svc.organization.v1.ListAddonSubscriptionResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "product", kind: "message", T: Product },
+    { no: 2, name: "subscription", kind: "message", T: Subscription },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAddonSubscriptionResponse_ListItem {
