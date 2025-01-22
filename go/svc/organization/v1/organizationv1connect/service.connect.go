@@ -57,6 +57,9 @@ const (
 	// OrganizationServiceListAddonSubscriptionProcedure is the fully-qualified name of the
 	// OrganizationService's ListAddonSubscription RPC.
 	OrganizationServiceListAddonSubscriptionProcedure = "/svc.organization.v1.OrganizationService/ListAddonSubscription"
+	// OrganizationServiceRemoveAddonSubscriptionProcedure is the fully-qualified name of the
+	// OrganizationService's RemoveAddonSubscription RPC.
+	OrganizationServiceRemoveAddonSubscriptionProcedure = "/svc.organization.v1.OrganizationService/RemoveAddonSubscription"
 	// OrganizationServiceGetStripePublishableKeyProcedure is the fully-qualified name of the
 	// OrganizationService's GetStripePublishableKey RPC.
 	OrganizationServiceGetStripePublishableKeyProcedure = "/svc.organization.v1.OrganizationService/GetStripePublishableKey"
@@ -78,6 +81,7 @@ type OrganizationServiceClient interface {
 	RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error)
 	CreateAddonSubscription(context.Context, *connect.Request[v1.CreateAddonSubscriptionRequest]) (*connect.Response[v1.CreateAddonSubscriptionResponse], error)
 	ListAddonSubscription(context.Context, *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error)
+	RemoveAddonSubscription(context.Context, *connect.Request[v1.RemoveAddonSubscriptionRequest]) (*connect.Response[v1.RemoveAddonSubscriptionResponse], error)
 	// payment
 	GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error)
 	CreateStripeCustomerSession(context.Context, *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error)
@@ -143,6 +147,12 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(organizationServiceMethods.ByName("ListAddonSubscription")),
 			connect.WithClientOptions(opts...),
 		),
+		removeAddonSubscription: connect.NewClient[v1.RemoveAddonSubscriptionRequest, v1.RemoveAddonSubscriptionResponse](
+			httpClient,
+			baseURL+OrganizationServiceRemoveAddonSubscriptionProcedure,
+			connect.WithSchema(organizationServiceMethods.ByName("RemoveAddonSubscription")),
+			connect.WithClientOptions(opts...),
+		),
 		getStripePublishableKey: connect.NewClient[v1.GetStripePublishableKeyRequest, v1.GetStripePublishableKeyResponse](
 			httpClient,
 			baseURL+OrganizationServiceGetStripePublishableKeyProcedure,
@@ -174,6 +184,7 @@ type organizationServiceClient struct {
 	revokeUser                  *connect.Client[v1.RevokeUserRequest, v1.RevokeUserResponse]
 	createAddonSubscription     *connect.Client[v1.CreateAddonSubscriptionRequest, v1.CreateAddonSubscriptionResponse]
 	listAddonSubscription       *connect.Client[v1.ListAddonSubscriptionRequest, v1.ListAddonSubscriptionResponse]
+	removeAddonSubscription     *connect.Client[v1.RemoveAddonSubscriptionRequest, v1.RemoveAddonSubscriptionResponse]
 	getStripePublishableKey     *connect.Client[v1.GetStripePublishableKeyRequest, v1.GetStripePublishableKeyResponse]
 	createStripeCustomerSession *connect.Client[v1.CreateStripeCustomerSessionRequest, v1.CreateStripeCustomerSessionResponse]
 	listPaymentMethod           *connect.Client[v1.ListPaymentMethodRequest, v1.ListPaymentMethodResponse]
@@ -219,6 +230,11 @@ func (c *organizationServiceClient) ListAddonSubscription(ctx context.Context, r
 	return c.listAddonSubscription.CallUnary(ctx, req)
 }
 
+// RemoveAddonSubscription calls svc.organization.v1.OrganizationService.RemoveAddonSubscription.
+func (c *organizationServiceClient) RemoveAddonSubscription(ctx context.Context, req *connect.Request[v1.RemoveAddonSubscriptionRequest]) (*connect.Response[v1.RemoveAddonSubscriptionResponse], error) {
+	return c.removeAddonSubscription.CallUnary(ctx, req)
+}
+
 // GetStripePublishableKey calls svc.organization.v1.OrganizationService.GetStripePublishableKey.
 func (c *organizationServiceClient) GetStripePublishableKey(ctx context.Context, req *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error) {
 	return c.getStripePublishableKey.CallUnary(ctx, req)
@@ -246,6 +262,7 @@ type OrganizationServiceHandler interface {
 	RevokeUser(context.Context, *connect.Request[v1.RevokeUserRequest]) (*connect.Response[v1.RevokeUserResponse], error)
 	CreateAddonSubscription(context.Context, *connect.Request[v1.CreateAddonSubscriptionRequest]) (*connect.Response[v1.CreateAddonSubscriptionResponse], error)
 	ListAddonSubscription(context.Context, *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error)
+	RemoveAddonSubscription(context.Context, *connect.Request[v1.RemoveAddonSubscriptionRequest]) (*connect.Response[v1.RemoveAddonSubscriptionResponse], error)
 	// payment
 	GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error)
 	CreateStripeCustomerSession(context.Context, *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error)
@@ -307,6 +324,12 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 		connect.WithSchema(organizationServiceMethods.ByName("ListAddonSubscription")),
 		connect.WithHandlerOptions(opts...),
 	)
+	organizationServiceRemoveAddonSubscriptionHandler := connect.NewUnaryHandler(
+		OrganizationServiceRemoveAddonSubscriptionProcedure,
+		svc.RemoveAddonSubscription,
+		connect.WithSchema(organizationServiceMethods.ByName("RemoveAddonSubscription")),
+		connect.WithHandlerOptions(opts...),
+	)
 	organizationServiceGetStripePublishableKeyHandler := connect.NewUnaryHandler(
 		OrganizationServiceGetStripePublishableKeyProcedure,
 		svc.GetStripePublishableKey,
@@ -343,6 +366,8 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 			organizationServiceCreateAddonSubscriptionHandler.ServeHTTP(w, r)
 		case OrganizationServiceListAddonSubscriptionProcedure:
 			organizationServiceListAddonSubscriptionHandler.ServeHTTP(w, r)
+		case OrganizationServiceRemoveAddonSubscriptionProcedure:
+			organizationServiceRemoveAddonSubscriptionHandler.ServeHTTP(w, r)
 		case OrganizationServiceGetStripePublishableKeyProcedure:
 			organizationServiceGetStripePublishableKeyHandler.ServeHTTP(w, r)
 		case OrganizationServiceCreateStripeCustomerSessionProcedure:
@@ -388,6 +413,10 @@ func (UnimplementedOrganizationServiceHandler) CreateAddonSubscription(context.C
 
 func (UnimplementedOrganizationServiceHandler) ListAddonSubscription(context.Context, *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.ListAddonSubscription is not implemented"))
+}
+
+func (UnimplementedOrganizationServiceHandler) RemoveAddonSubscription(context.Context, *connect.Request[v1.RemoveAddonSubscriptionRequest]) (*connect.Response[v1.RemoveAddonSubscriptionResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.RemoveAddonSubscription is not implemented"))
 }
 
 func (UnimplementedOrganizationServiceHandler) GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error) {

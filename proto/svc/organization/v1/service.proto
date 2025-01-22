@@ -22,6 +22,7 @@ service OrganizationService {
 
   rpc CreateAddonSubscription(CreateAddonSubscriptionRequest) returns (CreateAddonSubscriptionResponse) {}
   rpc ListAddonSubscription(ListAddonSubscriptionRequest) returns (ListAddonSubscriptionResponse) {}
+  rpc RemoveAddonSubscription(RemoveAddonSubscriptionRequest) returns (RemoveAddonSubscriptionResponse) {}
 
   // payment
   rpc GetStripePublishableKey(GetStripePublishableKeyRequest) returns (GetStripePublishableKeyResponse) {}
@@ -132,6 +133,17 @@ message ListAddonSubscriptionResponse {
   }
   repeated ListItem items = 2;
 }
+
+message RemoveAddonSubscriptionRequest {
+  message Reason {
+    string comment = 1;
+    string feedback = 2;
+  }
+  types.v1.Product product = 1;
+  optional Reason cancel_reason = 2;
+}
+
+message RemoveAddonSubscriptionResponse {}
 
 message GetStripePublishableKeyRequest {}
 message GetStripePublishableKeyResponse {

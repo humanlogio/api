@@ -966,6 +966,123 @@ export class ListAddonSubscriptionResponse_ListItem extends Message<ListAddonSub
 }
 
 /**
+ * @generated from message svc.organization.v1.RemoveAddonSubscriptionRequest
+ */
+export class RemoveAddonSubscriptionRequest extends Message<RemoveAddonSubscriptionRequest> {
+  /**
+   * @generated from field: types.v1.Product product = 1;
+   */
+  product?: Product;
+
+  /**
+   * @generated from field: optional svc.organization.v1.RemoveAddonSubscriptionRequest.Reason cancel_reason = 2;
+   */
+  cancelReason?: RemoveAddonSubscriptionRequest_Reason;
+
+  constructor(data?: PartialMessage<RemoveAddonSubscriptionRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.RemoveAddonSubscriptionRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "product", kind: "message", T: Product },
+    { no: 2, name: "cancel_reason", kind: "message", T: RemoveAddonSubscriptionRequest_Reason, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveAddonSubscriptionRequest {
+    return new RemoveAddonSubscriptionRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveAddonSubscriptionRequest {
+    return new RemoveAddonSubscriptionRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveAddonSubscriptionRequest {
+    return new RemoveAddonSubscriptionRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveAddonSubscriptionRequest | PlainMessage<RemoveAddonSubscriptionRequest> | undefined, b: RemoveAddonSubscriptionRequest | PlainMessage<RemoveAddonSubscriptionRequest> | undefined): boolean {
+    return proto3.util.equals(RemoveAddonSubscriptionRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.RemoveAddonSubscriptionRequest.Reason
+ */
+export class RemoveAddonSubscriptionRequest_Reason extends Message<RemoveAddonSubscriptionRequest_Reason> {
+  /**
+   * @generated from field: string comment = 1;
+   */
+  comment = "";
+
+  /**
+   * @generated from field: string feedback = 2;
+   */
+  feedback = "";
+
+  constructor(data?: PartialMessage<RemoveAddonSubscriptionRequest_Reason>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.RemoveAddonSubscriptionRequest.Reason";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "comment", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "feedback", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveAddonSubscriptionRequest_Reason {
+    return new RemoveAddonSubscriptionRequest_Reason().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveAddonSubscriptionRequest_Reason {
+    return new RemoveAddonSubscriptionRequest_Reason().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveAddonSubscriptionRequest_Reason {
+    return new RemoveAddonSubscriptionRequest_Reason().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveAddonSubscriptionRequest_Reason | PlainMessage<RemoveAddonSubscriptionRequest_Reason> | undefined, b: RemoveAddonSubscriptionRequest_Reason | PlainMessage<RemoveAddonSubscriptionRequest_Reason> | undefined): boolean {
+    return proto3.util.equals(RemoveAddonSubscriptionRequest_Reason, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.RemoveAddonSubscriptionResponse
+ */
+export class RemoveAddonSubscriptionResponse extends Message<RemoveAddonSubscriptionResponse> {
+  constructor(data?: PartialMessage<RemoveAddonSubscriptionResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.RemoveAddonSubscriptionResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RemoveAddonSubscriptionResponse {
+    return new RemoveAddonSubscriptionResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RemoveAddonSubscriptionResponse {
+    return new RemoveAddonSubscriptionResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RemoveAddonSubscriptionResponse {
+    return new RemoveAddonSubscriptionResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RemoveAddonSubscriptionResponse | PlainMessage<RemoveAddonSubscriptionResponse> | undefined, b: RemoveAddonSubscriptionResponse | PlainMessage<RemoveAddonSubscriptionResponse> | undefined): boolean {
+    return proto3.util.equals(RemoveAddonSubscriptionResponse, a, b);
+  }
+}
+
+/**
  * @generated from message svc.organization.v1.GetStripePublishableKeyRequest
  */
 export class GetStripePublishableKeyRequest extends Message<GetStripePublishableKeyRequest> {

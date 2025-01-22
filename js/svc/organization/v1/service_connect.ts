@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetEnvironmentRequest, GetEnvironmentResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetEnvironmentRequest, GetEnvironmentResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RemoveAddonSubscriptionRequest, RemoveAddonSubscriptionResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -82,6 +82,15 @@ export const OrganizationService = {
       name: "ListAddonSubscription",
       I: ListAddonSubscriptionRequest,
       O: ListAddonSubscriptionResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.organization.v1.OrganizationService.RemoveAddonSubscription
+     */
+    removeAddonSubscription: {
+      name: "RemoveAddonSubscription",
+      I: RemoveAddonSubscriptionRequest,
+      O: RemoveAddonSubscriptionResponse,
       kind: MethodKind.Unary,
     },
     /**
