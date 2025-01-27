@@ -556,9 +556,9 @@ export class ListSymbolsResponse extends Message<ListSymbolsResponse> {
  */
 export class ListSymbolsResponse_ListItem extends Message<ListSymbolsResponse_ListItem> {
   /**
-   * @generated from field: string key = 1;
+   * @generated from field: string name = 1;
    */
-  key = "";
+  name = "";
 
   /**
    * @generated from field: types.v1.VarType type = 2;
@@ -573,7 +573,7 @@ export class ListSymbolsResponse_ListItem extends Message<ListSymbolsResponse_Li
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.query.v1.ListSymbolsResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "type", kind: "message", T: VarType },
   ]);
 
