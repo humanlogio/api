@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "types/v1/types.proto";
+
+option go_package = "types/v1;typesv1";
+
+message Symbol {
+  string name = 1;
+  types.v1.VarType type = 2;
+}

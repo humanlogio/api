@@ -9,7 +9,7 @@ import { LogQuery } from "../../../types/v1/logquery_pb";
 import { LogEventGroup } from "../../../types/v1/logevent_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { Data } from "../../../types/v1/query_pb";
-import { VarType } from "../../../types/v1/types_pb";
+import { Symbol } from "../../../types/v1/symbol_pb";
 
 /**
  * @generated from message svc.query.v1.SummarizeEventsRequest
@@ -556,14 +556,9 @@ export class ListSymbolsResponse extends Message<ListSymbolsResponse> {
  */
 export class ListSymbolsResponse_ListItem extends Message<ListSymbolsResponse_ListItem> {
   /**
-   * @generated from field: string name = 1;
+   * @generated from field: types.v1.Symbol symbol = 2;
    */
-  name = "";
-
-  /**
-   * @generated from field: types.v1.VarType type = 2;
-   */
-  type?: VarType;
+  symbol?: Symbol;
 
   constructor(data?: PartialMessage<ListSymbolsResponse_ListItem>) {
     super();
@@ -573,8 +568,7 @@ export class ListSymbolsResponse_ListItem extends Message<ListSymbolsResponse_Li
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.query.v1.ListSymbolsResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "type", kind: "message", T: VarType },
+    { no: 2, name: "symbol", kind: "message", T: Symbol },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSymbolsResponse_ListItem {

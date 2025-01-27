@@ -9,6 +9,7 @@ import "types/v1/logevent.proto";
 import "types/v1/logquery.proto";
 import "types/v1/query.proto";
 import "types/v1/session.proto";
+import "types/v1/symbol.proto";
 import "types/v1/types.proto";
 
 option go_package = "svc/query/v1;queryv1";
@@ -91,8 +92,7 @@ message ListSymbolsRequest {
 
 message ListSymbolsResponse {
   message ListItem {
-    string name = 1;
-    types.v1.VarType type = 2;
+    types.v1.Symbol symbol = 2;
   }
   types.v1.Cursor next = 100;
   repeated ListItem items = 200;
