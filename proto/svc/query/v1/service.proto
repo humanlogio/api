@@ -26,6 +26,7 @@ service QueryService {
 
   rpc Parse(ParseRequest) returns (ParseResponse);
   rpc Query(QueryRequest) returns (QueryResponse);
+  rpc ListSymbols(ListSymbolsRequest) returns (ListSymbolsResponse);
 }
 
 message SummarizeEventsRequest {
@@ -80,4 +81,19 @@ message QueryRequest {
 message QueryResponse {
   types.v1.Cursor next = 100;
   types.v1.Data data = 200;
+}
+
+message ListSymbolsRequest {
+  int64 environment_id = 101;
+  types.v1.Cursor cursor = 102;
+  int32 limit = 103;
+}
+
+message ListSymbolsResponse {
+  message ListItem {
+    string key = 1;
+    types.v1.VarType type = 2;
+  }
+  types.v1.Cursor next = 100;
+  repeated ListItem items = 200;
 }

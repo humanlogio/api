@@ -42,6 +42,9 @@ const (
 	QueryServiceParseProcedure = "/svc.query.v1.QueryService/Parse"
 	// QueryServiceQueryProcedure is the fully-qualified name of the QueryService's Query RPC.
 	QueryServiceQueryProcedure = "/svc.query.v1.QueryService/Query"
+	// QueryServiceListSymbolsProcedure is the fully-qualified name of the QueryService's ListSymbols
+	// RPC.
+	QueryServiceListSymbolsProcedure = "/svc.query.v1.QueryService/ListSymbols"
 )
 
 // QueryServiceClient is a client for the svc.query.v1.QueryService service.
@@ -50,6 +53,7 @@ type QueryServiceClient interface {
 	WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest]) (*connect.ServerStreamForClient[v1.WatchQueryResponse], error)
 	Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error)
 	Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error)
+	ListSymbols(context.Context, *connect.Request[v1.ListSymbolsRequest]) (*connect.Response[v1.ListSymbolsResponse], error)
 }
 
 // NewQueryServiceClient constructs a client for the svc.query.v1.QueryService service. By default,
@@ -87,6 +91,12 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(queryServiceMethods.ByName("Query")),
 			connect.WithClientOptions(opts...),
 		),
+		listSymbols: connect.NewClient[v1.ListSymbolsRequest, v1.ListSymbolsResponse](
+			httpClient,
+			baseURL+QueryServiceListSymbolsProcedure,
+			connect.WithSchema(queryServiceMethods.ByName("ListSymbols")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -96,6 +106,7 @@ type queryServiceClient struct {
 	watchQuery      *connect.Client[v1.WatchQueryRequest, v1.WatchQueryResponse]
 	parse           *connect.Client[v1.ParseRequest, v1.ParseResponse]
 	query           *connect.Client[v1.QueryRequest, v1.QueryResponse]
+	listSymbols     *connect.Client[v1.ListSymbolsRequest, v1.ListSymbolsResponse]
 }
 
 // SummarizeEvents calls svc.query.v1.QueryService.SummarizeEvents.
@@ -118,12 +129,18 @@ func (c *queryServiceClient) Query(ctx context.Context, req *connect.Request[v1.
 	return c.query.CallUnary(ctx, req)
 }
 
+// ListSymbols calls svc.query.v1.QueryService.ListSymbols.
+func (c *queryServiceClient) ListSymbols(ctx context.Context, req *connect.Request[v1.ListSymbolsRequest]) (*connect.Response[v1.ListSymbolsResponse], error) {
+	return c.listSymbols.CallUnary(ctx, req)
+}
+
 // QueryServiceHandler is an implementation of the svc.query.v1.QueryService service.
 type QueryServiceHandler interface {
 	SummarizeEvents(context.Context, *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error)
 	WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest], *connect.ServerStream[v1.WatchQueryResponse]) error
 	Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error)
 	Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error)
+	ListSymbols(context.Context, *connect.Request[v1.ListSymbolsRequest]) (*connect.Response[v1.ListSymbolsResponse], error)
 }
 
 // NewQueryServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -157,6 +174,12 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(queryServiceMethods.ByName("Query")),
 		connect.WithHandlerOptions(opts...),
 	)
+	queryServiceListSymbolsHandler := connect.NewUnaryHandler(
+		QueryServiceListSymbolsProcedure,
+		svc.ListSymbols,
+		connect.WithSchema(queryServiceMethods.ByName("ListSymbols")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.query.v1.QueryService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case QueryServiceSummarizeEventsProcedure:
@@ -167,6 +190,8 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 			queryServiceParseHandler.ServeHTTP(w, r)
 		case QueryServiceQueryProcedure:
 			queryServiceQueryHandler.ServeHTTP(w, r)
+		case QueryServiceListSymbolsProcedure:
+			queryServiceListSymbolsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -190,4 +215,8 @@ func (UnimplementedQueryServiceHandler) Parse(context.Context, *connect.Request[
 
 func (UnimplementedQueryServiceHandler) Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.Query is not implemented"))
+}
+
+func (UnimplementedQueryServiceHandler) ListSymbols(context.Context, *connect.Request[v1.ListSymbolsRequest]) (*connect.Response[v1.ListSymbolsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.ListSymbols is not implemented"))
 }

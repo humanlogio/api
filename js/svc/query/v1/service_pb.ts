@@ -9,6 +9,7 @@ import { LogQuery } from "../../../types/v1/logquery_pb";
 import { LogEventGroup } from "../../../types/v1/logevent_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { Data } from "../../../types/v1/query_pb";
+import { VarType } from "../../../types/v1/types_pb";
 
 /**
  * @generated from message svc.query.v1.SummarizeEventsRequest
@@ -455,6 +456,141 @@ export class QueryResponse extends Message<QueryResponse> {
 
   static equals(a: QueryResponse | PlainMessage<QueryResponse> | undefined, b: QueryResponse | PlainMessage<QueryResponse> | undefined): boolean {
     return proto3.util.equals(QueryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.ListSymbolsRequest
+ */
+export class ListSymbolsRequest extends Message<ListSymbolsRequest> {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: types.v1.Cursor cursor = 102;
+   */
+  cursor?: Cursor;
+
+  /**
+   * @generated from field: int32 limit = 103;
+   */
+  limit = 0;
+
+  constructor(data?: PartialMessage<ListSymbolsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.ListSymbolsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "cursor", kind: "message", T: Cursor },
+    { no: 103, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSymbolsRequest {
+    return new ListSymbolsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSymbolsRequest {
+    return new ListSymbolsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSymbolsRequest {
+    return new ListSymbolsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSymbolsRequest | PlainMessage<ListSymbolsRequest> | undefined, b: ListSymbolsRequest | PlainMessage<ListSymbolsRequest> | undefined): boolean {
+    return proto3.util.equals(ListSymbolsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.ListSymbolsResponse
+ */
+export class ListSymbolsResponse extends Message<ListSymbolsResponse> {
+  /**
+   * @generated from field: types.v1.Cursor next = 100;
+   */
+  next?: Cursor;
+
+  /**
+   * @generated from field: repeated svc.query.v1.ListSymbolsResponse.ListItem items = 200;
+   */
+  items: ListSymbolsResponse_ListItem[] = [];
+
+  constructor(data?: PartialMessage<ListSymbolsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.ListSymbolsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 100, name: "next", kind: "message", T: Cursor },
+    { no: 200, name: "items", kind: "message", T: ListSymbolsResponse_ListItem, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSymbolsResponse {
+    return new ListSymbolsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSymbolsResponse {
+    return new ListSymbolsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSymbolsResponse {
+    return new ListSymbolsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSymbolsResponse | PlainMessage<ListSymbolsResponse> | undefined, b: ListSymbolsResponse | PlainMessage<ListSymbolsResponse> | undefined): boolean {
+    return proto3.util.equals(ListSymbolsResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.ListSymbolsResponse.ListItem
+ */
+export class ListSymbolsResponse_ListItem extends Message<ListSymbolsResponse_ListItem> {
+  /**
+   * @generated from field: string key = 1;
+   */
+  key = "";
+
+  /**
+   * @generated from field: types.v1.VarType type = 2;
+   */
+  type?: VarType;
+
+  constructor(data?: PartialMessage<ListSymbolsResponse_ListItem>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.ListSymbolsResponse.ListItem";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "key", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "type", kind: "message", T: VarType },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSymbolsResponse_ListItem {
+    return new ListSymbolsResponse_ListItem().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSymbolsResponse_ListItem {
+    return new ListSymbolsResponse_ListItem().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSymbolsResponse_ListItem {
+    return new ListSymbolsResponse_ListItem().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSymbolsResponse_ListItem | PlainMessage<ListSymbolsResponse_ListItem> | undefined, b: ListSymbolsResponse_ListItem | PlainMessage<ListSymbolsResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListSymbolsResponse_ListItem, a, b);
   }
 }
 
