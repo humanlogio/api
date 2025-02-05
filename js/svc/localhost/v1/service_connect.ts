@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { PingRequest, PingResponse } from "./service_pb";
+import { DoLoginRequest, DoLoginResponse, PingRequest, PingResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -19,6 +19,15 @@ export const LocalhostService = {
       name: "Ping",
       I: PingRequest,
       O: PingResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.localhost.v1.LocalhostService.DoLogin
+     */
+    doLogin: {
+      name: "DoLogin",
+      I: DoLoginRequest,
+      O: DoLoginResponse,
       kind: MethodKind.Unary,
     },
   }

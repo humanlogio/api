@@ -9,6 +9,8 @@ option go_package = "svc/localhost/v1;localhostv1";
 
 service LocalhostService {
   rpc Ping(PingRequest) returns (PingResponse);
+
+  rpc DoLogin(DoLoginRequest) returns (DoLoginResponse);
 }
 
 message PingRequest {}
@@ -18,3 +20,6 @@ message PingResponse {
   string operating_system = 3;
   types.v1.ResMeta meta = 1000;
 }
+
+message DoLoginRequest {}
+message DoLoginResponse {}

@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { PingRequest, PingResponse } from "./service_pb";
+import { DoLoginRequest, DoLoginResponse, PingRequest, PingResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.localhost.v1.LocalhostService.Ping
@@ -15,6 +15,20 @@ export const ping = {
   kind: MethodKind.Unary,
   I: PingRequest,
   O: PingResponse,
+  service: {
+    typeName: "svc.localhost.v1.LocalhostService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.localhost.v1.LocalhostService.DoLogin
+ */
+export const doLogin = {
+  localName: "doLogin",
+  name: "DoLogin",
+  kind: MethodKind.Unary,
+  I: DoLoginRequest,
+  O: DoLoginResponse,
   service: {
     typeName: "svc.localhost.v1.LocalhostService"
   }

@@ -94,3 +94,65 @@ export class PingResponse extends Message<PingResponse> {
   }
 }
 
+/**
+ * @generated from message svc.localhost.v1.DoLoginRequest
+ */
+export class DoLoginRequest extends Message<DoLoginRequest> {
+  constructor(data?: PartialMessage<DoLoginRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.DoLoginRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoLoginRequest {
+    return new DoLoginRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoLoginRequest {
+    return new DoLoginRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoLoginRequest {
+    return new DoLoginRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoLoginRequest | PlainMessage<DoLoginRequest> | undefined, b: DoLoginRequest | PlainMessage<DoLoginRequest> | undefined): boolean {
+    return proto3.util.equals(DoLoginRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.DoLoginResponse
+ */
+export class DoLoginResponse extends Message<DoLoginResponse> {
+  constructor(data?: PartialMessage<DoLoginResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.DoLoginResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoLoginResponse {
+    return new DoLoginResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoLoginResponse {
+    return new DoLoginResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoLoginResponse {
+    return new DoLoginResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoLoginResponse | PlainMessage<DoLoginResponse> | undefined, b: DoLoginResponse | PlainMessage<DoLoginResponse> | undefined): boolean {
+    return proto3.util.equals(DoLoginResponse, a, b);
+  }
+}
+
