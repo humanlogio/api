@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DoLoginRequest, DoLoginResponse, PingRequest, PingResponse } from "./service_pb";
+import { DoLoginRequest, DoLoginResponse, IsLoggedInRequest, IsLoggedInResponse, PingRequest, PingResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -19,6 +19,15 @@ export const LocalhostService = {
       name: "Ping",
       I: PingRequest,
       O: PingResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.localhost.v1.LocalhostService.IsLoggedIn
+     */
+    isLoggedIn: {
+      name: "IsLoggedIn",
+      I: IsLoggedInRequest,
+      O: IsLoggedInResponse,
       kind: MethodKind.Unary,
     },
     /**

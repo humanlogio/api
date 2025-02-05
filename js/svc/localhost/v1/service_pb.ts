@@ -95,6 +95,74 @@ export class PingResponse extends Message<PingResponse> {
 }
 
 /**
+ * @generated from message svc.localhost.v1.IsLoggedInRequest
+ */
+export class IsLoggedInRequest extends Message<IsLoggedInRequest> {
+  constructor(data?: PartialMessage<IsLoggedInRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.IsLoggedInRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsLoggedInRequest {
+    return new IsLoggedInRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsLoggedInRequest {
+    return new IsLoggedInRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsLoggedInRequest {
+    return new IsLoggedInRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: IsLoggedInRequest | PlainMessage<IsLoggedInRequest> | undefined, b: IsLoggedInRequest | PlainMessage<IsLoggedInRequest> | undefined): boolean {
+    return proto3.util.equals(IsLoggedInRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.IsLoggedInResponse
+ */
+export class IsLoggedInResponse extends Message<IsLoggedInResponse> {
+  /**
+   * @generated from field: bool is_logged_in = 1;
+   */
+  isLoggedIn = false;
+
+  constructor(data?: PartialMessage<IsLoggedInResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.IsLoggedInResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "is_logged_in", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsLoggedInResponse {
+    return new IsLoggedInResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsLoggedInResponse {
+    return new IsLoggedInResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsLoggedInResponse {
+    return new IsLoggedInResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: IsLoggedInResponse | PlainMessage<IsLoggedInResponse> | undefined, b: IsLoggedInResponse | PlainMessage<IsLoggedInResponse> | undefined): boolean {
+    return proto3.util.equals(IsLoggedInResponse, a, b);
+  }
+}
+
+/**
  * @generated from message svc.localhost.v1.DoLoginRequest
  */
 export class DoLoginRequest extends Message<DoLoginRequest> {

@@ -10,6 +10,7 @@ option go_package = "svc/localhost/v1;localhostv1";
 service LocalhostService {
   rpc Ping(PingRequest) returns (PingResponse);
 
+  rpc IsLoggedIn(IsLoggedInRequest) returns (IsLoggedInResponse);
   rpc DoLogin(DoLoginRequest) returns (DoLoginResponse);
 }
 
@@ -19,6 +20,11 @@ message PingResponse {
   string architecture = 2;
   string operating_system = 3;
   types.v1.ResMeta meta = 1000;
+}
+
+message IsLoggedInRequest {}
+message IsLoggedInResponse {
+  types.v1.User user = 1;
 }
 
 message DoLoginRequest {}

@@ -35,6 +35,9 @@ const (
 const (
 	// LocalhostServicePingProcedure is the fully-qualified name of the LocalhostService's Ping RPC.
 	LocalhostServicePingProcedure = "/svc.localhost.v1.LocalhostService/Ping"
+	// LocalhostServiceIsLoggedInProcedure is the fully-qualified name of the LocalhostService's
+	// IsLoggedIn RPC.
+	LocalhostServiceIsLoggedInProcedure = "/svc.localhost.v1.LocalhostService/IsLoggedIn"
 	// LocalhostServiceDoLoginProcedure is the fully-qualified name of the LocalhostService's DoLogin
 	// RPC.
 	LocalhostServiceDoLoginProcedure = "/svc.localhost.v1.LocalhostService/DoLogin"
@@ -43,6 +46,7 @@ const (
 // LocalhostServiceClient is a client for the svc.localhost.v1.LocalhostService service.
 type LocalhostServiceClient interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
+	IsLoggedIn(context.Context, *connect.Request[v1.IsLoggedInRequest]) (*connect.Response[v1.IsLoggedInResponse], error)
 	DoLogin(context.Context, *connect.Request[v1.DoLoginRequest]) (*connect.Response[v1.DoLoginResponse], error)
 }
 
@@ -63,6 +67,12 @@ func NewLocalhostServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(localhostServiceMethods.ByName("Ping")),
 			connect.WithClientOptions(opts...),
 		),
+		isLoggedIn: connect.NewClient[v1.IsLoggedInRequest, v1.IsLoggedInResponse](
+			httpClient,
+			baseURL+LocalhostServiceIsLoggedInProcedure,
+			connect.WithSchema(localhostServiceMethods.ByName("IsLoggedIn")),
+			connect.WithClientOptions(opts...),
+		),
 		doLogin: connect.NewClient[v1.DoLoginRequest, v1.DoLoginResponse](
 			httpClient,
 			baseURL+LocalhostServiceDoLoginProcedure,
@@ -74,13 +84,19 @@ func NewLocalhostServiceClient(httpClient connect.HTTPClient, baseURL string, op
 
 // localhostServiceClient implements LocalhostServiceClient.
 type localhostServiceClient struct {
-	ping    *connect.Client[v1.PingRequest, v1.PingResponse]
-	doLogin *connect.Client[v1.DoLoginRequest, v1.DoLoginResponse]
+	ping       *connect.Client[v1.PingRequest, v1.PingResponse]
+	isLoggedIn *connect.Client[v1.IsLoggedInRequest, v1.IsLoggedInResponse]
+	doLogin    *connect.Client[v1.DoLoginRequest, v1.DoLoginResponse]
 }
 
 // Ping calls svc.localhost.v1.LocalhostService.Ping.
 func (c *localhostServiceClient) Ping(ctx context.Context, req *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error) {
 	return c.ping.CallUnary(ctx, req)
+}
+
+// IsLoggedIn calls svc.localhost.v1.LocalhostService.IsLoggedIn.
+func (c *localhostServiceClient) IsLoggedIn(ctx context.Context, req *connect.Request[v1.IsLoggedInRequest]) (*connect.Response[v1.IsLoggedInResponse], error) {
+	return c.isLoggedIn.CallUnary(ctx, req)
 }
 
 // DoLogin calls svc.localhost.v1.LocalhostService.DoLogin.
@@ -91,6 +107,7 @@ func (c *localhostServiceClient) DoLogin(ctx context.Context, req *connect.Reque
 // LocalhostServiceHandler is an implementation of the svc.localhost.v1.LocalhostService service.
 type LocalhostServiceHandler interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
+	IsLoggedIn(context.Context, *connect.Request[v1.IsLoggedInRequest]) (*connect.Response[v1.IsLoggedInResponse], error)
 	DoLogin(context.Context, *connect.Request[v1.DoLoginRequest]) (*connect.Response[v1.DoLoginResponse], error)
 }
 
@@ -107,6 +124,12 @@ func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.Han
 		connect.WithSchema(localhostServiceMethods.ByName("Ping")),
 		connect.WithHandlerOptions(opts...),
 	)
+	localhostServiceIsLoggedInHandler := connect.NewUnaryHandler(
+		LocalhostServiceIsLoggedInProcedure,
+		svc.IsLoggedIn,
+		connect.WithSchema(localhostServiceMethods.ByName("IsLoggedIn")),
+		connect.WithHandlerOptions(opts...),
+	)
 	localhostServiceDoLoginHandler := connect.NewUnaryHandler(
 		LocalhostServiceDoLoginProcedure,
 		svc.DoLogin,
@@ -117,6 +140,8 @@ func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.Han
 		switch r.URL.Path {
 		case LocalhostServicePingProcedure:
 			localhostServicePingHandler.ServeHTTP(w, r)
+		case LocalhostServiceIsLoggedInProcedure:
+			localhostServiceIsLoggedInHandler.ServeHTTP(w, r)
 		case LocalhostServiceDoLoginProcedure:
 			localhostServiceDoLoginHandler.ServeHTTP(w, r)
 		default:
@@ -130,6 +155,10 @@ type UnimplementedLocalhostServiceHandler struct{}
 
 func (UnimplementedLocalhostServiceHandler) Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.localhost.v1.LocalhostService.Ping is not implemented"))
+}
+
+func (UnimplementedLocalhostServiceHandler) IsLoggedIn(context.Context, *connect.Request[v1.IsLoggedInRequest]) (*connect.Response[v1.IsLoggedInResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.localhost.v1.LocalhostService.IsLoggedIn is not implemented"))
 }
 
 func (UnimplementedLocalhostServiceHandler) DoLogin(context.Context, *connect.Request[v1.DoLoginRequest]) (*connect.Response[v1.DoLoginResponse], error) {
