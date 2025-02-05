@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3 } from "@bufbuild/protobuf";
 import { Version } from "../../../types/v1/version_pb";
 import { ResMeta } from "../../../types/v1/meta_pb";
+import { User } from "../../../types/v1/user_pb";
 
 /**
  * @generated from message svc.localhost.v1.PingRequest
@@ -130,9 +131,9 @@ export class IsLoggedInRequest extends Message<IsLoggedInRequest> {
  */
 export class IsLoggedInResponse extends Message<IsLoggedInResponse> {
   /**
-   * @generated from field: bool is_logged_in = 1;
+   * @generated from field: types.v1.User user = 1;
    */
-  isLoggedIn = false;
+  user?: User;
 
   constructor(data?: PartialMessage<IsLoggedInResponse>) {
     super();
@@ -142,7 +143,7 @@ export class IsLoggedInResponse extends Message<IsLoggedInResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.localhost.v1.IsLoggedInResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "is_logged_in", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: "user", kind: "message", T: User },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsLoggedInResponse {

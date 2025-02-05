@@ -3,6 +3,7 @@ syntax = "proto3";
 package svc.localhost.v1;
 
 import "types/v1/meta.proto";
+import "types/v1/user.proto";
 import "types/v1/version.proto";
 
 option go_package = "svc/localhost/v1;localhostv1";
