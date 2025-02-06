@@ -44,6 +44,9 @@ const (
 	// LocalhostServiceDoUpdateProcedure is the fully-qualified name of the LocalhostService's DoUpdate
 	// RPC.
 	LocalhostServiceDoUpdateProcedure = "/svc.localhost.v1.LocalhostService/DoUpdate"
+	// LocalhostServiceDoRestartProcedure is the fully-qualified name of the LocalhostService's
+	// DoRestart RPC.
+	LocalhostServiceDoRestartProcedure = "/svc.localhost.v1.LocalhostService/DoRestart"
 )
 
 // LocalhostServiceClient is a client for the svc.localhost.v1.LocalhostService service.
@@ -52,6 +55,7 @@ type LocalhostServiceClient interface {
 	DoLogin(context.Context, *connect.Request[v1.DoLoginRequest]) (*connect.Response[v1.DoLoginResponse], error)
 	DoLogout(context.Context, *connect.Request[v1.DoLogoutRequest]) (*connect.Response[v1.DoLogoutResponse], error)
 	DoUpdate(context.Context, *connect.Request[v1.DoUpdateRequest]) (*connect.Response[v1.DoUpdateResponse], error)
+	DoRestart(context.Context, *connect.Request[v1.DoRestartRequest]) (*connect.Response[v1.DoRestartResponse], error)
 }
 
 // NewLocalhostServiceClient constructs a client for the svc.localhost.v1.LocalhostService service.
@@ -89,15 +93,22 @@ func NewLocalhostServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(localhostServiceMethods.ByName("DoUpdate")),
 			connect.WithClientOptions(opts...),
 		),
+		doRestart: connect.NewClient[v1.DoRestartRequest, v1.DoRestartResponse](
+			httpClient,
+			baseURL+LocalhostServiceDoRestartProcedure,
+			connect.WithSchema(localhostServiceMethods.ByName("DoRestart")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // localhostServiceClient implements LocalhostServiceClient.
 type localhostServiceClient struct {
-	ping     *connect.Client[v1.PingRequest, v1.PingResponse]
-	doLogin  *connect.Client[v1.DoLoginRequest, v1.DoLoginResponse]
-	doLogout *connect.Client[v1.DoLogoutRequest, v1.DoLogoutResponse]
-	doUpdate *connect.Client[v1.DoUpdateRequest, v1.DoUpdateResponse]
+	ping      *connect.Client[v1.PingRequest, v1.PingResponse]
+	doLogin   *connect.Client[v1.DoLoginRequest, v1.DoLoginResponse]
+	doLogout  *connect.Client[v1.DoLogoutRequest, v1.DoLogoutResponse]
+	doUpdate  *connect.Client[v1.DoUpdateRequest, v1.DoUpdateResponse]
+	doRestart *connect.Client[v1.DoRestartRequest, v1.DoRestartResponse]
 }
 
 // Ping calls svc.localhost.v1.LocalhostService.Ping.
@@ -120,12 +131,18 @@ func (c *localhostServiceClient) DoUpdate(ctx context.Context, req *connect.Requ
 	return c.doUpdate.CallUnary(ctx, req)
 }
 
+// DoRestart calls svc.localhost.v1.LocalhostService.DoRestart.
+func (c *localhostServiceClient) DoRestart(ctx context.Context, req *connect.Request[v1.DoRestartRequest]) (*connect.Response[v1.DoRestartResponse], error) {
+	return c.doRestart.CallUnary(ctx, req)
+}
+
 // LocalhostServiceHandler is an implementation of the svc.localhost.v1.LocalhostService service.
 type LocalhostServiceHandler interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
 	DoLogin(context.Context, *connect.Request[v1.DoLoginRequest]) (*connect.Response[v1.DoLoginResponse], error)
 	DoLogout(context.Context, *connect.Request[v1.DoLogoutRequest]) (*connect.Response[v1.DoLogoutResponse], error)
 	DoUpdate(context.Context, *connect.Request[v1.DoUpdateRequest]) (*connect.Response[v1.DoUpdateResponse], error)
+	DoRestart(context.Context, *connect.Request[v1.DoRestartRequest]) (*connect.Response[v1.DoRestartResponse], error)
 }
 
 // NewLocalhostServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -159,6 +176,12 @@ func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.Han
 		connect.WithSchema(localhostServiceMethods.ByName("DoUpdate")),
 		connect.WithHandlerOptions(opts...),
 	)
+	localhostServiceDoRestartHandler := connect.NewUnaryHandler(
+		LocalhostServiceDoRestartProcedure,
+		svc.DoRestart,
+		connect.WithSchema(localhostServiceMethods.ByName("DoRestart")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.localhost.v1.LocalhostService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case LocalhostServicePingProcedure:
@@ -169,6 +192,8 @@ func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.Han
 			localhostServiceDoLogoutHandler.ServeHTTP(w, r)
 		case LocalhostServiceDoUpdateProcedure:
 			localhostServiceDoUpdateHandler.ServeHTTP(w, r)
+		case LocalhostServiceDoRestartProcedure:
+			localhostServiceDoRestartHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -192,4 +217,8 @@ func (UnimplementedLocalhostServiceHandler) DoLogout(context.Context, *connect.R
 
 func (UnimplementedLocalhostServiceHandler) DoUpdate(context.Context, *connect.Request[v1.DoUpdateRequest]) (*connect.Response[v1.DoUpdateResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.localhost.v1.LocalhostService.DoUpdate is not implemented"))
+}
+
+func (UnimplementedLocalhostServiceHandler) DoRestart(context.Context, *connect.Request[v1.DoRestartRequest]) (*connect.Response[v1.DoRestartResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.localhost.v1.LocalhostService.DoRestart is not implemented"))
 }

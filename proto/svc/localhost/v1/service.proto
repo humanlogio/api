@@ -14,6 +14,7 @@ service LocalhostService {
   rpc DoLogin(DoLoginRequest) returns (DoLoginResponse);
   rpc DoLogout(DoLogoutRequest) returns (DoLogoutResponse);
   rpc DoUpdate(DoUpdateRequest) returns (DoUpdateResponse);
+  rpc DoRestart(DoRestartRequest) returns (DoRestartResponse);
 }
 
 message PingRequest {}
@@ -42,3 +43,6 @@ message DoLogoutResponse {}
 
 message DoUpdateRequest {}
 message DoUpdateResponse {}
+
+message DoRestartRequest {}
+message DoRestartResponse {}

@@ -341,3 +341,65 @@ export class DoUpdateResponse extends Message<DoUpdateResponse> {
   }
 }
 
+/**
+ * @generated from message svc.localhost.v1.DoRestartRequest
+ */
+export class DoRestartRequest extends Message<DoRestartRequest> {
+  constructor(data?: PartialMessage<DoRestartRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.DoRestartRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoRestartRequest {
+    return new DoRestartRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoRestartRequest {
+    return new DoRestartRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoRestartRequest {
+    return new DoRestartRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoRestartRequest | PlainMessage<DoRestartRequest> | undefined, b: DoRestartRequest | PlainMessage<DoRestartRequest> | undefined): boolean {
+    return proto3.util.equals(DoRestartRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.DoRestartResponse
+ */
+export class DoRestartResponse extends Message<DoRestartResponse> {
+  constructor(data?: PartialMessage<DoRestartResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.DoRestartResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoRestartResponse {
+    return new DoRestartResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoRestartResponse {
+    return new DoRestartResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoRestartResponse {
+    return new DoRestartResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoRestartResponse | PlainMessage<DoRestartResponse> | undefined, b: DoRestartResponse | PlainMessage<DoRestartResponse> | undefined): boolean {
+    return proto3.util.equals(DoRestartResponse, a, b);
+  }
+}
+
