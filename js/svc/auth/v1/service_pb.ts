@@ -167,6 +167,11 @@ export class BeginDeviceAuthRequest extends Message<BeginDeviceAuthRequest> {
    */
   organization = "";
 
+  /**
+   * @generated from field: string return_to_url = 2;
+   */
+  returnToUrl = "";
+
   constructor(data?: PartialMessage<BeginDeviceAuthRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -176,6 +181,7 @@ export class BeginDeviceAuthRequest extends Message<BeginDeviceAuthRequest> {
   static readonly typeName = "svc.auth.v1.BeginDeviceAuthRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "organization", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "return_to_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): BeginDeviceAuthRequest {
