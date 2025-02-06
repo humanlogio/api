@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { DoLoginRequest, DoLoginResponse, IsLoggedInRequest, IsLoggedInResponse, PingRequest, PingResponse } from "./service_pb";
+import { DoLoginRequest, DoLoginResponse, DoLogoutRequest, DoLogoutResponse, DoUpdateRequest, DoUpdateResponse, PingRequest, PingResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.localhost.v1.LocalhostService.Ping
@@ -21,20 +21,6 @@ export const ping = {
 } as const;
 
 /**
- * @generated from rpc svc.localhost.v1.LocalhostService.IsLoggedIn
- */
-export const isLoggedIn = {
-  localName: "isLoggedIn",
-  name: "IsLoggedIn",
-  kind: MethodKind.Unary,
-  I: IsLoggedInRequest,
-  O: IsLoggedInResponse,
-  service: {
-    typeName: "svc.localhost.v1.LocalhostService"
-  }
-} as const;
-
-/**
  * @generated from rpc svc.localhost.v1.LocalhostService.DoLogin
  */
 export const doLogin = {
@@ -43,6 +29,34 @@ export const doLogin = {
   kind: MethodKind.Unary,
   I: DoLoginRequest,
   O: DoLoginResponse,
+  service: {
+    typeName: "svc.localhost.v1.LocalhostService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.localhost.v1.LocalhostService.DoLogout
+ */
+export const doLogout = {
+  localName: "doLogout",
+  name: "DoLogout",
+  kind: MethodKind.Unary,
+  I: DoLogoutRequest,
+  O: DoLogoutResponse,
+  service: {
+    typeName: "svc.localhost.v1.LocalhostService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.localhost.v1.LocalhostService.DoUpdate
+ */
+export const doUpdate = {
+  localName: "doUpdate",
+  name: "DoUpdate",
+  kind: MethodKind.Unary,
+  I: DoUpdateRequest,
+  O: DoUpdateResponse,
   service: {
     typeName: "svc.localhost.v1.LocalhostService"
   }

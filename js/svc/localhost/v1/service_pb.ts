@@ -8,6 +8,7 @@ import { Message, proto3 } from "@bufbuild/protobuf";
 import { Version } from "../../../types/v1/version_pb";
 import { ResMeta } from "../../../types/v1/meta_pb";
 import { User } from "../../../types/v1/user_pb";
+import { Organization } from "../../../types/v1/organization_pb";
 
 /**
  * @generated from message svc.localhost.v1.PingRequest
@@ -60,6 +61,15 @@ export class PingResponse extends Message<PingResponse> {
   operatingSystem = "";
 
   /**
+   * logged_in_user is set if the CLI is logged in.
+   * if the CLI is alive but not logged in, this field
+   * is null
+   *
+   * @generated from field: svc.localhost.v1.PingResponse.UserDetails logged_in_user = 4;
+   */
+  loggedInUser?: PingResponse_UserDetails;
+
+  /**
    * @generated from field: types.v1.ResMeta meta = 1000;
    */
   meta?: ResMeta;
@@ -75,6 +85,7 @@ export class PingResponse extends Message<PingResponse> {
     { no: 1, name: "client_version", kind: "message", T: Version },
     { no: 2, name: "architecture", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "operating_system", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "logged_in_user", kind: "message", T: PingResponse_UserDetails },
     { no: 1000, name: "meta", kind: "message", T: ResMeta },
   ]);
 
@@ -96,70 +107,51 @@ export class PingResponse extends Message<PingResponse> {
 }
 
 /**
- * @generated from message svc.localhost.v1.IsLoggedInRequest
+ * @generated from message svc.localhost.v1.PingResponse.UserDetails
  */
-export class IsLoggedInRequest extends Message<IsLoggedInRequest> {
-  constructor(data?: PartialMessage<IsLoggedInRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.localhost.v1.IsLoggedInRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsLoggedInRequest {
-    return new IsLoggedInRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsLoggedInRequest {
-    return new IsLoggedInRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsLoggedInRequest {
-    return new IsLoggedInRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: IsLoggedInRequest | PlainMessage<IsLoggedInRequest> | undefined, b: IsLoggedInRequest | PlainMessage<IsLoggedInRequest> | undefined): boolean {
-    return proto3.util.equals(IsLoggedInRequest, a, b);
-  }
-}
-
-/**
- * @generated from message svc.localhost.v1.IsLoggedInResponse
- */
-export class IsLoggedInResponse extends Message<IsLoggedInResponse> {
+export class PingResponse_UserDetails extends Message<PingResponse_UserDetails> {
   /**
    * @generated from field: types.v1.User user = 1;
    */
   user?: User;
 
-  constructor(data?: PartialMessage<IsLoggedInResponse>) {
+  /**
+   * @generated from field: types.v1.Organization current_organization = 2;
+   */
+  currentOrganization?: Organization;
+
+  /**
+   * @generated from field: types.v1.Organization default_organization = 3;
+   */
+  defaultOrganization?: Organization;
+
+  constructor(data?: PartialMessage<PingResponse_UserDetails>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.localhost.v1.IsLoggedInResponse";
+  static readonly typeName = "svc.localhost.v1.PingResponse.UserDetails";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "user", kind: "message", T: User },
+    { no: 2, name: "current_organization", kind: "message", T: Organization },
+    { no: 3, name: "default_organization", kind: "message", T: Organization },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsLoggedInResponse {
-    return new IsLoggedInResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PingResponse_UserDetails {
+    return new PingResponse_UserDetails().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsLoggedInResponse {
-    return new IsLoggedInResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PingResponse_UserDetails {
+    return new PingResponse_UserDetails().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsLoggedInResponse {
-    return new IsLoggedInResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PingResponse_UserDetails {
+    return new PingResponse_UserDetails().fromJsonString(jsonString, options);
   }
 
-  static equals(a: IsLoggedInResponse | PlainMessage<IsLoggedInResponse> | undefined, b: IsLoggedInResponse | PlainMessage<IsLoggedInResponse> | undefined): boolean {
-    return proto3.util.equals(IsLoggedInResponse, a, b);
+  static equals(a: PingResponse_UserDetails | PlainMessage<PingResponse_UserDetails> | undefined, b: PingResponse_UserDetails | PlainMessage<PingResponse_UserDetails> | undefined): boolean {
+    return proto3.util.equals(PingResponse_UserDetails, a, b);
   }
 }
 
@@ -222,6 +214,130 @@ export class DoLoginResponse extends Message<DoLoginResponse> {
 
   static equals(a: DoLoginResponse | PlainMessage<DoLoginResponse> | undefined, b: DoLoginResponse | PlainMessage<DoLoginResponse> | undefined): boolean {
     return proto3.util.equals(DoLoginResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.DoLogoutRequest
+ */
+export class DoLogoutRequest extends Message<DoLogoutRequest> {
+  constructor(data?: PartialMessage<DoLogoutRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.DoLogoutRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoLogoutRequest {
+    return new DoLogoutRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoLogoutRequest {
+    return new DoLogoutRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoLogoutRequest {
+    return new DoLogoutRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoLogoutRequest | PlainMessage<DoLogoutRequest> | undefined, b: DoLogoutRequest | PlainMessage<DoLogoutRequest> | undefined): boolean {
+    return proto3.util.equals(DoLogoutRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.DoLogoutResponse
+ */
+export class DoLogoutResponse extends Message<DoLogoutResponse> {
+  constructor(data?: PartialMessage<DoLogoutResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.DoLogoutResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoLogoutResponse {
+    return new DoLogoutResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoLogoutResponse {
+    return new DoLogoutResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoLogoutResponse {
+    return new DoLogoutResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoLogoutResponse | PlainMessage<DoLogoutResponse> | undefined, b: DoLogoutResponse | PlainMessage<DoLogoutResponse> | undefined): boolean {
+    return proto3.util.equals(DoLogoutResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.DoUpdateRequest
+ */
+export class DoUpdateRequest extends Message<DoUpdateRequest> {
+  constructor(data?: PartialMessage<DoUpdateRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.DoUpdateRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoUpdateRequest {
+    return new DoUpdateRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoUpdateRequest {
+    return new DoUpdateRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoUpdateRequest {
+    return new DoUpdateRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoUpdateRequest | PlainMessage<DoUpdateRequest> | undefined, b: DoUpdateRequest | PlainMessage<DoUpdateRequest> | undefined): boolean {
+    return proto3.util.equals(DoUpdateRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.DoUpdateResponse
+ */
+export class DoUpdateResponse extends Message<DoUpdateResponse> {
+  constructor(data?: PartialMessage<DoUpdateResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.DoUpdateResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoUpdateResponse {
+    return new DoUpdateResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DoUpdateResponse {
+    return new DoUpdateResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DoUpdateResponse {
+    return new DoUpdateResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DoUpdateResponse | PlainMessage<DoUpdateResponse> | undefined, b: DoUpdateResponse | PlainMessage<DoUpdateResponse> | undefined): boolean {
+    return proto3.util.equals(DoUpdateResponse, a, b);
   }
 }
 

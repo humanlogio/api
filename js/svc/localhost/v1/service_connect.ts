@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DoLoginRequest, DoLoginResponse, IsLoggedInRequest, IsLoggedInResponse, PingRequest, PingResponse } from "./service_pb";
+import { DoLoginRequest, DoLoginResponse, DoLogoutRequest, DoLogoutResponse, DoUpdateRequest, DoUpdateResponse, PingRequest, PingResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -22,21 +22,30 @@ export const LocalhostService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc svc.localhost.v1.LocalhostService.IsLoggedIn
-     */
-    isLoggedIn: {
-      name: "IsLoggedIn",
-      I: IsLoggedInRequest,
-      O: IsLoggedInResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
      * @generated from rpc svc.localhost.v1.LocalhostService.DoLogin
      */
     doLogin: {
       name: "DoLogin",
       I: DoLoginRequest,
       O: DoLoginResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.localhost.v1.LocalhostService.DoLogout
+     */
+    doLogout: {
+      name: "DoLogout",
+      I: DoLogoutRequest,
+      O: DoLogoutResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.localhost.v1.LocalhostService.DoUpdate
+     */
+    doUpdate: {
+      name: "DoUpdate",
+      I: DoUpdateRequest,
+      O: DoUpdateResponse,
       kind: MethodKind.Unary,
     },
   }

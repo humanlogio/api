@@ -3,6 +3,7 @@ syntax = "proto3";
 package svc.localhost.v1;
 
 import "types/v1/meta.proto";
+import "types/v1/organization.proto";
 import "types/v1/user.proto";
 import "types/v1/version.proto";
 
@@ -10,23 +11,34 @@ option go_package = "svc/localhost/v1;localhostv1";
 
 service LocalhostService {
   rpc Ping(PingRequest) returns (PingResponse);
-
-  rpc IsLoggedIn(IsLoggedInRequest) returns (IsLoggedInResponse);
   rpc DoLogin(DoLoginRequest) returns (DoLoginResponse);
+  rpc DoLogout(DoLogoutRequest) returns (DoLogoutResponse);
+  rpc DoUpdate(DoUpdateRequest) returns (DoUpdateResponse);
 }
 
 message PingRequest {}
 message PingResponse {
+  message UserDetails {
+    types.v1.User user = 1;
+    types.v1.Organization current_organization = 2;
+    types.v1.Organization default_organization = 3;
+  }
+
   types.v1.Version client_version = 1;
   string architecture = 2;
   string operating_system = 3;
+  // logged_in_user is set if the CLI is logged in.
+  // if the CLI is alive but not logged in, this field
+  // is null
+  UserDetails logged_in_user = 4;
   types.v1.ResMeta meta = 1000;
-}
-
-message IsLoggedInRequest {}
-message IsLoggedInResponse {
-  types.v1.User user = 1;
 }
 
 message DoLoginRequest {}
 message DoLoginResponse {}
+
+message DoLogoutRequest {}
+message DoLogoutResponse {}
+
+message DoUpdateRequest {}
+message DoUpdateResponse {}
