@@ -159,6 +159,11 @@ export class PingResponse_UserDetails extends Message<PingResponse_UserDetails> 
  * @generated from message svc.localhost.v1.DoLoginRequest
  */
 export class DoLoginRequest extends Message<DoLoginRequest> {
+  /**
+   * @generated from field: string returnToURL = 1;
+   */
+  returnToURL = "";
+
   constructor(data?: PartialMessage<DoLoginRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -167,6 +172,7 @@ export class DoLoginRequest extends Message<DoLoginRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.localhost.v1.DoLoginRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "returnToURL", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoLoginRequest {
@@ -221,6 +227,11 @@ export class DoLoginResponse extends Message<DoLoginResponse> {
  * @generated from message svc.localhost.v1.DoLogoutRequest
  */
 export class DoLogoutRequest extends Message<DoLogoutRequest> {
+  /**
+   * @generated from field: string returnToURL = 1;
+   */
+  returnToURL = "";
+
   constructor(data?: PartialMessage<DoLogoutRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -229,6 +240,7 @@ export class DoLogoutRequest extends Message<DoLogoutRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.localhost.v1.DoLogoutRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "returnToURL", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DoLogoutRequest {

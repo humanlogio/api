@@ -35,10 +35,14 @@ message PingResponse {
   types.v1.ResMeta meta = 1000;
 }
 
-message DoLoginRequest {}
+message DoLoginRequest {
+  string returnToURL = 1;
+}
 message DoLoginResponse {}
 
-message DoLogoutRequest {}
+message DoLogoutRequest {
+  string returnToURL = 1;
+}
 message DoLogoutResponse {}
 
 message DoUpdateRequest {}
