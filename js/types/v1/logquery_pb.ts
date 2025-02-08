@@ -286,14 +286,14 @@ export class FilterOperator extends Message<FilterOperator> {
  */
 export class SummarizeOperator extends Message<SummarizeOperator> {
   /**
-   * @generated from field: types.v1.FuncCall aggregate_function = 1;
+   * @generated from field: types.v1.SummarizeOperator.Parameters parameters = 1;
    */
-  aggregateFunction?: FuncCall;
+  parameters?: SummarizeOperator_Parameters;
 
   /**
-   * @generated from field: optional types.v1.SummarizeOperator.ByOperator by = 2;
+   * @generated from field: optional types.v1.SummarizeOperator.ByGroupExpressions by_group_expressions = 2;
    */
-  by?: SummarizeOperator_ByOperator;
+  byGroupExpressions?: SummarizeOperator_ByGroupExpressions;
 
   constructor(data?: PartialMessage<SummarizeOperator>) {
     super();
@@ -303,8 +303,8 @@ export class SummarizeOperator extends Message<SummarizeOperator> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.SummarizeOperator";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "aggregate_function", kind: "message", T: FuncCall },
-    { no: 2, name: "by", kind: "message", T: SummarizeOperator_ByOperator, opt: true },
+    { no: 1, name: "parameters", kind: "message", T: SummarizeOperator_Parameters },
+    { no: 2, name: "by_group_expressions", kind: "message", T: SummarizeOperator_ByGroupExpressions, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeOperator {
@@ -325,39 +325,162 @@ export class SummarizeOperator extends Message<SummarizeOperator> {
 }
 
 /**
- * @generated from message types.v1.SummarizeOperator.ByOperator
+ * @generated from message types.v1.SummarizeOperator.Parameters
  */
-export class SummarizeOperator_ByOperator extends Message<SummarizeOperator_ByOperator> {
+export class SummarizeOperator_Parameters extends Message<SummarizeOperator_Parameters> {
   /**
-   * @generated from field: repeated types.v1.Expr scalars = 1;
+   * @generated from field: repeated types.v1.SummarizeOperator.Parameter parameters = 1;
    */
-  scalars: Expr[] = [];
+  parameters: SummarizeOperator_Parameter[] = [];
 
-  constructor(data?: PartialMessage<SummarizeOperator_ByOperator>) {
+  constructor(data?: PartialMessage<SummarizeOperator_Parameters>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.SummarizeOperator.ByOperator";
+  static readonly typeName = "types.v1.SummarizeOperator.Parameters";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "scalars", kind: "message", T: Expr, repeated: true },
+    { no: 1, name: "parameters", kind: "message", T: SummarizeOperator_Parameter, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeOperator_ByOperator {
-    return new SummarizeOperator_ByOperator().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeOperator_Parameters {
+    return new SummarizeOperator_Parameters().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeOperator_ByOperator {
-    return new SummarizeOperator_ByOperator().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeOperator_Parameters {
+    return new SummarizeOperator_Parameters().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeOperator_ByOperator {
-    return new SummarizeOperator_ByOperator().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeOperator_Parameters {
+    return new SummarizeOperator_Parameters().fromJsonString(jsonString, options);
   }
 
-  static equals(a: SummarizeOperator_ByOperator | PlainMessage<SummarizeOperator_ByOperator> | undefined, b: SummarizeOperator_ByOperator | PlainMessage<SummarizeOperator_ByOperator> | undefined): boolean {
-    return proto3.util.equals(SummarizeOperator_ByOperator, a, b);
+  static equals(a: SummarizeOperator_Parameters | PlainMessage<SummarizeOperator_Parameters> | undefined, b: SummarizeOperator_Parameters | PlainMessage<SummarizeOperator_Parameters> | undefined): boolean {
+    return proto3.util.equals(SummarizeOperator_Parameters, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SummarizeOperator.Parameter
+ */
+export class SummarizeOperator_Parameter extends Message<SummarizeOperator_Parameter> {
+  /**
+   * @generated from field: optional types.v1.Identifier column = 1;
+   */
+  column?: Identifier;
+
+  /**
+   * @generated from field: types.v1.FuncCall aggregate_function = 2;
+   */
+  aggregateFunction?: FuncCall;
+
+  constructor(data?: PartialMessage<SummarizeOperator_Parameter>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SummarizeOperator.Parameter";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "message", T: Identifier, opt: true },
+    { no: 2, name: "aggregate_function", kind: "message", T: FuncCall },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeOperator_Parameter {
+    return new SummarizeOperator_Parameter().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeOperator_Parameter {
+    return new SummarizeOperator_Parameter().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeOperator_Parameter {
+    return new SummarizeOperator_Parameter().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SummarizeOperator_Parameter | PlainMessage<SummarizeOperator_Parameter> | undefined, b: SummarizeOperator_Parameter | PlainMessage<SummarizeOperator_Parameter> | undefined): boolean {
+    return proto3.util.equals(SummarizeOperator_Parameter, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SummarizeOperator.ByGroupExpressions
+ */
+export class SummarizeOperator_ByGroupExpressions extends Message<SummarizeOperator_ByGroupExpressions> {
+  /**
+   * @generated from field: repeated types.v1.SummarizeOperator.ByGroupExpression groups = 2;
+   */
+  groups: SummarizeOperator_ByGroupExpression[] = [];
+
+  constructor(data?: PartialMessage<SummarizeOperator_ByGroupExpressions>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SummarizeOperator.ByGroupExpressions";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 2, name: "groups", kind: "message", T: SummarizeOperator_ByGroupExpression, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeOperator_ByGroupExpressions {
+    return new SummarizeOperator_ByGroupExpressions().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeOperator_ByGroupExpressions {
+    return new SummarizeOperator_ByGroupExpressions().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeOperator_ByGroupExpressions {
+    return new SummarizeOperator_ByGroupExpressions().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SummarizeOperator_ByGroupExpressions | PlainMessage<SummarizeOperator_ByGroupExpressions> | undefined, b: SummarizeOperator_ByGroupExpressions | PlainMessage<SummarizeOperator_ByGroupExpressions> | undefined): boolean {
+    return proto3.util.equals(SummarizeOperator_ByGroupExpressions, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SummarizeOperator.ByGroupExpression
+ */
+export class SummarizeOperator_ByGroupExpression extends Message<SummarizeOperator_ByGroupExpression> {
+  /**
+   * @generated from field: optional types.v1.Identifier column = 1;
+   */
+  column?: Identifier;
+
+  /**
+   * @generated from field: types.v1.Expr scalar = 2;
+   */
+  scalar?: Expr;
+
+  constructor(data?: PartialMessage<SummarizeOperator_ByGroupExpression>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SummarizeOperator.ByGroupExpression";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "message", T: Identifier, opt: true },
+    { no: 2, name: "scalar", kind: "message", T: Expr },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SummarizeOperator_ByGroupExpression {
+    return new SummarizeOperator_ByGroupExpression().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SummarizeOperator_ByGroupExpression {
+    return new SummarizeOperator_ByGroupExpression().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SummarizeOperator_ByGroupExpression {
+    return new SummarizeOperator_ByGroupExpression().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SummarizeOperator_ByGroupExpression | PlainMessage<SummarizeOperator_ByGroupExpression> | undefined, b: SummarizeOperator_ByGroupExpression | PlainMessage<SummarizeOperator_ByGroupExpression> | undefined): boolean {
+    return proto3.util.equals(SummarizeOperator_ByGroupExpression, a, b);
   }
 }
 

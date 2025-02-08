@@ -161,15 +161,51 @@ func (p *logQL) setFilterOp(e *typesv1.Expr) {
 	p.FilterOp = &typesv1.FilterOperator{Expr: e}
 }
 
-func (p *logQL) startSummarizeOp(fn *typesv1.FuncCall) {
-	p.SummarizeOp = &typesv1.SummarizeOperator{AggregateFunction: fn}
+func (p *logQL) startSummarizeOp() {
+	p.SummarizeOp = &typesv1.SummarizeOperator{
+		Parameters: &typesv1.SummarizeOperator_Parameters{},
+	}
 }
 
-func (p *logQL) addSummarizeByOp(e *typesv1.Expr) {
-	if p.SummarizeOp.By == nil {
-		p.SummarizeOp.By = &typesv1.SummarizeOperator_ByOperator{}
+func (p *logQL) addSummarizeParameterUnnamedFunc(fn *typesv1.FuncCall) {
+	p.SummarizeOp.Parameters.Parameters = append(p.SummarizeOp.Parameters.Parameters,
+		&typesv1.SummarizeOperator_Parameter{AggregateFunction: fn},
+	)
+}
+
+func (p *logQL) startSummarizeParameterNamedFunc(text string) {
+	p.SummarizeOp.Parameters.Parameters = append(p.SummarizeOp.Parameters.Parameters,
+		&typesv1.SummarizeOperator_Parameter{
+			Column: &typesv1.Identifier{Name: text},
+		},
+	)
+}
+
+func (p *logQL) endSummarizeParameterNamedFunc(fn *typesv1.FuncCall) {
+	top := len(p.SummarizeOp.Parameters.Parameters) - 1
+	p.SummarizeOp.Parameters.Parameters[top].AggregateFunction = fn
+}
+
+func (p *logQL) addSummarizeByUnnamedGroupExpression(expr *typesv1.Expr) {
+	if p.SummarizeOp.ByGroupExpressions == nil {
+		p.SummarizeOp.ByGroupExpressions = new(typesv1.SummarizeOperator_ByGroupExpressions)
 	}
-	p.SummarizeOp.By.Scalars = append(p.SummarizeOp.By.Scalars, e)
+	p.SummarizeOp.ByGroupExpressions.Groups = append(p.SummarizeOp.ByGroupExpressions.Groups, &typesv1.SummarizeOperator_ByGroupExpression{
+		Scalar: expr,
+	})
+}
+
+func (p *logQL) startSummarizeByUnnamedGroupExpression(text string) {
+	p.SummarizeOp.ByGroupExpressions.Groups = append(p.SummarizeOp.ByGroupExpressions.Groups,
+		&typesv1.SummarizeOperator_ByGroupExpression{
+			Column: &typesv1.Identifier{Name: text},
+		},
+	)
+}
+
+func (p *logQL) endSummarizeByUnnamedGroupExpression(expr *typesv1.Expr) {
+	top := len(p.SummarizeOp.ByGroupExpressions.Groups) - 1
+	p.SummarizeOp.ByGroupExpressions.Groups[top].Scalar = expr
 }
 
 func (p *logQL) startProjectOp() {

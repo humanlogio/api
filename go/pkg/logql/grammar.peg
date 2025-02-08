@@ -83,10 +83,18 @@ RenderStatement <- Space PIPE Space 'render' MustSpace RenderSplitOperator { p.s
 
 FilterOperator <- Expr { p.setFilterOp(p.popExpr()) }
 
-SummarizeOperator      <- FuncCall { p.startSummarizeOp(p.popFunc()) }
-                         ( SummarizeByOperator )?
-SummarizeByOperator    <- 'by' MustSpace SummarizeByOperatorArg ( Space ',' Space SummarizeByOperatorArg )* Space
-SummarizeByOperatorArg <- Expr { p.addSummarizeByOp(p.popExpr()) }
+SummarizeOperator      <- { p.startSummarizeOp() }
+                          SummarizeParameters ( SummarizeByGroupExpressions )?
+
+SummarizeParameters    <- SummarizeParameter ( Space ',' Space SummarizeParameter)* Space
+SummarizeParameter     <- Identifier { p.startSummarizeParameterNamedFunc(text) }
+                          (Space '=' Space FuncCall) { p.endSummarizeParameterNamedFunc(p.popFunc()) }
+                        / FuncCall   { p.addSummarizeParameterUnnamedFunc(p.popFunc()) }
+
+SummarizeByGroupExpressions <- 'by' MustSpace SummarizeByGroupExpression ( Space ',' Space SummarizeByGroupExpression )* Space
+SummarizeByGroupExpression <- Identifier { p.startSummarizeByUnnamedGroupExpression(text) }
+                              (Space '=' Space Expr) { p.endSummarizeByUnnamedGroupExpression(p.popExpr()) }
+                            / Expr { p.addSummarizeByUnnamedGroupExpression(p.popExpr()) }
 
 ProjectOperator   <-  { p.startProjectOp() }
                       ProjectArg (Space ',' Space ProjectArg)* Space

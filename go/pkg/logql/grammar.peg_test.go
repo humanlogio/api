@@ -98,7 +98,10 @@ func TestParse(t *testing.T) {
 				nil,
 				stmts(
 					summarize(
-						fnc("count"),
+						summarizeParams(
+							summarizeUnnamedParam(fnc("count")),
+						),
+						nil,
 					),
 				),
 			),
@@ -111,8 +114,31 @@ func TestParse(t *testing.T) {
 				nil,
 				stmts(
 					summarize(
-						fnc("count"),
-						id("msg"),
+						summarizeParams(
+							summarizeUnnamedParam(fnc("count")),
+						),
+						summarizeGroupExpressions(
+							summarizeUnnamedGroup(id("msg")),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`summarize count(), avg() by msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					summarize(
+						summarizeParams(
+							summarizeUnnamedParam(fnc("count")),
+							summarizeUnnamedParam(fnc("avg")),
+						),
+						summarizeGroupExpressions(
+							summarizeUnnamedGroup(id("msg")),
+						),
 					),
 				),
 			),
@@ -125,9 +151,72 @@ func TestParse(t *testing.T) {
 				nil,
 				stmts(
 					summarize(
-						fnc("count"),
-						id("msg"),
-						id("lvl"),
+						summarizeParams(
+							summarizeUnnamedParam(fnc("count")),
+						),
+						summarizeGroupExpressions(
+							summarizeUnnamedGroup(id("msg")),
+							summarizeUnnamedGroup(id("lvl")),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`summarize msg_count = count() by msg,lvl`,
+			q(
+				nil,
+				nil,
+				stmts(
+					summarize(
+						summarizeParams(
+							summarizeNamedParam("msg_count", fnc("count")),
+						),
+						summarizeGroupExpressions(
+							summarizeUnnamedGroup(id("msg")),
+							summarizeUnnamedGroup(id("lvl")),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`summarize msg_count = count(), msg_avg = avg() by msg,lvl`,
+			q(
+				nil,
+				nil,
+				stmts(
+					summarize(
+						summarizeParams(
+							summarizeNamedParam("msg_count", fnc("count")),
+							summarizeNamedParam("msg_avg", fnc("avg")),
+						),
+						summarizeGroupExpressions(
+							summarizeUnnamedGroup(id("msg")),
+							summarizeUnnamedGroup(id("lvl")),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`summarize count(), msg_avg = avg() by msg, level=lvl`,
+			q(
+				nil,
+				nil,
+				stmts(
+					summarize(
+						summarizeParams(
+							summarizeUnnamedParam(fnc("count")),
+							summarizeNamedParam("msg_avg", fnc("avg")),
+						),
+						summarizeGroupExpressions(
+							summarizeUnnamedGroup(id("msg")),
+							summarizeNamedGroup("level", id("lvl")),
+						),
 					),
 				),
 			),
@@ -146,10 +235,14 @@ func TestParse(t *testing.T) {
 						),
 					),
 					summarize(
-						fnc("avg",
-							idx(id("kv"), str("req_ms")),
+						summarizeParams(
+							summarizeUnnamedParam(
+								fnc("avg", idx(id("kv"), str("req_ms"))),
+							),
 						),
-						id("msg"),
+						summarizeGroupExpressions(
+							summarizeUnnamedGroup(id("msg")),
+						),
 					),
 				),
 			),
@@ -425,12 +518,44 @@ func project(pjs ...*v1.ProjectOperator_Projection) *v1.Statement {
 	}}
 }
 
-func summarize(fn *v1.FuncCall, by ...*v1.Expr) *v1.Statement {
-	op := &v1.SummarizeOperator{
-		AggregateFunction: fn,
+func summarizeNamedParam(name string, aggregate *v1.FuncCall) *v1.SummarizeOperator_Parameter {
+	return &v1.SummarizeOperator_Parameter{
+		Column:            &v1.Identifier{Name: name},
+		AggregateFunction: aggregate,
 	}
-	if len(by) > 0 {
-		op.By = &v1.SummarizeOperator_ByOperator{Scalars: by}
+}
+
+func summarizeUnnamedParam(aggregate *v1.FuncCall) *v1.SummarizeOperator_Parameter {
+	return &v1.SummarizeOperator_Parameter{
+		AggregateFunction: aggregate,
+	}
+}
+
+func summarizeNamedGroup(name string, expr *v1.Expr) *v1.SummarizeOperator_ByGroupExpression {
+	return &v1.SummarizeOperator_ByGroupExpression{
+		Column: &v1.Identifier{Name: name},
+		Scalar: expr,
+	}
+}
+
+func summarizeUnnamedGroup(expr *v1.Expr) *v1.SummarizeOperator_ByGroupExpression {
+	return &v1.SummarizeOperator_ByGroupExpression{
+		Scalar: expr,
+	}
+}
+
+func summarizeParams(params ...*v1.SummarizeOperator_Parameter) *v1.SummarizeOperator_Parameters {
+	return &v1.SummarizeOperator_Parameters{Parameters: params}
+}
+
+func summarizeGroupExpressions(ges ...*v1.SummarizeOperator_ByGroupExpression) *v1.SummarizeOperator_ByGroupExpressions {
+	return &v1.SummarizeOperator_ByGroupExpressions{Groups: ges}
+}
+
+func summarize(params *v1.SummarizeOperator_Parameters, ges *v1.SummarizeOperator_ByGroupExpressions) *v1.Statement {
+	op := &v1.SummarizeOperator{
+		Parameters:         params,
+		ByGroupExpressions: ges,
 	}
 	return &v1.Statement{Stmt: &v1.Statement_Summarize{
 		Summarize: op,

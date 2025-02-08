@@ -44,11 +44,22 @@ message FilterOperator {
 }
 
 message SummarizeOperator {
-  message ByOperator {
-    repeated Expr scalars = 1;
+  message Parameters {
+    repeated Parameter parameters = 1;
   }
-  FuncCall aggregate_function = 1;
-  optional ByOperator by = 2;
+  message Parameter {
+    optional Identifier column = 1;
+    FuncCall aggregate_function = 2;
+  }
+  message ByGroupExpressions {
+    repeated ByGroupExpression groups = 2;
+  }
+  message ByGroupExpression {
+    optional Identifier column = 1;
+    Expr scalar = 2;
+  }
+  Parameters parameters = 1;
+  optional ByGroupExpressions by_group_expressions = 2;
 }
 
 message ProjectOperator {
