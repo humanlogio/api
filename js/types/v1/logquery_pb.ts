@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { Val } from "./types_pb";
 
 /**
@@ -208,10 +208,70 @@ export class Statement extends Message<Statement> {
     case: "summarize";
   } | {
     /**
-     * @generated from field: types.v1.ProjectOperator project = 3;
+     * @generated from field: types.v1.ProjectOperator project = 300;
      */
     value: ProjectOperator;
     case: "project";
+  } | {
+    /**
+     * @generated from field: types.v1.ProjectAwayOperator project_away = 301;
+     */
+    value: ProjectAwayOperator;
+    case: "projectAway";
+  } | {
+    /**
+     * @generated from field: types.v1.ProjectKeepOperator project_keep = 302;
+     */
+    value: ProjectKeepOperator;
+    case: "projectKeep";
+  } | {
+    /**
+     * @generated from field: types.v1.ExtendOperator extend = 4;
+     */
+    value: ExtendOperator;
+    case: "extend";
+  } | {
+    /**
+     * @generated from field: types.v1.CountOperator count = 5;
+     */
+    value: CountOperator;
+    case: "count";
+  } | {
+    /**
+     * @generated from field: types.v1.DistinctOperator distinct = 6;
+     */
+    value: DistinctOperator;
+    case: "distinct";
+  } | {
+    /**
+     * @generated from field: types.v1.SampleOperator sample = 7;
+     */
+    value: SampleOperator;
+    case: "sample";
+  } | {
+    /**
+     * @generated from field: types.v1.SearchOperator search = 8;
+     */
+    value: SearchOperator;
+    case: "search";
+  } | {
+    /**
+     * @generated from field: types.v1.SortOperator sort = 9;
+     */
+    value: SortOperator;
+    case: "sort";
+  } | {
+    /**
+     * @generated from field: types.v1.TakeOperator take = 10;
+     */
+    value: TakeOperator;
+    case: "take";
+  } | {
+    /**
+     * @generated from field: types.v1.TopOperator top = 11;
+     */
+    value: TopOperator;
+    case: "top";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Statement>) {
@@ -224,7 +284,17 @@ export class Statement extends Message<Statement> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "filter", kind: "message", T: FilterOperator, oneof: "stmt" },
     { no: 2, name: "summarize", kind: "message", T: SummarizeOperator, oneof: "stmt" },
-    { no: 3, name: "project", kind: "message", T: ProjectOperator, oneof: "stmt" },
+    { no: 300, name: "project", kind: "message", T: ProjectOperator, oneof: "stmt" },
+    { no: 301, name: "project_away", kind: "message", T: ProjectAwayOperator, oneof: "stmt" },
+    { no: 302, name: "project_keep", kind: "message", T: ProjectKeepOperator, oneof: "stmt" },
+    { no: 4, name: "extend", kind: "message", T: ExtendOperator, oneof: "stmt" },
+    { no: 5, name: "count", kind: "message", T: CountOperator, oneof: "stmt" },
+    { no: 6, name: "distinct", kind: "message", T: DistinctOperator, oneof: "stmt" },
+    { no: 7, name: "sample", kind: "message", T: SampleOperator, oneof: "stmt" },
+    { no: 8, name: "search", kind: "message", T: SearchOperator, oneof: "stmt" },
+    { no: 9, name: "sort", kind: "message", T: SortOperator, oneof: "stmt" },
+    { no: 10, name: "take", kind: "message", T: TakeOperator, oneof: "stmt" },
+    { no: 11, name: "top", kind: "message", T: TopOperator, oneof: "stmt" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Statement {
@@ -561,6 +631,645 @@ export class ProjectOperator_Projection extends Message<ProjectOperator_Projecti
 
   static equals(a: ProjectOperator_Projection | PlainMessage<ProjectOperator_Projection> | undefined, b: ProjectOperator_Projection | PlainMessage<ProjectOperator_Projection> | undefined): boolean {
     return proto3.util.equals(ProjectOperator_Projection, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ProjectAwayOperator
+ */
+export class ProjectAwayOperator extends Message<ProjectAwayOperator> {
+  /**
+   * @generated from field: repeated types.v1.ProjectAwayOperator.Projection projections = 1;
+   */
+  projections: ProjectAwayOperator_Projection[] = [];
+
+  constructor(data?: PartialMessage<ProjectAwayOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ProjectAwayOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "projections", kind: "message", T: ProjectAwayOperator_Projection, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectAwayOperator {
+    return new ProjectAwayOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProjectAwayOperator {
+    return new ProjectAwayOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProjectAwayOperator {
+    return new ProjectAwayOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProjectAwayOperator | PlainMessage<ProjectAwayOperator> | undefined, b: ProjectAwayOperator | PlainMessage<ProjectAwayOperator> | undefined): boolean {
+    return proto3.util.equals(ProjectAwayOperator, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ProjectAwayOperator.Projection
+ */
+export class ProjectAwayOperator_Projection extends Message<ProjectAwayOperator_Projection> {
+  /**
+   * @generated from field: types.v1.Identifier column = 1;
+   */
+  column?: Identifier;
+
+  constructor(data?: PartialMessage<ProjectAwayOperator_Projection>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ProjectAwayOperator.Projection";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "message", T: Identifier },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectAwayOperator_Projection {
+    return new ProjectAwayOperator_Projection().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProjectAwayOperator_Projection {
+    return new ProjectAwayOperator_Projection().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProjectAwayOperator_Projection {
+    return new ProjectAwayOperator_Projection().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProjectAwayOperator_Projection | PlainMessage<ProjectAwayOperator_Projection> | undefined, b: ProjectAwayOperator_Projection | PlainMessage<ProjectAwayOperator_Projection> | undefined): boolean {
+    return proto3.util.equals(ProjectAwayOperator_Projection, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ProjectKeepOperator
+ */
+export class ProjectKeepOperator extends Message<ProjectKeepOperator> {
+  /**
+   * @generated from field: repeated types.v1.ProjectKeepOperator.Projection projections = 1;
+   */
+  projections: ProjectKeepOperator_Projection[] = [];
+
+  constructor(data?: PartialMessage<ProjectKeepOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ProjectKeepOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "projections", kind: "message", T: ProjectKeepOperator_Projection, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectKeepOperator {
+    return new ProjectKeepOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProjectKeepOperator {
+    return new ProjectKeepOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProjectKeepOperator {
+    return new ProjectKeepOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProjectKeepOperator | PlainMessage<ProjectKeepOperator> | undefined, b: ProjectKeepOperator | PlainMessage<ProjectKeepOperator> | undefined): boolean {
+    return proto3.util.equals(ProjectKeepOperator, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ProjectKeepOperator.Projection
+ */
+export class ProjectKeepOperator_Projection extends Message<ProjectKeepOperator_Projection> {
+  /**
+   * @generated from field: types.v1.Identifier column = 1;
+   */
+  column?: Identifier;
+
+  constructor(data?: PartialMessage<ProjectKeepOperator_Projection>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ProjectKeepOperator.Projection";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "message", T: Identifier },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectKeepOperator_Projection {
+    return new ProjectKeepOperator_Projection().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProjectKeepOperator_Projection {
+    return new ProjectKeepOperator_Projection().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProjectKeepOperator_Projection {
+    return new ProjectKeepOperator_Projection().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProjectKeepOperator_Projection | PlainMessage<ProjectKeepOperator_Projection> | undefined, b: ProjectKeepOperator_Projection | PlainMessage<ProjectKeepOperator_Projection> | undefined): boolean {
+    return proto3.util.equals(ProjectKeepOperator_Projection, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ExtendOperator
+ */
+export class ExtendOperator extends Message<ExtendOperator> {
+  /**
+   * @generated from field: repeated types.v1.ExtendOperator.Projection projections = 1;
+   */
+  projections: ExtendOperator_Projection[] = [];
+
+  constructor(data?: PartialMessage<ExtendOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ExtendOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "projections", kind: "message", T: ExtendOperator_Projection, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExtendOperator {
+    return new ExtendOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExtendOperator {
+    return new ExtendOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtendOperator {
+    return new ExtendOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ExtendOperator | PlainMessage<ExtendOperator> | undefined, b: ExtendOperator | PlainMessage<ExtendOperator> | undefined): boolean {
+    return proto3.util.equals(ExtendOperator, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ExtendOperator.Projection
+ */
+export class ExtendOperator_Projection extends Message<ExtendOperator_Projection> {
+  /**
+   * @generated from field: types.v1.Identifier column = 1;
+   */
+  column?: Identifier;
+
+  /**
+   * @generated from field: optional types.v1.Expr value = 2;
+   */
+  value?: Expr;
+
+  constructor(data?: PartialMessage<ExtendOperator_Projection>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ExtendOperator.Projection";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "message", T: Identifier },
+    { no: 2, name: "value", kind: "message", T: Expr, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExtendOperator_Projection {
+    return new ExtendOperator_Projection().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ExtendOperator_Projection {
+    return new ExtendOperator_Projection().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ExtendOperator_Projection {
+    return new ExtendOperator_Projection().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ExtendOperator_Projection | PlainMessage<ExtendOperator_Projection> | undefined, b: ExtendOperator_Projection | PlainMessage<ExtendOperator_Projection> | undefined): boolean {
+    return proto3.util.equals(ExtendOperator_Projection, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.CountOperator
+ */
+export class CountOperator extends Message<CountOperator> {
+  constructor(data?: PartialMessage<CountOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.CountOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CountOperator {
+    return new CountOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CountOperator {
+    return new CountOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CountOperator {
+    return new CountOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CountOperator | PlainMessage<CountOperator> | undefined, b: CountOperator | PlainMessage<CountOperator> | undefined): boolean {
+    return proto3.util.equals(CountOperator, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.DistinctOperator
+ */
+export class DistinctOperator extends Message<DistinctOperator> {
+  constructor(data?: PartialMessage<DistinctOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.DistinctOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DistinctOperator {
+    return new DistinctOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DistinctOperator {
+    return new DistinctOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DistinctOperator {
+    return new DistinctOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DistinctOperator | PlainMessage<DistinctOperator> | undefined, b: DistinctOperator | PlainMessage<DistinctOperator> | undefined): boolean {
+    return proto3.util.equals(DistinctOperator, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SampleOperator
+ */
+export class SampleOperator extends Message<SampleOperator> {
+  /**
+   * @generated from field: int64 count = 1;
+   */
+  count = protoInt64.zero;
+
+  constructor(data?: PartialMessage<SampleOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SampleOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SampleOperator {
+    return new SampleOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SampleOperator {
+    return new SampleOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SampleOperator {
+    return new SampleOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SampleOperator | PlainMessage<SampleOperator> | undefined, b: SampleOperator | PlainMessage<SampleOperator> | undefined): boolean {
+    return proto3.util.equals(SampleOperator, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SearchOperator
+ */
+export class SearchOperator extends Message<SearchOperator> {
+  /**
+   * @generated from field: string predicate = 1;
+   */
+  predicate = "";
+
+  /**
+   * @generated from field: optional types.v1.SearchOperator.Kind kind = 2;
+   */
+  kind?: SearchOperator_Kind;
+
+  constructor(data?: PartialMessage<SearchOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SearchOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "predicate", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "kind", kind: "enum", T: proto3.getEnumType(SearchOperator_Kind), opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchOperator {
+    return new SearchOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SearchOperator {
+    return new SearchOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SearchOperator {
+    return new SearchOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SearchOperator | PlainMessage<SearchOperator> | undefined, b: SearchOperator | PlainMessage<SearchOperator> | undefined): boolean {
+    return proto3.util.equals(SearchOperator, a, b);
+  }
+}
+
+/**
+ * @generated from enum types.v1.SearchOperator.Kind
+ */
+export enum SearchOperator_Kind {
+  /**
+   * @generated from enum value: Default = 0;
+   */
+  Default = 0,
+
+  /**
+   * @generated from enum value: CaseInsensitive = 1;
+   */
+  CaseInsensitive = 1,
+
+  /**
+   * @generated from enum value: CaseSensitive = 2;
+   */
+  CaseSensitive = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(SearchOperator_Kind)
+proto3.util.setEnumType(SearchOperator_Kind, "types.v1.SearchOperator.Kind", [
+  { no: 0, name: "Default" },
+  { no: 1, name: "CaseInsensitive" },
+  { no: 2, name: "CaseSensitive" },
+]);
+
+/**
+ * @generated from message types.v1.SortOperator
+ */
+export class SortOperator extends Message<SortOperator> {
+  /**
+   * @generated from field: repeated types.v1.SortOperator.ByColumn by_columns = 1;
+   */
+  byColumns: SortOperator_ByColumn[] = [];
+
+  constructor(data?: PartialMessage<SortOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SortOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "by_columns", kind: "message", T: SortOperator_ByColumn, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SortOperator {
+    return new SortOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SortOperator {
+    return new SortOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SortOperator {
+    return new SortOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SortOperator | PlainMessage<SortOperator> | undefined, b: SortOperator | PlainMessage<SortOperator> | undefined): boolean {
+    return proto3.util.equals(SortOperator, a, b);
+  }
+}
+
+/**
+ * @generated from enum types.v1.SortOperator.Order
+ */
+export enum SortOperator_Order {
+  /**
+   * @generated from enum value: Desc = 0;
+   */
+  Desc = 0,
+
+  /**
+   * @generated from enum value: Asc = 1;
+   */
+  Asc = 1,
+}
+// Retrieve enum metadata with: proto3.getEnumType(SortOperator_Order)
+proto3.util.setEnumType(SortOperator_Order, "types.v1.SortOperator.Order", [
+  { no: 0, name: "Desc" },
+  { no: 1, name: "Asc" },
+]);
+
+/**
+ * @generated from message types.v1.SortOperator.ByColumn
+ */
+export class SortOperator_ByColumn extends Message<SortOperator_ByColumn> {
+  /**
+   * @generated from field: types.v1.Identifier column = 1;
+   */
+  column?: Identifier;
+
+  /**
+   * @generated from field: optional types.v1.SortOperator.Order order = 2;
+   */
+  order?: SortOperator_Order;
+
+  constructor(data?: PartialMessage<SortOperator_ByColumn>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SortOperator.ByColumn";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "message", T: Identifier },
+    { no: 2, name: "order", kind: "enum", T: proto3.getEnumType(SortOperator_Order), opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SortOperator_ByColumn {
+    return new SortOperator_ByColumn().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SortOperator_ByColumn {
+    return new SortOperator_ByColumn().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SortOperator_ByColumn {
+    return new SortOperator_ByColumn().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SortOperator_ByColumn | PlainMessage<SortOperator_ByColumn> | undefined, b: SortOperator_ByColumn | PlainMessage<SortOperator_ByColumn> | undefined): boolean {
+    return proto3.util.equals(SortOperator_ByColumn, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.TakeOperator
+ */
+export class TakeOperator extends Message<TakeOperator> {
+  /**
+   * @generated from field: int64 count = 1;
+   */
+  count = protoInt64.zero;
+
+  /**
+   * @generated from field: optional types.v1.TakeOperator.ByColumn by_column = 2;
+   */
+  byColumn?: TakeOperator_ByColumn;
+
+  constructor(data?: PartialMessage<TakeOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TakeOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "by_column", kind: "message", T: TakeOperator_ByColumn, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakeOperator {
+    return new TakeOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakeOperator {
+    return new TakeOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakeOperator {
+    return new TakeOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TakeOperator | PlainMessage<TakeOperator> | undefined, b: TakeOperator | PlainMessage<TakeOperator> | undefined): boolean {
+    return proto3.util.equals(TakeOperator, a, b);
+  }
+}
+
+/**
+ * @generated from enum types.v1.TakeOperator.Order
+ */
+export enum TakeOperator_Order {
+  /**
+   * @generated from enum value: Desc = 0;
+   */
+  Desc = 0,
+
+  /**
+   * @generated from enum value: Asc = 1;
+   */
+  Asc = 1,
+}
+// Retrieve enum metadata with: proto3.getEnumType(TakeOperator_Order)
+proto3.util.setEnumType(TakeOperator_Order, "types.v1.TakeOperator.Order", [
+  { no: 0, name: "Desc" },
+  { no: 1, name: "Asc" },
+]);
+
+/**
+ * @generated from message types.v1.TakeOperator.ByColumn
+ */
+export class TakeOperator_ByColumn extends Message<TakeOperator_ByColumn> {
+  /**
+   * @generated from field: types.v1.Identifier column = 1;
+   */
+  column?: Identifier;
+
+  /**
+   * @generated from field: optional types.v1.TakeOperator.Order order = 2;
+   */
+  order?: TakeOperator_Order;
+
+  constructor(data?: PartialMessage<TakeOperator_ByColumn>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TakeOperator.ByColumn";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "message", T: Identifier },
+    { no: 2, name: "order", kind: "enum", T: proto3.getEnumType(TakeOperator_Order), opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakeOperator_ByColumn {
+    return new TakeOperator_ByColumn().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakeOperator_ByColumn {
+    return new TakeOperator_ByColumn().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakeOperator_ByColumn {
+    return new TakeOperator_ByColumn().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TakeOperator_ByColumn | PlainMessage<TakeOperator_ByColumn> | undefined, b: TakeOperator_ByColumn | PlainMessage<TakeOperator_ByColumn> | undefined): boolean {
+    return proto3.util.equals(TakeOperator_ByColumn, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.TopOperator
+ */
+export class TopOperator extends Message<TopOperator> {
+  /**
+   * @generated from field: int64 count = 1;
+   */
+  count = protoInt64.zero;
+
+  constructor(data?: PartialMessage<TopOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TopOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TopOperator {
+    return new TopOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TopOperator {
+    return new TopOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TopOperator {
+    return new TopOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TopOperator | PlainMessage<TopOperator> | undefined, b: TopOperator | PlainMessage<TopOperator> | undefined): boolean {
+    return proto3.util.equals(TopOperator, a, b);
   }
 }
 

@@ -22,6 +22,147 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type SearchOperator_Kind int32
+
+const (
+	SearchOperator_Default         SearchOperator_Kind = 0
+	SearchOperator_CaseInsensitive SearchOperator_Kind = 1
+	SearchOperator_CaseSensitive   SearchOperator_Kind = 2
+)
+
+// Enum value maps for SearchOperator_Kind.
+var (
+	SearchOperator_Kind_name = map[int32]string{
+		0: "Default",
+		1: "CaseInsensitive",
+		2: "CaseSensitive",
+	}
+	SearchOperator_Kind_value = map[string]int32{
+		"Default":         0,
+		"CaseInsensitive": 1,
+		"CaseSensitive":   2,
+	}
+)
+
+func (x SearchOperator_Kind) Enum() *SearchOperator_Kind {
+	p := new(SearchOperator_Kind)
+	*p = x
+	return p
+}
+
+func (x SearchOperator_Kind) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SearchOperator_Kind) Descriptor() protoreflect.EnumDescriptor {
+	return file_types_v1_logquery_proto_enumTypes[0].Descriptor()
+}
+
+func (SearchOperator_Kind) Type() protoreflect.EnumType {
+	return &file_types_v1_logquery_proto_enumTypes[0]
+}
+
+func (x SearchOperator_Kind) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SearchOperator_Kind.Descriptor instead.
+func (SearchOperator_Kind) EnumDescriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{14, 0}
+}
+
+type SortOperator_Order int32
+
+const (
+	SortOperator_Desc SortOperator_Order = 0
+	SortOperator_Asc  SortOperator_Order = 1
+)
+
+// Enum value maps for SortOperator_Order.
+var (
+	SortOperator_Order_name = map[int32]string{
+		0: "Desc",
+		1: "Asc",
+	}
+	SortOperator_Order_value = map[string]int32{
+		"Desc": 0,
+		"Asc":  1,
+	}
+)
+
+func (x SortOperator_Order) Enum() *SortOperator_Order {
+	p := new(SortOperator_Order)
+	*p = x
+	return p
+}
+
+func (x SortOperator_Order) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SortOperator_Order) Descriptor() protoreflect.EnumDescriptor {
+	return file_types_v1_logquery_proto_enumTypes[1].Descriptor()
+}
+
+func (SortOperator_Order) Type() protoreflect.EnumType {
+	return &file_types_v1_logquery_proto_enumTypes[1]
+}
+
+func (x SortOperator_Order) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SortOperator_Order.Descriptor instead.
+func (SortOperator_Order) EnumDescriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{15, 0}
+}
+
+type TakeOperator_Order int32
+
+const (
+	TakeOperator_Desc TakeOperator_Order = 0
+	TakeOperator_Asc  TakeOperator_Order = 1
+)
+
+// Enum value maps for TakeOperator_Order.
+var (
+	TakeOperator_Order_name = map[int32]string{
+		0: "Desc",
+		1: "Asc",
+	}
+	TakeOperator_Order_value = map[string]int32{
+		"Desc": 0,
+		"Asc":  1,
+	}
+)
+
+func (x TakeOperator_Order) Enum() *TakeOperator_Order {
+	p := new(TakeOperator_Order)
+	*p = x
+	return p
+}
+
+func (x TakeOperator_Order) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TakeOperator_Order) Descriptor() protoreflect.EnumDescriptor {
+	return file_types_v1_logquery_proto_enumTypes[2].Descriptor()
+}
+
+func (TakeOperator_Order) Type() protoreflect.EnumType {
+	return &file_types_v1_logquery_proto_enumTypes[2]
+}
+
+func (x TakeOperator_Order) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TakeOperator_Order.Descriptor instead.
+func (TakeOperator_Order) EnumDescriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{16, 0}
+}
+
 type UnaryOp_Operator int32
 
 const (
@@ -55,11 +196,11 @@ func (x UnaryOp_Operator) String() string {
 }
 
 func (UnaryOp_Operator) Descriptor() protoreflect.EnumDescriptor {
-	return file_types_v1_logquery_proto_enumTypes[0].Descriptor()
+	return file_types_v1_logquery_proto_enumTypes[3].Descriptor()
 }
 
 func (UnaryOp_Operator) Type() protoreflect.EnumType {
-	return &file_types_v1_logquery_proto_enumTypes[0]
+	return &file_types_v1_logquery_proto_enumTypes[3]
 }
 
 func (x UnaryOp_Operator) Number() protoreflect.EnumNumber {
@@ -68,7 +209,7 @@ func (x UnaryOp_Operator) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use UnaryOp_Operator.Descriptor instead.
 func (UnaryOp_Operator) EnumDescriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{11, 0}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{21, 0}
 }
 
 type BinaryOp_Operator int32
@@ -140,11 +281,11 @@ func (x BinaryOp_Operator) String() string {
 }
 
 func (BinaryOp_Operator) Descriptor() protoreflect.EnumDescriptor {
-	return file_types_v1_logquery_proto_enumTypes[1].Descriptor()
+	return file_types_v1_logquery_proto_enumTypes[4].Descriptor()
 }
 
 func (BinaryOp_Operator) Type() protoreflect.EnumType {
-	return &file_types_v1_logquery_proto_enumTypes[1]
+	return &file_types_v1_logquery_proto_enumTypes[4]
 }
 
 func (x BinaryOp_Operator) Number() protoreflect.EnumNumber {
@@ -153,7 +294,7 @@ func (x BinaryOp_Operator) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use BinaryOp_Operator.Descriptor instead.
 func (BinaryOp_Operator) EnumDescriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{12, 0}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{22, 0}
 }
 
 type LogQuery struct {
@@ -380,6 +521,16 @@ type Statement struct {
 	//	*Statement_Filter
 	//	*Statement_Summarize
 	//	*Statement_Project
+	//	*Statement_ProjectAway
+	//	*Statement_ProjectKeep
+	//	*Statement_Extend
+	//	*Statement_Count
+	//	*Statement_Distinct
+	//	*Statement_Sample
+	//	*Statement_Search
+	//	*Statement_Sort
+	//	*Statement_Take
+	//	*Statement_Top
 	Stmt          isStatement_Stmt `protobuf_oneof:"stmt"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -449,6 +600,96 @@ func (x *Statement) GetProject() *ProjectOperator {
 	return nil
 }
 
+func (x *Statement) GetProjectAway() *ProjectAwayOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_ProjectAway); ok {
+			return x.ProjectAway
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetProjectKeep() *ProjectKeepOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_ProjectKeep); ok {
+			return x.ProjectKeep
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetExtend() *ExtendOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_Extend); ok {
+			return x.Extend
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetCount() *CountOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_Count); ok {
+			return x.Count
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetDistinct() *DistinctOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_Distinct); ok {
+			return x.Distinct
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetSample() *SampleOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_Sample); ok {
+			return x.Sample
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetSearch() *SearchOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_Search); ok {
+			return x.Search
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetSort() *SortOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_Sort); ok {
+			return x.Sort
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetTake() *TakeOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_Take); ok {
+			return x.Take
+		}
+	}
+	return nil
+}
+
+func (x *Statement) GetTop() *TopOperator {
+	if x != nil {
+		if x, ok := x.Stmt.(*Statement_Top); ok {
+			return x.Top
+		}
+	}
+	return nil
+}
+
 type isStatement_Stmt interface {
 	isStatement_Stmt()
 }
@@ -462,7 +703,47 @@ type Statement_Summarize struct {
 }
 
 type Statement_Project struct {
-	Project *ProjectOperator `protobuf:"bytes,3,opt,name=project,proto3,oneof"`
+	Project *ProjectOperator `protobuf:"bytes,300,opt,name=project,proto3,oneof"`
+}
+
+type Statement_ProjectAway struct {
+	ProjectAway *ProjectAwayOperator `protobuf:"bytes,301,opt,name=project_away,json=projectAway,proto3,oneof"`
+}
+
+type Statement_ProjectKeep struct {
+	ProjectKeep *ProjectKeepOperator `protobuf:"bytes,302,opt,name=project_keep,json=projectKeep,proto3,oneof"`
+}
+
+type Statement_Extend struct {
+	Extend *ExtendOperator `protobuf:"bytes,4,opt,name=extend,proto3,oneof"`
+}
+
+type Statement_Count struct {
+	Count *CountOperator `protobuf:"bytes,5,opt,name=count,proto3,oneof"`
+}
+
+type Statement_Distinct struct {
+	Distinct *DistinctOperator `protobuf:"bytes,6,opt,name=distinct,proto3,oneof"`
+}
+
+type Statement_Sample struct {
+	Sample *SampleOperator `protobuf:"bytes,7,opt,name=sample,proto3,oneof"`
+}
+
+type Statement_Search struct {
+	Search *SearchOperator `protobuf:"bytes,8,opt,name=search,proto3,oneof"`
+}
+
+type Statement_Sort struct {
+	Sort *SortOperator `protobuf:"bytes,9,opt,name=sort,proto3,oneof"`
+}
+
+type Statement_Take struct {
+	Take *TakeOperator `protobuf:"bytes,10,opt,name=take,proto3,oneof"`
+}
+
+type Statement_Top struct {
+	Top *TopOperator `protobuf:"bytes,11,opt,name=top,proto3,oneof"`
 }
 
 func (*Statement_Filter) isStatement_Stmt() {}
@@ -470,6 +751,26 @@ func (*Statement_Filter) isStatement_Stmt() {}
 func (*Statement_Summarize) isStatement_Stmt() {}
 
 func (*Statement_Project) isStatement_Stmt() {}
+
+func (*Statement_ProjectAway) isStatement_Stmt() {}
+
+func (*Statement_ProjectKeep) isStatement_Stmt() {}
+
+func (*Statement_Extend) isStatement_Stmt() {}
+
+func (*Statement_Count) isStatement_Stmt() {}
+
+func (*Statement_Distinct) isStatement_Stmt() {}
+
+func (*Statement_Sample) isStatement_Stmt() {}
+
+func (*Statement_Search) isStatement_Stmt() {}
+
+func (*Statement_Sort) isStatement_Stmt() {}
+
+func (*Statement_Take) isStatement_Stmt() {}
+
+func (*Statement_Top) isStatement_Stmt() {}
 
 type FilterOperator struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -611,6 +912,446 @@ func (x *ProjectOperator) GetProjections() []*ProjectOperator_Projection {
 	return nil
 }
 
+type ProjectAwayOperator struct {
+	state         protoimpl.MessageState            `protogen:"open.v1"`
+	Projections   []*ProjectAwayOperator_Projection `protobuf:"bytes,1,rep,name=projections,proto3" json:"projections,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProjectAwayOperator) Reset() {
+	*x = ProjectAwayOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProjectAwayOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProjectAwayOperator) ProtoMessage() {}
+
+func (x *ProjectAwayOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProjectAwayOperator.ProtoReflect.Descriptor instead.
+func (*ProjectAwayOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *ProjectAwayOperator) GetProjections() []*ProjectAwayOperator_Projection {
+	if x != nil {
+		return x.Projections
+	}
+	return nil
+}
+
+type ProjectKeepOperator struct {
+	state         protoimpl.MessageState            `protogen:"open.v1"`
+	Projections   []*ProjectKeepOperator_Projection `protobuf:"bytes,1,rep,name=projections,proto3" json:"projections,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProjectKeepOperator) Reset() {
+	*x = ProjectKeepOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProjectKeepOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProjectKeepOperator) ProtoMessage() {}
+
+func (x *ProjectKeepOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProjectKeepOperator.ProtoReflect.Descriptor instead.
+func (*ProjectKeepOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ProjectKeepOperator) GetProjections() []*ProjectKeepOperator_Projection {
+	if x != nil {
+		return x.Projections
+	}
+	return nil
+}
+
+type ExtendOperator struct {
+	state         protoimpl.MessageState       `protogen:"open.v1"`
+	Projections   []*ExtendOperator_Projection `protobuf:"bytes,1,rep,name=projections,proto3" json:"projections,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ExtendOperator) Reset() {
+	*x = ExtendOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExtendOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExtendOperator) ProtoMessage() {}
+
+func (x *ExtendOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExtendOperator.ProtoReflect.Descriptor instead.
+func (*ExtendOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ExtendOperator) GetProjections() []*ExtendOperator_Projection {
+	if x != nil {
+		return x.Projections
+	}
+	return nil
+}
+
+type CountOperator struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CountOperator) Reset() {
+	*x = CountOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CountOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CountOperator) ProtoMessage() {}
+
+func (x *CountOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CountOperator.ProtoReflect.Descriptor instead.
+func (*CountOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{11}
+}
+
+type DistinctOperator struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DistinctOperator) Reset() {
+	*x = DistinctOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DistinctOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DistinctOperator) ProtoMessage() {}
+
+func (x *DistinctOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DistinctOperator.ProtoReflect.Descriptor instead.
+func (*DistinctOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{12}
+}
+
+type SampleOperator struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Count         int64                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SampleOperator) Reset() {
+	*x = SampleOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SampleOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SampleOperator) ProtoMessage() {}
+
+func (x *SampleOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SampleOperator.ProtoReflect.Descriptor instead.
+func (*SampleOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *SampleOperator) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+type SearchOperator struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Predicate     string                 `protobuf:"bytes,1,opt,name=predicate,proto3" json:"predicate,omitempty"`
+	Kind          *SearchOperator_Kind   `protobuf:"varint,2,opt,name=kind,proto3,enum=types.v1.SearchOperator_Kind,oneof" json:"kind,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchOperator) Reset() {
+	*x = SearchOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchOperator) ProtoMessage() {}
+
+func (x *SearchOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchOperator.ProtoReflect.Descriptor instead.
+func (*SearchOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *SearchOperator) GetPredicate() string {
+	if x != nil {
+		return x.Predicate
+	}
+	return ""
+}
+
+func (x *SearchOperator) GetKind() SearchOperator_Kind {
+	if x != nil && x.Kind != nil {
+		return *x.Kind
+	}
+	return SearchOperator_Default
+}
+
+type SortOperator struct {
+	state         protoimpl.MessageState   `protogen:"open.v1"`
+	ByColumns     []*SortOperator_ByColumn `protobuf:"bytes,1,rep,name=by_columns,json=byColumns,proto3" json:"by_columns,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SortOperator) Reset() {
+	*x = SortOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SortOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SortOperator) ProtoMessage() {}
+
+func (x *SortOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SortOperator.ProtoReflect.Descriptor instead.
+func (*SortOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *SortOperator) GetByColumns() []*SortOperator_ByColumn {
+	if x != nil {
+		return x.ByColumns
+	}
+	return nil
+}
+
+type TakeOperator struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Count         int64                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	ByColumn      *TakeOperator_ByColumn `protobuf:"bytes,2,opt,name=by_column,json=byColumn,proto3,oneof" json:"by_column,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TakeOperator) Reset() {
+	*x = TakeOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TakeOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TakeOperator) ProtoMessage() {}
+
+func (x *TakeOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TakeOperator.ProtoReflect.Descriptor instead.
+func (*TakeOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *TakeOperator) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *TakeOperator) GetByColumn() *TakeOperator_ByColumn {
+	if x != nil {
+		return x.ByColumn
+	}
+	return nil
+}
+
+type TopOperator struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Count         int64                  `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TopOperator) Reset() {
+	*x = TopOperator{}
+	mi := &file_types_v1_logquery_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TopOperator) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TopOperator) ProtoMessage() {}
+
+func (x *TopOperator) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TopOperator.ProtoReflect.Descriptor instead.
+func (*TopOperator) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *TopOperator) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
 type RenderStatement struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to Stmt:
@@ -623,7 +1364,7 @@ type RenderStatement struct {
 
 func (x *RenderStatement) Reset() {
 	*x = RenderStatement{}
-	mi := &file_types_v1_logquery_proto_msgTypes[8]
+	mi := &file_types_v1_logquery_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -635,7 +1376,7 @@ func (x *RenderStatement) String() string {
 func (*RenderStatement) ProtoMessage() {}
 
 func (x *RenderStatement) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[8]
+	mi := &file_types_v1_logquery_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -648,7 +1389,7 @@ func (x *RenderStatement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenderStatement.ProtoReflect.Descriptor instead.
 func (*RenderStatement) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{8}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *RenderStatement) GetStmt() isRenderStatement_Stmt {
@@ -686,7 +1427,7 @@ type SplitOperator struct {
 
 func (x *SplitOperator) Reset() {
 	*x = SplitOperator{}
-	mi := &file_types_v1_logquery_proto_msgTypes[9]
+	mi := &file_types_v1_logquery_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -698,7 +1439,7 @@ func (x *SplitOperator) String() string {
 func (*SplitOperator) ProtoMessage() {}
 
 func (x *SplitOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[9]
+	mi := &file_types_v1_logquery_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -711,7 +1452,7 @@ func (x *SplitOperator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SplitOperator.ProtoReflect.Descriptor instead.
 func (*SplitOperator) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{9}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *SplitOperator) GetBy() *SplitOperator_ByOperator {
@@ -739,7 +1480,7 @@ type Expr struct {
 
 func (x *Expr) Reset() {
 	*x = Expr{}
-	mi := &file_types_v1_logquery_proto_msgTypes[10]
+	mi := &file_types_v1_logquery_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -751,7 +1492,7 @@ func (x *Expr) String() string {
 func (*Expr) ProtoMessage() {}
 
 func (x *Expr) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[10]
+	mi := &file_types_v1_logquery_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -764,7 +1505,7 @@ func (x *Expr) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Expr.ProtoReflect.Descriptor instead.
 func (*Expr) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{10}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *Expr) GetExpr() isExpr_Expr {
@@ -893,7 +1634,7 @@ type UnaryOp struct {
 
 func (x *UnaryOp) Reset() {
 	*x = UnaryOp{}
-	mi := &file_types_v1_logquery_proto_msgTypes[11]
+	mi := &file_types_v1_logquery_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -905,7 +1646,7 @@ func (x *UnaryOp) String() string {
 func (*UnaryOp) ProtoMessage() {}
 
 func (x *UnaryOp) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[11]
+	mi := &file_types_v1_logquery_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -918,7 +1659,7 @@ func (x *UnaryOp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnaryOp.ProtoReflect.Descriptor instead.
 func (*UnaryOp) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{11}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *UnaryOp) GetOp() UnaryOp_Operator {
@@ -946,7 +1687,7 @@ type BinaryOp struct {
 
 func (x *BinaryOp) Reset() {
 	*x = BinaryOp{}
-	mi := &file_types_v1_logquery_proto_msgTypes[12]
+	mi := &file_types_v1_logquery_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -958,7 +1699,7 @@ func (x *BinaryOp) String() string {
 func (*BinaryOp) ProtoMessage() {}
 
 func (x *BinaryOp) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[12]
+	mi := &file_types_v1_logquery_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -971,7 +1712,7 @@ func (x *BinaryOp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryOp.ProtoReflect.Descriptor instead.
 func (*BinaryOp) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{12}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *BinaryOp) GetLhs() *Expr {
@@ -1005,7 +1746,7 @@ type FuncCall struct {
 
 func (x *FuncCall) Reset() {
 	*x = FuncCall{}
-	mi := &file_types_v1_logquery_proto_msgTypes[13]
+	mi := &file_types_v1_logquery_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1017,7 +1758,7 @@ func (x *FuncCall) String() string {
 func (*FuncCall) ProtoMessage() {}
 
 func (x *FuncCall) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[13]
+	mi := &file_types_v1_logquery_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1030,7 +1771,7 @@ func (x *FuncCall) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuncCall.ProtoReflect.Descriptor instead.
 func (*FuncCall) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{13}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *FuncCall) GetName() string {
@@ -1056,7 +1797,7 @@ type Identifier struct {
 
 func (x *Identifier) Reset() {
 	*x = Identifier{}
-	mi := &file_types_v1_logquery_proto_msgTypes[14]
+	mi := &file_types_v1_logquery_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1068,7 +1809,7 @@ func (x *Identifier) String() string {
 func (*Identifier) ProtoMessage() {}
 
 func (x *Identifier) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[14]
+	mi := &file_types_v1_logquery_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1081,7 +1822,7 @@ func (x *Identifier) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Identifier.ProtoReflect.Descriptor instead.
 func (*Identifier) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{14}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *Identifier) GetName() string {
@@ -1101,7 +1842,7 @@ type Selector struct {
 
 func (x *Selector) Reset() {
 	*x = Selector{}
-	mi := &file_types_v1_logquery_proto_msgTypes[15]
+	mi := &file_types_v1_logquery_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1113,7 +1854,7 @@ func (x *Selector) String() string {
 func (*Selector) ProtoMessage() {}
 
 func (x *Selector) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[15]
+	mi := &file_types_v1_logquery_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1126,7 +1867,7 @@ func (x *Selector) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Selector.ProtoReflect.Descriptor instead.
 func (*Selector) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{15}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *Selector) GetX() *Expr {
@@ -1153,7 +1894,7 @@ type Indexor struct {
 
 func (x *Indexor) Reset() {
 	*x = Indexor{}
-	mi := &file_types_v1_logquery_proto_msgTypes[16]
+	mi := &file_types_v1_logquery_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1165,7 +1906,7 @@ func (x *Indexor) String() string {
 func (*Indexor) ProtoMessage() {}
 
 func (x *Indexor) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[16]
+	mi := &file_types_v1_logquery_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1178,7 +1919,7 @@ func (x *Indexor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Indexor.ProtoReflect.Descriptor instead.
 func (*Indexor) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{16}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *Indexor) GetX() *Expr {
@@ -1204,7 +1945,7 @@ type SummarizeOperator_Parameters struct {
 
 func (x *SummarizeOperator_Parameters) Reset() {
 	*x = SummarizeOperator_Parameters{}
-	mi := &file_types_v1_logquery_proto_msgTypes[17]
+	mi := &file_types_v1_logquery_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1216,7 +1957,7 @@ func (x *SummarizeOperator_Parameters) String() string {
 func (*SummarizeOperator_Parameters) ProtoMessage() {}
 
 func (x *SummarizeOperator_Parameters) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[17]
+	mi := &file_types_v1_logquery_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1249,7 +1990,7 @@ type SummarizeOperator_Parameter struct {
 
 func (x *SummarizeOperator_Parameter) Reset() {
 	*x = SummarizeOperator_Parameter{}
-	mi := &file_types_v1_logquery_proto_msgTypes[18]
+	mi := &file_types_v1_logquery_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1261,7 +2002,7 @@ func (x *SummarizeOperator_Parameter) String() string {
 func (*SummarizeOperator_Parameter) ProtoMessage() {}
 
 func (x *SummarizeOperator_Parameter) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[18]
+	mi := &file_types_v1_logquery_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1300,7 +2041,7 @@ type SummarizeOperator_ByGroupExpressions struct {
 
 func (x *SummarizeOperator_ByGroupExpressions) Reset() {
 	*x = SummarizeOperator_ByGroupExpressions{}
-	mi := &file_types_v1_logquery_proto_msgTypes[19]
+	mi := &file_types_v1_logquery_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1312,7 +2053,7 @@ func (x *SummarizeOperator_ByGroupExpressions) String() string {
 func (*SummarizeOperator_ByGroupExpressions) ProtoMessage() {}
 
 func (x *SummarizeOperator_ByGroupExpressions) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[19]
+	mi := &file_types_v1_logquery_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1345,7 +2086,7 @@ type SummarizeOperator_ByGroupExpression struct {
 
 func (x *SummarizeOperator_ByGroupExpression) Reset() {
 	*x = SummarizeOperator_ByGroupExpression{}
-	mi := &file_types_v1_logquery_proto_msgTypes[20]
+	mi := &file_types_v1_logquery_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1357,7 +2098,7 @@ func (x *SummarizeOperator_ByGroupExpression) String() string {
 func (*SummarizeOperator_ByGroupExpression) ProtoMessage() {}
 
 func (x *SummarizeOperator_ByGroupExpression) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[20]
+	mi := &file_types_v1_logquery_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1397,7 +2138,7 @@ type ProjectOperator_Projection struct {
 
 func (x *ProjectOperator_Projection) Reset() {
 	*x = ProjectOperator_Projection{}
-	mi := &file_types_v1_logquery_proto_msgTypes[21]
+	mi := &file_types_v1_logquery_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1409,7 +2150,7 @@ func (x *ProjectOperator_Projection) String() string {
 func (*ProjectOperator_Projection) ProtoMessage() {}
 
 func (x *ProjectOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[21]
+	mi := &file_types_v1_logquery_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1439,6 +2180,250 @@ func (x *ProjectOperator_Projection) GetValue() *Expr {
 	return nil
 }
 
+type ProjectAwayOperator_Projection struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Column        *Identifier            `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProjectAwayOperator_Projection) Reset() {
+	*x = ProjectAwayOperator_Projection{}
+	mi := &file_types_v1_logquery_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProjectAwayOperator_Projection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProjectAwayOperator_Projection) ProtoMessage() {}
+
+func (x *ProjectAwayOperator_Projection) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProjectAwayOperator_Projection.ProtoReflect.Descriptor instead.
+func (*ProjectAwayOperator_Projection) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{8, 0}
+}
+
+func (x *ProjectAwayOperator_Projection) GetColumn() *Identifier {
+	if x != nil {
+		return x.Column
+	}
+	return nil
+}
+
+type ProjectKeepOperator_Projection struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Column        *Identifier            `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProjectKeepOperator_Projection) Reset() {
+	*x = ProjectKeepOperator_Projection{}
+	mi := &file_types_v1_logquery_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProjectKeepOperator_Projection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProjectKeepOperator_Projection) ProtoMessage() {}
+
+func (x *ProjectKeepOperator_Projection) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProjectKeepOperator_Projection.ProtoReflect.Descriptor instead.
+func (*ProjectKeepOperator_Projection) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{9, 0}
+}
+
+func (x *ProjectKeepOperator_Projection) GetColumn() *Identifier {
+	if x != nil {
+		return x.Column
+	}
+	return nil
+}
+
+type ExtendOperator_Projection struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Column        *Identifier            `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
+	Value         *Expr                  `protobuf:"bytes,2,opt,name=value,proto3,oneof" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ExtendOperator_Projection) Reset() {
+	*x = ExtendOperator_Projection{}
+	mi := &file_types_v1_logquery_proto_msgTypes[34]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExtendOperator_Projection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExtendOperator_Projection) ProtoMessage() {}
+
+func (x *ExtendOperator_Projection) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[34]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExtendOperator_Projection.ProtoReflect.Descriptor instead.
+func (*ExtendOperator_Projection) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{10, 0}
+}
+
+func (x *ExtendOperator_Projection) GetColumn() *Identifier {
+	if x != nil {
+		return x.Column
+	}
+	return nil
+}
+
+func (x *ExtendOperator_Projection) GetValue() *Expr {
+	if x != nil {
+		return x.Value
+	}
+	return nil
+}
+
+type SortOperator_ByColumn struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Column        *Identifier            `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
+	Order         *SortOperator_Order    `protobuf:"varint,2,opt,name=order,proto3,enum=types.v1.SortOperator_Order,oneof" json:"order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SortOperator_ByColumn) Reset() {
+	*x = SortOperator_ByColumn{}
+	mi := &file_types_v1_logquery_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SortOperator_ByColumn) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SortOperator_ByColumn) ProtoMessage() {}
+
+func (x *SortOperator_ByColumn) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SortOperator_ByColumn.ProtoReflect.Descriptor instead.
+func (*SortOperator_ByColumn) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{15, 0}
+}
+
+func (x *SortOperator_ByColumn) GetColumn() *Identifier {
+	if x != nil {
+		return x.Column
+	}
+	return nil
+}
+
+func (x *SortOperator_ByColumn) GetOrder() SortOperator_Order {
+	if x != nil && x.Order != nil {
+		return *x.Order
+	}
+	return SortOperator_Desc
+}
+
+type TakeOperator_ByColumn struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Column        *Identifier            `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
+	Order         *TakeOperator_Order    `protobuf:"varint,2,opt,name=order,proto3,enum=types.v1.TakeOperator_Order,oneof" json:"order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TakeOperator_ByColumn) Reset() {
+	*x = TakeOperator_ByColumn{}
+	mi := &file_types_v1_logquery_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TakeOperator_ByColumn) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TakeOperator_ByColumn) ProtoMessage() {}
+
+func (x *TakeOperator_ByColumn) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_logquery_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TakeOperator_ByColumn.ProtoReflect.Descriptor instead.
+func (*TakeOperator_ByColumn) Descriptor() ([]byte, []int) {
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{16, 0}
+}
+
+func (x *TakeOperator_ByColumn) GetColumn() *Identifier {
+	if x != nil {
+		return x.Column
+	}
+	return nil
+}
+
+func (x *TakeOperator_ByColumn) GetOrder() TakeOperator_Order {
+	if x != nil && x.Order != nil {
+		return *x.Order
+	}
+	return TakeOperator_Desc
+}
+
 type SplitOperator_ByOperator struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Scalars       []*Expr                `protobuf:"bytes,1,rep,name=scalars,proto3" json:"scalars,omitempty"`
@@ -1448,7 +2433,7 @@ type SplitOperator_ByOperator struct {
 
 func (x *SplitOperator_ByOperator) Reset() {
 	*x = SplitOperator_ByOperator{}
-	mi := &file_types_v1_logquery_proto_msgTypes[22]
+	mi := &file_types_v1_logquery_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1460,7 +2445,7 @@ func (x *SplitOperator_ByOperator) String() string {
 func (*SplitOperator_ByOperator) ProtoMessage() {}
 
 func (x *SplitOperator_ByOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[22]
+	mi := &file_types_v1_logquery_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1473,7 +2458,7 @@ func (x *SplitOperator_ByOperator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SplitOperator_ByOperator.ProtoReflect.Descriptor instead.
 func (*SplitOperator_ByOperator) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{9, 0}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{19, 0}
 }
 
 func (x *SplitOperator_ByOperator) GetScalars() []*Expr {
@@ -1523,7 +2508,7 @@ var file_types_v1_logquery_proto_rawDesc = string([]byte{
 	0x6d, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x31, 0x0a, 0x06, 0x72, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x18,
 	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
 	0x2e, 0x52, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x65, 0x6d, 0x65, 0x6e, 0x74,
-	0x52, 0x06, 0x72, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x22, 0xbb, 0x01, 0x0a, 0x09, 0x53, 0x74, 0x61,
+	0x52, 0x06, 0x72, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x22, 0xd4, 0x05, 0x0a, 0x09, 0x53, 0x74, 0x61,
 	0x74, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x32, 0x0a, 0x06, 0x66, 0x69, 0x6c, 0x74, 0x65, 0x72,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76,
 	0x31, 0x2e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
@@ -1531,69 +2516,185 @@ var file_types_v1_logquery_proto_rawDesc = string([]byte{
 	0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b, 0x2e,
 	0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x69,
 	0x7a, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x09, 0x73, 0x75,
-	0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x12, 0x35, 0x0a, 0x07, 0x70, 0x72, 0x6f, 0x6a, 0x65,
-	0x63, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
+	0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x12, 0x36, 0x0a, 0x07, 0x70, 0x72, 0x6f, 0x6a, 0x65,
+	0x63, 0x74, 0x18, 0xac, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4f, 0x70, 0x65, 0x72,
+	0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x12,
+	0x43, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x61, 0x77, 0x61, 0x79, 0x18,
+	0xad, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76,
+	0x31, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x41, 0x77, 0x61, 0x79, 0x4f, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74,
+	0x41, 0x77, 0x61, 0x79, 0x12, 0x43, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x5f,
+	0x6b, 0x65, 0x65, 0x70, 0x18, 0xae, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x74, 0x79,
+	0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4b, 0x65,
+	0x65, 0x70, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x0b, 0x70, 0x72,
+	0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4b, 0x65, 0x65, 0x70, 0x12, 0x32, 0x0a, 0x06, 0x65, 0x78, 0x74,
+	0x65, 0x6e, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x74, 0x65, 0x6e, 0x64, 0x4f, 0x70, 0x65, 0x72, 0x61,
+	0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x06, 0x65, 0x78, 0x74, 0x65, 0x6e, 0x64, 0x12, 0x2f, 0x0a,
+	0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x4f, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x38,
+	0x0a, 0x08, 0x64, 0x69, 0x73, 0x74, 0x69, 0x6e, 0x63, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1a, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x69, 0x73, 0x74,
+	0x69, 0x6e, 0x63, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x08,
+	0x64, 0x69, 0x73, 0x74, 0x69, 0x6e, 0x63, 0x74, 0x12, 0x32, 0x0a, 0x06, 0x73, 0x61, 0x6d, 0x70,
+	0x6c, 0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
+	0x2e, 0x76, 0x31, 0x2e, 0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74,
+	0x6f, 0x72, 0x48, 0x00, 0x52, 0x06, 0x73, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x12, 0x32, 0x0a, 0x06,
+	0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x4f, 0x70,
+	0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x06, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68,
+	0x12, 0x2c, 0x0a, 0x04, 0x73, 0x6f, 0x72, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16,
+	0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x6f, 0x72, 0x74, 0x4f, 0x70,
+	0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x04, 0x73, 0x6f, 0x72, 0x74, 0x12, 0x2c,
+	0x0a, 0x04, 0x74, 0x61, 0x6b, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x6b, 0x65, 0x4f, 0x70, 0x65, 0x72,
+	0x61, 0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x04, 0x74, 0x61, 0x6b, 0x65, 0x12, 0x29, 0x0a, 0x03,
+	0x74, 0x6f, 0x70, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x6f, 0x70, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
+	0x48, 0x00, 0x52, 0x03, 0x74, 0x6f, 0x70, 0x42, 0x06, 0x0a, 0x04, 0x73, 0x74, 0x6d, 0x74, 0x22,
+	0x34, 0x0a, 0x0e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f,
+	0x72, 0x12, 0x22, 0x0a, 0x04, 0x65, 0x78, 0x70, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x72, 0x52,
+	0x04, 0x65, 0x78, 0x70, 0x72, 0x22, 0x97, 0x05, 0x0a, 0x11, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72,
+	0x69, 0x7a, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x46, 0x0a, 0x0a, 0x70,
+	0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x26, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x75, 0x6d, 0x6d, 0x61,
+	0x72, 0x69, 0x7a, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50, 0x61, 0x72,
+	0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x52, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74,
+	0x65, 0x72, 0x73, 0x12, 0x65, 0x0a, 0x14, 0x62, 0x79, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f,
+	0x65, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x2e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x75, 0x6d,
+	0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x42,
+	0x79, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x45, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
+	0x73, 0x48, 0x00, 0x52, 0x12, 0x62, 0x79, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x45, 0x78, 0x70, 0x72,
+	0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x88, 0x01, 0x01, 0x1a, 0x53, 0x0a, 0x0a, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x12, 0x45, 0x0a, 0x0a, 0x70, 0x61, 0x72, 0x61,
+	0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a,
+	0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65,
+	0x74, 0x65, 0x72, 0x52, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x1a,
+	0x8c, 0x01, 0x0a, 0x09, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x12, 0x31, 0x0a,
+	0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e,
+	0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66,
+	0x69, 0x65, 0x72, 0x48, 0x00, 0x52, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x88, 0x01, 0x01,
+	0x12, 0x41, 0x0a, 0x12, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x5f, 0x66, 0x75,
+	0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x74,
+	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x75, 0x6e, 0x63, 0x43, 0x61, 0x6c, 0x6c,
+	0x52, 0x11, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61, 0x74, 0x65, 0x46, 0x75, 0x6e, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x1a, 0x5b,
+	0x0a, 0x12, 0x42, 0x79, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x45, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73,
+	0x69, 0x6f, 0x6e, 0x73, 0x12, 0x45, 0x0a, 0x06, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x18, 0x02,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e,
+	0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f,
+	0x72, 0x2e, 0x42, 0x79, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x45, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73,
+	0x69, 0x6f, 0x6e, 0x52, 0x06, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x73, 0x1a, 0x79, 0x0a, 0x11, 0x42,
+	0x79, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x45, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
+	0x12, 0x31, 0x0a, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x14, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e,
+	0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x48, 0x00, 0x52, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e,
+	0x88, 0x01, 0x01, 0x12, 0x26, 0x0a, 0x06, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x45,
+	0x78, 0x70, 0x72, 0x52, 0x06, 0x73, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x42, 0x09, 0x0a, 0x07, 0x5f,
+	0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x42, 0x17, 0x0a, 0x15, 0x5f, 0x62, 0x79, 0x5f, 0x67, 0x72,
+	0x6f, 0x75, 0x70, 0x5f, 0x65, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x22,
+	0xca, 0x01, 0x0a, 0x0f, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61,
+	0x74, 0x6f, 0x72, 0x12, 0x46, 0x0a, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x24, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
 	0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61,
-	0x74, 0x6f, 0x72, 0x48, 0x00, 0x52, 0x07, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x42, 0x06,
-	0x0a, 0x04, 0x73, 0x74, 0x6d, 0x74, 0x22, 0x34, 0x0a, 0x0e, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72,
-	0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x22, 0x0a, 0x04, 0x65, 0x78, 0x70, 0x72,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76,
-	0x31, 0x2e, 0x45, 0x78, 0x70, 0x72, 0x52, 0x04, 0x65, 0x78, 0x70, 0x72, 0x22, 0x97, 0x05, 0x0a,
-	0x11, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74,
-	0x6f, 0x72, 0x12, 0x46, 0x0a, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x26, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76,
-	0x31, 0x2e, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61,
-	0x74, 0x6f, 0x72, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x52, 0x0a,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x12, 0x65, 0x0a, 0x14, 0x62, 0x79,
-	0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x65, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f,
-	0x6e, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
-	0x2e, 0x76, 0x31, 0x2e, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x4f, 0x70, 0x65,
-	0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x42, 0x79, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x45, 0x78, 0x70,
-	0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x48, 0x00, 0x52, 0x12, 0x62, 0x79, 0x47, 0x72,
-	0x6f, 0x75, 0x70, 0x45, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x88, 0x01,
-	0x01, 0x1a, 0x53, 0x0a, 0x0a, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x12,
-	0x45, 0x0a, 0x0a, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20,
-	0x03, 0x28, 0x0b, 0x32, 0x25, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53,
-	0x75, 0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
-	0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x52, 0x0a, 0x70, 0x61, 0x72, 0x61,
-	0x6d, 0x65, 0x74, 0x65, 0x72, 0x73, 0x1a, 0x8c, 0x01, 0x0a, 0x09, 0x50, 0x61, 0x72, 0x61, 0x6d,
-	0x65, 0x74, 0x65, 0x72, 0x12, 0x31, 0x0a, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x18, 0x01,
+	0x74, 0x6f, 0x72, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0b,
+	0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x1a, 0x6f, 0x0a, 0x0a, 0x50,
+	0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2c, 0x0a, 0x06, 0x63, 0x6f, 0x6c,
+	0x75, 0x6d, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x52,
+	0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x12, 0x29, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76,
+	0x31, 0x2e, 0x45, 0x78, 0x70, 0x72, 0x48, 0x00, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x88,
+	0x01, 0x01, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x9d, 0x01, 0x0a,
+	0x13, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x41, 0x77, 0x61, 0x79, 0x4f, 0x70, 0x65, 0x72,
+	0x61, 0x74, 0x6f, 0x72, 0x12, 0x4a, 0x0a, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x41, 0x77, 0x61, 0x79,
+	0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x1a, 0x3a, 0x0a, 0x0a, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2c,
+	0x0a, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14,
+	0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69,
+	0x66, 0x69, 0x65, 0x72, 0x52, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x22, 0x9d, 0x01, 0x0a,
+	0x13, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4b, 0x65, 0x65, 0x70, 0x4f, 0x70, 0x65, 0x72,
+	0x61, 0x74, 0x6f, 0x72, 0x12, 0x4a, 0x0a, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x28, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4b, 0x65, 0x65, 0x70,
+	0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x1a, 0x3a, 0x0a, 0x0a, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2c,
+	0x0a, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14,
+	0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69,
+	0x66, 0x69, 0x65, 0x72, 0x52, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x22, 0xc8, 0x01, 0x0a,
+	0x0e, 0x45, 0x78, 0x74, 0x65, 0x6e, 0x64, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12,
+	0x45, 0x0a, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x23, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e,
+	0x45, 0x78, 0x74, 0x65, 0x6e, 0x64, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50,
+	0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x1a, 0x6f, 0x0a, 0x0a, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2c, 0x0a, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e,
-	0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x48, 0x00, 0x52, 0x06, 0x63, 0x6f,
-	0x6c, 0x75, 0x6d, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x41, 0x0a, 0x12, 0x61, 0x67, 0x67, 0x72, 0x65,
-	0x67, 0x61, 0x74, 0x65, 0x5f, 0x66, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x12, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x46,
-	0x75, 0x6e, 0x63, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x11, 0x61, 0x67, 0x67, 0x72, 0x65, 0x67, 0x61,
-	0x74, 0x65, 0x46, 0x75, 0x6e, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x63,
-	0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x1a, 0x5b, 0x0a, 0x12, 0x42, 0x79, 0x47, 0x72, 0x6f, 0x75, 0x70,
-	0x45, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x45, 0x0a, 0x06, 0x67,
-	0x72, 0x6f, 0x75, 0x70, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x74, 0x79,
-	0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x69, 0x7a, 0x65,
-	0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x42, 0x79, 0x47, 0x72, 0x6f, 0x75, 0x70,
-	0x45, 0x78, 0x70, 0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x06, 0x67, 0x72, 0x6f, 0x75,
-	0x70, 0x73, 0x1a, 0x79, 0x0a, 0x11, 0x42, 0x79, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x45, 0x78, 0x70,
-	0x72, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x31, 0x0a, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d,
-	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
-	0x76, 0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x48, 0x00, 0x52,
-	0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x88, 0x01, 0x01, 0x12, 0x26, 0x0a, 0x06, 0x73, 0x63,
-	0x61, 0x6c, 0x61, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70,
-	0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x72, 0x52, 0x06, 0x73, 0x63, 0x61, 0x6c,
-	0x61, 0x72, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x42, 0x17, 0x0a,
-	0x15, 0x5f, 0x62, 0x79, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x65, 0x78, 0x70, 0x72, 0x65,
-	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xca, 0x01, 0x0a, 0x0f, 0x50, 0x72, 0x6f, 0x6a, 0x65,
-	0x63, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x46, 0x0a, 0x0b, 0x70, 0x72,
-	0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x24, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65,
-	0x63, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x50, 0x72, 0x6f, 0x6a, 0x65,
-	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f,
-	0x6e, 0x73, 0x1a, 0x6f, 0x0a, 0x0a, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x52, 0x06, 0x63, 0x6f, 0x6c, 0x75,
+	0x6d, 0x6e, 0x12, 0x29, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70,
+	0x72, 0x48, 0x00, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x88, 0x01, 0x01, 0x42, 0x08, 0x0a,
+	0x06, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x0f, 0x0a, 0x0d, 0x43, 0x6f, 0x75, 0x6e, 0x74,
+	0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x12, 0x0a, 0x10, 0x44, 0x69, 0x73, 0x74,
+	0x69, 0x6e, 0x63, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x26, 0x0a, 0x0e,
+	0x53, 0x61, 0x6d, 0x70, 0x6c, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x14,
+	0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x22, 0xac, 0x01, 0x0a, 0x0e, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x4f,
+	0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1c, 0x0a, 0x09, 0x70, 0x72, 0x65, 0x64, 0x69,
+	0x63, 0x61, 0x74, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x70, 0x72, 0x65, 0x64,
+	0x69, 0x63, 0x61, 0x74, 0x65, 0x12, 0x36, 0x0a, 0x04, 0x6b, 0x69, 0x6e, 0x64, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0e, 0x32, 0x1d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53,
+	0x65, 0x61, 0x72, 0x63, 0x68, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x4b, 0x69,
+	0x6e, 0x64, 0x48, 0x00, 0x52, 0x04, 0x6b, 0x69, 0x6e, 0x64, 0x88, 0x01, 0x01, 0x22, 0x3b, 0x0a,
+	0x04, 0x4b, 0x69, 0x6e, 0x64, 0x12, 0x0b, 0x0a, 0x07, 0x44, 0x65, 0x66, 0x61, 0x75, 0x6c, 0x74,
+	0x10, 0x00, 0x12, 0x13, 0x0a, 0x0f, 0x43, 0x61, 0x73, 0x65, 0x49, 0x6e, 0x73, 0x65, 0x6e, 0x73,
+	0x69, 0x74, 0x69, 0x76, 0x65, 0x10, 0x01, 0x12, 0x11, 0x0a, 0x0d, 0x43, 0x61, 0x73, 0x65, 0x53,
+	0x65, 0x6e, 0x73, 0x69, 0x74, 0x69, 0x76, 0x65, 0x10, 0x02, 0x42, 0x07, 0x0a, 0x05, 0x5f, 0x6b,
+	0x69, 0x6e, 0x64, 0x22, 0xe7, 0x01, 0x0a, 0x0c, 0x53, 0x6f, 0x72, 0x74, 0x4f, 0x70, 0x65, 0x72,
+	0x61, 0x74, 0x6f, 0x72, 0x12, 0x3e, 0x0a, 0x0a, 0x62, 0x79, 0x5f, 0x63, 0x6f, 0x6c, 0x75, 0x6d,
+	0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
+	0x2e, 0x76, 0x31, 0x2e, 0x53, 0x6f, 0x72, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
+	0x2e, 0x42, 0x79, 0x43, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x52, 0x09, 0x62, 0x79, 0x43, 0x6f, 0x6c,
+	0x75, 0x6d, 0x6e, 0x73, 0x1a, 0x7b, 0x0a, 0x08, 0x42, 0x79, 0x43, 0x6f, 0x6c, 0x75, 0x6d, 0x6e,
 	0x12, 0x2c, 0x0a, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x14, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e,
-	0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x52, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x12, 0x29,
-	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e,
-	0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x72, 0x48, 0x00, 0x52,
-	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x88, 0x01, 0x01, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x76, 0x61,
-	0x6c, 0x75, 0x65, 0x22, 0x4a, 0x0a, 0x0f, 0x52, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x53, 0x74, 0x61,
+	0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x52, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x12, 0x37,
+	0x0a, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1c, 0x2e,
+	0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x6f, 0x72, 0x74, 0x4f, 0x70, 0x65,
+	0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x48, 0x00, 0x52, 0x05, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x88, 0x01, 0x01, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x6f, 0x72, 0x64, 0x65,
+	0x72, 0x22, 0x1a, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x08, 0x0a, 0x04, 0x44, 0x65,
+	0x73, 0x63, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03, 0x41, 0x73, 0x63, 0x10, 0x01, 0x22, 0x8e, 0x02,
+	0x0a, 0x0c, 0x54, 0x61, 0x6b, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x14,
+	0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x12, 0x41, 0x0a, 0x09, 0x62, 0x79, 0x5f, 0x63, 0x6f, 0x6c, 0x75, 0x6d,
+	0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
+	0x76, 0x31, 0x2e, 0x54, 0x61, 0x6b, 0x65, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e,
+	0x42, 0x79, 0x43, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x48, 0x00, 0x52, 0x08, 0x62, 0x79, 0x43, 0x6f,
+	0x6c, 0x75, 0x6d, 0x6e, 0x88, 0x01, 0x01, 0x1a, 0x7b, 0x0a, 0x08, 0x42, 0x79, 0x43, 0x6f, 0x6c,
+	0x75, 0x6d, 0x6e, 0x12, 0x2c, 0x0a, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x49,
+	0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x52, 0x06, 0x63, 0x6f, 0x6c, 0x75, 0x6d,
+	0x6e, 0x12, 0x37, 0x0a, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x1c, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x6b, 0x65,
+	0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x48, 0x00,
+	0x52, 0x05, 0x6f, 0x72, 0x64, 0x65, 0x72, 0x88, 0x01, 0x01, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x6f,
+	0x72, 0x64, 0x65, 0x72, 0x22, 0x1a, 0x0a, 0x05, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x12, 0x08, 0x0a,
+	0x04, 0x44, 0x65, 0x73, 0x63, 0x10, 0x00, 0x12, 0x07, 0x0a, 0x03, 0x41, 0x73, 0x63, 0x10, 0x01,
+	0x42, 0x0c, 0x0a, 0x0a, 0x5f, 0x62, 0x79, 0x5f, 0x63, 0x6f, 0x6c, 0x75, 0x6d, 0x6e, 0x22, 0x23,
+	0x0a, 0x0b, 0x54, 0x6f, 0x70, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x14, 0x0a,
+	0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x05, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x22, 0x4a, 0x0a, 0x0f, 0x52, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x53, 0x74, 0x61,
 	0x74, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x2f, 0x0a, 0x05, 0x73, 0x70, 0x6c, 0x69, 0x74, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x17, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
 	0x2e, 0x53, 0x70, 0x6c, 0x69, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x48, 0x00,
@@ -1699,86 +2800,128 @@ func file_types_v1_logquery_proto_rawDescGZIP() []byte {
 	return file_types_v1_logquery_proto_rawDescData
 }
 
-var file_types_v1_logquery_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_types_v1_logquery_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_types_v1_logquery_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_types_v1_logquery_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_types_v1_logquery_proto_goTypes = []any{
-	(UnaryOp_Operator)(0),                        // 0: types.v1.UnaryOp.Operator
-	(BinaryOp_Operator)(0),                       // 1: types.v1.BinaryOp.Operator
-	(*LogQuery)(nil),                             // 2: types.v1.LogQuery
-	(*Timerange)(nil),                            // 3: types.v1.Timerange
-	(*Context)(nil),                              // 4: types.v1.Context
-	(*Statements)(nil),                           // 5: types.v1.Statements
-	(*Statement)(nil),                            // 6: types.v1.Statement
-	(*FilterOperator)(nil),                       // 7: types.v1.FilterOperator
-	(*SummarizeOperator)(nil),                    // 8: types.v1.SummarizeOperator
-	(*ProjectOperator)(nil),                      // 9: types.v1.ProjectOperator
-	(*RenderStatement)(nil),                      // 10: types.v1.RenderStatement
-	(*SplitOperator)(nil),                        // 11: types.v1.SplitOperator
-	(*Expr)(nil),                                 // 12: types.v1.Expr
-	(*UnaryOp)(nil),                              // 13: types.v1.UnaryOp
-	(*BinaryOp)(nil),                             // 14: types.v1.BinaryOp
-	(*FuncCall)(nil),                             // 15: types.v1.FuncCall
-	(*Identifier)(nil),                           // 16: types.v1.Identifier
-	(*Selector)(nil),                             // 17: types.v1.Selector
-	(*Indexor)(nil),                              // 18: types.v1.Indexor
-	(*SummarizeOperator_Parameters)(nil),         // 19: types.v1.SummarizeOperator.Parameters
-	(*SummarizeOperator_Parameter)(nil),          // 20: types.v1.SummarizeOperator.Parameter
-	(*SummarizeOperator_ByGroupExpressions)(nil), // 21: types.v1.SummarizeOperator.ByGroupExpressions
-	(*SummarizeOperator_ByGroupExpression)(nil),  // 22: types.v1.SummarizeOperator.ByGroupExpression
-	(*ProjectOperator_Projection)(nil),           // 23: types.v1.ProjectOperator.Projection
-	(*SplitOperator_ByOperator)(nil),             // 24: types.v1.SplitOperator.ByOperator
-	(*Val)(nil),                                  // 25: types.v1.Val
+	(SearchOperator_Kind)(0),                     // 0: types.v1.SearchOperator.Kind
+	(SortOperator_Order)(0),                      // 1: types.v1.SortOperator.Order
+	(TakeOperator_Order)(0),                      // 2: types.v1.TakeOperator.Order
+	(UnaryOp_Operator)(0),                        // 3: types.v1.UnaryOp.Operator
+	(BinaryOp_Operator)(0),                       // 4: types.v1.BinaryOp.Operator
+	(*LogQuery)(nil),                             // 5: types.v1.LogQuery
+	(*Timerange)(nil),                            // 6: types.v1.Timerange
+	(*Context)(nil),                              // 7: types.v1.Context
+	(*Statements)(nil),                           // 8: types.v1.Statements
+	(*Statement)(nil),                            // 9: types.v1.Statement
+	(*FilterOperator)(nil),                       // 10: types.v1.FilterOperator
+	(*SummarizeOperator)(nil),                    // 11: types.v1.SummarizeOperator
+	(*ProjectOperator)(nil),                      // 12: types.v1.ProjectOperator
+	(*ProjectAwayOperator)(nil),                  // 13: types.v1.ProjectAwayOperator
+	(*ProjectKeepOperator)(nil),                  // 14: types.v1.ProjectKeepOperator
+	(*ExtendOperator)(nil),                       // 15: types.v1.ExtendOperator
+	(*CountOperator)(nil),                        // 16: types.v1.CountOperator
+	(*DistinctOperator)(nil),                     // 17: types.v1.DistinctOperator
+	(*SampleOperator)(nil),                       // 18: types.v1.SampleOperator
+	(*SearchOperator)(nil),                       // 19: types.v1.SearchOperator
+	(*SortOperator)(nil),                         // 20: types.v1.SortOperator
+	(*TakeOperator)(nil),                         // 21: types.v1.TakeOperator
+	(*TopOperator)(nil),                          // 22: types.v1.TopOperator
+	(*RenderStatement)(nil),                      // 23: types.v1.RenderStatement
+	(*SplitOperator)(nil),                        // 24: types.v1.SplitOperator
+	(*Expr)(nil),                                 // 25: types.v1.Expr
+	(*UnaryOp)(nil),                              // 26: types.v1.UnaryOp
+	(*BinaryOp)(nil),                             // 27: types.v1.BinaryOp
+	(*FuncCall)(nil),                             // 28: types.v1.FuncCall
+	(*Identifier)(nil),                           // 29: types.v1.Identifier
+	(*Selector)(nil),                             // 30: types.v1.Selector
+	(*Indexor)(nil),                              // 31: types.v1.Indexor
+	(*SummarizeOperator_Parameters)(nil),         // 32: types.v1.SummarizeOperator.Parameters
+	(*SummarizeOperator_Parameter)(nil),          // 33: types.v1.SummarizeOperator.Parameter
+	(*SummarizeOperator_ByGroupExpressions)(nil), // 34: types.v1.SummarizeOperator.ByGroupExpressions
+	(*SummarizeOperator_ByGroupExpression)(nil),  // 35: types.v1.SummarizeOperator.ByGroupExpression
+	(*ProjectOperator_Projection)(nil),           // 36: types.v1.ProjectOperator.Projection
+	(*ProjectAwayOperator_Projection)(nil),       // 37: types.v1.ProjectAwayOperator.Projection
+	(*ProjectKeepOperator_Projection)(nil),       // 38: types.v1.ProjectKeepOperator.Projection
+	(*ExtendOperator_Projection)(nil),            // 39: types.v1.ExtendOperator.Projection
+	(*SortOperator_ByColumn)(nil),                // 40: types.v1.SortOperator.ByColumn
+	(*TakeOperator_ByColumn)(nil),                // 41: types.v1.TakeOperator.ByColumn
+	(*SplitOperator_ByOperator)(nil),             // 42: types.v1.SplitOperator.ByOperator
+	(*Val)(nil),                                  // 43: types.v1.Val
 }
 var file_types_v1_logquery_proto_depIdxs = []int32{
-	3,  // 0: types.v1.LogQuery.timerange:type_name -> types.v1.Timerange
-	4,  // 1: types.v1.LogQuery.context:type_name -> types.v1.Context
-	5,  // 2: types.v1.LogQuery.query:type_name -> types.v1.Statements
-	12, // 3: types.v1.Timerange.from:type_name -> types.v1.Expr
-	12, // 4: types.v1.Timerange.to:type_name -> types.v1.Expr
-	12, // 5: types.v1.Context.machine_id:type_name -> types.v1.Expr
-	12, // 6: types.v1.Context.session_id:type_name -> types.v1.Expr
-	6,  // 7: types.v1.Statements.statements:type_name -> types.v1.Statement
-	10, // 8: types.v1.Statements.render:type_name -> types.v1.RenderStatement
-	7,  // 9: types.v1.Statement.filter:type_name -> types.v1.FilterOperator
-	8,  // 10: types.v1.Statement.summarize:type_name -> types.v1.SummarizeOperator
-	9,  // 11: types.v1.Statement.project:type_name -> types.v1.ProjectOperator
-	12, // 12: types.v1.FilterOperator.expr:type_name -> types.v1.Expr
-	19, // 13: types.v1.SummarizeOperator.parameters:type_name -> types.v1.SummarizeOperator.Parameters
-	21, // 14: types.v1.SummarizeOperator.by_group_expressions:type_name -> types.v1.SummarizeOperator.ByGroupExpressions
-	23, // 15: types.v1.ProjectOperator.projections:type_name -> types.v1.ProjectOperator.Projection
-	11, // 16: types.v1.RenderStatement.split:type_name -> types.v1.SplitOperator
-	24, // 17: types.v1.SplitOperator.by:type_name -> types.v1.SplitOperator.ByOperator
-	25, // 18: types.v1.Expr.literal:type_name -> types.v1.Val
-	13, // 19: types.v1.Expr.unary:type_name -> types.v1.UnaryOp
-	14, // 20: types.v1.Expr.binary:type_name -> types.v1.BinaryOp
-	15, // 21: types.v1.Expr.func_call:type_name -> types.v1.FuncCall
-	16, // 22: types.v1.Expr.identifier:type_name -> types.v1.Identifier
-	17, // 23: types.v1.Expr.selector:type_name -> types.v1.Selector
-	18, // 24: types.v1.Expr.indexor:type_name -> types.v1.Indexor
-	0,  // 25: types.v1.UnaryOp.op:type_name -> types.v1.UnaryOp.Operator
-	12, // 26: types.v1.UnaryOp.arg:type_name -> types.v1.Expr
-	12, // 27: types.v1.BinaryOp.lhs:type_name -> types.v1.Expr
-	1,  // 28: types.v1.BinaryOp.op:type_name -> types.v1.BinaryOp.Operator
-	12, // 29: types.v1.BinaryOp.rhs:type_name -> types.v1.Expr
-	12, // 30: types.v1.FuncCall.args:type_name -> types.v1.Expr
-	12, // 31: types.v1.Selector.x:type_name -> types.v1.Expr
-	16, // 32: types.v1.Selector.identifier:type_name -> types.v1.Identifier
-	12, // 33: types.v1.Indexor.x:type_name -> types.v1.Expr
-	12, // 34: types.v1.Indexor.index:type_name -> types.v1.Expr
-	20, // 35: types.v1.SummarizeOperator.Parameters.parameters:type_name -> types.v1.SummarizeOperator.Parameter
-	16, // 36: types.v1.SummarizeOperator.Parameter.column:type_name -> types.v1.Identifier
-	15, // 37: types.v1.SummarizeOperator.Parameter.aggregate_function:type_name -> types.v1.FuncCall
-	22, // 38: types.v1.SummarizeOperator.ByGroupExpressions.groups:type_name -> types.v1.SummarizeOperator.ByGroupExpression
-	16, // 39: types.v1.SummarizeOperator.ByGroupExpression.column:type_name -> types.v1.Identifier
-	12, // 40: types.v1.SummarizeOperator.ByGroupExpression.scalar:type_name -> types.v1.Expr
-	16, // 41: types.v1.ProjectOperator.Projection.column:type_name -> types.v1.Identifier
-	12, // 42: types.v1.ProjectOperator.Projection.value:type_name -> types.v1.Expr
-	12, // 43: types.v1.SplitOperator.ByOperator.scalars:type_name -> types.v1.Expr
-	44, // [44:44] is the sub-list for method output_type
-	44, // [44:44] is the sub-list for method input_type
-	44, // [44:44] is the sub-list for extension type_name
-	44, // [44:44] is the sub-list for extension extendee
-	0,  // [0:44] is the sub-list for field type_name
+	6,  // 0: types.v1.LogQuery.timerange:type_name -> types.v1.Timerange
+	7,  // 1: types.v1.LogQuery.context:type_name -> types.v1.Context
+	8,  // 2: types.v1.LogQuery.query:type_name -> types.v1.Statements
+	25, // 3: types.v1.Timerange.from:type_name -> types.v1.Expr
+	25, // 4: types.v1.Timerange.to:type_name -> types.v1.Expr
+	25, // 5: types.v1.Context.machine_id:type_name -> types.v1.Expr
+	25, // 6: types.v1.Context.session_id:type_name -> types.v1.Expr
+	9,  // 7: types.v1.Statements.statements:type_name -> types.v1.Statement
+	23, // 8: types.v1.Statements.render:type_name -> types.v1.RenderStatement
+	10, // 9: types.v1.Statement.filter:type_name -> types.v1.FilterOperator
+	11, // 10: types.v1.Statement.summarize:type_name -> types.v1.SummarizeOperator
+	12, // 11: types.v1.Statement.project:type_name -> types.v1.ProjectOperator
+	13, // 12: types.v1.Statement.project_away:type_name -> types.v1.ProjectAwayOperator
+	14, // 13: types.v1.Statement.project_keep:type_name -> types.v1.ProjectKeepOperator
+	15, // 14: types.v1.Statement.extend:type_name -> types.v1.ExtendOperator
+	16, // 15: types.v1.Statement.count:type_name -> types.v1.CountOperator
+	17, // 16: types.v1.Statement.distinct:type_name -> types.v1.DistinctOperator
+	18, // 17: types.v1.Statement.sample:type_name -> types.v1.SampleOperator
+	19, // 18: types.v1.Statement.search:type_name -> types.v1.SearchOperator
+	20, // 19: types.v1.Statement.sort:type_name -> types.v1.SortOperator
+	21, // 20: types.v1.Statement.take:type_name -> types.v1.TakeOperator
+	22, // 21: types.v1.Statement.top:type_name -> types.v1.TopOperator
+	25, // 22: types.v1.FilterOperator.expr:type_name -> types.v1.Expr
+	32, // 23: types.v1.SummarizeOperator.parameters:type_name -> types.v1.SummarizeOperator.Parameters
+	34, // 24: types.v1.SummarizeOperator.by_group_expressions:type_name -> types.v1.SummarizeOperator.ByGroupExpressions
+	36, // 25: types.v1.ProjectOperator.projections:type_name -> types.v1.ProjectOperator.Projection
+	37, // 26: types.v1.ProjectAwayOperator.projections:type_name -> types.v1.ProjectAwayOperator.Projection
+	38, // 27: types.v1.ProjectKeepOperator.projections:type_name -> types.v1.ProjectKeepOperator.Projection
+	39, // 28: types.v1.ExtendOperator.projections:type_name -> types.v1.ExtendOperator.Projection
+	0,  // 29: types.v1.SearchOperator.kind:type_name -> types.v1.SearchOperator.Kind
+	40, // 30: types.v1.SortOperator.by_columns:type_name -> types.v1.SortOperator.ByColumn
+	41, // 31: types.v1.TakeOperator.by_column:type_name -> types.v1.TakeOperator.ByColumn
+	24, // 32: types.v1.RenderStatement.split:type_name -> types.v1.SplitOperator
+	42, // 33: types.v1.SplitOperator.by:type_name -> types.v1.SplitOperator.ByOperator
+	43, // 34: types.v1.Expr.literal:type_name -> types.v1.Val
+	26, // 35: types.v1.Expr.unary:type_name -> types.v1.UnaryOp
+	27, // 36: types.v1.Expr.binary:type_name -> types.v1.BinaryOp
+	28, // 37: types.v1.Expr.func_call:type_name -> types.v1.FuncCall
+	29, // 38: types.v1.Expr.identifier:type_name -> types.v1.Identifier
+	30, // 39: types.v1.Expr.selector:type_name -> types.v1.Selector
+	31, // 40: types.v1.Expr.indexor:type_name -> types.v1.Indexor
+	3,  // 41: types.v1.UnaryOp.op:type_name -> types.v1.UnaryOp.Operator
+	25, // 42: types.v1.UnaryOp.arg:type_name -> types.v1.Expr
+	25, // 43: types.v1.BinaryOp.lhs:type_name -> types.v1.Expr
+	4,  // 44: types.v1.BinaryOp.op:type_name -> types.v1.BinaryOp.Operator
+	25, // 45: types.v1.BinaryOp.rhs:type_name -> types.v1.Expr
+	25, // 46: types.v1.FuncCall.args:type_name -> types.v1.Expr
+	25, // 47: types.v1.Selector.x:type_name -> types.v1.Expr
+	29, // 48: types.v1.Selector.identifier:type_name -> types.v1.Identifier
+	25, // 49: types.v1.Indexor.x:type_name -> types.v1.Expr
+	25, // 50: types.v1.Indexor.index:type_name -> types.v1.Expr
+	33, // 51: types.v1.SummarizeOperator.Parameters.parameters:type_name -> types.v1.SummarizeOperator.Parameter
+	29, // 52: types.v1.SummarizeOperator.Parameter.column:type_name -> types.v1.Identifier
+	28, // 53: types.v1.SummarizeOperator.Parameter.aggregate_function:type_name -> types.v1.FuncCall
+	35, // 54: types.v1.SummarizeOperator.ByGroupExpressions.groups:type_name -> types.v1.SummarizeOperator.ByGroupExpression
+	29, // 55: types.v1.SummarizeOperator.ByGroupExpression.column:type_name -> types.v1.Identifier
+	25, // 56: types.v1.SummarizeOperator.ByGroupExpression.scalar:type_name -> types.v1.Expr
+	29, // 57: types.v1.ProjectOperator.Projection.column:type_name -> types.v1.Identifier
+	25, // 58: types.v1.ProjectOperator.Projection.value:type_name -> types.v1.Expr
+	29, // 59: types.v1.ProjectAwayOperator.Projection.column:type_name -> types.v1.Identifier
+	29, // 60: types.v1.ProjectKeepOperator.Projection.column:type_name -> types.v1.Identifier
+	29, // 61: types.v1.ExtendOperator.Projection.column:type_name -> types.v1.Identifier
+	25, // 62: types.v1.ExtendOperator.Projection.value:type_name -> types.v1.Expr
+	29, // 63: types.v1.SortOperator.ByColumn.column:type_name -> types.v1.Identifier
+	1,  // 64: types.v1.SortOperator.ByColumn.order:type_name -> types.v1.SortOperator.Order
+	29, // 65: types.v1.TakeOperator.ByColumn.column:type_name -> types.v1.Identifier
+	2,  // 66: types.v1.TakeOperator.ByColumn.order:type_name -> types.v1.TakeOperator.Order
+	25, // 67: types.v1.SplitOperator.ByOperator.scalars:type_name -> types.v1.Expr
+	68, // [68:68] is the sub-list for method output_type
+	68, // [68:68] is the sub-list for method input_type
+	68, // [68:68] is the sub-list for extension type_name
+	68, // [68:68] is the sub-list for extension extendee
+	0,  // [0:68] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_logquery_proto_init() }
@@ -1793,12 +2936,24 @@ func file_types_v1_logquery_proto_init() {
 		(*Statement_Filter)(nil),
 		(*Statement_Summarize)(nil),
 		(*Statement_Project)(nil),
+		(*Statement_ProjectAway)(nil),
+		(*Statement_ProjectKeep)(nil),
+		(*Statement_Extend)(nil),
+		(*Statement_Count)(nil),
+		(*Statement_Distinct)(nil),
+		(*Statement_Sample)(nil),
+		(*Statement_Search)(nil),
+		(*Statement_Sort)(nil),
+		(*Statement_Take)(nil),
+		(*Statement_Top)(nil),
 	}
 	file_types_v1_logquery_proto_msgTypes[6].OneofWrappers = []any{}
-	file_types_v1_logquery_proto_msgTypes[8].OneofWrappers = []any{
+	file_types_v1_logquery_proto_msgTypes[14].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[16].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[18].OneofWrappers = []any{
 		(*RenderStatement_Split)(nil),
 	}
-	file_types_v1_logquery_proto_msgTypes[10].OneofWrappers = []any{
+	file_types_v1_logquery_proto_msgTypes[20].OneofWrappers = []any{
 		(*Expr_Literal)(nil),
 		(*Expr_Unary)(nil),
 		(*Expr_Binary)(nil),
@@ -1807,16 +2962,19 @@ func file_types_v1_logquery_proto_init() {
 		(*Expr_Selector)(nil),
 		(*Expr_Indexor)(nil),
 	}
-	file_types_v1_logquery_proto_msgTypes[18].OneofWrappers = []any{}
-	file_types_v1_logquery_proto_msgTypes[20].OneofWrappers = []any{}
-	file_types_v1_logquery_proto_msgTypes[21].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[28].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[30].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[31].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[34].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[35].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[36].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_logquery_proto_rawDesc), len(file_types_v1_logquery_proto_rawDesc)),
-			NumEnums:      2,
-			NumMessages:   23,
+			NumEnums:      5,
+			NumMessages:   38,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

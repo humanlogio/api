@@ -35,7 +35,17 @@ message Statement {
   oneof stmt {
     FilterOperator filter = 1;
     SummarizeOperator summarize = 2;
-    ProjectOperator project = 3;
+    ProjectOperator project = 300;
+    ProjectAwayOperator project_away = 301;
+    ProjectKeepOperator project_keep = 302;
+    ExtendOperator extend = 4;
+    CountOperator count = 5;
+    DistinctOperator distinct = 6;
+    SampleOperator sample = 7;
+    SearchOperator search = 8;
+    SortOperator sort = 9;
+    TakeOperator take = 10;
+    TopOperator top = 11;
   }
 }
 
@@ -68,6 +78,75 @@ message ProjectOperator {
     optional Expr value = 2;
   }
   repeated Projection projections = 1;
+}
+
+message ProjectAwayOperator {
+  message Projection {
+    Identifier column = 1;
+  }
+  repeated Projection projections = 1;
+}
+
+message ProjectKeepOperator {
+  message Projection {
+    Identifier column = 1;
+  }
+  repeated Projection projections = 1;
+}
+
+message ExtendOperator {
+  message Projection {
+    Identifier column = 1;
+    optional Expr value = 2;
+  }
+  repeated Projection projections = 1;
+}
+
+message CountOperator {}
+
+message DistinctOperator {}
+
+message SampleOperator {
+  int64 count = 1;
+}
+
+message SearchOperator {
+  enum Kind {
+    Default = 0;
+    CaseInsensitive = 1;
+    CaseSensitive = 2;
+  }
+  string predicate = 1;
+  optional Kind kind = 2;
+}
+
+message SortOperator {
+  enum Order {
+    Desc = 0;
+    Asc = 1;
+  }
+  message ByColumn {
+    Identifier column = 1;
+    optional Order order = 2;
+  }
+  repeated ByColumn by_columns = 1;
+}
+
+message TakeOperator {
+  enum Order {
+    Desc = 0;
+    Asc = 1;
+  }
+  message ByColumn {
+    Identifier column = 1;
+    optional Order order = 2;
+  }
+  int64 count = 1;
+  optional ByColumn by_column = 2;
+}
+
+message TopOperator {
+  int64 count = 1;
 }
 
 message RenderStatement {
