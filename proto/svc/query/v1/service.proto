@@ -70,6 +70,7 @@ message ParseRequest {
 
 message ParseResponse {
   types.v1.LogQuery query = 1;
+  types.v1.DataStreamType data_type = 2;
 }
 
 message QueryRequest {

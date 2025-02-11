@@ -7,6 +7,7 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { LogQuery } from "../../../types/v1/logquery_pb";
 import { LogEventGroup } from "../../../types/v1/logevent_pb";
+import { DataStreamType } from "../../../types/v1/types_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { Data } from "../../../types/v1/query_pb";
 import { Symbol } from "../../../types/v1/symbol_pb";
@@ -333,6 +334,11 @@ export class ParseResponse extends Message<ParseResponse> {
    */
   query?: LogQuery;
 
+  /**
+   * @generated from field: types.v1.DataStreamType data_type = 2;
+   */
+  dataType?: DataStreamType;
+
   constructor(data?: PartialMessage<ParseResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -342,6 +348,7 @@ export class ParseResponse extends Message<ParseResponse> {
   static readonly typeName = "svc.query.v1.ParseResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "query", kind: "message", T: LogQuery },
+    { no: 2, name: "data_type", kind: "message", T: DataStreamType },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseResponse {
