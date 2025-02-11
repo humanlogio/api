@@ -265,6 +265,223 @@ func TestParse(t *testing.T) {
 			nil,
 		},
 		{
+			`project_away msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					projectAway(
+						projectionAway(
+							"msg",
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`project_keep msg, lvl`,
+			q(
+				nil,
+				nil,
+				stmts(
+					projectKeep(
+						projectionKeep("msg"),
+						projectionKeep("lvl"),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`count`,
+			q(
+				nil,
+				nil,
+				stmts(
+					countOp(),
+				),
+			),
+			nil,
+		},
+		{
+			`distinct`,
+			q(
+				nil,
+				nil,
+				stmts(
+					distinctOp(),
+				),
+			),
+			nil,
+		},
+		{
+			`sample 10`,
+			q(
+				nil,
+				nil,
+				stmts(
+					sampleOp(10),
+				),
+			),
+			nil,
+		},
+		{
+			`search msg:"hello world"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					searchOp_Field("msg", "hello world", nil),
+				),
+			),
+			nil,
+		},
+		{
+			`search msg=="hello world"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					searchOp_Exact("msg", "hello world", nil),
+				),
+			),
+			nil,
+		},
+		{
+			`search msg matches regex "hello world"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					searchOp_Regex("msg", "hello world", nil),
+				),
+			),
+			nil,
+		},
+		{
+			`search kind=default msg=="hello world"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					searchOp_Exact("msg", "hello world", searchKindDefault()),
+				),
+			),
+			nil,
+		},
+		{
+			`search kind=case_insensitive msg=="hello world"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					searchOp_Exact("msg", "hello world", searchKindCaseInsensitive()),
+				),
+			),
+			nil,
+		},
+		{
+			`search kind=case_sensitive msg=="hello world"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					searchOp_Exact("msg", "hello world", searchKindCaseSensitive()),
+				),
+			),
+			nil,
+		},
+		{
+			`sort by msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					sortOp(
+						sortBy("msg", nil),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`sort by msg, lvl asc`,
+			q(
+				nil,
+				nil,
+				stmts(
+					sortOp(
+						sortBy("msg", nil),
+						sortBy("lvl", sortAsc()),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`take 10`,
+			q(
+				nil,
+				nil,
+				stmts(
+					takeOp(10),
+				),
+			),
+			nil,
+		},
+		{
+			`top 10 by msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					topOp(10, id("msg"), nil),
+				),
+			),
+			nil,
+		},
+		{
+			`top 10 by msg asc`,
+			q(
+				nil,
+				nil,
+				stmts(
+					topOp(10, id("msg"), topAsc()),
+				),
+			),
+			nil,
+		},
+		{
+			`top 10 by msg desc`,
+			q(
+				nil,
+				nil,
+				stmts(
+					topOp(10, id("msg"), topDesc()),
+				),
+			),
+			nil,
+		},
+		{
+			`top 10 by kv["hello"]`,
+			q(
+				nil,
+				nil,
+				stmts(
+					topOp(
+						10,
+						idx(
+							id("kv"),
+							str("hello"),
+						),
+						nil,
+					),
+				),
+			),
+			nil,
+		},
+		{
 			`| render split by msg`,
 			q(
 				nil,
@@ -515,6 +732,163 @@ func projection(column string, value *v1.Expr) *v1.ProjectOperator_Projection {
 func project(pjs ...*v1.ProjectOperator_Projection) *v1.Statement {
 	return &v1.Statement{Stmt: &v1.Statement_Project{
 		Project: &v1.ProjectOperator{Projections: pjs},
+	}}
+}
+
+func projectionAway(column string) *v1.ProjectAwayOperator_Projection {
+	return &v1.ProjectAwayOperator_Projection{
+		Column: &v1.Identifier{Name: column},
+	}
+}
+
+func projectAway(pjs ...*v1.ProjectAwayOperator_Projection) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_ProjectAway{
+		ProjectAway: &v1.ProjectAwayOperator{Projections: pjs},
+	}}
+}
+
+func projectionKeep(column string) *v1.ProjectKeepOperator_Projection {
+	return &v1.ProjectKeepOperator_Projection{
+		Column: &v1.Identifier{Name: column},
+	}
+}
+
+func projectKeep(pjs ...*v1.ProjectKeepOperator_Projection) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_ProjectKeep{
+		ProjectKeep: &v1.ProjectKeepOperator{Projections: pjs},
+	}}
+}
+
+func countOp() *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Count{
+		Count: &v1.CountOperator{},
+	}}
+}
+
+func distinctOp() *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Distinct{
+		Distinct: &v1.DistinctOperator{},
+	}}
+}
+
+func sampleOp(v int64) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Sample{
+		Sample: &v1.SampleOperator{Count: v},
+	}}
+}
+
+func searchKindDefault() *typesv1.SearchOperator_Kind {
+	v := typesv1.SearchOperator_Default
+	return &v
+}
+
+func searchKindCaseInsensitive() *typesv1.SearchOperator_Kind {
+	v := typesv1.SearchOperator_CaseInsensitive
+	return &v
+}
+
+func searchKindCaseSensitive() *typesv1.SearchOperator_Kind {
+	v := typesv1.SearchOperator_CaseSensitive
+	return &v
+}
+
+func searchOp_Literal(literal string, kind *typesv1.SearchOperator_Kind) *typesv1.Statement {
+	return &v1.Statement{Stmt: &typesv1.Statement_Search{
+		Search: &v1.SearchOperator{
+			Predicate: &v1.SearchOperator_Literal_{Literal: literal},
+			Kind:      kind,
+		},
+	}}
+}
+
+func searchOp_Field(column, literal string, kind *typesv1.SearchOperator_Kind) *typesv1.Statement {
+	return &v1.Statement{Stmt: &typesv1.Statement_Search{
+		Search: &v1.SearchOperator{
+			Predicate: &v1.SearchOperator_Field{Field: &v1.SearchOperator_FieldSearch{
+				Column:  column,
+				Literal: literal,
+			}},
+			Kind: kind,
+		},
+	}}
+}
+
+func searchOp_Exact(column, literal string, kind *typesv1.SearchOperator_Kind) *typesv1.Statement {
+	return &v1.Statement{Stmt: &typesv1.Statement_Search{
+		Search: &v1.SearchOperator{
+			Predicate: &v1.SearchOperator_Exact{Exact: &v1.SearchOperator_ExactSearch{
+				Column:  column,
+				Literal: literal,
+			}},
+			Kind: kind,
+		},
+	}}
+}
+
+func searchOp_Regex(column, regex string, kind *typesv1.SearchOperator_Kind) *typesv1.Statement {
+	return &v1.Statement{Stmt: &typesv1.Statement_Search{
+		Search: &v1.SearchOperator{
+			Predicate: &v1.SearchOperator_Regex{Regex: &v1.SearchOperator_RegexSearch{
+				Column: column,
+				Regex:  regex,
+			}},
+			Kind: kind,
+		},
+	}}
+}
+
+func sortAsc() *typesv1.SortOperator_Order {
+	v := typesv1.SortOperator_Asc
+	return &v
+}
+
+func sortDesc() *typesv1.SortOperator_Order {
+	v := typesv1.SortOperator_Desc
+	return &v
+}
+
+func sortBy(colName string, order *v1.SortOperator_Order) *v1.SortOperator_ByColumn {
+	return &v1.SortOperator_ByColumn{
+		Column: &v1.Identifier{Name: colName},
+		Order:  order,
+	}
+}
+
+func sortOp(col *v1.SortOperator_ByColumn, cols ...*v1.SortOperator_ByColumn) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Sort{
+		Sort: &v1.SortOperator{
+			ByColumns: append([]*v1.SortOperator_ByColumn{
+				col,
+			}, cols...),
+		},
+	}}
+}
+
+func takeOp(v int64) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Take{
+		Take: &v1.TakeOperator{Count: v},
+	}}
+}
+
+func topAsc() *typesv1.TopOperator_Order {
+	v := typesv1.TopOperator_Asc
+	return &v
+}
+
+func topDesc() *typesv1.TopOperator_Order {
+	v := typesv1.TopOperator_Desc
+	return &v
+}
+
+func topOp(v int64, by *typesv1.Expr, order *typesv1.TopOperator_Order) *v1.Statement {
+	return &v1.Statement{Stmt: &typesv1.Statement_Top{
+		Top: &typesv1.TopOperator{
+			Count: v,
+			ByColumn: &v1.TopOperator_ByColumn{
+				Scalar: by,
+				Order:  order,
+			},
+		},
 	}}
 }
 

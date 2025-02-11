@@ -829,7 +829,7 @@ export class ExtendOperator_Projection extends Message<ExtendOperator_Projection
   column?: Identifier;
 
   /**
-   * @generated from field: optional types.v1.Expr value = 2;
+   * @generated from field: types.v1.Expr value = 2;
    */
   value?: Expr;
 
@@ -842,7 +842,7 @@ export class ExtendOperator_Projection extends Message<ExtendOperator_Projection
   static readonly typeName = "types.v1.ExtendOperator.Projection";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "column", kind: "message", T: Identifier },
-    { no: 2, name: "value", kind: "message", T: Expr, opt: true },
+    { no: 2, name: "value", kind: "message", T: Expr },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ExtendOperator_Projection {
@@ -966,9 +966,33 @@ export class SampleOperator extends Message<SampleOperator> {
  */
 export class SearchOperator extends Message<SearchOperator> {
   /**
-   * @generated from field: string predicate = 1;
+   * @generated from oneof types.v1.SearchOperator.predicate
    */
-  predicate = "";
+  predicate: {
+    /**
+     * @generated from field: string literal = 101;
+     */
+    value: string;
+    case: "literal";
+  } | {
+    /**
+     * @generated from field: types.v1.SearchOperator.FieldSearch field = 102;
+     */
+    value: SearchOperator_FieldSearch;
+    case: "field";
+  } | {
+    /**
+     * @generated from field: types.v1.SearchOperator.ExactSearch exact = 103;
+     */
+    value: SearchOperator_ExactSearch;
+    case: "exact";
+  } | {
+    /**
+     * @generated from field: types.v1.SearchOperator.RegexSearch regex = 104;
+     */
+    value: SearchOperator_RegexSearch;
+    case: "regex";
+  } | { case: undefined; value?: undefined } = { case: undefined };
 
   /**
    * @generated from field: optional types.v1.SearchOperator.Kind kind = 2;
@@ -983,7 +1007,10 @@ export class SearchOperator extends Message<SearchOperator> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.SearchOperator";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "predicate", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 101, name: "literal", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "predicate" },
+    { no: 102, name: "field", kind: "message", T: SearchOperator_FieldSearch, oneof: "predicate" },
+    { no: 103, name: "exact", kind: "message", T: SearchOperator_ExactSearch, oneof: "predicate" },
+    { no: 104, name: "regex", kind: "message", T: SearchOperator_RegexSearch, oneof: "predicate" },
     { no: 2, name: "kind", kind: "enum", T: proto3.getEnumType(SearchOperator_Kind), opt: true },
   ]);
 
@@ -1029,6 +1056,172 @@ proto3.util.setEnumType(SearchOperator_Kind, "types.v1.SearchOperator.Kind", [
   { no: 1, name: "CaseInsensitive" },
   { no: 2, name: "CaseSensitive" },
 ]);
+
+/**
+ * @generated from message types.v1.SearchOperator.Literal
+ */
+export class SearchOperator_Literal extends Message<SearchOperator_Literal> {
+  /**
+   * @generated from field: string literal = 1;
+   */
+  literal = "";
+
+  constructor(data?: PartialMessage<SearchOperator_Literal>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SearchOperator.Literal";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "literal", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchOperator_Literal {
+    return new SearchOperator_Literal().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SearchOperator_Literal {
+    return new SearchOperator_Literal().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SearchOperator_Literal {
+    return new SearchOperator_Literal().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SearchOperator_Literal | PlainMessage<SearchOperator_Literal> | undefined, b: SearchOperator_Literal | PlainMessage<SearchOperator_Literal> | undefined): boolean {
+    return proto3.util.equals(SearchOperator_Literal, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SearchOperator.FieldSearch
+ */
+export class SearchOperator_FieldSearch extends Message<SearchOperator_FieldSearch> {
+  /**
+   * @generated from field: string column = 1;
+   */
+  column = "";
+
+  /**
+   * @generated from field: string literal = 2;
+   */
+  literal = "";
+
+  constructor(data?: PartialMessage<SearchOperator_FieldSearch>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SearchOperator.FieldSearch";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "literal", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchOperator_FieldSearch {
+    return new SearchOperator_FieldSearch().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SearchOperator_FieldSearch {
+    return new SearchOperator_FieldSearch().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SearchOperator_FieldSearch {
+    return new SearchOperator_FieldSearch().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SearchOperator_FieldSearch | PlainMessage<SearchOperator_FieldSearch> | undefined, b: SearchOperator_FieldSearch | PlainMessage<SearchOperator_FieldSearch> | undefined): boolean {
+    return proto3.util.equals(SearchOperator_FieldSearch, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SearchOperator.ExactSearch
+ */
+export class SearchOperator_ExactSearch extends Message<SearchOperator_ExactSearch> {
+  /**
+   * @generated from field: string column = 1;
+   */
+  column = "";
+
+  /**
+   * @generated from field: string literal = 2;
+   */
+  literal = "";
+
+  constructor(data?: PartialMessage<SearchOperator_ExactSearch>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SearchOperator.ExactSearch";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "literal", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchOperator_ExactSearch {
+    return new SearchOperator_ExactSearch().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SearchOperator_ExactSearch {
+    return new SearchOperator_ExactSearch().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SearchOperator_ExactSearch {
+    return new SearchOperator_ExactSearch().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SearchOperator_ExactSearch | PlainMessage<SearchOperator_ExactSearch> | undefined, b: SearchOperator_ExactSearch | PlainMessage<SearchOperator_ExactSearch> | undefined): boolean {
+    return proto3.util.equals(SearchOperator_ExactSearch, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SearchOperator.RegexSearch
+ */
+export class SearchOperator_RegexSearch extends Message<SearchOperator_RegexSearch> {
+  /**
+   * @generated from field: string column = 1;
+   */
+  column = "";
+
+  /**
+   * @generated from field: string regex = 2;
+   */
+  regex = "";
+
+  constructor(data?: PartialMessage<SearchOperator_RegexSearch>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SearchOperator.RegexSearch";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "regex", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SearchOperator_RegexSearch {
+    return new SearchOperator_RegexSearch().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SearchOperator_RegexSearch {
+    return new SearchOperator_RegexSearch().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SearchOperator_RegexSearch {
+    return new SearchOperator_RegexSearch().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SearchOperator_RegexSearch | PlainMessage<SearchOperator_RegexSearch> | undefined, b: SearchOperator_RegexSearch | PlainMessage<SearchOperator_RegexSearch> | undefined): boolean {
+    return proto3.util.equals(SearchOperator_RegexSearch, a, b);
+  }
+}
 
 /**
  * @generated from message types.v1.SortOperator
@@ -1139,11 +1332,6 @@ export class TakeOperator extends Message<TakeOperator> {
    */
   count = protoInt64.zero;
 
-  /**
-   * @generated from field: optional types.v1.TakeOperator.ByColumn by_column = 2;
-   */
-  byColumn?: TakeOperator_ByColumn;
-
   constructor(data?: PartialMessage<TakeOperator>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1153,7 +1341,6 @@ export class TakeOperator extends Message<TakeOperator> {
   static readonly typeName = "types.v1.TakeOperator";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "by_column", kind: "message", T: TakeOperator_ByColumn, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakeOperator {
@@ -1174,69 +1361,6 @@ export class TakeOperator extends Message<TakeOperator> {
 }
 
 /**
- * @generated from enum types.v1.TakeOperator.Order
- */
-export enum TakeOperator_Order {
-  /**
-   * @generated from enum value: Desc = 0;
-   */
-  Desc = 0,
-
-  /**
-   * @generated from enum value: Asc = 1;
-   */
-  Asc = 1,
-}
-// Retrieve enum metadata with: proto3.getEnumType(TakeOperator_Order)
-proto3.util.setEnumType(TakeOperator_Order, "types.v1.TakeOperator.Order", [
-  { no: 0, name: "Desc" },
-  { no: 1, name: "Asc" },
-]);
-
-/**
- * @generated from message types.v1.TakeOperator.ByColumn
- */
-export class TakeOperator_ByColumn extends Message<TakeOperator_ByColumn> {
-  /**
-   * @generated from field: types.v1.Identifier column = 1;
-   */
-  column?: Identifier;
-
-  /**
-   * @generated from field: optional types.v1.TakeOperator.Order order = 2;
-   */
-  order?: TakeOperator_Order;
-
-  constructor(data?: PartialMessage<TakeOperator_ByColumn>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.TakeOperator.ByColumn";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "column", kind: "message", T: Identifier },
-    { no: 2, name: "order", kind: "enum", T: proto3.getEnumType(TakeOperator_Order), opt: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TakeOperator_ByColumn {
-    return new TakeOperator_ByColumn().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TakeOperator_ByColumn {
-    return new TakeOperator_ByColumn().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TakeOperator_ByColumn {
-    return new TakeOperator_ByColumn().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TakeOperator_ByColumn | PlainMessage<TakeOperator_ByColumn> | undefined, b: TakeOperator_ByColumn | PlainMessage<TakeOperator_ByColumn> | undefined): boolean {
-    return proto3.util.equals(TakeOperator_ByColumn, a, b);
-  }
-}
-
-/**
  * @generated from message types.v1.TopOperator
  */
 export class TopOperator extends Message<TopOperator> {
@@ -1244,6 +1368,11 @@ export class TopOperator extends Message<TopOperator> {
    * @generated from field: int64 count = 1;
    */
   count = protoInt64.zero;
+
+  /**
+   * @generated from field: optional types.v1.TopOperator.ByColumn by_column = 2;
+   */
+  byColumn?: TopOperator_ByColumn;
 
   constructor(data?: PartialMessage<TopOperator>) {
     super();
@@ -1254,6 +1383,7 @@ export class TopOperator extends Message<TopOperator> {
   static readonly typeName = "types.v1.TopOperator";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "count", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "by_column", kind: "message", T: TopOperator_ByColumn, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TopOperator {
@@ -1270,6 +1400,69 @@ export class TopOperator extends Message<TopOperator> {
 
   static equals(a: TopOperator | PlainMessage<TopOperator> | undefined, b: TopOperator | PlainMessage<TopOperator> | undefined): boolean {
     return proto3.util.equals(TopOperator, a, b);
+  }
+}
+
+/**
+ * @generated from enum types.v1.TopOperator.Order
+ */
+export enum TopOperator_Order {
+  /**
+   * @generated from enum value: Desc = 0;
+   */
+  Desc = 0,
+
+  /**
+   * @generated from enum value: Asc = 1;
+   */
+  Asc = 1,
+}
+// Retrieve enum metadata with: proto3.getEnumType(TopOperator_Order)
+proto3.util.setEnumType(TopOperator_Order, "types.v1.TopOperator.Order", [
+  { no: 0, name: "Desc" },
+  { no: 1, name: "Asc" },
+]);
+
+/**
+ * @generated from message types.v1.TopOperator.ByColumn
+ */
+export class TopOperator_ByColumn extends Message<TopOperator_ByColumn> {
+  /**
+   * @generated from field: types.v1.Expr scalar = 1;
+   */
+  scalar?: Expr;
+
+  /**
+   * @generated from field: optional types.v1.TopOperator.Order order = 2;
+   */
+  order?: TopOperator_Order;
+
+  constructor(data?: PartialMessage<TopOperator_ByColumn>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TopOperator.ByColumn";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "scalar", kind: "message", T: Expr },
+    { no: 2, name: "order", kind: "enum", T: proto3.getEnumType(TopOperator_Order), opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TopOperator_ByColumn {
+    return new TopOperator_ByColumn().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TopOperator_ByColumn {
+    return new TopOperator_ByColumn().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TopOperator_ByColumn {
+    return new TopOperator_ByColumn().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TopOperator_ByColumn | PlainMessage<TopOperator_ByColumn> | undefined, b: TopOperator_ByColumn | PlainMessage<TopOperator_ByColumn> | undefined): boolean {
+    return proto3.util.equals(TopOperator_ByColumn, a, b);
   }
 }
 

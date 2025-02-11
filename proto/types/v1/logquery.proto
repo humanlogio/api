@@ -97,7 +97,7 @@ message ProjectKeepOperator {
 message ExtendOperator {
   message Projection {
     Identifier column = 1;
-    optional Expr value = 2;
+    Expr value = 2;
   }
   repeated Projection projections = 1;
 }
@@ -116,7 +116,27 @@ message SearchOperator {
     CaseInsensitive = 1;
     CaseSensitive = 2;
   }
-  string predicate = 1;
+  message Literal {
+    string literal = 1;
+  }
+  message FieldSearch {
+    string column = 1;
+    string literal = 2;
+  }
+  message ExactSearch {
+    string column = 1;
+    string literal = 2;
+  }
+  message RegexSearch {
+    string column = 1;
+    string regex = 2;
+  }
+  oneof predicate {
+    string literal = 101;
+    FieldSearch field = 102;
+    ExactSearch exact = 103;
+    RegexSearch regex = 104;
+  }
   optional Kind kind = 2;
 }
 
@@ -133,20 +153,20 @@ message SortOperator {
 }
 
 message TakeOperator {
+  int64 count = 1;
+}
+
+message TopOperator {
   enum Order {
     Desc = 0;
     Asc = 1;
   }
   message ByColumn {
-    Identifier column = 1;
+    Expr scalar = 1;
     optional Order order = 2;
   }
   int64 count = 1;
   optional ByColumn by_column = 2;
-}
-
-message TopOperator {
-  int64 count = 1;
 }
 
 message RenderStatement {

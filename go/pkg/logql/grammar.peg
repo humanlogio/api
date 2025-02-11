@@ -17,9 +17,22 @@ type logQL Peg {
   RenderStmt *typesv1.RenderStatement
 
   // scratch space for table operators
-  FilterOp    *typesv1.FilterOperator
-  SummarizeOp *typesv1.SummarizeOperator
-  ProjectOp   *typesv1.ProjectOperator
+  FilterOp      *typesv1.FilterOperator
+  SummarizeOp   *typesv1.SummarizeOperator
+  ProjectOp     *typesv1.ProjectOperator
+  ProjectAwayOp *typesv1.ProjectAwayOperator
+  ProjectKeepOp *typesv1.ProjectKeepOperator
+  ExtendOp      *typesv1.ExtendOperator
+  CountOp       *typesv1.CountOperator
+  DistinctOp    *typesv1.DistinctOperator
+  SampleOp      *typesv1.SampleOperator
+  SearchOp      *typesv1.SearchOperator
+  SortOp        *typesv1.SortOperator
+  TakeOp        *typesv1.TakeOperator
+  TopOp         *typesv1.TopOperator
+
+  // scratch space for search predicates
+  identifier string
 
   // scratch space for render statements
   SplitByOp *typesv1.SplitOperator
@@ -75,15 +88,25 @@ QuerySessionContext <- 'session' Space  ( CMP_EQ Space Expr       { p.SetContext
                                         )
 
 Statements <- Statement ( Space PIPE Space Statement )*
-Statement  <- ('filter' / 'where') MustSpace FilterOperator         { p.addFilterStatement(p.FilterOp) }
-              / 'summarize' MustSpace SummarizeOperator             { p.addSummarizeStatement(p.SummarizeOp) }
-              / 'project' MustSpace ProjectOperator                 { p.addProjectStatement(p.ProjectOp) }
+Statement  <- ('filter' / 'where') FilterOperator         { p.addFilterStatement(p.FilterOp) }
+              / 'summarize' SummarizeOperator             { p.addSummarizeStatement(p.SummarizeOp) }
+              / 'project' ProjectOperator                 { p.addProjectStatement(p.ProjectOp) }
+              / 'project_away' ProjectAwayOperator        { p.addProjectAwayStatement(p.ProjectAwayOp) }
+              / 'project_keep' ProjectKeepOperator        { p.addProjectKeepStatement(p.ProjectKeepOp) }
+              / 'extend' ExtendOperator                   { p.addExtendStatement(p.ExtendOp) }
+              / 'count' CountOperator                     { p.addCountStatement(p.CountOp) }
+              / 'distinct' DistinctOperator               { p.addDistinctStatement(p.DistinctOp) }
+              / 'sample' SampleOperator                   { p.addSampleStatement(p.SampleOp) }
+              / 'search' SearchOperator                   { p.addSearchStatement(p.SearchOp) }
+              / 'sort' SortOperator                       { p.addSortStatement(p.SortOp) }
+              / 'take' TakeOperator                       { p.addTakeStatement(p.TakeOp) }
+              / 'top' TopOperator                         { p.addTopStatement(p.TopOp) }
 
 RenderStatement <- Space PIPE Space 'render' MustSpace RenderSplitOperator { p.setRenderSplitByStatement(p.SplitByOp) }
 
-FilterOperator <- Expr { p.setFilterOp(p.popExpr()) }
+FilterOperator <- MustSpace Expr { p.setFilterOp(p.popExpr()) }
 
-SummarizeOperator      <- { p.startSummarizeOp() }
+SummarizeOperator      <- MustSpace { p.startSummarizeOp() }
                           SummarizeParameters ( SummarizeByGroupExpressions )?
 
 SummarizeParameters    <- SummarizeParameter ( Space ',' Space SummarizeParameter)* Space
@@ -96,10 +119,64 @@ SummarizeByGroupExpression <- Identifier { p.startSummarizeByUnnamedGroupExpress
                               (Space '=' Space Expr) { p.endSummarizeByUnnamedGroupExpression(p.popExpr()) }
                             / Expr { p.addSummarizeByUnnamedGroupExpression(p.popExpr()) }
 
-ProjectOperator   <-  { p.startProjectOp() }
+ProjectOperator   <-  MustSpace { p.startProjectOp() }
                       ProjectArg (Space ',' Space ProjectArg)* Space
 ProjectArg        <-  Identifier                                     { p.startProjectOpArg(text) }
                       (Space '=' Space Expr)?                        { p.setProjectOpArgValue(p.popExpr()) }
+
+ProjectAwayOperator   <-  MustSpace { p.startProjectAwayOp() }
+                          ProjectAwayArg (Space ',' Space ProjectAwayArg)* Space
+ProjectAwayArg        <-  Identifier { p.addProjectAwayOpArg(text) }
+
+ProjectKeepOperator   <-  MustSpace { p.startProjectKeepOp() }
+                          ProjectKeepArg (Space ',' Space ProjectKeepArg)* Space
+ProjectKeepArg        <-  Identifier { p.addProjectKeepOpArg(text) }
+
+ExtendOperator   <-  MustSpace { p.startExtendOp() }
+                     ExtendArg (Space ',' Space ExtendArg)* Space
+ExtendArg        <-  Identifier      { p.setExtendOpArgColumnName(text) }
+                     Space '=' Space
+                     Expr            { p.setExtendOpArgValue(p.popExpr()) }
+
+CountOperator   <- { p.startCountOp() }
+
+DistinctOperator   <- { p.startDistinctOp() }
+
+SampleOperator   <- MustSpace { p.startSampleOp() }
+                    I64 Space { p.setSampleOpCount(p.I64) }
+
+SearchOperator <- MustSpace { p.startSearchOp() }
+                  ('kind' Space '=' Space SearchOperatorCaseSensitivity MustSpace)?
+                  SearchOperatorPredicate
+SearchOperatorCaseSensitivity <- 'default'           { p.setSearchOpKindDefault() }
+                                / 'case_insensitive' { p.setSearchOpKindCaseInsensitive() }
+                                / 'case_sensitive'   { p.setSearchOpKindCaseSensitive() }
+SearchOperatorPredicate <- Literal            { p.setSearchOpPredicateLiteral(text) }
+                          / Identifier        { p.identifier = text }
+                          (
+                            ':' String        { p.setSearchOpPredicateFieldSearch(p.identifier, p.String) }
+                            / '==' String     { p.setSearchOpPredicateExactSearch(p.identifier, p.String) }
+                            / MustSpace 'matches regex' MustSpace String { p.setSearchOpPredicateRegexSearch(p.identifier, p.String) }
+                          )
+
+SortOperator   <- MustSpace { p.startSortOp() }
+                  'by' MustSpace SortOperatorArg ( Space ',' Space SortOperatorArg)* Space
+SortOperatorArg <- Identifier    { p.startSortOpArg(text) }
+                  (MustSpace (
+                    'asc'        { p.setSortOpArgOrderAsc() }
+                    / 'desc'     { p.setSortOpArgOrderDesc() }
+                  ))?
+
+TakeOperator   <- MustSpace { p.startTakeOp() }
+                  I64       { p.setTakeOpCount(p.I64) }
+
+TopOperator    <- MustSpace { p.startTopOp() }
+                  I64 MustSpace { p.setTopOpCount(p.I64) }
+                  'by' MustSpace Expr { p.setTopOpByColumnScalar(p.popExpr()) }
+                  (MustSpace (
+                    'asc'    { p.setTopOpByColumnOrderAsc() }
+                    / 'desc' { p.setTopOpByColumnOrderDesc() }
+                  ))?
 
 RenderSplitOperator      <- 'split' {p.startRenderSplitOp()} MustSpace RenderSplitByOperator
 RenderSplitByOperator    <- 'by' MustSpace RenderSplitByOperatorArg ( Space ',' Space RenderSplitByOperatorArg )* Space
@@ -138,7 +215,7 @@ Expr5 <-  L_PARENS Expr R_PARENS Space
         / NEG L_PARENS Expr R_PARENS Space  { arg := p.popExpr(); p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NEG, arg)) }
         / Literal Space                     { p.pushExpr(typesv1.ExprLiteral(p.Literal)); p.Literal = nil }
         / FuncCall Space                    { fn := p.popFunc(); p.pushExpr(typesv1.ExprFuncCall(fn.Name, fn.Args...)) }
-        / Identifier Space
+        / Identifier
 
 Literal
   <- String           { p.Literal = typesv1.ValStr(p.String) }

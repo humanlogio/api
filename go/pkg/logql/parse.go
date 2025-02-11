@@ -145,6 +145,66 @@ func (p *logQL) addProjectStatement(op *typesv1.ProjectOperator) {
 	})
 }
 
+func (p *logQL) addProjectAwayStatement(op *typesv1.ProjectAwayOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_ProjectAway{ProjectAway: op},
+	})
+}
+
+func (p *logQL) addProjectKeepStatement(op *typesv1.ProjectKeepOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_ProjectKeep{ProjectKeep: op},
+	})
+}
+
+func (p *logQL) addExtendStatement(op *typesv1.ExtendOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Extend{Extend: op},
+	})
+}
+
+func (p *logQL) addCountStatement(op *typesv1.CountOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Count{Count: op},
+	})
+}
+
+func (p *logQL) addDistinctStatement(op *typesv1.DistinctOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Distinct{Distinct: op},
+	})
+}
+
+func (p *logQL) addSampleStatement(op *typesv1.SampleOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Sample{Sample: op},
+	})
+}
+
+func (p *logQL) addSearchStatement(op *typesv1.SearchOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Search{Search: op},
+	})
+}
+
+func (p *logQL) addSortStatement(op *typesv1.SortOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Sort{Sort: op},
+	})
+}
+
+func (p *logQL) addTakeStatement(op *typesv1.TakeOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Take{Take: op},
+	})
+}
+
+func (p *logQL) addTopStatement(op *typesv1.TopOperator) {
+	p.Stmts = append(p.Stmts, &typesv1.Statement{
+		Stmt: &typesv1.Statement_Top{Top: op},
+	})
+}
+
 func (p *logQL) setRenderSplitByStatement(op *typesv1.SplitOperator) {
 	if p.LogQuery == nil {
 		p.LogQuery = new(typesv1.LogQuery)
@@ -220,6 +280,162 @@ func (p *logQL) startProjectOpArg(id string) {
 
 func (p *logQL) setProjectOpArgValue(e *typesv1.Expr) {
 	p.ProjectOp.Projections[len(p.ProjectOp.Projections)-1].Value = e
+}
+
+func (p *logQL) startProjectAwayOp() {
+	p.ProjectAwayOp = &typesv1.ProjectAwayOperator{}
+}
+
+func (p *logQL) addProjectAwayOpArg(id string) {
+	p.ProjectAwayOp.Projections = append(p.ProjectAwayOp.Projections, &typesv1.ProjectAwayOperator_Projection{
+		Column: &typesv1.Identifier{Name: id},
+	})
+}
+
+func (p *logQL) startProjectKeepOp() {
+	p.ProjectKeepOp = &typesv1.ProjectKeepOperator{}
+}
+
+func (p *logQL) addProjectKeepOpArg(id string) {
+	p.ProjectKeepOp.Projections = append(p.ProjectKeepOp.Projections, &typesv1.ProjectKeepOperator_Projection{
+		Column: &typesv1.Identifier{Name: id},
+	})
+}
+
+func (p *logQL) startExtendOp() {
+	p.ExtendOp = &typesv1.ExtendOperator{}
+}
+
+func (p *logQL) setExtendOpArgColumnName(name string) {
+	p.ExtendOp.Projections = append(p.ExtendOp.Projections, &typesv1.ExtendOperator_Projection{
+		Column: &typesv1.Identifier{Name: name},
+	})
+}
+
+func (p *logQL) setExtendOpArgValue(e *typesv1.Expr) {
+	p.ExtendOp.Projections[len(p.ExtendOp.Projections)-1].Value = e
+}
+
+func (p *logQL) startCountOp() {
+	p.CountOp = &typesv1.CountOperator{}
+}
+
+func (p *logQL) startDistinctOp() {
+	p.DistinctOp = &typesv1.DistinctOperator{}
+}
+
+func (p *logQL) startSampleOp() {
+	p.SampleOp = &typesv1.SampleOperator{}
+}
+
+func (p *logQL) setSampleOpCount(v int64) {
+	p.SampleOp.Count = v
+}
+
+func (p *logQL) startSearchOp() {
+	p.SearchOp = &typesv1.SearchOperator{}
+}
+
+func (p *logQL) setSearchOpKindDefault() {
+	v := typesv1.SearchOperator_Default
+	p.SearchOp.Kind = &v
+}
+
+func (p *logQL) setSearchOpKindCaseInsensitive() {
+	v := typesv1.SearchOperator_CaseInsensitive
+	p.SearchOp.Kind = &v
+}
+
+func (p *logQL) setSearchOpKindCaseSensitive() {
+	v := typesv1.SearchOperator_CaseSensitive
+	p.SearchOp.Kind = &v
+}
+
+func (p *logQL) setSearchOpPredicateLiteral(literal string) {
+	p.SearchOp.Predicate = &typesv1.SearchOperator_Literal_{
+		Literal: literal,
+	}
+}
+
+func (p *logQL) setSearchOpPredicateFieldSearch(column, literal string) {
+	p.SearchOp.Predicate = &typesv1.SearchOperator_Field{
+		Field: &typesv1.SearchOperator_FieldSearch{
+			Column:  column,
+			Literal: literal,
+		},
+	}
+}
+
+func (p *logQL) setSearchOpPredicateExactSearch(column, literal string) {
+	p.SearchOp.Predicate = &typesv1.SearchOperator_Exact{
+		Exact: &typesv1.SearchOperator_ExactSearch{
+			Column:  column,
+			Literal: literal,
+		},
+	}
+}
+
+func (p *logQL) setSearchOpPredicateRegexSearch(column, regex string) {
+	p.SearchOp.Predicate = &typesv1.SearchOperator_Regex{
+		Regex: &typesv1.SearchOperator_RegexSearch{
+			Column: column,
+			Regex:  regex,
+		},
+	}
+}
+
+func (p *logQL) startSortOp() {
+	p.SortOp = &typesv1.SortOperator{}
+}
+
+func (p *logQL) startSortOpArg(column string) {
+	p.SortOp.ByColumns = append(p.SortOp.ByColumns, &typesv1.SortOperator_ByColumn{
+		Column: &typesv1.Identifier{Name: column},
+	})
+}
+
+func (p *logQL) setSortOpArgOrderAsc() {
+	v := typesv1.SortOperator_Asc
+	top := len(p.SortOp.ByColumns) - 1
+	p.SortOp.ByColumns[top].Order = &v
+}
+
+func (p *logQL) setSortOpArgOrderDesc() {
+	v := typesv1.SortOperator_Desc
+	top := len(p.SortOp.ByColumns) - 1
+	p.SortOp.ByColumns[top].Order = &v
+}
+
+func (p *logQL) startTakeOp() {
+	p.TakeOp = &typesv1.TakeOperator{}
+}
+
+func (p *logQL) setTakeOpCount(v int64) {
+	p.TakeOp.Count = v
+}
+
+func (p *logQL) startTopOp() {
+	p.TopOp = &typesv1.TopOperator{}
+}
+
+func (p *logQL) setTopOpCount(v int64) {
+	p.TopOp.Count = v
+}
+
+func (p *logQL) setTopOpByColumnScalar(e *typesv1.Expr) {
+	p.TopOp.ByColumn = &typesv1.TopOperator_ByColumn{
+		Scalar: e,
+	}
+}
+
+func (p *logQL) setTopOpByColumnOrderAsc() {
+	v := typesv1.TopOperator_Asc
+	p.TopOp.ByColumn.Order = &v
+}
+
+func (p *logQL) setTopOpByColumnOrderDesc() {
+	v := typesv1.TopOperator_Desc
+	p.TopOp.ByColumn.Order = &v
 }
 
 func (p *logQL) startRenderSplitOp() {
