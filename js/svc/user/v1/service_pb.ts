@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { User } from "../../../types/v1/user_pb";
 import { Organization } from "../../../types/v1/organization_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
@@ -160,6 +160,86 @@ export class GetLogoutURLResponse extends Message<GetLogoutURLResponse> {
 
   static equals(a: GetLogoutURLResponse | PlainMessage<GetLogoutURLResponse> | undefined, b: GetLogoutURLResponse | PlainMessage<GetLogoutURLResponse> | undefined): boolean {
     return proto3.util.equals(GetLogoutURLResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.RefreshUserTokenRequest
+ */
+export class RefreshUserTokenRequest extends Message<RefreshUserTokenRequest> {
+  constructor(data?: PartialMessage<RefreshUserTokenRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.RefreshUserTokenRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RefreshUserTokenRequest {
+    return new RefreshUserTokenRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RefreshUserTokenRequest {
+    return new RefreshUserTokenRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RefreshUserTokenRequest {
+    return new RefreshUserTokenRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RefreshUserTokenRequest | PlainMessage<RefreshUserTokenRequest> | undefined, b: RefreshUserTokenRequest | PlainMessage<RefreshUserTokenRequest> | undefined): boolean {
+    return proto3.util.equals(RefreshUserTokenRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.RefreshUserTokenResponse
+ */
+export class RefreshUserTokenResponse extends Message<RefreshUserTokenResponse> {
+  /**
+   * @generated from field: string token = 1;
+   */
+  token = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp refresh_at = 2;
+   */
+  refreshAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp expires_at = 3;
+   */
+  expiresAt?: Timestamp;
+
+  constructor(data?: PartialMessage<RefreshUserTokenResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.RefreshUserTokenResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "token", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "refresh_at", kind: "message", T: Timestamp },
+    { no: 3, name: "expires_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RefreshUserTokenResponse {
+    return new RefreshUserTokenResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RefreshUserTokenResponse {
+    return new RefreshUserTokenResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RefreshUserTokenResponse {
+    return new RefreshUserTokenResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RefreshUserTokenResponse | PlainMessage<RefreshUserTokenResponse> | undefined, b: RefreshUserTokenResponse | PlainMessage<RefreshUserTokenResponse> | undefined): boolean {
+    return proto3.util.equals(RefreshUserTokenResponse, a, b);
   }
 }
 

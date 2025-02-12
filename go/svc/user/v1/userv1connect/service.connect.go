@@ -38,6 +38,9 @@ const (
 	// UserServiceGetLogoutURLProcedure is the fully-qualified name of the UserService's GetLogoutURL
 	// RPC.
 	UserServiceGetLogoutURLProcedure = "/svc.user.v1.UserService/GetLogoutURL"
+	// UserServiceRefreshUserTokenProcedure is the fully-qualified name of the UserService's
+	// RefreshUserToken RPC.
+	UserServiceRefreshUserTokenProcedure = "/svc.user.v1.UserService/RefreshUserToken"
 	// UserServiceCreateOrganizationProcedure is the fully-qualified name of the UserService's
 	// CreateOrganization RPC.
 	UserServiceCreateOrganizationProcedure = "/svc.user.v1.UserService/CreateOrganization"
@@ -50,6 +53,7 @@ const (
 type UserServiceClient interface {
 	Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error)
 	GetLogoutURL(context.Context, *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error)
+	RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error)
 	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error)
 }
@@ -77,6 +81,12 @@ func NewUserServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(userServiceMethods.ByName("GetLogoutURL")),
 			connect.WithClientOptions(opts...),
 		),
+		refreshUserToken: connect.NewClient[v1.RefreshUserTokenRequest, v1.RefreshUserTokenResponse](
+			httpClient,
+			baseURL+UserServiceRefreshUserTokenProcedure,
+			connect.WithSchema(userServiceMethods.ByName("RefreshUserToken")),
+			connect.WithClientOptions(opts...),
+		),
 		createOrganization: connect.NewClient[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse](
 			httpClient,
 			baseURL+UserServiceCreateOrganizationProcedure,
@@ -96,6 +106,7 @@ func NewUserServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 type userServiceClient struct {
 	whoami             *connect.Client[v1.WhoamiRequest, v1.WhoamiResponse]
 	getLogoutURL       *connect.Client[v1.GetLogoutURLRequest, v1.GetLogoutURLResponse]
+	refreshUserToken   *connect.Client[v1.RefreshUserTokenRequest, v1.RefreshUserTokenResponse]
 	createOrganization *connect.Client[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse]
 	listOrganization   *connect.Client[v1.ListOrganizationRequest, v1.ListOrganizationResponse]
 }
@@ -108,6 +119,11 @@ func (c *userServiceClient) Whoami(ctx context.Context, req *connect.Request[v1.
 // GetLogoutURL calls svc.user.v1.UserService.GetLogoutURL.
 func (c *userServiceClient) GetLogoutURL(ctx context.Context, req *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error) {
 	return c.getLogoutURL.CallUnary(ctx, req)
+}
+
+// RefreshUserToken calls svc.user.v1.UserService.RefreshUserToken.
+func (c *userServiceClient) RefreshUserToken(ctx context.Context, req *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error) {
+	return c.refreshUserToken.CallUnary(ctx, req)
 }
 
 // CreateOrganization calls svc.user.v1.UserService.CreateOrganization.
@@ -124,6 +140,7 @@ func (c *userServiceClient) ListOrganization(ctx context.Context, req *connect.R
 type UserServiceHandler interface {
 	Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error)
 	GetLogoutURL(context.Context, *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error)
+	RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error)
 	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error)
 }
@@ -147,6 +164,12 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(userServiceMethods.ByName("GetLogoutURL")),
 		connect.WithHandlerOptions(opts...),
 	)
+	userServiceRefreshUserTokenHandler := connect.NewUnaryHandler(
+		UserServiceRefreshUserTokenProcedure,
+		svc.RefreshUserToken,
+		connect.WithSchema(userServiceMethods.ByName("RefreshUserToken")),
+		connect.WithHandlerOptions(opts...),
+	)
 	userServiceCreateOrganizationHandler := connect.NewUnaryHandler(
 		UserServiceCreateOrganizationProcedure,
 		svc.CreateOrganization,
@@ -165,6 +188,8 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 			userServiceWhoamiHandler.ServeHTTP(w, r)
 		case UserServiceGetLogoutURLProcedure:
 			userServiceGetLogoutURLHandler.ServeHTTP(w, r)
+		case UserServiceRefreshUserTokenProcedure:
+			userServiceRefreshUserTokenHandler.ServeHTTP(w, r)
 		case UserServiceCreateOrganizationProcedure:
 			userServiceCreateOrganizationHandler.ServeHTTP(w, r)
 		case UserServiceListOrganizationProcedure:
@@ -184,6 +209,10 @@ func (UnimplementedUserServiceHandler) Whoami(context.Context, *connect.Request[
 
 func (UnimplementedUserServiceHandler) GetLogoutURL(context.Context, *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.GetLogoutURL is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.RefreshUserToken is not implemented"))
 }
 
 func (UnimplementedUserServiceHandler) CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error) {

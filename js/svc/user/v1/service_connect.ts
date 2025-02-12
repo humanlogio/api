@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateOrganizationRequest, CreateOrganizationResponse, GetLogoutURLRequest, GetLogoutURLResponse, ListOrganizationRequest, ListOrganizationResponse, WhoamiRequest, WhoamiResponse } from "./service_pb";
+import { CreateOrganizationRequest, CreateOrganizationResponse, GetLogoutURLRequest, GetLogoutURLResponse, ListOrganizationRequest, ListOrganizationResponse, RefreshUserTokenRequest, RefreshUserTokenResponse, WhoamiRequest, WhoamiResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -28,6 +28,15 @@ export const UserService = {
       name: "GetLogoutURL",
       I: GetLogoutURLRequest,
       O: GetLogoutURLResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.RefreshUserToken
+     */
+    refreshUserToken: {
+      name: "RefreshUserToken",
+      I: RefreshUserTokenRequest,
+      O: RefreshUserTokenResponse,
       kind: MethodKind.Unary,
     },
     /**

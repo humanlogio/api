@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.user.v1;
 
+import "google/protobuf/timestamp.proto";
 import "types/v1/cursor.proto";
 import "types/v1/organization.proto";
 import "types/v1/user.proto";
@@ -11,6 +12,7 @@ option go_package = "svc/user/v1;userv1";
 service UserService {
   rpc Whoami(WhoamiRequest) returns (WhoamiResponse) {}
   rpc GetLogoutURL(GetLogoutURLRequest) returns (GetLogoutURLResponse) {}
+  rpc RefreshUserToken(RefreshUserTokenRequest) returns (RefreshUserTokenResponse) {}
 
   rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse) {}
   rpc ListOrganization(ListOrganizationRequest) returns (ListOrganizationResponse) {}
@@ -29,6 +31,14 @@ message GetLogoutURLRequest {
 
 message GetLogoutURLResponse {
   string logout_url = 1;
+}
+
+message RefreshUserTokenRequest {}
+
+message RefreshUserTokenResponse {
+  string token = 1;
+  google.protobuf.Timestamp refresh_at = 2;
+  google.protobuf.Timestamp expires_at = 3;
 }
 
 message CreateOrganizationRequest {
