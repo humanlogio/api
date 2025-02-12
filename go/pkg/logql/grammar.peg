@@ -121,8 +121,10 @@ SummarizeByGroupExpression <- Identifier { p.startSummarizeByUnnamedGroupExpress
 
 ProjectOperator   <-  MustSpace { p.startProjectOp() }
                       ProjectArg (Space ',' Space ProjectArg)* Space
-ProjectArg        <-  Identifier                                     { p.startProjectOpArg(text) }
-                      (Space '=' Space Expr)?                        { p.setProjectOpArgValue(p.popExpr()) }
+ProjectArg        <-  Identifier             { p.startProjectOpArg(text) }
+                      (
+                        Space '=' Space Expr { p.setProjectOpArgValue(p.popExpr()) }
+                      )?
 
 ProjectAwayOperator   <-  MustSpace { p.startProjectAwayOp() }
                           ProjectAwayArg (Space ',' Space ProjectAwayArg)* Space

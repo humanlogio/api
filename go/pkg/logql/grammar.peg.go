@@ -2399,7 +2399,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position82, tokenIndex82
 			return false
 		},
-		/* 17 ProjectArg <- <(Identifier Action35 (Space '=' Space Expr)? Action36)> */
+		/* 17 ProjectArg <- <(Identifier Action35 (Space '=' Space Expr Action36)?)> */
 		func() bool {
 			position86, tokenIndex86 := position, tokenIndex
 			{
@@ -2425,14 +2425,14 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 					if !_rules[ruleExpr]() {
 						goto l88
 					}
+					if !_rules[ruleAction36]() {
+						goto l88
+					}
 					goto l89
 				l88:
 					position, tokenIndex = position88, tokenIndex88
 				}
 			l89:
-				if !_rules[ruleAction36]() {
-					goto l86
-				}
 				add(ruleProjectArg, position87)
 			}
 			return true

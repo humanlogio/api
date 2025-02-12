@@ -265,6 +265,22 @@ func TestParse(t *testing.T) {
 			nil,
 		},
 		{
+			`project msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					project(
+						projection(
+							"msg",
+							nil,
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
 			`project_away msg`,
 			q(
 				nil,
