@@ -91,8 +91,8 @@ Statements <- Statement ( Space PIPE Space Statement )*
 Statement  <- ('filter' / 'where') FilterOperator         { p.addFilterStatement(p.FilterOp) }
               / 'summarize' SummarizeOperator             { p.addSummarizeStatement(p.SummarizeOp) }
               / 'project' ProjectOperator                 { p.addProjectStatement(p.ProjectOp) }
-              / 'project_away' ProjectAwayOperator        { p.addProjectAwayStatement(p.ProjectAwayOp) }
-              / 'project_keep' ProjectKeepOperator        { p.addProjectKeepStatement(p.ProjectKeepOp) }
+              / 'project-away' ProjectAwayOperator        { p.addProjectAwayStatement(p.ProjectAwayOp) }
+              / 'project-keep' ProjectKeepOperator        { p.addProjectKeepStatement(p.ProjectKeepOp) }
               / 'extend' ExtendOperator                   { p.addExtendStatement(p.ExtendOp) }
               / 'count' CountOperator                     { p.addCountStatement(p.CountOp) }
               / 'distinct' DistinctOperator               { p.addDistinctStatement(p.DistinctOp) }

@@ -281,7 +281,7 @@ func TestParse(t *testing.T) {
 			nil,
 		},
 		{
-			`project_away msg`,
+			`project-away msg`,
 			q(
 				nil,
 				nil,
@@ -296,7 +296,7 @@ func TestParse(t *testing.T) {
 			nil,
 		},
 		{
-			`project_keep msg, lvl`,
+			`project-keep msg, lvl`,
 			q(
 				nil,
 				nil,

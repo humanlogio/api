@@ -1559,7 +1559,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position37, tokenIndex37
 			return false
 		},
-		/* 8 Statement <- <(((('f' 'i' 'l' 't' 'e' 'r') / ('w' 'h' 'e' 'r' 'e')) FilterOperator Action12) / ('s' 'u' 'm' 'm' 'a' 'r' 'i' 'z' 'e' SummarizeOperator Action13) / ('p' 'r' 'o' 'j' 'e' 'c' 't' ProjectOperator Action14) / ('p' 'r' 'o' 'j' 'e' 'c' 't' '_' 'a' 'w' 'a' 'y' ProjectAwayOperator Action15) / ('p' 'r' 'o' 'j' 'e' 'c' 't' '_' 'k' 'e' 'e' 'p' ProjectKeepOperator Action16) / ('e' 'x' 't' 'e' 'n' 'd' ExtendOperator Action17) / ('c' 'o' 'u' 'n' 't' CountOperator Action18) / ('d' 'i' 's' 't' 'i' 'n' 'c' 't' DistinctOperator Action19) / ('s' 'a' 'm' 'p' 'l' 'e' SampleOperator Action20) / ('s' 'e' 'a' 'r' 'c' 'h' SearchOperator Action21) / ('s' 'o' 'r' 't' SortOperator Action22) / ('t' 'a' 'k' 'e' TakeOperator Action23) / ('t' 'o' 'p' TopOperator Action24))> */
+		/* 8 Statement <- <(((('f' 'i' 'l' 't' 'e' 'r') / ('w' 'h' 'e' 'r' 'e')) FilterOperator Action12) / ('s' 'u' 'm' 'm' 'a' 'r' 'i' 'z' 'e' SummarizeOperator Action13) / ('p' 'r' 'o' 'j' 'e' 'c' 't' ProjectOperator Action14) / ('p' 'r' 'o' 'j' 'e' 'c' 't' '-' 'a' 'w' 'a' 'y' ProjectAwayOperator Action15) / ('p' 'r' 'o' 'j' 'e' 'c' 't' '-' 'k' 'e' 'e' 'p' ProjectKeepOperator Action16) / ('e' 'x' 't' 'e' 'n' 'd' ExtendOperator Action17) / ('c' 'o' 'u' 'n' 't' CountOperator Action18) / ('d' 'i' 's' 't' 'i' 'n' 'c' 't' DistinctOperator Action19) / ('s' 'a' 'm' 'p' 'l' 'e' SampleOperator Action20) / ('s' 'e' 'a' 'r' 'c' 'h' SearchOperator Action21) / ('s' 'o' 'r' 't' SortOperator Action22) / ('t' 'a' 'k' 'e' TakeOperator Action23) / ('t' 'o' 'p' TopOperator Action24))> */
 		func() bool {
 			position41, tokenIndex41 := position, tokenIndex
 			{
@@ -1736,7 +1736,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 						goto l49
 					}
 					position++
-					if buffer[position] != rune('_') {
+					if buffer[position] != rune('-') {
 						goto l49
 					}
 					position++
@@ -1793,7 +1793,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 						goto l50
 					}
 					position++
-					if buffer[position] != rune('_') {
+					if buffer[position] != rune('-') {
 						goto l50
 					}
 					position++
