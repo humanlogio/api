@@ -2308,7 +2308,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position74, tokenIndex74
 			return false
 		},
-		/* 15 SummarizeByGroupExpression <- <((Identifier Action31 (Space '=' Space Expr) Action32) / (Expr Action33))> */
+		/* 15 SummarizeByGroupExpression <- <((Identifier Action31 (Space '=' Space Expr Action32)) / (Expr Action33))> */
 		func() bool {
 			position78, tokenIndex78 := position, tokenIndex
 			{

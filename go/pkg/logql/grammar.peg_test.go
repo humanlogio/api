@@ -223,6 +223,25 @@ func TestParse(t *testing.T) {
 			nil,
 		},
 		{
+			`summarize hello=count(), world=count() by period=bin(ts, 1h)`,
+			q(
+				nil,
+				nil,
+				stmts(
+					summarize(
+						summarizeParams(
+							summarizeNamedParam("hello", fnc("count")),
+							summarizeNamedParam("world", fnc("count")),
+						),
+						summarizeGroupExpressions(
+							summarizeNamedGroup("period", fn("bin", id("ts"), dure(time.Hour))),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
 			`where msg=="request start" | summarize avg(kv["req_ms"]) by msg`,
 			q(
 				nil,

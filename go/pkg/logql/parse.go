@@ -256,6 +256,9 @@ func (p *logQL) addSummarizeByUnnamedGroupExpression(expr *typesv1.Expr) {
 }
 
 func (p *logQL) startSummarizeByUnnamedGroupExpression(text string) {
+	if p.SummarizeOp.ByGroupExpressions == nil {
+		p.SummarizeOp.ByGroupExpressions = new(typesv1.SummarizeOperator_ByGroupExpressions)
+	}
 	p.SummarizeOp.ByGroupExpressions.Groups = append(p.SummarizeOp.ByGroupExpressions.Groups,
 		&typesv1.SummarizeOperator_ByGroupExpression{
 			Column: &typesv1.Identifier{Name: text},

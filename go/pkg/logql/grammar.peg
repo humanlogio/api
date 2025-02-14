@@ -116,8 +116,10 @@ SummarizeParameter     <- Identifier { p.startSummarizeParameterNamedFunc(text) 
 
 SummarizeByGroupExpressions <- 'by' MustSpace SummarizeByGroupExpression ( Space ',' Space SummarizeByGroupExpression )* Space
 SummarizeByGroupExpression <- Identifier { p.startSummarizeByUnnamedGroupExpression(text) }
-                              (Space '=' Space Expr) { p.endSummarizeByUnnamedGroupExpression(p.popExpr()) }
-                            / Expr { p.addSummarizeByUnnamedGroupExpression(p.popExpr()) }
+                              (
+                                Space '=' Space Expr { p.endSummarizeByUnnamedGroupExpression(p.popExpr()) }
+                              )
+                              / Expr { p.addSummarizeByUnnamedGroupExpression(p.popExpr()) }
 
 ProjectOperator   <-  MustSpace { p.startProjectOp() }
                       ProjectArg (Space ',' Space ProjectArg)* Space
