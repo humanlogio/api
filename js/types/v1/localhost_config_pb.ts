@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Any, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Struct } from "@bufbuild/protobuf";
 
 /**
  * @generated from message types.v1.FormatConfig
@@ -682,9 +682,9 @@ export class ServeLocalhostConfig extends Message<ServeLocalhostConfig> {
   engine = "";
 
   /**
-   * @generated from field: map<string, google.protobuf.Any> engine_config = 3;
+   * @generated from field: google.protobuf.Struct engine_config = 3;
    */
-  engineConfig: { [key: string]: Any } = {};
+  engineConfig?: Struct;
 
   /**
    * @generated from field: optional bool show_in_systray = 4;
@@ -706,7 +706,7 @@ export class ServeLocalhostConfig extends Message<ServeLocalhostConfig> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "port", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "engine", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "engine_config", kind: "map", K: 9 /* ScalarType.STRING */, V: {kind: "message", T: Any} },
+    { no: 3, name: "engine_config", kind: "message", T: Struct },
     { no: 4, name: "show_in_systray", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 5, name: "log_dir", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
