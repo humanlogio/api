@@ -106,7 +106,7 @@ message TableType {
 
 message Table {
   TableType type = 1;
-  repeated FlatArr rows = 2;
+  repeated Arr rows = 2;
 }
 
 message DataStreamType {

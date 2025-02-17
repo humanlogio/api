@@ -869,9 +869,9 @@ export class Table extends Message<Table> {
   type?: TableType;
 
   /**
-   * @generated from field: repeated types.v1.FlatArr rows = 2;
+   * @generated from field: repeated types.v1.Arr rows = 2;
    */
-  rows: FlatArr[] = [];
+  rows: Arr[] = [];
 
   constructor(data?: PartialMessage<Table>) {
     super();
@@ -882,7 +882,7 @@ export class Table extends Message<Table> {
   static readonly typeName = "types.v1.Table";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "type", kind: "message", T: TableType },
-    { no: 2, name: "rows", kind: "message", T: FlatArr, repeated: true },
+    { no: 2, name: "rows", kind: "message", T: Arr, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Table {
