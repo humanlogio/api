@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.localhost.v1;
 
+import "types/v1/localhost_config.proto";
 import "types/v1/meta.proto";
 import "types/v1/organization.proto";
 import "types/v1/user.proto";
@@ -15,6 +16,9 @@ service LocalhostService {
   rpc DoLogout(DoLogoutRequest) returns (DoLogoutResponse);
   rpc DoUpdate(DoUpdateRequest) returns (DoUpdateResponse);
   rpc DoRestart(DoRestartRequest) returns (DoRestartResponse);
+
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse);
+  rpc SetConfig(SetConfigRequest) returns (SetConfigResponse);
 }
 
 message PingRequest {}
@@ -50,3 +54,13 @@ message DoUpdateResponse {}
 
 message DoRestartRequest {}
 message DoRestartResponse {}
+
+message GetConfigRequest {}
+message GetConfigResponse {
+  types.v1.LocalhostConfig config = 1;
+}
+
+message SetConfigRequest {
+  types.v1.LocalhostConfig config = 1;
+}
+message SetConfigResponse {}
