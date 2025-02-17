@@ -469,14 +469,14 @@ export class FormatConfig_Truncation extends Message<FormatConfig_Truncation> {
  */
 export class FormatConfig_Time extends Message<FormatConfig_Time> {
   /**
-   * @generated from field: string format = 1;
+   * @generated from field: optional string format = 1;
    */
-  format = "";
+  format?: string;
 
   /**
-   * @generated from field: string timezone = 2;
+   * @generated from field: optional string timezone = 2;
    */
-  timezone = "";
+  timezone?: string;
 
   constructor(data?: PartialMessage<FormatConfig_Time>) {
     super();
@@ -486,8 +486,8 @@ export class FormatConfig_Time extends Message<FormatConfig_Time> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.FormatConfig.Time";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "format", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "timezone", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "format", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "timezone", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_Time {
