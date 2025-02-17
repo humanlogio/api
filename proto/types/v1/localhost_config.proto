@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/any.proto";
+
+option go_package = "types/v1;typesv1";
+
+message FormatConfig {
+  message Color {
+    // rgb_hex is a string like #FAFAFA
+    string rgb_hex = 1;
+  }
+  message Style {
+    Color foreground = 1;
+    optional Color background = 2;
+    // ANSI text formatting
+    optional bool bold = 300;
+    optional bool italic = 301;
+    optional bool faint = 302;
+    optional bool blink = 303;
+    optional bool strikethrough = 304;
+    optional bool underline = 305;
+  }
+  message NullStyle {
+    Style style = 1;
+    string content = 2;
+  }
+  message LevelStyle {
+    Style debug = 100;
+    Style info = 200;
+    Style warn = 300;
+    Style error = 400;
+    Style panic = 500;
+    Style fatal = 600;
+    Style unknown = 700;
+  }
+  message Theme {
+    Style key = 1;
+    Style value = 2;
+    Style time = 3;
+    Style msg = 4;
+    LevelStyle levels = 5;
+    // how to style messages that are missing
+    NullStyle absent_msg = 6;
+  }
+
+  message Themes {
+    Theme light = 1;
+    Theme dark = 2;
+  }
+
+  message Truncation {
+    int64 length = 1;
+  }
+  message Time {
+    string format = 1;
+    string timezone = 2;
+  }
+  Themes themes = 1;
+  repeated string skip_fields = 2;
+  repeated string keep_fields = 3;
+  optional bool sort_longest = 4;
+  optional bool skip_unchanged = 5;
+  optional Truncation truncation = 6;
+  optional Time time = 7;
+}
+
+message ParsingConfig {
+  message Time {
+    repeated string field_names = 1;
+  }
+  message Message {
+    repeated string field_names = 1;
+  }
+  message Level {
+    repeated string field_names = 1;
+  }
+  Time timestamp = 1;
+  Message message = 2;
+  Level level = 3;
+}
+
+message ServeLocalhostConfig {
+  int64 port = 1;
+  string engine = 2;
+  map<string, google.protobuf.Any> engine_config = 3;
+  optional bool show_in_systray = 4;
+  optional string log_dir = 5;
+}
+
+message RuntimeConfig {
+  message Features {}
+  message ExperimentalFeatures {
+    optional string release_channel = 1;
+    optional bool send_logs_to_cloud = 2;
+    optional ServeLocalhostConfig serve_localhost = 3;
+  }
+
+  optional bool interrupt = 1;
+  optional bool skip_check_for_updates = 2;
+  Features features = 3;
+  ExperimentalFeatures experimental_features = 4;
+}
+
+message LocalhostConfig {
+  int64 version = 1;
+
+  FormatConfig formatting = 2;
+  ParsingConfig parsing = 3;
+  RuntimeConfig runtime = 4;
+}

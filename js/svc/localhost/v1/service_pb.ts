@@ -9,6 +9,7 @@ import { Version } from "../../../types/v1/version_pb";
 import { ResMeta } from "../../../types/v1/meta_pb";
 import { User } from "../../../types/v1/user_pb";
 import { Organization } from "../../../types/v1/organization_pb";
+import { LocalhostConfig } from "../../../types/v1/localhost_config_pb";
 
 /**
  * @generated from message svc.localhost.v1.PingRequest
@@ -412,6 +413,142 @@ export class DoRestartResponse extends Message<DoRestartResponse> {
 
   static equals(a: DoRestartResponse | PlainMessage<DoRestartResponse> | undefined, b: DoRestartResponse | PlainMessage<DoRestartResponse> | undefined): boolean {
     return proto3.util.equals(DoRestartResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.GetConfigRequest
+ */
+export class GetConfigRequest extends Message<GetConfigRequest> {
+  constructor(data?: PartialMessage<GetConfigRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.GetConfigRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetConfigRequest {
+    return new GetConfigRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetConfigRequest {
+    return new GetConfigRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetConfigRequest {
+    return new GetConfigRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetConfigRequest | PlainMessage<GetConfigRequest> | undefined, b: GetConfigRequest | PlainMessage<GetConfigRequest> | undefined): boolean {
+    return proto3.util.equals(GetConfigRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.GetConfigResponse
+ */
+export class GetConfigResponse extends Message<GetConfigResponse> {
+  /**
+   * @generated from field: types.v1.LocalhostConfig config = 1;
+   */
+  config?: LocalhostConfig;
+
+  constructor(data?: PartialMessage<GetConfigResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.GetConfigResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "config", kind: "message", T: LocalhostConfig },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetConfigResponse {
+    return new GetConfigResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetConfigResponse {
+    return new GetConfigResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetConfigResponse {
+    return new GetConfigResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetConfigResponse | PlainMessage<GetConfigResponse> | undefined, b: GetConfigResponse | PlainMessage<GetConfigResponse> | undefined): boolean {
+    return proto3.util.equals(GetConfigResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.SetConfigRequest
+ */
+export class SetConfigRequest extends Message<SetConfigRequest> {
+  /**
+   * @generated from field: types.v1.LocalhostConfig config = 1;
+   */
+  config?: LocalhostConfig;
+
+  constructor(data?: PartialMessage<SetConfigRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.SetConfigRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "config", kind: "message", T: LocalhostConfig },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetConfigRequest {
+    return new SetConfigRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SetConfigRequest {
+    return new SetConfigRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetConfigRequest {
+    return new SetConfigRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SetConfigRequest | PlainMessage<SetConfigRequest> | undefined, b: SetConfigRequest | PlainMessage<SetConfigRequest> | undefined): boolean {
+    return proto3.util.equals(SetConfigRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.SetConfigResponse
+ */
+export class SetConfigResponse extends Message<SetConfigResponse> {
+  constructor(data?: PartialMessage<SetConfigResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.SetConfigResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SetConfigResponse {
+    return new SetConfigResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SetConfigResponse {
+    return new SetConfigResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SetConfigResponse {
+    return new SetConfigResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SetConfigResponse | PlainMessage<SetConfigResponse> | undefined, b: SetConfigResponse | PlainMessage<SetConfigResponse> | undefined): boolean {
+    return proto3.util.equals(SetConfigResponse, a, b);
   }
 }
 

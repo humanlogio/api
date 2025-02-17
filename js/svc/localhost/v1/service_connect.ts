@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DoLoginRequest, DoLoginResponse, DoLogoutRequest, DoLogoutResponse, DoRestartRequest, DoRestartResponse, DoUpdateRequest, DoUpdateResponse, PingRequest, PingResponse } from "./service_pb";
+import { DoLoginRequest, DoLoginResponse, DoLogoutRequest, DoLogoutResponse, DoRestartRequest, DoRestartResponse, DoUpdateRequest, DoUpdateResponse, GetConfigRequest, GetConfigResponse, PingRequest, PingResponse, SetConfigRequest, SetConfigResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -55,6 +55,24 @@ export const LocalhostService = {
       name: "DoRestart",
       I: DoRestartRequest,
       O: DoRestartResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.localhost.v1.LocalhostService.GetConfig
+     */
+    getConfig: {
+      name: "GetConfig",
+      I: GetConfigRequest,
+      O: GetConfigResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.localhost.v1.LocalhostService.SetConfig
+     */
+    setConfig: {
+      name: "SetConfig",
+      I: SetConfigRequest,
+      O: SetConfigResponse,
       kind: MethodKind.Unary,
     },
   }
