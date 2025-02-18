@@ -90,25 +90,25 @@ export class FormatConfig extends Message<FormatConfig> {
  */
 export enum FormatConfig_ColorMode {
   /**
-   * @generated from enum value: AUTO = 0;
+   * @generated from enum value: COLORMODE_AUTO = 0;
    */
-  AUTO = 0,
+  COLORMODE_AUTO = 0,
 
   /**
-   * @generated from enum value: ENABLED = 1;
+   * @generated from enum value: COLORMODE_ENABLED = 1;
    */
-  ENABLED = 1,
+  COLORMODE_ENABLED = 1,
 
   /**
-   * @generated from enum value: DISABLED = 2;
+   * @generated from enum value: COLORMODE_DISABLED = 2;
    */
-  DISABLED = 2,
+  COLORMODE_DISABLED = 2,
 }
 // Retrieve enum metadata with: proto3.getEnumType(FormatConfig_ColorMode)
 proto3.util.setEnumType(FormatConfig_ColorMode, "types.v1.FormatConfig.ColorMode", [
-  { no: 0, name: "AUTO" },
-  { no: 1, name: "ENABLED" },
-  { no: 2, name: "DISABLED" },
+  { no: 0, name: "COLORMODE_AUTO" },
+  { no: 1, name: "COLORMODE_ENABLED" },
+  { no: 2, name: "COLORMODE_DISABLED" },
 ]);
 
 /**

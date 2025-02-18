@@ -57,9 +57,9 @@ message FormatConfig {
     optional string timezone = 2;
   }
   enum ColorMode {
-    AUTO = 0;
-    ENABLED = 1;
-    DISABLED = 2;
+    COLORMODE_AUTO = 0;
+    COLORMODE_ENABLED = 1;
+    COLORMODE_DISABLED = 2;
   }
 
   Themes themes = 1;
