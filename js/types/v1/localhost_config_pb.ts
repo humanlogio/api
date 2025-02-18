@@ -45,6 +45,11 @@ export class FormatConfig extends Message<FormatConfig> {
    */
   time?: FormatConfig_Time;
 
+  /**
+   * @generated from field: optional types.v1.FormatConfig.ColorMode terminal_color_mode = 8;
+   */
+  terminalColorMode?: FormatConfig_ColorMode;
+
   constructor(data?: PartialMessage<FormatConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -60,6 +65,7 @@ export class FormatConfig extends Message<FormatConfig> {
     { no: 5, name: "skip_unchanged", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 6, name: "truncation", kind: "message", T: FormatConfig_Truncation, opt: true },
     { no: 7, name: "time", kind: "message", T: FormatConfig_Time, opt: true },
+    { no: 8, name: "terminal_color_mode", kind: "enum", T: proto3.getEnumType(FormatConfig_ColorMode), opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig {
@@ -78,6 +84,32 @@ export class FormatConfig extends Message<FormatConfig> {
     return proto3.util.equals(FormatConfig, a, b);
   }
 }
+
+/**
+ * @generated from enum types.v1.FormatConfig.ColorMode
+ */
+export enum FormatConfig_ColorMode {
+  /**
+   * @generated from enum value: AUTO = 0;
+   */
+  AUTO = 0,
+
+  /**
+   * @generated from enum value: ENABLED = 1;
+   */
+  ENABLED = 1,
+
+  /**
+   * @generated from enum value: DISABLED = 2;
+   */
+  DISABLED = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(FormatConfig_ColorMode)
+proto3.util.setEnumType(FormatConfig_ColorMode, "types.v1.FormatConfig.ColorMode", [
+  { no: 0, name: "AUTO" },
+  { no: 1, name: "ENABLED" },
+  { no: 2, name: "DISABLED" },
+]);
 
 /**
  * @generated from message types.v1.FormatConfig.Color
