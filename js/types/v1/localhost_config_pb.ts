@@ -84,11 +84,9 @@ export class FormatConfig extends Message<FormatConfig> {
  */
 export class FormatConfig_Color extends Message<FormatConfig_Color> {
   /**
-   * rgb_hex is a string like #FAFAFA
-   *
-   * @generated from field: string rgb_hex = 1;
+   * @generated from field: uint32 rgba = 1;
    */
-  rgbHex = "";
+  rgba = 0;
 
   constructor(data?: PartialMessage<FormatConfig_Color>) {
     super();
@@ -98,7 +96,7 @@ export class FormatConfig_Color extends Message<FormatConfig_Color> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.FormatConfig.Color";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rgb_hex", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "rgba", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_Color {

@@ -8,8 +8,7 @@ option go_package = "types/v1;typesv1";
 
 message FormatConfig {
   message Color {
-    // rgb_hex is a string like #FAFAFA
-    string rgb_hex = 1;
+    uint32 rgba = 1;
   }
   message Style {
     Color foreground = 1;
