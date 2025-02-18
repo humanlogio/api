@@ -46,14 +46,14 @@ export class FormatConfig extends Message<FormatConfig> {
   time?: FormatConfig_Time;
 
   /**
-   * @generated from field: optional types.v1.FormatConfig.ColorMode terminal_color_mode = 8;
+   * @generated from field: optional types.v1.FormatConfig.Message message = 8;
    */
-  terminalColorMode?: FormatConfig_ColorMode;
+  message?: FormatConfig_Message;
 
   /**
-   * @generated from field: optional string absent_msg_default_content = 9;
+   * @generated from field: optional types.v1.FormatConfig.ColorMode terminal_color_mode = 9;
    */
-  absentMsgDefaultContent?: string;
+  terminalColorMode?: FormatConfig_ColorMode;
 
   constructor(data?: PartialMessage<FormatConfig>) {
     super();
@@ -70,8 +70,8 @@ export class FormatConfig extends Message<FormatConfig> {
     { no: 5, name: "skip_unchanged", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 6, name: "truncation", kind: "message", T: FormatConfig_Truncation, opt: true },
     { no: 7, name: "time", kind: "message", T: FormatConfig_Time, opt: true },
-    { no: 8, name: "terminal_color_mode", kind: "enum", T: proto3.getEnumType(FormatConfig_ColorMode), opt: true },
-    { no: 9, name: "absent_msg_default_content", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 8, name: "message", kind: "message", T: FormatConfig_Message, opt: true },
+    { no: 9, name: "terminal_color_mode", kind: "enum", T: proto3.getEnumType(FormatConfig_ColorMode), opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig {
@@ -514,6 +514,11 @@ export class FormatConfig_Time extends Message<FormatConfig_Time> {
    */
   timezone?: string;
 
+  /**
+   * @generated from field: optional string absent_default_value = 3;
+   */
+  absentDefaultValue?: string;
+
   constructor(data?: PartialMessage<FormatConfig_Time>) {
     super();
     proto3.util.initPartial(data, this);
@@ -524,6 +529,7 @@ export class FormatConfig_Time extends Message<FormatConfig_Time> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "format", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 2, name: "timezone", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "absent_default_value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_Time {
@@ -540,6 +546,43 @@ export class FormatConfig_Time extends Message<FormatConfig_Time> {
 
   static equals(a: FormatConfig_Time | PlainMessage<FormatConfig_Time> | undefined, b: FormatConfig_Time | PlainMessage<FormatConfig_Time> | undefined): boolean {
     return proto3.util.equals(FormatConfig_Time, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.FormatConfig.Message
+ */
+export class FormatConfig_Message extends Message<FormatConfig_Message> {
+  /**
+   * @generated from field: optional string absent_default_value = 1;
+   */
+  absentDefaultValue?: string;
+
+  constructor(data?: PartialMessage<FormatConfig_Message>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.FormatConfig.Message";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "absent_default_value", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_Message {
+    return new FormatConfig_Message().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FormatConfig_Message {
+    return new FormatConfig_Message().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FormatConfig_Message {
+    return new FormatConfig_Message().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FormatConfig_Message | PlainMessage<FormatConfig_Message> | undefined, b: FormatConfig_Message | PlainMessage<FormatConfig_Message> | undefined): boolean {
+    return proto3.util.equals(FormatConfig_Message, a, b);
   }
 }
 
