@@ -41,7 +41,7 @@ message FormatConfig {
     Style msg = 4;
     LevelStyle levels = 5;
     // how to style messages that are missing
-    NullStyle absent_msg = 6;
+    Style absent_msg = 6;
   }
 
   message Themes {
@@ -70,6 +70,7 @@ message FormatConfig {
   optional Truncation truncation = 6;
   optional Time time = 7;
   optional ColorMode terminal_color_mode = 8;
+  optional string absent_msg_default_content = 9;
 }
 
 message ParsingConfig {

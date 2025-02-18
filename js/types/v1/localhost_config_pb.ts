@@ -50,6 +50,11 @@ export class FormatConfig extends Message<FormatConfig> {
    */
   terminalColorMode?: FormatConfig_ColorMode;
 
+  /**
+   * @generated from field: optional string absent_msg_default_content = 9;
+   */
+  absentMsgDefaultContent?: string;
+
   constructor(data?: PartialMessage<FormatConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -66,6 +71,7 @@ export class FormatConfig extends Message<FormatConfig> {
     { no: 6, name: "truncation", kind: "message", T: FormatConfig_Truncation, opt: true },
     { no: 7, name: "time", kind: "message", T: FormatConfig_Time, opt: true },
     { no: 8, name: "terminal_color_mode", kind: "enum", T: proto3.getEnumType(FormatConfig_ColorMode), opt: true },
+    { no: 9, name: "absent_msg_default_content", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig {
@@ -377,9 +383,9 @@ export class FormatConfig_Theme extends Message<FormatConfig_Theme> {
   /**
    * how to style messages that are missing
    *
-   * @generated from field: types.v1.FormatConfig.NullStyle absent_msg = 6;
+   * @generated from field: types.v1.FormatConfig.Style absent_msg = 6;
    */
-  absentMsg?: FormatConfig_NullStyle;
+  absentMsg?: FormatConfig_Style;
 
   constructor(data?: PartialMessage<FormatConfig_Theme>) {
     super();
@@ -394,7 +400,7 @@ export class FormatConfig_Theme extends Message<FormatConfig_Theme> {
     { no: 3, name: "time", kind: "message", T: FormatConfig_Style },
     { no: 4, name: "msg", kind: "message", T: FormatConfig_Style },
     { no: 5, name: "levels", kind: "message", T: FormatConfig_LevelStyle },
-    { no: 6, name: "absent_msg", kind: "message", T: FormatConfig_NullStyle },
+    { no: 6, name: "absent_msg", kind: "message", T: FormatConfig_Style },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_Theme {
