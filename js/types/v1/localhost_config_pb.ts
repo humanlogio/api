@@ -387,6 +387,11 @@ export class FormatConfig_Theme extends Message<FormatConfig_Theme> {
    */
   absentMsg?: FormatConfig_Style;
 
+  /**
+   * @generated from field: types.v1.FormatConfig.Style absent_time = 7;
+   */
+  absentTime?: FormatConfig_Style;
+
   constructor(data?: PartialMessage<FormatConfig_Theme>) {
     super();
     proto3.util.initPartial(data, this);
@@ -401,6 +406,7 @@ export class FormatConfig_Theme extends Message<FormatConfig_Theme> {
     { no: 4, name: "msg", kind: "message", T: FormatConfig_Style },
     { no: 5, name: "levels", kind: "message", T: FormatConfig_LevelStyle },
     { no: 6, name: "absent_msg", kind: "message", T: FormatConfig_Style },
+    { no: 7, name: "absent_time", kind: "message", T: FormatConfig_Style },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_Theme {

@@ -42,6 +42,7 @@ message FormatConfig {
     LevelStyle levels = 5;
     // how to style messages that are missing
     Style absent_msg = 6;
+    Style absent_time = 7;
   }
 
   message Themes {
