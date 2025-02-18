@@ -593,162 +593,162 @@ export class FormatConfig_Message extends Message<FormatConfig_Message> {
 }
 
 /**
- * @generated from message types.v1.ParsingConfig
+ * @generated from message types.v1.ParseConfig
  */
-export class ParsingConfig extends Message<ParsingConfig> {
+export class ParseConfig extends Message<ParseConfig> {
   /**
-   * @generated from field: types.v1.ParsingConfig.Time timestamp = 1;
+   * @generated from field: types.v1.ParseConfig.Time timestamp = 1;
    */
-  timestamp?: ParsingConfig_Time;
+  timestamp?: ParseConfig_Time;
 
   /**
-   * @generated from field: types.v1.ParsingConfig.Message message = 2;
+   * @generated from field: types.v1.ParseConfig.Message message = 2;
    */
-  message?: ParsingConfig_Message;
+  message?: ParseConfig_Message;
 
   /**
-   * @generated from field: types.v1.ParsingConfig.Level level = 3;
+   * @generated from field: types.v1.ParseConfig.Level level = 3;
    */
-  level?: ParsingConfig_Level;
+  level?: ParseConfig_Level;
 
-  constructor(data?: PartialMessage<ParsingConfig>) {
+  constructor(data?: PartialMessage<ParseConfig>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.ParsingConfig";
+  static readonly typeName = "types.v1.ParseConfig";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "timestamp", kind: "message", T: ParsingConfig_Time },
-    { no: 2, name: "message", kind: "message", T: ParsingConfig_Message },
-    { no: 3, name: "level", kind: "message", T: ParsingConfig_Level },
+    { no: 1, name: "timestamp", kind: "message", T: ParseConfig_Time },
+    { no: 2, name: "message", kind: "message", T: ParseConfig_Message },
+    { no: 3, name: "level", kind: "message", T: ParseConfig_Level },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParsingConfig {
-    return new ParsingConfig().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseConfig {
+    return new ParseConfig().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParsingConfig {
-    return new ParsingConfig().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParseConfig {
+    return new ParseConfig().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParsingConfig {
-    return new ParsingConfig().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParseConfig {
+    return new ParseConfig().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ParsingConfig | PlainMessage<ParsingConfig> | undefined, b: ParsingConfig | PlainMessage<ParsingConfig> | undefined): boolean {
-    return proto3.util.equals(ParsingConfig, a, b);
+  static equals(a: ParseConfig | PlainMessage<ParseConfig> | undefined, b: ParseConfig | PlainMessage<ParseConfig> | undefined): boolean {
+    return proto3.util.equals(ParseConfig, a, b);
   }
 }
 
 /**
- * @generated from message types.v1.ParsingConfig.Time
+ * @generated from message types.v1.ParseConfig.Time
  */
-export class ParsingConfig_Time extends Message<ParsingConfig_Time> {
+export class ParseConfig_Time extends Message<ParseConfig_Time> {
   /**
    * @generated from field: repeated string field_names = 1;
    */
   fieldNames: string[] = [];
 
-  constructor(data?: PartialMessage<ParsingConfig_Time>) {
+  constructor(data?: PartialMessage<ParseConfig_Time>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.ParsingConfig.Time";
+  static readonly typeName = "types.v1.ParseConfig.Time";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "field_names", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParsingConfig_Time {
-    return new ParsingConfig_Time().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseConfig_Time {
+    return new ParseConfig_Time().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParsingConfig_Time {
-    return new ParsingConfig_Time().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParseConfig_Time {
+    return new ParseConfig_Time().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParsingConfig_Time {
-    return new ParsingConfig_Time().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParseConfig_Time {
+    return new ParseConfig_Time().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ParsingConfig_Time | PlainMessage<ParsingConfig_Time> | undefined, b: ParsingConfig_Time | PlainMessage<ParsingConfig_Time> | undefined): boolean {
-    return proto3.util.equals(ParsingConfig_Time, a, b);
+  static equals(a: ParseConfig_Time | PlainMessage<ParseConfig_Time> | undefined, b: ParseConfig_Time | PlainMessage<ParseConfig_Time> | undefined): boolean {
+    return proto3.util.equals(ParseConfig_Time, a, b);
   }
 }
 
 /**
- * @generated from message types.v1.ParsingConfig.Message
+ * @generated from message types.v1.ParseConfig.Message
  */
-export class ParsingConfig_Message extends Message<ParsingConfig_Message> {
+export class ParseConfig_Message extends Message<ParseConfig_Message> {
   /**
    * @generated from field: repeated string field_names = 1;
    */
   fieldNames: string[] = [];
 
-  constructor(data?: PartialMessage<ParsingConfig_Message>) {
+  constructor(data?: PartialMessage<ParseConfig_Message>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.ParsingConfig.Message";
+  static readonly typeName = "types.v1.ParseConfig.Message";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "field_names", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParsingConfig_Message {
-    return new ParsingConfig_Message().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseConfig_Message {
+    return new ParseConfig_Message().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParsingConfig_Message {
-    return new ParsingConfig_Message().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParseConfig_Message {
+    return new ParseConfig_Message().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParsingConfig_Message {
-    return new ParsingConfig_Message().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParseConfig_Message {
+    return new ParseConfig_Message().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ParsingConfig_Message | PlainMessage<ParsingConfig_Message> | undefined, b: ParsingConfig_Message | PlainMessage<ParsingConfig_Message> | undefined): boolean {
-    return proto3.util.equals(ParsingConfig_Message, a, b);
+  static equals(a: ParseConfig_Message | PlainMessage<ParseConfig_Message> | undefined, b: ParseConfig_Message | PlainMessage<ParseConfig_Message> | undefined): boolean {
+    return proto3.util.equals(ParseConfig_Message, a, b);
   }
 }
 
 /**
- * @generated from message types.v1.ParsingConfig.Level
+ * @generated from message types.v1.ParseConfig.Level
  */
-export class ParsingConfig_Level extends Message<ParsingConfig_Level> {
+export class ParseConfig_Level extends Message<ParseConfig_Level> {
   /**
    * @generated from field: repeated string field_names = 1;
    */
   fieldNames: string[] = [];
 
-  constructor(data?: PartialMessage<ParsingConfig_Level>) {
+  constructor(data?: PartialMessage<ParseConfig_Level>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.ParsingConfig.Level";
+  static readonly typeName = "types.v1.ParseConfig.Level";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "field_names", kind: "scalar", T: 9 /* ScalarType.STRING */, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParsingConfig_Level {
-    return new ParsingConfig_Level().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseConfig_Level {
+    return new ParseConfig_Level().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParsingConfig_Level {
-    return new ParsingConfig_Level().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParseConfig_Level {
+    return new ParseConfig_Level().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParsingConfig_Level {
-    return new ParsingConfig_Level().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParseConfig_Level {
+    return new ParseConfig_Level().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ParsingConfig_Level | PlainMessage<ParsingConfig_Level> | undefined, b: ParsingConfig_Level | PlainMessage<ParsingConfig_Level> | undefined): boolean {
-    return proto3.util.equals(ParsingConfig_Level, a, b);
+  static equals(a: ParseConfig_Level | PlainMessage<ParseConfig_Level> | undefined, b: ParseConfig_Level | PlainMessage<ParseConfig_Level> | undefined): boolean {
+    return proto3.util.equals(ParseConfig_Level, a, b);
   }
 }
 
@@ -958,14 +958,14 @@ export class LocalhostConfig extends Message<LocalhostConfig> {
   version = protoInt64.zero;
 
   /**
-   * @generated from field: types.v1.FormatConfig formatting = 2;
+   * @generated from field: types.v1.FormatConfig formatter = 2;
    */
-  formatting?: FormatConfig;
+  formatter?: FormatConfig;
 
   /**
-   * @generated from field: types.v1.ParsingConfig parsing = 3;
+   * @generated from field: types.v1.ParseConfig parser = 3;
    */
-  parsing?: ParsingConfig;
+  parser?: ParseConfig;
 
   /**
    * @generated from field: types.v1.RuntimeConfig runtime = 4;
@@ -981,8 +981,8 @@ export class LocalhostConfig extends Message<LocalhostConfig> {
   static readonly typeName = "types.v1.LocalhostConfig";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "version", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "formatting", kind: "message", T: FormatConfig },
-    { no: 3, name: "parsing", kind: "message", T: ParsingConfig },
+    { no: 2, name: "formatter", kind: "message", T: FormatConfig },
+    { no: 3, name: "parser", kind: "message", T: ParseConfig },
     { no: 4, name: "runtime", kind: "message", T: RuntimeConfig },
   ]);
 

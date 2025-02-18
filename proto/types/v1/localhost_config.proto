@@ -78,7 +78,7 @@ message FormatConfig {
   optional ColorMode terminal_color_mode = 9;
 }
 
-message ParsingConfig {
+message ParseConfig {
   message Time {
     repeated string field_names = 1;
   }
@@ -118,7 +118,7 @@ message RuntimeConfig {
 message LocalhostConfig {
   int64 version = 1;
 
-  FormatConfig formatting = 2;
-  ParsingConfig parsing = 3;
+  FormatConfig formatter = 2;
+  ParseConfig parser = 3;
   RuntimeConfig runtime = 4;
 }
