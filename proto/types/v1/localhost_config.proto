@@ -8,7 +8,7 @@ option go_package = "types/v1;typesv1";
 
 message FormatConfig {
   message Color {
-    uint32 rgba = 1;
+    string html_hex_color = 1;
   }
   message Style {
     Color foreground = 1;

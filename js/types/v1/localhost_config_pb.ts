@@ -122,9 +122,9 @@ proto3.util.setEnumType(FormatConfig_ColorMode, "types.v1.FormatConfig.ColorMode
  */
 export class FormatConfig_Color extends Message<FormatConfig_Color> {
   /**
-   * @generated from field: uint32 rgba = 1;
+   * @generated from field: string html_hex_color = 1;
    */
-  rgba = 0;
+  htmlHexColor = "";
 
   constructor(data?: PartialMessage<FormatConfig_Color>) {
     super();
@@ -134,7 +134,7 @@ export class FormatConfig_Color extends Message<FormatConfig_Color> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.FormatConfig.Color";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "rgba", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
+    { no: 1, name: "html_hex_color", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_Color {
