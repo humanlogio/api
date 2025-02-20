@@ -235,11 +235,6 @@ message Identifier {
   string name = 1;
 }
 
-message Selector {
-  Expr x = 1;
-  Identifier identifier = 2;
-}
-
 message Indexor {
   Expr x = 1;
   Expr index = 2;

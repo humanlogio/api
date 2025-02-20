@@ -1960,49 +1960,6 @@ export class Identifier extends Message<Identifier> {
 }
 
 /**
- * @generated from message types.v1.Selector
- */
-export class Selector extends Message<Selector> {
-  /**
-   * @generated from field: types.v1.Expr x = 1;
-   */
-  x?: Expr;
-
-  /**
-   * @generated from field: types.v1.Identifier identifier = 2;
-   */
-  identifier?: Identifier;
-
-  constructor(data?: PartialMessage<Selector>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.Selector";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "x", kind: "message", T: Expr },
-    { no: 2, name: "identifier", kind: "message", T: Identifier },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Selector {
-    return new Selector().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Selector {
-    return new Selector().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Selector {
-    return new Selector().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Selector | PlainMessage<Selector> | undefined, b: Selector | PlainMessage<Selector> | undefined): boolean {
-    return proto3.util.equals(Selector, a, b);
-  }
-}
-
-/**
  * @generated from message types.v1.Indexor
  */
 export class Indexor extends Message<Indexor> {

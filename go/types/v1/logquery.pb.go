@@ -1886,58 +1886,6 @@ func (x *Identifier) GetName() string {
 	return ""
 }
 
-type Selector struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	X             *Expr                  `protobuf:"bytes,1,opt,name=x,proto3" json:"x,omitempty"`
-	Identifier    *Identifier            `protobuf:"bytes,2,opt,name=identifier,proto3" json:"identifier,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Selector) Reset() {
-	*x = Selector{}
-	mi := &file_types_v1_logquery_proto_msgTypes[25]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Selector) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Selector) ProtoMessage() {}
-
-func (x *Selector) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[25]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Selector.ProtoReflect.Descriptor instead.
-func (*Selector) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *Selector) GetX() *Expr {
-	if x != nil {
-		return x.X
-	}
-	return nil
-}
-
-func (x *Selector) GetIdentifier() *Identifier {
-	if x != nil {
-		return x.Identifier
-	}
-	return nil
-}
-
 type Indexor struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	X             *Expr                  `protobuf:"bytes,1,opt,name=x,proto3" json:"x,omitempty"`
@@ -1948,7 +1896,7 @@ type Indexor struct {
 
 func (x *Indexor) Reset() {
 	*x = Indexor{}
-	mi := &file_types_v1_logquery_proto_msgTypes[26]
+	mi := &file_types_v1_logquery_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1960,7 +1908,7 @@ func (x *Indexor) String() string {
 func (*Indexor) ProtoMessage() {}
 
 func (x *Indexor) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[26]
+	mi := &file_types_v1_logquery_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1973,7 +1921,7 @@ func (x *Indexor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Indexor.ProtoReflect.Descriptor instead.
 func (*Indexor) Descriptor() ([]byte, []int) {
-	return file_types_v1_logquery_proto_rawDescGZIP(), []int{26}
+	return file_types_v1_logquery_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *Indexor) GetX() *Expr {
@@ -1999,7 +1947,7 @@ type SummarizeOperator_Parameters struct {
 
 func (x *SummarizeOperator_Parameters) Reset() {
 	*x = SummarizeOperator_Parameters{}
-	mi := &file_types_v1_logquery_proto_msgTypes[27]
+	mi := &file_types_v1_logquery_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2011,7 +1959,7 @@ func (x *SummarizeOperator_Parameters) String() string {
 func (*SummarizeOperator_Parameters) ProtoMessage() {}
 
 func (x *SummarizeOperator_Parameters) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[27]
+	mi := &file_types_v1_logquery_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2044,7 +1992,7 @@ type SummarizeOperator_Parameter struct {
 
 func (x *SummarizeOperator_Parameter) Reset() {
 	*x = SummarizeOperator_Parameter{}
-	mi := &file_types_v1_logquery_proto_msgTypes[28]
+	mi := &file_types_v1_logquery_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2056,7 +2004,7 @@ func (x *SummarizeOperator_Parameter) String() string {
 func (*SummarizeOperator_Parameter) ProtoMessage() {}
 
 func (x *SummarizeOperator_Parameter) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[28]
+	mi := &file_types_v1_logquery_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2095,7 +2043,7 @@ type SummarizeOperator_ByGroupExpressions struct {
 
 func (x *SummarizeOperator_ByGroupExpressions) Reset() {
 	*x = SummarizeOperator_ByGroupExpressions{}
-	mi := &file_types_v1_logquery_proto_msgTypes[29]
+	mi := &file_types_v1_logquery_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2107,7 +2055,7 @@ func (x *SummarizeOperator_ByGroupExpressions) String() string {
 func (*SummarizeOperator_ByGroupExpressions) ProtoMessage() {}
 
 func (x *SummarizeOperator_ByGroupExpressions) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[29]
+	mi := &file_types_v1_logquery_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2140,7 +2088,7 @@ type SummarizeOperator_ByGroupExpression struct {
 
 func (x *SummarizeOperator_ByGroupExpression) Reset() {
 	*x = SummarizeOperator_ByGroupExpression{}
-	mi := &file_types_v1_logquery_proto_msgTypes[30]
+	mi := &file_types_v1_logquery_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2152,7 +2100,7 @@ func (x *SummarizeOperator_ByGroupExpression) String() string {
 func (*SummarizeOperator_ByGroupExpression) ProtoMessage() {}
 
 func (x *SummarizeOperator_ByGroupExpression) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[30]
+	mi := &file_types_v1_logquery_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2192,7 +2140,7 @@ type ProjectOperator_Projection struct {
 
 func (x *ProjectOperator_Projection) Reset() {
 	*x = ProjectOperator_Projection{}
-	mi := &file_types_v1_logquery_proto_msgTypes[31]
+	mi := &file_types_v1_logquery_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2204,7 +2152,7 @@ func (x *ProjectOperator_Projection) String() string {
 func (*ProjectOperator_Projection) ProtoMessage() {}
 
 func (x *ProjectOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[31]
+	mi := &file_types_v1_logquery_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2243,7 +2191,7 @@ type ProjectAwayOperator_Projection struct {
 
 func (x *ProjectAwayOperator_Projection) Reset() {
 	*x = ProjectAwayOperator_Projection{}
-	mi := &file_types_v1_logquery_proto_msgTypes[32]
+	mi := &file_types_v1_logquery_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2255,7 +2203,7 @@ func (x *ProjectAwayOperator_Projection) String() string {
 func (*ProjectAwayOperator_Projection) ProtoMessage() {}
 
 func (x *ProjectAwayOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[32]
+	mi := &file_types_v1_logquery_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2287,7 +2235,7 @@ type ProjectKeepOperator_Projection struct {
 
 func (x *ProjectKeepOperator_Projection) Reset() {
 	*x = ProjectKeepOperator_Projection{}
-	mi := &file_types_v1_logquery_proto_msgTypes[33]
+	mi := &file_types_v1_logquery_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2299,7 +2247,7 @@ func (x *ProjectKeepOperator_Projection) String() string {
 func (*ProjectKeepOperator_Projection) ProtoMessage() {}
 
 func (x *ProjectKeepOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[33]
+	mi := &file_types_v1_logquery_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2332,7 +2280,7 @@ type ExtendOperator_Projection struct {
 
 func (x *ExtendOperator_Projection) Reset() {
 	*x = ExtendOperator_Projection{}
-	mi := &file_types_v1_logquery_proto_msgTypes[34]
+	mi := &file_types_v1_logquery_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2344,7 +2292,7 @@ func (x *ExtendOperator_Projection) String() string {
 func (*ExtendOperator_Projection) ProtoMessage() {}
 
 func (x *ExtendOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[34]
+	mi := &file_types_v1_logquery_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2383,7 +2331,7 @@ type SearchOperator_Literal struct {
 
 func (x *SearchOperator_Literal) Reset() {
 	*x = SearchOperator_Literal{}
-	mi := &file_types_v1_logquery_proto_msgTypes[35]
+	mi := &file_types_v1_logquery_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2395,7 +2343,7 @@ func (x *SearchOperator_Literal) String() string {
 func (*SearchOperator_Literal) ProtoMessage() {}
 
 func (x *SearchOperator_Literal) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[35]
+	mi := &file_types_v1_logquery_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2428,7 +2376,7 @@ type SearchOperator_FieldSearch struct {
 
 func (x *SearchOperator_FieldSearch) Reset() {
 	*x = SearchOperator_FieldSearch{}
-	mi := &file_types_v1_logquery_proto_msgTypes[36]
+	mi := &file_types_v1_logquery_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2440,7 +2388,7 @@ func (x *SearchOperator_FieldSearch) String() string {
 func (*SearchOperator_FieldSearch) ProtoMessage() {}
 
 func (x *SearchOperator_FieldSearch) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[36]
+	mi := &file_types_v1_logquery_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2480,7 +2428,7 @@ type SearchOperator_ExactSearch struct {
 
 func (x *SearchOperator_ExactSearch) Reset() {
 	*x = SearchOperator_ExactSearch{}
-	mi := &file_types_v1_logquery_proto_msgTypes[37]
+	mi := &file_types_v1_logquery_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2492,7 +2440,7 @@ func (x *SearchOperator_ExactSearch) String() string {
 func (*SearchOperator_ExactSearch) ProtoMessage() {}
 
 func (x *SearchOperator_ExactSearch) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[37]
+	mi := &file_types_v1_logquery_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2532,7 +2480,7 @@ type SearchOperator_RegexSearch struct {
 
 func (x *SearchOperator_RegexSearch) Reset() {
 	*x = SearchOperator_RegexSearch{}
-	mi := &file_types_v1_logquery_proto_msgTypes[38]
+	mi := &file_types_v1_logquery_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2544,7 +2492,7 @@ func (x *SearchOperator_RegexSearch) String() string {
 func (*SearchOperator_RegexSearch) ProtoMessage() {}
 
 func (x *SearchOperator_RegexSearch) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[38]
+	mi := &file_types_v1_logquery_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2584,7 +2532,7 @@ type SortOperator_ByColumn struct {
 
 func (x *SortOperator_ByColumn) Reset() {
 	*x = SortOperator_ByColumn{}
-	mi := &file_types_v1_logquery_proto_msgTypes[39]
+	mi := &file_types_v1_logquery_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2596,7 +2544,7 @@ func (x *SortOperator_ByColumn) String() string {
 func (*SortOperator_ByColumn) ProtoMessage() {}
 
 func (x *SortOperator_ByColumn) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[39]
+	mi := &file_types_v1_logquery_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2636,7 +2584,7 @@ type TopOperator_ByColumn struct {
 
 func (x *TopOperator_ByColumn) Reset() {
 	*x = TopOperator_ByColumn{}
-	mi := &file_types_v1_logquery_proto_msgTypes[40]
+	mi := &file_types_v1_logquery_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2648,7 +2596,7 @@ func (x *TopOperator_ByColumn) String() string {
 func (*TopOperator_ByColumn) ProtoMessage() {}
 
 func (x *TopOperator_ByColumn) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[40]
+	mi := &file_types_v1_logquery_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2687,7 +2635,7 @@ type SplitOperator_ByOperator struct {
 
 func (x *SplitOperator_ByOperator) Reset() {
 	*x = SplitOperator_ByOperator{}
-	mi := &file_types_v1_logquery_proto_msgTypes[41]
+	mi := &file_types_v1_logquery_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2699,7 +2647,7 @@ func (x *SplitOperator_ByOperator) String() string {
 func (*SplitOperator_ByOperator) ProtoMessage() {}
 
 func (x *SplitOperator_ByOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_logquery_proto_msgTypes[41]
+	mi := &file_types_v1_logquery_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3041,13 +2989,7 @@ var file_types_v1_logquery_proto_rawDesc = string([]byte{
 	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x72, 0x52, 0x04, 0x61, 0x72, 0x67, 0x73, 0x22,
 	0x20, 0x0a, 0x0a, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x12, 0x12, 0x0a,
 	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x22, 0x5e, 0x0a, 0x08, 0x53, 0x65, 0x6c, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x12, 0x1c, 0x0a,
-	0x01, 0x78, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73,
-	0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x72, 0x52, 0x01, 0x78, 0x12, 0x34, 0x0a, 0x0a, 0x69,
-	0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
-	0x14, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74,
-	0x69, 0x66, 0x69, 0x65, 0x72, 0x52, 0x0a, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x65,
-	0x72, 0x22, 0x4d, 0x0a, 0x07, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x6f, 0x72, 0x12, 0x1c, 0x0a, 0x01,
+	0x65, 0x22, 0x4d, 0x0a, 0x07, 0x49, 0x6e, 0x64, 0x65, 0x78, 0x6f, 0x72, 0x12, 0x1c, 0x0a, 0x01,
 	0x78, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e,
 	0x76, 0x31, 0x2e, 0x45, 0x78, 0x70, 0x72, 0x52, 0x01, 0x78, 0x12, 0x24, 0x0a, 0x05, 0x69, 0x6e,
 	0x64, 0x65, 0x78, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e, 0x74, 0x79, 0x70, 0x65,
@@ -3077,7 +3019,7 @@ func file_types_v1_logquery_proto_rawDescGZIP() []byte {
 }
 
 var file_types_v1_logquery_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_types_v1_logquery_proto_msgTypes = make([]protoimpl.MessageInfo, 42)
+var file_types_v1_logquery_proto_msgTypes = make([]protoimpl.MessageInfo, 41)
 var file_types_v1_logquery_proto_goTypes = []any{
 	(SearchOperator_Kind)(0),                     // 0: types.v1.SearchOperator.Kind
 	(SortOperator_Order)(0),                      // 1: types.v1.SortOperator.Order
@@ -3109,24 +3051,23 @@ var file_types_v1_logquery_proto_goTypes = []any{
 	(*BinaryOp)(nil),                             // 27: types.v1.BinaryOp
 	(*FuncCall)(nil),                             // 28: types.v1.FuncCall
 	(*Identifier)(nil),                           // 29: types.v1.Identifier
-	(*Selector)(nil),                             // 30: types.v1.Selector
-	(*Indexor)(nil),                              // 31: types.v1.Indexor
-	(*SummarizeOperator_Parameters)(nil),         // 32: types.v1.SummarizeOperator.Parameters
-	(*SummarizeOperator_Parameter)(nil),          // 33: types.v1.SummarizeOperator.Parameter
-	(*SummarizeOperator_ByGroupExpressions)(nil), // 34: types.v1.SummarizeOperator.ByGroupExpressions
-	(*SummarizeOperator_ByGroupExpression)(nil),  // 35: types.v1.SummarizeOperator.ByGroupExpression
-	(*ProjectOperator_Projection)(nil),           // 36: types.v1.ProjectOperator.Projection
-	(*ProjectAwayOperator_Projection)(nil),       // 37: types.v1.ProjectAwayOperator.Projection
-	(*ProjectKeepOperator_Projection)(nil),       // 38: types.v1.ProjectKeepOperator.Projection
-	(*ExtendOperator_Projection)(nil),            // 39: types.v1.ExtendOperator.Projection
-	(*SearchOperator_Literal)(nil),               // 40: types.v1.SearchOperator.Literal
-	(*SearchOperator_FieldSearch)(nil),           // 41: types.v1.SearchOperator.FieldSearch
-	(*SearchOperator_ExactSearch)(nil),           // 42: types.v1.SearchOperator.ExactSearch
-	(*SearchOperator_RegexSearch)(nil),           // 43: types.v1.SearchOperator.RegexSearch
-	(*SortOperator_ByColumn)(nil),                // 44: types.v1.SortOperator.ByColumn
-	(*TopOperator_ByColumn)(nil),                 // 45: types.v1.TopOperator.ByColumn
-	(*SplitOperator_ByOperator)(nil),             // 46: types.v1.SplitOperator.ByOperator
-	(*Val)(nil),                                  // 47: types.v1.Val
+	(*Indexor)(nil),                              // 30: types.v1.Indexor
+	(*SummarizeOperator_Parameters)(nil),         // 31: types.v1.SummarizeOperator.Parameters
+	(*SummarizeOperator_Parameter)(nil),          // 32: types.v1.SummarizeOperator.Parameter
+	(*SummarizeOperator_ByGroupExpressions)(nil), // 33: types.v1.SummarizeOperator.ByGroupExpressions
+	(*SummarizeOperator_ByGroupExpression)(nil),  // 34: types.v1.SummarizeOperator.ByGroupExpression
+	(*ProjectOperator_Projection)(nil),           // 35: types.v1.ProjectOperator.Projection
+	(*ProjectAwayOperator_Projection)(nil),       // 36: types.v1.ProjectAwayOperator.Projection
+	(*ProjectKeepOperator_Projection)(nil),       // 37: types.v1.ProjectKeepOperator.Projection
+	(*ExtendOperator_Projection)(nil),            // 38: types.v1.ExtendOperator.Projection
+	(*SearchOperator_Literal)(nil),               // 39: types.v1.SearchOperator.Literal
+	(*SearchOperator_FieldSearch)(nil),           // 40: types.v1.SearchOperator.FieldSearch
+	(*SearchOperator_ExactSearch)(nil),           // 41: types.v1.SearchOperator.ExactSearch
+	(*SearchOperator_RegexSearch)(nil),           // 42: types.v1.SearchOperator.RegexSearch
+	(*SortOperator_ByColumn)(nil),                // 43: types.v1.SortOperator.ByColumn
+	(*TopOperator_ByColumn)(nil),                 // 44: types.v1.TopOperator.ByColumn
+	(*SplitOperator_ByOperator)(nil),             // 45: types.v1.SplitOperator.ByOperator
+	(*Val)(nil),                                  // 46: types.v1.Val
 }
 var file_types_v1_logquery_proto_depIdxs = []int32{
 	6,  // 0: types.v1.LogQuery.timerange:type_name -> types.v1.Timerange
@@ -3152,58 +3093,56 @@ var file_types_v1_logquery_proto_depIdxs = []int32{
 	21, // 20: types.v1.Statement.take:type_name -> types.v1.TakeOperator
 	22, // 21: types.v1.Statement.top:type_name -> types.v1.TopOperator
 	25, // 22: types.v1.FilterOperator.expr:type_name -> types.v1.Expr
-	32, // 23: types.v1.SummarizeOperator.parameters:type_name -> types.v1.SummarizeOperator.Parameters
-	34, // 24: types.v1.SummarizeOperator.by_group_expressions:type_name -> types.v1.SummarizeOperator.ByGroupExpressions
-	36, // 25: types.v1.ProjectOperator.projections:type_name -> types.v1.ProjectOperator.Projection
-	37, // 26: types.v1.ProjectAwayOperator.projections:type_name -> types.v1.ProjectAwayOperator.Projection
-	38, // 27: types.v1.ProjectKeepOperator.projections:type_name -> types.v1.ProjectKeepOperator.Projection
-	39, // 28: types.v1.ExtendOperator.projections:type_name -> types.v1.ExtendOperator.Projection
-	41, // 29: types.v1.SearchOperator.field:type_name -> types.v1.SearchOperator.FieldSearch
-	42, // 30: types.v1.SearchOperator.exact:type_name -> types.v1.SearchOperator.ExactSearch
-	43, // 31: types.v1.SearchOperator.regex:type_name -> types.v1.SearchOperator.RegexSearch
+	31, // 23: types.v1.SummarizeOperator.parameters:type_name -> types.v1.SummarizeOperator.Parameters
+	33, // 24: types.v1.SummarizeOperator.by_group_expressions:type_name -> types.v1.SummarizeOperator.ByGroupExpressions
+	35, // 25: types.v1.ProjectOperator.projections:type_name -> types.v1.ProjectOperator.Projection
+	36, // 26: types.v1.ProjectAwayOperator.projections:type_name -> types.v1.ProjectAwayOperator.Projection
+	37, // 27: types.v1.ProjectKeepOperator.projections:type_name -> types.v1.ProjectKeepOperator.Projection
+	38, // 28: types.v1.ExtendOperator.projections:type_name -> types.v1.ExtendOperator.Projection
+	40, // 29: types.v1.SearchOperator.field:type_name -> types.v1.SearchOperator.FieldSearch
+	41, // 30: types.v1.SearchOperator.exact:type_name -> types.v1.SearchOperator.ExactSearch
+	42, // 31: types.v1.SearchOperator.regex:type_name -> types.v1.SearchOperator.RegexSearch
 	0,  // 32: types.v1.SearchOperator.kind:type_name -> types.v1.SearchOperator.Kind
-	44, // 33: types.v1.SortOperator.by_columns:type_name -> types.v1.SortOperator.ByColumn
-	45, // 34: types.v1.TopOperator.by_column:type_name -> types.v1.TopOperator.ByColumn
+	43, // 33: types.v1.SortOperator.by_columns:type_name -> types.v1.SortOperator.ByColumn
+	44, // 34: types.v1.TopOperator.by_column:type_name -> types.v1.TopOperator.ByColumn
 	24, // 35: types.v1.RenderStatement.split:type_name -> types.v1.SplitOperator
-	46, // 36: types.v1.SplitOperator.by:type_name -> types.v1.SplitOperator.ByOperator
-	47, // 37: types.v1.Expr.literal:type_name -> types.v1.Val
+	45, // 36: types.v1.SplitOperator.by:type_name -> types.v1.SplitOperator.ByOperator
+	46, // 37: types.v1.Expr.literal:type_name -> types.v1.Val
 	26, // 38: types.v1.Expr.unary:type_name -> types.v1.UnaryOp
 	27, // 39: types.v1.Expr.binary:type_name -> types.v1.BinaryOp
 	28, // 40: types.v1.Expr.func_call:type_name -> types.v1.FuncCall
 	29, // 41: types.v1.Expr.identifier:type_name -> types.v1.Identifier
-	31, // 42: types.v1.Expr.indexor:type_name -> types.v1.Indexor
+	30, // 42: types.v1.Expr.indexor:type_name -> types.v1.Indexor
 	3,  // 43: types.v1.UnaryOp.op:type_name -> types.v1.UnaryOp.Operator
 	25, // 44: types.v1.UnaryOp.arg:type_name -> types.v1.Expr
 	25, // 45: types.v1.BinaryOp.lhs:type_name -> types.v1.Expr
 	4,  // 46: types.v1.BinaryOp.op:type_name -> types.v1.BinaryOp.Operator
 	25, // 47: types.v1.BinaryOp.rhs:type_name -> types.v1.Expr
 	25, // 48: types.v1.FuncCall.args:type_name -> types.v1.Expr
-	25, // 49: types.v1.Selector.x:type_name -> types.v1.Expr
-	29, // 50: types.v1.Selector.identifier:type_name -> types.v1.Identifier
-	25, // 51: types.v1.Indexor.x:type_name -> types.v1.Expr
-	25, // 52: types.v1.Indexor.index:type_name -> types.v1.Expr
-	33, // 53: types.v1.SummarizeOperator.Parameters.parameters:type_name -> types.v1.SummarizeOperator.Parameter
-	29, // 54: types.v1.SummarizeOperator.Parameter.column:type_name -> types.v1.Identifier
-	28, // 55: types.v1.SummarizeOperator.Parameter.aggregate_function:type_name -> types.v1.FuncCall
-	35, // 56: types.v1.SummarizeOperator.ByGroupExpressions.groups:type_name -> types.v1.SummarizeOperator.ByGroupExpression
-	29, // 57: types.v1.SummarizeOperator.ByGroupExpression.column:type_name -> types.v1.Identifier
-	25, // 58: types.v1.SummarizeOperator.ByGroupExpression.scalar:type_name -> types.v1.Expr
-	29, // 59: types.v1.ProjectOperator.Projection.column:type_name -> types.v1.Identifier
-	25, // 60: types.v1.ProjectOperator.Projection.value:type_name -> types.v1.Expr
-	29, // 61: types.v1.ProjectAwayOperator.Projection.column:type_name -> types.v1.Identifier
-	29, // 62: types.v1.ProjectKeepOperator.Projection.column:type_name -> types.v1.Identifier
-	29, // 63: types.v1.ExtendOperator.Projection.column:type_name -> types.v1.Identifier
-	25, // 64: types.v1.ExtendOperator.Projection.value:type_name -> types.v1.Expr
-	29, // 65: types.v1.SortOperator.ByColumn.column:type_name -> types.v1.Identifier
-	1,  // 66: types.v1.SortOperator.ByColumn.order:type_name -> types.v1.SortOperator.Order
-	25, // 67: types.v1.TopOperator.ByColumn.scalar:type_name -> types.v1.Expr
-	2,  // 68: types.v1.TopOperator.ByColumn.order:type_name -> types.v1.TopOperator.Order
-	25, // 69: types.v1.SplitOperator.ByOperator.scalars:type_name -> types.v1.Expr
-	70, // [70:70] is the sub-list for method output_type
-	70, // [70:70] is the sub-list for method input_type
-	70, // [70:70] is the sub-list for extension type_name
-	70, // [70:70] is the sub-list for extension extendee
-	0,  // [0:70] is the sub-list for field type_name
+	25, // 49: types.v1.Indexor.x:type_name -> types.v1.Expr
+	25, // 50: types.v1.Indexor.index:type_name -> types.v1.Expr
+	32, // 51: types.v1.SummarizeOperator.Parameters.parameters:type_name -> types.v1.SummarizeOperator.Parameter
+	29, // 52: types.v1.SummarizeOperator.Parameter.column:type_name -> types.v1.Identifier
+	28, // 53: types.v1.SummarizeOperator.Parameter.aggregate_function:type_name -> types.v1.FuncCall
+	34, // 54: types.v1.SummarizeOperator.ByGroupExpressions.groups:type_name -> types.v1.SummarizeOperator.ByGroupExpression
+	29, // 55: types.v1.SummarizeOperator.ByGroupExpression.column:type_name -> types.v1.Identifier
+	25, // 56: types.v1.SummarizeOperator.ByGroupExpression.scalar:type_name -> types.v1.Expr
+	29, // 57: types.v1.ProjectOperator.Projection.column:type_name -> types.v1.Identifier
+	25, // 58: types.v1.ProjectOperator.Projection.value:type_name -> types.v1.Expr
+	29, // 59: types.v1.ProjectAwayOperator.Projection.column:type_name -> types.v1.Identifier
+	29, // 60: types.v1.ProjectKeepOperator.Projection.column:type_name -> types.v1.Identifier
+	29, // 61: types.v1.ExtendOperator.Projection.column:type_name -> types.v1.Identifier
+	25, // 62: types.v1.ExtendOperator.Projection.value:type_name -> types.v1.Expr
+	29, // 63: types.v1.SortOperator.ByColumn.column:type_name -> types.v1.Identifier
+	1,  // 64: types.v1.SortOperator.ByColumn.order:type_name -> types.v1.SortOperator.Order
+	25, // 65: types.v1.TopOperator.ByColumn.scalar:type_name -> types.v1.Expr
+	2,  // 66: types.v1.TopOperator.ByColumn.order:type_name -> types.v1.TopOperator.Order
+	25, // 67: types.v1.SplitOperator.ByOperator.scalars:type_name -> types.v1.Expr
+	68, // [68:68] is the sub-list for method output_type
+	68, // [68:68] is the sub-list for method input_type
+	68, // [68:68] is the sub-list for extension type_name
+	68, // [68:68] is the sub-list for extension extendee
+	0,  // [0:68] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_logquery_proto_init() }
@@ -3248,18 +3187,18 @@ func file_types_v1_logquery_proto_init() {
 		(*Expr_Identifier)(nil),
 		(*Expr_Indexor)(nil),
 	}
-	file_types_v1_logquery_proto_msgTypes[28].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[27].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[29].OneofWrappers = []any{}
 	file_types_v1_logquery_proto_msgTypes[30].OneofWrappers = []any{}
-	file_types_v1_logquery_proto_msgTypes[31].OneofWrappers = []any{}
+	file_types_v1_logquery_proto_msgTypes[38].OneofWrappers = []any{}
 	file_types_v1_logquery_proto_msgTypes[39].OneofWrappers = []any{}
-	file_types_v1_logquery_proto_msgTypes[40].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_logquery_proto_rawDesc), len(file_types_v1_logquery_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   42,
+			NumMessages:   41,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
