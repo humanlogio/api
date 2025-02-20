@@ -238,9 +238,9 @@ FuncArgs <- FuncArg ( Space ',' Space FuncArg )* Space
 FuncArg  <- Expr                                              { p.addFuncArg(p.popExpr()) }
 
 Identifier
-  <- <[a-zA-Z_][a-zA-Z0-9_]*> { p.pushExpr(typesv1.ExprIdentifier(text)) }
-    / '[\'' <([a-zA-Z0-9_]/[-]/[.]/[ ])*> '\']'          { p.pushExpr(typesv1.ExprIdentifier(p.String)) }
-    / '[\"' <([a-zA-Z0-9_]/[-]/[.]/[ ])*> '\"]'         { p.pushExpr(typesv1.ExprIdentifier(p.String)) }
+  <- <[a-zA-Z_][a-zA-Z0-9_]*>                           { p.pushExpr(typesv1.ExprIdentifier(text)) }
+    / '[\'' <([a-zA-Z0-9_]/[-]/[.]/[ ])*> '\']'         { p.pushExpr(typesv1.ExprIdentifier(text)) }
+    / '[\"' <([a-zA-Z0-9_]/[-]/[.]/[ ])*> '\"]'         { p.pushExpr(typesv1.ExprIdentifier(text)) }
 
 
 String

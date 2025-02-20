@@ -961,9 +961,9 @@ func (p *logQL) Execute() {
 		case ruleAction102:
 			p.pushExpr(typesv1.ExprIdentifier(text))
 		case ruleAction103:
-			p.pushExpr(typesv1.ExprIdentifier(p.String))
+			p.pushExpr(typesv1.ExprIdentifier(text))
 		case ruleAction104:
-			p.pushExpr(typesv1.ExprIdentifier(p.String))
+			p.pushExpr(typesv1.ExprIdentifier(text))
 		case ruleAction105:
 			p.String = p.parseDoubleQuoteString(text)
 		case ruleAction106:
@@ -6898,14 +6898,14 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			}
 			return true
 		},
-		/* 204 Action103 <- <{ p.pushExpr(typesv1.ExprIdentifier(p.String)) }> */
+		/* 204 Action103 <- <{ p.pushExpr(typesv1.ExprIdentifier(text)) }> */
 		func() bool {
 			{
 				add(ruleAction103, position)
 			}
 			return true
 		},
-		/* 205 Action104 <- <{ p.pushExpr(typesv1.ExprIdentifier(p.String)) }> */
+		/* 205 Action104 <- <{ p.pushExpr(typesv1.ExprIdentifier(text)) }> */
 		func() bool {
 			{
 				add(ruleAction104, position)
