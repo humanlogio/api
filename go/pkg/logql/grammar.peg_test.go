@@ -45,6 +45,11 @@ func TestParse(t *testing.T) {
 				projection("func", id("source.function")),
 			)),
 		), nil},
+		{`project func=["source.function"]`, q(nil, nil,
+			stmts(project(
+				projection("func", id("source.function")),
+			)),
+		), nil},
 		{`{ from == now()-1w }`, q(tr(sub(fn("now"), dure(7*24*time.Hour)), nil), nil, nil), nil},
 		{`{ from == now()-1d }`, q(tr(sub(fn("now"), dure(24*time.Hour)), nil), nil, nil), nil},
 		{`{ from == now()-1s }`, q(tr(sub(fn("now"), dure(time.Second)), nil), nil, nil), nil},

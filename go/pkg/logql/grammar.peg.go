@@ -3904,7 +3904,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position190, tokenIndex190
 			return false
 		},
-		/* 43 Literal <- <((String Action91) / (('d' 'u' 'r' ':')? Duration Action92) / (('t' 's' ':')? Timestamp Action93) / (F64 Action94) / (I64 Action95) / (Bool Action96) / (Array Action97) / (Object Action98))> */
+		/* 43 Literal <- <((String Action91) / (('d' 'u' 'r' ':')? Duration Action92) / (('t' 's' ':')? Timestamp Action93) / (F64 Action94) / (I64 Action95) / (Bool Action96) / ('d' 'y' 'n' 'a' 'm' 'i' 'c' '(' Array ')' Action97) / ('d' 'y' 'n' 'a' 'm' 'i' 'c' '(' Object ')' Action98))> */
 		func() bool {
 			position200, tokenIndex200 := position, tokenIndex
 			{
@@ -4007,18 +4007,90 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 					goto l202
 				l212:
 					position, tokenIndex = position202, tokenIndex202
+					if buffer[position] != rune('d') {
+						goto l213
+					}
+					position++
+					if buffer[position] != rune('y') {
+						goto l213
+					}
+					position++
+					if buffer[position] != rune('n') {
+						goto l213
+					}
+					position++
+					if buffer[position] != rune('a') {
+						goto l213
+					}
+					position++
+					if buffer[position] != rune('m') {
+						goto l213
+					}
+					position++
+					if buffer[position] != rune('i') {
+						goto l213
+					}
+					position++
+					if buffer[position] != rune('c') {
+						goto l213
+					}
+					position++
+					if buffer[position] != rune('(') {
+						goto l213
+					}
+					position++
 					if !_rules[ruleArray]() {
 						goto l213
 					}
+					if buffer[position] != rune(')') {
+						goto l213
+					}
+					position++
 					if !_rules[ruleAction97]() {
 						goto l213
 					}
 					goto l202
 				l213:
 					position, tokenIndex = position202, tokenIndex202
+					if buffer[position] != rune('d') {
+						goto l200
+					}
+					position++
+					if buffer[position] != rune('y') {
+						goto l200
+					}
+					position++
+					if buffer[position] != rune('n') {
+						goto l200
+					}
+					position++
+					if buffer[position] != rune('a') {
+						goto l200
+					}
+					position++
+					if buffer[position] != rune('m') {
+						goto l200
+					}
+					position++
+					if buffer[position] != rune('i') {
+						goto l200
+					}
+					position++
+					if buffer[position] != rune('c') {
+						goto l200
+					}
+					position++
+					if buffer[position] != rune('(') {
+						goto l200
+					}
+					position++
 					if !_rules[ruleObject]() {
 						goto l200
 					}
+					if buffer[position] != rune(')') {
+						goto l200
+					}
+					position++
 					if !_rules[ruleAction98]() {
 						goto l200
 					}
