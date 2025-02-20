@@ -35,6 +35,11 @@ func TestParse(t *testing.T) {
 				projection("bot", nil),
 			)),
 		), nil},
+		{`project my_bot`, q(nil, nil,
+			stmts(project(
+				projection("my_bot", nil),
+			)),
+		), nil},
 		{`project func=['source.function']`, q(nil, nil,
 			stmts(project(
 				projection("func", id("source.function")),
