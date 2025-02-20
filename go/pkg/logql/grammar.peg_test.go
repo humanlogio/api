@@ -20,6 +20,23 @@ func TestParse(t *testing.T) {
 		want *v1.LogQuery
 		err  error
 	}{
+		{`project ['source.function']`, q(nil, nil,
+			stmts(project(
+				projection("source.function", nil),
+			)),
+		), nil},
+		{`project ["source.function"]`, q(nil, nil,
+			stmts(project(
+				projection("source.function", nil),
+			)),
+		), nil},
+		{`project bot`, q(nil, nil,
+			stmts(project(
+				projection("bot", nil),
+			)),
+		), nil},
+		{`{ from == now()-1w }`, q(tr(sub(fn("now"), dure(7*24*time.Hour)), nil), nil, nil), nil},
+		{`{ from == now()-1d }`, q(tr(sub(fn("now"), dure(24*time.Hour)), nil), nil, nil), nil},
 		{`{ from == now()-1s }`, q(tr(sub(fn("now"), dure(time.Second)), nil), nil, nil), nil},
 		{
 			`{session==1734666428038101000} filter msg=="AuthenticateUser"`,
@@ -1041,10 +1058,6 @@ func setin(lhs, rhs *v1.Expr) *v1.Expr {
 
 func setnotin(lhs, rhs *v1.Expr) *v1.Expr {
 	return v1.ExprBinary(lhs, v1.BinaryOp_SET_NOTIN, rhs)
-}
-
-func selector(x *v1.Expr, id string) *v1.Expr {
-	return v1.ExprSelector(x, id)
 }
 
 func id(str string) *v1.Expr {

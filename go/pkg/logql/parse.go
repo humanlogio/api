@@ -18,6 +18,9 @@ func Parse(input string) (_ *typesv1.LogQuery, err error) {
 		return nil, fmt.Errorf("initializing query parser: %v", err)
 	}
 	if err := p.Parse(); err != nil {
+		if perr, ok := err.(*parseError); ok {
+			return nil, perr
+		}
 		return nil, fmt.Errorf("parsing query: %v (%#v)", err, err)
 	}
 	defer func() {
@@ -449,7 +452,16 @@ func (p *logQL) addRenderSplitByOp(e *typesv1.Expr) {
 	p.SplitByOp.By.Scalars = append(p.SplitByOp.By.Scalars, e)
 }
 
-func (p *logQL) parseString(text string) string {
+func (p *logQL) parseDoubleQuoteString(text string) string {
+	v, err := strconv.Unquote(text)
+	if err != nil {
+		p.err = err
+		panic(err)
+	}
+	return v
+}
+
+func (p *logQL) parseSingleQuoteString(text string) string {
 	v, err := strconv.Unquote(text)
 	if err != nil {
 		p.err = err
@@ -488,6 +500,10 @@ func (p *logQL) parseDurationF64(v float64, unit string) time.Duration {
 		return time.Duration(v * float64(time.Minute))
 	case "h":
 		return time.Duration(v * float64(time.Hour))
+	case "d":
+		return 24 * time.Duration(v*float64(time.Hour))
+	case "w":
+		return 7 * 24 * time.Duration(v*float64(time.Hour))
 	default:
 		panic(unit)
 	}
@@ -507,6 +523,10 @@ func (p *logQL) parseDurationI64(v int64, unit string) time.Duration {
 		return time.Duration(v) * time.Minute
 	case "h":
 		return time.Duration(v) * time.Hour
+	case "d":
+		return time.Duration(v) * time.Hour * 24
+	case "w":
+		return time.Duration(v) * time.Hour * 24 * 7
 	default:
 		panic(unit)
 	}

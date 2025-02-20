@@ -32,13 +32,6 @@ func ExprIdentifier(id string) *Expr {
 	}}}
 }
 
-func ExprSelector(x *Expr, identifier string) *Expr {
-	return &Expr{Expr: &Expr_Selector{Selector: &Selector{
-		X:          x,
-		Identifier: &Identifier{Name: identifier}},
-	}}
-}
-
 func ExprIndexor(x *Expr, index *Expr) *Expr {
 	return &Expr{Expr: &Expr_Indexor{Indexor: &Indexor{
 		X:     x,

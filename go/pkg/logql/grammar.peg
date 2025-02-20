@@ -209,7 +209,6 @@ Expr3 <- Expr4  ( Space CMP_EQ Expr4      { rhs, lhs := p.popExpr(), p.popExpr()
                 )*
 
 Expr4 <- Expr5  ( Space L_BRACKET Expr5 R_BRACKET { index, x := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprIndexor(x, index)) }
-                / Space DOT <SelectorId>          { selector, x := text, p.popExpr(); p.pushExpr(typesv1.ExprSelector(x, selector)) }
                 )*
 
 Expr5 <-  L_PARENS Expr R_PARENS Space
@@ -240,12 +239,12 @@ FuncArg  <- Expr                                              { p.addFuncArg(p.p
 
 Identifier
   <- <[a-zA-Z_][a-zA-Z0-9_]*> { p.pushExpr(typesv1.ExprIdentifier(text)) }
+    / '[\'' <([a-zA-Z0-9_]/[-]/[.]/[ ])*> '\']'          { p.pushExpr(typesv1.ExprIdentifier(p.String)) }
+    / '[\"' <([a-zA-Z0-9_]/[-]/[.]/[ ])*> '\"]'         { p.pushExpr(typesv1.ExprIdentifier(p.String)) }
 
 
 String
-  <- <'"' StringChar* '"'>          { p.String = p.parseString(text) }
-
-SelectorId <- [a-zA-Z_][a-zA-Z0-9_]*
+  <- <'"' DoubleQuoteStringChar* '"'>         { p.String = p.parseDoubleQuoteString(text) }
 
 F64
   <- <Digits '.' Digits? Exponent?> { p.F64 = p.parseFloat64(text) }
@@ -274,12 +273,12 @@ ObjectItem <- ObjectKey COLON Literal                { p.closeObjItem(p.Literal)
 ObjectKey  <- String                                 { p.startObjItem(p.String) }
 
 
-Duration  <- F64 <('us'/'µs'/'ms'/'s'/'m'/'h')>      { p.Duration = p.parseDurationF64(p.F64, text) }
-          /  I64 <('ns'/'us'/'µs'/'ms'/'s'/'m'/'h')> { p.Duration = p.parseDurationI64(p.I64, text) }
+Duration  <- F64 <('us'/'µs'/'ms'/'s'/'m'/'h'/'d'/'w')>      { p.Duration = p.parseDurationF64(p.F64, text) }
+          /  I64 <('ns'/'us'/'µs'/'ms'/'s'/'m'/'h'/'d'/'w')> { p.Duration = p.parseDurationI64(p.I64, text) }
 
 Timestamp <- <RFC3339Nano>  { p.Timestamp = p.parseTime(time.RFC3339Nano, text) }
 
-StringChar <- '\\' ['\"?\\%abfnrtv] / ![\"\n\\] .
+DoubleQuoteStringChar <- '\\' ['\"?\\%abfnrtv] / ![\"\n\\] .
 
 Exponent <- [eE] [+\-]? Digits
 
@@ -310,7 +309,6 @@ CMP_LTE     <- '<=' Space
 SET_IN      <- 'in' Space
 SET_NOTIN   <- 'not in' Space
 PIPE        <- '|' Space
-DOT         <- '.' Space
 L_PARENS    <- '(' Space
 R_PARENS    <- ')' Space
 L_BRACKET   <- '[' Space

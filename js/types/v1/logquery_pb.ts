@@ -1622,17 +1622,9 @@ export class Expr extends Message<Expr> {
     case: "identifier";
   } | {
     /**
-     * msg.hello.world
-     *
-     * @generated from field: types.v1.Selector selector = 106;
-     */
-    value: Selector;
-    case: "selector";
-  } | {
-    /**
      * kvs['hello']
      *
-     * @generated from field: types.v1.Indexor indexor = 107;
+     * @generated from field: types.v1.Indexor indexor = 106;
      */
     value: Indexor;
     case: "indexor";
@@ -1651,8 +1643,7 @@ export class Expr extends Message<Expr> {
     { no: 103, name: "binary", kind: "message", T: BinaryOp, oneof: "expr" },
     { no: 104, name: "func_call", kind: "message", T: FuncCall, oneof: "expr" },
     { no: 105, name: "identifier", kind: "message", T: Identifier, oneof: "expr" },
-    { no: 106, name: "selector", kind: "message", T: Selector, oneof: "expr" },
-    { no: 107, name: "indexor", kind: "message", T: Indexor, oneof: "expr" },
+    { no: 106, name: "indexor", kind: "message", T: Indexor, oneof: "expr" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Expr {
