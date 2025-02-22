@@ -330,6 +330,10 @@ func (p *logQL) startDistinctOp() {
 	p.DistinctOp = &typesv1.DistinctOperator{}
 }
 
+func (p *logQL) addDistinctOpArg(column string) {
+	p.DistinctOp.Fields = append(p.DistinctOp.Fields, &typesv1.Identifier{Name: column})
+}
+
 func (p *logQL) startSampleOp() {
 	p.SampleOp = &typesv1.SampleOperator{}
 }

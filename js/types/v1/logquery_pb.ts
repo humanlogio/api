@@ -897,6 +897,11 @@ export class CountOperator extends Message<CountOperator> {
  * @generated from message types.v1.DistinctOperator
  */
 export class DistinctOperator extends Message<DistinctOperator> {
+  /**
+   * @generated from field: repeated types.v1.Identifier fields = 1;
+   */
+  fields: Identifier[] = [];
+
   constructor(data?: PartialMessage<DistinctOperator>) {
     super();
     proto3.util.initPartial(data, this);
@@ -905,6 +910,7 @@ export class DistinctOperator extends Message<DistinctOperator> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.DistinctOperator";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "fields", kind: "message", T: Identifier, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DistinctOperator {

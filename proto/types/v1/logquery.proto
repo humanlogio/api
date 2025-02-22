@@ -104,7 +104,9 @@ message ExtendOperator {
 
 message CountOperator {}
 
-message DistinctOperator {}
+message DistinctOperator {
+  repeated Identifier fields = 1;
+}
 
 message SampleOperator {
   int64 count = 1;

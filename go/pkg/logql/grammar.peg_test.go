@@ -372,12 +372,42 @@ func TestParse(t *testing.T) {
 			nil,
 		},
 		{
-			`distinct`,
+			`distinct func, msg`,
 			q(
 				nil,
 				nil,
 				stmts(
-					distinctOp(),
+					distinctOp(
+						idt("func"),
+						idt("msg"),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`distinct func,msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					distinctOp(
+						idt("func"),
+						idt("msg"),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`distinct msg`,
+			q(
+				nil,
+				nil,
+				stmts(
+					distinctOp(
+						idt("msg"),
+					),
 				),
 			),
 			nil,
@@ -832,9 +862,11 @@ func countOp() *v1.Statement {
 	}}
 }
 
-func distinctOp() *v1.Statement {
+func distinctOp(field *v1.Identifier, fields ...*v1.Identifier) *v1.Statement {
 	return &v1.Statement{Stmt: &v1.Statement_Distinct{
-		Distinct: &v1.DistinctOperator{},
+		Distinct: &v1.DistinctOperator{
+			Fields: append([]*v1.Identifier{field}, fields...),
+		},
 	}}
 }
 
@@ -1073,6 +1105,10 @@ func setin(lhs, rhs *v1.Expr) *v1.Expr {
 
 func setnotin(lhs, rhs *v1.Expr) *v1.Expr {
 	return v1.ExprBinary(lhs, v1.BinaryOp_SET_NOTIN, rhs)
+}
+
+func idt(str string) *v1.Identifier {
+	return &v1.Identifier{Name: str}
 }
 
 func id(str string) *v1.Expr {

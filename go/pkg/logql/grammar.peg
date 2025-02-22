@@ -145,6 +145,8 @@ ExtendArg        <-  Identifier      { p.setExtendOpArgColumnName(text) }
 CountOperator   <- { p.startCountOp() }
 
 DistinctOperator   <- { p.startDistinctOp() }
+                      MustSpace DistinctOperatorArg (Space ',' Space DistinctOperatorArg)*
+DistinctOperatorArg <- Identifier { p.addDistinctOpArg(text) }
 
 SampleOperator   <- MustSpace { p.startSampleOp() }
                     I64 Space { p.setSampleOpCount(p.I64) }
