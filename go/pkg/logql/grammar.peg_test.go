@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-	typesv1 "github.com/humanlogio/api/go/types/v1"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -20,6 +19,54 @@ func TestParse(t *testing.T) {
 		want *v1.LogQuery
 		err  error
 	}{
+		{`where msg=~"str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_EQ_NOCS, str("str1")),
+		))), nil},
+		{`where msg!~"str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_NOTEQ_NOCS, str("str1")),
+		))), nil},
+		{`where msg contains "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_CONTAINS, str("str1")),
+		))), nil},
+		{`where msg !contains "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_NOT_CONTAINS, str("str1")),
+		))), nil},
+		{`where msg contains_cs "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_CONTAINS_CS, str("str1")),
+		))), nil},
+		{`where msg !contains_cs "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_NOT_CONTAINS_CS, str("str1")),
+		))), nil},
+		{`where msg startswith "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_STARTSWITH, str("str1")),
+		))), nil},
+		{`where msg !startswith "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_NOT_STARTSWITH, str("str1")),
+		))), nil},
+		{`where msg startswith_cs "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_STARTSWITH_CS, str("str1")),
+		))), nil},
+		{`where msg !startswith_cs "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_NOT_STARTSWITH_CS, str("str1")),
+		))), nil},
+		{`where msg endswith "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_ENDSWITH, str("str1")),
+		))), nil},
+		{`where msg !endswith "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_NOT_ENDSWITH, str("str1")),
+		))), nil},
+		{`where msg endswith_cs "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_ENDSWITH_CS, str("str1")),
+		))), nil},
+		{`where msg !endswith_cs "str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_NOT_ENDSWITH_CS, str("str1")),
+		))), nil},
+		{`where 3 % 2`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(i64(3), v1.BinaryOp_NUM_MOD, i64(2)),
+		))), nil},
+		{`where msg!="str1"`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_CMP_NOTEQ, str("str1")),
+		))), nil},
 		{`project ['source.function']`, q(nil, nil,
 			stmts(project(
 				projection("source.function", nil),
@@ -117,6 +164,78 @@ func TestParse(t *testing.T) {
 						eq(
 							id("msg"),
 							str("AuthenticateUser"),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`where msg=="str1" and msg=="str2"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					filter(
+						and(
+							eq(
+								id("msg"),
+								str("str1"),
+							),
+							eq(
+								id("msg"),
+								str("str2"),
+							),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`where msg=="str1" or msg=="str2"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					filter(
+						or(
+							eq(
+								id("msg"),
+								str("str1"),
+							),
+							eq(
+								id("msg"),
+								str("str2"),
+							),
+						),
+					),
+				),
+			),
+			nil,
+		},
+		{
+			`where msg=="str1" or msg=="str2" and msg=="str3"`,
+			q(
+				nil,
+				nil,
+				stmts(
+					filter(
+						and(
+							or(
+								eq(
+									id("msg"),
+									str("str1"),
+								),
+								eq(
+									id("msg"),
+									str("str2"),
+								),
+							),
+							eq(
+								id("msg"),
+								str("str3"),
+							),
 						),
 					),
 				),
@@ -726,17 +845,17 @@ func TestParse(t *testing.T) {
 		// {`1 >= 2`, q(nil, nil, nil, gte(i64(1), i64(2))), nil},
 		// {`1 < 2`, q(nil, nil, nil, lt(i64(1), i64(2))), nil},
 		// {`1 <= 2`, q(nil, nil, nil, lte(i64(1), i64(2))), nil},
-		// {`true && false`, q(nil, nil, nil, and(boo(true), boo(false))), nil},
-		// {`true || false`, q(nil, nil, nil, or(boo(true), boo(false))), nil},
-		// {`true && 1 > 2`, q(nil, nil, nil, and(boo(true), gt(i64(1), i64(2)))), nil},
-		// {`1 > 2 && true`, q(nil, nil, nil, and(gt(i64(1), i64(2)), boo(true))), nil},
-		// {`!true || false`, q(nil, nil, nil, or(not(boo(true)), boo(false))), nil},
-		// {`!(true || false)`, q(nil, nil, nil, not(or(boo(true), boo(false)))), nil},
-		// {`true && !false`, q(nil, nil, nil, and(boo(true), not(boo(false)))), nil},
-		// {`!(true && false)`, q(nil, nil, nil, not(and(boo(true), boo(false)))), nil},
+		// {`true and false`, q(nil, nil, nil, and(boo(true), boo(false))), nil},
+		// {`true or false`, q(nil, nil, nil, or(boo(true), boo(false))), nil},
+		// {`true and 1 > 2`, q(nil, nil, nil, and(boo(true), gt(i64(1), i64(2)))), nil},
+		// {`1 > 2 and true`, q(nil, nil, nil, and(gt(i64(1), i64(2)), boo(true))), nil},
+		// {`!true or false`, q(nil, nil, nil, or(not(boo(true)), boo(false))), nil},
+		// {`!(true or false)`, q(nil, nil, nil, not(or(boo(true), boo(false)))), nil},
+		// {`true and !false`, q(nil, nil, nil, and(boo(true), not(boo(false)))), nil},
+		// {`!(true and false)`, q(nil, nil, nil, not(and(boo(true), boo(false)))), nil},
 		// {`1 in [1,2,3]`, q(nil, nil, nil, setin(i64(1), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3)))), nil},
 		// {`1 not in [1,2,3]`, q(nil, nil, nil, setnotin(i64(1), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3)))), nil},
-		// {`true || false || 1`, q(nil, nil, nil, or(or(boo(true), boo(false)), i64(1))), nil},
+		// {`true or false or 1`, q(nil, nil, nil, or(or(boo(true), boo(false)), i64(1))), nil},
 		// {`len(msg) > 0 | true`, q(nil, nil, nil, pipe(gt(fn("len", id("msg")), i64(0)), boo(true))), nil},
 		// {`len(msg) > 0 | true | lvl in [1,2,3]`, q(nil, nil, nil, pipe(pipe(gt(fn("len", id("msg")), i64(0)), boo(true)), setin(id("lvl"), arr(v1.ValI64(1), v1.ValI64(2), v1.ValI64(3))))), nil},
 		// {`kv["hello"]["world"][0]`, q(nil, nil, nil, idx(idx(idx(id("kv"), str("hello")), str("world")), i64(0))), nil},
@@ -876,23 +995,23 @@ func sampleOp(v int64) *v1.Statement {
 	}}
 }
 
-func searchKindDefault() *typesv1.SearchOperator_Kind {
-	v := typesv1.SearchOperator_Default
+func searchKindDefault() *v1.SearchOperator_Kind {
+	v := v1.SearchOperator_Default
 	return &v
 }
 
-func searchKindCaseInsensitive() *typesv1.SearchOperator_Kind {
-	v := typesv1.SearchOperator_CaseInsensitive
+func searchKindCaseInsensitive() *v1.SearchOperator_Kind {
+	v := v1.SearchOperator_CaseInsensitive
 	return &v
 }
 
-func searchKindCaseSensitive() *typesv1.SearchOperator_Kind {
-	v := typesv1.SearchOperator_CaseSensitive
+func searchKindCaseSensitive() *v1.SearchOperator_Kind {
+	v := v1.SearchOperator_CaseSensitive
 	return &v
 }
 
-func searchOp_Literal(literal string, kind *typesv1.SearchOperator_Kind) *typesv1.Statement {
-	return &v1.Statement{Stmt: &typesv1.Statement_Search{
+func searchOp_Literal(literal string, kind *v1.SearchOperator_Kind) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Search{
 		Search: &v1.SearchOperator{
 			Predicate: &v1.SearchOperator_Literal_{Literal: literal},
 			Kind:      kind,
@@ -900,8 +1019,8 @@ func searchOp_Literal(literal string, kind *typesv1.SearchOperator_Kind) *typesv
 	}}
 }
 
-func searchOp_Field(column, literal string, kind *typesv1.SearchOperator_Kind) *typesv1.Statement {
-	return &v1.Statement{Stmt: &typesv1.Statement_Search{
+func searchOp_Field(column, literal string, kind *v1.SearchOperator_Kind) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Search{
 		Search: &v1.SearchOperator{
 			Predicate: &v1.SearchOperator_Field{Field: &v1.SearchOperator_FieldSearch{
 				Column:  column,
@@ -912,8 +1031,8 @@ func searchOp_Field(column, literal string, kind *typesv1.SearchOperator_Kind) *
 	}}
 }
 
-func searchOp_Exact(column, literal string, kind *typesv1.SearchOperator_Kind) *typesv1.Statement {
-	return &v1.Statement{Stmt: &typesv1.Statement_Search{
+func searchOp_Exact(column, literal string, kind *v1.SearchOperator_Kind) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Search{
 		Search: &v1.SearchOperator{
 			Predicate: &v1.SearchOperator_Exact{Exact: &v1.SearchOperator_ExactSearch{
 				Column:  column,
@@ -924,8 +1043,8 @@ func searchOp_Exact(column, literal string, kind *typesv1.SearchOperator_Kind) *
 	}}
 }
 
-func searchOp_Regex(column, regex string, kind *typesv1.SearchOperator_Kind) *typesv1.Statement {
-	return &v1.Statement{Stmt: &typesv1.Statement_Search{
+func searchOp_Regex(column, regex string, kind *v1.SearchOperator_Kind) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Search{
 		Search: &v1.SearchOperator{
 			Predicate: &v1.SearchOperator_Regex{Regex: &v1.SearchOperator_RegexSearch{
 				Column: column,
@@ -936,13 +1055,13 @@ func searchOp_Regex(column, regex string, kind *typesv1.SearchOperator_Kind) *ty
 	}}
 }
 
-func sortAsc() *typesv1.SortOperator_Order {
-	v := typesv1.SortOperator_Asc
+func sortAsc() *v1.SortOperator_Order {
+	v := v1.SortOperator_Asc
 	return &v
 }
 
-func sortDesc() *typesv1.SortOperator_Order {
-	v := typesv1.SortOperator_Desc
+func sortDesc() *v1.SortOperator_Order {
+	v := v1.SortOperator_Desc
 	return &v
 }
 
@@ -969,19 +1088,19 @@ func takeOp(v int64) *v1.Statement {
 	}}
 }
 
-func topAsc() *typesv1.TopOperator_Order {
-	v := typesv1.TopOperator_Asc
+func topAsc() *v1.TopOperator_Order {
+	v := v1.TopOperator_Asc
 	return &v
 }
 
-func topDesc() *typesv1.TopOperator_Order {
-	v := typesv1.TopOperator_Desc
+func topDesc() *v1.TopOperator_Order {
+	v := v1.TopOperator_Desc
 	return &v
 }
 
-func topOp(v int64, by *typesv1.Expr, order *typesv1.TopOperator_Order) *v1.Statement {
-	return &v1.Statement{Stmt: &typesv1.Statement_Top{
-		Top: &typesv1.TopOperator{
+func topOp(v int64, by *v1.Expr, order *v1.TopOperator_Order) *v1.Statement {
+	return &v1.Statement{Stmt: &v1.Statement_Top{
+		Top: &v1.TopOperator{
 			Count: v,
 			ByColumn: &v1.TopOperator_ByColumn{
 				Scalar: by,
@@ -1036,7 +1155,7 @@ func summarize(params *v1.SummarizeOperator_Parameters, ges *v1.SummarizeOperato
 }
 
 func tr(from, to *v1.Expr) *v1.Timerange {
-	return &typesv1.Timerange{From: from, To: to}
+	return &v1.Timerange{From: from, To: to}
 }
 
 func qctx(m, s *v1.Expr) *v1.Context {

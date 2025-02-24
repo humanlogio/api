@@ -1827,6 +1827,11 @@ export enum BinaryOp_Operator {
   NUM_MUL = 204,
 
   /**
+   * @generated from enum value: NUM_MOD = 205;
+   */
+  NUM_MOD = 205,
+
+  /**
    * @generated from enum value: CMP_EQ = 301;
    */
   CMP_EQ = 301,
@@ -1865,6 +1870,126 @@ export enum BinaryOp_Operator {
    * @generated from enum value: SET_NOTIN = 402;
    */
   SET_NOTIN = 402,
+
+  /**
+   * @generated from enum value: STR_EQ_NOCS = 501;
+   */
+  STR_EQ_NOCS = 501,
+
+  /**
+   * @generated from enum value: STR_NOTEQ_NOCS = 502;
+   */
+  STR_NOTEQ_NOCS = 502,
+
+  /**
+   * @generated from enum value: STR_CONTAINS = 503;
+   */
+  STR_CONTAINS = 503,
+
+  /**
+   * @generated from enum value: STR_NOT_CONTAINS = 504;
+   */
+  STR_NOT_CONTAINS = 504,
+
+  /**
+   * @generated from enum value: STR_CONTAINS_CS = 505;
+   */
+  STR_CONTAINS_CS = 505,
+
+  /**
+   * @generated from enum value: STR_NOT_CONTAINS_CS = 506;
+   */
+  STR_NOT_CONTAINS_CS = 506,
+
+  /**
+   * @generated from enum value: STR_STARTSWITH = 507;
+   */
+  STR_STARTSWITH = 507,
+
+  /**
+   * @generated from enum value: STR_NOT_STARTSWITH = 508;
+   */
+  STR_NOT_STARTSWITH = 508,
+
+  /**
+   * @generated from enum value: STR_STARTSWITH_CS = 509;
+   */
+  STR_STARTSWITH_CS = 509,
+
+  /**
+   * @generated from enum value: STR_NOT_STARTSWITH_CS = 510;
+   */
+  STR_NOT_STARTSWITH_CS = 510,
+
+  /**
+   * @generated from enum value: STR_ENDSWITH = 511;
+   */
+  STR_ENDSWITH = 511,
+
+  /**
+   * @generated from enum value: STR_NOT_ENDSWITH = 512;
+   */
+  STR_NOT_ENDSWITH = 512,
+
+  /**
+   * @generated from enum value: STR_ENDSWITH_CS = 513;
+   */
+  STR_ENDSWITH_CS = 513,
+
+  /**
+   * @generated from enum value: STR_NOT_ENDSWITH_CS = 514;
+   */
+  STR_NOT_ENDSWITH_CS = 514,
+
+  /**
+   * @generated from enum value: STR_IN_NOCS = 515;
+   */
+  STR_IN_NOCS = 515,
+
+  /**
+   * @generated from enum value: STR_NOT_IN_NOCS = 516;
+   */
+  STR_NOT_IN_NOCS = 516,
+
+  /**
+   * @generated from enum value: STR_NOT_MATCHES_REGEX = 517;
+   */
+  STR_NOT_MATCHES_REGEX = 517,
+
+  /**
+   * @generated from enum value: STR_MATCHES_REGEX = 518;
+   */
+  STR_MATCHES_REGEX = 518,
+
+  /**
+   * @generated from enum value: STR_HAS = 519;
+   */
+  STR_HAS = 519,
+
+  /**
+   * @generated from enum value: STR_HAS_CS = 520;
+   */
+  STR_HAS_CS = 520,
+
+  /**
+   * @generated from enum value: STR_HASSUFFIX = 521;
+   */
+  STR_HASSUFFIX = 521,
+
+  /**
+   * @generated from enum value: STR_HASSUFFIX_CS = 522;
+   */
+  STR_HASSUFFIX_CS = 522,
+
+  /**
+   * @generated from enum value: STR_HASPREFIX = 523;
+   */
+  STR_HASPREFIX = 523,
+
+  /**
+   * @generated from enum value: STR_HASPREFIX_CS = 524;
+   */
+  STR_HASPREFIX_CS = 524,
 }
 // Retrieve enum metadata with: proto3.getEnumType(BinaryOp_Operator)
 proto3.util.setEnumType(BinaryOp_Operator, "types.v1.BinaryOp.Operator", [
@@ -1875,6 +2000,7 @@ proto3.util.setEnumType(BinaryOp_Operator, "types.v1.BinaryOp.Operator", [
   { no: 202, name: "NUM_SUB" },
   { no: 203, name: "NUM_DIV" },
   { no: 204, name: "NUM_MUL" },
+  { no: 205, name: "NUM_MOD" },
   { no: 301, name: "CMP_EQ" },
   { no: 302, name: "CMP_NOTEQ" },
   { no: 303, name: "CMP_GT" },
@@ -1883,6 +2009,30 @@ proto3.util.setEnumType(BinaryOp_Operator, "types.v1.BinaryOp.Operator", [
   { no: 306, name: "CMP_LTE" },
   { no: 401, name: "SET_IN" },
   { no: 402, name: "SET_NOTIN" },
+  { no: 501, name: "STR_EQ_NOCS" },
+  { no: 502, name: "STR_NOTEQ_NOCS" },
+  { no: 503, name: "STR_CONTAINS" },
+  { no: 504, name: "STR_NOT_CONTAINS" },
+  { no: 505, name: "STR_CONTAINS_CS" },
+  { no: 506, name: "STR_NOT_CONTAINS_CS" },
+  { no: 507, name: "STR_STARTSWITH" },
+  { no: 508, name: "STR_NOT_STARTSWITH" },
+  { no: 509, name: "STR_STARTSWITH_CS" },
+  { no: 510, name: "STR_NOT_STARTSWITH_CS" },
+  { no: 511, name: "STR_ENDSWITH" },
+  { no: 512, name: "STR_NOT_ENDSWITH" },
+  { no: 513, name: "STR_ENDSWITH_CS" },
+  { no: 514, name: "STR_NOT_ENDSWITH_CS" },
+  { no: 515, name: "STR_IN_NOCS" },
+  { no: 516, name: "STR_NOT_IN_NOCS" },
+  { no: 517, name: "STR_NOT_MATCHES_REGEX" },
+  { no: 518, name: "STR_MATCHES_REGEX" },
+  { no: 519, name: "STR_HAS" },
+  { no: 520, name: "STR_HAS_CS" },
+  { no: 521, name: "STR_HASSUFFIX" },
+  { no: 522, name: "STR_HASSUFFIX_CS" },
+  { no: 523, name: "STR_HASPREFIX" },
+  { no: 524, name: "STR_HASPREFIX_CS" },
 ]);
 
 /**

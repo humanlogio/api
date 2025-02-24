@@ -7,8 +7,6 @@ import "types/v1/types.proto";
 
 option go_package = "types/v1;typesv1";
 
-// kv["user.id"] == 42 | group_by(kv["group"]) | kv["access_level"] == "admin" | timechart
-
 message LogQuery {
   Timerange timerange = 1;
   Context context = 2;
@@ -214,6 +212,7 @@ message BinaryOp {
     NUM_SUB = 202;
     NUM_DIV = 203;
     NUM_MUL = 204;
+    NUM_MOD = 205;
     CMP_EQ = 301;
     CMP_NOTEQ = 302;
     CMP_GT = 303;
@@ -222,6 +221,31 @@ message BinaryOp {
     CMP_LTE = 306;
     SET_IN = 401;
     SET_NOTIN = 402;
+
+    STR_EQ_NOCS = 501;
+    STR_NOTEQ_NOCS = 502;
+    STR_CONTAINS = 503;
+    STR_NOT_CONTAINS = 504;
+    STR_CONTAINS_CS = 505;
+    STR_NOT_CONTAINS_CS = 506;
+    STR_STARTSWITH = 507;
+    STR_NOT_STARTSWITH = 508;
+    STR_STARTSWITH_CS = 509;
+    STR_NOT_STARTSWITH_CS = 510;
+    STR_ENDSWITH = 511;
+    STR_NOT_ENDSWITH = 512;
+    STR_ENDSWITH_CS = 513;
+    STR_NOT_ENDSWITH_CS = 514;
+    STR_IN_NOCS = 515;
+    STR_NOT_IN_NOCS = 516;
+    STR_NOT_MATCHES_REGEX = 517;
+    STR_MATCHES_REGEX = 518;
+    STR_HAS = 519;
+    STR_HAS_CS = 520;
+    STR_HASSUFFIX = 521;
+    STR_HASSUFFIX_CS = 522;
+    STR_HASPREFIX = 523;
+    STR_HASPREFIX_CS = 524;
   }
   Expr lhs = 1;
   Operator op = 2;

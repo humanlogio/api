@@ -194,20 +194,41 @@ Expr <- Expr1 ( Space NUM_ADD Expr1 Space     { rhs, lhs := p.popExpr(), p.popEx
 
 Expr1 <- Expr2  ( Space NUM_MUL Expr2 Space   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_MUL, rhs)) }
                 / Space NUM_DIV Expr2 Space   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_DIV, rhs)) }
+                / Space NUM_MOD Expr2 Space   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_MOD, rhs)) }
                 )*
 
 Expr2 <- Expr3  ( Space LOG_AND Expr3 Space   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_LOG_AND, rhs)) }
                 / Space LOG_OR Expr3 Space    { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_LOG_OR, rhs)) }
                 )*
 
-Expr3 <- Expr4  ( Space CMP_EQ Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_EQ, rhs)) }
-                / Space CMP_NOTEQ Expr4   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_NOTEQ, rhs)) }
-                / Space CMP_GT Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GT, rhs)) }
-                / Space CMP_GTE Expr4     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GTE, rhs)) }
-                / Space CMP_LT Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LT, rhs)) }
-                / Space CMP_LTE Expr4     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LTE, rhs)) }
-                / Space SET_IN Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_IN, rhs)) }
-                / Space SET_NOTIN Expr4   { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_NOTIN, rhs)) }
+Expr3 <- Expr4  ( Space CMP_EQ Expr4                 { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_EQ, rhs)) }
+                / Space CMP_NOTEQ Expr4              { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_NOTEQ, rhs)) }
+                / Space CMP_GT Expr4                 { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GT, rhs)) }
+                / Space CMP_GTE Expr4                { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GTE, rhs)) }
+                / Space CMP_LT Expr4                 { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LT, rhs)) }
+                / Space CMP_LTE Expr4                { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LTE, rhs)) }
+                / Space SET_IN Expr4                 { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_IN, rhs)) }
+                / Space SET_NOTIN Expr4              { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_NOTIN, rhs)) }
+                / Space STR_EQ_NOCS Expr4            { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_EQ_NOCS, rhs)) }
+                / Space STR_NOTEQ_NOCS Expr4         { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOTEQ_NOCS, rhs)) }
+                / Space STR_CONTAINS Expr4           { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_CONTAINS, rhs)) }
+                / Space STR_NOT_CONTAINS Expr4       { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_CONTAINS, rhs)) }
+                / Space STR_CONTAINS_CS Expr4        { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_CONTAINS_CS, rhs)) }
+                / Space STR_NOT_CONTAINS_CS Expr4    { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_CONTAINS_CS, rhs)) }
+                / Space STR_STARTSWITH Expr4         { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_STARTSWITH, rhs)) }
+                / Space STR_NOT_STARTSWITH Expr4     { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_STARTSWITH, rhs)) }
+                / Space STR_STARTSWITH_CS Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_STARTSWITH_CS, rhs)) }
+                / Space STR_NOT_STARTSWITH_CS Expr4  { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_STARTSWITH_CS, rhs)) }
+                / Space STR_ENDSWITH Expr4           { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_ENDSWITH, rhs)) }
+                / Space STR_NOT_ENDSWITH Expr4       { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_ENDSWITH, rhs)) }
+                / Space STR_ENDSWITH_CS Expr4        { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_ENDSWITH_CS, rhs)) }
+                / Space STR_NOT_ENDSWITH_CS Expr4    { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_ENDSWITH_CS, rhs)) }
+                / Space STR_IN_NOCS Expr4            { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_IN_NOCS, rhs)) }
+                / Space STR_NOT_IN_NOCS Expr4        { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_IN_NOCS, rhs)) }
+                / Space STR_NOT_MATCHES_REGEX Expr4  { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_MATCHES_REGEX, rhs)) }
+                / Space STR_MATCHES_REGEX Expr4      { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_MATCHES_REGEX, rhs)) }
+                / Space STR_HAS Expr4                { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_HAS, rhs)) }
+                / Space STR_HAS_CS Expr4             { rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_HAS_CS, rhs)) }
                 )*
 
 Expr4 <- Expr5  ( Space L_BRACKET Expr5 R_BRACKET { index, x := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprIndexor(x, index)) }
@@ -300,16 +321,37 @@ NUM_ADD     <- '+' Space
 NUM_SUB     <- '-' Space
 NUM_DIV     <- '/' Space
 NUM_MUL     <- '*' Space
-LOG_AND     <- '&&' Space
-LOG_OR      <- '||' Space
+NUM_MOD     <- '%' Space
+LOG_AND     <- 'and' MustSpace
+LOG_OR      <- 'or' MustSpace
 CMP_EQ      <- '==' Space
 CMP_NOTEQ   <- '!=' Space
 CMP_GT      <- '>' Space
 CMP_GTE     <- '>=' Space
 CMP_LT      <- '<' Space
 CMP_LTE     <- '<=' Space
-SET_IN      <- 'in' Space
-SET_NOTIN   <- 'not in' Space
+SET_IN      <- 'in' MustSpace
+SET_NOTIN   <- '!in' MustSpace
+STR_EQ_NOCS           <- '=~' Space
+STR_NOTEQ_NOCS        <- '!~' Space
+STR_CONTAINS          <- 'contains' MustSpace
+STR_NOT_CONTAINS      <- '!contains' MustSpace
+STR_CONTAINS_CS       <- 'contains_cs' MustSpace
+STR_NOT_CONTAINS_CS   <- '!contains_cs' MustSpace
+STR_STARTSWITH        <- 'startswith' MustSpace
+STR_NOT_STARTSWITH    <- '!startswith' MustSpace
+STR_STARTSWITH_CS     <- 'startswith_cs' MustSpace
+STR_NOT_STARTSWITH_CS <- '!startswith_cs' MustSpace
+STR_ENDSWITH          <- 'endswith' MustSpace
+STR_NOT_ENDSWITH      <- '!endswith' MustSpace
+STR_ENDSWITH_CS       <- 'endswith_cs' MustSpace
+STR_NOT_ENDSWITH_CS   <- '!endswith_cs' MustSpace
+STR_IN_NOCS           <- 'in~' MustSpace
+STR_NOT_IN_NOCS       <- '!in~' MustSpace
+STR_NOT_MATCHES_REGEX <- '!matches regex' MustSpace
+STR_MATCHES_REGEX     <- 'matches regex' MustSpace
+STR_HAS               <- 'has' MustSpace
+STR_HAS_CS            <- 'has_cs' MustSpace
 PIPE        <- '|' Space
 L_PARENS    <- '(' Space
 R_PARENS    <- ')' Space
