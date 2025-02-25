@@ -837,6 +837,11 @@ export class RuntimeConfig extends Message<RuntimeConfig> {
    */
   experimentalFeatures?: RuntimeConfig_ExperimentalFeatures;
 
+  /**
+   * @generated from field: types.v1.RuntimeConfig.ClientConfig api_client = 5;
+   */
+  apiClient?: RuntimeConfig_ClientConfig;
+
   constructor(data?: PartialMessage<RuntimeConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -849,6 +854,7 @@ export class RuntimeConfig extends Message<RuntimeConfig> {
     { no: 2, name: "skip_check_for_updates", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 3, name: "features", kind: "message", T: RuntimeConfig_Features },
     { no: 4, name: "experimental_features", kind: "message", T: RuntimeConfig_ExperimentalFeatures },
+    { no: 5, name: "api_client", kind: "message", T: RuntimeConfig_ClientConfig },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RuntimeConfig {
@@ -947,6 +953,95 @@ export class RuntimeConfig_ExperimentalFeatures extends Message<RuntimeConfig_Ex
     return proto3.util.equals(RuntimeConfig_ExperimentalFeatures, a, b);
   }
 }
+
+/**
+ * @generated from message types.v1.RuntimeConfig.ClientConfig
+ */
+export class RuntimeConfig_ClientConfig extends Message<RuntimeConfig_ClientConfig> {
+  /**
+   * @generated from field: optional types.v1.RuntimeConfig.ClientConfig.HTTPProtocol http_protocol = 1;
+   */
+  httpProtocol?: RuntimeConfig_ClientConfig_HTTPProtocol;
+
+  /**
+   * @generated from field: optional types.v1.RuntimeConfig.ClientConfig.RPCProtocol rpc_protocol = 2;
+   */
+  rpcProtocol?: RuntimeConfig_ClientConfig_RPCProtocol;
+
+  constructor(data?: PartialMessage<RuntimeConfig_ClientConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.RuntimeConfig.ClientConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "http_protocol", kind: "enum", T: proto3.getEnumType(RuntimeConfig_ClientConfig_HTTPProtocol), opt: true },
+    { no: 2, name: "rpc_protocol", kind: "enum", T: proto3.getEnumType(RuntimeConfig_ClientConfig_RPCProtocol), opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RuntimeConfig_ClientConfig {
+    return new RuntimeConfig_ClientConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RuntimeConfig_ClientConfig {
+    return new RuntimeConfig_ClientConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RuntimeConfig_ClientConfig {
+    return new RuntimeConfig_ClientConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RuntimeConfig_ClientConfig | PlainMessage<RuntimeConfig_ClientConfig> | undefined, b: RuntimeConfig_ClientConfig | PlainMessage<RuntimeConfig_ClientConfig> | undefined): boolean {
+    return proto3.util.equals(RuntimeConfig_ClientConfig, a, b);
+  }
+}
+
+/**
+ * @generated from enum types.v1.RuntimeConfig.ClientConfig.HTTPProtocol
+ */
+export enum RuntimeConfig_ClientConfig_HTTPProtocol {
+  /**
+   * @generated from enum value: HTTP2 = 0;
+   */
+  HTTP2 = 0,
+
+  /**
+   * @generated from enum value: HTTP1 = 1;
+   */
+  HTTP1 = 1,
+}
+// Retrieve enum metadata with: proto3.getEnumType(RuntimeConfig_ClientConfig_HTTPProtocol)
+proto3.util.setEnumType(RuntimeConfig_ClientConfig_HTTPProtocol, "types.v1.RuntimeConfig.ClientConfig.HTTPProtocol", [
+  { no: 0, name: "HTTP2" },
+  { no: 1, name: "HTTP1" },
+]);
+
+/**
+ * @generated from enum types.v1.RuntimeConfig.ClientConfig.RPCProtocol
+ */
+export enum RuntimeConfig_ClientConfig_RPCProtocol {
+  /**
+   * @generated from enum value: GRPC = 0;
+   */
+  GRPC = 0,
+
+  /**
+   * @generated from enum value: GRPC_WEB = 1;
+   */
+  GRPC_WEB = 1,
+
+  /**
+   * @generated from enum value: PROTOJSON = 2;
+   */
+  PROTOJSON = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(RuntimeConfig_ClientConfig_RPCProtocol)
+proto3.util.setEnumType(RuntimeConfig_ClientConfig_RPCProtocol, "types.v1.RuntimeConfig.ClientConfig.RPCProtocol", [
+  { no: 0, name: "GRPC" },
+  { no: 1, name: "GRPC_WEB" },
+  { no: 2, name: "PROTOJSON" },
+]);
 
 /**
  * @generated from message types.v1.LocalhostConfig

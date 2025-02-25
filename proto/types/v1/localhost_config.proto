@@ -108,11 +108,24 @@ message RuntimeConfig {
     optional bool send_logs_to_cloud = 2;
     optional ServeLocalhostConfig serve_localhost = 3;
   }
-
+  message ClientConfig {
+    enum HTTPProtocol {
+      HTTP2 = 0;
+      HTTP1 = 1;
+    }
+    enum RPCProtocol {
+      GRPC = 0;
+      GRPC_WEB = 1;
+      PROTOJSON = 2;
+    }
+    optional HTTPProtocol http_protocol = 1;
+    optional RPCProtocol rpc_protocol = 2;
+  }
   optional bool interrupt = 1;
   optional bool skip_check_for_updates = 2;
   Features features = 3;
   ExperimentalFeatures experimental_features = 4;
+  ClientConfig api_client = 5;
 }
 
 message LocalhostConfig {
