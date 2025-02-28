@@ -1158,6 +1158,86 @@ export class GetStripePublishableKeyResponse extends Message<GetStripePublishabl
 }
 
 /**
+ * @generated from message svc.organization.v1.GetStripeBillingPortalRequest
+ */
+export class GetStripeBillingPortalRequest extends Message<GetStripeBillingPortalRequest> {
+  /**
+   * @generated from field: string return_to_url = 1;
+   */
+  returnToUrl = "";
+
+  constructor(data?: PartialMessage<GetStripeBillingPortalRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.GetStripeBillingPortalRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "return_to_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStripeBillingPortalRequest {
+    return new GetStripeBillingPortalRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetStripeBillingPortalRequest {
+    return new GetStripeBillingPortalRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetStripeBillingPortalRequest {
+    return new GetStripeBillingPortalRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetStripeBillingPortalRequest | PlainMessage<GetStripeBillingPortalRequest> | undefined, b: GetStripeBillingPortalRequest | PlainMessage<GetStripeBillingPortalRequest> | undefined): boolean {
+    return proto3.util.equals(GetStripeBillingPortalRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.organization.v1.GetStripeBillingPortalResponse
+ */
+export class GetStripeBillingPortalResponse extends Message<GetStripeBillingPortalResponse> {
+  /**
+   * @generated from field: string return_to_url = 1;
+   */
+  returnToUrl = "";
+
+  /**
+   * @generated from field: string portal_url = 2;
+   */
+  portalUrl = "";
+
+  constructor(data?: PartialMessage<GetStripeBillingPortalResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.organization.v1.GetStripeBillingPortalResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "return_to_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "portal_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStripeBillingPortalResponse {
+    return new GetStripeBillingPortalResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetStripeBillingPortalResponse {
+    return new GetStripeBillingPortalResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetStripeBillingPortalResponse {
+    return new GetStripeBillingPortalResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetStripeBillingPortalResponse | PlainMessage<GetStripeBillingPortalResponse> | undefined, b: GetStripeBillingPortalResponse | PlainMessage<GetStripeBillingPortalResponse> | undefined): boolean {
+    return proto3.util.equals(GetStripeBillingPortalResponse, a, b);
+  }
+}
+
+/**
  * @generated from message svc.organization.v1.CreateStripeCustomerSessionRequest
  */
 export class CreateStripeCustomerSessionRequest extends Message<CreateStripeCustomerSessionRequest> {

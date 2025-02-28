@@ -27,6 +27,7 @@ service OrganizationService {
 
   // payment
   rpc GetStripePublishableKey(GetStripePublishableKeyRequest) returns (GetStripePublishableKeyResponse) {}
+  rpc GetStripeBillingPortal(GetStripeBillingPortalRequest) returns (GetStripeBillingPortalResponse) {}
   rpc CreateStripeCustomerSession(CreateStripeCustomerSessionRequest) returns (CreateStripeCustomerSessionResponse) {}
   rpc ListPaymentMethod(ListPaymentMethodRequest) returns (ListPaymentMethodResponse) {}
 }
@@ -150,6 +151,14 @@ message RemoveAddonSubscriptionResponse {}
 message GetStripePublishableKeyRequest {}
 message GetStripePublishableKeyResponse {
   string stripe_publishable_key = 2;
+}
+
+message GetStripeBillingPortalRequest {
+  string return_to_url = 1;
+}
+message GetStripeBillingPortalResponse {
+  string return_to_url = 1;
+  string portal_url = 2;
 }
 
 message CreateStripeCustomerSessionRequest {}

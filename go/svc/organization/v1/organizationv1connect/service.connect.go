@@ -63,6 +63,9 @@ const (
 	// OrganizationServiceGetStripePublishableKeyProcedure is the fully-qualified name of the
 	// OrganizationService's GetStripePublishableKey RPC.
 	OrganizationServiceGetStripePublishableKeyProcedure = "/svc.organization.v1.OrganizationService/GetStripePublishableKey"
+	// OrganizationServiceGetStripeBillingPortalProcedure is the fully-qualified name of the
+	// OrganizationService's GetStripeBillingPortal RPC.
+	OrganizationServiceGetStripeBillingPortalProcedure = "/svc.organization.v1.OrganizationService/GetStripeBillingPortal"
 	// OrganizationServiceCreateStripeCustomerSessionProcedure is the fully-qualified name of the
 	// OrganizationService's CreateStripeCustomerSession RPC.
 	OrganizationServiceCreateStripeCustomerSessionProcedure = "/svc.organization.v1.OrganizationService/CreateStripeCustomerSession"
@@ -84,6 +87,7 @@ type OrganizationServiceClient interface {
 	RemoveAddonSubscription(context.Context, *connect.Request[v1.RemoveAddonSubscriptionRequest]) (*connect.Response[v1.RemoveAddonSubscriptionResponse], error)
 	// payment
 	GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error)
+	GetStripeBillingPortal(context.Context, *connect.Request[v1.GetStripeBillingPortalRequest]) (*connect.Response[v1.GetStripeBillingPortalResponse], error)
 	CreateStripeCustomerSession(context.Context, *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error)
 	ListPaymentMethod(context.Context, *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error)
 }
@@ -159,6 +163,12 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(organizationServiceMethods.ByName("GetStripePublishableKey")),
 			connect.WithClientOptions(opts...),
 		),
+		getStripeBillingPortal: connect.NewClient[v1.GetStripeBillingPortalRequest, v1.GetStripeBillingPortalResponse](
+			httpClient,
+			baseURL+OrganizationServiceGetStripeBillingPortalProcedure,
+			connect.WithSchema(organizationServiceMethods.ByName("GetStripeBillingPortal")),
+			connect.WithClientOptions(opts...),
+		),
 		createStripeCustomerSession: connect.NewClient[v1.CreateStripeCustomerSessionRequest, v1.CreateStripeCustomerSessionResponse](
 			httpClient,
 			baseURL+OrganizationServiceCreateStripeCustomerSessionProcedure,
@@ -186,6 +196,7 @@ type organizationServiceClient struct {
 	listAddonSubscription       *connect.Client[v1.ListAddonSubscriptionRequest, v1.ListAddonSubscriptionResponse]
 	removeAddonSubscription     *connect.Client[v1.RemoveAddonSubscriptionRequest, v1.RemoveAddonSubscriptionResponse]
 	getStripePublishableKey     *connect.Client[v1.GetStripePublishableKeyRequest, v1.GetStripePublishableKeyResponse]
+	getStripeBillingPortal      *connect.Client[v1.GetStripeBillingPortalRequest, v1.GetStripeBillingPortalResponse]
 	createStripeCustomerSession *connect.Client[v1.CreateStripeCustomerSessionRequest, v1.CreateStripeCustomerSessionResponse]
 	listPaymentMethod           *connect.Client[v1.ListPaymentMethodRequest, v1.ListPaymentMethodResponse]
 }
@@ -240,6 +251,11 @@ func (c *organizationServiceClient) GetStripePublishableKey(ctx context.Context,
 	return c.getStripePublishableKey.CallUnary(ctx, req)
 }
 
+// GetStripeBillingPortal calls svc.organization.v1.OrganizationService.GetStripeBillingPortal.
+func (c *organizationServiceClient) GetStripeBillingPortal(ctx context.Context, req *connect.Request[v1.GetStripeBillingPortalRequest]) (*connect.Response[v1.GetStripeBillingPortalResponse], error) {
+	return c.getStripeBillingPortal.CallUnary(ctx, req)
+}
+
 // CreateStripeCustomerSession calls
 // svc.organization.v1.OrganizationService.CreateStripeCustomerSession.
 func (c *organizationServiceClient) CreateStripeCustomerSession(ctx context.Context, req *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error) {
@@ -265,6 +281,7 @@ type OrganizationServiceHandler interface {
 	RemoveAddonSubscription(context.Context, *connect.Request[v1.RemoveAddonSubscriptionRequest]) (*connect.Response[v1.RemoveAddonSubscriptionResponse], error)
 	// payment
 	GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error)
+	GetStripeBillingPortal(context.Context, *connect.Request[v1.GetStripeBillingPortalRequest]) (*connect.Response[v1.GetStripeBillingPortalResponse], error)
 	CreateStripeCustomerSession(context.Context, *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error)
 	ListPaymentMethod(context.Context, *connect.Request[v1.ListPaymentMethodRequest]) (*connect.Response[v1.ListPaymentMethodResponse], error)
 }
@@ -336,6 +353,12 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 		connect.WithSchema(organizationServiceMethods.ByName("GetStripePublishableKey")),
 		connect.WithHandlerOptions(opts...),
 	)
+	organizationServiceGetStripeBillingPortalHandler := connect.NewUnaryHandler(
+		OrganizationServiceGetStripeBillingPortalProcedure,
+		svc.GetStripeBillingPortal,
+		connect.WithSchema(organizationServiceMethods.ByName("GetStripeBillingPortal")),
+		connect.WithHandlerOptions(opts...),
+	)
 	organizationServiceCreateStripeCustomerSessionHandler := connect.NewUnaryHandler(
 		OrganizationServiceCreateStripeCustomerSessionProcedure,
 		svc.CreateStripeCustomerSession,
@@ -370,6 +393,8 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 			organizationServiceRemoveAddonSubscriptionHandler.ServeHTTP(w, r)
 		case OrganizationServiceGetStripePublishableKeyProcedure:
 			organizationServiceGetStripePublishableKeyHandler.ServeHTTP(w, r)
+		case OrganizationServiceGetStripeBillingPortalProcedure:
+			organizationServiceGetStripeBillingPortalHandler.ServeHTTP(w, r)
 		case OrganizationServiceCreateStripeCustomerSessionProcedure:
 			organizationServiceCreateStripeCustomerSessionHandler.ServeHTTP(w, r)
 		case OrganizationServiceListPaymentMethodProcedure:
@@ -421,6 +446,10 @@ func (UnimplementedOrganizationServiceHandler) RemoveAddonSubscription(context.C
 
 func (UnimplementedOrganizationServiceHandler) GetStripePublishableKey(context.Context, *connect.Request[v1.GetStripePublishableKeyRequest]) (*connect.Response[v1.GetStripePublishableKeyResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.GetStripePublishableKey is not implemented"))
+}
+
+func (UnimplementedOrganizationServiceHandler) GetStripeBillingPortal(context.Context, *connect.Request[v1.GetStripeBillingPortalRequest]) (*connect.Response[v1.GetStripeBillingPortalResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.GetStripeBillingPortal is not implemented"))
 }
 
 func (UnimplementedOrganizationServiceHandler) CreateStripeCustomerSession(context.Context, *connect.Request[v1.CreateStripeCustomerSessionRequest]) (*connect.Response[v1.CreateStripeCustomerSessionResponse], error) {

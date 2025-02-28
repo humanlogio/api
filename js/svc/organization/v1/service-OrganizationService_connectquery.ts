@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetEnvironmentRequest, GetEnvironmentResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RemoveAddonSubscriptionRequest, RemoveAddonSubscriptionResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
+import { CreateAddonSubscriptionRequest, CreateAddonSubscriptionResponse, CreateEnvironmentRequest, CreateEnvironmentResponse, CreateStripeCustomerSessionRequest, CreateStripeCustomerSessionResponse, GetEnvironmentRequest, GetEnvironmentResponse, GetStripeBillingPortalRequest, GetStripeBillingPortalResponse, GetStripePublishableKeyRequest, GetStripePublishableKeyResponse, InviteUserRequest, InviteUserResponse, ListAddonSubscriptionRequest, ListAddonSubscriptionResponse, ListEnvironmentRequest, ListEnvironmentResponse, ListPaymentMethodRequest, ListPaymentMethodResponse, ListUserRequest, ListUserResponse, RemoveAddonSubscriptionRequest, RemoveAddonSubscriptionResponse, RevokeUserRequest, RevokeUserResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.organization.v1.OrganizationService.CreateEnvironment
@@ -143,6 +143,20 @@ export const getStripePublishableKey = {
   kind: MethodKind.Unary,
   I: GetStripePublishableKeyRequest,
   O: GetStripePublishableKeyResponse,
+  service: {
+    typeName: "svc.organization.v1.OrganizationService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.organization.v1.OrganizationService.GetStripeBillingPortal
+ */
+export const getStripeBillingPortal = {
+  localName: "getStripeBillingPortal",
+  name: "GetStripeBillingPortal",
+  kind: MethodKind.Unary,
+  I: GetStripeBillingPortalRequest,
+  O: GetStripeBillingPortalResponse,
   service: {
     typeName: "svc.organization.v1.OrganizationService"
   }
