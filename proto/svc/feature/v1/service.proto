@@ -10,7 +10,7 @@ service FeatureService {
   rpc HasFeature(HasFeatureRequest) returns (HasFeatureResponse);
   rpc ListFeature(ListFeatureRequest) returns (ListFeatureResponse);
 
-  rpc IsPersonalUseOnly(IsPersonalUseOnlyRequest) returns (IsPersonalUseOnlyResponse);
+  rpc AllowedUsage(AllowedUsageRequest) returns (AllowedUsageResponse);
 }
 
 message HasFeatureRequest {
@@ -27,7 +27,12 @@ message ListFeatureResponse {
   repeated types.v1.Feature features = 1;
 }
 
-message IsPersonalUseOnlyRequest {}
-message IsPersonalUseOnlyResponse {
-  bool is_free_personal_use_only = 1;
+message AllowedUsageRequest {}
+message AllowedUsageResponse {
+  enum LocalhostUsage {
+    NO_USAGE = 0;
+    PERSONAL_USE = 1;
+    COMMERCIAL_USE = 2;
+  }
+  LocalhostUsage localhost_usage = 1;
 }

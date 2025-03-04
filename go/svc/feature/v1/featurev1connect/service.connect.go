@@ -39,16 +39,16 @@ const (
 	// FeatureServiceListFeatureProcedure is the fully-qualified name of the FeatureService's
 	// ListFeature RPC.
 	FeatureServiceListFeatureProcedure = "/svc.feature.v1.FeatureService/ListFeature"
-	// FeatureServiceIsPersonalUseOnlyProcedure is the fully-qualified name of the FeatureService's
-	// IsPersonalUseOnly RPC.
-	FeatureServiceIsPersonalUseOnlyProcedure = "/svc.feature.v1.FeatureService/IsPersonalUseOnly"
+	// FeatureServiceAllowedUsageProcedure is the fully-qualified name of the FeatureService's
+	// AllowedUsage RPC.
+	FeatureServiceAllowedUsageProcedure = "/svc.feature.v1.FeatureService/AllowedUsage"
 )
 
 // FeatureServiceClient is a client for the svc.feature.v1.FeatureService service.
 type FeatureServiceClient interface {
 	HasFeature(context.Context, *connect.Request[v1.HasFeatureRequest]) (*connect.Response[v1.HasFeatureResponse], error)
 	ListFeature(context.Context, *connect.Request[v1.ListFeatureRequest]) (*connect.Response[v1.ListFeatureResponse], error)
-	IsPersonalUseOnly(context.Context, *connect.Request[v1.IsPersonalUseOnlyRequest]) (*connect.Response[v1.IsPersonalUseOnlyResponse], error)
+	AllowedUsage(context.Context, *connect.Request[v1.AllowedUsageRequest]) (*connect.Response[v1.AllowedUsageResponse], error)
 }
 
 // NewFeatureServiceClient constructs a client for the svc.feature.v1.FeatureService service. By
@@ -74,10 +74,10 @@ func NewFeatureServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			connect.WithSchema(featureServiceMethods.ByName("ListFeature")),
 			connect.WithClientOptions(opts...),
 		),
-		isPersonalUseOnly: connect.NewClient[v1.IsPersonalUseOnlyRequest, v1.IsPersonalUseOnlyResponse](
+		allowedUsage: connect.NewClient[v1.AllowedUsageRequest, v1.AllowedUsageResponse](
 			httpClient,
-			baseURL+FeatureServiceIsPersonalUseOnlyProcedure,
-			connect.WithSchema(featureServiceMethods.ByName("IsPersonalUseOnly")),
+			baseURL+FeatureServiceAllowedUsageProcedure,
+			connect.WithSchema(featureServiceMethods.ByName("AllowedUsage")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -85,9 +85,9 @@ func NewFeatureServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 
 // featureServiceClient implements FeatureServiceClient.
 type featureServiceClient struct {
-	hasFeature        *connect.Client[v1.HasFeatureRequest, v1.HasFeatureResponse]
-	listFeature       *connect.Client[v1.ListFeatureRequest, v1.ListFeatureResponse]
-	isPersonalUseOnly *connect.Client[v1.IsPersonalUseOnlyRequest, v1.IsPersonalUseOnlyResponse]
+	hasFeature   *connect.Client[v1.HasFeatureRequest, v1.HasFeatureResponse]
+	listFeature  *connect.Client[v1.ListFeatureRequest, v1.ListFeatureResponse]
+	allowedUsage *connect.Client[v1.AllowedUsageRequest, v1.AllowedUsageResponse]
 }
 
 // HasFeature calls svc.feature.v1.FeatureService.HasFeature.
@@ -100,16 +100,16 @@ func (c *featureServiceClient) ListFeature(ctx context.Context, req *connect.Req
 	return c.listFeature.CallUnary(ctx, req)
 }
 
-// IsPersonalUseOnly calls svc.feature.v1.FeatureService.IsPersonalUseOnly.
-func (c *featureServiceClient) IsPersonalUseOnly(ctx context.Context, req *connect.Request[v1.IsPersonalUseOnlyRequest]) (*connect.Response[v1.IsPersonalUseOnlyResponse], error) {
-	return c.isPersonalUseOnly.CallUnary(ctx, req)
+// AllowedUsage calls svc.feature.v1.FeatureService.AllowedUsage.
+func (c *featureServiceClient) AllowedUsage(ctx context.Context, req *connect.Request[v1.AllowedUsageRequest]) (*connect.Response[v1.AllowedUsageResponse], error) {
+	return c.allowedUsage.CallUnary(ctx, req)
 }
 
 // FeatureServiceHandler is an implementation of the svc.feature.v1.FeatureService service.
 type FeatureServiceHandler interface {
 	HasFeature(context.Context, *connect.Request[v1.HasFeatureRequest]) (*connect.Response[v1.HasFeatureResponse], error)
 	ListFeature(context.Context, *connect.Request[v1.ListFeatureRequest]) (*connect.Response[v1.ListFeatureResponse], error)
-	IsPersonalUseOnly(context.Context, *connect.Request[v1.IsPersonalUseOnlyRequest]) (*connect.Response[v1.IsPersonalUseOnlyResponse], error)
+	AllowedUsage(context.Context, *connect.Request[v1.AllowedUsageRequest]) (*connect.Response[v1.AllowedUsageResponse], error)
 }
 
 // NewFeatureServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -131,10 +131,10 @@ func NewFeatureServiceHandler(svc FeatureServiceHandler, opts ...connect.Handler
 		connect.WithSchema(featureServiceMethods.ByName("ListFeature")),
 		connect.WithHandlerOptions(opts...),
 	)
-	featureServiceIsPersonalUseOnlyHandler := connect.NewUnaryHandler(
-		FeatureServiceIsPersonalUseOnlyProcedure,
-		svc.IsPersonalUseOnly,
-		connect.WithSchema(featureServiceMethods.ByName("IsPersonalUseOnly")),
+	featureServiceAllowedUsageHandler := connect.NewUnaryHandler(
+		FeatureServiceAllowedUsageProcedure,
+		svc.AllowedUsage,
+		connect.WithSchema(featureServiceMethods.ByName("AllowedUsage")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.feature.v1.FeatureService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -143,8 +143,8 @@ func NewFeatureServiceHandler(svc FeatureServiceHandler, opts ...connect.Handler
 			featureServiceHasFeatureHandler.ServeHTTP(w, r)
 		case FeatureServiceListFeatureProcedure:
 			featureServiceListFeatureHandler.ServeHTTP(w, r)
-		case FeatureServiceIsPersonalUseOnlyProcedure:
-			featureServiceIsPersonalUseOnlyHandler.ServeHTTP(w, r)
+		case FeatureServiceAllowedUsageProcedure:
+			featureServiceAllowedUsageHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -162,6 +162,6 @@ func (UnimplementedFeatureServiceHandler) ListFeature(context.Context, *connect.
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.feature.v1.FeatureService.ListFeature is not implemented"))
 }
 
-func (UnimplementedFeatureServiceHandler) IsPersonalUseOnly(context.Context, *connect.Request[v1.IsPersonalUseOnlyRequest]) (*connect.Response[v1.IsPersonalUseOnlyResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.feature.v1.FeatureService.IsPersonalUseOnly is not implemented"))
+func (UnimplementedFeatureServiceHandler) AllowedUsage(context.Context, *connect.Request[v1.AllowedUsageRequest]) (*connect.Response[v1.AllowedUsageResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.feature.v1.FeatureService.AllowedUsage is not implemented"))
 }

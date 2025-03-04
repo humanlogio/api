@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { HasFeatureRequest, HasFeatureResponse, IsPersonalUseOnlyRequest, IsPersonalUseOnlyResponse, ListFeatureRequest, ListFeatureResponse } from "./service_pb";
+import { AllowedUsageRequest, AllowedUsageResponse, HasFeatureRequest, HasFeatureResponse, ListFeatureRequest, ListFeatureResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.feature.v1.FeatureService.HasFeature
@@ -35,14 +35,14 @@ export const listFeature = {
 } as const;
 
 /**
- * @generated from rpc svc.feature.v1.FeatureService.IsPersonalUseOnly
+ * @generated from rpc svc.feature.v1.FeatureService.AllowedUsage
  */
-export const isPersonalUseOnly = {
-  localName: "isPersonalUseOnly",
-  name: "IsPersonalUseOnly",
+export const allowedUsage = {
+  localName: "allowedUsage",
+  name: "AllowedUsage",
   kind: MethodKind.Unary,
-  I: IsPersonalUseOnlyRequest,
-  O: IsPersonalUseOnlyResponse,
+  I: AllowedUsageRequest,
+  O: AllowedUsageResponse,
   service: {
     typeName: "svc.feature.v1.FeatureService"
   }

@@ -150,70 +150,96 @@ export class ListFeatureResponse extends Message<ListFeatureResponse> {
 }
 
 /**
- * @generated from message svc.feature.v1.IsPersonalUseOnlyRequest
+ * @generated from message svc.feature.v1.AllowedUsageRequest
  */
-export class IsPersonalUseOnlyRequest extends Message<IsPersonalUseOnlyRequest> {
-  constructor(data?: PartialMessage<IsPersonalUseOnlyRequest>) {
+export class AllowedUsageRequest extends Message<AllowedUsageRequest> {
+  constructor(data?: PartialMessage<AllowedUsageRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.feature.v1.IsPersonalUseOnlyRequest";
+  static readonly typeName = "svc.feature.v1.AllowedUsageRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsPersonalUseOnlyRequest {
-    return new IsPersonalUseOnlyRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllowedUsageRequest {
+    return new AllowedUsageRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsPersonalUseOnlyRequest {
-    return new IsPersonalUseOnlyRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllowedUsageRequest {
+    return new AllowedUsageRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsPersonalUseOnlyRequest {
-    return new IsPersonalUseOnlyRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllowedUsageRequest {
+    return new AllowedUsageRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: IsPersonalUseOnlyRequest | PlainMessage<IsPersonalUseOnlyRequest> | undefined, b: IsPersonalUseOnlyRequest | PlainMessage<IsPersonalUseOnlyRequest> | undefined): boolean {
-    return proto3.util.equals(IsPersonalUseOnlyRequest, a, b);
+  static equals(a: AllowedUsageRequest | PlainMessage<AllowedUsageRequest> | undefined, b: AllowedUsageRequest | PlainMessage<AllowedUsageRequest> | undefined): boolean {
+    return proto3.util.equals(AllowedUsageRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.feature.v1.IsPersonalUseOnlyResponse
+ * @generated from message svc.feature.v1.AllowedUsageResponse
  */
-export class IsPersonalUseOnlyResponse extends Message<IsPersonalUseOnlyResponse> {
+export class AllowedUsageResponse extends Message<AllowedUsageResponse> {
   /**
-   * @generated from field: bool is_free_personal_use_only = 1;
+   * @generated from field: svc.feature.v1.AllowedUsageResponse.LocalhostUsage localhost_usage = 1;
    */
-  isFreePersonalUseOnly = false;
+  localhostUsage = AllowedUsageResponse_LocalhostUsage.NO_USAGE;
 
-  constructor(data?: PartialMessage<IsPersonalUseOnlyResponse>) {
+  constructor(data?: PartialMessage<AllowedUsageResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.feature.v1.IsPersonalUseOnlyResponse";
+  static readonly typeName = "svc.feature.v1.AllowedUsageResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "is_free_personal_use_only", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 1, name: "localhost_usage", kind: "enum", T: proto3.getEnumType(AllowedUsageResponse_LocalhostUsage) },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsPersonalUseOnlyResponse {
-    return new IsPersonalUseOnlyResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AllowedUsageResponse {
+    return new AllowedUsageResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsPersonalUseOnlyResponse {
-    return new IsPersonalUseOnlyResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AllowedUsageResponse {
+    return new AllowedUsageResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsPersonalUseOnlyResponse {
-    return new IsPersonalUseOnlyResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AllowedUsageResponse {
+    return new AllowedUsageResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: IsPersonalUseOnlyResponse | PlainMessage<IsPersonalUseOnlyResponse> | undefined, b: IsPersonalUseOnlyResponse | PlainMessage<IsPersonalUseOnlyResponse> | undefined): boolean {
-    return proto3.util.equals(IsPersonalUseOnlyResponse, a, b);
+  static equals(a: AllowedUsageResponse | PlainMessage<AllowedUsageResponse> | undefined, b: AllowedUsageResponse | PlainMessage<AllowedUsageResponse> | undefined): boolean {
+    return proto3.util.equals(AllowedUsageResponse, a, b);
   }
 }
+
+/**
+ * @generated from enum svc.feature.v1.AllowedUsageResponse.LocalhostUsage
+ */
+export enum AllowedUsageResponse_LocalhostUsage {
+  /**
+   * @generated from enum value: NO_USAGE = 0;
+   */
+  NO_USAGE = 0,
+
+  /**
+   * @generated from enum value: PERSONAL_USE = 1;
+   */
+  PERSONAL_USE = 1,
+
+  /**
+   * @generated from enum value: COMMERCIAL_USE = 2;
+   */
+  COMMERCIAL_USE = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(AllowedUsageResponse_LocalhostUsage)
+proto3.util.setEnumType(AllowedUsageResponse_LocalhostUsage, "svc.feature.v1.AllowedUsageResponse.LocalhostUsage", [
+  { no: 0, name: "NO_USAGE" },
+  { no: 1, name: "PERSONAL_USE" },
+  { no: 2, name: "COMMERCIAL_USE" },
+]);
 
