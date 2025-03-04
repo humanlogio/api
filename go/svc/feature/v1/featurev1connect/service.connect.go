@@ -36,11 +36,19 @@ const (
 	// FeatureServiceHasFeatureProcedure is the fully-qualified name of the FeatureService's HasFeature
 	// RPC.
 	FeatureServiceHasFeatureProcedure = "/svc.feature.v1.FeatureService/HasFeature"
+	// FeatureServiceListFeatureProcedure is the fully-qualified name of the FeatureService's
+	// ListFeature RPC.
+	FeatureServiceListFeatureProcedure = "/svc.feature.v1.FeatureService/ListFeature"
+	// FeatureServiceIsPersonalUseOnlyProcedure is the fully-qualified name of the FeatureService's
+	// IsPersonalUseOnly RPC.
+	FeatureServiceIsPersonalUseOnlyProcedure = "/svc.feature.v1.FeatureService/IsPersonalUseOnly"
 )
 
 // FeatureServiceClient is a client for the svc.feature.v1.FeatureService service.
 type FeatureServiceClient interface {
 	HasFeature(context.Context, *connect.Request[v1.HasFeatureRequest]) (*connect.Response[v1.HasFeatureResponse], error)
+	ListFeature(context.Context, *connect.Request[v1.ListFeatureRequest]) (*connect.Response[v1.ListFeatureResponse], error)
+	IsPersonalUseOnly(context.Context, *connect.Request[v1.IsPersonalUseOnlyRequest]) (*connect.Response[v1.IsPersonalUseOnlyResponse], error)
 }
 
 // NewFeatureServiceClient constructs a client for the svc.feature.v1.FeatureService service. By
@@ -60,12 +68,26 @@ func NewFeatureServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			connect.WithSchema(featureServiceMethods.ByName("HasFeature")),
 			connect.WithClientOptions(opts...),
 		),
+		listFeature: connect.NewClient[v1.ListFeatureRequest, v1.ListFeatureResponse](
+			httpClient,
+			baseURL+FeatureServiceListFeatureProcedure,
+			connect.WithSchema(featureServiceMethods.ByName("ListFeature")),
+			connect.WithClientOptions(opts...),
+		),
+		isPersonalUseOnly: connect.NewClient[v1.IsPersonalUseOnlyRequest, v1.IsPersonalUseOnlyResponse](
+			httpClient,
+			baseURL+FeatureServiceIsPersonalUseOnlyProcedure,
+			connect.WithSchema(featureServiceMethods.ByName("IsPersonalUseOnly")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // featureServiceClient implements FeatureServiceClient.
 type featureServiceClient struct {
-	hasFeature *connect.Client[v1.HasFeatureRequest, v1.HasFeatureResponse]
+	hasFeature        *connect.Client[v1.HasFeatureRequest, v1.HasFeatureResponse]
+	listFeature       *connect.Client[v1.ListFeatureRequest, v1.ListFeatureResponse]
+	isPersonalUseOnly *connect.Client[v1.IsPersonalUseOnlyRequest, v1.IsPersonalUseOnlyResponse]
 }
 
 // HasFeature calls svc.feature.v1.FeatureService.HasFeature.
@@ -73,9 +95,21 @@ func (c *featureServiceClient) HasFeature(ctx context.Context, req *connect.Requ
 	return c.hasFeature.CallUnary(ctx, req)
 }
 
+// ListFeature calls svc.feature.v1.FeatureService.ListFeature.
+func (c *featureServiceClient) ListFeature(ctx context.Context, req *connect.Request[v1.ListFeatureRequest]) (*connect.Response[v1.ListFeatureResponse], error) {
+	return c.listFeature.CallUnary(ctx, req)
+}
+
+// IsPersonalUseOnly calls svc.feature.v1.FeatureService.IsPersonalUseOnly.
+func (c *featureServiceClient) IsPersonalUseOnly(ctx context.Context, req *connect.Request[v1.IsPersonalUseOnlyRequest]) (*connect.Response[v1.IsPersonalUseOnlyResponse], error) {
+	return c.isPersonalUseOnly.CallUnary(ctx, req)
+}
+
 // FeatureServiceHandler is an implementation of the svc.feature.v1.FeatureService service.
 type FeatureServiceHandler interface {
 	HasFeature(context.Context, *connect.Request[v1.HasFeatureRequest]) (*connect.Response[v1.HasFeatureResponse], error)
+	ListFeature(context.Context, *connect.Request[v1.ListFeatureRequest]) (*connect.Response[v1.ListFeatureResponse], error)
+	IsPersonalUseOnly(context.Context, *connect.Request[v1.IsPersonalUseOnlyRequest]) (*connect.Response[v1.IsPersonalUseOnlyResponse], error)
 }
 
 // NewFeatureServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -91,10 +125,26 @@ func NewFeatureServiceHandler(svc FeatureServiceHandler, opts ...connect.Handler
 		connect.WithSchema(featureServiceMethods.ByName("HasFeature")),
 		connect.WithHandlerOptions(opts...),
 	)
+	featureServiceListFeatureHandler := connect.NewUnaryHandler(
+		FeatureServiceListFeatureProcedure,
+		svc.ListFeature,
+		connect.WithSchema(featureServiceMethods.ByName("ListFeature")),
+		connect.WithHandlerOptions(opts...),
+	)
+	featureServiceIsPersonalUseOnlyHandler := connect.NewUnaryHandler(
+		FeatureServiceIsPersonalUseOnlyProcedure,
+		svc.IsPersonalUseOnly,
+		connect.WithSchema(featureServiceMethods.ByName("IsPersonalUseOnly")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.feature.v1.FeatureService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case FeatureServiceHasFeatureProcedure:
 			featureServiceHasFeatureHandler.ServeHTTP(w, r)
+		case FeatureServiceListFeatureProcedure:
+			featureServiceListFeatureHandler.ServeHTTP(w, r)
+		case FeatureServiceIsPersonalUseOnlyProcedure:
+			featureServiceIsPersonalUseOnlyHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -106,4 +156,12 @@ type UnimplementedFeatureServiceHandler struct{}
 
 func (UnimplementedFeatureServiceHandler) HasFeature(context.Context, *connect.Request[v1.HasFeatureRequest]) (*connect.Response[v1.HasFeatureResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.feature.v1.FeatureService.HasFeature is not implemented"))
+}
+
+func (UnimplementedFeatureServiceHandler) ListFeature(context.Context, *connect.Request[v1.ListFeatureRequest]) (*connect.Response[v1.ListFeatureResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.feature.v1.FeatureService.ListFeature is not implemented"))
+}
+
+func (UnimplementedFeatureServiceHandler) IsPersonalUseOnly(context.Context, *connect.Request[v1.IsPersonalUseOnlyRequest]) (*connect.Response[v1.IsPersonalUseOnlyResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.feature.v1.FeatureService.IsPersonalUseOnly is not implemented"))
 }

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { HasFeatureRequest, HasFeatureResponse } from "./service_pb";
+import { HasFeatureRequest, HasFeatureResponse, IsPersonalUseOnlyRequest, IsPersonalUseOnlyResponse, ListFeatureRequest, ListFeatureResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -19,6 +19,24 @@ export const FeatureService = {
       name: "HasFeature",
       I: HasFeatureRequest,
       O: HasFeatureResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.feature.v1.FeatureService.ListFeature
+     */
+    listFeature: {
+      name: "ListFeature",
+      I: ListFeatureRequest,
+      O: ListFeatureResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.feature.v1.FeatureService.IsPersonalUseOnly
+     */
+    isPersonalUseOnly: {
+      name: "IsPersonalUseOnly",
+      I: IsPersonalUseOnlyRequest,
+      O: IsPersonalUseOnlyResponse,
       kind: MethodKind.Unary,
     },
   }

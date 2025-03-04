@@ -2,10 +2,15 @@ syntax = "proto3";
 
 package svc.feature.v1;
 
+import "types/v1/feature.proto";
+
 option go_package = "svc/feature/v1;featurev1";
 
 service FeatureService {
   rpc HasFeature(HasFeatureRequest) returns (HasFeatureResponse);
+  rpc ListFeature(ListFeatureRequest) returns (ListFeatureResponse);
+
+  rpc IsPersonalUseOnly(IsPersonalUseOnlyRequest) returns (IsPersonalUseOnlyResponse);
 }
 
 message HasFeatureRequest {
@@ -14,4 +19,15 @@ message HasFeatureRequest {
 
 message HasFeatureResponse {
   bool available = 1;
+}
+
+message ListFeatureRequest {}
+
+message ListFeatureResponse {
+  repeated types.v1.Feature features = 1;
+}
+
+message IsPersonalUseOnlyRequest {}
+message IsPersonalUseOnlyResponse {
+  bool is_free_personal_use_only = 1;
 }

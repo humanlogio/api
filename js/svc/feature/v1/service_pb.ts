@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
+import { Feature } from "../../../types/v1/feature_pb";
 
 /**
  * @generated from message svc.feature.v1.HasFeatureRequest
@@ -77,6 +78,142 @@ export class HasFeatureResponse extends Message<HasFeatureResponse> {
 
   static equals(a: HasFeatureResponse | PlainMessage<HasFeatureResponse> | undefined, b: HasFeatureResponse | PlainMessage<HasFeatureResponse> | undefined): boolean {
     return proto3.util.equals(HasFeatureResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.feature.v1.ListFeatureRequest
+ */
+export class ListFeatureRequest extends Message<ListFeatureRequest> {
+  constructor(data?: PartialMessage<ListFeatureRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.feature.v1.ListFeatureRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListFeatureRequest {
+    return new ListFeatureRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListFeatureRequest {
+    return new ListFeatureRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListFeatureRequest {
+    return new ListFeatureRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListFeatureRequest | PlainMessage<ListFeatureRequest> | undefined, b: ListFeatureRequest | PlainMessage<ListFeatureRequest> | undefined): boolean {
+    return proto3.util.equals(ListFeatureRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.feature.v1.ListFeatureResponse
+ */
+export class ListFeatureResponse extends Message<ListFeatureResponse> {
+  /**
+   * @generated from field: repeated types.v1.Feature features = 1;
+   */
+  features: Feature[] = [];
+
+  constructor(data?: PartialMessage<ListFeatureResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.feature.v1.ListFeatureResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "features", kind: "message", T: Feature, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListFeatureResponse {
+    return new ListFeatureResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListFeatureResponse {
+    return new ListFeatureResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListFeatureResponse {
+    return new ListFeatureResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListFeatureResponse | PlainMessage<ListFeatureResponse> | undefined, b: ListFeatureResponse | PlainMessage<ListFeatureResponse> | undefined): boolean {
+    return proto3.util.equals(ListFeatureResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.feature.v1.IsPersonalUseOnlyRequest
+ */
+export class IsPersonalUseOnlyRequest extends Message<IsPersonalUseOnlyRequest> {
+  constructor(data?: PartialMessage<IsPersonalUseOnlyRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.feature.v1.IsPersonalUseOnlyRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsPersonalUseOnlyRequest {
+    return new IsPersonalUseOnlyRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsPersonalUseOnlyRequest {
+    return new IsPersonalUseOnlyRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsPersonalUseOnlyRequest {
+    return new IsPersonalUseOnlyRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: IsPersonalUseOnlyRequest | PlainMessage<IsPersonalUseOnlyRequest> | undefined, b: IsPersonalUseOnlyRequest | PlainMessage<IsPersonalUseOnlyRequest> | undefined): boolean {
+    return proto3.util.equals(IsPersonalUseOnlyRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.feature.v1.IsPersonalUseOnlyResponse
+ */
+export class IsPersonalUseOnlyResponse extends Message<IsPersonalUseOnlyResponse> {
+  /**
+   * @generated from field: bool is_free_personal_use_only = 1;
+   */
+  isFreePersonalUseOnly = false;
+
+  constructor(data?: PartialMessage<IsPersonalUseOnlyResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.feature.v1.IsPersonalUseOnlyResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "is_free_personal_use_only", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): IsPersonalUseOnlyResponse {
+    return new IsPersonalUseOnlyResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): IsPersonalUseOnlyResponse {
+    return new IsPersonalUseOnlyResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): IsPersonalUseOnlyResponse {
+    return new IsPersonalUseOnlyResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: IsPersonalUseOnlyResponse | PlainMessage<IsPersonalUseOnlyResponse> | undefined, b: IsPersonalUseOnlyResponse | PlainMessage<IsPersonalUseOnlyResponse> | undefined): boolean {
+    return proto3.util.equals(IsPersonalUseOnlyResponse, a, b);
   }
 }
 
