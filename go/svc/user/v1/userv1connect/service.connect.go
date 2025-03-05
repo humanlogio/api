@@ -41,6 +41,8 @@ const (
 	// UserServiceRefreshUserTokenProcedure is the fully-qualified name of the UserService's
 	// RefreshUserToken RPC.
 	UserServiceRefreshUserTokenProcedure = "/svc.user.v1.UserService/RefreshUserToken"
+	// UserServiceUpdateUserProcedure is the fully-qualified name of the UserService's UpdateUser RPC.
+	UserServiceUpdateUserProcedure = "/svc.user.v1.UserService/UpdateUser"
 	// UserServiceCreateOrganizationProcedure is the fully-qualified name of the UserService's
 	// CreateOrganization RPC.
 	UserServiceCreateOrganizationProcedure = "/svc.user.v1.UserService/CreateOrganization"
@@ -54,6 +56,7 @@ type UserServiceClient interface {
 	Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error)
 	GetLogoutURL(context.Context, *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error)
 	RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error)
+	UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error)
 	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error)
 }
@@ -87,6 +90,12 @@ func NewUserServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(userServiceMethods.ByName("RefreshUserToken")),
 			connect.WithClientOptions(opts...),
 		),
+		updateUser: connect.NewClient[v1.UpdateUserRequest, v1.UpdateUserResponse](
+			httpClient,
+			baseURL+UserServiceUpdateUserProcedure,
+			connect.WithSchema(userServiceMethods.ByName("UpdateUser")),
+			connect.WithClientOptions(opts...),
+		),
 		createOrganization: connect.NewClient[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse](
 			httpClient,
 			baseURL+UserServiceCreateOrganizationProcedure,
@@ -107,6 +116,7 @@ type userServiceClient struct {
 	whoami             *connect.Client[v1.WhoamiRequest, v1.WhoamiResponse]
 	getLogoutURL       *connect.Client[v1.GetLogoutURLRequest, v1.GetLogoutURLResponse]
 	refreshUserToken   *connect.Client[v1.RefreshUserTokenRequest, v1.RefreshUserTokenResponse]
+	updateUser         *connect.Client[v1.UpdateUserRequest, v1.UpdateUserResponse]
 	createOrganization *connect.Client[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse]
 	listOrganization   *connect.Client[v1.ListOrganizationRequest, v1.ListOrganizationResponse]
 }
@@ -126,6 +136,11 @@ func (c *userServiceClient) RefreshUserToken(ctx context.Context, req *connect.R
 	return c.refreshUserToken.CallUnary(ctx, req)
 }
 
+// UpdateUser calls svc.user.v1.UserService.UpdateUser.
+func (c *userServiceClient) UpdateUser(ctx context.Context, req *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error) {
+	return c.updateUser.CallUnary(ctx, req)
+}
+
 // CreateOrganization calls svc.user.v1.UserService.CreateOrganization.
 func (c *userServiceClient) CreateOrganization(ctx context.Context, req *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error) {
 	return c.createOrganization.CallUnary(ctx, req)
@@ -141,6 +156,7 @@ type UserServiceHandler interface {
 	Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error)
 	GetLogoutURL(context.Context, *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error)
 	RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error)
+	UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error)
 	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error)
 }
@@ -170,6 +186,12 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(userServiceMethods.ByName("RefreshUserToken")),
 		connect.WithHandlerOptions(opts...),
 	)
+	userServiceUpdateUserHandler := connect.NewUnaryHandler(
+		UserServiceUpdateUserProcedure,
+		svc.UpdateUser,
+		connect.WithSchema(userServiceMethods.ByName("UpdateUser")),
+		connect.WithHandlerOptions(opts...),
+	)
 	userServiceCreateOrganizationHandler := connect.NewUnaryHandler(
 		UserServiceCreateOrganizationProcedure,
 		svc.CreateOrganization,
@@ -190,6 +212,8 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 			userServiceGetLogoutURLHandler.ServeHTTP(w, r)
 		case UserServiceRefreshUserTokenProcedure:
 			userServiceRefreshUserTokenHandler.ServeHTTP(w, r)
+		case UserServiceUpdateUserProcedure:
+			userServiceUpdateUserHandler.ServeHTTP(w, r)
 		case UserServiceCreateOrganizationProcedure:
 			userServiceCreateOrganizationHandler.ServeHTTP(w, r)
 		case UserServiceListOrganizationProcedure:
@@ -213,6 +237,10 @@ func (UnimplementedUserServiceHandler) GetLogoutURL(context.Context, *connect.Re
 
 func (UnimplementedUserServiceHandler) RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.RefreshUserToken is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.UpdateUser is not implemented"))
 }
 
 func (UnimplementedUserServiceHandler) CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error) {

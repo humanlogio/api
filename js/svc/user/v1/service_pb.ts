@@ -244,6 +244,86 @@ export class RefreshUserTokenResponse extends Message<RefreshUserTokenResponse> 
 }
 
 /**
+ * @generated from message svc.user.v1.UpdateUserRequest
+ */
+export class UpdateUserRequest extends Message<UpdateUserRequest> {
+  /**
+   * @generated from field: optional string first_name = 1;
+   */
+  firstName?: string;
+
+  /**
+   * @generated from field: optional string last_name = 2;
+   */
+  lastName?: string;
+
+  constructor(data?: PartialMessage<UpdateUserRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.UpdateUserRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateUserRequest {
+    return new UpdateUserRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateUserRequest {
+    return new UpdateUserRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateUserRequest {
+    return new UpdateUserRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateUserRequest | PlainMessage<UpdateUserRequest> | undefined, b: UpdateUserRequest | PlainMessage<UpdateUserRequest> | undefined): boolean {
+    return proto3.util.equals(UpdateUserRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.UpdateUserResponse
+ */
+export class UpdateUserResponse extends Message<UpdateUserResponse> {
+  /**
+   * @generated from field: types.v1.User user = 1;
+   */
+  user?: User;
+
+  constructor(data?: PartialMessage<UpdateUserResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.UpdateUserResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "user", kind: "message", T: User },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateUserResponse {
+    return new UpdateUserResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateUserResponse {
+    return new UpdateUserResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateUserResponse {
+    return new UpdateUserResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateUserResponse | PlainMessage<UpdateUserResponse> | undefined, b: UpdateUserResponse | PlainMessage<UpdateUserResponse> | undefined): boolean {
+    return proto3.util.equals(UpdateUserResponse, a, b);
+  }
+}
+
+/**
  * @generated from message svc.user.v1.CreateOrganizationRequest
  */
 export class CreateOrganizationRequest extends Message<CreateOrganizationRequest> {

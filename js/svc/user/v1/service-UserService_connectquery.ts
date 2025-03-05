@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateOrganizationRequest, CreateOrganizationResponse, GetLogoutURLRequest, GetLogoutURLResponse, ListOrganizationRequest, ListOrganizationResponse, RefreshUserTokenRequest, RefreshUserTokenResponse, WhoamiRequest, WhoamiResponse } from "./service_pb";
+import { CreateOrganizationRequest, CreateOrganizationResponse, GetLogoutURLRequest, GetLogoutURLResponse, ListOrganizationRequest, ListOrganizationResponse, RefreshUserTokenRequest, RefreshUserTokenResponse, UpdateUserRequest, UpdateUserResponse, WhoamiRequest, WhoamiResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.user.v1.UserService.Whoami
@@ -43,6 +43,20 @@ export const refreshUserToken = {
   kind: MethodKind.Unary,
   I: RefreshUserTokenRequest,
   O: RefreshUserTokenResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.UpdateUser
+ */
+export const updateUser = {
+  localName: "updateUser",
+  name: "UpdateUser",
+  kind: MethodKind.Unary,
+  I: UpdateUserRequest,
+  O: UpdateUserResponse,
   service: {
     typeName: "svc.user.v1.UserService"
   }

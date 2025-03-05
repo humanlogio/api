@@ -14,6 +14,8 @@ service UserService {
   rpc GetLogoutURL(GetLogoutURLRequest) returns (GetLogoutURLResponse) {}
   rpc RefreshUserToken(RefreshUserTokenRequest) returns (RefreshUserTokenResponse) {}
 
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+
   rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse) {}
   rpc ListOrganization(ListOrganizationRequest) returns (ListOrganizationResponse) {}
 }
@@ -39,6 +41,14 @@ message RefreshUserTokenResponse {
   string token = 1;
   google.protobuf.Timestamp refresh_at = 2;
   google.protobuf.Timestamp expires_at = 3;
+}
+
+message UpdateUserRequest {
+  optional string first_name = 1;
+  optional string last_name = 2;
+}
+message UpdateUserResponse {
+  types.v1.User user = 1;
 }
 
 message CreateOrganizationRequest {
