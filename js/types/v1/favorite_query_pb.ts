@@ -32,9 +32,9 @@ export class FavoriteQuery extends Message<FavoriteQuery> {
   query?: LogQuery;
 
   /**
-   * @generated from field: string node = 5;
+   * @generated from field: string note = 5;
    */
-  node = "";
+  note = "";
 
   /**
    * @generated from field: google.protobuf.Timestamp favorited_at = 6;
@@ -53,7 +53,7 @@ export class FavoriteQuery extends Message<FavoriteQuery> {
     { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "query", kind: "message", T: LogQuery },
-    { no: 5, name: "node", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "favorited_at", kind: "message", T: Timestamp },
   ]);
 

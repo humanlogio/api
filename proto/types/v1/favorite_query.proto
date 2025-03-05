@@ -12,6 +12,6 @@ message FavoriteQuery {
   string name = 2;
   string raw_query = 3;
   types.v1.LogQuery query = 4;
-  string node = 5;
+  string note = 5;
   google.protobuf.Timestamp favorited_at = 6;
 }
