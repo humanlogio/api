@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateOrganizationRequest, CreateOrganizationResponse, GetLogoutURLRequest, GetLogoutURLResponse, ListOrganizationRequest, ListOrganizationResponse, RefreshUserTokenRequest, RefreshUserTokenResponse, UpdateUserRequest, UpdateUserResponse, WhoamiRequest, WhoamiResponse } from "./service_pb";
+import { CreateFavoriteQueryRequest, CreateFavoriteQueryResponse, CreateOrganizationRequest, CreateOrganizationResponse, DeleteFavoriteQueryRequest, DeleteFavoriteQueryResponse, DeleteQueryHistoryRequest, DeleteQueryHistoryResponse, GetFavoriteQueryRequest, GetFavoriteQueryResponse, GetLocalhostConfigRequest, GetLocalhostConfigResponse, GetLogoutURLRequest, GetLogoutURLResponse, GetQueryHistoryRequest, GetQueryHistoryResponse, ListFavoriteQueryRequest, ListFavoriteQueryResponse, ListOrganizationRequest, ListOrganizationResponse, ListQueryHistoryRequest, ListQueryHistoryResponse, RecordQueryHistoryRequest, RecordQueryHistoryResponse, RefreshUserTokenRequest, RefreshUserTokenResponse, SaveLocalhostConfigRequest, SaveLocalhostConfigResponse, UpdateFavoriteQueryRequest, UpdateFavoriteQueryResponse, UpdateUserRequest, UpdateUserResponse, WhoamiRequest, WhoamiResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -64,6 +64,105 @@ export const UserService = {
       name: "ListOrganization",
       I: ListOrganizationRequest,
       O: ListOrganizationResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.SaveLocalhostConfig
+     */
+    saveLocalhostConfig: {
+      name: "SaveLocalhostConfig",
+      I: SaveLocalhostConfigRequest,
+      O: SaveLocalhostConfigResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.GetLocalhostConfig
+     */
+    getLocalhostConfig: {
+      name: "GetLocalhostConfig",
+      I: GetLocalhostConfigRequest,
+      O: GetLocalhostConfigResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.RecordQueryHistory
+     */
+    recordQueryHistory: {
+      name: "RecordQueryHistory",
+      I: RecordQueryHistoryRequest,
+      O: RecordQueryHistoryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.GetQueryHistory
+     */
+    getQueryHistory: {
+      name: "GetQueryHistory",
+      I: GetQueryHistoryRequest,
+      O: GetQueryHistoryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.ListQueryHistory
+     */
+    listQueryHistory: {
+      name: "ListQueryHistory",
+      I: ListQueryHistoryRequest,
+      O: ListQueryHistoryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.DeleteQueryHistory
+     */
+    deleteQueryHistory: {
+      name: "DeleteQueryHistory",
+      I: DeleteQueryHistoryRequest,
+      O: DeleteQueryHistoryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.CreateFavoriteQuery
+     */
+    createFavoriteQuery: {
+      name: "CreateFavoriteQuery",
+      I: CreateFavoriteQueryRequest,
+      O: CreateFavoriteQueryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.GetFavoriteQuery
+     */
+    getFavoriteQuery: {
+      name: "GetFavoriteQuery",
+      I: GetFavoriteQueryRequest,
+      O: GetFavoriteQueryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.UpdateFavoriteQuery
+     */
+    updateFavoriteQuery: {
+      name: "UpdateFavoriteQuery",
+      I: UpdateFavoriteQueryRequest,
+      O: UpdateFavoriteQueryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.ListFavoriteQuery
+     */
+    listFavoriteQuery: {
+      name: "ListFavoriteQuery",
+      I: ListFavoriteQueryRequest,
+      O: ListFavoriteQueryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.user.v1.UserService.DeleteFavoriteQuery
+     */
+    deleteFavoriteQuery: {
+      name: "DeleteFavoriteQuery",
+      I: DeleteFavoriteQueryRequest,
+      O: DeleteFavoriteQueryResponse,
       kind: MethodKind.Unary,
     },
   }

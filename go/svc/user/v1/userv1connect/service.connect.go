@@ -49,6 +49,39 @@ const (
 	// UserServiceListOrganizationProcedure is the fully-qualified name of the UserService's
 	// ListOrganization RPC.
 	UserServiceListOrganizationProcedure = "/svc.user.v1.UserService/ListOrganization"
+	// UserServiceSaveLocalhostConfigProcedure is the fully-qualified name of the UserService's
+	// SaveLocalhostConfig RPC.
+	UserServiceSaveLocalhostConfigProcedure = "/svc.user.v1.UserService/SaveLocalhostConfig"
+	// UserServiceGetLocalhostConfigProcedure is the fully-qualified name of the UserService's
+	// GetLocalhostConfig RPC.
+	UserServiceGetLocalhostConfigProcedure = "/svc.user.v1.UserService/GetLocalhostConfig"
+	// UserServiceRecordQueryHistoryProcedure is the fully-qualified name of the UserService's
+	// RecordQueryHistory RPC.
+	UserServiceRecordQueryHistoryProcedure = "/svc.user.v1.UserService/RecordQueryHistory"
+	// UserServiceGetQueryHistoryProcedure is the fully-qualified name of the UserService's
+	// GetQueryHistory RPC.
+	UserServiceGetQueryHistoryProcedure = "/svc.user.v1.UserService/GetQueryHistory"
+	// UserServiceListQueryHistoryProcedure is the fully-qualified name of the UserService's
+	// ListQueryHistory RPC.
+	UserServiceListQueryHistoryProcedure = "/svc.user.v1.UserService/ListQueryHistory"
+	// UserServiceDeleteQueryHistoryProcedure is the fully-qualified name of the UserService's
+	// DeleteQueryHistory RPC.
+	UserServiceDeleteQueryHistoryProcedure = "/svc.user.v1.UserService/DeleteQueryHistory"
+	// UserServiceCreateFavoriteQueryProcedure is the fully-qualified name of the UserService's
+	// CreateFavoriteQuery RPC.
+	UserServiceCreateFavoriteQueryProcedure = "/svc.user.v1.UserService/CreateFavoriteQuery"
+	// UserServiceGetFavoriteQueryProcedure is the fully-qualified name of the UserService's
+	// GetFavoriteQuery RPC.
+	UserServiceGetFavoriteQueryProcedure = "/svc.user.v1.UserService/GetFavoriteQuery"
+	// UserServiceUpdateFavoriteQueryProcedure is the fully-qualified name of the UserService's
+	// UpdateFavoriteQuery RPC.
+	UserServiceUpdateFavoriteQueryProcedure = "/svc.user.v1.UserService/UpdateFavoriteQuery"
+	// UserServiceListFavoriteQueryProcedure is the fully-qualified name of the UserService's
+	// ListFavoriteQuery RPC.
+	UserServiceListFavoriteQueryProcedure = "/svc.user.v1.UserService/ListFavoriteQuery"
+	// UserServiceDeleteFavoriteQueryProcedure is the fully-qualified name of the UserService's
+	// DeleteFavoriteQuery RPC.
+	UserServiceDeleteFavoriteQueryProcedure = "/svc.user.v1.UserService/DeleteFavoriteQuery"
 )
 
 // UserServiceClient is a client for the svc.user.v1.UserService service.
@@ -59,6 +92,17 @@ type UserServiceClient interface {
 	UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error)
 	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error)
+	SaveLocalhostConfig(context.Context, *connect.Request[v1.SaveLocalhostConfigRequest]) (*connect.Response[v1.SaveLocalhostConfigResponse], error)
+	GetLocalhostConfig(context.Context, *connect.Request[v1.GetLocalhostConfigRequest]) (*connect.Response[v1.GetLocalhostConfigResponse], error)
+	RecordQueryHistory(context.Context, *connect.Request[v1.RecordQueryHistoryRequest]) (*connect.Response[v1.RecordQueryHistoryResponse], error)
+	GetQueryHistory(context.Context, *connect.Request[v1.GetQueryHistoryRequest]) (*connect.Response[v1.GetQueryHistoryResponse], error)
+	ListQueryHistory(context.Context, *connect.Request[v1.ListQueryHistoryRequest]) (*connect.Response[v1.ListQueryHistoryResponse], error)
+	DeleteQueryHistory(context.Context, *connect.Request[v1.DeleteQueryHistoryRequest]) (*connect.Response[v1.DeleteQueryHistoryResponse], error)
+	CreateFavoriteQuery(context.Context, *connect.Request[v1.CreateFavoriteQueryRequest]) (*connect.Response[v1.CreateFavoriteQueryResponse], error)
+	GetFavoriteQuery(context.Context, *connect.Request[v1.GetFavoriteQueryRequest]) (*connect.Response[v1.GetFavoriteQueryResponse], error)
+	UpdateFavoriteQuery(context.Context, *connect.Request[v1.UpdateFavoriteQueryRequest]) (*connect.Response[v1.UpdateFavoriteQueryResponse], error)
+	ListFavoriteQuery(context.Context, *connect.Request[v1.ListFavoriteQueryRequest]) (*connect.Response[v1.ListFavoriteQueryResponse], error)
+	DeleteFavoriteQuery(context.Context, *connect.Request[v1.DeleteFavoriteQueryRequest]) (*connect.Response[v1.DeleteFavoriteQueryResponse], error)
 }
 
 // NewUserServiceClient constructs a client for the svc.user.v1.UserService service. By default, it
@@ -108,17 +152,94 @@ func NewUserServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(userServiceMethods.ByName("ListOrganization")),
 			connect.WithClientOptions(opts...),
 		),
+		saveLocalhostConfig: connect.NewClient[v1.SaveLocalhostConfigRequest, v1.SaveLocalhostConfigResponse](
+			httpClient,
+			baseURL+UserServiceSaveLocalhostConfigProcedure,
+			connect.WithSchema(userServiceMethods.ByName("SaveLocalhostConfig")),
+			connect.WithClientOptions(opts...),
+		),
+		getLocalhostConfig: connect.NewClient[v1.GetLocalhostConfigRequest, v1.GetLocalhostConfigResponse](
+			httpClient,
+			baseURL+UserServiceGetLocalhostConfigProcedure,
+			connect.WithSchema(userServiceMethods.ByName("GetLocalhostConfig")),
+			connect.WithClientOptions(opts...),
+		),
+		recordQueryHistory: connect.NewClient[v1.RecordQueryHistoryRequest, v1.RecordQueryHistoryResponse](
+			httpClient,
+			baseURL+UserServiceRecordQueryHistoryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("RecordQueryHistory")),
+			connect.WithClientOptions(opts...),
+		),
+		getQueryHistory: connect.NewClient[v1.GetQueryHistoryRequest, v1.GetQueryHistoryResponse](
+			httpClient,
+			baseURL+UserServiceGetQueryHistoryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("GetQueryHistory")),
+			connect.WithClientOptions(opts...),
+		),
+		listQueryHistory: connect.NewClient[v1.ListQueryHistoryRequest, v1.ListQueryHistoryResponse](
+			httpClient,
+			baseURL+UserServiceListQueryHistoryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("ListQueryHistory")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteQueryHistory: connect.NewClient[v1.DeleteQueryHistoryRequest, v1.DeleteQueryHistoryResponse](
+			httpClient,
+			baseURL+UserServiceDeleteQueryHistoryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("DeleteQueryHistory")),
+			connect.WithClientOptions(opts...),
+		),
+		createFavoriteQuery: connect.NewClient[v1.CreateFavoriteQueryRequest, v1.CreateFavoriteQueryResponse](
+			httpClient,
+			baseURL+UserServiceCreateFavoriteQueryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("CreateFavoriteQuery")),
+			connect.WithClientOptions(opts...),
+		),
+		getFavoriteQuery: connect.NewClient[v1.GetFavoriteQueryRequest, v1.GetFavoriteQueryResponse](
+			httpClient,
+			baseURL+UserServiceGetFavoriteQueryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("GetFavoriteQuery")),
+			connect.WithClientOptions(opts...),
+		),
+		updateFavoriteQuery: connect.NewClient[v1.UpdateFavoriteQueryRequest, v1.UpdateFavoriteQueryResponse](
+			httpClient,
+			baseURL+UserServiceUpdateFavoriteQueryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("UpdateFavoriteQuery")),
+			connect.WithClientOptions(opts...),
+		),
+		listFavoriteQuery: connect.NewClient[v1.ListFavoriteQueryRequest, v1.ListFavoriteQueryResponse](
+			httpClient,
+			baseURL+UserServiceListFavoriteQueryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("ListFavoriteQuery")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteFavoriteQuery: connect.NewClient[v1.DeleteFavoriteQueryRequest, v1.DeleteFavoriteQueryResponse](
+			httpClient,
+			baseURL+UserServiceDeleteFavoriteQueryProcedure,
+			connect.WithSchema(userServiceMethods.ByName("DeleteFavoriteQuery")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // userServiceClient implements UserServiceClient.
 type userServiceClient struct {
-	whoami             *connect.Client[v1.WhoamiRequest, v1.WhoamiResponse]
-	getLogoutURL       *connect.Client[v1.GetLogoutURLRequest, v1.GetLogoutURLResponse]
-	refreshUserToken   *connect.Client[v1.RefreshUserTokenRequest, v1.RefreshUserTokenResponse]
-	updateUser         *connect.Client[v1.UpdateUserRequest, v1.UpdateUserResponse]
-	createOrganization *connect.Client[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse]
-	listOrganization   *connect.Client[v1.ListOrganizationRequest, v1.ListOrganizationResponse]
+	whoami              *connect.Client[v1.WhoamiRequest, v1.WhoamiResponse]
+	getLogoutURL        *connect.Client[v1.GetLogoutURLRequest, v1.GetLogoutURLResponse]
+	refreshUserToken    *connect.Client[v1.RefreshUserTokenRequest, v1.RefreshUserTokenResponse]
+	updateUser          *connect.Client[v1.UpdateUserRequest, v1.UpdateUserResponse]
+	createOrganization  *connect.Client[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse]
+	listOrganization    *connect.Client[v1.ListOrganizationRequest, v1.ListOrganizationResponse]
+	saveLocalhostConfig *connect.Client[v1.SaveLocalhostConfigRequest, v1.SaveLocalhostConfigResponse]
+	getLocalhostConfig  *connect.Client[v1.GetLocalhostConfigRequest, v1.GetLocalhostConfigResponse]
+	recordQueryHistory  *connect.Client[v1.RecordQueryHistoryRequest, v1.RecordQueryHistoryResponse]
+	getQueryHistory     *connect.Client[v1.GetQueryHistoryRequest, v1.GetQueryHistoryResponse]
+	listQueryHistory    *connect.Client[v1.ListQueryHistoryRequest, v1.ListQueryHistoryResponse]
+	deleteQueryHistory  *connect.Client[v1.DeleteQueryHistoryRequest, v1.DeleteQueryHistoryResponse]
+	createFavoriteQuery *connect.Client[v1.CreateFavoriteQueryRequest, v1.CreateFavoriteQueryResponse]
+	getFavoriteQuery    *connect.Client[v1.GetFavoriteQueryRequest, v1.GetFavoriteQueryResponse]
+	updateFavoriteQuery *connect.Client[v1.UpdateFavoriteQueryRequest, v1.UpdateFavoriteQueryResponse]
+	listFavoriteQuery   *connect.Client[v1.ListFavoriteQueryRequest, v1.ListFavoriteQueryResponse]
+	deleteFavoriteQuery *connect.Client[v1.DeleteFavoriteQueryRequest, v1.DeleteFavoriteQueryResponse]
 }
 
 // Whoami calls svc.user.v1.UserService.Whoami.
@@ -151,6 +272,61 @@ func (c *userServiceClient) ListOrganization(ctx context.Context, req *connect.R
 	return c.listOrganization.CallUnary(ctx, req)
 }
 
+// SaveLocalhostConfig calls svc.user.v1.UserService.SaveLocalhostConfig.
+func (c *userServiceClient) SaveLocalhostConfig(ctx context.Context, req *connect.Request[v1.SaveLocalhostConfigRequest]) (*connect.Response[v1.SaveLocalhostConfigResponse], error) {
+	return c.saveLocalhostConfig.CallUnary(ctx, req)
+}
+
+// GetLocalhostConfig calls svc.user.v1.UserService.GetLocalhostConfig.
+func (c *userServiceClient) GetLocalhostConfig(ctx context.Context, req *connect.Request[v1.GetLocalhostConfigRequest]) (*connect.Response[v1.GetLocalhostConfigResponse], error) {
+	return c.getLocalhostConfig.CallUnary(ctx, req)
+}
+
+// RecordQueryHistory calls svc.user.v1.UserService.RecordQueryHistory.
+func (c *userServiceClient) RecordQueryHistory(ctx context.Context, req *connect.Request[v1.RecordQueryHistoryRequest]) (*connect.Response[v1.RecordQueryHistoryResponse], error) {
+	return c.recordQueryHistory.CallUnary(ctx, req)
+}
+
+// GetQueryHistory calls svc.user.v1.UserService.GetQueryHistory.
+func (c *userServiceClient) GetQueryHistory(ctx context.Context, req *connect.Request[v1.GetQueryHistoryRequest]) (*connect.Response[v1.GetQueryHistoryResponse], error) {
+	return c.getQueryHistory.CallUnary(ctx, req)
+}
+
+// ListQueryHistory calls svc.user.v1.UserService.ListQueryHistory.
+func (c *userServiceClient) ListQueryHistory(ctx context.Context, req *connect.Request[v1.ListQueryHistoryRequest]) (*connect.Response[v1.ListQueryHistoryResponse], error) {
+	return c.listQueryHistory.CallUnary(ctx, req)
+}
+
+// DeleteQueryHistory calls svc.user.v1.UserService.DeleteQueryHistory.
+func (c *userServiceClient) DeleteQueryHistory(ctx context.Context, req *connect.Request[v1.DeleteQueryHistoryRequest]) (*connect.Response[v1.DeleteQueryHistoryResponse], error) {
+	return c.deleteQueryHistory.CallUnary(ctx, req)
+}
+
+// CreateFavoriteQuery calls svc.user.v1.UserService.CreateFavoriteQuery.
+func (c *userServiceClient) CreateFavoriteQuery(ctx context.Context, req *connect.Request[v1.CreateFavoriteQueryRequest]) (*connect.Response[v1.CreateFavoriteQueryResponse], error) {
+	return c.createFavoriteQuery.CallUnary(ctx, req)
+}
+
+// GetFavoriteQuery calls svc.user.v1.UserService.GetFavoriteQuery.
+func (c *userServiceClient) GetFavoriteQuery(ctx context.Context, req *connect.Request[v1.GetFavoriteQueryRequest]) (*connect.Response[v1.GetFavoriteQueryResponse], error) {
+	return c.getFavoriteQuery.CallUnary(ctx, req)
+}
+
+// UpdateFavoriteQuery calls svc.user.v1.UserService.UpdateFavoriteQuery.
+func (c *userServiceClient) UpdateFavoriteQuery(ctx context.Context, req *connect.Request[v1.UpdateFavoriteQueryRequest]) (*connect.Response[v1.UpdateFavoriteQueryResponse], error) {
+	return c.updateFavoriteQuery.CallUnary(ctx, req)
+}
+
+// ListFavoriteQuery calls svc.user.v1.UserService.ListFavoriteQuery.
+func (c *userServiceClient) ListFavoriteQuery(ctx context.Context, req *connect.Request[v1.ListFavoriteQueryRequest]) (*connect.Response[v1.ListFavoriteQueryResponse], error) {
+	return c.listFavoriteQuery.CallUnary(ctx, req)
+}
+
+// DeleteFavoriteQuery calls svc.user.v1.UserService.DeleteFavoriteQuery.
+func (c *userServiceClient) DeleteFavoriteQuery(ctx context.Context, req *connect.Request[v1.DeleteFavoriteQueryRequest]) (*connect.Response[v1.DeleteFavoriteQueryResponse], error) {
+	return c.deleteFavoriteQuery.CallUnary(ctx, req)
+}
+
 // UserServiceHandler is an implementation of the svc.user.v1.UserService service.
 type UserServiceHandler interface {
 	Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error)
@@ -159,6 +335,17 @@ type UserServiceHandler interface {
 	UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error)
 	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error)
+	SaveLocalhostConfig(context.Context, *connect.Request[v1.SaveLocalhostConfigRequest]) (*connect.Response[v1.SaveLocalhostConfigResponse], error)
+	GetLocalhostConfig(context.Context, *connect.Request[v1.GetLocalhostConfigRequest]) (*connect.Response[v1.GetLocalhostConfigResponse], error)
+	RecordQueryHistory(context.Context, *connect.Request[v1.RecordQueryHistoryRequest]) (*connect.Response[v1.RecordQueryHistoryResponse], error)
+	GetQueryHistory(context.Context, *connect.Request[v1.GetQueryHistoryRequest]) (*connect.Response[v1.GetQueryHistoryResponse], error)
+	ListQueryHistory(context.Context, *connect.Request[v1.ListQueryHistoryRequest]) (*connect.Response[v1.ListQueryHistoryResponse], error)
+	DeleteQueryHistory(context.Context, *connect.Request[v1.DeleteQueryHistoryRequest]) (*connect.Response[v1.DeleteQueryHistoryResponse], error)
+	CreateFavoriteQuery(context.Context, *connect.Request[v1.CreateFavoriteQueryRequest]) (*connect.Response[v1.CreateFavoriteQueryResponse], error)
+	GetFavoriteQuery(context.Context, *connect.Request[v1.GetFavoriteQueryRequest]) (*connect.Response[v1.GetFavoriteQueryResponse], error)
+	UpdateFavoriteQuery(context.Context, *connect.Request[v1.UpdateFavoriteQueryRequest]) (*connect.Response[v1.UpdateFavoriteQueryResponse], error)
+	ListFavoriteQuery(context.Context, *connect.Request[v1.ListFavoriteQueryRequest]) (*connect.Response[v1.ListFavoriteQueryResponse], error)
+	DeleteFavoriteQuery(context.Context, *connect.Request[v1.DeleteFavoriteQueryRequest]) (*connect.Response[v1.DeleteFavoriteQueryResponse], error)
 }
 
 // NewUserServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -204,6 +391,72 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(userServiceMethods.ByName("ListOrganization")),
 		connect.WithHandlerOptions(opts...),
 	)
+	userServiceSaveLocalhostConfigHandler := connect.NewUnaryHandler(
+		UserServiceSaveLocalhostConfigProcedure,
+		svc.SaveLocalhostConfig,
+		connect.WithSchema(userServiceMethods.ByName("SaveLocalhostConfig")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceGetLocalhostConfigHandler := connect.NewUnaryHandler(
+		UserServiceGetLocalhostConfigProcedure,
+		svc.GetLocalhostConfig,
+		connect.WithSchema(userServiceMethods.ByName("GetLocalhostConfig")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceRecordQueryHistoryHandler := connect.NewUnaryHandler(
+		UserServiceRecordQueryHistoryProcedure,
+		svc.RecordQueryHistory,
+		connect.WithSchema(userServiceMethods.ByName("RecordQueryHistory")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceGetQueryHistoryHandler := connect.NewUnaryHandler(
+		UserServiceGetQueryHistoryProcedure,
+		svc.GetQueryHistory,
+		connect.WithSchema(userServiceMethods.ByName("GetQueryHistory")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceListQueryHistoryHandler := connect.NewUnaryHandler(
+		UserServiceListQueryHistoryProcedure,
+		svc.ListQueryHistory,
+		connect.WithSchema(userServiceMethods.ByName("ListQueryHistory")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceDeleteQueryHistoryHandler := connect.NewUnaryHandler(
+		UserServiceDeleteQueryHistoryProcedure,
+		svc.DeleteQueryHistory,
+		connect.WithSchema(userServiceMethods.ByName("DeleteQueryHistory")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceCreateFavoriteQueryHandler := connect.NewUnaryHandler(
+		UserServiceCreateFavoriteQueryProcedure,
+		svc.CreateFavoriteQuery,
+		connect.WithSchema(userServiceMethods.ByName("CreateFavoriteQuery")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceGetFavoriteQueryHandler := connect.NewUnaryHandler(
+		UserServiceGetFavoriteQueryProcedure,
+		svc.GetFavoriteQuery,
+		connect.WithSchema(userServiceMethods.ByName("GetFavoriteQuery")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceUpdateFavoriteQueryHandler := connect.NewUnaryHandler(
+		UserServiceUpdateFavoriteQueryProcedure,
+		svc.UpdateFavoriteQuery,
+		connect.WithSchema(userServiceMethods.ByName("UpdateFavoriteQuery")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceListFavoriteQueryHandler := connect.NewUnaryHandler(
+		UserServiceListFavoriteQueryProcedure,
+		svc.ListFavoriteQuery,
+		connect.WithSchema(userServiceMethods.ByName("ListFavoriteQuery")),
+		connect.WithHandlerOptions(opts...),
+	)
+	userServiceDeleteFavoriteQueryHandler := connect.NewUnaryHandler(
+		UserServiceDeleteFavoriteQueryProcedure,
+		svc.DeleteFavoriteQuery,
+		connect.WithSchema(userServiceMethods.ByName("DeleteFavoriteQuery")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.user.v1.UserService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case UserServiceWhoamiProcedure:
@@ -218,6 +471,28 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 			userServiceCreateOrganizationHandler.ServeHTTP(w, r)
 		case UserServiceListOrganizationProcedure:
 			userServiceListOrganizationHandler.ServeHTTP(w, r)
+		case UserServiceSaveLocalhostConfigProcedure:
+			userServiceSaveLocalhostConfigHandler.ServeHTTP(w, r)
+		case UserServiceGetLocalhostConfigProcedure:
+			userServiceGetLocalhostConfigHandler.ServeHTTP(w, r)
+		case UserServiceRecordQueryHistoryProcedure:
+			userServiceRecordQueryHistoryHandler.ServeHTTP(w, r)
+		case UserServiceGetQueryHistoryProcedure:
+			userServiceGetQueryHistoryHandler.ServeHTTP(w, r)
+		case UserServiceListQueryHistoryProcedure:
+			userServiceListQueryHistoryHandler.ServeHTTP(w, r)
+		case UserServiceDeleteQueryHistoryProcedure:
+			userServiceDeleteQueryHistoryHandler.ServeHTTP(w, r)
+		case UserServiceCreateFavoriteQueryProcedure:
+			userServiceCreateFavoriteQueryHandler.ServeHTTP(w, r)
+		case UserServiceGetFavoriteQueryProcedure:
+			userServiceGetFavoriteQueryHandler.ServeHTTP(w, r)
+		case UserServiceUpdateFavoriteQueryProcedure:
+			userServiceUpdateFavoriteQueryHandler.ServeHTTP(w, r)
+		case UserServiceListFavoriteQueryProcedure:
+			userServiceListFavoriteQueryHandler.ServeHTTP(w, r)
+		case UserServiceDeleteFavoriteQueryProcedure:
+			userServiceDeleteFavoriteQueryHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -249,4 +524,48 @@ func (UnimplementedUserServiceHandler) CreateOrganization(context.Context, *conn
 
 func (UnimplementedUserServiceHandler) ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.ListOrganization is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) SaveLocalhostConfig(context.Context, *connect.Request[v1.SaveLocalhostConfigRequest]) (*connect.Response[v1.SaveLocalhostConfigResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.SaveLocalhostConfig is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) GetLocalhostConfig(context.Context, *connect.Request[v1.GetLocalhostConfigRequest]) (*connect.Response[v1.GetLocalhostConfigResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.GetLocalhostConfig is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) RecordQueryHistory(context.Context, *connect.Request[v1.RecordQueryHistoryRequest]) (*connect.Response[v1.RecordQueryHistoryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.RecordQueryHistory is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) GetQueryHistory(context.Context, *connect.Request[v1.GetQueryHistoryRequest]) (*connect.Response[v1.GetQueryHistoryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.GetQueryHistory is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) ListQueryHistory(context.Context, *connect.Request[v1.ListQueryHistoryRequest]) (*connect.Response[v1.ListQueryHistoryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.ListQueryHistory is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) DeleteQueryHistory(context.Context, *connect.Request[v1.DeleteQueryHistoryRequest]) (*connect.Response[v1.DeleteQueryHistoryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.DeleteQueryHistory is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) CreateFavoriteQuery(context.Context, *connect.Request[v1.CreateFavoriteQueryRequest]) (*connect.Response[v1.CreateFavoriteQueryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.CreateFavoriteQuery is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) GetFavoriteQuery(context.Context, *connect.Request[v1.GetFavoriteQueryRequest]) (*connect.Response[v1.GetFavoriteQueryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.GetFavoriteQuery is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) UpdateFavoriteQuery(context.Context, *connect.Request[v1.UpdateFavoriteQueryRequest]) (*connect.Response[v1.UpdateFavoriteQueryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.UpdateFavoriteQuery is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) ListFavoriteQuery(context.Context, *connect.Request[v1.ListFavoriteQueryRequest]) (*connect.Response[v1.ListFavoriteQueryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.ListFavoriteQuery is not implemented"))
+}
+
+func (UnimplementedUserServiceHandler) DeleteFavoriteQuery(context.Context, *connect.Request[v1.DeleteFavoriteQueryRequest]) (*connect.Response[v1.DeleteFavoriteQueryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.DeleteFavoriteQuery is not implemented"))
 }

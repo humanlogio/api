@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package svc.share.v1;
+
+import "google/protobuf/timestamp.proto";
+import "types/v1/cursor.proto";
+import "types/v1/favorite_query.proto";
+import "types/v1/localhost_config.proto";
+import "types/v1/logquery.proto";
+import "types/v1/query.proto";
+import "types/v1/query_history_entry.proto";
+import "types/v1/shared_result.proto";
+import "types/v1/user.proto";
+
+option go_package = "svc/share/v1;sharev1";
+
+service PublicShareService {
+  rpc ViewSharedResult(ViewSharedResultRequest) returns (ViewSharedResultResponse) {}
+}
+
+service UserShareService {
+  rpc CreateUserSharedResult(CreateUserSharedResultRequest) returns (CreateUserSharedResultResponse) {}
+  rpc GetUserSharedResult(GetUserSharedResultRequest) returns (GetUserSharedResultResponse) {}
+  rpc UpdateUserSharedResult(UpdateUserSharedResultRequest) returns (UpdateUserSharedResultResponse) {}
+  rpc DeleteUserSharedResult(DeleteUserSharedResultRequest) returns (DeleteUserSharedResultResponse) {}
+  rpc ListUserSharedResult(ListUserSharedResultRequest) returns (ListUserSharedResultResponse) {}
+}
+
+message ViewSharedResultRequest {
+  string share_id = 1;
+  string random_prefix = 2;
+}
+
+message ViewSharedResultResponse {
+  types.v1.User shared_by = 1;
+  types.v1.SharedResult shared_result = 2;
+}
+
+message CreateUserSharedResultRequest {
+  types.v1.QueryHistoryEntry query = 1;
+  types.v1.Data result = 2;
+  types.v1.SharedResultVisibility visibility = 3;
+}
+message CreateUserSharedResultResponse {
+  types.v1.SharedResult shared_result = 1;
+}
+
+message GetUserSharedResultRequest {
+  int64 id = 1;
+}
+message GetUserSharedResultResponse {
+  string random_prefix = 1;
+  string share_id = 2;
+}
+
+message UpdateUserSharedResultRequest {
+  int64 id = 1;
+  types.v1.SharedResultVisibility visibility = 2;
+}
+message UpdateUserSharedResultResponse {
+  types.v1.SharedResult shared_result = 1;
+}
+
+message DeleteUserSharedResultRequest {
+  int64 id = 1;
+}
+message DeleteUserSharedResultResponse {}
+
+message ListUserSharedResultRequest {
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+}
+message ListUserSharedResultResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    int64 id = 1;
+  }
+  repeated ListItem items = 2;
+}

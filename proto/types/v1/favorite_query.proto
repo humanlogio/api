@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/timestamp.proto";
+import "types/v1/logquery.proto";
+
+option go_package = "types/v1;typesv1";
+
+message FavoriteQuery {
+  int64 id = 1;
+  string name = 2;
+  string raw_query = 3;
+  types.v1.LogQuery query = 4;
+  string node = 5;
+  google.protobuf.Timestamp favorited_at = 6;
+}

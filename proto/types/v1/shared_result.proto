@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/timestamp.proto";
+import "types/v1/query.proto";
+import "types/v1/query_history_entry.proto";
+
+option go_package = "types/v1;typesv1";
+
+enum SharedResultVisibility {
+  PUBLIC = 0;
+  ANYONE_WITH_LINK = 1;
+}
+
+message SharedResult {
+  message Public {
+    string share_id = 1;
+  }
+  message AnyoneWithLink {
+    string random_prefix = 1;
+    string share_id = 2;
+  }
+
+  int64 id = 1;
+  types.v1.QueryHistoryEntry query = 2;
+  types.v1.Data result = 3;
+  oneof visibility {
+    Public public = 400;
+    AnyoneWithLink anyone_with_link = 401;
+  }
+  google.protobuf.Timestamp created_at = 5;
+}

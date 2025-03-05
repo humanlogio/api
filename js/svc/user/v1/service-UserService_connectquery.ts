@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateOrganizationRequest, CreateOrganizationResponse, GetLogoutURLRequest, GetLogoutURLResponse, ListOrganizationRequest, ListOrganizationResponse, RefreshUserTokenRequest, RefreshUserTokenResponse, UpdateUserRequest, UpdateUserResponse, WhoamiRequest, WhoamiResponse } from "./service_pb";
+import { CreateFavoriteQueryRequest, CreateFavoriteQueryResponse, CreateOrganizationRequest, CreateOrganizationResponse, DeleteFavoriteQueryRequest, DeleteFavoriteQueryResponse, DeleteQueryHistoryRequest, DeleteQueryHistoryResponse, GetFavoriteQueryRequest, GetFavoriteQueryResponse, GetLocalhostConfigRequest, GetLocalhostConfigResponse, GetLogoutURLRequest, GetLogoutURLResponse, GetQueryHistoryRequest, GetQueryHistoryResponse, ListFavoriteQueryRequest, ListFavoriteQueryResponse, ListOrganizationRequest, ListOrganizationResponse, ListQueryHistoryRequest, ListQueryHistoryResponse, RecordQueryHistoryRequest, RecordQueryHistoryResponse, RefreshUserTokenRequest, RefreshUserTokenResponse, SaveLocalhostConfigRequest, SaveLocalhostConfigResponse, UpdateFavoriteQueryRequest, UpdateFavoriteQueryResponse, UpdateUserRequest, UpdateUserResponse, WhoamiRequest, WhoamiResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.user.v1.UserService.Whoami
@@ -85,6 +85,160 @@ export const listOrganization = {
   kind: MethodKind.Unary,
   I: ListOrganizationRequest,
   O: ListOrganizationResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.SaveLocalhostConfig
+ */
+export const saveLocalhostConfig = {
+  localName: "saveLocalhostConfig",
+  name: "SaveLocalhostConfig",
+  kind: MethodKind.Unary,
+  I: SaveLocalhostConfigRequest,
+  O: SaveLocalhostConfigResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.GetLocalhostConfig
+ */
+export const getLocalhostConfig = {
+  localName: "getLocalhostConfig",
+  name: "GetLocalhostConfig",
+  kind: MethodKind.Unary,
+  I: GetLocalhostConfigRequest,
+  O: GetLocalhostConfigResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.RecordQueryHistory
+ */
+export const recordQueryHistory = {
+  localName: "recordQueryHistory",
+  name: "RecordQueryHistory",
+  kind: MethodKind.Unary,
+  I: RecordQueryHistoryRequest,
+  O: RecordQueryHistoryResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.GetQueryHistory
+ */
+export const getQueryHistory = {
+  localName: "getQueryHistory",
+  name: "GetQueryHistory",
+  kind: MethodKind.Unary,
+  I: GetQueryHistoryRequest,
+  O: GetQueryHistoryResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.ListQueryHistory
+ */
+export const listQueryHistory = {
+  localName: "listQueryHistory",
+  name: "ListQueryHistory",
+  kind: MethodKind.Unary,
+  I: ListQueryHistoryRequest,
+  O: ListQueryHistoryResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.DeleteQueryHistory
+ */
+export const deleteQueryHistory = {
+  localName: "deleteQueryHistory",
+  name: "DeleteQueryHistory",
+  kind: MethodKind.Unary,
+  I: DeleteQueryHistoryRequest,
+  O: DeleteQueryHistoryResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.CreateFavoriteQuery
+ */
+export const createFavoriteQuery = {
+  localName: "createFavoriteQuery",
+  name: "CreateFavoriteQuery",
+  kind: MethodKind.Unary,
+  I: CreateFavoriteQueryRequest,
+  O: CreateFavoriteQueryResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.GetFavoriteQuery
+ */
+export const getFavoriteQuery = {
+  localName: "getFavoriteQuery",
+  name: "GetFavoriteQuery",
+  kind: MethodKind.Unary,
+  I: GetFavoriteQueryRequest,
+  O: GetFavoriteQueryResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.UpdateFavoriteQuery
+ */
+export const updateFavoriteQuery = {
+  localName: "updateFavoriteQuery",
+  name: "UpdateFavoriteQuery",
+  kind: MethodKind.Unary,
+  I: UpdateFavoriteQueryRequest,
+  O: UpdateFavoriteQueryResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.ListFavoriteQuery
+ */
+export const listFavoriteQuery = {
+  localName: "listFavoriteQuery",
+  name: "ListFavoriteQuery",
+  kind: MethodKind.Unary,
+  I: ListFavoriteQueryRequest,
+  O: ListFavoriteQueryResponse,
+  service: {
+    typeName: "svc.user.v1.UserService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.user.v1.UserService.DeleteFavoriteQuery
+ */
+export const deleteFavoriteQuery = {
+  localName: "deleteFavoriteQuery",
+  name: "DeleteFavoriteQuery",
+  kind: MethodKind.Unary,
+  I: DeleteFavoriteQueryRequest,
+  O: DeleteFavoriteQueryResponse,
   service: {
     typeName: "svc.user.v1.UserService"
   }

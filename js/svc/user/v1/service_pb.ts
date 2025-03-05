@@ -4,10 +4,14 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { User } from "../../../types/v1/user_pb";
 import { Organization } from "../../../types/v1/organization_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
+import { LocalhostConfig } from "../../../types/v1/localhost_config_pb";
+import { LogQuery } from "../../../types/v1/logquery_pb";
+import { QueryHistoryEntry } from "../../../types/v1/query_history_entry_pb";
+import { FavoriteQuery } from "../../../types/v1/favorite_query_pb";
 
 /**
  * @generated from message svc.user.v1.WhoamiRequest
@@ -523,6 +527,942 @@ export class ListOrganizationResponse_ListItem extends Message<ListOrganizationR
 
   static equals(a: ListOrganizationResponse_ListItem | PlainMessage<ListOrganizationResponse_ListItem> | undefined, b: ListOrganizationResponse_ListItem | PlainMessage<ListOrganizationResponse_ListItem> | undefined): boolean {
     return proto3.util.equals(ListOrganizationResponse_ListItem, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.SaveLocalhostConfigRequest
+ */
+export class SaveLocalhostConfigRequest extends Message<SaveLocalhostConfigRequest> {
+  /**
+   * @generated from field: types.v1.LocalhostConfig config = 1;
+   */
+  config?: LocalhostConfig;
+
+  constructor(data?: PartialMessage<SaveLocalhostConfigRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.SaveLocalhostConfigRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "config", kind: "message", T: LocalhostConfig },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SaveLocalhostConfigRequest {
+    return new SaveLocalhostConfigRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SaveLocalhostConfigRequest {
+    return new SaveLocalhostConfigRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SaveLocalhostConfigRequest {
+    return new SaveLocalhostConfigRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SaveLocalhostConfigRequest | PlainMessage<SaveLocalhostConfigRequest> | undefined, b: SaveLocalhostConfigRequest | PlainMessage<SaveLocalhostConfigRequest> | undefined): boolean {
+    return proto3.util.equals(SaveLocalhostConfigRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.SaveLocalhostConfigResponse
+ */
+export class SaveLocalhostConfigResponse extends Message<SaveLocalhostConfigResponse> {
+  constructor(data?: PartialMessage<SaveLocalhostConfigResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.SaveLocalhostConfigResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SaveLocalhostConfigResponse {
+    return new SaveLocalhostConfigResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SaveLocalhostConfigResponse {
+    return new SaveLocalhostConfigResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SaveLocalhostConfigResponse {
+    return new SaveLocalhostConfigResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SaveLocalhostConfigResponse | PlainMessage<SaveLocalhostConfigResponse> | undefined, b: SaveLocalhostConfigResponse | PlainMessage<SaveLocalhostConfigResponse> | undefined): boolean {
+    return proto3.util.equals(SaveLocalhostConfigResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.GetLocalhostConfigRequest
+ */
+export class GetLocalhostConfigRequest extends Message<GetLocalhostConfigRequest> {
+  constructor(data?: PartialMessage<GetLocalhostConfigRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.GetLocalhostConfigRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLocalhostConfigRequest {
+    return new GetLocalhostConfigRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetLocalhostConfigRequest {
+    return new GetLocalhostConfigRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetLocalhostConfigRequest {
+    return new GetLocalhostConfigRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetLocalhostConfigRequest | PlainMessage<GetLocalhostConfigRequest> | undefined, b: GetLocalhostConfigRequest | PlainMessage<GetLocalhostConfigRequest> | undefined): boolean {
+    return proto3.util.equals(GetLocalhostConfigRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.GetLocalhostConfigResponse
+ */
+export class GetLocalhostConfigResponse extends Message<GetLocalhostConfigResponse> {
+  /**
+   * @generated from field: types.v1.LocalhostConfig config = 1;
+   */
+  config?: LocalhostConfig;
+
+  constructor(data?: PartialMessage<GetLocalhostConfigResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.GetLocalhostConfigResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "config", kind: "message", T: LocalhostConfig },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetLocalhostConfigResponse {
+    return new GetLocalhostConfigResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetLocalhostConfigResponse {
+    return new GetLocalhostConfigResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetLocalhostConfigResponse {
+    return new GetLocalhostConfigResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetLocalhostConfigResponse | PlainMessage<GetLocalhostConfigResponse> | undefined, b: GetLocalhostConfigResponse | PlainMessage<GetLocalhostConfigResponse> | undefined): boolean {
+    return proto3.util.equals(GetLocalhostConfigResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.RecordQueryHistoryRequest
+ */
+export class RecordQueryHistoryRequest extends Message<RecordQueryHistoryRequest> {
+  /**
+   * @generated from field: string raw_query = 1;
+   */
+  rawQuery = "";
+
+  /**
+   * @generated from field: types.v1.LogQuery query = 2;
+   */
+  query?: LogQuery;
+
+  constructor(data?: PartialMessage<RecordQueryHistoryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.RecordQueryHistoryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "query", kind: "message", T: LogQuery },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecordQueryHistoryRequest {
+    return new RecordQueryHistoryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RecordQueryHistoryRequest {
+    return new RecordQueryHistoryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecordQueryHistoryRequest {
+    return new RecordQueryHistoryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RecordQueryHistoryRequest | PlainMessage<RecordQueryHistoryRequest> | undefined, b: RecordQueryHistoryRequest | PlainMessage<RecordQueryHistoryRequest> | undefined): boolean {
+    return proto3.util.equals(RecordQueryHistoryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.RecordQueryHistoryResponse
+ */
+export class RecordQueryHistoryResponse extends Message<RecordQueryHistoryResponse> {
+  /**
+   * @generated from field: types.v1.QueryHistoryEntry entry = 1;
+   */
+  entry?: QueryHistoryEntry;
+
+  constructor(data?: PartialMessage<RecordQueryHistoryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.RecordQueryHistoryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "entry", kind: "message", T: QueryHistoryEntry },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecordQueryHistoryResponse {
+    return new RecordQueryHistoryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): RecordQueryHistoryResponse {
+    return new RecordQueryHistoryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): RecordQueryHistoryResponse {
+    return new RecordQueryHistoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: RecordQueryHistoryResponse | PlainMessage<RecordQueryHistoryResponse> | undefined, b: RecordQueryHistoryResponse | PlainMessage<RecordQueryHistoryResponse> | undefined): boolean {
+    return proto3.util.equals(RecordQueryHistoryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.GetQueryHistoryRequest
+ */
+export class GetQueryHistoryRequest extends Message<GetQueryHistoryRequest> {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id = protoInt64.zero;
+
+  constructor(data?: PartialMessage<GetQueryHistoryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.GetQueryHistoryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetQueryHistoryRequest {
+    return new GetQueryHistoryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetQueryHistoryRequest {
+    return new GetQueryHistoryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetQueryHistoryRequest {
+    return new GetQueryHistoryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetQueryHistoryRequest | PlainMessage<GetQueryHistoryRequest> | undefined, b: GetQueryHistoryRequest | PlainMessage<GetQueryHistoryRequest> | undefined): boolean {
+    return proto3.util.equals(GetQueryHistoryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.GetQueryHistoryResponse
+ */
+export class GetQueryHistoryResponse extends Message<GetQueryHistoryResponse> {
+  /**
+   * @generated from field: types.v1.QueryHistoryEntry entry = 1;
+   */
+  entry?: QueryHistoryEntry;
+
+  constructor(data?: PartialMessage<GetQueryHistoryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.GetQueryHistoryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "entry", kind: "message", T: QueryHistoryEntry },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetQueryHistoryResponse {
+    return new GetQueryHistoryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetQueryHistoryResponse {
+    return new GetQueryHistoryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetQueryHistoryResponse {
+    return new GetQueryHistoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetQueryHistoryResponse | PlainMessage<GetQueryHistoryResponse> | undefined, b: GetQueryHistoryResponse | PlainMessage<GetQueryHistoryResponse> | undefined): boolean {
+    return proto3.util.equals(GetQueryHistoryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.ListQueryHistoryRequest
+ */
+export class ListQueryHistoryRequest extends Message<ListQueryHistoryRequest> {
+  /**
+   * @generated from field: types.v1.Cursor cursor = 1;
+   */
+  cursor?: Cursor;
+
+  /**
+   * @generated from field: int32 limit = 2;
+   */
+  limit = 0;
+
+  constructor(data?: PartialMessage<ListQueryHistoryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.ListQueryHistoryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "cursor", kind: "message", T: Cursor },
+    { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListQueryHistoryRequest {
+    return new ListQueryHistoryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListQueryHistoryRequest {
+    return new ListQueryHistoryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListQueryHistoryRequest {
+    return new ListQueryHistoryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListQueryHistoryRequest | PlainMessage<ListQueryHistoryRequest> | undefined, b: ListQueryHistoryRequest | PlainMessage<ListQueryHistoryRequest> | undefined): boolean {
+    return proto3.util.equals(ListQueryHistoryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.ListQueryHistoryResponse
+ */
+export class ListQueryHistoryResponse extends Message<ListQueryHistoryResponse> {
+  /**
+   * @generated from field: types.v1.Cursor next = 1;
+   */
+  next?: Cursor;
+
+  /**
+   * @generated from field: repeated svc.user.v1.ListQueryHistoryResponse.ListItem items = 2;
+   */
+  items: ListQueryHistoryResponse_ListItem[] = [];
+
+  constructor(data?: PartialMessage<ListQueryHistoryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.ListQueryHistoryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "next", kind: "message", T: Cursor },
+    { no: 2, name: "items", kind: "message", T: ListQueryHistoryResponse_ListItem, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListQueryHistoryResponse {
+    return new ListQueryHistoryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListQueryHistoryResponse {
+    return new ListQueryHistoryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListQueryHistoryResponse {
+    return new ListQueryHistoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListQueryHistoryResponse | PlainMessage<ListQueryHistoryResponse> | undefined, b: ListQueryHistoryResponse | PlainMessage<ListQueryHistoryResponse> | undefined): boolean {
+    return proto3.util.equals(ListQueryHistoryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.ListQueryHistoryResponse.ListItem
+ */
+export class ListQueryHistoryResponse_ListItem extends Message<ListQueryHistoryResponse_ListItem> {
+  /**
+   * @generated from field: types.v1.QueryHistoryEntry entry = 1;
+   */
+  entry?: QueryHistoryEntry;
+
+  constructor(data?: PartialMessage<ListQueryHistoryResponse_ListItem>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.ListQueryHistoryResponse.ListItem";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "entry", kind: "message", T: QueryHistoryEntry },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListQueryHistoryResponse_ListItem {
+    return new ListQueryHistoryResponse_ListItem().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListQueryHistoryResponse_ListItem {
+    return new ListQueryHistoryResponse_ListItem().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListQueryHistoryResponse_ListItem {
+    return new ListQueryHistoryResponse_ListItem().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListQueryHistoryResponse_ListItem | PlainMessage<ListQueryHistoryResponse_ListItem> | undefined, b: ListQueryHistoryResponse_ListItem | PlainMessage<ListQueryHistoryResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListQueryHistoryResponse_ListItem, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.DeleteQueryHistoryRequest
+ */
+export class DeleteQueryHistoryRequest extends Message<DeleteQueryHistoryRequest> {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id = protoInt64.zero;
+
+  constructor(data?: PartialMessage<DeleteQueryHistoryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.DeleteQueryHistoryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteQueryHistoryRequest {
+    return new DeleteQueryHistoryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteQueryHistoryRequest {
+    return new DeleteQueryHistoryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteQueryHistoryRequest {
+    return new DeleteQueryHistoryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteQueryHistoryRequest | PlainMessage<DeleteQueryHistoryRequest> | undefined, b: DeleteQueryHistoryRequest | PlainMessage<DeleteQueryHistoryRequest> | undefined): boolean {
+    return proto3.util.equals(DeleteQueryHistoryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.DeleteQueryHistoryResponse
+ */
+export class DeleteQueryHistoryResponse extends Message<DeleteQueryHistoryResponse> {
+  constructor(data?: PartialMessage<DeleteQueryHistoryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.DeleteQueryHistoryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteQueryHistoryResponse {
+    return new DeleteQueryHistoryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteQueryHistoryResponse {
+    return new DeleteQueryHistoryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteQueryHistoryResponse {
+    return new DeleteQueryHistoryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteQueryHistoryResponse | PlainMessage<DeleteQueryHistoryResponse> | undefined, b: DeleteQueryHistoryResponse | PlainMessage<DeleteQueryHistoryResponse> | undefined): boolean {
+    return proto3.util.equals(DeleteQueryHistoryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.CreateFavoriteQueryRequest
+ */
+export class CreateFavoriteQueryRequest extends Message<CreateFavoriteQueryRequest> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string raw_query = 2;
+   */
+  rawQuery = "";
+
+  /**
+   * @generated from field: types.v1.LogQuery query = 3;
+   */
+  query?: LogQuery;
+
+  /**
+   * @generated from field: string note = 4;
+   */
+  note = "";
+
+  constructor(data?: PartialMessage<CreateFavoriteQueryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.CreateFavoriteQueryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "query", kind: "message", T: LogQuery },
+    { no: 4, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateFavoriteQueryRequest {
+    return new CreateFavoriteQueryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateFavoriteQueryRequest {
+    return new CreateFavoriteQueryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateFavoriteQueryRequest {
+    return new CreateFavoriteQueryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateFavoriteQueryRequest | PlainMessage<CreateFavoriteQueryRequest> | undefined, b: CreateFavoriteQueryRequest | PlainMessage<CreateFavoriteQueryRequest> | undefined): boolean {
+    return proto3.util.equals(CreateFavoriteQueryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.CreateFavoriteQueryResponse
+ */
+export class CreateFavoriteQueryResponse extends Message<CreateFavoriteQueryResponse> {
+  /**
+   * @generated from field: types.v1.FavoriteQuery favorite = 1;
+   */
+  favorite?: FavoriteQuery;
+
+  constructor(data?: PartialMessage<CreateFavoriteQueryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.CreateFavoriteQueryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "favorite", kind: "message", T: FavoriteQuery },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateFavoriteQueryResponse {
+    return new CreateFavoriteQueryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateFavoriteQueryResponse {
+    return new CreateFavoriteQueryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateFavoriteQueryResponse {
+    return new CreateFavoriteQueryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateFavoriteQueryResponse | PlainMessage<CreateFavoriteQueryResponse> | undefined, b: CreateFavoriteQueryResponse | PlainMessage<CreateFavoriteQueryResponse> | undefined): boolean {
+    return proto3.util.equals(CreateFavoriteQueryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.GetFavoriteQueryRequest
+ */
+export class GetFavoriteQueryRequest extends Message<GetFavoriteQueryRequest> {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id = protoInt64.zero;
+
+  constructor(data?: PartialMessage<GetFavoriteQueryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.GetFavoriteQueryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetFavoriteQueryRequest {
+    return new GetFavoriteQueryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetFavoriteQueryRequest {
+    return new GetFavoriteQueryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetFavoriteQueryRequest {
+    return new GetFavoriteQueryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetFavoriteQueryRequest | PlainMessage<GetFavoriteQueryRequest> | undefined, b: GetFavoriteQueryRequest | PlainMessage<GetFavoriteQueryRequest> | undefined): boolean {
+    return proto3.util.equals(GetFavoriteQueryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.GetFavoriteQueryResponse
+ */
+export class GetFavoriteQueryResponse extends Message<GetFavoriteQueryResponse> {
+  /**
+   * @generated from field: types.v1.FavoriteQuery favorite = 1;
+   */
+  favorite?: FavoriteQuery;
+
+  constructor(data?: PartialMessage<GetFavoriteQueryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.GetFavoriteQueryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "favorite", kind: "message", T: FavoriteQuery },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetFavoriteQueryResponse {
+    return new GetFavoriteQueryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetFavoriteQueryResponse {
+    return new GetFavoriteQueryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetFavoriteQueryResponse {
+    return new GetFavoriteQueryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetFavoriteQueryResponse | PlainMessage<GetFavoriteQueryResponse> | undefined, b: GetFavoriteQueryResponse | PlainMessage<GetFavoriteQueryResponse> | undefined): boolean {
+    return proto3.util.equals(GetFavoriteQueryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.UpdateFavoriteQueryRequest
+ */
+export class UpdateFavoriteQueryRequest extends Message<UpdateFavoriteQueryRequest> {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id = protoInt64.zero;
+
+  /**
+   * @generated from field: string name = 2;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string raw_query = 3;
+   */
+  rawQuery = "";
+
+  /**
+   * @generated from field: types.v1.LogQuery query = 4;
+   */
+  query?: LogQuery;
+
+  /**
+   * @generated from field: string note = 5;
+   */
+  note = "";
+
+  constructor(data?: PartialMessage<UpdateFavoriteQueryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.UpdateFavoriteQueryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "query", kind: "message", T: LogQuery },
+    { no: 5, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateFavoriteQueryRequest {
+    return new UpdateFavoriteQueryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateFavoriteQueryRequest {
+    return new UpdateFavoriteQueryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateFavoriteQueryRequest {
+    return new UpdateFavoriteQueryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateFavoriteQueryRequest | PlainMessage<UpdateFavoriteQueryRequest> | undefined, b: UpdateFavoriteQueryRequest | PlainMessage<UpdateFavoriteQueryRequest> | undefined): boolean {
+    return proto3.util.equals(UpdateFavoriteQueryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.UpdateFavoriteQueryResponse
+ */
+export class UpdateFavoriteQueryResponse extends Message<UpdateFavoriteQueryResponse> {
+  /**
+   * @generated from field: types.v1.FavoriteQuery favorite = 1;
+   */
+  favorite?: FavoriteQuery;
+
+  constructor(data?: PartialMessage<UpdateFavoriteQueryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.UpdateFavoriteQueryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "favorite", kind: "message", T: FavoriteQuery },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateFavoriteQueryResponse {
+    return new UpdateFavoriteQueryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateFavoriteQueryResponse {
+    return new UpdateFavoriteQueryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateFavoriteQueryResponse {
+    return new UpdateFavoriteQueryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateFavoriteQueryResponse | PlainMessage<UpdateFavoriteQueryResponse> | undefined, b: UpdateFavoriteQueryResponse | PlainMessage<UpdateFavoriteQueryResponse> | undefined): boolean {
+    return proto3.util.equals(UpdateFavoriteQueryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.ListFavoriteQueryRequest
+ */
+export class ListFavoriteQueryRequest extends Message<ListFavoriteQueryRequest> {
+  /**
+   * @generated from field: types.v1.Cursor cursor = 1;
+   */
+  cursor?: Cursor;
+
+  /**
+   * @generated from field: int32 limit = 2;
+   */
+  limit = 0;
+
+  constructor(data?: PartialMessage<ListFavoriteQueryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.ListFavoriteQueryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "cursor", kind: "message", T: Cursor },
+    { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListFavoriteQueryRequest {
+    return new ListFavoriteQueryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListFavoriteQueryRequest {
+    return new ListFavoriteQueryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListFavoriteQueryRequest {
+    return new ListFavoriteQueryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListFavoriteQueryRequest | PlainMessage<ListFavoriteQueryRequest> | undefined, b: ListFavoriteQueryRequest | PlainMessage<ListFavoriteQueryRequest> | undefined): boolean {
+    return proto3.util.equals(ListFavoriteQueryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.ListFavoriteQueryResponse
+ */
+export class ListFavoriteQueryResponse extends Message<ListFavoriteQueryResponse> {
+  /**
+   * @generated from field: types.v1.Cursor next = 1;
+   */
+  next?: Cursor;
+
+  /**
+   * @generated from field: repeated svc.user.v1.ListFavoriteQueryResponse.ListItem items = 2;
+   */
+  items: ListFavoriteQueryResponse_ListItem[] = [];
+
+  constructor(data?: PartialMessage<ListFavoriteQueryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.ListFavoriteQueryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "next", kind: "message", T: Cursor },
+    { no: 2, name: "items", kind: "message", T: ListFavoriteQueryResponse_ListItem, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListFavoriteQueryResponse {
+    return new ListFavoriteQueryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListFavoriteQueryResponse {
+    return new ListFavoriteQueryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListFavoriteQueryResponse {
+    return new ListFavoriteQueryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListFavoriteQueryResponse | PlainMessage<ListFavoriteQueryResponse> | undefined, b: ListFavoriteQueryResponse | PlainMessage<ListFavoriteQueryResponse> | undefined): boolean {
+    return proto3.util.equals(ListFavoriteQueryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.ListFavoriteQueryResponse.ListItem
+ */
+export class ListFavoriteQueryResponse_ListItem extends Message<ListFavoriteQueryResponse_ListItem> {
+  /**
+   * @generated from field: types.v1.FavoriteQuery favorite = 1;
+   */
+  favorite?: FavoriteQuery;
+
+  constructor(data?: PartialMessage<ListFavoriteQueryResponse_ListItem>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.ListFavoriteQueryResponse.ListItem";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "favorite", kind: "message", T: FavoriteQuery },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListFavoriteQueryResponse_ListItem {
+    return new ListFavoriteQueryResponse_ListItem().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListFavoriteQueryResponse_ListItem {
+    return new ListFavoriteQueryResponse_ListItem().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListFavoriteQueryResponse_ListItem {
+    return new ListFavoriteQueryResponse_ListItem().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListFavoriteQueryResponse_ListItem | PlainMessage<ListFavoriteQueryResponse_ListItem> | undefined, b: ListFavoriteQueryResponse_ListItem | PlainMessage<ListFavoriteQueryResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListFavoriteQueryResponse_ListItem, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.DeleteFavoriteQueryRequest
+ */
+export class DeleteFavoriteQueryRequest extends Message<DeleteFavoriteQueryRequest> {
+  /**
+   * @generated from field: int64 id = 1;
+   */
+  id = protoInt64.zero;
+
+  constructor(data?: PartialMessage<DeleteFavoriteQueryRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.DeleteFavoriteQueryRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteFavoriteQueryRequest {
+    return new DeleteFavoriteQueryRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteFavoriteQueryRequest {
+    return new DeleteFavoriteQueryRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteFavoriteQueryRequest {
+    return new DeleteFavoriteQueryRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteFavoriteQueryRequest | PlainMessage<DeleteFavoriteQueryRequest> | undefined, b: DeleteFavoriteQueryRequest | PlainMessage<DeleteFavoriteQueryRequest> | undefined): boolean {
+    return proto3.util.equals(DeleteFavoriteQueryRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.user.v1.DeleteFavoriteQueryResponse
+ */
+export class DeleteFavoriteQueryResponse extends Message<DeleteFavoriteQueryResponse> {
+  constructor(data?: PartialMessage<DeleteFavoriteQueryResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.user.v1.DeleteFavoriteQueryResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteFavoriteQueryResponse {
+    return new DeleteFavoriteQueryResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteFavoriteQueryResponse {
+    return new DeleteFavoriteQueryResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteFavoriteQueryResponse {
+    return new DeleteFavoriteQueryResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteFavoriteQueryResponse | PlainMessage<DeleteFavoriteQueryResponse> | undefined, b: DeleteFavoriteQueryResponse | PlainMessage<DeleteFavoriteQueryResponse> | undefined): boolean {
+    return proto3.util.equals(DeleteFavoriteQueryResponse, a, b);
   }
 }
 
