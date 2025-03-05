@@ -37,9 +37,14 @@ export class FavoriteQuery extends Message<FavoriteQuery> {
   note = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp favorited_at = 6;
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
    */
-  favoritedAt?: Timestamp;
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 7;
+   */
+  updatedAt?: Timestamp;
 
   constructor(data?: PartialMessage<FavoriteQuery>) {
     super();
@@ -54,7 +59,8 @@ export class FavoriteQuery extends Message<FavoriteQuery> {
     { no: 3, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "query", kind: "message", T: LogQuery },
     { no: 5, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 6, name: "favorited_at", kind: "message", T: Timestamp },
+    { no: 6, name: "created_at", kind: "message", T: Timestamp },
+    { no: 7, name: "updated_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FavoriteQuery {
