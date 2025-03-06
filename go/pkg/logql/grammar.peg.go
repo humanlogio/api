@@ -139,6 +139,7 @@ const (
 	ruleSpace
 	ruleMustSpace
 	ruleWhitespace
+	ruleLineComment
 	ruleEOL
 	ruleEOF
 	ruleAction0
@@ -408,6 +409,7 @@ var rul3s = [...]string{
 	"Space",
 	"MustSpace",
 	"Whitespace",
+	"LineComment",
 	"EOL",
 	"EOF",
 	"Action0",
@@ -719,7 +721,7 @@ type logQL struct {
 
 	Buffer string
 	buffer []rune
-	rules  [266]func() bool
+	rules  [267]func() bool
 	parse  func(rule ...int) error
 	reset  func()
 	Pretty bool
@@ -1244,7 +1246,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 
 	_rules = [...]func() bool{
 		nil,
-		/* 0 Grammar <- <(Space ((Statements Action0) / ((QueryContext MustSpace)? Statements Action1) / QueryContext)? RenderStatement? EOF)> */
+		/* 0 Grammar <- <(Space ((Statements Action0) / ((QueryContext MustSpace)? Statements Action1) / QueryContext)? RenderStatement? Space EOF)> */
 		func() bool {
 			position0, tokenIndex0 := position, tokenIndex
 			{
@@ -1307,6 +1309,9 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 					position, tokenIndex = position9, tokenIndex9
 				}
 			l10:
+				if !_rules[ruleSpace]() {
+					goto l0
+				}
 				if !_rules[ruleEOF]() {
 					goto l0
 				}
@@ -7682,7 +7687,7 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position526, tokenIndex526
 			return false
 		},
-		/* 118 Whitespace <- <(' ' / '\t' / EOL)> */
+		/* 118 Whitespace <- <(' ' / '\t' / EOL / LineComment)> */
 		func() bool {
 			position530, tokenIndex530 := position, tokenIndex
 			{
@@ -7704,6 +7709,12 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 				l534:
 					position, tokenIndex = position532, tokenIndex532
 					if !_rules[ruleEOL]() {
+						goto l535
+					}
+					goto l532
+				l535:
+					position, tokenIndex = position532, tokenIndex532
+					if !_rules[ruleLineComment]() {
 						goto l530
 					}
 				}
@@ -7715,913 +7726,953 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			position, tokenIndex = position530, tokenIndex530
 			return false
 		},
-		/* 119 EOL <- <(('\r' '\n') / '\n' / '\r')> */
+		/* 119 LineComment <- <('/' '/' (!'\n' .)*)> */
 		func() bool {
-			position535, tokenIndex535 := position, tokenIndex
+			position536, tokenIndex536 := position, tokenIndex
 			{
-				position536 := position
+				position537 := position
+				if buffer[position] != rune('/') {
+					goto l536
+				}
+				position++
+				if buffer[position] != rune('/') {
+					goto l536
+				}
+				position++
+			l538:
 				{
-					position537, tokenIndex537 := position, tokenIndex
-					if buffer[position] != rune('\r') {
-						goto l538
+					position539, tokenIndex539 := position, tokenIndex
+					{
+						position540, tokenIndex540 := position, tokenIndex
+						if buffer[position] != rune('\n') {
+							goto l540
+						}
+						position++
+						goto l539
+					l540:
+						position, tokenIndex = position540, tokenIndex540
 					}
-					position++
-					if buffer[position] != rune('\n') {
-						goto l538
-					}
-					position++
-					goto l537
-				l538:
-					position, tokenIndex = position537, tokenIndex537
-					if buffer[position] != rune('\n') {
+					if !matchDot() {
 						goto l539
 					}
-					position++
-					goto l537
+					goto l538
 				l539:
-					position, tokenIndex = position537, tokenIndex537
+					position, tokenIndex = position539, tokenIndex539
+				}
+				add(ruleLineComment, position537)
+			}
+			return true
+		l536:
+			position, tokenIndex = position536, tokenIndex536
+			return false
+		},
+		/* 120 EOL <- <(('\r' '\n') / '\n' / '\r')> */
+		func() bool {
+			position541, tokenIndex541 := position, tokenIndex
+			{
+				position542 := position
+				{
+					position543, tokenIndex543 := position, tokenIndex
 					if buffer[position] != rune('\r') {
-						goto l535
+						goto l544
+					}
+					position++
+					if buffer[position] != rune('\n') {
+						goto l544
+					}
+					position++
+					goto l543
+				l544:
+					position, tokenIndex = position543, tokenIndex543
+					if buffer[position] != rune('\n') {
+						goto l545
+					}
+					position++
+					goto l543
+				l545:
+					position, tokenIndex = position543, tokenIndex543
+					if buffer[position] != rune('\r') {
+						goto l541
 					}
 					position++
 				}
-			l537:
-				add(ruleEOL, position536)
+			l543:
+				add(ruleEOL, position542)
 			}
 			return true
-		l535:
-			position, tokenIndex = position535, tokenIndex535
+		l541:
+			position, tokenIndex = position541, tokenIndex541
 			return false
 		},
-		/* 120 EOF <- <!.> */
+		/* 121 EOF <- <!.> */
 		func() bool {
-			position540, tokenIndex540 := position, tokenIndex
+			position546, tokenIndex546 := position, tokenIndex
 			{
-				position541 := position
+				position547 := position
 				{
-					position542, tokenIndex542 := position, tokenIndex
+					position548, tokenIndex548 := position, tokenIndex
 					if !matchDot() {
-						goto l542
+						goto l548
 					}
-					goto l540
-				l542:
-					position, tokenIndex = position542, tokenIndex542
+					goto l546
+				l548:
+					position, tokenIndex = position548, tokenIndex548
 				}
-				add(ruleEOF, position541)
+				add(ruleEOF, position547)
 			}
 			return true
-		l540:
-			position, tokenIndex = position540, tokenIndex540
+		l546:
+			position, tokenIndex = position546, tokenIndex546
 			return false
 		},
-		/* 122 Action0 <- <{ p.SetQuery(p.Stmts) }> */
+		/* 123 Action0 <- <{ p.SetQuery(p.Stmts) }> */
 		func() bool {
 			{
 				add(ruleAction0, position)
 			}
 			return true
 		},
-		/* 123 Action1 <- <{ p.SetQuery(p.Stmts) }> */
+		/* 124 Action1 <- <{ p.SetQuery(p.Stmts) }> */
 		func() bool {
 			{
 				add(ruleAction1, position)
 			}
 			return true
 		},
-		/* 124 Action2 <- <{ p.SetFrom(p.popExpr()) }> */
+		/* 125 Action2 <- <{ p.SetFrom(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction2, position)
 			}
 			return true
 		},
-		/* 125 Action3 <- <{ p.SetTo(p.popExpr()) }> */
+		/* 126 Action3 <- <{ p.SetTo(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction3, position)
 			}
 			return true
 		},
-		/* 126 Action4 <- <{ p.SetContextMachine(typesv1.BinaryOp_CMP_EQ, p.popExpr()) }> */
+		/* 127 Action4 <- <{ p.SetContextMachine(typesv1.BinaryOp_CMP_EQ, p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction4, position)
 			}
 			return true
 		},
-		/* 127 Action5 <- <{ p.SetContextMachine(typesv1.BinaryOp_CMP_NOTEQ, p.popExpr()) }> */
+		/* 128 Action5 <- <{ p.SetContextMachine(typesv1.BinaryOp_CMP_NOTEQ, p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction5, position)
 			}
 			return true
 		},
-		/* 128 Action6 <- <{ p.SetContextMachine(typesv1.BinaryOp_SET_IN, p.popExpr()) }> */
+		/* 129 Action6 <- <{ p.SetContextMachine(typesv1.BinaryOp_SET_IN, p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction6, position)
 			}
 			return true
 		},
-		/* 129 Action7 <- <{ p.SetContextMachine(typesv1.BinaryOp_SET_NOTIN, p.popExpr()) }> */
+		/* 130 Action7 <- <{ p.SetContextMachine(typesv1.BinaryOp_SET_NOTIN, p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction7, position)
 			}
 			return true
 		},
-		/* 130 Action8 <- <{ p.SetContextSession(typesv1.BinaryOp_CMP_EQ, p.popExpr()) }> */
+		/* 131 Action8 <- <{ p.SetContextSession(typesv1.BinaryOp_CMP_EQ, p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction8, position)
 			}
 			return true
 		},
-		/* 131 Action9 <- <{ p.SetContextSession(typesv1.BinaryOp_CMP_NOTEQ, p.popExpr()) }> */
+		/* 132 Action9 <- <{ p.SetContextSession(typesv1.BinaryOp_CMP_NOTEQ, p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction9, position)
 			}
 			return true
 		},
-		/* 132 Action10 <- <{ p.SetContextSession(typesv1.BinaryOp_SET_IN, p.popExpr()) }> */
+		/* 133 Action10 <- <{ p.SetContextSession(typesv1.BinaryOp_SET_IN, p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction10, position)
 			}
 			return true
 		},
-		/* 133 Action11 <- <{ p.SetContextSession(typesv1.BinaryOp_SET_NOTIN, p.popExpr()) }> */
+		/* 134 Action11 <- <{ p.SetContextSession(typesv1.BinaryOp_SET_NOTIN, p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction11, position)
 			}
 			return true
 		},
-		/* 134 Action12 <- <{ p.addFilterStatement(p.FilterOp) }> */
+		/* 135 Action12 <- <{ p.addFilterStatement(p.FilterOp) }> */
 		func() bool {
 			{
 				add(ruleAction12, position)
 			}
 			return true
 		},
-		/* 135 Action13 <- <{ p.addSummarizeStatement(p.SummarizeOp) }> */
+		/* 136 Action13 <- <{ p.addSummarizeStatement(p.SummarizeOp) }> */
 		func() bool {
 			{
 				add(ruleAction13, position)
 			}
 			return true
 		},
-		/* 136 Action14 <- <{ p.addProjectStatement(p.ProjectOp) }> */
+		/* 137 Action14 <- <{ p.addProjectStatement(p.ProjectOp) }> */
 		func() bool {
 			{
 				add(ruleAction14, position)
 			}
 			return true
 		},
-		/* 137 Action15 <- <{ p.addProjectAwayStatement(p.ProjectAwayOp) }> */
+		/* 138 Action15 <- <{ p.addProjectAwayStatement(p.ProjectAwayOp) }> */
 		func() bool {
 			{
 				add(ruleAction15, position)
 			}
 			return true
 		},
-		/* 138 Action16 <- <{ p.addProjectKeepStatement(p.ProjectKeepOp) }> */
+		/* 139 Action16 <- <{ p.addProjectKeepStatement(p.ProjectKeepOp) }> */
 		func() bool {
 			{
 				add(ruleAction16, position)
 			}
 			return true
 		},
-		/* 139 Action17 <- <{ p.addExtendStatement(p.ExtendOp) }> */
+		/* 140 Action17 <- <{ p.addExtendStatement(p.ExtendOp) }> */
 		func() bool {
 			{
 				add(ruleAction17, position)
 			}
 			return true
 		},
-		/* 140 Action18 <- <{ p.addCountStatement(p.CountOp) }> */
+		/* 141 Action18 <- <{ p.addCountStatement(p.CountOp) }> */
 		func() bool {
 			{
 				add(ruleAction18, position)
 			}
 			return true
 		},
-		/* 141 Action19 <- <{ p.addDistinctStatement(p.DistinctOp) }> */
+		/* 142 Action19 <- <{ p.addDistinctStatement(p.DistinctOp) }> */
 		func() bool {
 			{
 				add(ruleAction19, position)
 			}
 			return true
 		},
-		/* 142 Action20 <- <{ p.addSampleStatement(p.SampleOp) }> */
+		/* 143 Action20 <- <{ p.addSampleStatement(p.SampleOp) }> */
 		func() bool {
 			{
 				add(ruleAction20, position)
 			}
 			return true
 		},
-		/* 143 Action21 <- <{ p.addSearchStatement(p.SearchOp) }> */
+		/* 144 Action21 <- <{ p.addSearchStatement(p.SearchOp) }> */
 		func() bool {
 			{
 				add(ruleAction21, position)
 			}
 			return true
 		},
-		/* 144 Action22 <- <{ p.addSortStatement(p.SortOp) }> */
+		/* 145 Action22 <- <{ p.addSortStatement(p.SortOp) }> */
 		func() bool {
 			{
 				add(ruleAction22, position)
 			}
 			return true
 		},
-		/* 145 Action23 <- <{ p.addTakeStatement(p.TakeOp) }> */
+		/* 146 Action23 <- <{ p.addTakeStatement(p.TakeOp) }> */
 		func() bool {
 			{
 				add(ruleAction23, position)
 			}
 			return true
 		},
-		/* 146 Action24 <- <{ p.addTopStatement(p.TopOp) }> */
+		/* 147 Action24 <- <{ p.addTopStatement(p.TopOp) }> */
 		func() bool {
 			{
 				add(ruleAction24, position)
 			}
 			return true
 		},
-		/* 147 Action25 <- <{ p.setRenderSplitByStatement(p.SplitByOp) }> */
+		/* 148 Action25 <- <{ p.setRenderSplitByStatement(p.SplitByOp) }> */
 		func() bool {
 			{
 				add(ruleAction25, position)
 			}
 			return true
 		},
-		/* 148 Action26 <- <{ p.setFilterOp(p.popExpr()) }> */
+		/* 149 Action26 <- <{ p.setFilterOp(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction26, position)
 			}
 			return true
 		},
-		/* 149 Action27 <- <{ p.startSummarizeOp() }> */
+		/* 150 Action27 <- <{ p.startSummarizeOp() }> */
 		func() bool {
 			{
 				add(ruleAction27, position)
 			}
 			return true
 		},
-		/* 150 Action28 <- <{ p.startSummarizeParameterNamedFunc(text) }> */
+		/* 151 Action28 <- <{ p.startSummarizeParameterNamedFunc(text) }> */
 		func() bool {
 			{
 				add(ruleAction28, position)
 			}
 			return true
 		},
-		/* 151 Action29 <- <{ p.endSummarizeParameterNamedFunc(p.popFunc()) }> */
+		/* 152 Action29 <- <{ p.endSummarizeParameterNamedFunc(p.popFunc()) }> */
 		func() bool {
 			{
 				add(ruleAction29, position)
 			}
 			return true
 		},
-		/* 152 Action30 <- <{ p.addSummarizeParameterUnnamedFunc(p.popFunc()) }> */
+		/* 153 Action30 <- <{ p.addSummarizeParameterUnnamedFunc(p.popFunc()) }> */
 		func() bool {
 			{
 				add(ruleAction30, position)
 			}
 			return true
 		},
-		/* 153 Action31 <- <{ p.startSummarizeByUnnamedGroupExpression(text) }> */
+		/* 154 Action31 <- <{ p.startSummarizeByUnnamedGroupExpression(text) }> */
 		func() bool {
 			{
 				add(ruleAction31, position)
 			}
 			return true
 		},
-		/* 154 Action32 <- <{ p.endSummarizeByUnnamedGroupExpression(p.popExpr()) }> */
+		/* 155 Action32 <- <{ p.endSummarizeByUnnamedGroupExpression(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction32, position)
 			}
 			return true
 		},
-		/* 155 Action33 <- <{ p.addSummarizeByUnnamedGroupExpression(p.popExpr()) }> */
+		/* 156 Action33 <- <{ p.addSummarizeByUnnamedGroupExpression(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction33, position)
 			}
 			return true
 		},
-		/* 156 Action34 <- <{ p.startProjectOp() }> */
+		/* 157 Action34 <- <{ p.startProjectOp() }> */
 		func() bool {
 			{
 				add(ruleAction34, position)
 			}
 			return true
 		},
-		/* 157 Action35 <- <{ p.startProjectOpArg(text) }> */
+		/* 158 Action35 <- <{ p.startProjectOpArg(text) }> */
 		func() bool {
 			{
 				add(ruleAction35, position)
 			}
 			return true
 		},
-		/* 158 Action36 <- <{ p.setProjectOpArgValue(p.popExpr()) }> */
+		/* 159 Action36 <- <{ p.setProjectOpArgValue(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction36, position)
 			}
 			return true
 		},
-		/* 159 Action37 <- <{ p.startProjectAwayOp() }> */
+		/* 160 Action37 <- <{ p.startProjectAwayOp() }> */
 		func() bool {
 			{
 				add(ruleAction37, position)
 			}
 			return true
 		},
-		/* 160 Action38 <- <{ p.addProjectAwayOpArg(text) }> */
+		/* 161 Action38 <- <{ p.addProjectAwayOpArg(text) }> */
 		func() bool {
 			{
 				add(ruleAction38, position)
 			}
 			return true
 		},
-		/* 161 Action39 <- <{ p.startProjectKeepOp() }> */
+		/* 162 Action39 <- <{ p.startProjectKeepOp() }> */
 		func() bool {
 			{
 				add(ruleAction39, position)
 			}
 			return true
 		},
-		/* 162 Action40 <- <{ p.addProjectKeepOpArg(text) }> */
+		/* 163 Action40 <- <{ p.addProjectKeepOpArg(text) }> */
 		func() bool {
 			{
 				add(ruleAction40, position)
 			}
 			return true
 		},
-		/* 163 Action41 <- <{ p.startExtendOp() }> */
+		/* 164 Action41 <- <{ p.startExtendOp() }> */
 		func() bool {
 			{
 				add(ruleAction41, position)
 			}
 			return true
 		},
-		/* 164 Action42 <- <{ p.setExtendOpArgColumnName(text) }> */
+		/* 165 Action42 <- <{ p.setExtendOpArgColumnName(text) }> */
 		func() bool {
 			{
 				add(ruleAction42, position)
 			}
 			return true
 		},
-		/* 165 Action43 <- <{ p.setExtendOpArgValue(p.popExpr()) }> */
+		/* 166 Action43 <- <{ p.setExtendOpArgValue(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction43, position)
 			}
 			return true
 		},
-		/* 166 Action44 <- <{ p.startCountOp() }> */
+		/* 167 Action44 <- <{ p.startCountOp() }> */
 		func() bool {
 			{
 				add(ruleAction44, position)
 			}
 			return true
 		},
-		/* 167 Action45 <- <{ p.startDistinctOp() }> */
+		/* 168 Action45 <- <{ p.startDistinctOp() }> */
 		func() bool {
 			{
 				add(ruleAction45, position)
 			}
 			return true
 		},
-		/* 168 Action46 <- <{ p.addDistinctOpArg(text) }> */
+		/* 169 Action46 <- <{ p.addDistinctOpArg(text) }> */
 		func() bool {
 			{
 				add(ruleAction46, position)
 			}
 			return true
 		},
-		/* 169 Action47 <- <{ p.startSampleOp() }> */
+		/* 170 Action47 <- <{ p.startSampleOp() }> */
 		func() bool {
 			{
 				add(ruleAction47, position)
 			}
 			return true
 		},
-		/* 170 Action48 <- <{ p.setSampleOpCount(p.I64) }> */
+		/* 171 Action48 <- <{ p.setSampleOpCount(p.I64) }> */
 		func() bool {
 			{
 				add(ruleAction48, position)
 			}
 			return true
 		},
-		/* 171 Action49 <- <{ p.startSearchOp() }> */
+		/* 172 Action49 <- <{ p.startSearchOp() }> */
 		func() bool {
 			{
 				add(ruleAction49, position)
 			}
 			return true
 		},
-		/* 172 Action50 <- <{ p.setSearchOpKindDefault() }> */
+		/* 173 Action50 <- <{ p.setSearchOpKindDefault() }> */
 		func() bool {
 			{
 				add(ruleAction50, position)
 			}
 			return true
 		},
-		/* 173 Action51 <- <{ p.setSearchOpKindCaseInsensitive() }> */
+		/* 174 Action51 <- <{ p.setSearchOpKindCaseInsensitive() }> */
 		func() bool {
 			{
 				add(ruleAction51, position)
 			}
 			return true
 		},
-		/* 174 Action52 <- <{ p.setSearchOpKindCaseSensitive() }> */
+		/* 175 Action52 <- <{ p.setSearchOpKindCaseSensitive() }> */
 		func() bool {
 			{
 				add(ruleAction52, position)
 			}
 			return true
 		},
-		/* 175 Action53 <- <{ p.setSearchOpPredicateLiteral(text) }> */
+		/* 176 Action53 <- <{ p.setSearchOpPredicateLiteral(text) }> */
 		func() bool {
 			{
 				add(ruleAction53, position)
 			}
 			return true
 		},
-		/* 176 Action54 <- <{ p.identifier = text }> */
+		/* 177 Action54 <- <{ p.identifier = text }> */
 		func() bool {
 			{
 				add(ruleAction54, position)
 			}
 			return true
 		},
-		/* 177 Action55 <- <{ p.setSearchOpPredicateFieldSearch(p.identifier, p.String) }> */
+		/* 178 Action55 <- <{ p.setSearchOpPredicateFieldSearch(p.identifier, p.String) }> */
 		func() bool {
 			{
 				add(ruleAction55, position)
 			}
 			return true
 		},
-		/* 178 Action56 <- <{ p.setSearchOpPredicateExactSearch(p.identifier, p.String) }> */
+		/* 179 Action56 <- <{ p.setSearchOpPredicateExactSearch(p.identifier, p.String) }> */
 		func() bool {
 			{
 				add(ruleAction56, position)
 			}
 			return true
 		},
-		/* 179 Action57 <- <{ p.setSearchOpPredicateRegexSearch(p.identifier, p.String) }> */
+		/* 180 Action57 <- <{ p.setSearchOpPredicateRegexSearch(p.identifier, p.String) }> */
 		func() bool {
 			{
 				add(ruleAction57, position)
 			}
 			return true
 		},
-		/* 180 Action58 <- <{ p.startSortOp() }> */
+		/* 181 Action58 <- <{ p.startSortOp() }> */
 		func() bool {
 			{
 				add(ruleAction58, position)
 			}
 			return true
 		},
-		/* 181 Action59 <- <{ p.startSortOpArg(text) }> */
+		/* 182 Action59 <- <{ p.startSortOpArg(text) }> */
 		func() bool {
 			{
 				add(ruleAction59, position)
 			}
 			return true
 		},
-		/* 182 Action60 <- <{ p.setSortOpArgOrderAsc() }> */
+		/* 183 Action60 <- <{ p.setSortOpArgOrderAsc() }> */
 		func() bool {
 			{
 				add(ruleAction60, position)
 			}
 			return true
 		},
-		/* 183 Action61 <- <{ p.setSortOpArgOrderDesc() }> */
+		/* 184 Action61 <- <{ p.setSortOpArgOrderDesc() }> */
 		func() bool {
 			{
 				add(ruleAction61, position)
 			}
 			return true
 		},
-		/* 184 Action62 <- <{ p.startTakeOp() }> */
+		/* 185 Action62 <- <{ p.startTakeOp() }> */
 		func() bool {
 			{
 				add(ruleAction62, position)
 			}
 			return true
 		},
-		/* 185 Action63 <- <{ p.setTakeOpCount(p.I64) }> */
+		/* 186 Action63 <- <{ p.setTakeOpCount(p.I64) }> */
 		func() bool {
 			{
 				add(ruleAction63, position)
 			}
 			return true
 		},
-		/* 186 Action64 <- <{ p.startTopOp() }> */
+		/* 187 Action64 <- <{ p.startTopOp() }> */
 		func() bool {
 			{
 				add(ruleAction64, position)
 			}
 			return true
 		},
-		/* 187 Action65 <- <{ p.setTopOpCount(p.I64) }> */
+		/* 188 Action65 <- <{ p.setTopOpCount(p.I64) }> */
 		func() bool {
 			{
 				add(ruleAction65, position)
 			}
 			return true
 		},
-		/* 188 Action66 <- <{ p.setTopOpByColumnScalar(p.popExpr()) }> */
+		/* 189 Action66 <- <{ p.setTopOpByColumnScalar(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction66, position)
 			}
 			return true
 		},
-		/* 189 Action67 <- <{ p.setTopOpByColumnOrderAsc() }> */
+		/* 190 Action67 <- <{ p.setTopOpByColumnOrderAsc() }> */
 		func() bool {
 			{
 				add(ruleAction67, position)
 			}
 			return true
 		},
-		/* 190 Action68 <- <{ p.setTopOpByColumnOrderDesc() }> */
+		/* 191 Action68 <- <{ p.setTopOpByColumnOrderDesc() }> */
 		func() bool {
 			{
 				add(ruleAction68, position)
 			}
 			return true
 		},
-		/* 191 Action69 <- <{p.startRenderSplitOp()}> */
+		/* 192 Action69 <- <{p.startRenderSplitOp()}> */
 		func() bool {
 			{
 				add(ruleAction69, position)
 			}
 			return true
 		},
-		/* 192 Action70 <- <{ p.addRenderSplitByOp(p.popExpr()) }> */
+		/* 193 Action70 <- <{ p.addRenderSplitByOp(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction70, position)
 			}
 			return true
 		},
-		/* 193 Action71 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_ADD, rhs)) }> */
+		/* 194 Action71 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_ADD, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction71, position)
 			}
 			return true
 		},
-		/* 194 Action72 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_SUB, rhs)) }> */
+		/* 195 Action72 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_SUB, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction72, position)
 			}
 			return true
 		},
-		/* 195 Action73 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_MUL, rhs)) }> */
+		/* 196 Action73 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_MUL, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction73, position)
 			}
 			return true
 		},
-		/* 196 Action74 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_DIV, rhs)) }> */
+		/* 197 Action74 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_DIV, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction74, position)
 			}
 			return true
 		},
-		/* 197 Action75 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_MOD, rhs)) }> */
+		/* 198 Action75 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_NUM_MOD, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction75, position)
 			}
 			return true
 		},
-		/* 198 Action76 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_LOG_AND, rhs)) }> */
+		/* 199 Action76 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_LOG_AND, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction76, position)
 			}
 			return true
 		},
-		/* 199 Action77 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_LOG_OR, rhs)) }> */
+		/* 200 Action77 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_LOG_OR, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction77, position)
 			}
 			return true
 		},
-		/* 200 Action78 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_EQ, rhs)) }> */
+		/* 201 Action78 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_EQ, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction78, position)
 			}
 			return true
 		},
-		/* 201 Action79 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_NOTEQ, rhs)) }> */
+		/* 202 Action79 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_NOTEQ, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction79, position)
 			}
 			return true
 		},
-		/* 202 Action80 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GT, rhs)) }> */
+		/* 203 Action80 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GT, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction80, position)
 			}
 			return true
 		},
-		/* 203 Action81 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GTE, rhs)) }> */
+		/* 204 Action81 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_GTE, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction81, position)
 			}
 			return true
 		},
-		/* 204 Action82 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LT, rhs)) }> */
+		/* 205 Action82 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LT, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction82, position)
 			}
 			return true
 		},
-		/* 205 Action83 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LTE, rhs)) }> */
+		/* 206 Action83 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_CMP_LTE, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction83, position)
 			}
 			return true
 		},
-		/* 206 Action84 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_IN, rhs)) }> */
+		/* 207 Action84 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_IN, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction84, position)
 			}
 			return true
 		},
-		/* 207 Action85 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_NOTIN, rhs)) }> */
+		/* 208 Action85 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_SET_NOTIN, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction85, position)
 			}
 			return true
 		},
-		/* 208 Action86 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_EQ_NOCS, rhs)) }> */
+		/* 209 Action86 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_EQ_NOCS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction86, position)
 			}
 			return true
 		},
-		/* 209 Action87 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOTEQ_NOCS, rhs)) }> */
+		/* 210 Action87 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOTEQ_NOCS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction87, position)
 			}
 			return true
 		},
-		/* 210 Action88 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_CONTAINS, rhs)) }> */
+		/* 211 Action88 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_CONTAINS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction88, position)
 			}
 			return true
 		},
-		/* 211 Action89 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_CONTAINS, rhs)) }> */
+		/* 212 Action89 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_CONTAINS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction89, position)
 			}
 			return true
 		},
-		/* 212 Action90 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_CONTAINS_CS, rhs)) }> */
+		/* 213 Action90 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_CONTAINS_CS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction90, position)
 			}
 			return true
 		},
-		/* 213 Action91 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_CONTAINS_CS, rhs)) }> */
+		/* 214 Action91 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_CONTAINS_CS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction91, position)
 			}
 			return true
 		},
-		/* 214 Action92 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_STARTSWITH, rhs)) }> */
+		/* 215 Action92 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_STARTSWITH, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction92, position)
 			}
 			return true
 		},
-		/* 215 Action93 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_STARTSWITH, rhs)) }> */
+		/* 216 Action93 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_STARTSWITH, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction93, position)
 			}
 			return true
 		},
-		/* 216 Action94 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_STARTSWITH_CS, rhs)) }> */
+		/* 217 Action94 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_STARTSWITH_CS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction94, position)
 			}
 			return true
 		},
-		/* 217 Action95 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_STARTSWITH_CS, rhs)) }> */
+		/* 218 Action95 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_STARTSWITH_CS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction95, position)
 			}
 			return true
 		},
-		/* 218 Action96 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_ENDSWITH, rhs)) }> */
+		/* 219 Action96 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_ENDSWITH, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction96, position)
 			}
 			return true
 		},
-		/* 219 Action97 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_ENDSWITH, rhs)) }> */
+		/* 220 Action97 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_ENDSWITH, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction97, position)
 			}
 			return true
 		},
-		/* 220 Action98 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_ENDSWITH_CS, rhs)) }> */
+		/* 221 Action98 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_ENDSWITH_CS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction98, position)
 			}
 			return true
 		},
-		/* 221 Action99 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_ENDSWITH_CS, rhs)) }> */
+		/* 222 Action99 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_ENDSWITH_CS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction99, position)
 			}
 			return true
 		},
-		/* 222 Action100 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_IN_NOCS, rhs)) }> */
+		/* 223 Action100 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_IN_NOCS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction100, position)
 			}
 			return true
 		},
-		/* 223 Action101 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_IN_NOCS, rhs)) }> */
+		/* 224 Action101 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_IN_NOCS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction101, position)
 			}
 			return true
 		},
-		/* 224 Action102 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_MATCHES_REGEX, rhs)) }> */
+		/* 225 Action102 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_NOT_MATCHES_REGEX, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction102, position)
 			}
 			return true
 		},
-		/* 225 Action103 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_MATCHES_REGEX, rhs)) }> */
+		/* 226 Action103 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_MATCHES_REGEX, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction103, position)
 			}
 			return true
 		},
-		/* 226 Action104 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_HAS, rhs)) }> */
+		/* 227 Action104 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_HAS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction104, position)
 			}
 			return true
 		},
-		/* 227 Action105 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_HAS_CS, rhs)) }> */
+		/* 228 Action105 <- <{ rhs, lhs := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprBinary(lhs, typesv1.BinaryOp_STR_HAS_CS, rhs)) }> */
 		func() bool {
 			{
 				add(ruleAction105, position)
 			}
 			return true
 		},
-		/* 228 Action106 <- <{ index, x := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprIndexor(x, index)) }> */
+		/* 229 Action106 <- <{ index, x := p.popExpr(), p.popExpr(); p.pushExpr(typesv1.ExprIndexor(x, index)) }> */
 		func() bool {
 			{
 				add(ruleAction106, position)
 			}
 			return true
 		},
-		/* 229 Action107 <- <{ p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NOT, typesv1.ExprLiteral(p.Literal))); p.Literal = nil }> */
+		/* 230 Action107 <- <{ p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NOT, typesv1.ExprLiteral(p.Literal))); p.Literal = nil }> */
 		func() bool {
 			{
 				add(ruleAction107, position)
 			}
 			return true
 		},
-		/* 230 Action108 <- <{ arg := p.popExpr(); p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NOT, arg)) }> */
+		/* 231 Action108 <- <{ arg := p.popExpr(); p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NOT, arg)) }> */
 		func() bool {
 			{
 				add(ruleAction108, position)
 			}
 			return true
 		},
-		/* 231 Action109 <- <{ p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NEG, typesv1.ExprLiteral(p.Literal))); p.Literal = nil }> */
+		/* 232 Action109 <- <{ p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NEG, typesv1.ExprLiteral(p.Literal))); p.Literal = nil }> */
 		func() bool {
 			{
 				add(ruleAction109, position)
 			}
 			return true
 		},
-		/* 232 Action110 <- <{ arg := p.popExpr(); p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NEG, arg)) }> */
+		/* 233 Action110 <- <{ arg := p.popExpr(); p.pushExpr(typesv1.ExprUnary(typesv1.UnaryOp_NEG, arg)) }> */
 		func() bool {
 			{
 				add(ruleAction110, position)
 			}
 			return true
 		},
-		/* 233 Action111 <- <{ p.pushExpr(typesv1.ExprLiteral(p.Literal)); p.Literal = nil }> */
+		/* 234 Action111 <- <{ p.pushExpr(typesv1.ExprLiteral(p.Literal)); p.Literal = nil }> */
 		func() bool {
 			{
 				add(ruleAction111, position)
 			}
 			return true
 		},
-		/* 234 Action112 <- <{ fn := p.popFunc(); p.pushExpr(typesv1.ExprFuncCall(fn.Name, fn.Args...)) }> */
+		/* 235 Action112 <- <{ fn := p.popFunc(); p.pushExpr(typesv1.ExprFuncCall(fn.Name, fn.Args...)) }> */
 		func() bool {
 			{
 				add(ruleAction112, position)
 			}
 			return true
 		},
-		/* 235 Action113 <- <{ p.Literal = typesv1.ValStr(p.String) }> */
+		/* 236 Action113 <- <{ p.Literal = typesv1.ValStr(p.String) }> */
 		func() bool {
 			{
 				add(ruleAction113, position)
 			}
 			return true
 		},
-		/* 236 Action114 <- <{ p.Literal = typesv1.ValDuration(p.Duration) }> */
+		/* 237 Action114 <- <{ p.Literal = typesv1.ValDuration(p.Duration) }> */
 		func() bool {
 			{
 				add(ruleAction114, position)
 			}
 			return true
 		},
-		/* 237 Action115 <- <{ p.Literal = typesv1.ValTime(p.Timestamp) }> */
+		/* 238 Action115 <- <{ p.Literal = typesv1.ValTime(p.Timestamp) }> */
 		func() bool {
 			{
 				add(ruleAction115, position)
 			}
 			return true
 		},
-		/* 238 Action116 <- <{ p.Literal = typesv1.ValF64(p.F64) }> */
+		/* 239 Action116 <- <{ p.Literal = typesv1.ValF64(p.F64) }> */
 		func() bool {
 			{
 				add(ruleAction116, position)
 			}
 			return true
 		},
-		/* 239 Action117 <- <{ p.Literal = typesv1.ValI64(p.I64) }> */
+		/* 240 Action117 <- <{ p.Literal = typesv1.ValI64(p.I64) }> */
 		func() bool {
 			{
 				add(ruleAction117, position)
 			}
 			return true
 		},
-		/* 240 Action118 <- <{ p.Literal = typesv1.ValBool(p.Bool) }> */
+		/* 241 Action118 <- <{ p.Literal = typesv1.ValBool(p.Bool) }> */
 		func() bool {
 			{
 				add(ruleAction118, position)
 			}
 			return true
 		},
-		/* 241 Action119 <- <{ p.Literal = typesv1.ValArr(p.popArray()...) }> */
+		/* 242 Action119 <- <{ p.Literal = typesv1.ValArr(p.popArray()...) }> */
 		func() bool {
 			{
 				add(ruleAction119, position)
 			}
 			return true
 		},
-		/* 242 Action120 <- <{ p.Literal = typesv1.ValObj(p.popObj()...) }> */
+		/* 243 Action120 <- <{ p.Literal = typesv1.ValObj(p.popObj()...) }> */
 		func() bool {
 			{
 				add(ruleAction120, position)
 			}
 			return true
 		},
-		/* 243 Action121 <- <{ p.pushFunc() }> */
+		/* 244 Action121 <- <{ p.pushFunc() }> */
 		func() bool {
 			{
 				add(ruleAction121, position)
@@ -8629,147 +8680,147 @@ func (p *logQL) Init(options ...func(*logQL) error) error {
 			return true
 		},
 		nil,
-		/* 245 Action122 <- <{ p.setFuncName(text) }> */
+		/* 246 Action122 <- <{ p.setFuncName(text) }> */
 		func() bool {
 			{
 				add(ruleAction122, position)
 			}
 			return true
 		},
-		/* 246 Action123 <- <{ p.addFuncArg(p.popExpr()) }> */
+		/* 247 Action123 <- <{ p.addFuncArg(p.popExpr()) }> */
 		func() bool {
 			{
 				add(ruleAction123, position)
 			}
 			return true
 		},
-		/* 247 Action124 <- <{ p.pushExpr(typesv1.ExprIdentifier(text)) }> */
+		/* 248 Action124 <- <{ p.pushExpr(typesv1.ExprIdentifier(text)) }> */
 		func() bool {
 			{
 				add(ruleAction124, position)
 			}
 			return true
 		},
-		/* 248 Action125 <- <{ p.pushExpr(typesv1.ExprIdentifier(text)) }> */
+		/* 249 Action125 <- <{ p.pushExpr(typesv1.ExprIdentifier(text)) }> */
 		func() bool {
 			{
 				add(ruleAction125, position)
 			}
 			return true
 		},
-		/* 249 Action126 <- <{ p.pushExpr(typesv1.ExprIdentifier(text)) }> */
+		/* 250 Action126 <- <{ p.pushExpr(typesv1.ExprIdentifier(text)) }> */
 		func() bool {
 			{
 				add(ruleAction126, position)
 			}
 			return true
 		},
-		/* 250 Action127 <- <{ p.String = p.parseDoubleQuoteString(text) }> */
+		/* 251 Action127 <- <{ p.String = p.parseDoubleQuoteString(text) }> */
 		func() bool {
 			{
 				add(ruleAction127, position)
 			}
 			return true
 		},
-		/* 251 Action128 <- <{ p.F64 = p.parseFloat64(text) }> */
+		/* 252 Action128 <- <{ p.F64 = p.parseFloat64(text) }> */
 		func() bool {
 			{
 				add(ruleAction128, position)
 			}
 			return true
 		},
-		/* 252 Action129 <- <{ p.F64 = p.parseFloat64(text) }> */
+		/* 253 Action129 <- <{ p.F64 = p.parseFloat64(text) }> */
 		func() bool {
 			{
 				add(ruleAction129, position)
 			}
 			return true
 		},
-		/* 253 Action130 <- <{ p.F64 = p.parseFloat64(text) }> */
+		/* 254 Action130 <- <{ p.F64 = p.parseFloat64(text) }> */
 		func() bool {
 			{
 				add(ruleAction130, position)
 			}
 			return true
 		},
-		/* 254 Action131 <- <{ p.I64 = 0 }> */
+		/* 255 Action131 <- <{ p.I64 = 0 }> */
 		func() bool {
 			{
 				add(ruleAction131, position)
 			}
 			return true
 		},
-		/* 255 Action132 <- <{ p.I64 = p.parseInt64(text) }> */
+		/* 256 Action132 <- <{ p.I64 = p.parseInt64(text) }> */
 		func() bool {
 			{
 				add(ruleAction132, position)
 			}
 			return true
 		},
-		/* 256 Action133 <- <{ p.Bool = true }> */
+		/* 257 Action133 <- <{ p.Bool = true }> */
 		func() bool {
 			{
 				add(ruleAction133, position)
 			}
 			return true
 		},
-		/* 257 Action134 <- <{ p.Bool = false }> */
+		/* 258 Action134 <- <{ p.Bool = false }> */
 		func() bool {
 			{
 				add(ruleAction134, position)
 			}
 			return true
 		},
-		/* 258 Action135 <- <{ p.pushArray() }> */
+		/* 259 Action135 <- <{ p.pushArray() }> */
 		func() bool {
 			{
 				add(ruleAction135, position)
 			}
 			return true
 		},
-		/* 259 Action136 <- <{ p.addArrItem(p.Literal); p.Literal = nil }> */
+		/* 260 Action136 <- <{ p.addArrItem(p.Literal); p.Literal = nil }> */
 		func() bool {
 			{
 				add(ruleAction136, position)
 			}
 			return true
 		},
-		/* 260 Action137 <- <{ p.pushObj() }> */
+		/* 261 Action137 <- <{ p.pushObj() }> */
 		func() bool {
 			{
 				add(ruleAction137, position)
 			}
 			return true
 		},
-		/* 261 Action138 <- <{ p.closeObjItem(p.Literal); p.Literal = nil }> */
+		/* 262 Action138 <- <{ p.closeObjItem(p.Literal); p.Literal = nil }> */
 		func() bool {
 			{
 				add(ruleAction138, position)
 			}
 			return true
 		},
-		/* 262 Action139 <- <{ p.startObjItem(p.String) }> */
+		/* 263 Action139 <- <{ p.startObjItem(p.String) }> */
 		func() bool {
 			{
 				add(ruleAction139, position)
 			}
 			return true
 		},
-		/* 263 Action140 <- <{ p.Duration = p.parseDurationF64(p.F64, text) }> */
+		/* 264 Action140 <- <{ p.Duration = p.parseDurationF64(p.F64, text) }> */
 		func() bool {
 			{
 				add(ruleAction140, position)
 			}
 			return true
 		},
-		/* 264 Action141 <- <{ p.Duration = p.parseDurationI64(p.I64, text) }> */
+		/* 265 Action141 <- <{ p.Duration = p.parseDurationI64(p.I64, text) }> */
 		func() bool {
 			{
 				add(ruleAction141, position)
 			}
 			return true
 		},
-		/* 265 Action142 <- <{ p.Timestamp = p.parseTime(time.RFC3339Nano, text) }> */
+		/* 266 Action142 <- <{ p.Timestamp = p.parseTime(time.RFC3339Nano, text) }> */
 		func() bool {
 			{
 				add(ruleAction142, position)

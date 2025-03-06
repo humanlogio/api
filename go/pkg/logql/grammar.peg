@@ -58,10 +58,11 @@ type logQL Peg {
 }
 
 Grammar
-  <-  Space ( Statements                                { p.SetQuery(p.Stmts) }
+  <-  Space
+            ( Statements                                { p.SetQuery(p.Stmts) }
             / (QueryContext MustSpace )? Statements       { p.SetQuery(p.Stmts) }
             / QueryContext
-            )? RenderStatement? EOF
+            )? RenderStatement? Space EOF
 
 QueryContext
   <- L_SQUIGGLY Space QueryContextItem+ R_SQUIGGLY
@@ -244,14 +245,16 @@ Expr5 <-  L_PARENS Expr R_PARENS Space
         / Identifier
 
 Literal
-  <- String                { p.Literal = typesv1.ValStr(p.String) }
-  / 'dur:'? Duration       { p.Literal = typesv1.ValDuration(p.Duration) }
-  / 'ts:'? Timestamp       { p.Literal = typesv1.ValTime(p.Timestamp) }
-  / F64                    { p.Literal = typesv1.ValF64(p.F64) }
-  / I64                    { p.Literal = typesv1.ValI64(p.I64) }
-  / Bool                   { p.Literal = typesv1.ValBool(p.Bool) }
-  / 'dynamic(' Array ')'   { p.Literal = typesv1.ValArr(p.popArray()...) }
-  / 'dynamic(' Object ')'  { p.Literal = typesv1.ValObj(p.popObj()...) }
+  <- (
+    String                { p.Literal = typesv1.ValStr(p.String) }
+    / 'dur:'? Duration       { p.Literal = typesv1.ValDuration(p.Duration) }
+    / 'ts:'? Timestamp       { p.Literal = typesv1.ValTime(p.Timestamp) }
+    / F64                    { p.Literal = typesv1.ValF64(p.F64) }
+    / I64                    { p.Literal = typesv1.ValI64(p.I64) }
+    / Bool                   { p.Literal = typesv1.ValBool(p.Bool) }
+    / 'dynamic(' Array ')'   { p.Literal = typesv1.ValArr(p.popArray()...) }
+    / 'dynamic(' Object ')'  { p.Literal = typesv1.ValObj(p.popObj()...) }
+  )
 
 FuncCall <- { p.pushFunc() }
             FuncName '(' FuncArgs? ')' Space
@@ -362,8 +365,9 @@ R_SQUIGGLY  <- '}'
 COLON       <- ':' Space
 COMMA       <- ',' Space
 
-Space      <- Whitespace*
-MustSpace  <- Whitespace+
-Whitespace <- ' ' / '\t' / EOL
-EOL        <- '\r\n' / '\n' / '\r'
-EOF        <- !.
+Space       <- Whitespace*
+MustSpace   <- Whitespace+
+Whitespace  <- ' ' / '\t' / EOL / LineComment
+LineComment <- '//' (!'\n' .)*
+EOL         <- '\r\n' / '\n' / '\r'
+EOF         <- !.

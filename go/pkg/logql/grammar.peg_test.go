@@ -19,6 +19,32 @@ func TestParse(t *testing.T) {
 		want *v1.LogQuery
 		err  error
 	}{
+		{`// hello world, i'm a comment
+
+		// just a bunch
+		where msg=~ // of noise
+		// of commenting
+		"str1" // everywhere`, q(nil, nil, stmts(
+			filter(
+				v1.ExprBinary(id("msg"), v1.BinaryOp_STR_EQ_NOCS, str("str1")),
+			),
+		)), nil},
+		{`// hello world, i'm a comment
+		where msg=~"str1"`, q(nil, nil, stmts(
+			filter(
+				v1.ExprBinary(id("msg"), v1.BinaryOp_STR_EQ_NOCS, str("str1")),
+			),
+		)), nil},
+		{`filter true | // hello world, i'm a comment
+		where msg=~"str1"`, q(nil, nil, stmts(
+			filter(boo(true)),
+			filter(
+				v1.ExprBinary(id("msg"), v1.BinaryOp_STR_EQ_NOCS, str("str1")),
+			),
+		)), nil},
+		{`where msg=~"str1" // hello world, i'm a comment`, q(nil, nil, stmts(filter(
+			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_EQ_NOCS, str("str1")),
+		))), nil},
 		{`where msg=~"str1"`, q(nil, nil, stmts(filter(
 			v1.ExprBinary(id("msg"), v1.BinaryOp_STR_EQ_NOCS, str("str1")),
 		))), nil},
