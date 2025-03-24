@@ -32,6 +32,11 @@ message LogEvent {
 message StructuredLogEvent {
   google.protobuf.Timestamp timestamp = 1;
   string lvl = 2;
+  int32 lvl_number = 201;
   string msg = 3;
   repeated KV kvs = 4;
+
+  optional string trace_id = 500;
+  optional string span_id = 501;
+  optional uint32 otlp_flags = 502;
 }

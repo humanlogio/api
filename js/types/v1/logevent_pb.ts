@@ -187,6 +187,11 @@ export class StructuredLogEvent extends Message<StructuredLogEvent> {
   lvl = "";
 
   /**
+   * @generated from field: int32 lvl_number = 201;
+   */
+  lvlNumber = 0;
+
+  /**
    * @generated from field: string msg = 3;
    */
   msg = "";
@@ -195,6 +200,21 @@ export class StructuredLogEvent extends Message<StructuredLogEvent> {
    * @generated from field: repeated types.v1.KV kvs = 4;
    */
   kvs: KV[] = [];
+
+  /**
+   * @generated from field: optional string trace_id = 500;
+   */
+  traceId?: string;
+
+  /**
+   * @generated from field: optional string span_id = 501;
+   */
+  spanId?: string;
+
+  /**
+   * @generated from field: optional uint32 otlp_flags = 502;
+   */
+  otlpFlags?: number;
 
   constructor(data?: PartialMessage<StructuredLogEvent>) {
     super();
@@ -206,8 +226,12 @@ export class StructuredLogEvent extends Message<StructuredLogEvent> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "timestamp", kind: "message", T: Timestamp },
     { no: 2, name: "lvl", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 201, name: "lvl_number", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "msg", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "kvs", kind: "message", T: KV, repeated: true },
+    { no: 500, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 501, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 502, name: "otlp_flags", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StructuredLogEvent {
