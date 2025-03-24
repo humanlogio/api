@@ -202,14 +202,14 @@ export class StructuredLogEvent extends Message<StructuredLogEvent> {
   kvs: KV[] = [];
 
   /**
-   * @generated from field: optional string trace_id = 500;
+   * @generated from field: optional bytes trace_id = 500;
    */
-  traceId?: string;
+  traceId?: Uint8Array;
 
   /**
-   * @generated from field: optional string span_id = 501;
+   * @generated from field: optional bytes span_id = 501;
    */
-  spanId?: string;
+  spanId?: Uint8Array;
 
   /**
    * @generated from field: optional uint32 otlp_flags = 502;
@@ -229,8 +229,8 @@ export class StructuredLogEvent extends Message<StructuredLogEvent> {
     { no: 201, name: "lvl_number", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "msg", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "kvs", kind: "message", T: KV, repeated: true },
-    { no: 500, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 501, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 500, name: "trace_id", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
+    { no: 501, name: "span_id", kind: "scalar", T: 12 /* ScalarType.BYTES */, opt: true },
     { no: 502, name: "otlp_flags", kind: "scalar", T: 13 /* ScalarType.UINT32 */, opt: true },
   ]);
 

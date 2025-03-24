@@ -36,7 +36,7 @@ message StructuredLogEvent {
   string msg = 3;
   repeated KV kvs = 4;
 
-  optional string trace_id = 500;
-  optional string span_id = 501;
+  optional bytes trace_id = 500;
+  optional bytes span_id = 501;
   optional uint32 otlp_flags = 502;
 }
