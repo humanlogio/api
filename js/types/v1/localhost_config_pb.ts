@@ -781,6 +781,11 @@ export class ServeLocalhostConfig extends Message<ServeLocalhostConfig> {
    */
   logDir?: string;
 
+  /**
+   * @generated from field: types.v1.ServeLocalhostConfig.OTLP otlp = 101;
+   */
+  otlp?: ServeLocalhostConfig_OTLP;
+
   constructor(data?: PartialMessage<ServeLocalhostConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -794,6 +799,7 @@ export class ServeLocalhostConfig extends Message<ServeLocalhostConfig> {
     { no: 3, name: "engine_config", kind: "message", T: Struct },
     { no: 4, name: "show_in_systray", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 5, name: "log_dir", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 101, name: "otlp", kind: "message", T: ServeLocalhostConfig_OTLP },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServeLocalhostConfig {
@@ -810,6 +816,43 @@ export class ServeLocalhostConfig extends Message<ServeLocalhostConfig> {
 
   static equals(a: ServeLocalhostConfig | PlainMessage<ServeLocalhostConfig> | undefined, b: ServeLocalhostConfig | PlainMessage<ServeLocalhostConfig> | undefined): boolean {
     return proto3.util.equals(ServeLocalhostConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ServeLocalhostConfig.OTLP
+ */
+export class ServeLocalhostConfig_OTLP extends Message<ServeLocalhostConfig_OTLP> {
+  /**
+   * @generated from field: int64 port = 1;
+   */
+  port = protoInt64.zero;
+
+  constructor(data?: PartialMessage<ServeLocalhostConfig_OTLP>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ServeLocalhostConfig.OTLP";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "port", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServeLocalhostConfig_OTLP {
+    return new ServeLocalhostConfig_OTLP().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ServeLocalhostConfig_OTLP {
+    return new ServeLocalhostConfig_OTLP().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ServeLocalhostConfig_OTLP {
+    return new ServeLocalhostConfig_OTLP().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ServeLocalhostConfig_OTLP | PlainMessage<ServeLocalhostConfig_OTLP> | undefined, b: ServeLocalhostConfig_OTLP | PlainMessage<ServeLocalhostConfig_OTLP> | undefined): boolean {
+    return proto3.util.equals(ServeLocalhostConfig_OTLP, a, b);
   }
 }
 

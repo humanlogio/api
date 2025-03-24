@@ -94,11 +94,15 @@ message ParseConfig {
 }
 
 message ServeLocalhostConfig {
+  message OTLP {
+    int64 port = 1;
+  }
   int64 port = 1;
   string engine = 2;
   google.protobuf.Struct engine_config = 3;
   optional bool show_in_systray = 4;
   optional string log_dir = 5;
+  OTLP otlp = 101;
 }
 
 message RuntimeConfig {
