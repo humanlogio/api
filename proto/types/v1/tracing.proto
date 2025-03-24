@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "types/v1/types.proto";
+
+option go_package = "types/v1;typesv1";
+
+message Span {
+  enum SpanKind {
+    UNSPECIFIED = 0;
+    INTERNAL = 1;
+    SERVER = 2;
+    CLIENT = 3;
+    PRODUCER = 4;
+    CONSUMER = 5;
+  }
+  message Event {
+    google.protobuf.Timestamp timestamp = 1;
+    string name = 2;
+    repeated KV kvs = 3;
+  }
+  message Link {
+    bytes trace_id = 1;
+    bytes span_id = 2;
+    string trace_state = 3;
+    repeated KV kvs = 4;
+    uint32 flags = 5;
+  }
+  message Status {
+    string message = 1;
+    int32 code = 2;
+  }
+  bytes trace_id = 1;
+  bytes span_id = 2;
+  string trace_state = 3;
+  bytes parent_span_id = 4;
+  uint32 flags = 5;
+  string name = 6;
+  SpanKind kind = 7;
+  google.protobuf.Timestamp start_time = 8;
+  google.protobuf.Timestamp end_time = 9;
+  repeated KV kvs = 10;
+  repeated Event events = 11;
+  repeated Link links = 12;
+  Status status = 13;
+}
