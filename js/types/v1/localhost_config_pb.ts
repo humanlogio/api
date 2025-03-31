@@ -824,9 +824,14 @@ export class ServeLocalhostConfig extends Message<ServeLocalhostConfig> {
  */
 export class ServeLocalhostConfig_OTLP extends Message<ServeLocalhostConfig_OTLP> {
   /**
-   * @generated from field: int64 port = 1;
+   * @generated from field: int64 grpc_port = 1;
    */
-  port = protoInt64.zero;
+  grpcPort = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 http_port = 2;
+   */
+  httpPort = protoInt64.zero;
 
   constructor(data?: PartialMessage<ServeLocalhostConfig_OTLP>) {
     super();
@@ -836,7 +841,8 @@ export class ServeLocalhostConfig_OTLP extends Message<ServeLocalhostConfig_OTLP
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.ServeLocalhostConfig.OTLP";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "port", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "grpc_port", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "http_port", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ServeLocalhostConfig_OTLP {
