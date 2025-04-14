@@ -13,7 +13,6 @@ function main() {
     # env +npx
     # env +node@20
 
-    generate_peg
     generate_protobuf
 }
 
@@ -33,11 +32,6 @@ function generate_protobuf() {
     export PATH=${PATH}:${root}/node_modules/.bin
     pkgx buf format -w
     pkgx buf generate
-}
-
-function generate_peg() {
-    go install github.com/pointlander/peg@latest
-    peg ${root}/go/pkg/logql/grammar.peg
 }
 
 main
