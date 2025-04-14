@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ListSymbolsRequest, ListSymbolsResponse, ParseRequest, ParseResponse, QueryRequest, QueryResponse, SummarizeEventsRequest, SummarizeEventsResponse, WatchQueryRequest, WatchQueryResponse } from "./service_pb";
+import { FormatRequest, FormatResponse, ListSymbolsRequest, ListSymbolsResponse, ParseRequest, ParseResponse, QueryRequest, QueryResponse, SummarizeEventsRequest, SummarizeEventsResponse, WatchQueryRequest, WatchQueryResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -37,6 +37,15 @@ export const QueryService = {
       name: "Parse",
       I: ParseRequest,
       O: ParseResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.query.v1.QueryService.Format
+     */
+    format: {
+      name: "Format",
+      I: FormatRequest,
+      O: FormatResponse,
       kind: MethodKind.Unary,
     },
     /**

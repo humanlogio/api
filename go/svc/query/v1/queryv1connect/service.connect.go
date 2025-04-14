@@ -40,6 +40,8 @@ const (
 	QueryServiceWatchQueryProcedure = "/svc.query.v1.QueryService/WatchQuery"
 	// QueryServiceParseProcedure is the fully-qualified name of the QueryService's Parse RPC.
 	QueryServiceParseProcedure = "/svc.query.v1.QueryService/Parse"
+	// QueryServiceFormatProcedure is the fully-qualified name of the QueryService's Format RPC.
+	QueryServiceFormatProcedure = "/svc.query.v1.QueryService/Format"
 	// QueryServiceQueryProcedure is the fully-qualified name of the QueryService's Query RPC.
 	QueryServiceQueryProcedure = "/svc.query.v1.QueryService/Query"
 	// QueryServiceListSymbolsProcedure is the fully-qualified name of the QueryService's ListSymbols
@@ -52,6 +54,7 @@ type QueryServiceClient interface {
 	SummarizeEvents(context.Context, *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error)
 	WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest]) (*connect.ServerStreamForClient[v1.WatchQueryResponse], error)
 	Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error)
+	Format(context.Context, *connect.Request[v1.FormatRequest]) (*connect.Response[v1.FormatResponse], error)
 	Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error)
 	ListSymbols(context.Context, *connect.Request[v1.ListSymbolsRequest]) (*connect.Response[v1.ListSymbolsResponse], error)
 }
@@ -85,6 +88,12 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(queryServiceMethods.ByName("Parse")),
 			connect.WithClientOptions(opts...),
 		),
+		format: connect.NewClient[v1.FormatRequest, v1.FormatResponse](
+			httpClient,
+			baseURL+QueryServiceFormatProcedure,
+			connect.WithSchema(queryServiceMethods.ByName("Format")),
+			connect.WithClientOptions(opts...),
+		),
 		query: connect.NewClient[v1.QueryRequest, v1.QueryResponse](
 			httpClient,
 			baseURL+QueryServiceQueryProcedure,
@@ -105,6 +114,7 @@ type queryServiceClient struct {
 	summarizeEvents *connect.Client[v1.SummarizeEventsRequest, v1.SummarizeEventsResponse]
 	watchQuery      *connect.Client[v1.WatchQueryRequest, v1.WatchQueryResponse]
 	parse           *connect.Client[v1.ParseRequest, v1.ParseResponse]
+	format          *connect.Client[v1.FormatRequest, v1.FormatResponse]
 	query           *connect.Client[v1.QueryRequest, v1.QueryResponse]
 	listSymbols     *connect.Client[v1.ListSymbolsRequest, v1.ListSymbolsResponse]
 }
@@ -124,6 +134,11 @@ func (c *queryServiceClient) Parse(ctx context.Context, req *connect.Request[v1.
 	return c.parse.CallUnary(ctx, req)
 }
 
+// Format calls svc.query.v1.QueryService.Format.
+func (c *queryServiceClient) Format(ctx context.Context, req *connect.Request[v1.FormatRequest]) (*connect.Response[v1.FormatResponse], error) {
+	return c.format.CallUnary(ctx, req)
+}
+
 // Query calls svc.query.v1.QueryService.Query.
 func (c *queryServiceClient) Query(ctx context.Context, req *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error) {
 	return c.query.CallUnary(ctx, req)
@@ -139,6 +154,7 @@ type QueryServiceHandler interface {
 	SummarizeEvents(context.Context, *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error)
 	WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest], *connect.ServerStream[v1.WatchQueryResponse]) error
 	Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error)
+	Format(context.Context, *connect.Request[v1.FormatRequest]) (*connect.Response[v1.FormatResponse], error)
 	Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error)
 	ListSymbols(context.Context, *connect.Request[v1.ListSymbolsRequest]) (*connect.Response[v1.ListSymbolsResponse], error)
 }
@@ -168,6 +184,12 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(queryServiceMethods.ByName("Parse")),
 		connect.WithHandlerOptions(opts...),
 	)
+	queryServiceFormatHandler := connect.NewUnaryHandler(
+		QueryServiceFormatProcedure,
+		svc.Format,
+		connect.WithSchema(queryServiceMethods.ByName("Format")),
+		connect.WithHandlerOptions(opts...),
+	)
 	queryServiceQueryHandler := connect.NewUnaryHandler(
 		QueryServiceQueryProcedure,
 		svc.Query,
@@ -188,6 +210,8 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 			queryServiceWatchQueryHandler.ServeHTTP(w, r)
 		case QueryServiceParseProcedure:
 			queryServiceParseHandler.ServeHTTP(w, r)
+		case QueryServiceFormatProcedure:
+			queryServiceFormatHandler.ServeHTTP(w, r)
 		case QueryServiceQueryProcedure:
 			queryServiceQueryHandler.ServeHTTP(w, r)
 		case QueryServiceListSymbolsProcedure:
@@ -211,6 +235,10 @@ func (UnimplementedQueryServiceHandler) WatchQuery(context.Context, *connect.Req
 
 func (UnimplementedQueryServiceHandler) Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.Parse is not implemented"))
+}
+
+func (UnimplementedQueryServiceHandler) Format(context.Context, *connect.Request[v1.FormatRequest]) (*connect.Response[v1.FormatResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.Format is not implemented"))
 }
 
 func (UnimplementedQueryServiceHandler) Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error) {

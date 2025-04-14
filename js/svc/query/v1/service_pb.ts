@@ -369,6 +369,93 @@ export class ParseResponse extends Message<ParseResponse> {
 }
 
 /**
+ * @generated from message svc.query.v1.FormatRequest
+ */
+export class FormatRequest extends Message<FormatRequest> {
+  /**
+   * @generated from oneof svc.query.v1.FormatRequest.query
+   */
+  query: {
+    /**
+     * @generated from field: string raw = 1;
+     */
+    value: string;
+    case: "raw";
+  } | {
+    /**
+     * @generated from field: types.v1.LogQuery parsed = 2;
+     */
+    value: LogQuery;
+    case: "parsed";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<FormatRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.FormatRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "raw", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "query" },
+    { no: 2, name: "parsed", kind: "message", T: LogQuery, oneof: "query" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatRequest {
+    return new FormatRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FormatRequest {
+    return new FormatRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FormatRequest {
+    return new FormatRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FormatRequest | PlainMessage<FormatRequest> | undefined, b: FormatRequest | PlainMessage<FormatRequest> | undefined): boolean {
+    return proto3.util.equals(FormatRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.FormatResponse
+ */
+export class FormatResponse extends Message<FormatResponse> {
+  /**
+   * @generated from field: string formatted = 1;
+   */
+  formatted = "";
+
+  constructor(data?: PartialMessage<FormatResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.FormatResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "formatted", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatResponse {
+    return new FormatResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FormatResponse {
+    return new FormatResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FormatResponse {
+    return new FormatResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FormatResponse | PlainMessage<FormatResponse> | undefined, b: FormatResponse | PlainMessage<FormatResponse> | undefined): boolean {
+    return proto3.util.equals(FormatResponse, a, b);
+  }
+}
+
+/**
  * @generated from message svc.query.v1.QueryRequest
  */
 export class QueryRequest extends Message<QueryRequest> {

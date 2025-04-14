@@ -26,6 +26,7 @@ service QueryService {
   // rpc DeleteWatch(DeleteWatchRequest) returns (GetWatchResponse);
 
   rpc Parse(ParseRequest) returns (ParseResponse);
+  rpc Format(FormatRequest) returns (FormatResponse);
   rpc Query(QueryRequest) returns (QueryResponse);
   rpc ListSymbols(ListSymbolsRequest) returns (ListSymbolsResponse);
 }
@@ -71,6 +72,17 @@ message ParseRequest {
 message ParseResponse {
   types.v1.LogQuery query = 1;
   types.v1.DataStreamType data_type = 2;
+}
+
+message FormatRequest {
+  oneof query {
+    string raw = 1;
+    types.v1.LogQuery parsed = 2;
+  }
+}
+
+message FormatResponse {
+  string formatted = 1;
 }
 
 message QueryRequest {

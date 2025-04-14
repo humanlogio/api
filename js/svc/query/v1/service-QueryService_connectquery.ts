@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { ListSymbolsRequest, ListSymbolsResponse, ParseRequest, ParseResponse, QueryRequest, QueryResponse, SummarizeEventsRequest, SummarizeEventsResponse } from "./service_pb";
+import { FormatRequest, FormatResponse, ListSymbolsRequest, ListSymbolsResponse, ParseRequest, ParseResponse, QueryRequest, QueryResponse, SummarizeEventsRequest, SummarizeEventsResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.query.v1.QueryService.SummarizeEvents
@@ -29,6 +29,20 @@ export const parse = {
   kind: MethodKind.Unary,
   I: ParseRequest,
   O: ParseResponse,
+  service: {
+    typeName: "svc.query.v1.QueryService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.query.v1.QueryService.Format
+ */
+export const format = {
+  localName: "format",
+  name: "Format",
+  kind: MethodKind.Unary,
+  I: FormatRequest,
+  O: FormatResponse,
   service: {
     typeName: "svc.query.v1.QueryService"
   }
