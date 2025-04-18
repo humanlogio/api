@@ -13,19 +13,25 @@ import { Data } from "./query_pb";
  */
 export enum SharedResultVisibility {
   /**
-   * @generated from enum value: PUBLIC = 0;
+   * @generated from enum value: INVALID = 0;
    */
-  PUBLIC = 0,
+  INVALID = 0,
 
   /**
-   * @generated from enum value: ANYONE_WITH_LINK = 1;
+   * @generated from enum value: PUBLIC = 1;
    */
-  ANYONE_WITH_LINK = 1,
+  PUBLIC = 1,
+
+  /**
+   * @generated from enum value: ANYONE_WITH_LINK = 2;
+   */
+  ANYONE_WITH_LINK = 2,
 }
 // Retrieve enum metadata with: proto3.getEnumType(SharedResultVisibility)
 proto3.util.setEnumType(SharedResultVisibility, "types.v1.SharedResultVisibility", [
-  { no: 0, name: "PUBLIC" },
-  { no: 1, name: "ANYONE_WITH_LINK" },
+  { no: 0, name: "INVALID" },
+  { no: 1, name: "PUBLIC" },
+  { no: 2, name: "ANYONE_WITH_LINK" },
 ]);
 
 /**

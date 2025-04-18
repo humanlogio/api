@@ -114,7 +114,7 @@ export class CreateUserSharedResultRequest extends Message<CreateUserSharedResul
   /**
    * @generated from field: types.v1.SharedResultVisibility visibility = 3;
    */
-  visibility = SharedResultVisibility.PUBLIC;
+  visibility = SharedResultVisibility.INVALID;
 
   constructor(data?: PartialMessage<CreateUserSharedResultRequest>) {
     super();
@@ -275,7 +275,7 @@ export class UpdateUserSharedResultRequest extends Message<UpdateUserSharedResul
   /**
    * @generated from field: types.v1.SharedResultVisibility visibility = 2;
    */
-  visibility = SharedResultVisibility.PUBLIC;
+  visibility = SharedResultVisibility.INVALID;
 
   constructor(data?: PartialMessage<UpdateUserSharedResultRequest>) {
     super();

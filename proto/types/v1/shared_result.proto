@@ -9,8 +9,9 @@ import "types/v1/query_history_entry.proto";
 option go_package = "types/v1;typesv1";
 
 enum SharedResultVisibility {
-  PUBLIC = 0;
-  ANYONE_WITH_LINK = 1;
+  INVALID = 0;
+  PUBLIC = 1;
+  ANYONE_WITH_LINK = 2;
 }
 
 message SharedResult {
