@@ -496,9 +496,9 @@ export class ListUserSharedResultResponse extends Message<ListUserSharedResultRe
  */
 export class ListUserSharedResultResponse_ListItem extends Message<ListUserSharedResultResponse_ListItem> {
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: types.v1.SharedResult shared_result = 1;
    */
-  id = protoInt64.zero;
+  sharedResult?: SharedResult;
 
   constructor(data?: PartialMessage<ListUserSharedResultResponse_ListItem>) {
     super();
@@ -508,7 +508,7 @@ export class ListUserSharedResultResponse_ListItem extends Message<ListUserShare
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.share.v1.ListUserSharedResultResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "shared_result", kind: "message", T: SharedResult },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListUserSharedResultResponse_ListItem {

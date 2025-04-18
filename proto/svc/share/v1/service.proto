@@ -72,7 +72,7 @@ message ListUserSharedResultRequest {
 message ListUserSharedResultResponse {
   types.v1.Cursor next = 1;
   message ListItem {
-    int64 id = 1;
+    types.v1.SharedResult shared_result = 1;
   }
   repeated ListItem items = 2;
 }
