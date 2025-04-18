@@ -49,8 +49,7 @@ message GetUserSharedResultRequest {
   int64 id = 1;
 }
 message GetUserSharedResultResponse {
-  string random_prefix = 1;
-  string share_id = 2;
+  types.v1.SharedResult shared_result = 1;
 }
 
 message UpdateUserSharedResultRequest {

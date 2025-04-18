@@ -225,14 +225,9 @@ export class GetUserSharedResultRequest extends Message<GetUserSharedResultReque
  */
 export class GetUserSharedResultResponse extends Message<GetUserSharedResultResponse> {
   /**
-   * @generated from field: string random_prefix = 1;
+   * @generated from field: types.v1.SharedResult shared_result = 1;
    */
-  randomPrefix = "";
-
-  /**
-   * @generated from field: string share_id = 2;
-   */
-  shareId = "";
+  sharedResult?: SharedResult;
 
   constructor(data?: PartialMessage<GetUserSharedResultResponse>) {
     super();
@@ -242,8 +237,7 @@ export class GetUserSharedResultResponse extends Message<GetUserSharedResultResp
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.share.v1.GetUserSharedResultResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "random_prefix", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "share_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "shared_result", kind: "message", T: SharedResult },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetUserSharedResultResponse {
