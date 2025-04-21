@@ -16,6 +16,11 @@ export class User extends Message<User> {
   id = protoInt64.zero;
 
   /**
+   * @generated from field: string username = 10;
+   */
+  username = "";
+
+  /**
    * @generated from field: string email = 2;
    */
   email = "";
@@ -54,6 +59,7 @@ export class User extends Message<User> {
   static readonly typeName = "types.v1.User";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 10, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "email", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "profile_picture_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },

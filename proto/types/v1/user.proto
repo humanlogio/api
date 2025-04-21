@@ -8,6 +8,7 @@ option go_package = "types/v1;typesv1";
 
 message User {
   int64 id = 1;
+  string username = 10;
   string email = 2;
   string profile_picture_url = 3;
   string first_name = 4;

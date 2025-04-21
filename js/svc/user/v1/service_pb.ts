@@ -261,6 +261,11 @@ export class UpdateUserRequest extends Message<UpdateUserRequest> {
    */
   lastName?: string;
 
+  /**
+   * @generated from field: optional string username = 3;
+   */
+  username?: string;
+
   constructor(data?: PartialMessage<UpdateUserRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -271,6 +276,7 @@ export class UpdateUserRequest extends Message<UpdateUserRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 2, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateUserRequest {

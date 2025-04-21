@@ -38,7 +38,9 @@ message ViewSharedResultResponse {
 }
 
 message ListSharedResultRequest {
-  types.v1.User shared_by = 1;
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+  types.v1.User shared_by = 3;
 }
 
 message ListSharedResultResponse {

@@ -102,7 +102,17 @@ export class ViewSharedResultResponse extends Message<ViewSharedResultResponse> 
  */
 export class ListSharedResultRequest extends Message<ListSharedResultRequest> {
   /**
-   * @generated from field: types.v1.User shared_by = 1;
+   * @generated from field: types.v1.Cursor cursor = 1;
+   */
+  cursor?: Cursor;
+
+  /**
+   * @generated from field: int32 limit = 2;
+   */
+  limit = 0;
+
+  /**
+   * @generated from field: types.v1.User shared_by = 3;
    */
   sharedBy?: User;
 
@@ -114,7 +124,9 @@ export class ListSharedResultRequest extends Message<ListSharedResultRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.share.v1.ListSharedResultRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "shared_by", kind: "message", T: User },
+    { no: 1, name: "cursor", kind: "message", T: Cursor },
+    { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 3, name: "shared_by", kind: "message", T: User },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSharedResultRequest {
