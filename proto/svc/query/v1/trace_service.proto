@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package svc.query.v1;
+
+import "types/v1/tracing.proto";
+
+option go_package = "svc/query/v1;queryv1";
+
+service TraceService {
+  rpc GetTrace(GetTraceRequest) returns (GetTraceResponse);
+  rpc GetSpan(GetSpanRequest) returns (GetSpanResponse);
+}
+
+message GetTraceRequest {
+  oneof by {
+    string trace_id = 1;
+    string span_id = 2;
+  }
+}
+
+message GetTraceResponse {
+  types.v1.Trace trace = 1;
+}
+
+message GetSpanRequest {
+  string span_id = 1;
+}
+
+message GetSpanResponse {
+  types.v1.Span span = 1;
+}
