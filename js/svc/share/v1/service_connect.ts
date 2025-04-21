@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateUserSharedResultRequest, CreateUserSharedResultResponse, DeleteUserSharedResultRequest, DeleteUserSharedResultResponse, GetUserSharedResultRequest, GetUserSharedResultResponse, ListUserSharedResultRequest, ListUserSharedResultResponse, UpdateUserSharedResultRequest, UpdateUserSharedResultResponse, ViewSharedResultRequest, ViewSharedResultResponse } from "./service_pb";
+import { CreateUserSharedResultRequest, CreateUserSharedResultResponse, DeleteUserSharedResultRequest, DeleteUserSharedResultResponse, GetUserSharedResultRequest, GetUserSharedResultResponse, ListSharedResultRequest, ListSharedResultResponse, ListUserSharedResultRequest, ListUserSharedResultResponse, UpdateUserSharedResultRequest, UpdateUserSharedResultResponse, ViewSharedResultRequest, ViewSharedResultResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -19,6 +19,15 @@ export const PublicShareService = {
       name: "ViewSharedResult",
       I: ViewSharedResultRequest,
       O: ViewSharedResultResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.share.v1.PublicShareService.ListSharedResult
+     */
+    listSharedResult: {
+      name: "ListSharedResult",
+      I: ListSharedResultRequest,
+      O: ListSharedResultResponse,
       kind: MethodKind.Unary,
     },
   }

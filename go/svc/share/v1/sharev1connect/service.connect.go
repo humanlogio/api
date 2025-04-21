@@ -38,6 +38,9 @@ const (
 	// PublicShareServiceViewSharedResultProcedure is the fully-qualified name of the
 	// PublicShareService's ViewSharedResult RPC.
 	PublicShareServiceViewSharedResultProcedure = "/svc.share.v1.PublicShareService/ViewSharedResult"
+	// PublicShareServiceListSharedResultProcedure is the fully-qualified name of the
+	// PublicShareService's ListSharedResult RPC.
+	PublicShareServiceListSharedResultProcedure = "/svc.share.v1.PublicShareService/ListSharedResult"
 	// UserShareServiceCreateUserSharedResultProcedure is the fully-qualified name of the
 	// UserShareService's CreateUserSharedResult RPC.
 	UserShareServiceCreateUserSharedResultProcedure = "/svc.share.v1.UserShareService/CreateUserSharedResult"
@@ -58,6 +61,7 @@ const (
 // PublicShareServiceClient is a client for the svc.share.v1.PublicShareService service.
 type PublicShareServiceClient interface {
 	ViewSharedResult(context.Context, *connect.Request[v1.ViewSharedResultRequest]) (*connect.Response[v1.ViewSharedResultResponse], error)
+	ListSharedResult(context.Context, *connect.Request[v1.ListSharedResultRequest]) (*connect.Response[v1.ListSharedResultResponse], error)
 }
 
 // NewPublicShareServiceClient constructs a client for the svc.share.v1.PublicShareService service.
@@ -77,12 +81,19 @@ func NewPublicShareServiceClient(httpClient connect.HTTPClient, baseURL string, 
 			connect.WithSchema(publicShareServiceMethods.ByName("ViewSharedResult")),
 			connect.WithClientOptions(opts...),
 		),
+		listSharedResult: connect.NewClient[v1.ListSharedResultRequest, v1.ListSharedResultResponse](
+			httpClient,
+			baseURL+PublicShareServiceListSharedResultProcedure,
+			connect.WithSchema(publicShareServiceMethods.ByName("ListSharedResult")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // publicShareServiceClient implements PublicShareServiceClient.
 type publicShareServiceClient struct {
 	viewSharedResult *connect.Client[v1.ViewSharedResultRequest, v1.ViewSharedResultResponse]
+	listSharedResult *connect.Client[v1.ListSharedResultRequest, v1.ListSharedResultResponse]
 }
 
 // ViewSharedResult calls svc.share.v1.PublicShareService.ViewSharedResult.
@@ -90,9 +101,15 @@ func (c *publicShareServiceClient) ViewSharedResult(ctx context.Context, req *co
 	return c.viewSharedResult.CallUnary(ctx, req)
 }
 
+// ListSharedResult calls svc.share.v1.PublicShareService.ListSharedResult.
+func (c *publicShareServiceClient) ListSharedResult(ctx context.Context, req *connect.Request[v1.ListSharedResultRequest]) (*connect.Response[v1.ListSharedResultResponse], error) {
+	return c.listSharedResult.CallUnary(ctx, req)
+}
+
 // PublicShareServiceHandler is an implementation of the svc.share.v1.PublicShareService service.
 type PublicShareServiceHandler interface {
 	ViewSharedResult(context.Context, *connect.Request[v1.ViewSharedResultRequest]) (*connect.Response[v1.ViewSharedResultResponse], error)
+	ListSharedResult(context.Context, *connect.Request[v1.ListSharedResultRequest]) (*connect.Response[v1.ListSharedResultResponse], error)
 }
 
 // NewPublicShareServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -108,10 +125,18 @@ func NewPublicShareServiceHandler(svc PublicShareServiceHandler, opts ...connect
 		connect.WithSchema(publicShareServiceMethods.ByName("ViewSharedResult")),
 		connect.WithHandlerOptions(opts...),
 	)
+	publicShareServiceListSharedResultHandler := connect.NewUnaryHandler(
+		PublicShareServiceListSharedResultProcedure,
+		svc.ListSharedResult,
+		connect.WithSchema(publicShareServiceMethods.ByName("ListSharedResult")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.share.v1.PublicShareService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case PublicShareServiceViewSharedResultProcedure:
 			publicShareServiceViewSharedResultHandler.ServeHTTP(w, r)
+		case PublicShareServiceListSharedResultProcedure:
+			publicShareServiceListSharedResultHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -123,6 +148,10 @@ type UnimplementedPublicShareServiceHandler struct{}
 
 func (UnimplementedPublicShareServiceHandler) ViewSharedResult(context.Context, *connect.Request[v1.ViewSharedResultRequest]) (*connect.Response[v1.ViewSharedResultResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.share.v1.PublicShareService.ViewSharedResult is not implemented"))
+}
+
+func (UnimplementedPublicShareServiceHandler) ListSharedResult(context.Context, *connect.Request[v1.ListSharedResultRequest]) (*connect.Response[v1.ListSharedResultResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.share.v1.PublicShareService.ListSharedResult is not implemented"))
 }
 
 // UserShareServiceClient is a client for the svc.share.v1.UserShareService service.

@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { ViewSharedResultRequest, ViewSharedResultResponse } from "./service_pb";
+import { ListSharedResultRequest, ListSharedResultResponse, ViewSharedResultRequest, ViewSharedResultResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.share.v1.PublicShareService.ViewSharedResult
@@ -15,6 +15,20 @@ export const viewSharedResult = {
   kind: MethodKind.Unary,
   I: ViewSharedResultRequest,
   O: ViewSharedResultResponse,
+  service: {
+    typeName: "svc.share.v1.PublicShareService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.share.v1.PublicShareService.ListSharedResult
+ */
+export const listSharedResult = {
+  localName: "listSharedResult",
+  name: "ListSharedResult",
+  kind: MethodKind.Unary,
+  I: ListSharedResultRequest,
+  O: ListSharedResultResponse,
   service: {
     typeName: "svc.share.v1.PublicShareService"
   }

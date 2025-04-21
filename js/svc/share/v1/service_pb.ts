@@ -7,9 +7,9 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { User } from "../../../types/v1/user_pb";
 import { SharedResult, SharedResultVisibility } from "../../../types/v1/shared_result_pb";
+import { Cursor } from "../../../types/v1/cursor_pb";
 import { QueryHistoryEntry } from "../../../types/v1/query_history_entry_pb";
 import { Data } from "../../../types/v1/query_pb";
-import { Cursor } from "../../../types/v1/cursor_pb";
 
 /**
  * @generated from message svc.share.v1.ViewSharedResultRequest
@@ -94,6 +94,123 @@ export class ViewSharedResultResponse extends Message<ViewSharedResultResponse> 
 
   static equals(a: ViewSharedResultResponse | PlainMessage<ViewSharedResultResponse> | undefined, b: ViewSharedResultResponse | PlainMessage<ViewSharedResultResponse> | undefined): boolean {
     return proto3.util.equals(ViewSharedResultResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.share.v1.ListSharedResultRequest
+ */
+export class ListSharedResultRequest extends Message<ListSharedResultRequest> {
+  /**
+   * @generated from field: types.v1.User shared_by = 1;
+   */
+  sharedBy?: User;
+
+  constructor(data?: PartialMessage<ListSharedResultRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.share.v1.ListSharedResultRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "shared_by", kind: "message", T: User },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSharedResultRequest {
+    return new ListSharedResultRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSharedResultRequest {
+    return new ListSharedResultRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSharedResultRequest {
+    return new ListSharedResultRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSharedResultRequest | PlainMessage<ListSharedResultRequest> | undefined, b: ListSharedResultRequest | PlainMessage<ListSharedResultRequest> | undefined): boolean {
+    return proto3.util.equals(ListSharedResultRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.share.v1.ListSharedResultResponse
+ */
+export class ListSharedResultResponse extends Message<ListSharedResultResponse> {
+  /**
+   * @generated from field: types.v1.Cursor next = 1;
+   */
+  next?: Cursor;
+
+  /**
+   * @generated from field: repeated svc.share.v1.ListSharedResultResponse.ListItem items = 2;
+   */
+  items: ListSharedResultResponse_ListItem[] = [];
+
+  constructor(data?: PartialMessage<ListSharedResultResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.share.v1.ListSharedResultResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "next", kind: "message", T: Cursor },
+    { no: 2, name: "items", kind: "message", T: ListSharedResultResponse_ListItem, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSharedResultResponse {
+    return new ListSharedResultResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSharedResultResponse {
+    return new ListSharedResultResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSharedResultResponse {
+    return new ListSharedResultResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSharedResultResponse | PlainMessage<ListSharedResultResponse> | undefined, b: ListSharedResultResponse | PlainMessage<ListSharedResultResponse> | undefined): boolean {
+    return proto3.util.equals(ListSharedResultResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.share.v1.ListSharedResultResponse.ListItem
+ */
+export class ListSharedResultResponse_ListItem extends Message<ListSharedResultResponse_ListItem> {
+  /**
+   * @generated from field: types.v1.SharedResult shared_result = 1;
+   */
+  sharedResult?: SharedResult;
+
+  constructor(data?: PartialMessage<ListSharedResultResponse_ListItem>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.share.v1.ListSharedResultResponse.ListItem";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "shared_result", kind: "message", T: SharedResult },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSharedResultResponse_ListItem {
+    return new ListSharedResultResponse_ListItem().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListSharedResultResponse_ListItem {
+    return new ListSharedResultResponse_ListItem().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListSharedResultResponse_ListItem {
+    return new ListSharedResultResponse_ListItem().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListSharedResultResponse_ListItem | PlainMessage<ListSharedResultResponse_ListItem> | undefined, b: ListSharedResultResponse_ListItem | PlainMessage<ListSharedResultResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListSharedResultResponse_ListItem, a, b);
   }
 }
 

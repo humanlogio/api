@@ -16,6 +16,7 @@ option go_package = "svc/share/v1;sharev1";
 
 service PublicShareService {
   rpc ViewSharedResult(ViewSharedResultRequest) returns (ViewSharedResultResponse) {}
+  rpc ListSharedResult(ListSharedResultRequest) returns (ListSharedResultResponse) {}
 }
 
 service UserShareService {
@@ -34,6 +35,18 @@ message ViewSharedResultRequest {
 message ViewSharedResultResponse {
   types.v1.User shared_by = 1;
   types.v1.SharedResult shared_result = 2;
+}
+
+message ListSharedResultRequest {
+  types.v1.User shared_by = 1;
+}
+
+message ListSharedResultResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.SharedResult shared_result = 1;
+  }
+  repeated ListItem items = 2;
 }
 
 message CreateUserSharedResultRequest {
