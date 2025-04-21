@@ -9,7 +9,7 @@ import { User } from "../../../types/v1/user_pb";
 import { SharedResult, SharedResultVisibility } from "../../../types/v1/shared_result_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { QueryHistoryEntry } from "../../../types/v1/query_history_entry_pb";
-import { Data } from "../../../types/v1/query_pb";
+import { Data } from "../../../types/v1/data_pb";
 
 /**
  * @generated from message svc.share.v1.ViewSharedResultRequest

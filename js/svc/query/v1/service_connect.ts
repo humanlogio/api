@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { FormatRequest, FormatResponse, ListSymbolsRequest, ListSymbolsResponse, ParseRequest, ParseResponse, QueryRequest, QueryResponse, SummarizeEventsRequest, SummarizeEventsResponse, WatchQueryRequest, WatchQueryResponse } from "./service_pb";
+import { FormatRequest, FormatResponse, ListSymbolsRequest, ListSymbolsResponse, ParseRequest, ParseResponse, QueryRequest, QueryResponse, SummarizeEventsRequest, SummarizeEventsResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -20,15 +20,6 @@ export const QueryService = {
       I: SummarizeEventsRequest,
       O: SummarizeEventsResponse,
       kind: MethodKind.Unary,
-    },
-    /**
-     * @generated from rpc svc.query.v1.QueryService.WatchQuery
-     */
-    watchQuery: {
-      name: "WatchQuery",
-      I: WatchQueryRequest,
-      O: WatchQueryResponse,
-      kind: MethodKind.ServerStreaming,
     },
     /**
      * @generated from rpc svc.query.v1.QueryService.Parse

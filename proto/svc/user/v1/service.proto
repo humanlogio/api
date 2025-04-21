@@ -4,9 +4,9 @@ package svc.user.v1;
 
 import "google/protobuf/timestamp.proto";
 import "types/v1/cursor.proto";
+import "types/v1/data.proto";
 import "types/v1/favorite_query.proto";
 import "types/v1/localhost_config.proto";
-import "types/v1/logquery.proto";
 import "types/v1/organization.proto";
 import "types/v1/query.proto";
 import "types/v1/query_history_entry.proto";
@@ -105,7 +105,7 @@ message GetLocalhostConfigResponse {
 
 message RecordQueryHistoryRequest {
   string raw_query = 1;
-  types.v1.LogQuery query = 2;
+  types.v1.Query query = 2;
 }
 message RecordQueryHistoryResponse {
   types.v1.QueryHistoryEntry entry = 1;
@@ -138,7 +138,7 @@ message DeleteQueryHistoryResponse {}
 message CreateFavoriteQueryRequest {
   string name = 1;
   string raw_query = 2;
-  types.v1.LogQuery query = 3;
+  types.v1.Query query = 3;
   string note = 4;
 }
 message CreateFavoriteQueryResponse {
@@ -156,7 +156,7 @@ message UpdateFavoriteQueryRequest {
   int64 id = 1;
   string name = 2;
   string raw_query = 3;
-  types.v1.LogQuery query = 4;
+  types.v1.Query query = 4;
   string note = 5;
 }
 message UpdateFavoriteQueryResponse {

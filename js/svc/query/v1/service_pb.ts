@@ -5,11 +5,10 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { LogQuery } from "../../../types/v1/logquery_pb";
-import { LogEventGroup } from "../../../types/v1/logevent_pb";
+import { Query } from "../../../types/v1/query_pb";
 import { DataStreamType } from "../../../types/v1/types_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
-import { Data } from "../../../types/v1/query_pb";
+import { Data } from "../../../types/v1/data_pb";
 import { Symbol } from "../../../types/v1/symbol_pb";
 
 /**
@@ -154,141 +153,6 @@ export class SummarizeEventsResponse_Bucket extends Message<SummarizeEventsRespo
 }
 
 /**
- * @generated from message svc.query.v1.WatchQueryRequest
- */
-export class WatchQueryRequest extends Message<WatchQueryRequest> {
-  /**
-   * @generated from field: int64 environment_id = 1;
-   */
-  environmentId = protoInt64.zero;
-
-  /**
-   * @generated from field: types.v1.LogQuery query = 2;
-   */
-  query?: LogQuery;
-
-  /**
-   * @generated from field: svc.query.v1.WatchQueryRequest.UnstablePlaintext plaintext_query = 201;
-   */
-  plaintextQuery?: WatchQueryRequest_UnstablePlaintext;
-
-  constructor(data?: PartialMessage<WatchQueryRequest>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.query.v1.WatchQueryRequest";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "query", kind: "message", T: LogQuery },
-    { no: 201, name: "plaintext_query", kind: "message", T: WatchQueryRequest_UnstablePlaintext },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchQueryRequest {
-    return new WatchQueryRequest().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WatchQueryRequest {
-    return new WatchQueryRequest().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WatchQueryRequest {
-    return new WatchQueryRequest().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: WatchQueryRequest | PlainMessage<WatchQueryRequest> | undefined, b: WatchQueryRequest | PlainMessage<WatchQueryRequest> | undefined): boolean {
-    return proto3.util.equals(WatchQueryRequest, a, b);
-  }
-}
-
-/**
- * @generated from message svc.query.v1.WatchQueryRequest.UnstablePlaintext
- */
-export class WatchQueryRequest_UnstablePlaintext extends Message<WatchQueryRequest_UnstablePlaintext> {
-  /**
-   * @generated from field: google.protobuf.Timestamp from = 1;
-   */
-  from?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp to = 2;
-   */
-  to?: Timestamp;
-
-  /**
-   * @generated from field: string query = 3;
-   */
-  query = "";
-
-  constructor(data?: PartialMessage<WatchQueryRequest_UnstablePlaintext>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.query.v1.WatchQueryRequest.UnstablePlaintext";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "from", kind: "message", T: Timestamp },
-    { no: 2, name: "to", kind: "message", T: Timestamp },
-    { no: 3, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchQueryRequest_UnstablePlaintext {
-    return new WatchQueryRequest_UnstablePlaintext().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WatchQueryRequest_UnstablePlaintext {
-    return new WatchQueryRequest_UnstablePlaintext().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WatchQueryRequest_UnstablePlaintext {
-    return new WatchQueryRequest_UnstablePlaintext().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: WatchQueryRequest_UnstablePlaintext | PlainMessage<WatchQueryRequest_UnstablePlaintext> | undefined, b: WatchQueryRequest_UnstablePlaintext | PlainMessage<WatchQueryRequest_UnstablePlaintext> | undefined): boolean {
-    return proto3.util.equals(WatchQueryRequest_UnstablePlaintext, a, b);
-  }
-}
-
-/**
- * @generated from message svc.query.v1.WatchQueryResponse
- */
-export class WatchQueryResponse extends Message<WatchQueryResponse> {
-  /**
-   * @generated from field: repeated types.v1.LogEventGroup events = 1;
-   */
-  events: LogEventGroup[] = [];
-
-  constructor(data?: PartialMessage<WatchQueryResponse>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.query.v1.WatchQueryResponse";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "events", kind: "message", T: LogEventGroup, repeated: true },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): WatchQueryResponse {
-    return new WatchQueryResponse().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): WatchQueryResponse {
-    return new WatchQueryResponse().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): WatchQueryResponse {
-    return new WatchQueryResponse().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: WatchQueryResponse | PlainMessage<WatchQueryResponse> | undefined, b: WatchQueryResponse | PlainMessage<WatchQueryResponse> | undefined): boolean {
-    return proto3.util.equals(WatchQueryResponse, a, b);
-  }
-}
-
-/**
  * @generated from message svc.query.v1.ParseRequest
  */
 export class ParseRequest extends Message<ParseRequest> {
@@ -330,9 +194,9 @@ export class ParseRequest extends Message<ParseRequest> {
  */
 export class ParseResponse extends Message<ParseResponse> {
   /**
-   * @generated from field: types.v1.LogQuery query = 1;
+   * @generated from field: types.v1.Query query = 1;
    */
-  query?: LogQuery;
+  query?: Query;
 
   /**
    * @generated from field: types.v1.DataStreamType data_type = 2;
@@ -347,7 +211,7 @@ export class ParseResponse extends Message<ParseResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.query.v1.ParseResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "query", kind: "message", T: LogQuery },
+    { no: 1, name: "query", kind: "message", T: Query },
     { no: 2, name: "data_type", kind: "message", T: DataStreamType },
   ]);
 
@@ -383,9 +247,9 @@ export class FormatRequest extends Message<FormatRequest> {
     case: "raw";
   } | {
     /**
-     * @generated from field: types.v1.LogQuery parsed = 2;
+     * @generated from field: types.v1.Query parsed = 2;
      */
-    value: LogQuery;
+    value: Query;
     case: "parsed";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
@@ -398,7 +262,7 @@ export class FormatRequest extends Message<FormatRequest> {
   static readonly typeName = "svc.query.v1.FormatRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "raw", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "query" },
-    { no: 2, name: "parsed", kind: "message", T: LogQuery, oneof: "query" },
+    { no: 2, name: "parsed", kind: "message", T: Query, oneof: "query" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatRequest {
@@ -475,9 +339,9 @@ export class QueryRequest extends Message<QueryRequest> {
   limit = 0;
 
   /**
-   * @generated from field: types.v1.LogQuery query = 2;
+   * @generated from field: types.v1.Query query = 2;
    */
-  query?: LogQuery;
+  query?: Query;
 
   constructor(data?: PartialMessage<QueryRequest>) {
     super();
@@ -490,7 +354,7 @@ export class QueryRequest extends Message<QueryRequest> {
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 102, name: "cursor", kind: "message", T: Cursor },
     { no: 103, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 2, name: "query", kind: "message", T: LogQuery },
+    { no: 2, name: "query", kind: "message", T: Query },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryRequest {

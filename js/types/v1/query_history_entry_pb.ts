@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { LogQuery } from "./logquery_pb";
+import { Query } from "./query_pb";
 
 /**
  * @generated from message types.v1.QueryHistoryEntry
@@ -22,9 +22,9 @@ export class QueryHistoryEntry extends Message<QueryHistoryEntry> {
   rawQuery = "";
 
   /**
-   * @generated from field: types.v1.LogQuery query = 3;
+   * @generated from field: types.v1.Query query = 3;
    */
-  query?: LogQuery;
+  query?: Query;
 
   /**
    * @generated from field: google.protobuf.Timestamp created_at = 4;
@@ -41,7 +41,7 @@ export class QueryHistoryEntry extends Message<QueryHistoryEntry> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "query", kind: "message", T: LogQuery },
+    { no: 3, name: "query", kind: "message", T: Query },
     { no: 4, name: "created_at", kind: "message", T: Timestamp },
   ]);
 

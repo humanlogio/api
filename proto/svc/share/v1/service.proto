@@ -4,9 +4,9 @@ package svc.share.v1;
 
 import "google/protobuf/timestamp.proto";
 import "types/v1/cursor.proto";
+import "types/v1/data.proto";
 import "types/v1/favorite_query.proto";
 import "types/v1/localhost_config.proto";
-import "types/v1/logquery.proto";
 import "types/v1/query.proto";
 import "types/v1/query_history_entry.proto";
 import "types/v1/shared_result.proto";

@@ -3,13 +3,13 @@ syntax = "proto3";
 package types.v1;
 
 import "google/protobuf/timestamp.proto";
-import "types/v1/logquery.proto";
+import "types/v1/query.proto";
 
 option go_package = "types/v1;typesv1";
 
 message QueryHistoryEntry {
   int64 id = 1;
   string raw_query = 2;
-  types.v1.LogQuery query = 3;
+  types.v1.Query query = 3;
   google.protobuf.Timestamp created_at = 4;
 }

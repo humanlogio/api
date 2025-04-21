@@ -8,6 +8,43 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { KV } from "./types_pb";
 
 /**
+ * @generated from message types.v1.Trace
+ */
+export class Trace extends Message<Trace> {
+  /**
+   * @generated from field: repeated types.v1.Span spans = 1;
+   */
+  spans: Span[] = [];
+
+  constructor(data?: PartialMessage<Trace>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Trace";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "spans", kind: "message", T: Span, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Trace {
+    return new Trace().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Trace {
+    return new Trace().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Trace {
+    return new Trace().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Trace | PlainMessage<Trace> | undefined, b: Trace | PlainMessage<Trace> | undefined): boolean {
+    return proto3.util.equals(Trace, a, b);
+  }
+}
+
+/**
  * @generated from message types.v1.Span
  */
 export class Span extends Message<Span> {

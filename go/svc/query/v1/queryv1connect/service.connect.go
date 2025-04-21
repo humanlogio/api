@@ -36,8 +36,6 @@ const (
 	// QueryServiceSummarizeEventsProcedure is the fully-qualified name of the QueryService's
 	// SummarizeEvents RPC.
 	QueryServiceSummarizeEventsProcedure = "/svc.query.v1.QueryService/SummarizeEvents"
-	// QueryServiceWatchQueryProcedure is the fully-qualified name of the QueryService's WatchQuery RPC.
-	QueryServiceWatchQueryProcedure = "/svc.query.v1.QueryService/WatchQuery"
 	// QueryServiceParseProcedure is the fully-qualified name of the QueryService's Parse RPC.
 	QueryServiceParseProcedure = "/svc.query.v1.QueryService/Parse"
 	// QueryServiceFormatProcedure is the fully-qualified name of the QueryService's Format RPC.
@@ -52,7 +50,6 @@ const (
 // QueryServiceClient is a client for the svc.query.v1.QueryService service.
 type QueryServiceClient interface {
 	SummarizeEvents(context.Context, *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error)
-	WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest]) (*connect.ServerStreamForClient[v1.WatchQueryResponse], error)
 	Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error)
 	Format(context.Context, *connect.Request[v1.FormatRequest]) (*connect.Response[v1.FormatResponse], error)
 	Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error)
@@ -74,12 +71,6 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			httpClient,
 			baseURL+QueryServiceSummarizeEventsProcedure,
 			connect.WithSchema(queryServiceMethods.ByName("SummarizeEvents")),
-			connect.WithClientOptions(opts...),
-		),
-		watchQuery: connect.NewClient[v1.WatchQueryRequest, v1.WatchQueryResponse](
-			httpClient,
-			baseURL+QueryServiceWatchQueryProcedure,
-			connect.WithSchema(queryServiceMethods.ByName("WatchQuery")),
 			connect.WithClientOptions(opts...),
 		),
 		parse: connect.NewClient[v1.ParseRequest, v1.ParseResponse](
@@ -112,7 +103,6 @@ func NewQueryServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 // queryServiceClient implements QueryServiceClient.
 type queryServiceClient struct {
 	summarizeEvents *connect.Client[v1.SummarizeEventsRequest, v1.SummarizeEventsResponse]
-	watchQuery      *connect.Client[v1.WatchQueryRequest, v1.WatchQueryResponse]
 	parse           *connect.Client[v1.ParseRequest, v1.ParseResponse]
 	format          *connect.Client[v1.FormatRequest, v1.FormatResponse]
 	query           *connect.Client[v1.QueryRequest, v1.QueryResponse]
@@ -122,11 +112,6 @@ type queryServiceClient struct {
 // SummarizeEvents calls svc.query.v1.QueryService.SummarizeEvents.
 func (c *queryServiceClient) SummarizeEvents(ctx context.Context, req *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error) {
 	return c.summarizeEvents.CallUnary(ctx, req)
-}
-
-// WatchQuery calls svc.query.v1.QueryService.WatchQuery.
-func (c *queryServiceClient) WatchQuery(ctx context.Context, req *connect.Request[v1.WatchQueryRequest]) (*connect.ServerStreamForClient[v1.WatchQueryResponse], error) {
-	return c.watchQuery.CallServerStream(ctx, req)
 }
 
 // Parse calls svc.query.v1.QueryService.Parse.
@@ -152,7 +137,6 @@ func (c *queryServiceClient) ListSymbols(ctx context.Context, req *connect.Reque
 // QueryServiceHandler is an implementation of the svc.query.v1.QueryService service.
 type QueryServiceHandler interface {
 	SummarizeEvents(context.Context, *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error)
-	WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest], *connect.ServerStream[v1.WatchQueryResponse]) error
 	Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error)
 	Format(context.Context, *connect.Request[v1.FormatRequest]) (*connect.Response[v1.FormatResponse], error)
 	Query(context.Context, *connect.Request[v1.QueryRequest]) (*connect.Response[v1.QueryResponse], error)
@@ -170,12 +154,6 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 		QueryServiceSummarizeEventsProcedure,
 		svc.SummarizeEvents,
 		connect.WithSchema(queryServiceMethods.ByName("SummarizeEvents")),
-		connect.WithHandlerOptions(opts...),
-	)
-	queryServiceWatchQueryHandler := connect.NewServerStreamHandler(
-		QueryServiceWatchQueryProcedure,
-		svc.WatchQuery,
-		connect.WithSchema(queryServiceMethods.ByName("WatchQuery")),
 		connect.WithHandlerOptions(opts...),
 	)
 	queryServiceParseHandler := connect.NewUnaryHandler(
@@ -206,8 +184,6 @@ func NewQueryServiceHandler(svc QueryServiceHandler, opts ...connect.HandlerOpti
 		switch r.URL.Path {
 		case QueryServiceSummarizeEventsProcedure:
 			queryServiceSummarizeEventsHandler.ServeHTTP(w, r)
-		case QueryServiceWatchQueryProcedure:
-			queryServiceWatchQueryHandler.ServeHTTP(w, r)
 		case QueryServiceParseProcedure:
 			queryServiceParseHandler.ServeHTTP(w, r)
 		case QueryServiceFormatProcedure:
@@ -227,10 +203,6 @@ type UnimplementedQueryServiceHandler struct{}
 
 func (UnimplementedQueryServiceHandler) SummarizeEvents(context.Context, *connect.Request[v1.SummarizeEventsRequest]) (*connect.Response[v1.SummarizeEventsResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.SummarizeEvents is not implemented"))
-}
-
-func (UnimplementedQueryServiceHandler) WatchQuery(context.Context, *connect.Request[v1.WatchQueryRequest], *connect.ServerStream[v1.WatchQueryResponse]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("svc.query.v1.QueryService.WatchQuery is not implemented"))
 }
 
 func (UnimplementedQueryServiceHandler) Parse(context.Context, *connect.Request[v1.ParseRequest]) (*connect.Response[v1.ParseResponse], error) {

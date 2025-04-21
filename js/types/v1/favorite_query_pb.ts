@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
-import { LogQuery } from "./logquery_pb";
+import { Query } from "./query_pb";
 
 /**
  * @generated from message types.v1.FavoriteQuery
@@ -27,9 +27,9 @@ export class FavoriteQuery extends Message<FavoriteQuery> {
   rawQuery = "";
 
   /**
-   * @generated from field: types.v1.LogQuery query = 4;
+   * @generated from field: types.v1.Query query = 4;
    */
-  query?: LogQuery;
+  query?: Query;
 
   /**
    * @generated from field: string note = 5;
@@ -57,7 +57,7 @@ export class FavoriteQuery extends Message<FavoriteQuery> {
     { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "query", kind: "message", T: LogQuery },
+    { no: 4, name: "query", kind: "message", T: Query },
     { no: 5, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 6, name: "created_at", kind: "message", T: Timestamp },
     { no: 7, name: "updated_at", kind: "message", T: Timestamp },

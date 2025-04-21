@@ -8,6 +8,10 @@ import "types/v1/types.proto";
 
 option go_package = "types/v1;typesv1";
 
+message Trace {
+  repeated Span spans = 1;
+}
+
 message Span {
   enum SpanKind {
     UNSPECIFIED = 0;

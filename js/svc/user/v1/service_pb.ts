@@ -9,7 +9,7 @@ import { User } from "../../../types/v1/user_pb";
 import { Organization } from "../../../types/v1/organization_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { LocalhostConfig } from "../../../types/v1/localhost_config_pb";
-import { LogQuery } from "../../../types/v1/logquery_pb";
+import { Query } from "../../../types/v1/query_pb";
 import { QueryHistoryEntry } from "../../../types/v1/query_history_entry_pb";
 import { FavoriteQuery } from "../../../types/v1/favorite_query_pb";
 
@@ -682,9 +682,9 @@ export class RecordQueryHistoryRequest extends Message<RecordQueryHistoryRequest
   rawQuery = "";
 
   /**
-   * @generated from field: types.v1.LogQuery query = 2;
+   * @generated from field: types.v1.Query query = 2;
    */
-  query?: LogQuery;
+  query?: Query;
 
   constructor(data?: PartialMessage<RecordQueryHistoryRequest>) {
     super();
@@ -695,7 +695,7 @@ export class RecordQueryHistoryRequest extends Message<RecordQueryHistoryRequest
   static readonly typeName = "svc.user.v1.RecordQueryHistoryRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "query", kind: "message", T: LogQuery },
+    { no: 2, name: "query", kind: "message", T: Query },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RecordQueryHistoryRequest {
@@ -1032,9 +1032,9 @@ export class CreateFavoriteQueryRequest extends Message<CreateFavoriteQueryReque
   rawQuery = "";
 
   /**
-   * @generated from field: types.v1.LogQuery query = 3;
+   * @generated from field: types.v1.Query query = 3;
    */
-  query?: LogQuery;
+  query?: Query;
 
   /**
    * @generated from field: string note = 4;
@@ -1051,7 +1051,7 @@ export class CreateFavoriteQueryRequest extends Message<CreateFavoriteQueryReque
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "query", kind: "message", T: LogQuery },
+    { no: 3, name: "query", kind: "message", T: Query },
     { no: 4, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
@@ -1203,9 +1203,9 @@ export class UpdateFavoriteQueryRequest extends Message<UpdateFavoriteQueryReque
   rawQuery = "";
 
   /**
-   * @generated from field: types.v1.LogQuery query = 4;
+   * @generated from field: types.v1.Query query = 4;
    */
-  query?: LogQuery;
+  query?: Query;
 
   /**
    * @generated from field: string note = 5;
@@ -1223,7 +1223,7 @@ export class UpdateFavoriteQueryRequest extends Message<UpdateFavoriteQueryReque
     { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "raw_query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "query", kind: "message", T: LogQuery },
+    { no: 4, name: "query", kind: "message", T: Query },
     { no: 5, name: "note", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 

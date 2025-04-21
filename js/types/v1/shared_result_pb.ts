@@ -6,7 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { QueryHistoryEntry } from "./query_history_entry_pb";
-import { Data } from "./query_pb";
+import { Data } from "./data_pb";
 
 /**
  * @generated from enum types.v1.SharedResultVisibility

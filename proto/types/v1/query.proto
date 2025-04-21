@@ -3,64 +3,266 @@ syntax = "proto3";
 package types.v1;
 
 import "google/protobuf/timestamp.proto";
-import "types/v1/logevent.proto";
-import "types/v1/logquery.proto";
 import "types/v1/types.proto";
 
 option go_package = "types/v1;typesv1";
 
-message Data {
-  message SubQueries {
-    repeated types.v1.LogQuery queries = 1;
+message Query {
+  Timerange timerange = 1;
+  Context context = 2;
+  Statements query = 3;
+}
+
+message Timerange {
+  Expr from = 1;
+  optional Expr to = 2;
+}
+
+message Context {
+  optional Expr machine_id = 101;
+  optional Expr session_id = 102;
+  optional Expr dataset = 103;
+}
+
+message Statements {
+  // statements are `|` separated
+  repeated Statement statements = 1;
+  RenderStatement render = 2;
+}
+
+message Statement {
+  oneof stmt {
+    FilterOperator filter = 1;
+    SummarizeOperator summarize = 2;
+    ProjectOperator project = 300;
+    ProjectAwayOperator project_away = 301;
+    ProjectKeepOperator project_keep = 302;
+    ExtendOperator extend = 4;
+    CountOperator count = 5;
+    DistinctOperator distinct = 6;
+    SampleOperator sample = 7;
+    SearchOperator search = 8;
+    SortOperator sort = 9;
+    TakeOperator take = 10;
+    TopOperator top = 11;
   }
+}
 
-  oneof shape {
-    // SubQueries need to be further queried to obtain actual data.
-    SubQueries subqueries = 101;
-    // tabular is data that has a table header, followed by rows that match the
-    // header
-    Tabular tabular = 201;
-    // single_value is a single value
-    Val single_value = 301;
-    // scalar timeseries data is a list of [ts, scalar] where scalar is usually
-    // a numeric value
-    ScalarTimeseries scalar_timeseries = 401;
-    // vector timeseries data is a list of [ts, [scalar0, ..., scalarN]] where
-    // scalar is usually a numeric value
-    VectorTimeseries vector_timeseries = 402;
+message FilterOperator {
+  Expr expr = 1;
+}
+
+message SummarizeOperator {
+  message Parameters {
+    repeated Parameter parameters = 1;
+  }
+  message Parameter {
+    optional Identifier column = 1;
+    FuncCall aggregate_function = 2;
+  }
+  message ByGroupExpressions {
+    repeated ByGroupExpression groups = 2;
+  }
+  message ByGroupExpression {
+    optional Identifier column = 1;
+    Expr scalar = 2;
+  }
+  Parameters parameters = 1;
+  optional ByGroupExpressions by_group_expressions = 2;
+}
+
+message ProjectOperator {
+  message Projection {
+    Identifier column = 1;
+    optional Expr value = 2;
+  }
+  repeated Projection projections = 1;
+}
+
+message ProjectAwayOperator {
+  message Projection {
+    Identifier column = 1;
+  }
+  repeated Projection projections = 1;
+}
+
+message ProjectKeepOperator {
+  message Projection {
+    Identifier column = 1;
+  }
+  repeated Projection projections = 1;
+}
+
+message ExtendOperator {
+  message Projection {
+    Identifier column = 1;
+    Expr value = 2;
+  }
+  repeated Projection projections = 1;
+}
+
+message CountOperator {}
+
+message DistinctOperator {
+  repeated Identifier fields = 1;
+}
+
+message SampleOperator {
+  int64 count = 1;
+}
+
+message SearchOperator {
+  enum Kind {
+    Default = 0;
+    CaseInsensitive = 1;
+    CaseSensitive = 2;
+  }
+  message Literal {
+    string literal = 1;
+  }
+  message FieldSearch {
+    string column = 1;
+    string literal = 2;
+  }
+  message ExactSearch {
+    string column = 1;
+    string literal = 2;
+  }
+  message RegexSearch {
+    string column = 1;
+    string regex = 2;
+  }
+  oneof predicate {
+    string literal = 101;
+    FieldSearch field = 102;
+    ExactSearch exact = 103;
+    RegexSearch regex = 104;
+  }
+  optional Kind kind = 2;
+}
+
+message SortOperator {
+  enum Order {
+    Desc = 0;
+    Asc = 1;
+  }
+  message ByColumn {
+    Identifier column = 1;
+    optional Order order = 2;
+  }
+  repeated ByColumn by_columns = 1;
+}
+
+message TakeOperator {
+  int64 count = 1;
+}
+
+message TopOperator {
+  enum Order {
+    Desc = 0;
+    Asc = 1;
+  }
+  message ByColumn {
+    Expr scalar = 1;
+    optional Order order = 2;
+  }
+  int64 count = 1;
+  optional ByColumn by_column = 2;
+}
+
+message RenderStatement {
+  oneof stmt {
+    SplitOperator split = 1;
   }
 }
 
-message Tabular {
-  oneof shape {
-    LogEvents log_events = 201;
-    Table free_form = 202;
+message SplitOperator {
+  message ByOperator {
+    repeated Expr scalars = 1;
+  }
+  ByOperator by = 2;
+}
+
+message Expr {
+  oneof expr {
+    Val literal = 101;
+    UnaryOp unary = 102;
+    BinaryOp binary = 103;
+    FuncCall func_call = 104;
+    Identifier identifier = 105;
+    Indexor indexor = 106; // kvs['hello']
   }
 }
 
-message ScalarTimeseries {
-  // scalars will contain only this type of value
-  VarType type = 2;
-  repeated ScalarTimestamp scalars = 3;
+message UnaryOp {
+  enum Operator {
+    INVALID = 0;
+    NOT = 1;
+    NEG = 2;
+  }
+  Operator op = 1;
+  Expr arg = 2;
 }
 
-message LogEvents {
-  repeated IngestedLogEvent events = 1;
+message BinaryOp {
+  enum Operator {
+    INVALID = 0;
+    LOG_AND = 101;
+    LOG_OR = 102;
+    NUM_ADD = 201;
+    NUM_SUB = 202;
+    NUM_DIV = 203;
+    NUM_MUL = 204;
+    NUM_MOD = 205;
+    CMP_EQ = 301;
+    CMP_NOTEQ = 302;
+    CMP_GT = 303;
+    CMP_GTE = 304;
+    CMP_LT = 305;
+    CMP_LTE = 306;
+    SET_IN = 401;
+    SET_NOTIN = 402;
+
+    STR_EQ_NOCS = 501;
+    STR_NOTEQ_NOCS = 502;
+    STR_CONTAINS = 503;
+    STR_NOT_CONTAINS = 504;
+    STR_CONTAINS_CS = 505;
+    STR_NOT_CONTAINS_CS = 506;
+    STR_STARTSWITH = 507;
+    STR_NOT_STARTSWITH = 508;
+    STR_STARTSWITH_CS = 509;
+    STR_NOT_STARTSWITH_CS = 510;
+    STR_ENDSWITH = 511;
+    STR_NOT_ENDSWITH = 512;
+    STR_ENDSWITH_CS = 513;
+    STR_NOT_ENDSWITH_CS = 514;
+    STR_IN_NOCS = 515;
+    STR_NOT_IN_NOCS = 516;
+    STR_NOT_MATCHES_REGEX = 517;
+    STR_MATCHES_REGEX = 518;
+    STR_HAS = 519;
+    STR_HAS_CS = 520;
+    STR_HASSUFFIX = 521;
+    STR_HASSUFFIX_CS = 522;
+    STR_HASPREFIX = 523;
+    STR_HASPREFIX_CS = 524;
+  }
+  Expr lhs = 1;
+  Operator op = 2;
+  Expr rhs = 3;
 }
 
-message ScalarTimestamp {
-  google.protobuf.Timestamp ts = 1;
-  Scalar scalar = 2;
+message FuncCall {
+  string name = 1;
+  repeated Expr args = 2;
 }
 
-message VectorTimeseries {
-  Obj context = 1;
-  // vectors will contain only this type of value
-  VarType type = 2;
-  repeated VectorTimestamp vectors = 3;
+message Identifier {
+  string name = 1;
 }
 
-message VectorTimestamp {
-  google.protobuf.Timestamp ts = 1;
-  repeated Scalar vector = 2;
+message Indexor {
+  Expr x = 1;
+  Expr index = 2;
 }

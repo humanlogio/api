@@ -3,7 +3,7 @@ syntax = "proto3";
 package types.v1;
 
 import "google/protobuf/timestamp.proto";
-import "types/v1/logquery.proto";
+import "types/v1/query.proto";
 
 option go_package = "types/v1;typesv1";
 
@@ -11,7 +11,7 @@ message FavoriteQuery {
   int64 id = 1;
   string name = 2;
   string raw_query = 3;
-  types.v1.LogQuery query = 4;
+  types.v1.Query query = 4;
   string note = 5;
   google.protobuf.Timestamp created_at = 6;
   google.protobuf.Timestamp updated_at = 7;
