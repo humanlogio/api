@@ -9,7 +9,8 @@ import "types/v1/types.proto";
 option go_package = "types/v1;typesv1";
 
 message Trace {
-  repeated Span spans = 1;
+  bytes trace_id = 1;
+  repeated Span spans = 2;
 }
 
 message Span {

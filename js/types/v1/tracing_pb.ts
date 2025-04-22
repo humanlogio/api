@@ -12,7 +12,12 @@ import { KV } from "./types_pb";
  */
 export class Trace extends Message<Trace> {
   /**
-   * @generated from field: repeated types.v1.Span spans = 1;
+   * @generated from field: bytes trace_id = 1;
+   */
+  traceId = new Uint8Array(0);
+
+  /**
+   * @generated from field: repeated types.v1.Span spans = 2;
    */
   spans: Span[] = [];
 
@@ -24,7 +29,8 @@ export class Trace extends Message<Trace> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Trace";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "spans", kind: "message", T: Span, repeated: true },
+    { no: 1, name: "trace_id", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "spans", kind: "message", T: Span, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Trace {
