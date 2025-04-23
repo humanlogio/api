@@ -100,22 +100,27 @@ export class Span extends Message<Span> {
   endTime?: Timestamp;
 
   /**
-   * @generated from field: repeated types.v1.KV kvs = 10;
+   * @generated from field: repeated types.v1.KV resource_attributes = 10;
    */
-  kvs: KV[] = [];
+  resourceAttributes: KV[] = [];
 
   /**
-   * @generated from field: repeated types.v1.Span.Event events = 11;
+   * @generated from field: repeated types.v1.KV span_attributes = 11;
+   */
+  spanAttributes: KV[] = [];
+
+  /**
+   * @generated from field: repeated types.v1.Span.Event events = 12;
    */
   events: Span_Event[] = [];
 
   /**
-   * @generated from field: repeated types.v1.Span.Link links = 12;
+   * @generated from field: repeated types.v1.Span.Link links = 13;
    */
   links: Span_Link[] = [];
 
   /**
-   * @generated from field: types.v1.Span.Status status = 13;
+   * @generated from field: types.v1.Span.Status status = 14;
    */
   status?: Span_Status;
 
@@ -136,10 +141,11 @@ export class Span extends Message<Span> {
     { no: 7, name: "kind", kind: "enum", T: proto3.getEnumType(Span_SpanKind) },
     { no: 8, name: "start_time", kind: "message", T: Timestamp },
     { no: 9, name: "end_time", kind: "message", T: Timestamp },
-    { no: 10, name: "kvs", kind: "message", T: KV, repeated: true },
-    { no: 11, name: "events", kind: "message", T: Span_Event, repeated: true },
-    { no: 12, name: "links", kind: "message", T: Span_Link, repeated: true },
-    { no: 13, name: "status", kind: "message", T: Span_Status },
+    { no: 10, name: "resource_attributes", kind: "message", T: KV, repeated: true },
+    { no: 11, name: "span_attributes", kind: "message", T: KV, repeated: true },
+    { no: 12, name: "events", kind: "message", T: Span_Event, repeated: true },
+    { no: 13, name: "links", kind: "message", T: Span_Link, repeated: true },
+    { no: 14, name: "status", kind: "message", T: Span_Status },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Span {
