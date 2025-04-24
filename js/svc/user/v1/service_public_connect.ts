@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetPublicFavoriteQueryRequest, GetPublicUserRequest, GetPublicUserResponse, ListPublicFavoriteQueryRequest } from "./service_public_pb";
+import { GetPublicFavoriteQueryRequest, GetPublicFavoriteQueryResponse, GetPublicUserRequest, GetPublicUserResponse, ListPublicFavoriteQueryRequest, ListPublicFavoriteQueryResponse } from "./service_public_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -27,7 +27,7 @@ export const PublicUserService = {
     getPublicFavoriteQuery: {
       name: "GetPublicFavoriteQuery",
       I: GetPublicFavoriteQueryRequest,
-      O: GetPublicFavoriteQueryRequest,
+      O: GetPublicFavoriteQueryResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -36,7 +36,7 @@ export const PublicUserService = {
     listPublicFavoriteQuery: {
       name: "ListPublicFavoriteQuery",
       I: ListPublicFavoriteQueryRequest,
-      O: ListPublicFavoriteQueryRequest,
+      O: ListPublicFavoriteQueryResponse,
       kind: MethodKind.Unary,
     },
   }

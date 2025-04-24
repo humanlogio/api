@@ -47,8 +47,8 @@ const (
 // PublicUserServiceClient is a client for the svc.user.v1.PublicUserService service.
 type PublicUserServiceClient interface {
 	GetPublicUser(context.Context, *connect.Request[v1.GetPublicUserRequest]) (*connect.Response[v1.GetPublicUserResponse], error)
-	GetPublicFavoriteQuery(context.Context, *connect.Request[v1.GetPublicFavoriteQueryRequest]) (*connect.Response[v1.GetPublicFavoriteQueryRequest], error)
-	ListPublicFavoriteQuery(context.Context, *connect.Request[v1.ListPublicFavoriteQueryRequest]) (*connect.Response[v1.ListPublicFavoriteQueryRequest], error)
+	GetPublicFavoriteQuery(context.Context, *connect.Request[v1.GetPublicFavoriteQueryRequest]) (*connect.Response[v1.GetPublicFavoriteQueryResponse], error)
+	ListPublicFavoriteQuery(context.Context, *connect.Request[v1.ListPublicFavoriteQueryRequest]) (*connect.Response[v1.ListPublicFavoriteQueryResponse], error)
 }
 
 // NewPublicUserServiceClient constructs a client for the svc.user.v1.PublicUserService service. By
@@ -68,13 +68,13 @@ func NewPublicUserServiceClient(httpClient connect.HTTPClient, baseURL string, o
 			connect.WithSchema(publicUserServiceMethods.ByName("GetPublicUser")),
 			connect.WithClientOptions(opts...),
 		),
-		getPublicFavoriteQuery: connect.NewClient[v1.GetPublicFavoriteQueryRequest, v1.GetPublicFavoriteQueryRequest](
+		getPublicFavoriteQuery: connect.NewClient[v1.GetPublicFavoriteQueryRequest, v1.GetPublicFavoriteQueryResponse](
 			httpClient,
 			baseURL+PublicUserServiceGetPublicFavoriteQueryProcedure,
 			connect.WithSchema(publicUserServiceMethods.ByName("GetPublicFavoriteQuery")),
 			connect.WithClientOptions(opts...),
 		),
-		listPublicFavoriteQuery: connect.NewClient[v1.ListPublicFavoriteQueryRequest, v1.ListPublicFavoriteQueryRequest](
+		listPublicFavoriteQuery: connect.NewClient[v1.ListPublicFavoriteQueryRequest, v1.ListPublicFavoriteQueryResponse](
 			httpClient,
 			baseURL+PublicUserServiceListPublicFavoriteQueryProcedure,
 			connect.WithSchema(publicUserServiceMethods.ByName("ListPublicFavoriteQuery")),
@@ -86,8 +86,8 @@ func NewPublicUserServiceClient(httpClient connect.HTTPClient, baseURL string, o
 // publicUserServiceClient implements PublicUserServiceClient.
 type publicUserServiceClient struct {
 	getPublicUser           *connect.Client[v1.GetPublicUserRequest, v1.GetPublicUserResponse]
-	getPublicFavoriteQuery  *connect.Client[v1.GetPublicFavoriteQueryRequest, v1.GetPublicFavoriteQueryRequest]
-	listPublicFavoriteQuery *connect.Client[v1.ListPublicFavoriteQueryRequest, v1.ListPublicFavoriteQueryRequest]
+	getPublicFavoriteQuery  *connect.Client[v1.GetPublicFavoriteQueryRequest, v1.GetPublicFavoriteQueryResponse]
+	listPublicFavoriteQuery *connect.Client[v1.ListPublicFavoriteQueryRequest, v1.ListPublicFavoriteQueryResponse]
 }
 
 // GetPublicUser calls svc.user.v1.PublicUserService.GetPublicUser.
@@ -96,20 +96,20 @@ func (c *publicUserServiceClient) GetPublicUser(ctx context.Context, req *connec
 }
 
 // GetPublicFavoriteQuery calls svc.user.v1.PublicUserService.GetPublicFavoriteQuery.
-func (c *publicUserServiceClient) GetPublicFavoriteQuery(ctx context.Context, req *connect.Request[v1.GetPublicFavoriteQueryRequest]) (*connect.Response[v1.GetPublicFavoriteQueryRequest], error) {
+func (c *publicUserServiceClient) GetPublicFavoriteQuery(ctx context.Context, req *connect.Request[v1.GetPublicFavoriteQueryRequest]) (*connect.Response[v1.GetPublicFavoriteQueryResponse], error) {
 	return c.getPublicFavoriteQuery.CallUnary(ctx, req)
 }
 
 // ListPublicFavoriteQuery calls svc.user.v1.PublicUserService.ListPublicFavoriteQuery.
-func (c *publicUserServiceClient) ListPublicFavoriteQuery(ctx context.Context, req *connect.Request[v1.ListPublicFavoriteQueryRequest]) (*connect.Response[v1.ListPublicFavoriteQueryRequest], error) {
+func (c *publicUserServiceClient) ListPublicFavoriteQuery(ctx context.Context, req *connect.Request[v1.ListPublicFavoriteQueryRequest]) (*connect.Response[v1.ListPublicFavoriteQueryResponse], error) {
 	return c.listPublicFavoriteQuery.CallUnary(ctx, req)
 }
 
 // PublicUserServiceHandler is an implementation of the svc.user.v1.PublicUserService service.
 type PublicUserServiceHandler interface {
 	GetPublicUser(context.Context, *connect.Request[v1.GetPublicUserRequest]) (*connect.Response[v1.GetPublicUserResponse], error)
-	GetPublicFavoriteQuery(context.Context, *connect.Request[v1.GetPublicFavoriteQueryRequest]) (*connect.Response[v1.GetPublicFavoriteQueryRequest], error)
-	ListPublicFavoriteQuery(context.Context, *connect.Request[v1.ListPublicFavoriteQueryRequest]) (*connect.Response[v1.ListPublicFavoriteQueryRequest], error)
+	GetPublicFavoriteQuery(context.Context, *connect.Request[v1.GetPublicFavoriteQueryRequest]) (*connect.Response[v1.GetPublicFavoriteQueryResponse], error)
+	ListPublicFavoriteQuery(context.Context, *connect.Request[v1.ListPublicFavoriteQueryRequest]) (*connect.Response[v1.ListPublicFavoriteQueryResponse], error)
 }
 
 // NewPublicUserServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -158,10 +158,10 @@ func (UnimplementedPublicUserServiceHandler) GetPublicUser(context.Context, *con
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.PublicUserService.GetPublicUser is not implemented"))
 }
 
-func (UnimplementedPublicUserServiceHandler) GetPublicFavoriteQuery(context.Context, *connect.Request[v1.GetPublicFavoriteQueryRequest]) (*connect.Response[v1.GetPublicFavoriteQueryRequest], error) {
+func (UnimplementedPublicUserServiceHandler) GetPublicFavoriteQuery(context.Context, *connect.Request[v1.GetPublicFavoriteQueryRequest]) (*connect.Response[v1.GetPublicFavoriteQueryResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.PublicUserService.GetPublicFavoriteQuery is not implemented"))
 }
 
-func (UnimplementedPublicUserServiceHandler) ListPublicFavoriteQuery(context.Context, *connect.Request[v1.ListPublicFavoriteQueryRequest]) (*connect.Response[v1.ListPublicFavoriteQueryRequest], error) {
+func (UnimplementedPublicUserServiceHandler) ListPublicFavoriteQuery(context.Context, *connect.Request[v1.ListPublicFavoriteQueryRequest]) (*connect.Response[v1.ListPublicFavoriteQueryResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.PublicUserService.ListPublicFavoriteQuery is not implemented"))
 }

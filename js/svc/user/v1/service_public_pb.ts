@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { PublicUser } from "../../../types/v1/user_pb";
 import { FavoriteQuery } from "../../../types/v1/favorite_query_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
@@ -92,6 +92,11 @@ export class GetPublicFavoriteQueryRequest extends Message<GetPublicFavoriteQuer
    */
   username = "";
 
+  /**
+   * @generated from field: int64 id = 2;
+   */
+  id = protoInt64.zero;
+
   constructor(data?: PartialMessage<GetPublicFavoriteQueryRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -101,6 +106,7 @@ export class GetPublicFavoriteQueryRequest extends Message<GetPublicFavoriteQuer
   static readonly typeName = "svc.user.v1.GetPublicFavoriteQueryRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetPublicFavoriteQueryRequest {

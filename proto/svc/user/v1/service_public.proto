@@ -12,8 +12,8 @@ option go_package = "svc/user/v1;userv1";
 
 service PublicUserService {
   rpc GetPublicUser(GetPublicUserRequest) returns (GetPublicUserResponse);
-  rpc GetPublicFavoriteQuery(GetPublicFavoriteQueryRequest) returns (GetPublicFavoriteQueryRequest);
-  rpc ListPublicFavoriteQuery(ListPublicFavoriteQueryRequest) returns (ListPublicFavoriteQueryRequest);
+  rpc GetPublicFavoriteQuery(GetPublicFavoriteQueryRequest) returns (GetPublicFavoriteQueryResponse);
+  rpc ListPublicFavoriteQuery(ListPublicFavoriteQueryRequest) returns (ListPublicFavoriteQueryResponse);
 }
 
 message GetPublicUserRequest {
@@ -25,6 +25,7 @@ message GetPublicUserResponse {
 
 message GetPublicFavoriteQueryRequest {
   string username = 1;
+  int64 id = 2;
 }
 message GetPublicFavoriteQueryResponse {
   types.v1.FavoriteQuery favorite = 1;

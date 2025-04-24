@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { GetPublicFavoriteQueryRequest, GetPublicUserRequest, GetPublicUserResponse, ListPublicFavoriteQueryRequest } from "./service_public_pb";
+import { GetPublicFavoriteQueryRequest, GetPublicFavoriteQueryResponse, GetPublicUserRequest, GetPublicUserResponse, ListPublicFavoriteQueryRequest, ListPublicFavoriteQueryResponse } from "./service_public_pb";
 
 /**
  * @generated from rpc svc.user.v1.PublicUserService.GetPublicUser
@@ -28,7 +28,7 @@ export const getPublicFavoriteQuery = {
   name: "GetPublicFavoriteQuery",
   kind: MethodKind.Unary,
   I: GetPublicFavoriteQueryRequest,
-  O: GetPublicFavoriteQueryRequest,
+  O: GetPublicFavoriteQueryResponse,
   service: {
     typeName: "svc.user.v1.PublicUserService"
   }
@@ -42,7 +42,7 @@ export const listPublicFavoriteQuery = {
   name: "ListPublicFavoriteQuery",
   kind: MethodKind.Unary,
   I: ListPublicFavoriteQueryRequest,
-  O: ListPublicFavoriteQueryRequest,
+  O: ListPublicFavoriteQueryResponse,
   service: {
     typeName: "svc.user.v1.PublicUserService"
   }
