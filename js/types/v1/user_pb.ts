@@ -85,3 +85,64 @@ export class User extends Message<User> {
   }
 }
 
+/**
+ * @generated from message types.v1.PublicUser
+ */
+export class PublicUser extends Message<PublicUser> {
+  /**
+   * @generated from field: string username = 1;
+   */
+  username = "";
+
+  /**
+   * @generated from field: string profile_picture_url = 2;
+   */
+  profilePictureUrl = "";
+
+  /**
+   * @generated from field: string first_name = 3;
+   */
+  firstName = "";
+
+  /**
+   * @generated from field: string last_name = 4;
+   */
+  lastName = "";
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 5;
+   */
+  createdAt?: Timestamp;
+
+  constructor(data?: PartialMessage<PublicUser>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.PublicUser";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "username", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "profile_picture_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "first_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "last_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "created_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): PublicUser {
+    return new PublicUser().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): PublicUser {
+    return new PublicUser().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): PublicUser {
+    return new PublicUser().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: PublicUser | PlainMessage<PublicUser> | undefined, b: PublicUser | PlainMessage<PublicUser> | undefined): boolean {
+    return proto3.util.equals(PublicUser, a, b);
+  }
+}
+

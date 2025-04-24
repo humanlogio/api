@@ -33,14 +33,14 @@ message ViewSharedResultRequest {
 }
 
 message ViewSharedResultResponse {
-  types.v1.User shared_by = 1;
+  types.v1.PublicUser shared_by = 1;
   types.v1.SharedResult shared_result = 2;
 }
 
 message ListSharedResultRequest {
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
-  types.v1.User shared_by = 3;
+  types.v1.PublicUser shared_by = 3;
 }
 
 message ListSharedResultResponse {

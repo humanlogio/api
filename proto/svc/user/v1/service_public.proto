@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package svc.user.v1;
+
+import "google/protobuf/timestamp.proto";
+import "types/v1/cursor.proto";
+import "types/v1/data.proto";
+import "types/v1/favorite_query.proto";
+import "types/v1/user.proto";
+
+option go_package = "svc/user/v1;userv1";
+
+service PublicUserService {
+  rpc GetPublicUser(GetPublicUserRequest) returns (GetPublicUserResponse);
+  rpc GetPublicFavoriteQuery(GetPublicFavoriteQueryRequest) returns (GetPublicFavoriteQueryRequest);
+  rpc ListPublicFavoriteQuery(ListPublicFavoriteQueryRequest) returns (ListPublicFavoriteQueryRequest);
+}
+
+message GetPublicUserRequest {
+  string username = 1;
+}
+message GetPublicUserResponse {
+  types.v1.PublicUser user = 1;
+}
+
+message GetPublicFavoriteQueryRequest {
+  string username = 1;
+}
+message GetPublicFavoriteQueryResponse {
+  types.v1.FavoriteQuery favorite = 1;
+}
+
+message ListPublicFavoriteQueryRequest {
+  string username = 1;
+  types.v1.Cursor cursor = 2;
+  int32 limit = 3;
+}
+message ListPublicFavoriteQueryResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.FavoriteQuery favorite = 1;
+  }
+  repeated ListItem items = 2;
+}

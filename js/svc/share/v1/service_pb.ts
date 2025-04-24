@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { User } from "../../../types/v1/user_pb";
+import { PublicUser } from "../../../types/v1/user_pb";
 import { SharedResult, SharedResultVisibility } from "../../../types/v1/shared_result_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
 import { QueryHistoryEntry } from "../../../types/v1/query_history_entry_pb";
@@ -59,9 +59,9 @@ export class ViewSharedResultRequest extends Message<ViewSharedResultRequest> {
  */
 export class ViewSharedResultResponse extends Message<ViewSharedResultResponse> {
   /**
-   * @generated from field: types.v1.User shared_by = 1;
+   * @generated from field: types.v1.PublicUser shared_by = 1;
    */
-  sharedBy?: User;
+  sharedBy?: PublicUser;
 
   /**
    * @generated from field: types.v1.SharedResult shared_result = 2;
@@ -76,7 +76,7 @@ export class ViewSharedResultResponse extends Message<ViewSharedResultResponse> 
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.share.v1.ViewSharedResultResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "shared_by", kind: "message", T: User },
+    { no: 1, name: "shared_by", kind: "message", T: PublicUser },
     { no: 2, name: "shared_result", kind: "message", T: SharedResult },
   ]);
 
@@ -112,9 +112,9 @@ export class ListSharedResultRequest extends Message<ListSharedResultRequest> {
   limit = 0;
 
   /**
-   * @generated from field: types.v1.User shared_by = 3;
+   * @generated from field: types.v1.PublicUser shared_by = 3;
    */
-  sharedBy?: User;
+  sharedBy?: PublicUser;
 
   constructor(data?: PartialMessage<ListSharedResultRequest>) {
     super();
@@ -126,7 +126,7 @@ export class ListSharedResultRequest extends Message<ListSharedResultRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
-    { no: 3, name: "shared_by", kind: "message", T: User },
+    { no: 3, name: "shared_by", kind: "message", T: PublicUser },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListSharedResultRequest {
