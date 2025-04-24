@@ -10,6 +10,7 @@ import { ResMeta } from "../../../types/v1/meta_pb";
 import { User } from "../../../types/v1/user_pb";
 import { Organization } from "../../../types/v1/organization_pb";
 import { LocalhostConfig } from "../../../types/v1/localhost_config_pb";
+import { Val } from "../../../types/v1/types_pb";
 
 /**
  * @generated from message svc.localhost.v1.PingRequest
@@ -549,6 +550,74 @@ export class SetConfigResponse extends Message<SetConfigResponse> {
 
   static equals(a: SetConfigResponse | PlainMessage<SetConfigResponse> | undefined, b: SetConfigResponse | PlainMessage<SetConfigResponse> | undefined): boolean {
     return proto3.util.equals(SetConfigResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.GetStatsRequest
+ */
+export class GetStatsRequest extends Message<GetStatsRequest> {
+  constructor(data?: PartialMessage<GetStatsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.GetStatsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStatsRequest {
+    return new GetStatsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetStatsRequest {
+    return new GetStatsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetStatsRequest {
+    return new GetStatsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetStatsRequest | PlainMessage<GetStatsRequest> | undefined, b: GetStatsRequest | PlainMessage<GetStatsRequest> | undefined): boolean {
+    return proto3.util.equals(GetStatsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.localhost.v1.GetStatsResponse
+ */
+export class GetStatsResponse extends Message<GetStatsResponse> {
+  /**
+   * @generated from field: types.v1.Val database_stats = 1;
+   */
+  databaseStats?: Val;
+
+  constructor(data?: PartialMessage<GetStatsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.localhost.v1.GetStatsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "database_stats", kind: "message", T: Val },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStatsResponse {
+    return new GetStatsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetStatsResponse {
+    return new GetStatsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetStatsResponse {
+    return new GetStatsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetStatsResponse | PlainMessage<GetStatsResponse> | undefined, b: GetStatsResponse | PlainMessage<GetStatsResponse> | undefined): boolean {
+    return proto3.util.equals(GetStatsResponse, a, b);
   }
 }
 

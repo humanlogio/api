@@ -5,6 +5,7 @@ package svc.localhost.v1;
 import "types/v1/localhost_config.proto";
 import "types/v1/meta.proto";
 import "types/v1/organization.proto";
+import "types/v1/types.proto";
 import "types/v1/user.proto";
 import "types/v1/version.proto";
 
@@ -19,6 +20,8 @@ service LocalhostService {
 
   rpc GetConfig(GetConfigRequest) returns (GetConfigResponse);
   rpc SetConfig(SetConfigRequest) returns (SetConfigResponse);
+
+  rpc GetStats(GetStatsRequest) returns (GetStatsResponse);
 }
 
 message PingRequest {}
@@ -64,3 +67,9 @@ message SetConfigRequest {
   types.v1.LocalhostConfig config = 1;
 }
 message SetConfigResponse {}
+
+message GetStatsRequest {}
+
+message GetStatsResponse {
+  types.v1.Val database_stats = 1;
+}

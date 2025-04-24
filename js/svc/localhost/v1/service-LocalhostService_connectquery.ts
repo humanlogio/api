@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { DoLoginRequest, DoLoginResponse, DoLogoutRequest, DoLogoutResponse, DoRestartRequest, DoRestartResponse, DoUpdateRequest, DoUpdateResponse, GetConfigRequest, GetConfigResponse, PingRequest, PingResponse, SetConfigRequest, SetConfigResponse } from "./service_pb";
+import { DoLoginRequest, DoLoginResponse, DoLogoutRequest, DoLogoutResponse, DoRestartRequest, DoRestartResponse, DoUpdateRequest, DoUpdateResponse, GetConfigRequest, GetConfigResponse, GetStatsRequest, GetStatsResponse, PingRequest, PingResponse, SetConfigRequest, SetConfigResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.localhost.v1.LocalhostService.Ping
@@ -99,6 +99,20 @@ export const setConfig = {
   kind: MethodKind.Unary,
   I: SetConfigRequest,
   O: SetConfigResponse,
+  service: {
+    typeName: "svc.localhost.v1.LocalhostService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.localhost.v1.LocalhostService.GetStats
+ */
+export const getStats = {
+  localName: "getStats",
+  name: "GetStats",
+  kind: MethodKind.Unary,
+  I: GetStatsRequest,
+  O: GetStatsResponse,
   service: {
     typeName: "svc.localhost.v1.LocalhostService"
   }

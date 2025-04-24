@@ -53,6 +53,9 @@ const (
 	// LocalhostServiceSetConfigProcedure is the fully-qualified name of the LocalhostService's
 	// SetConfig RPC.
 	LocalhostServiceSetConfigProcedure = "/svc.localhost.v1.LocalhostService/SetConfig"
+	// LocalhostServiceGetStatsProcedure is the fully-qualified name of the LocalhostService's GetStats
+	// RPC.
+	LocalhostServiceGetStatsProcedure = "/svc.localhost.v1.LocalhostService/GetStats"
 )
 
 // LocalhostServiceClient is a client for the svc.localhost.v1.LocalhostService service.
@@ -64,6 +67,7 @@ type LocalhostServiceClient interface {
 	DoRestart(context.Context, *connect.Request[v1.DoRestartRequest]) (*connect.Response[v1.DoRestartResponse], error)
 	GetConfig(context.Context, *connect.Request[v1.GetConfigRequest]) (*connect.Response[v1.GetConfigResponse], error)
 	SetConfig(context.Context, *connect.Request[v1.SetConfigRequest]) (*connect.Response[v1.SetConfigResponse], error)
+	GetStats(context.Context, *connect.Request[v1.GetStatsRequest]) (*connect.Response[v1.GetStatsResponse], error)
 }
 
 // NewLocalhostServiceClient constructs a client for the svc.localhost.v1.LocalhostService service.
@@ -119,6 +123,12 @@ func NewLocalhostServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			connect.WithSchema(localhostServiceMethods.ByName("SetConfig")),
 			connect.WithClientOptions(opts...),
 		),
+		getStats: connect.NewClient[v1.GetStatsRequest, v1.GetStatsResponse](
+			httpClient,
+			baseURL+LocalhostServiceGetStatsProcedure,
+			connect.WithSchema(localhostServiceMethods.ByName("GetStats")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -131,6 +141,7 @@ type localhostServiceClient struct {
 	doRestart *connect.Client[v1.DoRestartRequest, v1.DoRestartResponse]
 	getConfig *connect.Client[v1.GetConfigRequest, v1.GetConfigResponse]
 	setConfig *connect.Client[v1.SetConfigRequest, v1.SetConfigResponse]
+	getStats  *connect.Client[v1.GetStatsRequest, v1.GetStatsResponse]
 }
 
 // Ping calls svc.localhost.v1.LocalhostService.Ping.
@@ -168,6 +179,11 @@ func (c *localhostServiceClient) SetConfig(ctx context.Context, req *connect.Req
 	return c.setConfig.CallUnary(ctx, req)
 }
 
+// GetStats calls svc.localhost.v1.LocalhostService.GetStats.
+func (c *localhostServiceClient) GetStats(ctx context.Context, req *connect.Request[v1.GetStatsRequest]) (*connect.Response[v1.GetStatsResponse], error) {
+	return c.getStats.CallUnary(ctx, req)
+}
+
 // LocalhostServiceHandler is an implementation of the svc.localhost.v1.LocalhostService service.
 type LocalhostServiceHandler interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
@@ -177,6 +193,7 @@ type LocalhostServiceHandler interface {
 	DoRestart(context.Context, *connect.Request[v1.DoRestartRequest]) (*connect.Response[v1.DoRestartResponse], error)
 	GetConfig(context.Context, *connect.Request[v1.GetConfigRequest]) (*connect.Response[v1.GetConfigResponse], error)
 	SetConfig(context.Context, *connect.Request[v1.SetConfigRequest]) (*connect.Response[v1.SetConfigResponse], error)
+	GetStats(context.Context, *connect.Request[v1.GetStatsRequest]) (*connect.Response[v1.GetStatsResponse], error)
 }
 
 // NewLocalhostServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -228,6 +245,12 @@ func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.Han
 		connect.WithSchema(localhostServiceMethods.ByName("SetConfig")),
 		connect.WithHandlerOptions(opts...),
 	)
+	localhostServiceGetStatsHandler := connect.NewUnaryHandler(
+		LocalhostServiceGetStatsProcedure,
+		svc.GetStats,
+		connect.WithSchema(localhostServiceMethods.ByName("GetStats")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.localhost.v1.LocalhostService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case LocalhostServicePingProcedure:
@@ -244,6 +267,8 @@ func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.Han
 			localhostServiceGetConfigHandler.ServeHTTP(w, r)
 		case LocalhostServiceSetConfigProcedure:
 			localhostServiceSetConfigHandler.ServeHTTP(w, r)
+		case LocalhostServiceGetStatsProcedure:
+			localhostServiceGetStatsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -279,4 +304,8 @@ func (UnimplementedLocalhostServiceHandler) GetConfig(context.Context, *connect.
 
 func (UnimplementedLocalhostServiceHandler) SetConfig(context.Context, *connect.Request[v1.SetConfigRequest]) (*connect.Response[v1.SetConfigResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.localhost.v1.LocalhostService.SetConfig is not implemented"))
+}
+
+func (UnimplementedLocalhostServiceHandler) GetStats(context.Context, *connect.Request[v1.GetStatsRequest]) (*connect.Response[v1.GetStatsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.localhost.v1.LocalhostService.GetStats is not implemented"))
 }
