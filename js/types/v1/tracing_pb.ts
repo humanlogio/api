@@ -335,9 +335,9 @@ export class Span_Status extends Message<Span_Status> {
   message = "";
 
   /**
-   * @generated from field: string code = 2;
+   * @generated from field: types.v1.Span.Status.Code code = 2;
    */
-  code = "";
+  code = Span_Status_Code.UNSET;
 
   constructor(data?: PartialMessage<Span_Status>) {
     super();
@@ -348,7 +348,7 @@ export class Span_Status extends Message<Span_Status> {
   static readonly typeName = "types.v1.Span.Status";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "code", kind: "enum", T: proto3.getEnumType(Span_Status_Code) },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Span_Status {
@@ -367,6 +367,32 @@ export class Span_Status extends Message<Span_Status> {
     return proto3.util.equals(Span_Status, a, b);
   }
 }
+
+/**
+ * @generated from enum types.v1.Span.Status.Code
+ */
+export enum Span_Status_Code {
+  /**
+   * @generated from enum value: UNSET = 0;
+   */
+  UNSET = 0,
+
+  /**
+   * @generated from enum value: OK = 1;
+   */
+  OK = 1,
+
+  /**
+   * @generated from enum value: ERROR = 2;
+   */
+  ERROR = 2,
+}
+// Retrieve enum metadata with: proto3.getEnumType(Span_Status_Code)
+proto3.util.setEnumType(Span_Status_Code, "types.v1.Span.Status.Code", [
+  { no: 0, name: "UNSET" },
+  { no: 1, name: "OK" },
+  { no: 2, name: "ERROR" },
+]);
 
 /**
  * @generated from message types.v1.Span.Scope
