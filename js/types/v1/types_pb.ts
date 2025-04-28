@@ -1022,6 +1022,12 @@ export class TabularType extends Message<TabularType> {
      */
     value: TabularType_LogEventType;
     case: "logEvents";
+  } | {
+    /**
+     * @generated from field: types.v1.TabularType.SpanType spans = 3;
+     */
+    value: TabularType_SpanType;
+    case: "spans";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<TabularType>) {
@@ -1034,6 +1040,7 @@ export class TabularType extends Message<TabularType> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "table", kind: "message", T: TableType, oneof: "type" },
     { no: 2, name: "log_events", kind: "message", T: TabularType_LogEventType, oneof: "type" },
+    { no: 3, name: "spans", kind: "message", T: TabularType_SpanType, oneof: "type" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TabularType {
@@ -1091,6 +1098,40 @@ export class TabularType_LogEventType extends Message<TabularType_LogEventType> 
 
   static equals(a: TabularType_LogEventType | PlainMessage<TabularType_LogEventType> | undefined, b: TabularType_LogEventType | PlainMessage<TabularType_LogEventType> | undefined): boolean {
     return proto3.util.equals(TabularType_LogEventType, a, b);
+  }
+}
+
+/**
+ * spans contain,
+ * - stuff, not sure why i wrote this here for the log event type
+ *
+ * @generated from message types.v1.TabularType.SpanType
+ */
+export class TabularType_SpanType extends Message<TabularType_SpanType> {
+  constructor(data?: PartialMessage<TabularType_SpanType>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TabularType.SpanType";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TabularType_SpanType {
+    return new TabularType_SpanType().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TabularType_SpanType {
+    return new TabularType_SpanType().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TabularType_SpanType {
+    return new TabularType_SpanType().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TabularType_SpanType | PlainMessage<TabularType_SpanType> | undefined, b: TabularType_SpanType | PlainMessage<TabularType_SpanType> | undefined): boolean {
+    return proto3.util.equals(TabularType_SpanType, a, b);
   }
 }
 

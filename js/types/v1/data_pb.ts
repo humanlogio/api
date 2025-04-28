@@ -8,6 +8,7 @@ import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Obj, Scalar, Table, Val, VarType } from "./types_pb";
 import { Query } from "./query_pb";
 import { IngestedLogEvent } from "./logevent_pb";
+import { Span } from "./tracing_pb";
 
 /**
  * @generated from message types.v1.Data
@@ -149,6 +150,12 @@ export class Tabular extends Message<Tabular> {
      */
     value: Table;
     case: "freeForm";
+  } | {
+    /**
+     * @generated from field: types.v1.Spans spans = 203;
+     */
+    value: Spans;
+    case: "spans";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Tabular>) {
@@ -161,6 +168,7 @@ export class Tabular extends Message<Tabular> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 201, name: "log_events", kind: "message", T: LogEvents, oneof: "shape" },
     { no: 202, name: "free_form", kind: "message", T: Table, oneof: "shape" },
+    { no: 203, name: "spans", kind: "message", T: Spans, oneof: "shape" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Tabular {
@@ -259,6 +267,43 @@ export class LogEvents extends Message<LogEvents> {
 
   static equals(a: LogEvents | PlainMessage<LogEvents> | undefined, b: LogEvents | PlainMessage<LogEvents> | undefined): boolean {
     return proto3.util.equals(LogEvents, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Spans
+ */
+export class Spans extends Message<Spans> {
+  /**
+   * @generated from field: repeated types.v1.Span spans = 1;
+   */
+  spans: Span[] = [];
+
+  constructor(data?: PartialMessage<Spans>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Spans";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "spans", kind: "message", T: Span, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Spans {
+    return new Spans().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Spans {
+    return new Spans().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Spans {
+    return new Spans().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Spans | PlainMessage<Spans> | undefined, b: Spans | PlainMessage<Spans> | undefined): boolean {
+    return proto3.util.equals(Spans, a, b);
   }
 }
 

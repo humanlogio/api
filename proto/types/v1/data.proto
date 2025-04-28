@@ -36,6 +36,7 @@ message Tabular {
   oneof shape {
     LogEvents log_events = 201;
     Table free_form = 202;
+    Spans spans = 203;
   }
 }
 
@@ -47,6 +48,10 @@ message ScalarTimeseries {
 
 message LogEvents {
   repeated IngestedLogEvent events = 1;
+}
+
+message Spans {
+  repeated Span spans = 1;
 }
 
 message ScalarTimestamp {

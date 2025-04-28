@@ -134,9 +134,14 @@ message TabularType {
     // - message
     // - key-value pairs
   }
+  message SpanType {
+    // spans contain,
+    // - stuff, not sure why i wrote this here for the log event type
+  }
   oneof type {
     TableType table = 1;
     LogEventType log_events = 2;
+    SpanType spans = 3;
   }
 }
 
