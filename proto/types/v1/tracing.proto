@@ -36,7 +36,15 @@ message Span {
   }
   message Status {
     string message = 1;
-    int32 code = 2;
+    string code = 2;
+  }
+  message Scope {
+    string name = 1;
+    string version = 2;
+  }
+  message Timing {
+    google.protobuf.Timestamp start = 1;
+    google.protobuf.Duration duration = 2;
   }
   bytes trace_id = 1;
   bytes span_id = 2;
@@ -45,11 +53,12 @@ message Span {
   uint32 flags = 5;
   string name = 6;
   SpanKind kind = 7;
-  google.protobuf.Timestamp start_time = 8;
-  google.protobuf.Timestamp end_time = 9;
-  repeated KV resource_attributes = 10;
-  repeated KV span_attributes = 11;
-  repeated Event events = 12;
-  repeated Link links = 13;
-  Status status = 14;
+  string service_name = 8;
+  Scope scope = 9;
+  Timing timing = 10;
+  repeated KV resource_attributes = 11;
+  repeated KV span_attributes = 12;
+  repeated Event events = 13;
+  repeated Link links = 14;
+  Status status = 15;
 }

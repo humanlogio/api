@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { KV } from "./types_pb";
 
 /**
@@ -90,37 +90,42 @@ export class Span extends Message<Span> {
   kind = Span_SpanKind.UNSPECIFIED;
 
   /**
-   * @generated from field: google.protobuf.Timestamp start_time = 8;
+   * @generated from field: string service_name = 8;
    */
-  startTime?: Timestamp;
+  serviceName = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp end_time = 9;
+   * @generated from field: types.v1.Span.Scope scope = 9;
    */
-  endTime?: Timestamp;
+  scope?: Span_Scope;
 
   /**
-   * @generated from field: repeated types.v1.KV resource_attributes = 10;
+   * @generated from field: types.v1.Span.Timing timing = 10;
+   */
+  timing?: Span_Timing;
+
+  /**
+   * @generated from field: repeated types.v1.KV resource_attributes = 11;
    */
   resourceAttributes: KV[] = [];
 
   /**
-   * @generated from field: repeated types.v1.KV span_attributes = 11;
+   * @generated from field: repeated types.v1.KV span_attributes = 12;
    */
   spanAttributes: KV[] = [];
 
   /**
-   * @generated from field: repeated types.v1.Span.Event events = 12;
+   * @generated from field: repeated types.v1.Span.Event events = 13;
    */
   events: Span_Event[] = [];
 
   /**
-   * @generated from field: repeated types.v1.Span.Link links = 13;
+   * @generated from field: repeated types.v1.Span.Link links = 14;
    */
   links: Span_Link[] = [];
 
   /**
-   * @generated from field: types.v1.Span.Status status = 14;
+   * @generated from field: types.v1.Span.Status status = 15;
    */
   status?: Span_Status;
 
@@ -139,13 +144,14 @@ export class Span extends Message<Span> {
     { no: 5, name: "flags", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 6, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "kind", kind: "enum", T: proto3.getEnumType(Span_SpanKind) },
-    { no: 8, name: "start_time", kind: "message", T: Timestamp },
-    { no: 9, name: "end_time", kind: "message", T: Timestamp },
-    { no: 10, name: "resource_attributes", kind: "message", T: KV, repeated: true },
-    { no: 11, name: "span_attributes", kind: "message", T: KV, repeated: true },
-    { no: 12, name: "events", kind: "message", T: Span_Event, repeated: true },
-    { no: 13, name: "links", kind: "message", T: Span_Link, repeated: true },
-    { no: 14, name: "status", kind: "message", T: Span_Status },
+    { no: 8, name: "service_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 9, name: "scope", kind: "message", T: Span_Scope },
+    { no: 10, name: "timing", kind: "message", T: Span_Timing },
+    { no: 11, name: "resource_attributes", kind: "message", T: KV, repeated: true },
+    { no: 12, name: "span_attributes", kind: "message", T: KV, repeated: true },
+    { no: 13, name: "events", kind: "message", T: Span_Event, repeated: true },
+    { no: 14, name: "links", kind: "message", T: Span_Link, repeated: true },
+    { no: 15, name: "status", kind: "message", T: Span_Status },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Span {
@@ -329,9 +335,9 @@ export class Span_Status extends Message<Span_Status> {
   message = "";
 
   /**
-   * @generated from field: int32 code = 2;
+   * @generated from field: string code = 2;
    */
-  code = 0;
+  code = "";
 
   constructor(data?: PartialMessage<Span_Status>) {
     super();
@@ -342,7 +348,7 @@ export class Span_Status extends Message<Span_Status> {
   static readonly typeName = "types.v1.Span.Status";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "message", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "code", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 2, name: "code", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Span_Status {
@@ -359,6 +365,92 @@ export class Span_Status extends Message<Span_Status> {
 
   static equals(a: Span_Status | PlainMessage<Span_Status> | undefined, b: Span_Status | PlainMessage<Span_Status> | undefined): boolean {
     return proto3.util.equals(Span_Status, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Span.Scope
+ */
+export class Span_Scope extends Message<Span_Scope> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string version = 2;
+   */
+  version = "";
+
+  constructor(data?: PartialMessage<Span_Scope>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Span.Scope";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Span_Scope {
+    return new Span_Scope().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Span_Scope {
+    return new Span_Scope().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Span_Scope {
+    return new Span_Scope().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Span_Scope | PlainMessage<Span_Scope> | undefined, b: Span_Scope | PlainMessage<Span_Scope> | undefined): boolean {
+    return proto3.util.equals(Span_Scope, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.Span.Timing
+ */
+export class Span_Timing extends Message<Span_Timing> {
+  /**
+   * @generated from field: google.protobuf.Timestamp start = 1;
+   */
+  start?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Duration duration = 2;
+   */
+  duration?: Duration;
+
+  constructor(data?: PartialMessage<Span_Timing>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.Span.Timing";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "start", kind: "message", T: Timestamp },
+    { no: 2, name: "duration", kind: "message", T: Duration },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Span_Timing {
+    return new Span_Timing().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Span_Timing {
+    return new Span_Timing().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Span_Timing {
+    return new Span_Timing().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: Span_Timing | PlainMessage<Span_Timing> | undefined, b: Span_Timing | PlainMessage<Span_Timing> | undefined): boolean {
+    return proto3.util.equals(Span_Timing, a, b);
   }
 }
 
