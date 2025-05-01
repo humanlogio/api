@@ -278,6 +278,12 @@ export class Statement extends Message<Statement> {
      */
     value: TopOperator;
     case: "top";
+  } | {
+    /**
+     * @generated from field: types.v1.GetSchemaOperator get_schema = 12;
+     */
+    value: GetSchemaOperator;
+    case: "getSchema";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Statement>) {
@@ -301,6 +307,7 @@ export class Statement extends Message<Statement> {
     { no: 9, name: "sort", kind: "message", T: SortOperator, oneof: "stmt" },
     { no: 10, name: "take", kind: "message", T: TakeOperator, oneof: "stmt" },
     { no: 11, name: "top", kind: "message", T: TopOperator, oneof: "stmt" },
+    { no: 12, name: "get_schema", kind: "message", T: GetSchemaOperator, oneof: "stmt" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Statement {
@@ -1475,6 +1482,37 @@ export class TopOperator_ByColumn extends Message<TopOperator_ByColumn> {
 
   static equals(a: TopOperator_ByColumn | PlainMessage<TopOperator_ByColumn> | undefined, b: TopOperator_ByColumn | PlainMessage<TopOperator_ByColumn> | undefined): boolean {
     return proto3.util.equals(TopOperator_ByColumn, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.GetSchemaOperator
+ */
+export class GetSchemaOperator extends Message<GetSchemaOperator> {
+  constructor(data?: PartialMessage<GetSchemaOperator>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.GetSchemaOperator";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSchemaOperator {
+    return new GetSchemaOperator().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetSchemaOperator {
+    return new GetSchemaOperator().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetSchemaOperator {
+    return new GetSchemaOperator().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetSchemaOperator | PlainMessage<GetSchemaOperator> | undefined, b: GetSchemaOperator | PlainMessage<GetSchemaOperator> | undefined): boolean {
+    return proto3.util.equals(GetSchemaOperator, a, b);
   }
 }
 

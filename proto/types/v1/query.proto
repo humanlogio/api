@@ -45,6 +45,7 @@ message Statement {
     SortOperator sort = 9;
     TakeOperator take = 10;
     TopOperator top = 11;
+    GetSchemaOperator get_schema = 12;
   }
 }
 
@@ -169,6 +170,8 @@ message TopOperator {
   int64 count = 1;
   optional ByColumn by_column = 2;
 }
+
+message GetSchemaOperator {}
 
 message RenderStatement {
   oneof stmt {
