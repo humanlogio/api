@@ -418,6 +418,86 @@ export class QueryResponse extends Message<QueryResponse> {
 }
 
 /**
+ * @generated from message svc.query.v1.StreamRequest
+ */
+export class StreamRequest extends Message<StreamRequest> {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: types.v1.Query query = 2;
+   */
+  query?: Query;
+
+  constructor(data?: PartialMessage<StreamRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.StreamRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "query", kind: "message", T: Query },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StreamRequest {
+    return new StreamRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StreamRequest {
+    return new StreamRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StreamRequest {
+    return new StreamRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StreamRequest | PlainMessage<StreamRequest> | undefined, b: StreamRequest | PlainMessage<StreamRequest> | undefined): boolean {
+    return proto3.util.equals(StreamRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.StreamResponse
+ */
+export class StreamResponse extends Message<StreamResponse> {
+  /**
+   * @generated from field: types.v1.Data data = 100;
+   */
+  data?: Data;
+
+  constructor(data?: PartialMessage<StreamResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.StreamResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 100, name: "data", kind: "message", T: Data },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StreamResponse {
+    return new StreamResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StreamResponse {
+    return new StreamResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StreamResponse {
+    return new StreamResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StreamResponse | PlainMessage<StreamResponse> | undefined, b: StreamResponse | PlainMessage<StreamResponse> | undefined): boolean {
+    return proto3.util.equals(StreamResponse, a, b);
+  }
+}
+
+/**
  * @generated from message svc.query.v1.ListSymbolsRequest
  */
 export class ListSymbolsRequest extends Message<ListSymbolsRequest> {

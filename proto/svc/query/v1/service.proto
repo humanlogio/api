@@ -26,6 +26,7 @@ service QueryService {
   rpc Parse(ParseRequest) returns (ParseResponse);
   rpc Format(FormatRequest) returns (FormatResponse);
   rpc Query(QueryRequest) returns (QueryResponse);
+  rpc Stream(StreamRequest) returns (stream StreamResponse);
   rpc ListSymbols(ListSymbolsRequest) returns (ListSymbolsResponse);
 }
 
@@ -76,6 +77,15 @@ message QueryRequest {
 message QueryResponse {
   types.v1.Cursor next = 100;
   types.v1.Data data = 200;
+}
+
+message StreamRequest {
+  int64 environment_id = 101;
+  types.v1.Query query = 2;
+}
+
+message StreamResponse {
+  types.v1.Data data = 100;
 }
 
 message ListSymbolsRequest {
