@@ -431,6 +431,25 @@ export class StreamRequest extends Message<StreamRequest> {
    */
   query?: Query;
 
+  /**
+   * max_batch_size is how many objects to batch per individual response
+   * - min: 1
+   * - max: 1000
+   *
+   * @generated from field: int64 max_batch_size = 300;
+   */
+  maxBatchSize = protoInt64.zero;
+
+  /**
+   * max_batching_for is how long to wait before sending whatever response
+   * have been batched so far, regardless of the `max_batch_size`. 0 means
+   * wait indefinitely
+   * - min: 16ms
+   *
+   * @generated from field: google.protobuf.Duration max_batching_for = 301;
+   */
+  maxBatchingFor?: Duration;
+
   constructor(data?: PartialMessage<StreamRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -441,6 +460,8 @@ export class StreamRequest extends Message<StreamRequest> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 2, name: "query", kind: "message", T: Query },
+    { no: 300, name: "max_batch_size", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 301, name: "max_batching_for", kind: "message", T: Duration },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StreamRequest {

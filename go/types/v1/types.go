@@ -178,6 +178,11 @@ func ValDuration(v time.Duration) *Val {
 	return &Val{Type: typ, Kind: &Val_Dur{Dur: durationpb.New(v)}}
 }
 
+func ValDurationPB(v *durationpb.Duration) *Val {
+	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_dur}}
+	return &Val{Type: typ, Kind: &Val_Dur{Dur: v}}
+}
+
 func ValArr(v ...*Val) *Val {
 	typs := make([]*VarType, 0, len(v))
 	for _, val := range v {

@@ -82,6 +82,17 @@ message QueryResponse {
 message StreamRequest {
   int64 environment_id = 101;
   types.v1.Query query = 2;
+
+  // max_batch_size is how many objects to batch per individual response
+  // - min: 1
+  // - max: 1000
+  int64 max_batch_size = 300;
+
+  // max_batching_for is how long to wait before sending whatever response
+  // have been batched so far, regardless of the `max_batch_size`. 0 means
+  // wait indefinitely
+  // - min: 16ms
+  google.protobuf.Duration max_batching_for = 301;
 }
 
 message StreamResponse {
