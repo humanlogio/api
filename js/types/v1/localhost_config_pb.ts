@@ -352,6 +352,317 @@ export class FormatConfig_LevelStyle extends Message<FormatConfig_LevelStyle> {
 }
 
 /**
+ * @generated from message types.v1.FormatConfig.LogTheme
+ */
+export class FormatConfig_LogTheme extends Message<FormatConfig_LogTheme> {
+  /**
+   * @generated from field: types.v1.FormatConfig.Style key = 1;
+   */
+  key?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style value = 2;
+   */
+  value?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style time = 3;
+   */
+  time?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style msg = 4;
+   */
+  msg?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.LevelStyle levels = 5;
+   */
+  levels?: FormatConfig_LevelStyle;
+
+  /**
+   * how to style messages that are missing
+   *
+   * @generated from field: types.v1.FormatConfig.Style absent_msg = 6;
+   */
+  absentMsg?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style absent_time = 7;
+   */
+  absentTime?: FormatConfig_Style;
+
+  constructor(data?: PartialMessage<FormatConfig_LogTheme>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.FormatConfig.LogTheme";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "key", kind: "message", T: FormatConfig_Style },
+    { no: 2, name: "value", kind: "message", T: FormatConfig_Style },
+    { no: 3, name: "time", kind: "message", T: FormatConfig_Style },
+    { no: 4, name: "msg", kind: "message", T: FormatConfig_Style },
+    { no: 5, name: "levels", kind: "message", T: FormatConfig_LevelStyle },
+    { no: 6, name: "absent_msg", kind: "message", T: FormatConfig_Style },
+    { no: 7, name: "absent_time", kind: "message", T: FormatConfig_Style },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_LogTheme {
+    return new FormatConfig_LogTheme().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FormatConfig_LogTheme {
+    return new FormatConfig_LogTheme().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FormatConfig_LogTheme {
+    return new FormatConfig_LogTheme().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FormatConfig_LogTheme | PlainMessage<FormatConfig_LogTheme> | undefined, b: FormatConfig_LogTheme | PlainMessage<FormatConfig_LogTheme> | undefined): boolean {
+    return proto3.util.equals(FormatConfig_LogTheme, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.FormatConfig.SpanTheme
+ */
+export class FormatConfig_SpanTheme extends Message<FormatConfig_SpanTheme> {
+  /**
+   * @generated from field: types.v1.FormatConfig.Style trace_id = 1;
+   */
+  traceId?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style span_id = 2;
+   */
+  spanId?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style trace_state = 3;
+   */
+  traceState?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style parent_span_id = 4;
+   */
+  parentSpanId?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style name = 5;
+   */
+  name?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style kind = 6;
+   */
+  kind?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style service_name = 7;
+   */
+  serviceName?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style scope_name = 8;
+   */
+  scopeName?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style scope_version = 9;
+   */
+  scopeVersion?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style time = 10;
+   */
+  time?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style duration = 11;
+   */
+  duration?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style resource_key = 12;
+   */
+  resourceKey?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style resource_val = 13;
+   */
+  resourceVal?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style attribute_key = 14;
+   */
+  attributeKey?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style attribute_val = 15;
+   */
+  attributeVal?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style status_message = 16;
+   */
+  statusMessage?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style status_code = 17;
+   */
+  statusCode?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style event_time = 18;
+   */
+  eventTime?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style event_name = 19;
+   */
+  eventName?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style event_key = 20;
+   */
+  eventKey?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style event_val = 21;
+   */
+  eventVal?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style link_trace_id = 22;
+   */
+  linkTraceId?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style link_span_id = 23;
+   */
+  linkSpanId?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style link_trace_state = 24;
+   */
+  linkTraceState?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style link_key = 25;
+   */
+  linkKey?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style link_val = 26;
+   */
+  linkVal?: FormatConfig_Style;
+
+  constructor(data?: PartialMessage<FormatConfig_SpanTheme>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.FormatConfig.SpanTheme";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "trace_id", kind: "message", T: FormatConfig_Style },
+    { no: 2, name: "span_id", kind: "message", T: FormatConfig_Style },
+    { no: 3, name: "trace_state", kind: "message", T: FormatConfig_Style },
+    { no: 4, name: "parent_span_id", kind: "message", T: FormatConfig_Style },
+    { no: 5, name: "name", kind: "message", T: FormatConfig_Style },
+    { no: 6, name: "kind", kind: "message", T: FormatConfig_Style },
+    { no: 7, name: "service_name", kind: "message", T: FormatConfig_Style },
+    { no: 8, name: "scope_name", kind: "message", T: FormatConfig_Style },
+    { no: 9, name: "scope_version", kind: "message", T: FormatConfig_Style },
+    { no: 10, name: "time", kind: "message", T: FormatConfig_Style },
+    { no: 11, name: "duration", kind: "message", T: FormatConfig_Style },
+    { no: 12, name: "resource_key", kind: "message", T: FormatConfig_Style },
+    { no: 13, name: "resource_val", kind: "message", T: FormatConfig_Style },
+    { no: 14, name: "attribute_key", kind: "message", T: FormatConfig_Style },
+    { no: 15, name: "attribute_val", kind: "message", T: FormatConfig_Style },
+    { no: 16, name: "status_message", kind: "message", T: FormatConfig_Style },
+    { no: 17, name: "status_code", kind: "message", T: FormatConfig_Style },
+    { no: 18, name: "event_time", kind: "message", T: FormatConfig_Style },
+    { no: 19, name: "event_name", kind: "message", T: FormatConfig_Style },
+    { no: 20, name: "event_key", kind: "message", T: FormatConfig_Style },
+    { no: 21, name: "event_val", kind: "message", T: FormatConfig_Style },
+    { no: 22, name: "link_trace_id", kind: "message", T: FormatConfig_Style },
+    { no: 23, name: "link_span_id", kind: "message", T: FormatConfig_Style },
+    { no: 24, name: "link_trace_state", kind: "message", T: FormatConfig_Style },
+    { no: 25, name: "link_key", kind: "message", T: FormatConfig_Style },
+    { no: 26, name: "link_val", kind: "message", T: FormatConfig_Style },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_SpanTheme {
+    return new FormatConfig_SpanTheme().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FormatConfig_SpanTheme {
+    return new FormatConfig_SpanTheme().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FormatConfig_SpanTheme {
+    return new FormatConfig_SpanTheme().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FormatConfig_SpanTheme | PlainMessage<FormatConfig_SpanTheme> | undefined, b: FormatConfig_SpanTheme | PlainMessage<FormatConfig_SpanTheme> | undefined): boolean {
+    return proto3.util.equals(FormatConfig_SpanTheme, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.FormatConfig.TableTheme
+ */
+export class FormatConfig_TableTheme extends Message<FormatConfig_TableTheme> {
+  /**
+   * @generated from field: types.v1.FormatConfig.Style column_name = 1;
+   */
+  columnName?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style column_type = 2;
+   */
+  columnType?: FormatConfig_Style;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.Style value = 3;
+   */
+  value?: FormatConfig_Style;
+
+  constructor(data?: PartialMessage<FormatConfig_TableTheme>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.FormatConfig.TableTheme";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "column_name", kind: "message", T: FormatConfig_Style },
+    { no: 2, name: "column_type", kind: "message", T: FormatConfig_Style },
+    { no: 3, name: "value", kind: "message", T: FormatConfig_Style },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_TableTheme {
+    return new FormatConfig_TableTheme().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): FormatConfig_TableTheme {
+    return new FormatConfig_TableTheme().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): FormatConfig_TableTheme {
+    return new FormatConfig_TableTheme().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: FormatConfig_TableTheme | PlainMessage<FormatConfig_TableTheme> | undefined, b: FormatConfig_TableTheme | PlainMessage<FormatConfig_TableTheme> | undefined): boolean {
+    return proto3.util.equals(FormatConfig_TableTheme, a, b);
+  }
+}
+
+/**
  * @generated from message types.v1.FormatConfig.Theme
  */
 export class FormatConfig_Theme extends Message<FormatConfig_Theme> {
@@ -392,6 +703,21 @@ export class FormatConfig_Theme extends Message<FormatConfig_Theme> {
    */
   absentTime?: FormatConfig_Style;
 
+  /**
+   * @generated from field: types.v1.FormatConfig.LogTheme logs = 100;
+   */
+  logs?: FormatConfig_LogTheme;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.SpanTheme spans = 101;
+   */
+  spans?: FormatConfig_SpanTheme;
+
+  /**
+   * @generated from field: types.v1.FormatConfig.TableTheme tables = 102;
+   */
+  tables?: FormatConfig_TableTheme;
+
   constructor(data?: PartialMessage<FormatConfig_Theme>) {
     super();
     proto3.util.initPartial(data, this);
@@ -407,6 +733,9 @@ export class FormatConfig_Theme extends Message<FormatConfig_Theme> {
     { no: 5, name: "levels", kind: "message", T: FormatConfig_LevelStyle },
     { no: 6, name: "absent_msg", kind: "message", T: FormatConfig_Style },
     { no: 7, name: "absent_time", kind: "message", T: FormatConfig_Style },
+    { no: 100, name: "logs", kind: "message", T: FormatConfig_LogTheme },
+    { no: 101, name: "spans", kind: "message", T: FormatConfig_SpanTheme },
+    { no: 102, name: "tables", kind: "message", T: FormatConfig_TableTheme },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_Theme {

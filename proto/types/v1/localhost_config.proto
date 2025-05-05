@@ -34,6 +34,49 @@ message FormatConfig {
     Style fatal = 600;
     Style unknown = 700;
   }
+  message LogTheme {
+    Style key = 1;
+    Style value = 2;
+    Style time = 3;
+    Style msg = 4;
+    LevelStyle levels = 5;
+    // how to style messages that are missing
+    Style absent_msg = 6;
+    Style absent_time = 7;
+  }
+  message SpanTheme {
+    Style trace_id = 1;
+    Style span_id = 2;
+    Style trace_state = 3;
+    Style parent_span_id = 4;
+    Style name = 5;
+    Style kind = 6;
+    Style service_name = 7;
+    Style scope_name = 8;
+    Style scope_version = 9;
+    Style time = 10;
+    Style duration = 11;
+    Style resource_key = 12;
+    Style resource_val = 13;
+    Style attribute_key = 14;
+    Style attribute_val = 15;
+    Style status_message = 16;
+    Style status_code = 17;
+    Style event_time = 18;
+    Style event_name = 19;
+    Style event_key = 20;
+    Style event_val = 21;
+    Style link_trace_id = 22;
+    Style link_span_id = 23;
+    Style link_trace_state = 24;
+    Style link_key = 25;
+    Style link_val = 26;
+  }
+  message TableTheme {
+    Style column_name = 1;
+    Style column_type = 2;
+    Style value = 3;
+  }
   message Theme {
     Style key = 1;
     Style value = 2;
@@ -43,6 +86,9 @@ message FormatConfig {
     // how to style messages that are missing
     Style absent_msg = 6;
     Style absent_time = 7;
+    LogTheme logs = 100;
+    SpanTheme spans = 101;
+    TableTheme tables = 102;
   }
 
   message Themes {
