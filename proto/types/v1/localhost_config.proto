@@ -71,6 +71,9 @@ message FormatConfig {
     Style link_trace_state = 24;
     Style link_key = 25;
     Style link_val = 26;
+
+    // how to style messages that are missing
+    Style absent_parent_span_id = 401;
   }
   message TableTheme {
     Style column_name = 1;

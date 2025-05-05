@@ -560,6 +560,13 @@ export class FormatConfig_SpanTheme extends Message<FormatConfig_SpanTheme> {
    */
   linkVal?: FormatConfig_Style;
 
+  /**
+   * how to style messages that are missing
+   *
+   * @generated from field: types.v1.FormatConfig.Style absent_parent_span_id = 401;
+   */
+  absentParentSpanId?: FormatConfig_Style;
+
   constructor(data?: PartialMessage<FormatConfig_SpanTheme>) {
     super();
     proto3.util.initPartial(data, this);
@@ -594,6 +601,7 @@ export class FormatConfig_SpanTheme extends Message<FormatConfig_SpanTheme> {
     { no: 24, name: "link_trace_state", kind: "message", T: FormatConfig_Style },
     { no: 25, name: "link_key", kind: "message", T: FormatConfig_Style },
     { no: 26, name: "link_val", kind: "message", T: FormatConfig_Style },
+    { no: 401, name: "absent_parent_span_id", kind: "message", T: FormatConfig_Style },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): FormatConfig_SpanTheme {
