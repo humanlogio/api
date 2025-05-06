@@ -44,6 +44,11 @@ export enum ScalarType {
    * @generated from enum value: dur = 6;
    */
   dur = 6,
+
+  /**
+   * @generated from enum value: blob = 8;
+   */
+  blob = 8,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ScalarType)
 proto3.util.setEnumType(ScalarType, "types.v1.ScalarType", [
@@ -54,6 +59,7 @@ proto3.util.setEnumType(ScalarType, "types.v1.ScalarType", [
   { no: 4, name: "bool" },
   { no: 5, name: "ts" },
   { no: 6, name: "dur" },
+  { no: 8, name: "blob" },
 ]);
 
 /**
@@ -368,6 +374,12 @@ export class Val extends Message<Val> {
     case: "dur";
   } | {
     /**
+     * @generated from field: bytes blob = 211;
+     */
+    value: Uint8Array;
+    case: "blob";
+  } | {
+    /**
      * @generated from field: types.v1.Arr arr = 207;
      */
     value: Arr;
@@ -407,6 +419,7 @@ export class Val extends Message<Val> {
     { no: 204, name: "bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
     { no: 205, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
     { no: 206, name: "dur", kind: "message", T: Duration, oneof: "kind" },
+    { no: 211, name: "blob", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "kind" },
     { no: 207, name: "arr", kind: "message", T: Arr, oneof: "kind" },
     { no: 208, name: "obj", kind: "message", T: Obj, oneof: "kind" },
     { no: 209, name: "map", kind: "message", T: Map, oneof: "kind" },

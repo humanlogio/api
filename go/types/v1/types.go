@@ -1,6 +1,7 @@
 package typesv1
 
 import (
+	"bytes"
 	"time"
 
 	"google.golang.org/protobuf/proto"
@@ -32,6 +33,8 @@ func EqualVal(a, b *Val) bool {
 		return ak.Ts.AsTime().Equal(b.GetTs().AsTime())
 	case *Val_Dur:
 		return ak.Dur == b.GetDur()
+	case *Val_Blob:
+		return bytes.Equal(ak.Blob, b.GetBlob())
 	case *Val_Arr:
 		if len(ak.Arr.Items) != len(b.GetArr().Items) {
 			return false
@@ -109,6 +112,10 @@ func TypeDuration() *VarType {
 	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_dur}}
 }
 
+func TypeBlob() *VarType {
+	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_blob}}
+}
+
 func TypeArr(v ...*VarType) *VarType {
 	atyp := &VarType_ArrayType{Items: &VarType{Type: &VarType_Scalar{Scalar: ScalarType_unknown}}}
 	for i, item := range v {
@@ -181,6 +188,11 @@ func ValDuration(v time.Duration) *Val {
 func ValDurationPB(v *durationpb.Duration) *Val {
 	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_dur}}
 	return &Val{Type: typ, Kind: &Val_Dur{Dur: v}}
+}
+
+func ValBlob(blob []byte) *Val {
+	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_blob}}
+	return &Val{Type: typ, Kind: &Val_Blob{Blob: blob}}
 }
 
 func ValArr(v ...*Val) *Val {

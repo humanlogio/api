@@ -13,6 +13,7 @@ enum ScalarType {
   bool = 4;
   ts = 5;
   dur = 6;
+  blob = 8;
 }
 
 message VarType {
@@ -50,6 +51,7 @@ message Val {
     bool bool = 204;
     google.protobuf.Timestamp ts = 205;
     google.protobuf.Duration dur = 206;
+    bytes blob = 211;
     Arr arr = 207;
     Obj obj = 208;
     Map map = 209;
