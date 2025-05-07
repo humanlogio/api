@@ -9,7 +9,7 @@ import "types/v1/types.proto";
 option go_package = "types/v1;typesv1";
 
 message Trace {
-  bytes trace_id = 1;
+  string trace_id = 1;
   repeated Span spans = 2;
 }
 
@@ -28,8 +28,8 @@ message Span {
     repeated KV kvs = 3;
   }
   message Link {
-    bytes trace_id = 1;
-    bytes span_id = 2;
+    string trace_id = 1;
+    string span_id = 2;
     string trace_state = 3;
     repeated KV kvs = 4;
     uint32 flags = 5;
@@ -51,10 +51,10 @@ message Span {
     google.protobuf.Timestamp start = 1;
     google.protobuf.Duration duration = 2;
   }
-  bytes trace_id = 1;
-  bytes span_id = 2;
+  string trace_id = 1;
+  string span_id = 2;
   string trace_state = 3;
-  bytes parent_span_id = 4;
+  string parent_span_id = 4;
   uint32 flags = 5;
   string name = 6;
   SpanKind kind = 7;
