@@ -137,9 +137,14 @@ message ParseConfig {
   message Level {
     repeated string field_names = 1;
   }
+  message KV {
+    bool detect_timestamp = 1;
+    bool detect_duration = 2;
+  }
   Time timestamp = 1;
   Message message = 2;
   Level level = 3;
+  KV kv = 4;
 }
 
 message ServeLocalhostConfig {
