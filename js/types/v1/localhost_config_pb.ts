@@ -948,6 +948,11 @@ export class ParseConfig extends Message<ParseConfig> {
    */
   level?: ParseConfig_Level;
 
+  /**
+   * @generated from field: types.v1.ParseConfig.KV kv = 4;
+   */
+  kv?: ParseConfig_KV;
+
   constructor(data?: PartialMessage<ParseConfig>) {
     super();
     proto3.util.initPartial(data, this);
@@ -959,6 +964,7 @@ export class ParseConfig extends Message<ParseConfig> {
     { no: 1, name: "timestamp", kind: "message", T: ParseConfig_Time },
     { no: 2, name: "message", kind: "message", T: ParseConfig_Message },
     { no: 3, name: "level", kind: "message", T: ParseConfig_Level },
+    { no: 4, name: "kv", kind: "message", T: ParseConfig_KV },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseConfig {
@@ -1086,6 +1092,49 @@ export class ParseConfig_Level extends Message<ParseConfig_Level> {
 
   static equals(a: ParseConfig_Level | PlainMessage<ParseConfig_Level> | undefined, b: ParseConfig_Level | PlainMessage<ParseConfig_Level> | undefined): boolean {
     return proto3.util.equals(ParseConfig_Level, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ParseConfig.KV
+ */
+export class ParseConfig_KV extends Message<ParseConfig_KV> {
+  /**
+   * @generated from field: bool detect_timestamp = 1;
+   */
+  detectTimestamp = false;
+
+  /**
+   * @generated from field: bool detect_duration = 2;
+   */
+  detectDuration = false;
+
+  constructor(data?: PartialMessage<ParseConfig_KV>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ParseConfig.KV";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "detect_timestamp", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 2, name: "detect_duration", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseConfig_KV {
+    return new ParseConfig_KV().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ParseConfig_KV {
+    return new ParseConfig_KV().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ParseConfig_KV {
+    return new ParseConfig_KV().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ParseConfig_KV | PlainMessage<ParseConfig_KV> | undefined, b: ParseConfig_KV | PlainMessage<ParseConfig_KV> | undefined): boolean {
+    return proto3.util.equals(ParseConfig_KV, a, b);
   }
 }
 
