@@ -25,9 +25,11 @@ const (
 type FormatConfig_ColorMode int32
 
 const (
-	FormatConfig_COLORMODE_AUTO     FormatConfig_ColorMode = 0
-	FormatConfig_COLORMODE_ENABLED  FormatConfig_ColorMode = 1
-	FormatConfig_COLORMODE_DISABLED FormatConfig_ColorMode = 2
+	FormatConfig_COLORMODE_AUTO        FormatConfig_ColorMode = 0
+	FormatConfig_COLORMODE_ENABLED     FormatConfig_ColorMode = 1
+	FormatConfig_COLORMODE_DISABLED    FormatConfig_ColorMode = 2
+	FormatConfig_COLORMODE_FORCE_DARK  FormatConfig_ColorMode = 3
+	FormatConfig_COLORMODE_FORCE_LIGHT FormatConfig_ColorMode = 4
 )
 
 // Enum value maps for FormatConfig_ColorMode.
@@ -36,11 +38,15 @@ var (
 		0: "COLORMODE_AUTO",
 		1: "COLORMODE_ENABLED",
 		2: "COLORMODE_DISABLED",
+		3: "COLORMODE_FORCE_DARK",
+		4: "COLORMODE_FORCE_LIGHT",
 	}
 	FormatConfig_ColorMode_value = map[string]int32{
-		"COLORMODE_AUTO":     0,
-		"COLORMODE_ENABLED":  1,
-		"COLORMODE_DISABLED": 2,
+		"COLORMODE_AUTO":        0,
+		"COLORMODE_ENABLED":     1,
+		"COLORMODE_DISABLED":    2,
+		"COLORMODE_FORCE_DARK":  3,
+		"COLORMODE_FORCE_LIGHT": 4,
 	}
 )
 
@@ -1970,7 +1976,7 @@ var File_types_v1_localhost_config_proto protoreflect.FileDescriptor
 
 const file_types_v1_localhost_config_proto_rawDesc = "" +
 	"\n" +
-	"\x1ftypes/v1/localhost_config.proto\x12\btypes.v1\x1a\x1cgoogle/protobuf/struct.proto\"\x82&\n" +
+	"\x1ftypes/v1/localhost_config.proto\x12\btypes.v1\x1a\x1cgoogle/protobuf/struct.proto\"\xb8&\n" +
 	"\fFormatConfig\x125\n" +
 	"\x06themes\x18\x01 \x01(\v2\x1d.types.v1.FormatConfig.ThemesR\x06themes\x12\x1f\n" +
 	"\vskip_fields\x18\x02 \x03(\tR\n" +
@@ -2100,11 +2106,13 @@ const file_types_v1_localhost_config_proto_rawDesc = "" +
 	"\x15_absent_default_value\x1aY\n" +
 	"\aMessage\x125\n" +
 	"\x14absent_default_value\x18\x01 \x01(\tH\x00R\x12absentDefaultValue\x88\x01\x01B\x17\n" +
-	"\x15_absent_default_value\"N\n" +
+	"\x15_absent_default_value\"\x83\x01\n" +
 	"\tColorMode\x12\x12\n" +
 	"\x0eCOLORMODE_AUTO\x10\x00\x12\x15\n" +
 	"\x11COLORMODE_ENABLED\x10\x01\x12\x16\n" +
-	"\x12COLORMODE_DISABLED\x10\x02B\x0f\n" +
+	"\x12COLORMODE_DISABLED\x10\x02\x12\x18\n" +
+	"\x14COLORMODE_FORCE_DARK\x10\x03\x12\x19\n" +
+	"\x15COLORMODE_FORCE_LIGHT\x10\x04B\x0f\n" +
 	"\r_sort_longestB\x11\n" +
 	"\x0f_skip_unchangedB\r\n" +
 	"\v_truncationB\a\n" +

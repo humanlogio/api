@@ -114,6 +114,8 @@ message FormatConfig {
     COLORMODE_AUTO = 0;
     COLORMODE_ENABLED = 1;
     COLORMODE_DISABLED = 2;
+    COLORMODE_FORCE_DARK = 3;
+    COLORMODE_FORCE_LIGHT = 4;
   }
 
   Themes themes = 1;
