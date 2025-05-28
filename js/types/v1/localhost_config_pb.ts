@@ -109,12 +109,24 @@ export enum FormatConfig_ColorMode {
    * @generated from enum value: COLORMODE_DISABLED = 2;
    */
   COLORMODE_DISABLED = 2,
+
+  /**
+   * @generated from enum value: COLORMODE_FORCE_DARK = 3;
+   */
+  COLORMODE_FORCE_DARK = 3,
+
+  /**
+   * @generated from enum value: COLORMODE_FORCE_LIGHT = 4;
+   */
+  COLORMODE_FORCE_LIGHT = 4,
 }
 // Retrieve enum metadata with: proto3.getEnumType(FormatConfig_ColorMode)
 proto3.util.setEnumType(FormatConfig_ColorMode, "types.v1.FormatConfig.ColorMode", [
   { no: 0, name: "COLORMODE_AUTO" },
   { no: 1, name: "COLORMODE_ENABLED" },
   { no: 2, name: "COLORMODE_DISABLED" },
+  { no: 3, name: "COLORMODE_FORCE_DARK" },
+  { no: 4, name: "COLORMODE_FORCE_LIGHT" },
 ]);
 
 /**
