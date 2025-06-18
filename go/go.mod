@@ -7,6 +7,7 @@ toolchain go1.23.2
 require (
 	connectrpc.com/connect v1.16.2
 	github.com/blang/semver v3.5.1+incompatible
+	github.com/oklog/ulid/v2 v2.1.0
 	github.com/stretchr/testify v1.9.0
 	google.golang.org/protobuf v1.35.2
 )

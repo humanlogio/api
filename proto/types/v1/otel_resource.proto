@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "types/v1/types.proto";
+
+option go_package = "types/v1;typesv1";
+
+message Resource {
+  uint64 resource_hash_64 = 1;
+  repeated KV attributes = 2;
+}

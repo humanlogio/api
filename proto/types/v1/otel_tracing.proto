@@ -51,6 +51,8 @@ message Span {
     google.protobuf.Timestamp start = 1;
     google.protobuf.Duration duration = 2;
   }
+  string ulid = 100;
+  uint64 resource_hash_64 = 101;
   string trace_id = 1;
   string span_id = 2;
   string trace_state = 3;
