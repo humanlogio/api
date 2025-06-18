@@ -4,6 +4,8 @@ package types.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
+import "types/v1/otel_resource.proto";
+import "types/v1/otel_scope.proto";
 import "types/v1/types.proto";
 
 option go_package = "types/v1;typesv1";
@@ -43,16 +45,8 @@ message Span {
     string message = 1;
     Code code = 2;
   }
-  message Scope {
-    string name = 1;
-    string version = 2;
-  }
-  message Timing {
-    google.protobuf.Timestamp start = 1;
-    google.protobuf.Duration duration = 2;
-  }
   string ulid = 100;
-  uint64 resource_hash_64 = 101;
+  google.protobuf.Timestamp indextime = 101;
   string trace_id = 1;
   string span_id = 2;
   string trace_state = 3;
@@ -61,11 +55,12 @@ message Span {
   string name = 6;
   SpanKind kind = 7;
   string service_name = 8;
-  Scope scope = 9;
-  Timing timing = 10;
-  repeated KV resource_attributes = 11;
-  repeated KV span_attributes = 12;
-  repeated Event events = 13;
-  repeated Link links = 14;
-  Status status = 15;
+  google.protobuf.Timestamp time = 9;
+  google.protobuf.Duration duration = 10;
+  Resource resource = 11;
+  Scope scope = 12;
+  repeated KV attributes = 13;
+  repeated Event events = 14;
+  repeated Link links = 15;
+  Status status = 16;
 }

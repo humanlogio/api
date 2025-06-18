@@ -33,25 +33,17 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// IngestServiceGetHeartbeatProcedure is the fully-qualified name of the IngestService's
-	// GetHeartbeat RPC.
-	IngestServiceGetHeartbeatProcedure = "/svc.ingest.v1.IngestService/GetHeartbeat"
 	// IngestServiceIngestProcedure is the fully-qualified name of the IngestService's Ingest RPC.
 	IngestServiceIngestProcedure = "/svc.ingest.v1.IngestService/Ingest"
 	// IngestServiceIngestStreamProcedure is the fully-qualified name of the IngestService's
 	// IngestStream RPC.
 	IngestServiceIngestStreamProcedure = "/svc.ingest.v1.IngestService/IngestStream"
-	// IngestServiceIngestBidiStreamProcedure is the fully-qualified name of the IngestService's
-	// IngestBidiStream RPC.
-	IngestServiceIngestBidiStreamProcedure = "/svc.ingest.v1.IngestService/IngestBidiStream"
 )
 
 // IngestServiceClient is a client for the svc.ingest.v1.IngestService service.
 type IngestServiceClient interface {
-	GetHeartbeat(context.Context, *connect.Request[v1.GetHeartbeatRequest]) (*connect.Response[v1.GetHeartbeatResponse], error)
 	Ingest(context.Context, *connect.Request[v1.IngestRequest]) (*connect.Response[v1.IngestResponse], error)
 	IngestStream(context.Context) *connect.ClientStreamForClient[v1.IngestStreamRequest, v1.IngestStreamResponse]
-	IngestBidiStream(context.Context) *connect.BidiStreamForClient[v1.IngestBidiStreamRequest, v1.IngestBidiStreamResponse]
 }
 
 // NewIngestServiceClient constructs a client for the svc.ingest.v1.IngestService service. By
@@ -65,12 +57,6 @@ func NewIngestServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 	baseURL = strings.TrimRight(baseURL, "/")
 	ingestServiceMethods := v1.File_svc_ingest_v1_service_proto.Services().ByName("IngestService").Methods()
 	return &ingestServiceClient{
-		getHeartbeat: connect.NewClient[v1.GetHeartbeatRequest, v1.GetHeartbeatResponse](
-			httpClient,
-			baseURL+IngestServiceGetHeartbeatProcedure,
-			connect.WithSchema(ingestServiceMethods.ByName("GetHeartbeat")),
-			connect.WithClientOptions(opts...),
-		),
 		ingest: connect.NewClient[v1.IngestRequest, v1.IngestResponse](
 			httpClient,
 			baseURL+IngestServiceIngestProcedure,
@@ -83,26 +69,13 @@ func NewIngestServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(ingestServiceMethods.ByName("IngestStream")),
 			connect.WithClientOptions(opts...),
 		),
-		ingestBidiStream: connect.NewClient[v1.IngestBidiStreamRequest, v1.IngestBidiStreamResponse](
-			httpClient,
-			baseURL+IngestServiceIngestBidiStreamProcedure,
-			connect.WithSchema(ingestServiceMethods.ByName("IngestBidiStream")),
-			connect.WithClientOptions(opts...),
-		),
 	}
 }
 
 // ingestServiceClient implements IngestServiceClient.
 type ingestServiceClient struct {
-	getHeartbeat     *connect.Client[v1.GetHeartbeatRequest, v1.GetHeartbeatResponse]
-	ingest           *connect.Client[v1.IngestRequest, v1.IngestResponse]
-	ingestStream     *connect.Client[v1.IngestStreamRequest, v1.IngestStreamResponse]
-	ingestBidiStream *connect.Client[v1.IngestBidiStreamRequest, v1.IngestBidiStreamResponse]
-}
-
-// GetHeartbeat calls svc.ingest.v1.IngestService.GetHeartbeat.
-func (c *ingestServiceClient) GetHeartbeat(ctx context.Context, req *connect.Request[v1.GetHeartbeatRequest]) (*connect.Response[v1.GetHeartbeatResponse], error) {
-	return c.getHeartbeat.CallUnary(ctx, req)
+	ingest       *connect.Client[v1.IngestRequest, v1.IngestResponse]
+	ingestStream *connect.Client[v1.IngestStreamRequest, v1.IngestStreamResponse]
 }
 
 // Ingest calls svc.ingest.v1.IngestService.Ingest.
@@ -115,17 +88,10 @@ func (c *ingestServiceClient) IngestStream(ctx context.Context) *connect.ClientS
 	return c.ingestStream.CallClientStream(ctx)
 }
 
-// IngestBidiStream calls svc.ingest.v1.IngestService.IngestBidiStream.
-func (c *ingestServiceClient) IngestBidiStream(ctx context.Context) *connect.BidiStreamForClient[v1.IngestBidiStreamRequest, v1.IngestBidiStreamResponse] {
-	return c.ingestBidiStream.CallBidiStream(ctx)
-}
-
 // IngestServiceHandler is an implementation of the svc.ingest.v1.IngestService service.
 type IngestServiceHandler interface {
-	GetHeartbeat(context.Context, *connect.Request[v1.GetHeartbeatRequest]) (*connect.Response[v1.GetHeartbeatResponse], error)
 	Ingest(context.Context, *connect.Request[v1.IngestRequest]) (*connect.Response[v1.IngestResponse], error)
 	IngestStream(context.Context, *connect.ClientStream[v1.IngestStreamRequest]) (*connect.Response[v1.IngestStreamResponse], error)
-	IngestBidiStream(context.Context, *connect.BidiStream[v1.IngestBidiStreamRequest, v1.IngestBidiStreamResponse]) error
 }
 
 // NewIngestServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -135,12 +101,6 @@ type IngestServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewIngestServiceHandler(svc IngestServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	ingestServiceMethods := v1.File_svc_ingest_v1_service_proto.Services().ByName("IngestService").Methods()
-	ingestServiceGetHeartbeatHandler := connect.NewUnaryHandler(
-		IngestServiceGetHeartbeatProcedure,
-		svc.GetHeartbeat,
-		connect.WithSchema(ingestServiceMethods.ByName("GetHeartbeat")),
-		connect.WithHandlerOptions(opts...),
-	)
 	ingestServiceIngestHandler := connect.NewUnaryHandler(
 		IngestServiceIngestProcedure,
 		svc.Ingest,
@@ -153,22 +113,12 @@ func NewIngestServiceHandler(svc IngestServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(ingestServiceMethods.ByName("IngestStream")),
 		connect.WithHandlerOptions(opts...),
 	)
-	ingestServiceIngestBidiStreamHandler := connect.NewBidiStreamHandler(
-		IngestServiceIngestBidiStreamProcedure,
-		svc.IngestBidiStream,
-		connect.WithSchema(ingestServiceMethods.ByName("IngestBidiStream")),
-		connect.WithHandlerOptions(opts...),
-	)
 	return "/svc.ingest.v1.IngestService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case IngestServiceGetHeartbeatProcedure:
-			ingestServiceGetHeartbeatHandler.ServeHTTP(w, r)
 		case IngestServiceIngestProcedure:
 			ingestServiceIngestHandler.ServeHTTP(w, r)
 		case IngestServiceIngestStreamProcedure:
 			ingestServiceIngestStreamHandler.ServeHTTP(w, r)
-		case IngestServiceIngestBidiStreamProcedure:
-			ingestServiceIngestBidiStreamHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -178,18 +128,10 @@ func NewIngestServiceHandler(svc IngestServiceHandler, opts ...connect.HandlerOp
 // UnimplementedIngestServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedIngestServiceHandler struct{}
 
-func (UnimplementedIngestServiceHandler) GetHeartbeat(context.Context, *connect.Request[v1.GetHeartbeatRequest]) (*connect.Response[v1.GetHeartbeatResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.ingest.v1.IngestService.GetHeartbeat is not implemented"))
-}
-
 func (UnimplementedIngestServiceHandler) Ingest(context.Context, *connect.Request[v1.IngestRequest]) (*connect.Response[v1.IngestResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.ingest.v1.IngestService.Ingest is not implemented"))
 }
 
 func (UnimplementedIngestServiceHandler) IngestStream(context.Context, *connect.ClientStream[v1.IngestStreamRequest]) (*connect.Response[v1.IngestStreamResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.ingest.v1.IngestService.IngestStream is not implemented"))
-}
-
-func (UnimplementedIngestServiceHandler) IngestBidiStream(context.Context, *connect.BidiStream[v1.IngestBidiStreamRequest, v1.IngestBidiStreamResponse]) error {
-	return connect.NewError(connect.CodeUnimplemented, errors.New("svc.ingest.v1.IngestService.IngestBidiStream is not implemented"))
 }

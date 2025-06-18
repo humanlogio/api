@@ -8,5 +8,6 @@ option go_package = "types/v1;typesv1";
 
 message Resource {
   uint64 resource_hash_64 = 1;
-  repeated KV attributes = 2;
+  string schema_url = 2;
+  repeated KV attributes = 3;
 }

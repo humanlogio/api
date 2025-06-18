@@ -19,14 +19,19 @@ export class Log extends Message<Log> {
   ulid = "";
 
   /**
-   * @generated from field: google.protobuf.Timestamp timestamp = 1;
-   */
-  timestamp?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp observed_timestamp = 2;
+   * @generated from field: google.protobuf.Timestamp observed_timestamp = 101;
    */
   observedTimestamp?: Timestamp;
+
+  /**
+   * @generated from field: bytes raw = 102;
+   */
+  raw = new Uint8Array(0);
+
+  /**
+   * @generated from field: google.protobuf.Timestamp timestamp = 2;
+   */
+  timestamp?: Timestamp;
 
   /**
    * @generated from field: optional string trace_id = 3;
@@ -49,9 +54,9 @@ export class Log extends Message<Log> {
   severityText = "";
 
   /**
-   * @generated from field: string severity_number = 7;
+   * @generated from field: uint32 severity_number = 7;
    */
-  severityNumber = "";
+  severityNumber = 0;
 
   /**
    * @generated from field: string service_name = 8;
@@ -87,13 +92,14 @@ export class Log extends Message<Log> {
   static readonly typeName = "types.v1.Log";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 100, name: "ulid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 1, name: "timestamp", kind: "message", T: Timestamp },
-    { no: 2, name: "observed_timestamp", kind: "message", T: Timestamp },
+    { no: 101, name: "observed_timestamp", kind: "message", T: Timestamp },
+    { no: 102, name: "raw", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
+    { no: 2, name: "timestamp", kind: "message", T: Timestamp },
     { no: 3, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 4, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 5, name: "trace_flags", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 6, name: "severity_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 7, name: "severity_number", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 7, name: "severity_number", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 8, name: "service_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 9, name: "body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 10, name: "resource", kind: "message", T: Resource },

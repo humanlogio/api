@@ -17,7 +17,12 @@ export class Resource extends Message<Resource> {
   resourceHash64 = protoInt64.zero;
 
   /**
-   * @generated from field: repeated types.v1.KV attributes = 2;
+   * @generated from field: string schema_url = 2;
+   */
+  schemaUrl = "";
+
+  /**
+   * @generated from field: repeated types.v1.KV attributes = 3;
    */
   attributes: KV[] = [];
 
@@ -30,7 +35,8 @@ export class Resource extends Message<Resource> {
   static readonly typeName = "types.v1.Resource";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "resource_hash_64", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "attributes", kind: "message", T: KV, repeated: true },
+    { no: 2, name: "schema_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "attributes", kind: "message", T: KV, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Resource {

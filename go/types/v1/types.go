@@ -2,12 +2,110 @@ package typesv1
 
 import (
 	"bytes"
+	"fmt"
 	"time"
 
+	"go.opentelemetry.io/otel/attribute"
+	otlpv1 "go.opentelemetry.io/proto/otlp/common/v1"
 	"google.golang.org/protobuf/proto"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
+
+func FromOTLPKVs(attrs []*otlpv1.KeyValue) []*KV {
+	out := make([]*KV, 0, len(attrs))
+	for _, el := range attrs {
+		out = append(out, FromOTLPKV(el))
+	}
+	return out
+}
+
+func FromOTLPKV(attr *otlpv1.KeyValue) *KV {
+	return KeyVal(attr.Key, FromOTLPVal(attr.Value))
+}
+
+func FromOTLPVal(v *otlpv1.AnyValue) *Val {
+	switch tt := v.Value.(type) {
+	case *otlpv1.AnyValue_BoolValue:
+		return ValBool(tt.BoolValue)
+	case *otlpv1.AnyValue_IntValue:
+		return ValI64(tt.IntValue)
+	case *otlpv1.AnyValue_DoubleValue:
+		return ValF64(tt.DoubleValue)
+	case *otlpv1.AnyValue_StringValue:
+		return ValStr(tt.StringValue)
+	case *otlpv1.AnyValue_BytesValue:
+		return ValBlob(tt.BytesValue)
+
+	case *otlpv1.AnyValue_ArrayValue:
+		arr := tt.ArrayValue.Values
+		out := make([]*Val, 0, len(arr))
+		for _, el := range arr {
+			out = append(out, FromOTLPVal(el))
+		}
+		return ValArr(out...)
+	case *otlpv1.AnyValue_KvlistValue:
+		kvs := tt.KvlistValue.Values
+		out := make([]*KV, 0, len(kvs))
+		for _, kv := range kvs {
+			out = append(out, KeyVal(kv.Key, FromOTLPVal(kv.Value)))
+		}
+		return ValObj(out...)
+	default:
+		panic(fmt.Sprintf("missing case: %#v (%T)", tt, tt))
+	}
+}
+
+func FromOTELAttributes(attrs []attribute.KeyValue) []*KV {
+	out := make([]*KV, 0, len(attrs))
+	for _, el := range attrs {
+		out = append(out, FromOTELAttribute(el))
+	}
+	return out
+}
+
+func FromOTELAttribute(attr attribute.KeyValue) *KV {
+	switch tt := attr.Value.Type(); tt {
+	case attribute.BOOL:
+		return KeyVal(string(attr.Key), ValBool(attr.Value.AsBool()))
+	case attribute.INT64:
+		return KeyVal(string(attr.Key), ValI64(attr.Value.AsInt64()))
+	case attribute.FLOAT64:
+		return KeyVal(string(attr.Key), ValF64(attr.Value.AsFloat64()))
+	case attribute.STRING:
+		return KeyVal(string(attr.Key), ValStr(attr.Value.AsString()))
+	case attribute.BOOLSLICE:
+		in := attr.Value.AsBoolSlice()
+		out := make([]*Val, 0, len(in))
+		for _, el := range in {
+			out = append(out, ValBool(el))
+		}
+		return KeyVal(string(attr.Key), ValArr(out...))
+	case attribute.INT64SLICE:
+		in := attr.Value.AsInt64Slice()
+		out := make([]*Val, 0, len(in))
+		for _, el := range in {
+			out = append(out, ValI64(el))
+		}
+		return KeyVal(string(attr.Key), ValArr(out...))
+	case attribute.FLOAT64SLICE:
+		in := attr.Value.AsFloat64Slice()
+		out := make([]*Val, 0, len(in))
+		for _, el := range in {
+			out = append(out, ValF64(el))
+		}
+		return KeyVal(string(attr.Key), ValArr(out...))
+	case attribute.STRINGSLICE:
+		in := attr.Value.AsStringSlice()
+		out := make([]*Val, 0, len(in))
+		for _, el := range in {
+			out = append(out, ValStr(el))
+		}
+		return KeyVal(string(attr.Key), ValArr(out...))
+	default:
+		panic(fmt.Sprintf("missing otel attribute type: %#v (%T)", tt, tt))
+	}
+}
 
 func KeyVal(k string, v *Val) *KV {
 	return &KV{Key: k, Value: v}

@@ -11,13 +11,14 @@ option go_package = "types/v1;typesv1";
 
 message Log {
   string ulid = 100;
-  google.protobuf.Timestamp timestamp = 1;
-  google.protobuf.Timestamp observed_timestamp = 2;
+  google.protobuf.Timestamp observed_timestamp = 101;
+  bytes raw = 102;
+  google.protobuf.Timestamp timestamp = 2;
   optional string trace_id = 3;
   optional string span_id = 4;
   uint32 trace_flags = 5;
   string severity_text = 6;
-  string severity_number = 7;
+  uint32 severity_number = 7;
   string service_name = 8;
   string body = 9;
   Resource resource = 10;

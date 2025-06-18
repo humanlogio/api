@@ -1022,9 +1022,9 @@ type DataStreamType struct {
 	// Types that are valid to be assigned to Type:
 	//
 	//	*DataStreamType_Multi
-	//	*DataStreamType_Tabular
-	//	*DataStreamType_SingleValue
-	//	*DataStreamType_Timeseries
+	//	*DataStreamType_Table
+	//	*DataStreamType_Logs
+	//	*DataStreamType_Spans
 	Type          isDataStreamType_Type `protobuf_oneof:"type"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1067,7 +1067,7 @@ func (x *DataStreamType) GetType() isDataStreamType_Type {
 	return nil
 }
 
-func (x *DataStreamType) GetMulti() *MultiDataStreamType {
+func (x *DataStreamType) GetMulti() *DataStreamType_MultiDataStreamType {
 	if x != nil {
 		if x, ok := x.Type.(*DataStreamType_Multi); ok {
 			return x.Multi
@@ -1076,28 +1076,28 @@ func (x *DataStreamType) GetMulti() *MultiDataStreamType {
 	return nil
 }
 
-func (x *DataStreamType) GetTabular() *TabularType {
+func (x *DataStreamType) GetTable() *TableType {
 	if x != nil {
-		if x, ok := x.Type.(*DataStreamType_Tabular); ok {
-			return x.Tabular
+		if x, ok := x.Type.(*DataStreamType_Table); ok {
+			return x.Table
 		}
 	}
 	return nil
 }
 
-func (x *DataStreamType) GetSingleValue() *VarType {
+func (x *DataStreamType) GetLogs() *DataStreamType_LogType {
 	if x != nil {
-		if x, ok := x.Type.(*DataStreamType_SingleValue); ok {
-			return x.SingleValue
+		if x, ok := x.Type.(*DataStreamType_Logs); ok {
+			return x.Logs
 		}
 	}
 	return nil
 }
 
-func (x *DataStreamType) GetTimeseries() *Timeseries {
+func (x *DataStreamType) GetSpans() *DataStreamType_SpanType {
 	if x != nil {
-		if x, ok := x.Type.(*DataStreamType_Timeseries); ok {
-			return x.Timeseries
+		if x, ok := x.Type.(*DataStreamType_Spans); ok {
+			return x.Spans
 		}
 	}
 	return nil
@@ -1108,216 +1108,28 @@ type isDataStreamType_Type interface {
 }
 
 type DataStreamType_Multi struct {
-	Multi *MultiDataStreamType `protobuf:"bytes,1,opt,name=multi,proto3,oneof"`
+	Multi *DataStreamType_MultiDataStreamType `protobuf:"bytes,1,opt,name=multi,proto3,oneof"`
 }
 
-type DataStreamType_Tabular struct {
-	Tabular *TabularType `protobuf:"bytes,2,opt,name=tabular,proto3,oneof"`
+type DataStreamType_Table struct {
+	Table *TableType `protobuf:"bytes,2,opt,name=table,proto3,oneof"`
 }
 
-type DataStreamType_SingleValue struct {
-	SingleValue *VarType `protobuf:"bytes,3,opt,name=single_value,json=singleValue,proto3,oneof"`
+type DataStreamType_Logs struct {
+	Logs *DataStreamType_LogType `protobuf:"bytes,3,opt,name=logs,proto3,oneof"`
 }
 
-type DataStreamType_Timeseries struct {
-	Timeseries *Timeseries `protobuf:"bytes,5,opt,name=timeseries,proto3,oneof"`
+type DataStreamType_Spans struct {
+	Spans *DataStreamType_SpanType `protobuf:"bytes,4,opt,name=spans,proto3,oneof"`
 }
 
 func (*DataStreamType_Multi) isDataStreamType_Type() {}
 
-func (*DataStreamType_Tabular) isDataStreamType_Type() {}
+func (*DataStreamType_Table) isDataStreamType_Type() {}
 
-func (*DataStreamType_SingleValue) isDataStreamType_Type() {}
+func (*DataStreamType_Logs) isDataStreamType_Type() {}
 
-func (*DataStreamType_Timeseries) isDataStreamType_Type() {}
-
-type MultiDataStreamType struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Streams       *DataStreamType        `protobuf:"bytes,1,opt,name=streams,proto3" json:"streams,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MultiDataStreamType) Reset() {
-	*x = MultiDataStreamType{}
-	mi := &file_types_v1_types_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MultiDataStreamType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MultiDataStreamType) ProtoMessage() {}
-
-func (x *MultiDataStreamType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MultiDataStreamType.ProtoReflect.Descriptor instead.
-func (*MultiDataStreamType) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *MultiDataStreamType) GetStreams() *DataStreamType {
-	if x != nil {
-		return x.Streams
-	}
-	return nil
-}
-
-type TabularType struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Type:
-	//
-	//	*TabularType_Table
-	//	*TabularType_LogEvents
-	//	*TabularType_Spans
-	Type          isTabularType_Type `protobuf_oneof:"type"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TabularType) Reset() {
-	*x = TabularType{}
-	mi := &file_types_v1_types_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TabularType) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TabularType) ProtoMessage() {}
-
-func (x *TabularType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TabularType.ProtoReflect.Descriptor instead.
-func (*TabularType) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *TabularType) GetType() isTabularType_Type {
-	if x != nil {
-		return x.Type
-	}
-	return nil
-}
-
-func (x *TabularType) GetTable() *TableType {
-	if x != nil {
-		if x, ok := x.Type.(*TabularType_Table); ok {
-			return x.Table
-		}
-	}
-	return nil
-}
-
-func (x *TabularType) GetLogEvents() *TabularType_LogEventType {
-	if x != nil {
-		if x, ok := x.Type.(*TabularType_LogEvents); ok {
-			return x.LogEvents
-		}
-	}
-	return nil
-}
-
-func (x *TabularType) GetSpans() *TabularType_SpanType {
-	if x != nil {
-		if x, ok := x.Type.(*TabularType_Spans); ok {
-			return x.Spans
-		}
-	}
-	return nil
-}
-
-type isTabularType_Type interface {
-	isTabularType_Type()
-}
-
-type TabularType_Table struct {
-	Table *TableType `protobuf:"bytes,1,opt,name=table,proto3,oneof"`
-}
-
-type TabularType_LogEvents struct {
-	LogEvents *TabularType_LogEventType `protobuf:"bytes,2,opt,name=log_events,json=logEvents,proto3,oneof"`
-}
-
-type TabularType_Spans struct {
-	Spans *TabularType_SpanType `protobuf:"bytes,3,opt,name=spans,proto3,oneof"`
-}
-
-func (*TabularType_Table) isTabularType_Type() {}
-
-func (*TabularType_LogEvents) isTabularType_Type() {}
-
-func (*TabularType_Spans) isTabularType_Type() {}
-
-type Timeseries struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// each row will contain a timestamp along with a value
-	// value of this type
-	Type          *VarType `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Timeseries) Reset() {
-	*x = Timeseries{}
-	mi := &file_types_v1_types_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Timeseries) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Timeseries) ProtoMessage() {}
-
-func (x *Timeseries) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Timeseries.ProtoReflect.Descriptor instead.
-func (*Timeseries) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *Timeseries) GetType() *VarType {
-	if x != nil {
-		return x.Type
-	}
-	return nil
-}
+func (*DataStreamType_Spans) isDataStreamType_Type() {}
 
 type VarType_ArrayType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1328,7 +1140,7 @@ type VarType_ArrayType struct {
 
 func (x *VarType_ArrayType) Reset() {
 	*x = VarType_ArrayType{}
-	mi := &file_types_v1_types_proto_msgTypes[16]
+	mi := &file_types_v1_types_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1340,7 +1152,7 @@ func (x *VarType_ArrayType) String() string {
 func (*VarType_ArrayType) ProtoMessage() {}
 
 func (x *VarType_ArrayType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[16]
+	mi := &file_types_v1_types_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1372,7 +1184,7 @@ type VarType_ObjectType struct {
 
 func (x *VarType_ObjectType) Reset() {
 	*x = VarType_ObjectType{}
-	mi := &file_types_v1_types_proto_msgTypes[17]
+	mi := &file_types_v1_types_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1384,7 +1196,7 @@ func (x *VarType_ObjectType) String() string {
 func (*VarType_ObjectType) ProtoMessage() {}
 
 func (x *VarType_ObjectType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[17]
+	mi := &file_types_v1_types_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1417,7 +1229,7 @@ type VarType_MapType struct {
 
 func (x *VarType_MapType) Reset() {
 	*x = VarType_MapType{}
-	mi := &file_types_v1_types_proto_msgTypes[18]
+	mi := &file_types_v1_types_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1429,7 +1241,7 @@ func (x *VarType_MapType) String() string {
 func (*VarType_MapType) ProtoMessage() {}
 
 func (x *VarType_MapType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[18]
+	mi := &file_types_v1_types_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1467,7 +1279,7 @@ type VarType_Null struct {
 
 func (x *VarType_Null) Reset() {
 	*x = VarType_Null{}
-	mi := &file_types_v1_types_proto_msgTypes[19]
+	mi := &file_types_v1_types_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1479,7 +1291,7 @@ func (x *VarType_Null) String() string {
 func (*VarType_Null) ProtoMessage() {}
 
 func (x *VarType_Null) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[19]
+	mi := &file_types_v1_types_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1505,7 +1317,7 @@ type Map_Entry struct {
 
 func (x *Map_Entry) Reset() {
 	*x = Map_Entry{}
-	mi := &file_types_v1_types_proto_msgTypes[21]
+	mi := &file_types_v1_types_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1517,7 +1329,7 @@ func (x *Map_Entry) String() string {
 func (*Map_Entry) ProtoMessage() {}
 
 func (x *Map_Entry) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[21]
+	mi := &file_types_v1_types_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1557,7 +1369,7 @@ type TableType_Column struct {
 
 func (x *TableType_Column) Reset() {
 	*x = TableType_Column{}
-	mi := &file_types_v1_types_proto_msgTypes[22]
+	mi := &file_types_v1_types_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1569,7 +1381,7 @@ func (x *TableType_Column) String() string {
 func (*TableType_Column) ProtoMessage() {}
 
 func (x *TableType_Column) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[22]
+	mi := &file_types_v1_types_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1599,27 +1411,28 @@ func (x *TableType_Column) GetType() *VarType {
 	return nil
 }
 
-type TabularType_LogEventType struct {
+type DataStreamType_MultiDataStreamType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Streams       *DataStreamType        `protobuf:"bytes,1,opt,name=streams,proto3" json:"streams,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TabularType_LogEventType) Reset() {
-	*x = TabularType_LogEventType{}
-	mi := &file_types_v1_types_proto_msgTypes[23]
+func (x *DataStreamType_MultiDataStreamType) Reset() {
+	*x = DataStreamType_MultiDataStreamType{}
+	mi := &file_types_v1_types_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TabularType_LogEventType) String() string {
+func (x *DataStreamType_MultiDataStreamType) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TabularType_LogEventType) ProtoMessage() {}
+func (*DataStreamType_MultiDataStreamType) ProtoMessage() {}
 
-func (x *TabularType_LogEventType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[23]
+func (x *DataStreamType_MultiDataStreamType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1630,32 +1443,39 @@ func (x *TabularType_LogEventType) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TabularType_LogEventType.ProtoReflect.Descriptor instead.
-func (*TabularType_LogEventType) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{14, 0}
+// Deprecated: Use DataStreamType_MultiDataStreamType.ProtoReflect.Descriptor instead.
+func (*DataStreamType_MultiDataStreamType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{12, 0}
 }
 
-type TabularType_SpanType struct {
+func (x *DataStreamType_MultiDataStreamType) GetStreams() *DataStreamType {
+	if x != nil {
+		return x.Streams
+	}
+	return nil
+}
+
+type DataStreamType_LogType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TabularType_SpanType) Reset() {
-	*x = TabularType_SpanType{}
-	mi := &file_types_v1_types_proto_msgTypes[24]
+func (x *DataStreamType_LogType) Reset() {
+	*x = DataStreamType_LogType{}
+	mi := &file_types_v1_types_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TabularType_SpanType) String() string {
+func (x *DataStreamType_LogType) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TabularType_SpanType) ProtoMessage() {}
+func (*DataStreamType_LogType) ProtoMessage() {}
 
-func (x *TabularType_SpanType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[24]
+func (x *DataStreamType_LogType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1666,9 +1486,45 @@ func (x *TabularType_SpanType) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TabularType_SpanType.ProtoReflect.Descriptor instead.
-func (*TabularType_SpanType) Descriptor() ([]byte, []int) {
-	return file_types_v1_types_proto_rawDescGZIP(), []int{14, 1}
+// Deprecated: Use DataStreamType_LogType.ProtoReflect.Descriptor instead.
+func (*DataStreamType_LogType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{12, 1}
+}
+
+type DataStreamType_SpanType struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DataStreamType_SpanType) Reset() {
+	*x = DataStreamType_SpanType{}
+	mi := &file_types_v1_types_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DataStreamType_SpanType) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DataStreamType_SpanType) ProtoMessage() {}
+
+func (x *DataStreamType_SpanType) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DataStreamType_SpanType.ProtoReflect.Descriptor instead.
+func (*DataStreamType_SpanType) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{12, 2}
 }
 
 var File_types_v1_types_proto protoreflect.FileDescriptor
@@ -1795,43 +1651,28 @@ var file_types_v1_types_proto_rawDesc = string([]byte{
 	0x61, 0x62, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x21,
 	0x0a, 0x04, 0x72, 0x6f, 0x77, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x0d, 0x2e, 0x74,
 	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x72, 0x72, 0x52, 0x04, 0x72, 0x6f, 0x77,
-	0x73, 0x22, 0xf2, 0x01, 0x0a, 0x0e, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
-	0x54, 0x79, 0x70, 0x65, 0x12, 0x35, 0x0a, 0x05, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
-	0x75, 0x6c, 0x74, 0x69, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79,
-	0x70, 0x65, 0x48, 0x00, 0x52, 0x05, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x12, 0x31, 0x0a, 0x07, 0x74,
-	0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x74,
-	0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x54,
-	0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x07, 0x74, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x12, 0x36,
-	0x0a, 0x0c, 0x73, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x5f, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e,
-	0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x0b, 0x73, 0x69, 0x6e, 0x67, 0x6c,
-	0x65, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x36, 0x0a, 0x0a, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x65,
-	0x72, 0x69, 0x65, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x74, 0x79, 0x70,
-	0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x65, 0x72, 0x69, 0x65, 0x73,
-	0x48, 0x00, 0x52, 0x0a, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x65, 0x72, 0x69, 0x65, 0x73, 0x42, 0x06,
-	0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22, 0x49, 0x0a, 0x13, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x44,
-	0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x12, 0x32, 0x0a,
-	0x07, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18,
+	0x73, 0x22, 0xe0, 0x02, 0x0a, 0x0e, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
+	0x54, 0x79, 0x70, 0x65, 0x12, 0x44, 0x0a, 0x05, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x2c, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x44,
+	0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x4d, 0x75,
+	0x6c, 0x74, 0x69, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70,
+	0x65, 0x48, 0x00, 0x52, 0x05, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x12, 0x2b, 0x0a, 0x05, 0x74, 0x61,
+	0x62, 0x6c, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x13, 0x2e, 0x74, 0x79, 0x70, 0x65,
+	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x48, 0x00,
+	0x52, 0x05, 0x74, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x36, 0x0a, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x20, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31,
+	0x2e, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x2e,
+	0x4c, 0x6f, 0x67, 0x54, 0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x04, 0x6c, 0x6f, 0x67, 0x73, 0x12,
+	0x39, 0x0a, 0x05, 0x73, 0x70, 0x61, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x21,
 	0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74,
-	0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d,
-	0x73, 0x22, 0xdb, 0x01, 0x0a, 0x0b, 0x54, 0x61, 0x62, 0x75, 0x6c, 0x61, 0x72, 0x54, 0x79, 0x70,
-	0x65, 0x12, 0x2b, 0x0a, 0x05, 0x74, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x13, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61, 0x62, 0x6c,
-	0x65, 0x54, 0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x05, 0x74, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x43,
-	0x0a, 0x0a, 0x6c, 0x6f, 0x67, 0x5f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x22, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61,
-	0x62, 0x75, 0x6c, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x4c, 0x6f, 0x67, 0x45, 0x76, 0x65,
-	0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x48, 0x00, 0x52, 0x09, 0x6c, 0x6f, 0x67, 0x45, 0x76, 0x65,
-	0x6e, 0x74, 0x73, 0x12, 0x36, 0x0a, 0x05, 0x73, 0x70, 0x61, 0x6e, 0x73, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x1e, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x61,
-	0x62, 0x75, 0x6c, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x53, 0x70, 0x61, 0x6e, 0x54, 0x79,
-	0x70, 0x65, 0x48, 0x00, 0x52, 0x05, 0x73, 0x70, 0x61, 0x6e, 0x73, 0x1a, 0x0e, 0x0a, 0x0c, 0x4c,
-	0x6f, 0x67, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x1a, 0x0a, 0x0a, 0x08, 0x53,
-	0x70, 0x61, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x42, 0x06, 0x0a, 0x04, 0x74, 0x79, 0x70, 0x65, 0x22,
-	0x33, 0x0a, 0x0a, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x65, 0x72, 0x69, 0x65, 0x73, 0x12, 0x25, 0x0a,
-	0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x74, 0x79,
-	0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x56, 0x61, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x04,
+	0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x2e, 0x53, 0x70, 0x61, 0x6e, 0x54, 0x79, 0x70,
+	0x65, 0x48, 0x00, 0x52, 0x05, 0x73, 0x70, 0x61, 0x6e, 0x73, 0x1a, 0x49, 0x0a, 0x13, 0x4d, 0x75,
+	0x6c, 0x74, 0x69, 0x44, 0x61, 0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70,
+	0x65, 0x12, 0x32, 0x0a, 0x07, 0x73, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x18, 0x2e, 0x74, 0x79, 0x70, 0x65, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x44, 0x61,
+	0x74, 0x61, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x54, 0x79, 0x70, 0x65, 0x52, 0x07, 0x73, 0x74,
+	0x72, 0x65, 0x61, 0x6d, 0x73, 0x1a, 0x09, 0x0a, 0x07, 0x4c, 0x6f, 0x67, 0x54, 0x79, 0x70, 0x65,
+	0x1a, 0x0a, 0x0a, 0x08, 0x53, 0x70, 0x61, 0x6e, 0x54, 0x79, 0x70, 0x65, 0x42, 0x06, 0x0a, 0x04,
 	0x74, 0x79, 0x70, 0x65, 0x2a, 0x59, 0x0a, 0x0a, 0x53, 0x63, 0x61, 0x6c, 0x61, 0x72, 0x54, 0x79,
 	0x70, 0x65, 0x12, 0x0b, 0x0a, 0x07, 0x75, 0x6e, 0x6b, 0x6e, 0x6f, 0x77, 0x6e, 0x10, 0x00, 0x12,
 	0x07, 0x0a, 0x03, 0x73, 0x74, 0x72, 0x10, 0x01, 0x12, 0x07, 0x0a, 0x03, 0x66, 0x36, 0x34, 0x10,
@@ -1863,84 +1704,78 @@ func file_types_v1_types_proto_rawDescGZIP() []byte {
 }
 
 var file_types_v1_types_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_types_v1_types_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_types_v1_types_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_types_v1_types_proto_goTypes = []any{
-	(ScalarType)(0),                  // 0: types.v1.ScalarType
-	(*VarType)(nil),                  // 1: types.v1.VarType
-	(*KV)(nil),                       // 2: types.v1.KV
-	(*Val)(nil),                      // 3: types.v1.Val
-	(*Obj)(nil),                      // 4: types.v1.Obj
-	(*Arr)(nil),                      // 5: types.v1.Arr
-	(*Map)(nil),                      // 6: types.v1.Map
-	(*Null)(nil),                     // 7: types.v1.Null
-	(*Scalar)(nil),                   // 8: types.v1.Scalar
-	(*FlatKV)(nil),                   // 9: types.v1.FlatKV
-	(*FlatArr)(nil),                  // 10: types.v1.FlatArr
-	(*TableType)(nil),                // 11: types.v1.TableType
-	(*Table)(nil),                    // 12: types.v1.Table
-	(*DataStreamType)(nil),           // 13: types.v1.DataStreamType
-	(*MultiDataStreamType)(nil),      // 14: types.v1.MultiDataStreamType
-	(*TabularType)(nil),              // 15: types.v1.TabularType
-	(*Timeseries)(nil),               // 16: types.v1.Timeseries
-	(*VarType_ArrayType)(nil),        // 17: types.v1.VarType.ArrayType
-	(*VarType_ObjectType)(nil),       // 18: types.v1.VarType.ObjectType
-	(*VarType_MapType)(nil),          // 19: types.v1.VarType.MapType
-	(*VarType_Null)(nil),             // 20: types.v1.VarType.Null
-	nil,                              // 21: types.v1.VarType.ObjectType.KvsEntry
-	(*Map_Entry)(nil),                // 22: types.v1.Map.Entry
-	(*TableType_Column)(nil),         // 23: types.v1.TableType.Column
-	(*TabularType_LogEventType)(nil), // 24: types.v1.TabularType.LogEventType
-	(*TabularType_SpanType)(nil),     // 25: types.v1.TabularType.SpanType
-	(*timestamppb.Timestamp)(nil),    // 26: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),      // 27: google.protobuf.Duration
+	(ScalarType)(0),            // 0: types.v1.ScalarType
+	(*VarType)(nil),            // 1: types.v1.VarType
+	(*KV)(nil),                 // 2: types.v1.KV
+	(*Val)(nil),                // 3: types.v1.Val
+	(*Obj)(nil),                // 4: types.v1.Obj
+	(*Arr)(nil),                // 5: types.v1.Arr
+	(*Map)(nil),                // 6: types.v1.Map
+	(*Null)(nil),               // 7: types.v1.Null
+	(*Scalar)(nil),             // 8: types.v1.Scalar
+	(*FlatKV)(nil),             // 9: types.v1.FlatKV
+	(*FlatArr)(nil),            // 10: types.v1.FlatArr
+	(*TableType)(nil),          // 11: types.v1.TableType
+	(*Table)(nil),              // 12: types.v1.Table
+	(*DataStreamType)(nil),     // 13: types.v1.DataStreamType
+	(*VarType_ArrayType)(nil),  // 14: types.v1.VarType.ArrayType
+	(*VarType_ObjectType)(nil), // 15: types.v1.VarType.ObjectType
+	(*VarType_MapType)(nil),    // 16: types.v1.VarType.MapType
+	(*VarType_Null)(nil),       // 17: types.v1.VarType.Null
+	nil,                        // 18: types.v1.VarType.ObjectType.KvsEntry
+	(*Map_Entry)(nil),          // 19: types.v1.Map.Entry
+	(*TableType_Column)(nil),   // 20: types.v1.TableType.Column
+	(*DataStreamType_MultiDataStreamType)(nil), // 21: types.v1.DataStreamType.MultiDataStreamType
+	(*DataStreamType_LogType)(nil),             // 22: types.v1.DataStreamType.LogType
+	(*DataStreamType_SpanType)(nil),            // 23: types.v1.DataStreamType.SpanType
+	(*timestamppb.Timestamp)(nil),              // 24: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),                // 25: google.protobuf.Duration
 }
 var file_types_v1_types_proto_depIdxs = []int32{
 	0,  // 0: types.v1.VarType.scalar:type_name -> types.v1.ScalarType
-	17, // 1: types.v1.VarType.array:type_name -> types.v1.VarType.ArrayType
-	18, // 2: types.v1.VarType.object:type_name -> types.v1.VarType.ObjectType
-	19, // 3: types.v1.VarType.map:type_name -> types.v1.VarType.MapType
-	20, // 4: types.v1.VarType.null:type_name -> types.v1.VarType.Null
+	14, // 1: types.v1.VarType.array:type_name -> types.v1.VarType.ArrayType
+	15, // 2: types.v1.VarType.object:type_name -> types.v1.VarType.ObjectType
+	16, // 3: types.v1.VarType.map:type_name -> types.v1.VarType.MapType
+	17, // 4: types.v1.VarType.null:type_name -> types.v1.VarType.Null
 	3,  // 5: types.v1.KV.value:type_name -> types.v1.Val
 	1,  // 6: types.v1.Val.type:type_name -> types.v1.VarType
-	26, // 7: types.v1.Val.ts:type_name -> google.protobuf.Timestamp
-	27, // 8: types.v1.Val.dur:type_name -> google.protobuf.Duration
+	24, // 7: types.v1.Val.ts:type_name -> google.protobuf.Timestamp
+	25, // 8: types.v1.Val.dur:type_name -> google.protobuf.Duration
 	5,  // 9: types.v1.Val.arr:type_name -> types.v1.Arr
 	4,  // 10: types.v1.Val.obj:type_name -> types.v1.Obj
 	6,  // 11: types.v1.Val.map:type_name -> types.v1.Map
 	7,  // 12: types.v1.Val.null:type_name -> types.v1.Null
 	2,  // 13: types.v1.Obj.kvs:type_name -> types.v1.KV
 	3,  // 14: types.v1.Arr.items:type_name -> types.v1.Val
-	22, // 15: types.v1.Map.entries:type_name -> types.v1.Map.Entry
+	19, // 15: types.v1.Map.entries:type_name -> types.v1.Map.Entry
 	1,  // 16: types.v1.Scalar.type:type_name -> types.v1.VarType
-	26, // 17: types.v1.Scalar.ts:type_name -> google.protobuf.Timestamp
-	27, // 18: types.v1.Scalar.dur:type_name -> google.protobuf.Duration
+	24, // 17: types.v1.Scalar.ts:type_name -> google.protobuf.Timestamp
+	25, // 18: types.v1.Scalar.dur:type_name -> google.protobuf.Duration
 	8,  // 19: types.v1.FlatKV.value:type_name -> types.v1.Scalar
 	8,  // 20: types.v1.FlatArr.items:type_name -> types.v1.Scalar
-	23, // 21: types.v1.TableType.columns:type_name -> types.v1.TableType.Column
+	20, // 21: types.v1.TableType.columns:type_name -> types.v1.TableType.Column
 	11, // 22: types.v1.Table.type:type_name -> types.v1.TableType
 	5,  // 23: types.v1.Table.rows:type_name -> types.v1.Arr
-	14, // 24: types.v1.DataStreamType.multi:type_name -> types.v1.MultiDataStreamType
-	15, // 25: types.v1.DataStreamType.tabular:type_name -> types.v1.TabularType
-	1,  // 26: types.v1.DataStreamType.single_value:type_name -> types.v1.VarType
-	16, // 27: types.v1.DataStreamType.timeseries:type_name -> types.v1.Timeseries
-	13, // 28: types.v1.MultiDataStreamType.streams:type_name -> types.v1.DataStreamType
-	11, // 29: types.v1.TabularType.table:type_name -> types.v1.TableType
-	24, // 30: types.v1.TabularType.log_events:type_name -> types.v1.TabularType.LogEventType
-	25, // 31: types.v1.TabularType.spans:type_name -> types.v1.TabularType.SpanType
-	1,  // 32: types.v1.Timeseries.type:type_name -> types.v1.VarType
-	1,  // 33: types.v1.VarType.ArrayType.items:type_name -> types.v1.VarType
-	21, // 34: types.v1.VarType.ObjectType.kvs:type_name -> types.v1.VarType.ObjectType.KvsEntry
-	1,  // 35: types.v1.VarType.MapType.key:type_name -> types.v1.VarType
-	1,  // 36: types.v1.VarType.MapType.value:type_name -> types.v1.VarType
-	1,  // 37: types.v1.VarType.ObjectType.KvsEntry.value:type_name -> types.v1.VarType
-	3,  // 38: types.v1.Map.Entry.key:type_name -> types.v1.Val
-	3,  // 39: types.v1.Map.Entry.value:type_name -> types.v1.Val
-	1,  // 40: types.v1.TableType.Column.type:type_name -> types.v1.VarType
-	41, // [41:41] is the sub-list for method output_type
-	41, // [41:41] is the sub-list for method input_type
-	41, // [41:41] is the sub-list for extension type_name
-	41, // [41:41] is the sub-list for extension extendee
-	0,  // [0:41] is the sub-list for field type_name
+	21, // 24: types.v1.DataStreamType.multi:type_name -> types.v1.DataStreamType.MultiDataStreamType
+	11, // 25: types.v1.DataStreamType.table:type_name -> types.v1.TableType
+	22, // 26: types.v1.DataStreamType.logs:type_name -> types.v1.DataStreamType.LogType
+	23, // 27: types.v1.DataStreamType.spans:type_name -> types.v1.DataStreamType.SpanType
+	1,  // 28: types.v1.VarType.ArrayType.items:type_name -> types.v1.VarType
+	18, // 29: types.v1.VarType.ObjectType.kvs:type_name -> types.v1.VarType.ObjectType.KvsEntry
+	1,  // 30: types.v1.VarType.MapType.key:type_name -> types.v1.VarType
+	1,  // 31: types.v1.VarType.MapType.value:type_name -> types.v1.VarType
+	1,  // 32: types.v1.VarType.ObjectType.KvsEntry.value:type_name -> types.v1.VarType
+	3,  // 33: types.v1.Map.Entry.key:type_name -> types.v1.Val
+	3,  // 34: types.v1.Map.Entry.value:type_name -> types.v1.Val
+	1,  // 35: types.v1.TableType.Column.type:type_name -> types.v1.VarType
+	13, // 36: types.v1.DataStreamType.MultiDataStreamType.streams:type_name -> types.v1.DataStreamType
+	37, // [37:37] is the sub-list for method output_type
+	37, // [37:37] is the sub-list for method input_type
+	37, // [37:37] is the sub-list for extension type_name
+	37, // [37:37] is the sub-list for extension extendee
+	0,  // [0:37] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_types_proto_init() }
@@ -1978,14 +1813,9 @@ func file_types_v1_types_proto_init() {
 	}
 	file_types_v1_types_proto_msgTypes[12].OneofWrappers = []any{
 		(*DataStreamType_Multi)(nil),
-		(*DataStreamType_Tabular)(nil),
-		(*DataStreamType_SingleValue)(nil),
-		(*DataStreamType_Timeseries)(nil),
-	}
-	file_types_v1_types_proto_msgTypes[14].OneofWrappers = []any{
-		(*TabularType_Table)(nil),
-		(*TabularType_LogEvents)(nil),
-		(*TabularType_Spans)(nil),
+		(*DataStreamType_Table)(nil),
+		(*DataStreamType_Logs)(nil),
+		(*DataStreamType_Spans)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1993,7 +1823,7 @@ func file_types_v1_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_types_proto_rawDesc), len(file_types_v1_types_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   25,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

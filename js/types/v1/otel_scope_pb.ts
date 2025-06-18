@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { KV } from "./types_pb";
 
 /**
@@ -12,17 +12,27 @@ import { KV } from "./types_pb";
  */
 export class Scope extends Message<Scope> {
   /**
-   * @generated from field: string name = 1;
+   * @generated from field: uint64 scope_hash_64 = 1;
+   */
+  scopeHash64 = protoInt64.zero;
+
+  /**
+   * @generated from field: string schema_url = 2;
+   */
+  schemaUrl = "";
+
+  /**
+   * @generated from field: string name = 3;
    */
   name = "";
 
   /**
-   * @generated from field: string version = 2;
+   * @generated from field: string version = 4;
    */
   version = "";
 
   /**
-   * @generated from field: repeated types.v1.KV attributes = 3;
+   * @generated from field: repeated types.v1.KV attributes = 5;
    */
   attributes: KV[] = [];
 
@@ -34,9 +44,11 @@ export class Scope extends Message<Scope> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Scope";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "attributes", kind: "message", T: KV, repeated: true },
+    { no: 1, name: "scope_hash_64", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "schema_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "version", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 5, name: "attributes", kind: "message", T: KV, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Scope {

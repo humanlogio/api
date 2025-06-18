@@ -7,7 +7,9 @@ import "types/v1/types.proto";
 option go_package = "types/v1;typesv1";
 
 message Scope {
-  string name = 1;
-  string version = 2;
-  repeated KV attributes = 3;
+  uint64 scope_hash_64 = 1;
+  string schema_url = 2;
+  string name = 3;
+  string version = 4;
+  repeated KV attributes = 5;
 }

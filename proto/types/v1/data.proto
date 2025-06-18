@@ -12,10 +12,15 @@ option go_package = "types/v1;typesv1";
 
 message Data {
   oneof shape {
+    Subqueries subqueries = 100;
     Table free_form = 101;
     Logs logs = 102;
     Spans spans = 103;
   }
+}
+
+message Subqueries {
+  repeated Query queries = 1;
 }
 
 message Logs {
