@@ -5,7 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3 } from "@bufbuild/protobuf";
-import { Span, Trace } from "../../../types/v1/tracing_pb";
+import { Span, Trace } from "../../../types/v1/otel_tracing_pb";
 
 /**
  * @generated from message svc.query.v1.GetTraceRequest

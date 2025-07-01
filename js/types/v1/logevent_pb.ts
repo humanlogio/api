@@ -12,14 +12,14 @@ import { KV } from "./types_pb";
  */
 export class LogEventGroup extends Message<LogEventGroup> {
   /**
-   * @generated from field: int64 machine_id = 1;
+   * @generated from field: int64 resource_id = 1;
    */
-  machineId = protoInt64.zero;
+  resourceId = protoInt64.zero;
 
   /**
-   * @generated from field: int64 session_id = 2;
+   * @generated from field: int64 scope_id = 2;
    */
-  sessionId = protoInt64.zero;
+  scopeId = protoInt64.zero;
 
   /**
    * @generated from field: repeated types.v1.LogEvent logs = 3;
@@ -34,8 +34,8 @@ export class LogEventGroup extends Message<LogEventGroup> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.LogEventGroup";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "session_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "resource_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "scope_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 3, name: "logs", kind: "message", T: LogEvent, repeated: true },
   ]);
 
@@ -61,14 +61,19 @@ export class LogEventGroup extends Message<LogEventGroup> {
  */
 export class IngestedLogEvent extends Message<IngestedLogEvent> {
   /**
-   * @generated from field: int64 machine_id = 1;
+   * @generated from field: string ulid_base32 = 100;
    */
-  machineId = protoInt64.zero;
+  ulidBase32 = "";
 
   /**
-   * @generated from field: int64 session_id = 2;
+   * @generated from field: int64 resource_id = 1;
    */
-  sessionId = protoInt64.zero;
+  resourceId = protoInt64.zero;
+
+  /**
+   * @generated from field: int64 scope_id = 2;
+   */
+  scopeId = protoInt64.zero;
 
   /**
    * @generated from field: int64 event_id = 3;
@@ -98,8 +103,9 @@ export class IngestedLogEvent extends Message<IngestedLogEvent> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.IngestedLogEvent";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "machine_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 2, name: "session_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 100, name: "ulid_base32", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "resource_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "scope_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 3, name: "event_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 4, name: "parsed_at", kind: "message", T: Timestamp },
     { no: 5, name: "raw", kind: "scalar", T: 12 /* ScalarType.BYTES */ },

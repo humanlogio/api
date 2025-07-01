@@ -4,21 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { GetHeartbeatRequest, GetHeartbeatResponse, IngestRequest, IngestResponse } from "./service_pb";
-
-/**
- * @generated from rpc svc.ingest.v1.IngestService.GetHeartbeat
- */
-export const getHeartbeat = {
-  localName: "getHeartbeat",
-  name: "GetHeartbeat",
-  kind: MethodKind.Unary,
-  I: GetHeartbeatRequest,
-  O: GetHeartbeatResponse,
-  service: {
-    typeName: "svc.ingest.v1.IngestService"
-  }
-} as const;
+import { IngestRequest, IngestResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.ingest.v1.IngestService.Ingest

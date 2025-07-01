@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { ULID } from "./ulid_pb";
 import { KV } from "./types_pb";
 
 /**
@@ -54,6 +55,11 @@ export class Trace extends Message<Trace> {
  * @generated from message types.v1.Span
  */
 export class Span extends Message<Span> {
+  /**
+   * @generated from field: types.v1.ULID ulid = 100;
+   */
+  ulid?: ULID;
+
   /**
    * @generated from field: string trace_id = 1;
    */
@@ -137,6 +143,7 @@ export class Span extends Message<Span> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Span";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 100, name: "ulid", kind: "message", T: ULID },
     { no: 1, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "trace_state", kind: "scalar", T: 9 /* ScalarType.STRING */ },

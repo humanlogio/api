@@ -388,6 +388,11 @@ export class QueryResponse extends Message<QueryResponse> {
    */
   data?: Data;
 
+  /**
+   * @generated from field: svc.query.v1.QueryResponse.SubQueries subqueries = 300;
+   */
+  subqueries?: QueryResponse_SubQueries;
+
   constructor(data?: PartialMessage<QueryResponse>) {
     super();
     proto3.util.initPartial(data, this);
@@ -398,6 +403,7 @@ export class QueryResponse extends Message<QueryResponse> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 100, name: "next", kind: "message", T: Cursor },
     { no: 200, name: "data", kind: "message", T: Data },
+    { no: 300, name: "subqueries", kind: "message", T: QueryResponse_SubQueries },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryResponse {
@@ -414,6 +420,43 @@ export class QueryResponse extends Message<QueryResponse> {
 
   static equals(a: QueryResponse | PlainMessage<QueryResponse> | undefined, b: QueryResponse | PlainMessage<QueryResponse> | undefined): boolean {
     return proto3.util.equals(QueryResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.query.v1.QueryResponse.SubQueries
+ */
+export class QueryResponse_SubQueries extends Message<QueryResponse_SubQueries> {
+  /**
+   * @generated from field: repeated types.v1.Query queries = 1;
+   */
+  queries: Query[] = [];
+
+  constructor(data?: PartialMessage<QueryResponse_SubQueries>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.query.v1.QueryResponse.SubQueries";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "queries", kind: "message", T: Query, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): QueryResponse_SubQueries {
+    return new QueryResponse_SubQueries().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): QueryResponse_SubQueries {
+    return new QueryResponse_SubQueries().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): QueryResponse_SubQueries {
+    return new QueryResponse_SubQueries().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: QueryResponse_SubQueries | PlainMessage<QueryResponse_SubQueries> | undefined, b: QueryResponse_SubQueries | PlainMessage<QueryResponse_SubQueries> | undefined): boolean {
+    return proto3.util.equals(QueryResponse_SubQueries, a, b);
   }
 }
 

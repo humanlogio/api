@@ -3,70 +3,30 @@ syntax = "proto3";
 package types.v1;
 
 import "google/protobuf/timestamp.proto";
-import "types/v1/logevent.proto";
+import "types/v1/otel_logging.proto";
+import "types/v1/otel_tracing.proto";
 import "types/v1/query.proto";
-import "types/v1/tracing.proto";
 import "types/v1/types.proto";
 
 option go_package = "types/v1;typesv1";
 
 message Data {
-  message SubQueries {
-    repeated types.v1.Query queries = 1;
-  }
-
   oneof shape {
-    // SubQueries need to be further queried to obtain actual data.
-    SubQueries subqueries = 101;
-    // tabular is data that has a table header, followed by rows that match the
-    // header
-    Tabular tabular = 201;
-    // single_value is a single value
-    Val single_value = 301;
-    // scalar timeseries data is a list of [ts, scalar] where scalar is usually
-    // a numeric value
-    ScalarTimeseries scalar_timeseries = 401;
-    // vector timeseries data is a list of [ts, [scalar0, ..., scalarN]] where
-    // scalar is usually a numeric value
-    VectorTimeseries vector_timeseries = 402;
+    Subqueries subqueries = 100;
+    Table free_form = 101;
+    Logs logs = 102;
+    Spans spans = 103;
   }
 }
 
-message Tabular {
-  oneof shape {
-    LogEvents log_events = 201;
-    Table free_form = 202;
-    Spans spans = 203;
-  }
+message Subqueries {
+  repeated Query queries = 1;
 }
 
-message ScalarTimeseries {
-  // scalars will contain only this type of value
-  VarType type = 2;
-  repeated ScalarTimestamp scalars = 3;
-}
-
-message LogEvents {
-  repeated IngestedLogEvent events = 1;
+message Logs {
+  repeated Log logs = 1;
 }
 
 message Spans {
   repeated Span spans = 1;
-}
-
-message ScalarTimestamp {
-  google.protobuf.Timestamp ts = 1;
-  Scalar scalar = 2;
-}
-
-message VectorTimeseries {
-  Obj context = 1;
-  // vectors will contain only this type of value
-  VarType type = 2;
-  repeated VectorTimestamp vectors = 3;
-}
-
-message VectorTimestamp {
-  google.protobuf.Timestamp ts = 1;
-  repeated Scalar vector = 2;
 }

@@ -75,8 +75,12 @@ message QueryRequest {
 }
 
 message QueryResponse {
+  message SubQueries {
+    repeated types.v1.Query queries = 1;
+  }
   types.v1.Cursor next = 100;
   types.v1.Data data = 200;
+  SubQueries subqueries = 300;
 }
 
 message StreamRequest {

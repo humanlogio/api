@@ -924,28 +924,28 @@ export class DataStreamType extends Message<DataStreamType> {
    */
   type: {
     /**
-     * @generated from field: types.v1.MultiDataStreamType multi = 1;
+     * @generated from field: types.v1.DataStreamType.MultiDataStreamType multi = 1;
      */
-    value: MultiDataStreamType;
+    value: DataStreamType_MultiDataStreamType;
     case: "multi";
   } | {
     /**
-     * @generated from field: types.v1.TabularType tabular = 2;
+     * @generated from field: types.v1.TableType table = 2;
      */
-    value: TabularType;
-    case: "tabular";
+    value: TableType;
+    case: "table";
   } | {
     /**
-     * @generated from field: types.v1.VarType single_value = 3;
+     * @generated from field: types.v1.DataStreamType.LogType logs = 3;
      */
-    value: VarType;
-    case: "singleValue";
+    value: DataStreamType_LogType;
+    case: "logs";
   } | {
     /**
-     * @generated from field: types.v1.Timeseries timeseries = 5;
+     * @generated from field: types.v1.DataStreamType.SpanType spans = 4;
      */
-    value: Timeseries;
-    case: "timeseries";
+    value: DataStreamType_SpanType;
+    case: "spans";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<DataStreamType>) {
@@ -956,10 +956,10 @@ export class DataStreamType extends Message<DataStreamType> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.DataStreamType";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "multi", kind: "message", T: MultiDataStreamType, oneof: "type" },
-    { no: 2, name: "tabular", kind: "message", T: TabularType, oneof: "type" },
-    { no: 3, name: "single_value", kind: "message", T: VarType, oneof: "type" },
-    { no: 5, name: "timeseries", kind: "message", T: Timeseries, oneof: "type" },
+    { no: 1, name: "multi", kind: "message", T: DataStreamType_MultiDataStreamType, oneof: "type" },
+    { no: 2, name: "table", kind: "message", T: TableType, oneof: "type" },
+    { no: 3, name: "logs", kind: "message", T: DataStreamType_LogType, oneof: "type" },
+    { no: 4, name: "spans", kind: "message", T: DataStreamType_SpanType, oneof: "type" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DataStreamType {
@@ -980,211 +980,101 @@ export class DataStreamType extends Message<DataStreamType> {
 }
 
 /**
- * @generated from message types.v1.MultiDataStreamType
+ * @generated from message types.v1.DataStreamType.MultiDataStreamType
  */
-export class MultiDataStreamType extends Message<MultiDataStreamType> {
+export class DataStreamType_MultiDataStreamType extends Message<DataStreamType_MultiDataStreamType> {
   /**
    * @generated from field: types.v1.DataStreamType streams = 1;
    */
   streams?: DataStreamType;
 
-  constructor(data?: PartialMessage<MultiDataStreamType>) {
+  constructor(data?: PartialMessage<DataStreamType_MultiDataStreamType>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.MultiDataStreamType";
+  static readonly typeName = "types.v1.DataStreamType.MultiDataStreamType";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "streams", kind: "message", T: DataStreamType },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): MultiDataStreamType {
-    return new MultiDataStreamType().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DataStreamType_MultiDataStreamType {
+    return new DataStreamType_MultiDataStreamType().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): MultiDataStreamType {
-    return new MultiDataStreamType().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DataStreamType_MultiDataStreamType {
+    return new DataStreamType_MultiDataStreamType().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): MultiDataStreamType {
-    return new MultiDataStreamType().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DataStreamType_MultiDataStreamType {
+    return new DataStreamType_MultiDataStreamType().fromJsonString(jsonString, options);
   }
 
-  static equals(a: MultiDataStreamType | PlainMessage<MultiDataStreamType> | undefined, b: MultiDataStreamType | PlainMessage<MultiDataStreamType> | undefined): boolean {
-    return proto3.util.equals(MultiDataStreamType, a, b);
+  static equals(a: DataStreamType_MultiDataStreamType | PlainMessage<DataStreamType_MultiDataStreamType> | undefined, b: DataStreamType_MultiDataStreamType | PlainMessage<DataStreamType_MultiDataStreamType> | undefined): boolean {
+    return proto3.util.equals(DataStreamType_MultiDataStreamType, a, b);
   }
 }
 
 /**
- * @generated from message types.v1.TabularType
+ * @generated from message types.v1.DataStreamType.LogType
  */
-export class TabularType extends Message<TabularType> {
-  /**
-   * @generated from oneof types.v1.TabularType.type
-   */
-  type: {
-    /**
-     * @generated from field: types.v1.TableType table = 1;
-     */
-    value: TableType;
-    case: "table";
-  } | {
-    /**
-     * @generated from field: types.v1.TabularType.LogEventType log_events = 2;
-     */
-    value: TabularType_LogEventType;
-    case: "logEvents";
-  } | {
-    /**
-     * @generated from field: types.v1.TabularType.SpanType spans = 3;
-     */
-    value: TabularType_SpanType;
-    case: "spans";
-  } | { case: undefined; value?: undefined } = { case: undefined };
-
-  constructor(data?: PartialMessage<TabularType>) {
+export class DataStreamType_LogType extends Message<DataStreamType_LogType> {
+  constructor(data?: PartialMessage<DataStreamType_LogType>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.TabularType";
+  static readonly typeName = "types.v1.DataStreamType.LogType";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "table", kind: "message", T: TableType, oneof: "type" },
-    { no: 2, name: "log_events", kind: "message", T: TabularType_LogEventType, oneof: "type" },
-    { no: 3, name: "spans", kind: "message", T: TabularType_SpanType, oneof: "type" },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TabularType {
-    return new TabularType().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DataStreamType_LogType {
+    return new DataStreamType_LogType().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TabularType {
-    return new TabularType().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DataStreamType_LogType {
+    return new DataStreamType_LogType().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TabularType {
-    return new TabularType().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DataStreamType_LogType {
+    return new DataStreamType_LogType().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TabularType | PlainMessage<TabularType> | undefined, b: TabularType | PlainMessage<TabularType> | undefined): boolean {
-    return proto3.util.equals(TabularType, a, b);
+  static equals(a: DataStreamType_LogType | PlainMessage<DataStreamType_LogType> | undefined, b: DataStreamType_LogType | PlainMessage<DataStreamType_LogType> | undefined): boolean {
+    return proto3.util.equals(DataStreamType_LogType, a, b);
   }
 }
 
 /**
- * log events contain,
- * - machine_id
- * - session_id
- * - event_id (for ordering only within a machine/session pair
- * - parsed_at (timestamp of when the log event was parsed)
- * - timestamp (from a value found in the log, otherwise parsed_at)
- * - level
- * - message
- * - key-value pairs
- *
- * @generated from message types.v1.TabularType.LogEventType
+ * @generated from message types.v1.DataStreamType.SpanType
  */
-export class TabularType_LogEventType extends Message<TabularType_LogEventType> {
-  constructor(data?: PartialMessage<TabularType_LogEventType>) {
+export class DataStreamType_SpanType extends Message<DataStreamType_SpanType> {
+  constructor(data?: PartialMessage<DataStreamType_SpanType>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.TabularType.LogEventType";
+  static readonly typeName = "types.v1.DataStreamType.SpanType";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TabularType_LogEventType {
-    return new TabularType_LogEventType().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DataStreamType_SpanType {
+    return new DataStreamType_SpanType().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TabularType_LogEventType {
-    return new TabularType_LogEventType().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DataStreamType_SpanType {
+    return new DataStreamType_SpanType().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TabularType_LogEventType {
-    return new TabularType_LogEventType().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DataStreamType_SpanType {
+    return new DataStreamType_SpanType().fromJsonString(jsonString, options);
   }
 
-  static equals(a: TabularType_LogEventType | PlainMessage<TabularType_LogEventType> | undefined, b: TabularType_LogEventType | PlainMessage<TabularType_LogEventType> | undefined): boolean {
-    return proto3.util.equals(TabularType_LogEventType, a, b);
-  }
-}
-
-/**
- * spans contain,
- * - stuff, not sure why i wrote this here for the log event type
- *
- * @generated from message types.v1.TabularType.SpanType
- */
-export class TabularType_SpanType extends Message<TabularType_SpanType> {
-  constructor(data?: PartialMessage<TabularType_SpanType>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.TabularType.SpanType";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TabularType_SpanType {
-    return new TabularType_SpanType().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TabularType_SpanType {
-    return new TabularType_SpanType().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TabularType_SpanType {
-    return new TabularType_SpanType().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TabularType_SpanType | PlainMessage<TabularType_SpanType> | undefined, b: TabularType_SpanType | PlainMessage<TabularType_SpanType> | undefined): boolean {
-    return proto3.util.equals(TabularType_SpanType, a, b);
-  }
-}
-
-/**
- * @generated from message types.v1.Timeseries
- */
-export class Timeseries extends Message<Timeseries> {
-  /**
-   * each row will contain a timestamp along with a value
-   * value of this type
-   *
-   * @generated from field: types.v1.VarType type = 1;
-   */
-  type?: VarType;
-
-  constructor(data?: PartialMessage<Timeseries>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.Timeseries";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "type", kind: "message", T: VarType },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Timeseries {
-    return new Timeseries().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): Timeseries {
-    return new Timeseries().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): Timeseries {
-    return new Timeseries().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: Timeseries | PlainMessage<Timeseries> | undefined, b: Timeseries | PlainMessage<Timeseries> | undefined): boolean {
-    return proto3.util.equals(Timeseries, a, b);
+  static equals(a: DataStreamType_SpanType | PlainMessage<DataStreamType_SpanType> | undefined, b: DataStreamType_SpanType | PlainMessage<DataStreamType_SpanType> | undefined): boolean {
+    return proto3.util.equals(DataStreamType_SpanType, a, b);
   }
 }
 
