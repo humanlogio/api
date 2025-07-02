@@ -104,14 +104,14 @@ export class Timerange extends Message<Timerange> {
  */
 export class Context extends Message<Context> {
   /**
-   * @generated from field: optional types.v1.Expr machine_id = 101;
+   * @generated from field: optional types.v1.Expr resource_fingerprint = 101;
    */
-  machineId?: Expr;
+  resourceFingerprint?: Expr;
 
   /**
-   * @generated from field: optional types.v1.Expr session_id = 102;
+   * @generated from field: optional types.v1.Expr scope_fingerprint = 102;
    */
-  sessionId?: Expr;
+  scopeFingerprint?: Expr;
 
   /**
    * @generated from field: optional types.v1.Expr dataset = 103;
@@ -126,8 +126,8 @@ export class Context extends Message<Context> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Context";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 101, name: "machine_id", kind: "message", T: Expr, opt: true },
-    { no: 102, name: "session_id", kind: "message", T: Expr, opt: true },
+    { no: 101, name: "resource_fingerprint", kind: "message", T: Expr, opt: true },
+    { no: 102, name: "scope_fingerprint", kind: "message", T: Expr, opt: true },
     { no: 103, name: "dataset", kind: "message", T: Expr, opt: true },
   ]);
 

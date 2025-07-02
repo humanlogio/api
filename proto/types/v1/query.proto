@@ -19,8 +19,8 @@ message Timerange {
 }
 
 message Context {
-  optional Expr machine_id = 101;
-  optional Expr session_id = 102;
+  optional Expr resource_fingerprint = 101;
+  optional Expr scope_fingerprint = 102;
   optional Expr dataset = 103;
 }
 
