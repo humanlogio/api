@@ -6,7 +6,6 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "types/v1/cursor.proto";
 import "types/v1/data.proto";
-import "types/v1/logevent.proto";
 import "types/v1/query.proto";
 import "types/v1/session.proto";
 import "types/v1/symbol.proto";
@@ -75,12 +74,8 @@ message QueryRequest {
 }
 
 message QueryResponse {
-  message SubQueries {
-    repeated types.v1.Query queries = 1;
-  }
   types.v1.Cursor next = 100;
   types.v1.Data data = 200;
-  SubQueries subqueries = 300;
 }
 
 message StreamRequest {
