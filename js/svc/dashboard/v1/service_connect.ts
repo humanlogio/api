@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetDashboardRequest, GetDashboardResponse, ListDashboardRequest, ListDashboardResponse } from "./service_pb";
+import { CreateDashboardRequest, CreateDashboardResponse, DeleteDashboardRequest, DeleteDashboardResponse, GetDashboardRequest, GetDashboardResponse, ListDashboardRequest, ListDashboardResponse, UpdateDashboardRequest, UpdateDashboardResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -13,12 +13,39 @@ export const DashboardService = {
   typeName: "svc.environment.v1.DashboardService",
   methods: {
     /**
+     * @generated from rpc svc.environment.v1.DashboardService.CreateDashboard
+     */
+    createDashboard: {
+      name: "CreateDashboard",
+      I: CreateDashboardRequest,
+      O: CreateDashboardResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc svc.environment.v1.DashboardService.GetDashboard
      */
     getDashboard: {
       name: "GetDashboard",
       I: GetDashboardRequest,
       O: GetDashboardResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.environment.v1.DashboardService.UpdateDashboard
+     */
+    updateDashboard: {
+      name: "UpdateDashboard",
+      I: UpdateDashboardRequest,
+      O: UpdateDashboardResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.environment.v1.DashboardService.DeleteDashboard
+     */
+    deleteDashboard: {
+      name: "DeleteDashboard",
+      I: DeleteDashboardRequest,
+      O: DeleteDashboardResponse,
       kind: MethodKind.Unary,
     },
     /**

@@ -26,6 +26,22 @@ export class Dashboard extends Message<Dashboard> {
   description = "";
 
   /**
+   * @generated from field: bool is_readonly = 202;
+   */
+  isReadonly = false;
+
+  /**
+   * @generated from oneof types.v1.Dashboard.source
+   */
+  source: {
+    /**
+     * @generated from field: string file = 203;
+     */
+    value: string;
+    case: "file";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  /**
    * @generated from field: bytes perses_json = 300;
    */
   persesJson = new Uint8Array(0);
@@ -51,6 +67,8 @@ export class Dashboard extends Message<Dashboard> {
     { no: 100, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 200, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 201, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 202, name: "is_readonly", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
+    { no: 203, name: "file", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "source" },
     { no: 300, name: "perses_json", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 400, name: "created_at", kind: "message", T: Timestamp },
     { no: 401, name: "updated_at", kind: "message", T: Timestamp },

@@ -4,7 +4,21 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { GetDashboardRequest, GetDashboardResponse, ListDashboardRequest, ListDashboardResponse } from "./service_pb";
+import { CreateDashboardRequest, CreateDashboardResponse, DeleteDashboardRequest, DeleteDashboardResponse, GetDashboardRequest, GetDashboardResponse, ListDashboardRequest, ListDashboardResponse, UpdateDashboardRequest, UpdateDashboardResponse } from "./service_pb";
+
+/**
+ * @generated from rpc svc.environment.v1.DashboardService.CreateDashboard
+ */
+export const createDashboard = {
+  localName: "createDashboard",
+  name: "CreateDashboard",
+  kind: MethodKind.Unary,
+  I: CreateDashboardRequest,
+  O: CreateDashboardResponse,
+  service: {
+    typeName: "svc.environment.v1.DashboardService"
+  }
+} as const;
 
 /**
  * @generated from rpc svc.environment.v1.DashboardService.GetDashboard
@@ -15,6 +29,34 @@ export const getDashboard = {
   kind: MethodKind.Unary,
   I: GetDashboardRequest,
   O: GetDashboardResponse,
+  service: {
+    typeName: "svc.environment.v1.DashboardService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.environment.v1.DashboardService.UpdateDashboard
+ */
+export const updateDashboard = {
+  localName: "updateDashboard",
+  name: "UpdateDashboard",
+  kind: MethodKind.Unary,
+  I: UpdateDashboardRequest,
+  O: UpdateDashboardResponse,
+  service: {
+    typeName: "svc.environment.v1.DashboardService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.environment.v1.DashboardService.DeleteDashboard
+ */
+export const deleteDashboard = {
+  localName: "deleteDashboard",
+  name: "DeleteDashboard",
+  kind: MethodKind.Unary,
+  I: DeleteDashboardRequest,
+  O: DeleteDashboardResponse,
   service: {
     typeName: "svc.environment.v1.DashboardService"
   }

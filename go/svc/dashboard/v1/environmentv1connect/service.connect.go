@@ -33,9 +33,18 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// DashboardServiceCreateDashboardProcedure is the fully-qualified name of the DashboardService's
+	// CreateDashboard RPC.
+	DashboardServiceCreateDashboardProcedure = "/svc.environment.v1.DashboardService/CreateDashboard"
 	// DashboardServiceGetDashboardProcedure is the fully-qualified name of the DashboardService's
 	// GetDashboard RPC.
 	DashboardServiceGetDashboardProcedure = "/svc.environment.v1.DashboardService/GetDashboard"
+	// DashboardServiceUpdateDashboardProcedure is the fully-qualified name of the DashboardService's
+	// UpdateDashboard RPC.
+	DashboardServiceUpdateDashboardProcedure = "/svc.environment.v1.DashboardService/UpdateDashboard"
+	// DashboardServiceDeleteDashboardProcedure is the fully-qualified name of the DashboardService's
+	// DeleteDashboard RPC.
+	DashboardServiceDeleteDashboardProcedure = "/svc.environment.v1.DashboardService/DeleteDashboard"
 	// DashboardServiceListDashboardProcedure is the fully-qualified name of the DashboardService's
 	// ListDashboard RPC.
 	DashboardServiceListDashboardProcedure = "/svc.environment.v1.DashboardService/ListDashboard"
@@ -43,7 +52,10 @@ const (
 
 // DashboardServiceClient is a client for the svc.environment.v1.DashboardService service.
 type DashboardServiceClient interface {
+	CreateDashboard(context.Context, *connect.Request[v1.CreateDashboardRequest]) (*connect.Response[v1.CreateDashboardResponse], error)
 	GetDashboard(context.Context, *connect.Request[v1.GetDashboardRequest]) (*connect.Response[v1.GetDashboardResponse], error)
+	UpdateDashboard(context.Context, *connect.Request[v1.UpdateDashboardRequest]) (*connect.Response[v1.UpdateDashboardResponse], error)
+	DeleteDashboard(context.Context, *connect.Request[v1.DeleteDashboardRequest]) (*connect.Response[v1.DeleteDashboardResponse], error)
 	ListDashboard(context.Context, *connect.Request[v1.ListDashboardRequest]) (*connect.Response[v1.ListDashboardResponse], error)
 }
 
@@ -58,10 +70,28 @@ func NewDashboardServiceClient(httpClient connect.HTTPClient, baseURL string, op
 	baseURL = strings.TrimRight(baseURL, "/")
 	dashboardServiceMethods := v1.File_svc_dashboard_v1_service_proto.Services().ByName("DashboardService").Methods()
 	return &dashboardServiceClient{
+		createDashboard: connect.NewClient[v1.CreateDashboardRequest, v1.CreateDashboardResponse](
+			httpClient,
+			baseURL+DashboardServiceCreateDashboardProcedure,
+			connect.WithSchema(dashboardServiceMethods.ByName("CreateDashboard")),
+			connect.WithClientOptions(opts...),
+		),
 		getDashboard: connect.NewClient[v1.GetDashboardRequest, v1.GetDashboardResponse](
 			httpClient,
 			baseURL+DashboardServiceGetDashboardProcedure,
 			connect.WithSchema(dashboardServiceMethods.ByName("GetDashboard")),
+			connect.WithClientOptions(opts...),
+		),
+		updateDashboard: connect.NewClient[v1.UpdateDashboardRequest, v1.UpdateDashboardResponse](
+			httpClient,
+			baseURL+DashboardServiceUpdateDashboardProcedure,
+			connect.WithSchema(dashboardServiceMethods.ByName("UpdateDashboard")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteDashboard: connect.NewClient[v1.DeleteDashboardRequest, v1.DeleteDashboardResponse](
+			httpClient,
+			baseURL+DashboardServiceDeleteDashboardProcedure,
+			connect.WithSchema(dashboardServiceMethods.ByName("DeleteDashboard")),
 			connect.WithClientOptions(opts...),
 		),
 		listDashboard: connect.NewClient[v1.ListDashboardRequest, v1.ListDashboardResponse](
@@ -75,13 +105,31 @@ func NewDashboardServiceClient(httpClient connect.HTTPClient, baseURL string, op
 
 // dashboardServiceClient implements DashboardServiceClient.
 type dashboardServiceClient struct {
-	getDashboard  *connect.Client[v1.GetDashboardRequest, v1.GetDashboardResponse]
-	listDashboard *connect.Client[v1.ListDashboardRequest, v1.ListDashboardResponse]
+	createDashboard *connect.Client[v1.CreateDashboardRequest, v1.CreateDashboardResponse]
+	getDashboard    *connect.Client[v1.GetDashboardRequest, v1.GetDashboardResponse]
+	updateDashboard *connect.Client[v1.UpdateDashboardRequest, v1.UpdateDashboardResponse]
+	deleteDashboard *connect.Client[v1.DeleteDashboardRequest, v1.DeleteDashboardResponse]
+	listDashboard   *connect.Client[v1.ListDashboardRequest, v1.ListDashboardResponse]
+}
+
+// CreateDashboard calls svc.environment.v1.DashboardService.CreateDashboard.
+func (c *dashboardServiceClient) CreateDashboard(ctx context.Context, req *connect.Request[v1.CreateDashboardRequest]) (*connect.Response[v1.CreateDashboardResponse], error) {
+	return c.createDashboard.CallUnary(ctx, req)
 }
 
 // GetDashboard calls svc.environment.v1.DashboardService.GetDashboard.
 func (c *dashboardServiceClient) GetDashboard(ctx context.Context, req *connect.Request[v1.GetDashboardRequest]) (*connect.Response[v1.GetDashboardResponse], error) {
 	return c.getDashboard.CallUnary(ctx, req)
+}
+
+// UpdateDashboard calls svc.environment.v1.DashboardService.UpdateDashboard.
+func (c *dashboardServiceClient) UpdateDashboard(ctx context.Context, req *connect.Request[v1.UpdateDashboardRequest]) (*connect.Response[v1.UpdateDashboardResponse], error) {
+	return c.updateDashboard.CallUnary(ctx, req)
+}
+
+// DeleteDashboard calls svc.environment.v1.DashboardService.DeleteDashboard.
+func (c *dashboardServiceClient) DeleteDashboard(ctx context.Context, req *connect.Request[v1.DeleteDashboardRequest]) (*connect.Response[v1.DeleteDashboardResponse], error) {
+	return c.deleteDashboard.CallUnary(ctx, req)
 }
 
 // ListDashboard calls svc.environment.v1.DashboardService.ListDashboard.
@@ -91,7 +139,10 @@ func (c *dashboardServiceClient) ListDashboard(ctx context.Context, req *connect
 
 // DashboardServiceHandler is an implementation of the svc.environment.v1.DashboardService service.
 type DashboardServiceHandler interface {
+	CreateDashboard(context.Context, *connect.Request[v1.CreateDashboardRequest]) (*connect.Response[v1.CreateDashboardResponse], error)
 	GetDashboard(context.Context, *connect.Request[v1.GetDashboardRequest]) (*connect.Response[v1.GetDashboardResponse], error)
+	UpdateDashboard(context.Context, *connect.Request[v1.UpdateDashboardRequest]) (*connect.Response[v1.UpdateDashboardResponse], error)
+	DeleteDashboard(context.Context, *connect.Request[v1.DeleteDashboardRequest]) (*connect.Response[v1.DeleteDashboardResponse], error)
 	ListDashboard(context.Context, *connect.Request[v1.ListDashboardRequest]) (*connect.Response[v1.ListDashboardResponse], error)
 }
 
@@ -102,10 +153,28 @@ type DashboardServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewDashboardServiceHandler(svc DashboardServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	dashboardServiceMethods := v1.File_svc_dashboard_v1_service_proto.Services().ByName("DashboardService").Methods()
+	dashboardServiceCreateDashboardHandler := connect.NewUnaryHandler(
+		DashboardServiceCreateDashboardProcedure,
+		svc.CreateDashboard,
+		connect.WithSchema(dashboardServiceMethods.ByName("CreateDashboard")),
+		connect.WithHandlerOptions(opts...),
+	)
 	dashboardServiceGetDashboardHandler := connect.NewUnaryHandler(
 		DashboardServiceGetDashboardProcedure,
 		svc.GetDashboard,
 		connect.WithSchema(dashboardServiceMethods.ByName("GetDashboard")),
+		connect.WithHandlerOptions(opts...),
+	)
+	dashboardServiceUpdateDashboardHandler := connect.NewUnaryHandler(
+		DashboardServiceUpdateDashboardProcedure,
+		svc.UpdateDashboard,
+		connect.WithSchema(dashboardServiceMethods.ByName("UpdateDashboard")),
+		connect.WithHandlerOptions(opts...),
+	)
+	dashboardServiceDeleteDashboardHandler := connect.NewUnaryHandler(
+		DashboardServiceDeleteDashboardProcedure,
+		svc.DeleteDashboard,
+		connect.WithSchema(dashboardServiceMethods.ByName("DeleteDashboard")),
 		connect.WithHandlerOptions(opts...),
 	)
 	dashboardServiceListDashboardHandler := connect.NewUnaryHandler(
@@ -116,8 +185,14 @@ func NewDashboardServiceHandler(svc DashboardServiceHandler, opts ...connect.Han
 	)
 	return "/svc.environment.v1.DashboardService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case DashboardServiceCreateDashboardProcedure:
+			dashboardServiceCreateDashboardHandler.ServeHTTP(w, r)
 		case DashboardServiceGetDashboardProcedure:
 			dashboardServiceGetDashboardHandler.ServeHTTP(w, r)
+		case DashboardServiceUpdateDashboardProcedure:
+			dashboardServiceUpdateDashboardHandler.ServeHTTP(w, r)
+		case DashboardServiceDeleteDashboardProcedure:
+			dashboardServiceDeleteDashboardHandler.ServeHTTP(w, r)
 		case DashboardServiceListDashboardProcedure:
 			dashboardServiceListDashboardHandler.ServeHTTP(w, r)
 		default:
@@ -129,8 +204,20 @@ func NewDashboardServiceHandler(svc DashboardServiceHandler, opts ...connect.Han
 // UnimplementedDashboardServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedDashboardServiceHandler struct{}
 
+func (UnimplementedDashboardServiceHandler) CreateDashboard(context.Context, *connect.Request[v1.CreateDashboardRequest]) (*connect.Response[v1.CreateDashboardResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.environment.v1.DashboardService.CreateDashboard is not implemented"))
+}
+
 func (UnimplementedDashboardServiceHandler) GetDashboard(context.Context, *connect.Request[v1.GetDashboardRequest]) (*connect.Response[v1.GetDashboardResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.environment.v1.DashboardService.GetDashboard is not implemented"))
+}
+
+func (UnimplementedDashboardServiceHandler) UpdateDashboard(context.Context, *connect.Request[v1.UpdateDashboardRequest]) (*connect.Response[v1.UpdateDashboardResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.environment.v1.DashboardService.UpdateDashboard is not implemented"))
+}
+
+func (UnimplementedDashboardServiceHandler) DeleteDashboard(context.Context, *connect.Request[v1.DeleteDashboardRequest]) (*connect.Response[v1.DeleteDashboardResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.environment.v1.DashboardService.DeleteDashboard is not implemented"))
 }
 
 func (UnimplementedDashboardServiceHandler) ListDashboard(context.Context, *connect.Request[v1.ListDashboardRequest]) (*connect.Response[v1.ListDashboardResponse], error) {
