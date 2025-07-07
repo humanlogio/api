@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package svc.environment.v1;
+
+import "types/v1/cursor.proto";
+import "types/v1/dashboard.proto";
+import "types/v1/environment.proto";
+
+option go_package = "svc/environment/v1;environmentv1";
+
+service DashboardService {
+  rpc GetDashboard(GetDashboardRequest) returns (GetDashboardResponse);
+  rpc ListDashboard(ListDashboardRequest) returns (ListDashboardResponse);
+}
+
+message GetDashboardRequest {
+  string id = 1;
+}
+
+message GetDashboardResponse {
+  types.v1.Dashboard dashboard = 1;
+}
+
+message ListDashboardRequest {
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+  int64 environment_id = 3;
+}
+
+message ListDashboardResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.Dashboard dashboard = 1;
+  }
+  repeated ListItem items = 2;
+}

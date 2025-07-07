@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "types/v1;typesv1";
+
+message Dashboard {
+  string id = 100;
+  string name = 200;
+  string description = 201;
+
+  bytes perses_json = 300;
+
+  google.protobuf.Timestamp created_at = 400;
+  google.protobuf.Timestamp updated_at = 401;
+}
