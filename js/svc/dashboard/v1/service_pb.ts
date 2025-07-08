@@ -179,7 +179,12 @@ export class GetDashboardResponse extends Message<GetDashboardResponse> {
  */
 export class UpdateDashboardRequest extends Message<UpdateDashboardRequest> {
   /**
-   * @generated from field: repeated svc.dashboard.v1.UpdateDashboardRequest.Mutation mutations = 1;
+   * @generated from field: string id = 1;
+   */
+  id = "";
+
+  /**
+   * @generated from field: repeated svc.dashboard.v1.UpdateDashboardRequest.Mutation mutations = 2;
    */
   mutations: UpdateDashboardRequest_Mutation[] = [];
 
@@ -191,7 +196,8 @@ export class UpdateDashboardRequest extends Message<UpdateDashboardRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.dashboard.v1.UpdateDashboardRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "mutations", kind: "message", T: UpdateDashboardRequest_Mutation, repeated: true },
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "mutations", kind: "message", T: UpdateDashboardRequest_Mutation, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateDashboardRequest {

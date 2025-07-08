@@ -44,7 +44,8 @@ message UpdateDashboardRequest {
       bytes set_perses_json = 5;
     }
   }
-  repeated Mutation mutations = 1;
+  string id = 1;
+  repeated Mutation mutations = 2;
 }
 
 message UpdateDashboardResponse {
