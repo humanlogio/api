@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateAlertRuleRequest, CreateAlertRuleResponse, DeleteAlertRuleRequest, DeleteAlertRuleResponse, GetAlertRuleRequest, GetAlertRuleResponse, ListAlertRulesRequest, ListAlertRulesResponse, UpdateAlertRuleRequest, UpdateAlertRuleResponse } from "./service_pb";
+import { CreateAlertRuleRequest, CreateAlertRuleResponse, DeleteAlertRuleRequest, DeleteAlertRuleResponse, GetAlertRuleRequest, GetAlertRuleResponse, ListAlertRuleRequest, ListAlertRuleResponse, UpdateAlertRuleRequest, UpdateAlertRuleResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -49,12 +49,12 @@ export const AlertService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc svc.alert.v1.AlertService.ListAlertsRule
+     * @generated from rpc svc.alert.v1.AlertService.ListAlertRule
      */
-    listAlertsRule: {
-      name: "ListAlertsRule",
-      I: ListAlertRulesRequest,
-      O: ListAlertRulesResponse,
+    listAlertRule: {
+      name: "ListAlertRule",
+      I: ListAlertRuleRequest,
+      O: ListAlertRuleResponse,
       kind: MethodKind.Unary,
     },
   }

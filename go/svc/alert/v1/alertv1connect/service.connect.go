@@ -45,9 +45,9 @@ const (
 	// AlertServiceDeleteAlertRuleProcedure is the fully-qualified name of the AlertService's
 	// DeleteAlertRule RPC.
 	AlertServiceDeleteAlertRuleProcedure = "/svc.alert.v1.AlertService/DeleteAlertRule"
-	// AlertServiceListAlertsRuleProcedure is the fully-qualified name of the AlertService's
-	// ListAlertsRule RPC.
-	AlertServiceListAlertsRuleProcedure = "/svc.alert.v1.AlertService/ListAlertsRule"
+	// AlertServiceListAlertRuleProcedure is the fully-qualified name of the AlertService's
+	// ListAlertRule RPC.
+	AlertServiceListAlertRuleProcedure = "/svc.alert.v1.AlertService/ListAlertRule"
 )
 
 // AlertServiceClient is a client for the svc.alert.v1.AlertService service.
@@ -56,7 +56,7 @@ type AlertServiceClient interface {
 	GetAlertRule(context.Context, *connect.Request[v1.GetAlertRuleRequest]) (*connect.Response[v1.GetAlertRuleResponse], error)
 	UpdateAlertRule(context.Context, *connect.Request[v1.UpdateAlertRuleRequest]) (*connect.Response[v1.UpdateAlertRuleResponse], error)
 	DeleteAlertRule(context.Context, *connect.Request[v1.DeleteAlertRuleRequest]) (*connect.Response[v1.DeleteAlertRuleResponse], error)
-	ListAlertsRule(context.Context, *connect.Request[v1.ListAlertRulesRequest]) (*connect.Response[v1.ListAlertRulesResponse], error)
+	ListAlertRule(context.Context, *connect.Request[v1.ListAlertRuleRequest]) (*connect.Response[v1.ListAlertRuleResponse], error)
 }
 
 // NewAlertServiceClient constructs a client for the svc.alert.v1.AlertService service. By default,
@@ -94,10 +94,10 @@ func NewAlertServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(alertServiceMethods.ByName("DeleteAlertRule")),
 			connect.WithClientOptions(opts...),
 		),
-		listAlertsRule: connect.NewClient[v1.ListAlertRulesRequest, v1.ListAlertRulesResponse](
+		listAlertRule: connect.NewClient[v1.ListAlertRuleRequest, v1.ListAlertRuleResponse](
 			httpClient,
-			baseURL+AlertServiceListAlertsRuleProcedure,
-			connect.WithSchema(alertServiceMethods.ByName("ListAlertsRule")),
+			baseURL+AlertServiceListAlertRuleProcedure,
+			connect.WithSchema(alertServiceMethods.ByName("ListAlertRule")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -109,7 +109,7 @@ type alertServiceClient struct {
 	getAlertRule    *connect.Client[v1.GetAlertRuleRequest, v1.GetAlertRuleResponse]
 	updateAlertRule *connect.Client[v1.UpdateAlertRuleRequest, v1.UpdateAlertRuleResponse]
 	deleteAlertRule *connect.Client[v1.DeleteAlertRuleRequest, v1.DeleteAlertRuleResponse]
-	listAlertsRule  *connect.Client[v1.ListAlertRulesRequest, v1.ListAlertRulesResponse]
+	listAlertRule   *connect.Client[v1.ListAlertRuleRequest, v1.ListAlertRuleResponse]
 }
 
 // CreateAlertRule calls svc.alert.v1.AlertService.CreateAlertRule.
@@ -132,9 +132,9 @@ func (c *alertServiceClient) DeleteAlertRule(ctx context.Context, req *connect.R
 	return c.deleteAlertRule.CallUnary(ctx, req)
 }
 
-// ListAlertsRule calls svc.alert.v1.AlertService.ListAlertsRule.
-func (c *alertServiceClient) ListAlertsRule(ctx context.Context, req *connect.Request[v1.ListAlertRulesRequest]) (*connect.Response[v1.ListAlertRulesResponse], error) {
-	return c.listAlertsRule.CallUnary(ctx, req)
+// ListAlertRule calls svc.alert.v1.AlertService.ListAlertRule.
+func (c *alertServiceClient) ListAlertRule(ctx context.Context, req *connect.Request[v1.ListAlertRuleRequest]) (*connect.Response[v1.ListAlertRuleResponse], error) {
+	return c.listAlertRule.CallUnary(ctx, req)
 }
 
 // AlertServiceHandler is an implementation of the svc.alert.v1.AlertService service.
@@ -143,7 +143,7 @@ type AlertServiceHandler interface {
 	GetAlertRule(context.Context, *connect.Request[v1.GetAlertRuleRequest]) (*connect.Response[v1.GetAlertRuleResponse], error)
 	UpdateAlertRule(context.Context, *connect.Request[v1.UpdateAlertRuleRequest]) (*connect.Response[v1.UpdateAlertRuleResponse], error)
 	DeleteAlertRule(context.Context, *connect.Request[v1.DeleteAlertRuleRequest]) (*connect.Response[v1.DeleteAlertRuleResponse], error)
-	ListAlertsRule(context.Context, *connect.Request[v1.ListAlertRulesRequest]) (*connect.Response[v1.ListAlertRulesResponse], error)
+	ListAlertRule(context.Context, *connect.Request[v1.ListAlertRuleRequest]) (*connect.Response[v1.ListAlertRuleResponse], error)
 }
 
 // NewAlertServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -177,10 +177,10 @@ func NewAlertServiceHandler(svc AlertServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(alertServiceMethods.ByName("DeleteAlertRule")),
 		connect.WithHandlerOptions(opts...),
 	)
-	alertServiceListAlertsRuleHandler := connect.NewUnaryHandler(
-		AlertServiceListAlertsRuleProcedure,
-		svc.ListAlertsRule,
-		connect.WithSchema(alertServiceMethods.ByName("ListAlertsRule")),
+	alertServiceListAlertRuleHandler := connect.NewUnaryHandler(
+		AlertServiceListAlertRuleProcedure,
+		svc.ListAlertRule,
+		connect.WithSchema(alertServiceMethods.ByName("ListAlertRule")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.alert.v1.AlertService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -193,8 +193,8 @@ func NewAlertServiceHandler(svc AlertServiceHandler, opts ...connect.HandlerOpti
 			alertServiceUpdateAlertRuleHandler.ServeHTTP(w, r)
 		case AlertServiceDeleteAlertRuleProcedure:
 			alertServiceDeleteAlertRuleHandler.ServeHTTP(w, r)
-		case AlertServiceListAlertsRuleProcedure:
-			alertServiceListAlertsRuleHandler.ServeHTTP(w, r)
+		case AlertServiceListAlertRuleProcedure:
+			alertServiceListAlertRuleHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -220,6 +220,6 @@ func (UnimplementedAlertServiceHandler) DeleteAlertRule(context.Context, *connec
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.DeleteAlertRule is not implemented"))
 }
 
-func (UnimplementedAlertServiceHandler) ListAlertsRule(context.Context, *connect.Request[v1.ListAlertRulesRequest]) (*connect.Response[v1.ListAlertRulesResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.ListAlertsRule is not implemented"))
+func (UnimplementedAlertServiceHandler) ListAlertRule(context.Context, *connect.Request[v1.ListAlertRuleRequest]) (*connect.Response[v1.ListAlertRuleResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.ListAlertRule is not implemented"))
 }

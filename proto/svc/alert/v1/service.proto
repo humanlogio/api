@@ -16,7 +16,7 @@ service AlertService {
   rpc GetAlertRule(GetAlertRuleRequest) returns (GetAlertRuleResponse);
   rpc UpdateAlertRule(UpdateAlertRuleRequest) returns (UpdateAlertRuleResponse);
   rpc DeleteAlertRule(DeleteAlertRuleRequest) returns (DeleteAlertRuleResponse);
-  rpc ListAlertsRule(ListAlertRulesRequest) returns (ListAlertRulesResponse);
+  rpc ListAlertRule(ListAlertRuleRequest) returns (ListAlertRuleResponse);
 }
 
 message CreateAlertRuleRequest {
@@ -69,13 +69,13 @@ message DeleteAlertRuleRequest {
 
 message DeleteAlertRuleResponse {}
 
-message ListAlertRulesRequest {
+message ListAlertRuleRequest {
   int64 environment_id = 101;
   types.v1.Cursor cursor = 102;
   int32 limit = 103;
 }
 
-message ListAlertRulesResponse {
+message ListAlertRuleResponse {
   message ListItem {
     types.v1.AlertRule alert_rule = 2;
   }

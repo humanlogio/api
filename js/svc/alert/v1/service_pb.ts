@@ -439,9 +439,9 @@ export class DeleteAlertRuleResponse extends Message<DeleteAlertRuleResponse> {
 }
 
 /**
- * @generated from message svc.alert.v1.ListAlertRulesRequest
+ * @generated from message svc.alert.v1.ListAlertRuleRequest
  */
-export class ListAlertRulesRequest extends Message<ListAlertRulesRequest> {
+export class ListAlertRuleRequest extends Message<ListAlertRuleRequest> {
   /**
    * @generated from field: int64 environment_id = 101;
    */
@@ -457,113 +457,113 @@ export class ListAlertRulesRequest extends Message<ListAlertRulesRequest> {
    */
   limit = 0;
 
-  constructor(data?: PartialMessage<ListAlertRulesRequest>) {
+  constructor(data?: PartialMessage<ListAlertRuleRequest>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.alert.v1.ListAlertRulesRequest";
+  static readonly typeName = "svc.alert.v1.ListAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 102, name: "cursor", kind: "message", T: Cursor },
     { no: 103, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRulesRequest {
-    return new ListAlertRulesRequest().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRuleRequest {
+    return new ListAlertRuleRequest().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertRulesRequest {
-    return new ListAlertRulesRequest().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertRuleRequest {
+    return new ListAlertRuleRequest().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertRulesRequest {
-    return new ListAlertRulesRequest().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertRuleRequest {
+    return new ListAlertRuleRequest().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAlertRulesRequest | PlainMessage<ListAlertRulesRequest> | undefined, b: ListAlertRulesRequest | PlainMessage<ListAlertRulesRequest> | undefined): boolean {
-    return proto3.util.equals(ListAlertRulesRequest, a, b);
+  static equals(a: ListAlertRuleRequest | PlainMessage<ListAlertRuleRequest> | undefined, b: ListAlertRuleRequest | PlainMessage<ListAlertRuleRequest> | undefined): boolean {
+    return proto3.util.equals(ListAlertRuleRequest, a, b);
   }
 }
 
 /**
- * @generated from message svc.alert.v1.ListAlertRulesResponse
+ * @generated from message svc.alert.v1.ListAlertRuleResponse
  */
-export class ListAlertRulesResponse extends Message<ListAlertRulesResponse> {
+export class ListAlertRuleResponse extends Message<ListAlertRuleResponse> {
   /**
    * @generated from field: types.v1.Cursor next = 100;
    */
   next?: Cursor;
 
   /**
-   * @generated from field: repeated svc.alert.v1.ListAlertRulesResponse.ListItem items = 200;
+   * @generated from field: repeated svc.alert.v1.ListAlertRuleResponse.ListItem items = 200;
    */
-  items: ListAlertRulesResponse_ListItem[] = [];
+  items: ListAlertRuleResponse_ListItem[] = [];
 
-  constructor(data?: PartialMessage<ListAlertRulesResponse>) {
+  constructor(data?: PartialMessage<ListAlertRuleResponse>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.alert.v1.ListAlertRulesResponse";
+  static readonly typeName = "svc.alert.v1.ListAlertRuleResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 100, name: "next", kind: "message", T: Cursor },
-    { no: 200, name: "items", kind: "message", T: ListAlertRulesResponse_ListItem, repeated: true },
+    { no: 200, name: "items", kind: "message", T: ListAlertRuleResponse_ListItem, repeated: true },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRulesResponse {
-    return new ListAlertRulesResponse().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRuleResponse {
+    return new ListAlertRuleResponse().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertRulesResponse {
-    return new ListAlertRulesResponse().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertRuleResponse {
+    return new ListAlertRuleResponse().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertRulesResponse {
-    return new ListAlertRulesResponse().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertRuleResponse {
+    return new ListAlertRuleResponse().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAlertRulesResponse | PlainMessage<ListAlertRulesResponse> | undefined, b: ListAlertRulesResponse | PlainMessage<ListAlertRulesResponse> | undefined): boolean {
-    return proto3.util.equals(ListAlertRulesResponse, a, b);
+  static equals(a: ListAlertRuleResponse | PlainMessage<ListAlertRuleResponse> | undefined, b: ListAlertRuleResponse | PlainMessage<ListAlertRuleResponse> | undefined): boolean {
+    return proto3.util.equals(ListAlertRuleResponse, a, b);
   }
 }
 
 /**
- * @generated from message svc.alert.v1.ListAlertRulesResponse.ListItem
+ * @generated from message svc.alert.v1.ListAlertRuleResponse.ListItem
  */
-export class ListAlertRulesResponse_ListItem extends Message<ListAlertRulesResponse_ListItem> {
+export class ListAlertRuleResponse_ListItem extends Message<ListAlertRuleResponse_ListItem> {
   /**
    * @generated from field: types.v1.AlertRule alert_rule = 2;
    */
   alertRule?: AlertRule;
 
-  constructor(data?: PartialMessage<ListAlertRulesResponse_ListItem>) {
+  constructor(data?: PartialMessage<ListAlertRuleResponse_ListItem>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.alert.v1.ListAlertRulesResponse.ListItem";
+  static readonly typeName = "svc.alert.v1.ListAlertRuleResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 2, name: "alert_rule", kind: "message", T: AlertRule },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRulesResponse_ListItem {
-    return new ListAlertRulesResponse_ListItem().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRuleResponse_ListItem {
+    return new ListAlertRuleResponse_ListItem().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertRulesResponse_ListItem {
-    return new ListAlertRulesResponse_ListItem().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertRuleResponse_ListItem {
+    return new ListAlertRuleResponse_ListItem().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertRulesResponse_ListItem {
-    return new ListAlertRulesResponse_ListItem().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertRuleResponse_ListItem {
+    return new ListAlertRuleResponse_ListItem().fromJsonString(jsonString, options);
   }
 
-  static equals(a: ListAlertRulesResponse_ListItem | PlainMessage<ListAlertRulesResponse_ListItem> | undefined, b: ListAlertRulesResponse_ListItem | PlainMessage<ListAlertRulesResponse_ListItem> | undefined): boolean {
-    return proto3.util.equals(ListAlertRulesResponse_ListItem, a, b);
+  static equals(a: ListAlertRuleResponse_ListItem | PlainMessage<ListAlertRuleResponse_ListItem> | undefined, b: ListAlertRuleResponse_ListItem | PlainMessage<ListAlertRuleResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListAlertRuleResponse_ListItem, a, b);
   }
 }
 

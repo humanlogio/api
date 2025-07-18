@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateAlertRuleRequest, CreateAlertRuleResponse, DeleteAlertRuleRequest, DeleteAlertRuleResponse, GetAlertRuleRequest, GetAlertRuleResponse, ListAlertRulesRequest, ListAlertRulesResponse, UpdateAlertRuleRequest, UpdateAlertRuleResponse } from "./service_pb";
+import { CreateAlertRuleRequest, CreateAlertRuleResponse, DeleteAlertRuleRequest, DeleteAlertRuleResponse, GetAlertRuleRequest, GetAlertRuleResponse, ListAlertRuleRequest, ListAlertRuleResponse, UpdateAlertRuleRequest, UpdateAlertRuleResponse } from "./service_pb";
 
 /**
  * @generated from rpc svc.alert.v1.AlertService.CreateAlertRule
@@ -63,14 +63,14 @@ export const deleteAlertRule = {
 } as const;
 
 /**
- * @generated from rpc svc.alert.v1.AlertService.ListAlertsRule
+ * @generated from rpc svc.alert.v1.AlertService.ListAlertRule
  */
-export const listAlertsRule = {
-  localName: "listAlertsRule",
-  name: "ListAlertsRule",
+export const listAlertRule = {
+  localName: "listAlertRule",
+  name: "ListAlertRule",
   kind: MethodKind.Unary,
-  I: ListAlertRulesRequest,
-  O: ListAlertRulesResponse,
+  I: ListAlertRuleRequest,
+  O: ListAlertRuleResponse,
   service: {
     typeName: "svc.alert.v1.AlertService"
   }
