@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package svc.alert.v1;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "types/v1/alert.proto";
+import "types/v1/cursor.proto";
+import "types/v1/query.proto";
+import "types/v1/types.proto";
+
+option go_package = "svc/query/v1;queryv1";
+
+service AlertService {
+  rpc CreateAlertRule(CreateAlertRuleRequest) returns (CreateAlertRuleResponse);
+  rpc GetAlertRule(GetAlertRuleRequest) returns (GetAlertRuleResponse);
+  rpc UpdateAlertRule(UpdateAlertRuleRequest) returns (UpdateAlertRuleResponse);
+  rpc DeleteAlertRule(DeleteAlertRuleRequest) returns (DeleteAlertRuleResponse);
+  rpc ListAlertsRule(ListAlertRulesRequest) returns (ListAlertRulesResponse);
+}
+
+message CreateAlertRuleRequest {
+  int64 environment_id = 101;
+  string name = 1;
+  types.v1.Query expr = 2;
+  types.v1.Obj labels = 3;
+  types.v1.Obj annotations = 4;
+  google.protobuf.Duration for = 51;
+  google.protobuf.Duration keep_firing_for = 52;
+}
+
+message CreateAlertRuleResponse {
+  types.v1.AlertRule alert_rule = 1;
+}
+
+message GetAlertRuleRequest {
+  int64 environment_id = 101;
+  int64 id = 1;
+}
+
+message GetAlertRuleResponse {
+  types.v1.AlertRule alert_rule = 1;
+}
+
+message UpdateAlertRuleRequest {
+  message Mutation {
+    oneof do {
+      string set_name = 1;
+      types.v1.Query set_expr = 2;
+      types.v1.Obj set_labels = 3;
+      types.v1.Obj set_annotations = 4;
+      google.protobuf.Duration set_for = 51;
+      google.protobuf.Duration set_keep_firing_for = 52;
+    }
+  }
+  int64 environment_id = 101;
+  int64 id = 1;
+  repeated Mutation mutations = 2;
+}
+
+message UpdateAlertRuleResponse {
+  types.v1.AlertRule alert_rule = 1;
+}
+
+message DeleteAlertRuleRequest {
+  int64 environment_id = 101;
+  int64 id = 1;
+}
+
+message DeleteAlertRuleResponse {}
+
+message ListAlertRulesRequest {
+  int64 environment_id = 101;
+  types.v1.Cursor cursor = 102;
+  int32 limit = 103;
+}
+
+message ListAlertRulesResponse {
+  message ListItem {
+    types.v1.AlertRule alert_rule = 2;
+  }
+  types.v1.Cursor next = 100;
+  repeated ListItem items = 200;
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/duration.proto";
+import "types/v1/query.proto";
+import "types/v1/types.proto";
+
+option go_package = "types/v1;typesv1";
+
+message AlertRule {
+  int64 id = 100;
+  string name = 1;
+  types.v1.Query expr = 2;
+  types.v1.Obj labels = 3;
+  types.v1.Obj annotations = 4;
+  google.protobuf.Duration for = 51;
+  google.protobuf.Duration keep_firing_for = 52;
+}

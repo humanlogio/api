@@ -13,6 +13,11 @@ import { Cursor } from "../../../types/v1/cursor_pb";
  */
 export class CreateDashboardRequest extends Message<CreateDashboardRequest> {
   /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
    * @generated from field: string name = 1;
    */
   name = "";
@@ -40,6 +45,7 @@ export class CreateDashboardRequest extends Message<CreateDashboardRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.dashboard.v1.CreateDashboardRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "is_readonly", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
@@ -105,6 +111,11 @@ export class CreateDashboardResponse extends Message<CreateDashboardResponse> {
  */
 export class GetDashboardRequest extends Message<GetDashboardRequest> {
   /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
    * @generated from field: string id = 1;
    */
   id = "";
@@ -117,6 +128,7 @@ export class GetDashboardRequest extends Message<GetDashboardRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.dashboard.v1.GetDashboardRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
@@ -179,6 +191,11 @@ export class GetDashboardResponse extends Message<GetDashboardResponse> {
  */
 export class UpdateDashboardRequest extends Message<UpdateDashboardRequest> {
   /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
    * @generated from field: string id = 1;
    */
   id = "";
@@ -196,6 +213,7 @@ export class UpdateDashboardRequest extends Message<UpdateDashboardRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.dashboard.v1.UpdateDashboardRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "mutations", kind: "message", T: UpdateDashboardRequest_Mutation, repeated: true },
   ]);
@@ -330,6 +348,11 @@ export class UpdateDashboardResponse extends Message<UpdateDashboardResponse> {
  */
 export class DeleteDashboardRequest extends Message<DeleteDashboardRequest> {
   /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
    * @generated from field: string id = 1;
    */
   id = "";
@@ -342,6 +365,7 @@ export class DeleteDashboardRequest extends Message<DeleteDashboardRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.dashboard.v1.DeleteDashboardRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
@@ -398,6 +422,11 @@ export class DeleteDashboardResponse extends Message<DeleteDashboardResponse> {
  */
 export class ListDashboardRequest extends Message<ListDashboardRequest> {
   /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
    * @generated from field: types.v1.Cursor cursor = 1;
    */
   cursor?: Cursor;
@@ -420,6 +449,7 @@ export class ListDashboardRequest extends Message<ListDashboardRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.dashboard.v1.ListDashboardRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 1, name: "cursor", kind: "message", T: Cursor },
     { no: 2, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
     { no: 3, name: "dashboard_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
