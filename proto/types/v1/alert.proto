@@ -8,6 +8,16 @@ import "types/v1/types.proto";
 
 option go_package = "types/v1;typesv1";
 
+message AlertGroup {
+  int64 id = 100;
+  string name = 1;
+  google.protobuf.Duration interval = 2;
+  google.protobuf.Duration query_offset = 3;
+  int32 limit = 4;
+  repeated AlertRule rules = 5;
+  types.v1.Obj labels = 6;
+}
+
 message AlertRule {
   int64 id = 100;
   string name = 1;

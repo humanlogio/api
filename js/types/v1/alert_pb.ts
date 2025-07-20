@@ -5,8 +5,81 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Query } from "./query_pb";
 import { Obj } from "./types_pb";
+import { Query } from "./query_pb";
+
+/**
+ * @generated from message types.v1.AlertGroup
+ */
+export class AlertGroup extends Message<AlertGroup> {
+  /**
+   * @generated from field: int64 id = 100;
+   */
+  id = protoInt64.zero;
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: google.protobuf.Duration interval = 2;
+   */
+  interval?: Duration;
+
+  /**
+   * @generated from field: google.protobuf.Duration query_offset = 3;
+   */
+  queryOffset?: Duration;
+
+  /**
+   * @generated from field: int32 limit = 4;
+   */
+  limit = 0;
+
+  /**
+   * @generated from field: repeated types.v1.AlertRule rules = 5;
+   */
+  rules: AlertRule[] = [];
+
+  /**
+   * @generated from field: types.v1.Obj labels = 6;
+   */
+  labels?: Obj;
+
+  constructor(data?: PartialMessage<AlertGroup>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.AlertGroup";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 100, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "interval", kind: "message", T: Duration },
+    { no: 3, name: "query_offset", kind: "message", T: Duration },
+    { no: 4, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: "rules", kind: "message", T: AlertRule, repeated: true },
+    { no: 6, name: "labels", kind: "message", T: Obj },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AlertGroup {
+    return new AlertGroup().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AlertGroup {
+    return new AlertGroup().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AlertGroup {
+    return new AlertGroup().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AlertGroup | PlainMessage<AlertGroup> | undefined, b: AlertGroup | PlainMessage<AlertGroup> | undefined): boolean {
+    return proto3.util.equals(AlertGroup, a, b);
+  }
+}
 
 /**
  * @generated from message types.v1.AlertRule
