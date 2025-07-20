@@ -4,7 +4,77 @@
 // @ts-nocheck
 
 import { MethodKind } from "@bufbuild/protobuf";
-import { CreateAlertRuleRequest, CreateAlertRuleResponse, DeleteAlertRuleRequest, DeleteAlertRuleResponse, GetAlertRuleRequest, GetAlertRuleResponse, ListAlertRuleRequest, ListAlertRuleResponse, UpdateAlertRuleRequest, UpdateAlertRuleResponse } from "./service_pb";
+import { CreateAlertGroupRequest, CreateAlertGroupResponse, CreateAlertRuleRequest, CreateAlertRuleResponse, DeleteAlertGroupRequest, DeleteAlertGroupResponse, DeleteAlertRuleRequest, DeleteAlertRuleResponse, GetAlertGroupRequest, GetAlertGroupResponse, GetAlertRuleRequest, GetAlertRuleResponse, ListAlertGroupRequest, ListAlertGroupResponse, ListAlertRuleRequest, ListAlertRuleResponse, UpdateAlertGroupRequest, UpdateAlertGroupResponse, UpdateAlertRuleRequest, UpdateAlertRuleResponse } from "./service_pb";
+
+/**
+ * @generated from rpc svc.alert.v1.AlertService.CreateAlertGroup
+ */
+export const createAlertGroup = {
+  localName: "createAlertGroup",
+  name: "CreateAlertGroup",
+  kind: MethodKind.Unary,
+  I: CreateAlertGroupRequest,
+  O: CreateAlertGroupResponse,
+  service: {
+    typeName: "svc.alert.v1.AlertService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.alert.v1.AlertService.GetAlertGroup
+ */
+export const getAlertGroup = {
+  localName: "getAlertGroup",
+  name: "GetAlertGroup",
+  kind: MethodKind.Unary,
+  I: GetAlertGroupRequest,
+  O: GetAlertGroupResponse,
+  service: {
+    typeName: "svc.alert.v1.AlertService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.alert.v1.AlertService.UpdateAlertGroup
+ */
+export const updateAlertGroup = {
+  localName: "updateAlertGroup",
+  name: "UpdateAlertGroup",
+  kind: MethodKind.Unary,
+  I: UpdateAlertGroupRequest,
+  O: UpdateAlertGroupResponse,
+  service: {
+    typeName: "svc.alert.v1.AlertService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.alert.v1.AlertService.DeleteAlertGroup
+ */
+export const deleteAlertGroup = {
+  localName: "deleteAlertGroup",
+  name: "DeleteAlertGroup",
+  kind: MethodKind.Unary,
+  I: DeleteAlertGroupRequest,
+  O: DeleteAlertGroupResponse,
+  service: {
+    typeName: "svc.alert.v1.AlertService"
+  }
+} as const;
+
+/**
+ * @generated from rpc svc.alert.v1.AlertService.ListAlertGroup
+ */
+export const listAlertGroup = {
+  localName: "listAlertGroup",
+  name: "ListAlertGroup",
+  kind: MethodKind.Unary,
+  I: ListAlertGroupRequest,
+  O: ListAlertGroupResponse,
+  service: {
+    typeName: "svc.alert.v1.AlertService"
+  }
+} as const;
 
 /**
  * @generated from rpc svc.alert.v1.AlertService.CreateAlertRule

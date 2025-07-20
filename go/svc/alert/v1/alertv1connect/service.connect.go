@@ -33,6 +33,21 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// AlertServiceCreateAlertGroupProcedure is the fully-qualified name of the AlertService's
+	// CreateAlertGroup RPC.
+	AlertServiceCreateAlertGroupProcedure = "/svc.alert.v1.AlertService/CreateAlertGroup"
+	// AlertServiceGetAlertGroupProcedure is the fully-qualified name of the AlertService's
+	// GetAlertGroup RPC.
+	AlertServiceGetAlertGroupProcedure = "/svc.alert.v1.AlertService/GetAlertGroup"
+	// AlertServiceUpdateAlertGroupProcedure is the fully-qualified name of the AlertService's
+	// UpdateAlertGroup RPC.
+	AlertServiceUpdateAlertGroupProcedure = "/svc.alert.v1.AlertService/UpdateAlertGroup"
+	// AlertServiceDeleteAlertGroupProcedure is the fully-qualified name of the AlertService's
+	// DeleteAlertGroup RPC.
+	AlertServiceDeleteAlertGroupProcedure = "/svc.alert.v1.AlertService/DeleteAlertGroup"
+	// AlertServiceListAlertGroupProcedure is the fully-qualified name of the AlertService's
+	// ListAlertGroup RPC.
+	AlertServiceListAlertGroupProcedure = "/svc.alert.v1.AlertService/ListAlertGroup"
 	// AlertServiceCreateAlertRuleProcedure is the fully-qualified name of the AlertService's
 	// CreateAlertRule RPC.
 	AlertServiceCreateAlertRuleProcedure = "/svc.alert.v1.AlertService/CreateAlertRule"
@@ -52,6 +67,11 @@ const (
 
 // AlertServiceClient is a client for the svc.alert.v1.AlertService service.
 type AlertServiceClient interface {
+	CreateAlertGroup(context.Context, *connect.Request[v1.CreateAlertGroupRequest]) (*connect.Response[v1.CreateAlertGroupResponse], error)
+	GetAlertGroup(context.Context, *connect.Request[v1.GetAlertGroupRequest]) (*connect.Response[v1.GetAlertGroupResponse], error)
+	UpdateAlertGroup(context.Context, *connect.Request[v1.UpdateAlertGroupRequest]) (*connect.Response[v1.UpdateAlertGroupResponse], error)
+	DeleteAlertGroup(context.Context, *connect.Request[v1.DeleteAlertGroupRequest]) (*connect.Response[v1.DeleteAlertGroupResponse], error)
+	ListAlertGroup(context.Context, *connect.Request[v1.ListAlertGroupRequest]) (*connect.Response[v1.ListAlertGroupResponse], error)
 	CreateAlertRule(context.Context, *connect.Request[v1.CreateAlertRuleRequest]) (*connect.Response[v1.CreateAlertRuleResponse], error)
 	GetAlertRule(context.Context, *connect.Request[v1.GetAlertRuleRequest]) (*connect.Response[v1.GetAlertRuleResponse], error)
 	UpdateAlertRule(context.Context, *connect.Request[v1.UpdateAlertRuleRequest]) (*connect.Response[v1.UpdateAlertRuleResponse], error)
@@ -70,6 +90,36 @@ func NewAlertServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 	baseURL = strings.TrimRight(baseURL, "/")
 	alertServiceMethods := v1.File_svc_alert_v1_service_proto.Services().ByName("AlertService").Methods()
 	return &alertServiceClient{
+		createAlertGroup: connect.NewClient[v1.CreateAlertGroupRequest, v1.CreateAlertGroupResponse](
+			httpClient,
+			baseURL+AlertServiceCreateAlertGroupProcedure,
+			connect.WithSchema(alertServiceMethods.ByName("CreateAlertGroup")),
+			connect.WithClientOptions(opts...),
+		),
+		getAlertGroup: connect.NewClient[v1.GetAlertGroupRequest, v1.GetAlertGroupResponse](
+			httpClient,
+			baseURL+AlertServiceGetAlertGroupProcedure,
+			connect.WithSchema(alertServiceMethods.ByName("GetAlertGroup")),
+			connect.WithClientOptions(opts...),
+		),
+		updateAlertGroup: connect.NewClient[v1.UpdateAlertGroupRequest, v1.UpdateAlertGroupResponse](
+			httpClient,
+			baseURL+AlertServiceUpdateAlertGroupProcedure,
+			connect.WithSchema(alertServiceMethods.ByName("UpdateAlertGroup")),
+			connect.WithClientOptions(opts...),
+		),
+		deleteAlertGroup: connect.NewClient[v1.DeleteAlertGroupRequest, v1.DeleteAlertGroupResponse](
+			httpClient,
+			baseURL+AlertServiceDeleteAlertGroupProcedure,
+			connect.WithSchema(alertServiceMethods.ByName("DeleteAlertGroup")),
+			connect.WithClientOptions(opts...),
+		),
+		listAlertGroup: connect.NewClient[v1.ListAlertGroupRequest, v1.ListAlertGroupResponse](
+			httpClient,
+			baseURL+AlertServiceListAlertGroupProcedure,
+			connect.WithSchema(alertServiceMethods.ByName("ListAlertGroup")),
+			connect.WithClientOptions(opts...),
+		),
 		createAlertRule: connect.NewClient[v1.CreateAlertRuleRequest, v1.CreateAlertRuleResponse](
 			httpClient,
 			baseURL+AlertServiceCreateAlertRuleProcedure,
@@ -105,11 +155,41 @@ func NewAlertServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 
 // alertServiceClient implements AlertServiceClient.
 type alertServiceClient struct {
-	createAlertRule *connect.Client[v1.CreateAlertRuleRequest, v1.CreateAlertRuleResponse]
-	getAlertRule    *connect.Client[v1.GetAlertRuleRequest, v1.GetAlertRuleResponse]
-	updateAlertRule *connect.Client[v1.UpdateAlertRuleRequest, v1.UpdateAlertRuleResponse]
-	deleteAlertRule *connect.Client[v1.DeleteAlertRuleRequest, v1.DeleteAlertRuleResponse]
-	listAlertRule   *connect.Client[v1.ListAlertRuleRequest, v1.ListAlertRuleResponse]
+	createAlertGroup *connect.Client[v1.CreateAlertGroupRequest, v1.CreateAlertGroupResponse]
+	getAlertGroup    *connect.Client[v1.GetAlertGroupRequest, v1.GetAlertGroupResponse]
+	updateAlertGroup *connect.Client[v1.UpdateAlertGroupRequest, v1.UpdateAlertGroupResponse]
+	deleteAlertGroup *connect.Client[v1.DeleteAlertGroupRequest, v1.DeleteAlertGroupResponse]
+	listAlertGroup   *connect.Client[v1.ListAlertGroupRequest, v1.ListAlertGroupResponse]
+	createAlertRule  *connect.Client[v1.CreateAlertRuleRequest, v1.CreateAlertRuleResponse]
+	getAlertRule     *connect.Client[v1.GetAlertRuleRequest, v1.GetAlertRuleResponse]
+	updateAlertRule  *connect.Client[v1.UpdateAlertRuleRequest, v1.UpdateAlertRuleResponse]
+	deleteAlertRule  *connect.Client[v1.DeleteAlertRuleRequest, v1.DeleteAlertRuleResponse]
+	listAlertRule    *connect.Client[v1.ListAlertRuleRequest, v1.ListAlertRuleResponse]
+}
+
+// CreateAlertGroup calls svc.alert.v1.AlertService.CreateAlertGroup.
+func (c *alertServiceClient) CreateAlertGroup(ctx context.Context, req *connect.Request[v1.CreateAlertGroupRequest]) (*connect.Response[v1.CreateAlertGroupResponse], error) {
+	return c.createAlertGroup.CallUnary(ctx, req)
+}
+
+// GetAlertGroup calls svc.alert.v1.AlertService.GetAlertGroup.
+func (c *alertServiceClient) GetAlertGroup(ctx context.Context, req *connect.Request[v1.GetAlertGroupRequest]) (*connect.Response[v1.GetAlertGroupResponse], error) {
+	return c.getAlertGroup.CallUnary(ctx, req)
+}
+
+// UpdateAlertGroup calls svc.alert.v1.AlertService.UpdateAlertGroup.
+func (c *alertServiceClient) UpdateAlertGroup(ctx context.Context, req *connect.Request[v1.UpdateAlertGroupRequest]) (*connect.Response[v1.UpdateAlertGroupResponse], error) {
+	return c.updateAlertGroup.CallUnary(ctx, req)
+}
+
+// DeleteAlertGroup calls svc.alert.v1.AlertService.DeleteAlertGroup.
+func (c *alertServiceClient) DeleteAlertGroup(ctx context.Context, req *connect.Request[v1.DeleteAlertGroupRequest]) (*connect.Response[v1.DeleteAlertGroupResponse], error) {
+	return c.deleteAlertGroup.CallUnary(ctx, req)
+}
+
+// ListAlertGroup calls svc.alert.v1.AlertService.ListAlertGroup.
+func (c *alertServiceClient) ListAlertGroup(ctx context.Context, req *connect.Request[v1.ListAlertGroupRequest]) (*connect.Response[v1.ListAlertGroupResponse], error) {
+	return c.listAlertGroup.CallUnary(ctx, req)
 }
 
 // CreateAlertRule calls svc.alert.v1.AlertService.CreateAlertRule.
@@ -139,6 +219,11 @@ func (c *alertServiceClient) ListAlertRule(ctx context.Context, req *connect.Req
 
 // AlertServiceHandler is an implementation of the svc.alert.v1.AlertService service.
 type AlertServiceHandler interface {
+	CreateAlertGroup(context.Context, *connect.Request[v1.CreateAlertGroupRequest]) (*connect.Response[v1.CreateAlertGroupResponse], error)
+	GetAlertGroup(context.Context, *connect.Request[v1.GetAlertGroupRequest]) (*connect.Response[v1.GetAlertGroupResponse], error)
+	UpdateAlertGroup(context.Context, *connect.Request[v1.UpdateAlertGroupRequest]) (*connect.Response[v1.UpdateAlertGroupResponse], error)
+	DeleteAlertGroup(context.Context, *connect.Request[v1.DeleteAlertGroupRequest]) (*connect.Response[v1.DeleteAlertGroupResponse], error)
+	ListAlertGroup(context.Context, *connect.Request[v1.ListAlertGroupRequest]) (*connect.Response[v1.ListAlertGroupResponse], error)
 	CreateAlertRule(context.Context, *connect.Request[v1.CreateAlertRuleRequest]) (*connect.Response[v1.CreateAlertRuleResponse], error)
 	GetAlertRule(context.Context, *connect.Request[v1.GetAlertRuleRequest]) (*connect.Response[v1.GetAlertRuleResponse], error)
 	UpdateAlertRule(context.Context, *connect.Request[v1.UpdateAlertRuleRequest]) (*connect.Response[v1.UpdateAlertRuleResponse], error)
@@ -153,6 +238,36 @@ type AlertServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewAlertServiceHandler(svc AlertServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	alertServiceMethods := v1.File_svc_alert_v1_service_proto.Services().ByName("AlertService").Methods()
+	alertServiceCreateAlertGroupHandler := connect.NewUnaryHandler(
+		AlertServiceCreateAlertGroupProcedure,
+		svc.CreateAlertGroup,
+		connect.WithSchema(alertServiceMethods.ByName("CreateAlertGroup")),
+		connect.WithHandlerOptions(opts...),
+	)
+	alertServiceGetAlertGroupHandler := connect.NewUnaryHandler(
+		AlertServiceGetAlertGroupProcedure,
+		svc.GetAlertGroup,
+		connect.WithSchema(alertServiceMethods.ByName("GetAlertGroup")),
+		connect.WithHandlerOptions(opts...),
+	)
+	alertServiceUpdateAlertGroupHandler := connect.NewUnaryHandler(
+		AlertServiceUpdateAlertGroupProcedure,
+		svc.UpdateAlertGroup,
+		connect.WithSchema(alertServiceMethods.ByName("UpdateAlertGroup")),
+		connect.WithHandlerOptions(opts...),
+	)
+	alertServiceDeleteAlertGroupHandler := connect.NewUnaryHandler(
+		AlertServiceDeleteAlertGroupProcedure,
+		svc.DeleteAlertGroup,
+		connect.WithSchema(alertServiceMethods.ByName("DeleteAlertGroup")),
+		connect.WithHandlerOptions(opts...),
+	)
+	alertServiceListAlertGroupHandler := connect.NewUnaryHandler(
+		AlertServiceListAlertGroupProcedure,
+		svc.ListAlertGroup,
+		connect.WithSchema(alertServiceMethods.ByName("ListAlertGroup")),
+		connect.WithHandlerOptions(opts...),
+	)
 	alertServiceCreateAlertRuleHandler := connect.NewUnaryHandler(
 		AlertServiceCreateAlertRuleProcedure,
 		svc.CreateAlertRule,
@@ -185,6 +300,16 @@ func NewAlertServiceHandler(svc AlertServiceHandler, opts ...connect.HandlerOpti
 	)
 	return "/svc.alert.v1.AlertService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case AlertServiceCreateAlertGroupProcedure:
+			alertServiceCreateAlertGroupHandler.ServeHTTP(w, r)
+		case AlertServiceGetAlertGroupProcedure:
+			alertServiceGetAlertGroupHandler.ServeHTTP(w, r)
+		case AlertServiceUpdateAlertGroupProcedure:
+			alertServiceUpdateAlertGroupHandler.ServeHTTP(w, r)
+		case AlertServiceDeleteAlertGroupProcedure:
+			alertServiceDeleteAlertGroupHandler.ServeHTTP(w, r)
+		case AlertServiceListAlertGroupProcedure:
+			alertServiceListAlertGroupHandler.ServeHTTP(w, r)
 		case AlertServiceCreateAlertRuleProcedure:
 			alertServiceCreateAlertRuleHandler.ServeHTTP(w, r)
 		case AlertServiceGetAlertRuleProcedure:
@@ -203,6 +328,26 @@ func NewAlertServiceHandler(svc AlertServiceHandler, opts ...connect.HandlerOpti
 
 // UnimplementedAlertServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedAlertServiceHandler struct{}
+
+func (UnimplementedAlertServiceHandler) CreateAlertGroup(context.Context, *connect.Request[v1.CreateAlertGroupRequest]) (*connect.Response[v1.CreateAlertGroupResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.CreateAlertGroup is not implemented"))
+}
+
+func (UnimplementedAlertServiceHandler) GetAlertGroup(context.Context, *connect.Request[v1.GetAlertGroupRequest]) (*connect.Response[v1.GetAlertGroupResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.GetAlertGroup is not implemented"))
+}
+
+func (UnimplementedAlertServiceHandler) UpdateAlertGroup(context.Context, *connect.Request[v1.UpdateAlertGroupRequest]) (*connect.Response[v1.UpdateAlertGroupResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.UpdateAlertGroup is not implemented"))
+}
+
+func (UnimplementedAlertServiceHandler) DeleteAlertGroup(context.Context, *connect.Request[v1.DeleteAlertGroupRequest]) (*connect.Response[v1.DeleteAlertGroupResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.DeleteAlertGroup is not implemented"))
+}
+
+func (UnimplementedAlertServiceHandler) ListAlertGroup(context.Context, *connect.Request[v1.ListAlertGroupRequest]) (*connect.Response[v1.ListAlertGroupResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.ListAlertGroup is not implemented"))
+}
 
 func (UnimplementedAlertServiceHandler) CreateAlertRule(context.Context, *connect.Request[v1.CreateAlertRuleRequest]) (*connect.Response[v1.CreateAlertRuleResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.alert.v1.AlertService.CreateAlertRule is not implemented"))

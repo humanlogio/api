@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreateAlertRuleRequest, CreateAlertRuleResponse, DeleteAlertRuleRequest, DeleteAlertRuleResponse, GetAlertRuleRequest, GetAlertRuleResponse, ListAlertRuleRequest, ListAlertRuleResponse, UpdateAlertRuleRequest, UpdateAlertRuleResponse } from "./service_pb";
+import { CreateAlertGroupRequest, CreateAlertGroupResponse, CreateAlertRuleRequest, CreateAlertRuleResponse, DeleteAlertGroupRequest, DeleteAlertGroupResponse, DeleteAlertRuleRequest, DeleteAlertRuleResponse, GetAlertGroupRequest, GetAlertGroupResponse, GetAlertRuleRequest, GetAlertRuleResponse, ListAlertGroupRequest, ListAlertGroupResponse, ListAlertRuleRequest, ListAlertRuleResponse, UpdateAlertGroupRequest, UpdateAlertGroupResponse, UpdateAlertRuleRequest, UpdateAlertRuleResponse } from "./service_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -12,6 +12,51 @@ import { MethodKind } from "@bufbuild/protobuf";
 export const AlertService = {
   typeName: "svc.alert.v1.AlertService",
   methods: {
+    /**
+     * @generated from rpc svc.alert.v1.AlertService.CreateAlertGroup
+     */
+    createAlertGroup: {
+      name: "CreateAlertGroup",
+      I: CreateAlertGroupRequest,
+      O: CreateAlertGroupResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.alert.v1.AlertService.GetAlertGroup
+     */
+    getAlertGroup: {
+      name: "GetAlertGroup",
+      I: GetAlertGroupRequest,
+      O: GetAlertGroupResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.alert.v1.AlertService.UpdateAlertGroup
+     */
+    updateAlertGroup: {
+      name: "UpdateAlertGroup",
+      I: UpdateAlertGroupRequest,
+      O: UpdateAlertGroupResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.alert.v1.AlertService.DeleteAlertGroup
+     */
+    deleteAlertGroup: {
+      name: "DeleteAlertGroup",
+      I: DeleteAlertGroupRequest,
+      O: DeleteAlertGroupResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc svc.alert.v1.AlertService.ListAlertGroup
+     */
+    listAlertGroup: {
+      name: "ListAlertGroup",
+      I: ListAlertGroupRequest,
+      O: ListAlertGroupResponse,
+      kind: MethodKind.Unary,
+    },
     /**
      * @generated from rpc svc.alert.v1.AlertService.CreateAlertRule
      */

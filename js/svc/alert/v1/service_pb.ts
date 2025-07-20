@@ -5,10 +5,560 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Duration, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
-import { Query } from "../../../types/v1/query_pb";
+import { AlertGroup, AlertRule } from "../../../types/v1/alert_pb";
 import { Obj } from "../../../types/v1/types_pb";
-import { AlertRule } from "../../../types/v1/alert_pb";
 import { Cursor } from "../../../types/v1/cursor_pb";
+import { Query } from "../../../types/v1/query_pb";
+
+/**
+ * @generated from message svc.alert.v1.CreateAlertGroupRequest
+ */
+export class CreateAlertGroupRequest extends Message<CreateAlertGroupRequest> {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: google.protobuf.Duration interval = 2;
+   */
+  interval?: Duration;
+
+  /**
+   * @generated from field: google.protobuf.Duration query_offset = 3;
+   */
+  queryOffset?: Duration;
+
+  /**
+   * @generated from field: int32 limit = 4;
+   */
+  limit = 0;
+
+  /**
+   * @generated from field: repeated types.v1.AlertRule rules = 5;
+   */
+  rules: AlertRule[] = [];
+
+  /**
+   * @generated from field: types.v1.Obj labels = 6;
+   */
+  labels?: Obj;
+
+  constructor(data?: PartialMessage<CreateAlertGroupRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.CreateAlertGroupRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "interval", kind: "message", T: Duration },
+    { no: 3, name: "query_offset", kind: "message", T: Duration },
+    { no: 4, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 5, name: "rules", kind: "message", T: AlertRule, repeated: true },
+    { no: 6, name: "labels", kind: "message", T: Obj },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAlertGroupRequest {
+    return new CreateAlertGroupRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateAlertGroupRequest {
+    return new CreateAlertGroupRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateAlertGroupRequest {
+    return new CreateAlertGroupRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateAlertGroupRequest | PlainMessage<CreateAlertGroupRequest> | undefined, b: CreateAlertGroupRequest | PlainMessage<CreateAlertGroupRequest> | undefined): boolean {
+    return proto3.util.equals(CreateAlertGroupRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.CreateAlertGroupResponse
+ */
+export class CreateAlertGroupResponse extends Message<CreateAlertGroupResponse> {
+  /**
+   * @generated from field: types.v1.AlertGroup alert_group = 1;
+   */
+  alertGroup?: AlertGroup;
+
+  constructor(data?: PartialMessage<CreateAlertGroupResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.CreateAlertGroupResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "alert_group", kind: "message", T: AlertGroup },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): CreateAlertGroupResponse {
+    return new CreateAlertGroupResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): CreateAlertGroupResponse {
+    return new CreateAlertGroupResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): CreateAlertGroupResponse {
+    return new CreateAlertGroupResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: CreateAlertGroupResponse | PlainMessage<CreateAlertGroupResponse> | undefined, b: CreateAlertGroupResponse | PlainMessage<CreateAlertGroupResponse> | undefined): boolean {
+    return proto3.util.equals(CreateAlertGroupResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.GetAlertGroupRequest
+ */
+export class GetAlertGroupRequest extends Message<GetAlertGroupRequest> {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  constructor(data?: PartialMessage<GetAlertGroupRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.GetAlertGroupRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetAlertGroupRequest {
+    return new GetAlertGroupRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetAlertGroupRequest {
+    return new GetAlertGroupRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetAlertGroupRequest {
+    return new GetAlertGroupRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetAlertGroupRequest | PlainMessage<GetAlertGroupRequest> | undefined, b: GetAlertGroupRequest | PlainMessage<GetAlertGroupRequest> | undefined): boolean {
+    return proto3.util.equals(GetAlertGroupRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.GetAlertGroupResponse
+ */
+export class GetAlertGroupResponse extends Message<GetAlertGroupResponse> {
+  /**
+   * @generated from field: types.v1.AlertGroup alert_group = 1;
+   */
+  alertGroup?: AlertGroup;
+
+  constructor(data?: PartialMessage<GetAlertGroupResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.GetAlertGroupResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "alert_group", kind: "message", T: AlertGroup },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetAlertGroupResponse {
+    return new GetAlertGroupResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetAlertGroupResponse {
+    return new GetAlertGroupResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetAlertGroupResponse {
+    return new GetAlertGroupResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: GetAlertGroupResponse | PlainMessage<GetAlertGroupResponse> | undefined, b: GetAlertGroupResponse | PlainMessage<GetAlertGroupResponse> | undefined): boolean {
+    return proto3.util.equals(GetAlertGroupResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.UpdateAlertGroupRequest
+ */
+export class UpdateAlertGroupRequest extends Message<UpdateAlertGroupRequest> {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: repeated svc.alert.v1.UpdateAlertGroupRequest.Mutation mutations = 2;
+   */
+  mutations: UpdateAlertGroupRequest_Mutation[] = [];
+
+  constructor(data?: PartialMessage<UpdateAlertGroupRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.UpdateAlertGroupRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "mutations", kind: "message", T: UpdateAlertGroupRequest_Mutation, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateAlertGroupRequest {
+    return new UpdateAlertGroupRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateAlertGroupRequest {
+    return new UpdateAlertGroupRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateAlertGroupRequest {
+    return new UpdateAlertGroupRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateAlertGroupRequest | PlainMessage<UpdateAlertGroupRequest> | undefined, b: UpdateAlertGroupRequest | PlainMessage<UpdateAlertGroupRequest> | undefined): boolean {
+    return proto3.util.equals(UpdateAlertGroupRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.UpdateAlertGroupRequest.Mutation
+ */
+export class UpdateAlertGroupRequest_Mutation extends Message<UpdateAlertGroupRequest_Mutation> {
+  /**
+   * @generated from oneof svc.alert.v1.UpdateAlertGroupRequest.Mutation.do
+   */
+  do: {
+    /**
+     * @generated from field: string set_name = 1;
+     */
+    value: string;
+    case: "setName";
+  } | {
+    /**
+     * @generated from field: google.protobuf.Duration set_interval = 2;
+     */
+    value: Duration;
+    case: "setInterval";
+  } | {
+    /**
+     * @generated from field: google.protobuf.Duration set_query_offset = 3;
+     */
+    value: Duration;
+    case: "setQueryOffset";
+  } | {
+    /**
+     * @generated from field: int32 set_limit = 4;
+     */
+    value: number;
+    case: "setLimit";
+  } | {
+    /**
+     * @generated from field: types.v1.Obj set_labels = 5;
+     */
+    value: Obj;
+    case: "setLabels";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  constructor(data?: PartialMessage<UpdateAlertGroupRequest_Mutation>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.UpdateAlertGroupRequest.Mutation";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "set_name", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "do" },
+    { no: 2, name: "set_interval", kind: "message", T: Duration, oneof: "do" },
+    { no: 3, name: "set_query_offset", kind: "message", T: Duration, oneof: "do" },
+    { no: 4, name: "set_limit", kind: "scalar", T: 5 /* ScalarType.INT32 */, oneof: "do" },
+    { no: 5, name: "set_labels", kind: "message", T: Obj, oneof: "do" },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateAlertGroupRequest_Mutation {
+    return new UpdateAlertGroupRequest_Mutation().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateAlertGroupRequest_Mutation {
+    return new UpdateAlertGroupRequest_Mutation().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateAlertGroupRequest_Mutation {
+    return new UpdateAlertGroupRequest_Mutation().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateAlertGroupRequest_Mutation | PlainMessage<UpdateAlertGroupRequest_Mutation> | undefined, b: UpdateAlertGroupRequest_Mutation | PlainMessage<UpdateAlertGroupRequest_Mutation> | undefined): boolean {
+    return proto3.util.equals(UpdateAlertGroupRequest_Mutation, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.UpdateAlertGroupResponse
+ */
+export class UpdateAlertGroupResponse extends Message<UpdateAlertGroupResponse> {
+  /**
+   * @generated from field: types.v1.AlertGroup alert_group = 1;
+   */
+  alertGroup?: AlertGroup;
+
+  constructor(data?: PartialMessage<UpdateAlertGroupResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.UpdateAlertGroupResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "alert_group", kind: "message", T: AlertGroup },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): UpdateAlertGroupResponse {
+    return new UpdateAlertGroupResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): UpdateAlertGroupResponse {
+    return new UpdateAlertGroupResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): UpdateAlertGroupResponse {
+    return new UpdateAlertGroupResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: UpdateAlertGroupResponse | PlainMessage<UpdateAlertGroupResponse> | undefined, b: UpdateAlertGroupResponse | PlainMessage<UpdateAlertGroupResponse> | undefined): boolean {
+    return proto3.util.equals(UpdateAlertGroupResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.DeleteAlertGroupRequest
+ */
+export class DeleteAlertGroupRequest extends Message<DeleteAlertGroupRequest> {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  constructor(data?: PartialMessage<DeleteAlertGroupRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.DeleteAlertGroupRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteAlertGroupRequest {
+    return new DeleteAlertGroupRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteAlertGroupRequest {
+    return new DeleteAlertGroupRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteAlertGroupRequest {
+    return new DeleteAlertGroupRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteAlertGroupRequest | PlainMessage<DeleteAlertGroupRequest> | undefined, b: DeleteAlertGroupRequest | PlainMessage<DeleteAlertGroupRequest> | undefined): boolean {
+    return proto3.util.equals(DeleteAlertGroupRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.DeleteAlertGroupResponse
+ */
+export class DeleteAlertGroupResponse extends Message<DeleteAlertGroupResponse> {
+  constructor(data?: PartialMessage<DeleteAlertGroupResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.DeleteAlertGroupResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteAlertGroupResponse {
+    return new DeleteAlertGroupResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DeleteAlertGroupResponse {
+    return new DeleteAlertGroupResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DeleteAlertGroupResponse {
+    return new DeleteAlertGroupResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DeleteAlertGroupResponse | PlainMessage<DeleteAlertGroupResponse> | undefined, b: DeleteAlertGroupResponse | PlainMessage<DeleteAlertGroupResponse> | undefined): boolean {
+    return proto3.util.equals(DeleteAlertGroupResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.ListAlertGroupRequest
+ */
+export class ListAlertGroupRequest extends Message<ListAlertGroupRequest> {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: types.v1.Cursor cursor = 102;
+   */
+  cursor?: Cursor;
+
+  /**
+   * @generated from field: int32 limit = 103;
+   */
+  limit = 0;
+
+  constructor(data?: PartialMessage<ListAlertGroupRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.ListAlertGroupRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "cursor", kind: "message", T: Cursor },
+    { no: 103, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertGroupRequest {
+    return new ListAlertGroupRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertGroupRequest {
+    return new ListAlertGroupRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertGroupRequest {
+    return new ListAlertGroupRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListAlertGroupRequest | PlainMessage<ListAlertGroupRequest> | undefined, b: ListAlertGroupRequest | PlainMessage<ListAlertGroupRequest> | undefined): boolean {
+    return proto3.util.equals(ListAlertGroupRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.ListAlertGroupResponse
+ */
+export class ListAlertGroupResponse extends Message<ListAlertGroupResponse> {
+  /**
+   * @generated from field: types.v1.Cursor next = 100;
+   */
+  next?: Cursor;
+
+  /**
+   * @generated from field: repeated svc.alert.v1.ListAlertGroupResponse.ListItem items = 200;
+   */
+  items: ListAlertGroupResponse_ListItem[] = [];
+
+  constructor(data?: PartialMessage<ListAlertGroupResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.ListAlertGroupResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 100, name: "next", kind: "message", T: Cursor },
+    { no: 200, name: "items", kind: "message", T: ListAlertGroupResponse_ListItem, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertGroupResponse {
+    return new ListAlertGroupResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertGroupResponse {
+    return new ListAlertGroupResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertGroupResponse {
+    return new ListAlertGroupResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListAlertGroupResponse | PlainMessage<ListAlertGroupResponse> | undefined, b: ListAlertGroupResponse | PlainMessage<ListAlertGroupResponse> | undefined): boolean {
+    return proto3.util.equals(ListAlertGroupResponse, a, b);
+  }
+}
+
+/**
+ * @generated from message svc.alert.v1.ListAlertGroupResponse.ListItem
+ */
+export class ListAlertGroupResponse_ListItem extends Message<ListAlertGroupResponse_ListItem> {
+  /**
+   * @generated from field: types.v1.AlertGroup alert_group = 2;
+   */
+  alertGroup?: AlertGroup;
+
+  constructor(data?: PartialMessage<ListAlertGroupResponse_ListItem>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "svc.alert.v1.ListAlertGroupResponse.ListItem";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 2, name: "alert_group", kind: "message", T: AlertGroup },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertGroupResponse_ListItem {
+    return new ListAlertGroupResponse_ListItem().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ListAlertGroupResponse_ListItem {
+    return new ListAlertGroupResponse_ListItem().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ListAlertGroupResponse_ListItem {
+    return new ListAlertGroupResponse_ListItem().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ListAlertGroupResponse_ListItem | PlainMessage<ListAlertGroupResponse_ListItem> | undefined, b: ListAlertGroupResponse_ListItem | PlainMessage<ListAlertGroupResponse_ListItem> | undefined): boolean {
+    return proto3.util.equals(ListAlertGroupResponse_ListItem, a, b);
+  }
+}
 
 /**
  * @generated from message svc.alert.v1.CreateAlertRuleRequest
@@ -18,6 +568,11 @@ export class CreateAlertRuleRequest extends Message<CreateAlertRuleRequest> {
    * @generated from field: int64 environment_id = 101;
    */
   environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: string group_name = 102;
+   */
+  groupName = "";
 
   /**
    * @generated from field: string name = 1;
@@ -58,6 +613,7 @@ export class CreateAlertRuleRequest extends Message<CreateAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.CreateAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "expr", kind: "message", T: Query },
     { no: 3, name: "labels", kind: "message", T: Obj },
@@ -130,9 +686,14 @@ export class GetAlertRuleRequest extends Message<GetAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string group_name = 102;
    */
-  id = protoInt64.zero;
+  groupName = "";
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
   constructor(data?: PartialMessage<GetAlertRuleRequest>) {
     super();
@@ -143,7 +704,8 @@ export class GetAlertRuleRequest extends Message<GetAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.GetAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetAlertRuleRequest {
@@ -210,9 +772,14 @@ export class UpdateAlertRuleRequest extends Message<UpdateAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string group_name = 102;
    */
-  id = protoInt64.zero;
+  groupName = "";
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
   /**
    * @generated from field: repeated svc.alert.v1.UpdateAlertRuleRequest.Mutation mutations = 2;
@@ -228,7 +795,8 @@ export class UpdateAlertRuleRequest extends Message<UpdateAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.UpdateAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "mutations", kind: "message", T: UpdateAlertRuleRequest_Mutation, repeated: true },
   ]);
 
@@ -374,9 +942,14 @@ export class DeleteAlertRuleRequest extends Message<DeleteAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: int64 id = 1;
+   * @generated from field: string group_name = 102;
    */
-  id = protoInt64.zero;
+  groupName = "";
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
 
   constructor(data?: PartialMessage<DeleteAlertRuleRequest>) {
     super();
@@ -387,7 +960,8 @@ export class DeleteAlertRuleRequest extends Message<DeleteAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.DeleteAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 1, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteAlertRuleRequest {
@@ -448,12 +1022,17 @@ export class ListAlertRuleRequest extends Message<ListAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: types.v1.Cursor cursor = 102;
+   * @generated from field: string group_name = 102;
+   */
+  groupName = "";
+
+  /**
+   * @generated from field: types.v1.Cursor cursor = 103;
    */
   cursor?: Cursor;
 
   /**
-   * @generated from field: int32 limit = 103;
+   * @generated from field: int32 limit = 104;
    */
   limit = 0;
 
@@ -466,8 +1045,9 @@ export class ListAlertRuleRequest extends Message<ListAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.ListAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 102, name: "cursor", kind: "message", T: Cursor },
-    { no: 103, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 103, name: "cursor", kind: "message", T: Cursor },
+    { no: 104, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRuleRequest {
