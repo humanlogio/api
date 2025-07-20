@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Duration, Message, proto3 } from "@bufbuild/protobuf";
 import { Obj } from "./types_pb";
 import { Query } from "./query_pb";
 
@@ -12,11 +12,6 @@ import { Query } from "./query_pb";
  * @generated from message types.v1.AlertGroup
  */
 export class AlertGroup extends Message<AlertGroup> {
-  /**
-   * @generated from field: int64 id = 100;
-   */
-  id = protoInt64.zero;
-
   /**
    * @generated from field: string name = 1;
    */
@@ -55,7 +50,6 @@ export class AlertGroup extends Message<AlertGroup> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.AlertGroup";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 100, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "interval", kind: "message", T: Duration },
     { no: 3, name: "query_offset", kind: "message", T: Duration },
@@ -85,11 +79,6 @@ export class AlertGroup extends Message<AlertGroup> {
  * @generated from message types.v1.AlertRule
  */
 export class AlertRule extends Message<AlertRule> {
-  /**
-   * @generated from field: int64 id = 100;
-   */
-  id = protoInt64.zero;
-
   /**
    * @generated from field: string name = 1;
    */
@@ -128,7 +117,6 @@ export class AlertRule extends Message<AlertRule> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.AlertRule";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 100, name: "id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "expr", kind: "message", T: Query },
     { no: 3, name: "labels", kind: "message", T: Obj },
