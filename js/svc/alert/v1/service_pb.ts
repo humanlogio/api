@@ -20,6 +20,11 @@ export class CreateAlertGroupRequest extends Message<CreateAlertGroupRequest> {
   environmentId = protoInt64.zero;
 
   /**
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
    * @generated from field: string name = 1;
    */
   name = "";
@@ -58,6 +63,7 @@ export class CreateAlertGroupRequest extends Message<CreateAlertGroupRequest> {
   static readonly typeName = "svc.alert.v1.CreateAlertGroupRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "interval", kind: "message", T: Duration },
     { no: 3, name: "query_offset", kind: "message", T: Duration },
@@ -130,6 +136,11 @@ export class GetAlertGroupRequest extends Message<GetAlertGroupRequest> {
   environmentId = protoInt64.zero;
 
   /**
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
    * @generated from field: string name = 1;
    */
   name = "";
@@ -143,6 +154,7 @@ export class GetAlertGroupRequest extends Message<GetAlertGroupRequest> {
   static readonly typeName = "svc.alert.v1.GetAlertGroupRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
@@ -210,6 +222,11 @@ export class UpdateAlertGroupRequest extends Message<UpdateAlertGroupRequest> {
   environmentId = protoInt64.zero;
 
   /**
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
    * @generated from field: string name = 1;
    */
   name = "";
@@ -228,6 +245,7 @@ export class UpdateAlertGroupRequest extends Message<UpdateAlertGroupRequest> {
   static readonly typeName = "svc.alert.v1.UpdateAlertGroupRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "mutations", kind: "message", T: UpdateAlertGroupRequest_Mutation, repeated: true },
   ]);
@@ -367,6 +385,11 @@ export class DeleteAlertGroupRequest extends Message<DeleteAlertGroupRequest> {
   environmentId = protoInt64.zero;
 
   /**
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
    * @generated from field: string name = 1;
    */
   name = "";
@@ -380,6 +403,7 @@ export class DeleteAlertGroupRequest extends Message<DeleteAlertGroupRequest> {
   static readonly typeName = "svc.alert.v1.DeleteAlertGroupRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
@@ -441,12 +465,17 @@ export class ListAlertGroupRequest extends Message<ListAlertGroupRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: types.v1.Cursor cursor = 102;
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
+   * @generated from field: types.v1.Cursor cursor = 2;
    */
   cursor?: Cursor;
 
   /**
-   * @generated from field: int32 limit = 103;
+   * @generated from field: int32 limit = 3;
    */
   limit = 0;
 
@@ -459,8 +488,9 @@ export class ListAlertGroupRequest extends Message<ListAlertGroupRequest> {
   static readonly typeName = "svc.alert.v1.ListAlertGroupRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 102, name: "cursor", kind: "message", T: Cursor },
-    { no: 103, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "cursor", kind: "message", T: Cursor },
+    { no: 3, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertGroupRequest {
@@ -570,7 +600,12 @@ export class CreateAlertRuleRequest extends Message<CreateAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: string group_name = 102;
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
+   * @generated from field: string group_name = 103;
    */
   groupName = "";
 
@@ -613,7 +648,8 @@ export class CreateAlertRuleRequest extends Message<CreateAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.CreateAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 103, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "expr", kind: "message", T: Query },
     { no: 3, name: "labels", kind: "message", T: Obj },
@@ -686,7 +722,12 @@ export class GetAlertRuleRequest extends Message<GetAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: string group_name = 102;
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
+   * @generated from field: string group_name = 103;
    */
   groupName = "";
 
@@ -704,7 +745,8 @@ export class GetAlertRuleRequest extends Message<GetAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.GetAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 103, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
@@ -772,7 +814,12 @@ export class UpdateAlertRuleRequest extends Message<UpdateAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: string group_name = 102;
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
+   * @generated from field: string group_name = 103;
    */
   groupName = "";
 
@@ -795,7 +842,8 @@ export class UpdateAlertRuleRequest extends Message<UpdateAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.UpdateAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 103, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "mutations", kind: "message", T: UpdateAlertRuleRequest_Mutation, repeated: true },
   ]);
@@ -942,7 +990,12 @@ export class DeleteAlertRuleRequest extends Message<DeleteAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: string group_name = 102;
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
+   * @generated from field: string group_name = 103;
    */
   groupName = "";
 
@@ -960,7 +1013,8 @@ export class DeleteAlertRuleRequest extends Message<DeleteAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.DeleteAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 103, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
@@ -1022,17 +1076,22 @@ export class ListAlertRuleRequest extends Message<ListAlertRuleRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: string group_name = 102;
+   * @generated from field: string stack_id = 102;
+   */
+  stackId = "";
+
+  /**
+   * @generated from field: string group_name = 103;
    */
   groupName = "";
 
   /**
-   * @generated from field: types.v1.Cursor cursor = 103;
+   * @generated from field: types.v1.Cursor cursor = 2;
    */
   cursor?: Cursor;
 
   /**
-   * @generated from field: int32 limit = 104;
+   * @generated from field: int32 limit = 3;
    */
   limit = 0;
 
@@ -1045,9 +1104,10 @@ export class ListAlertRuleRequest extends Message<ListAlertRuleRequest> {
   static readonly typeName = "svc.alert.v1.ListAlertRuleRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 102, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 103, name: "cursor", kind: "message", T: Cursor },
-    { no: 104, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
+    { no: 102, name: "stack_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 103, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "cursor", kind: "message", T: Cursor },
+    { no: 3, name: "limit", kind: "scalar", T: 5 /* ScalarType.INT32 */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRuleRequest {
@@ -1115,7 +1175,7 @@ export class ListAlertRuleResponse extends Message<ListAlertRuleResponse> {
  */
 export class ListAlertRuleResponse_ListItem extends Message<ListAlertRuleResponse_ListItem> {
   /**
-   * @generated from field: types.v1.AlertRule alert_rule = 2;
+   * @generated from field: types.v1.AlertRule alert_rule = 1;
    */
   alertRule?: AlertRule;
 
@@ -1127,7 +1187,7 @@ export class ListAlertRuleResponse_ListItem extends Message<ListAlertRuleRespons
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.alert.v1.ListAlertRuleResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 2, name: "alert_rule", kind: "message", T: AlertRule },
+    { no: 1, name: "alert_rule", kind: "message", T: AlertRule },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListAlertRuleResponse_ListItem {

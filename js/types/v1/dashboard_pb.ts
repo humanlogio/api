@@ -7,6 +7,43 @@ import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialM
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 
 /**
+ * @generated from message types.v1.DashboardGroup
+ */
+export class DashboardGroup extends Message<DashboardGroup> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  constructor(data?: PartialMessage<DashboardGroup>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.DashboardGroup";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DashboardGroup {
+    return new DashboardGroup().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DashboardGroup {
+    return new DashboardGroup().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DashboardGroup {
+    return new DashboardGroup().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DashboardGroup | PlainMessage<DashboardGroup> | undefined, b: DashboardGroup | PlainMessage<DashboardGroup> | undefined): boolean {
+    return proto3.util.equals(DashboardGroup, a, b);
+  }
+}
+
+/**
  * @generated from message types.v1.Dashboard
  */
 export class Dashboard extends Message<Dashboard> {
@@ -14,6 +51,11 @@ export class Dashboard extends Message<Dashboard> {
    * @generated from field: string id = 100;
    */
   id = "";
+
+  /**
+   * @generated from field: string group_name = 101;
+   */
+  groupName = "";
 
   /**
    * @generated from field: string name = 200;
@@ -65,6 +107,7 @@ export class Dashboard extends Message<Dashboard> {
   static readonly typeName = "types.v1.Dashboard";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 100, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 101, name: "group_name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 200, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 201, name: "description", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 202, name: "is_readonly", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
