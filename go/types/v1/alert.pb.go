@@ -10,6 +10,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -190,11 +191,293 @@ func (x *AlertRule) GetKeepFiringFor() *durationpb.Duration {
 	return nil
 }
 
+type AlertUnknown struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AlertUnknown) Reset() {
+	*x = AlertUnknown{}
+	mi := &file_types_v1_alert_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AlertUnknown) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlertUnknown) ProtoMessage() {}
+
+func (x *AlertUnknown) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_alert_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlertUnknown.ProtoReflect.Descriptor instead.
+func (*AlertUnknown) Descriptor() ([]byte, []int) {
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{2}
+}
+
+type AlertOk struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AlertOk) Reset() {
+	*x = AlertOk{}
+	mi := &file_types_v1_alert_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AlertOk) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlertOk) ProtoMessage() {}
+
+func (x *AlertOk) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_alert_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlertOk.ProtoReflect.Descriptor instead.
+func (*AlertOk) Descriptor() ([]byte, []int) {
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{3}
+}
+
+type AlertPending struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AlertPending) Reset() {
+	*x = AlertPending{}
+	mi := &file_types_v1_alert_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AlertPending) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlertPending) ProtoMessage() {}
+
+func (x *AlertPending) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_alert_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlertPending.ProtoReflect.Descriptor instead.
+func (*AlertPending) Descriptor() ([]byte, []int) {
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{4}
+}
+
+type AlertFiring struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AlertFiring) Reset() {
+	*x = AlertFiring{}
+	mi := &file_types_v1_alert_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AlertFiring) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlertFiring) ProtoMessage() {}
+
+func (x *AlertFiring) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_alert_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlertFiring.ProtoReflect.Descriptor instead.
+func (*AlertFiring) Descriptor() ([]byte, []int) {
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{5}
+}
+
+type AlertState struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Rule  *AlertRule             `protobuf:"bytes,1,opt,name=rule,proto3" json:"rule,omitempty"`
+	// Types that are valid to be assigned to Status:
+	//
+	//	*AlertState_Unknown
+	//	*AlertState_Ok
+	//	*AlertState_Pending
+	//	*AlertState_Firing
+	Status         isAlertState_Status    `protobuf_oneof:"status"`
+	TransitionedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=transitioned_at,json=transitionedAt,proto3" json:"transitioned_at,omitempty"`
+	LastFiringAt   *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=last_firing_at,json=lastFiringAt,proto3" json:"last_firing_at,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *AlertState) Reset() {
+	*x = AlertState{}
+	mi := &file_types_v1_alert_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AlertState) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlertState) ProtoMessage() {}
+
+func (x *AlertState) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_alert_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlertState.ProtoReflect.Descriptor instead.
+func (*AlertState) Descriptor() ([]byte, []int) {
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *AlertState) GetRule() *AlertRule {
+	if x != nil {
+		return x.Rule
+	}
+	return nil
+}
+
+func (x *AlertState) GetStatus() isAlertState_Status {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+func (x *AlertState) GetUnknown() *AlertUnknown {
+	if x != nil {
+		if x, ok := x.Status.(*AlertState_Unknown); ok {
+			return x.Unknown
+		}
+	}
+	return nil
+}
+
+func (x *AlertState) GetOk() *AlertOk {
+	if x != nil {
+		if x, ok := x.Status.(*AlertState_Ok); ok {
+			return x.Ok
+		}
+	}
+	return nil
+}
+
+func (x *AlertState) GetPending() *AlertPending {
+	if x != nil {
+		if x, ok := x.Status.(*AlertState_Pending); ok {
+			return x.Pending
+		}
+	}
+	return nil
+}
+
+func (x *AlertState) GetFiring() *AlertFiring {
+	if x != nil {
+		if x, ok := x.Status.(*AlertState_Firing); ok {
+			return x.Firing
+		}
+	}
+	return nil
+}
+
+func (x *AlertState) GetTransitionedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.TransitionedAt
+	}
+	return nil
+}
+
+func (x *AlertState) GetLastFiringAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastFiringAt
+	}
+	return nil
+}
+
+type isAlertState_Status interface {
+	isAlertState_Status()
+}
+
+type AlertState_Unknown struct {
+	Unknown *AlertUnknown `protobuf:"bytes,200,opt,name=unknown,proto3,oneof"`
+}
+
+type AlertState_Ok struct {
+	Ok *AlertOk `protobuf:"bytes,201,opt,name=ok,proto3,oneof"`
+}
+
+type AlertState_Pending struct {
+	Pending *AlertPending `protobuf:"bytes,202,opt,name=pending,proto3,oneof"`
+}
+
+type AlertState_Firing struct {
+	Firing *AlertFiring `protobuf:"bytes,203,opt,name=firing,proto3,oneof"`
+}
+
+func (*AlertState_Unknown) isAlertState_Status() {}
+
+func (*AlertState_Ok) isAlertState_Status() {}
+
+func (*AlertState_Pending) isAlertState_Status() {}
+
+func (*AlertState_Firing) isAlertState_Status() {}
+
 var File_types_v1_alert_proto protoreflect.FileDescriptor
 
 const file_types_v1_alert_proto_rawDesc = "" +
 	"\n" +
-	"\x14types/v1/alert.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\xfd\x01\n" +
+	"\x14types/v1/alert.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\xfd\x01\n" +
 	"\n" +
 	"AlertGroup\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x125\n" +
@@ -209,7 +492,21 @@ const file_types_v1_alert_proto_rawDesc = "" +
 	"\x06labels\x18\x03 \x01(\v2\r.types.v1.ObjR\x06labels\x12/\n" +
 	"\vannotations\x18\x04 \x01(\v2\r.types.v1.ObjR\vannotations\x12+\n" +
 	"\x03for\x183 \x01(\v2\x19.google.protobuf.DurationR\x03for\x12A\n" +
-	"\x0fkeep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringForB\x8a\x01\n" +
+	"\x0fkeep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringFor\"\x0e\n" +
+	"\fAlertUnknown\"\t\n" +
+	"\aAlertOk\"\x0e\n" +
+	"\fAlertPending\"\r\n" +
+	"\vAlertFiring\"\x88\x03\n" +
+	"\n" +
+	"AlertState\x12'\n" +
+	"\x04rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\x04rule\x123\n" +
+	"\aunknown\x18\xc8\x01 \x01(\v2\x16.types.v1.AlertUnknownH\x00R\aunknown\x12$\n" +
+	"\x02ok\x18\xc9\x01 \x01(\v2\x11.types.v1.AlertOkH\x00R\x02ok\x123\n" +
+	"\apending\x18\xca\x01 \x01(\v2\x16.types.v1.AlertPendingH\x00R\apending\x120\n" +
+	"\x06firing\x18\xcb\x01 \x01(\v2\x15.types.v1.AlertFiringH\x00R\x06firing\x12C\n" +
+	"\x0ftransitioned_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\x0etransitionedAt\x12@\n" +
+	"\x0elast_firing_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\flastFiringAtB\b\n" +
+	"\x06statusB\x8a\x01\n" +
 	"\fcom.types.v1B\n" +
 	"AlertProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
@@ -225,29 +522,42 @@ func file_types_v1_alert_proto_rawDescGZIP() []byte {
 	return file_types_v1_alert_proto_rawDescData
 }
 
-var file_types_v1_alert_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_types_v1_alert_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_types_v1_alert_proto_goTypes = []any{
-	(*AlertGroup)(nil),          // 0: types.v1.AlertGroup
-	(*AlertRule)(nil),           // 1: types.v1.AlertRule
-	(*durationpb.Duration)(nil), // 2: google.protobuf.Duration
-	(*Obj)(nil),                 // 3: types.v1.Obj
-	(*Query)(nil),               // 4: types.v1.Query
+	(*AlertGroup)(nil),            // 0: types.v1.AlertGroup
+	(*AlertRule)(nil),             // 1: types.v1.AlertRule
+	(*AlertUnknown)(nil),          // 2: types.v1.AlertUnknown
+	(*AlertOk)(nil),               // 3: types.v1.AlertOk
+	(*AlertPending)(nil),          // 4: types.v1.AlertPending
+	(*AlertFiring)(nil),           // 5: types.v1.AlertFiring
+	(*AlertState)(nil),            // 6: types.v1.AlertState
+	(*durationpb.Duration)(nil),   // 7: google.protobuf.Duration
+	(*Obj)(nil),                   // 8: types.v1.Obj
+	(*Query)(nil),                 // 9: types.v1.Query
+	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
 }
 var file_types_v1_alert_proto_depIdxs = []int32{
-	2, // 0: types.v1.AlertGroup.interval:type_name -> google.protobuf.Duration
-	2, // 1: types.v1.AlertGroup.query_offset:type_name -> google.protobuf.Duration
-	1, // 2: types.v1.AlertGroup.rules:type_name -> types.v1.AlertRule
-	3, // 3: types.v1.AlertGroup.labels:type_name -> types.v1.Obj
-	4, // 4: types.v1.AlertRule.expr:type_name -> types.v1.Query
-	3, // 5: types.v1.AlertRule.labels:type_name -> types.v1.Obj
-	3, // 6: types.v1.AlertRule.annotations:type_name -> types.v1.Obj
-	2, // 7: types.v1.AlertRule.for:type_name -> google.protobuf.Duration
-	2, // 8: types.v1.AlertRule.keep_firing_for:type_name -> google.protobuf.Duration
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	7,  // 0: types.v1.AlertGroup.interval:type_name -> google.protobuf.Duration
+	7,  // 1: types.v1.AlertGroup.query_offset:type_name -> google.protobuf.Duration
+	1,  // 2: types.v1.AlertGroup.rules:type_name -> types.v1.AlertRule
+	8,  // 3: types.v1.AlertGroup.labels:type_name -> types.v1.Obj
+	9,  // 4: types.v1.AlertRule.expr:type_name -> types.v1.Query
+	8,  // 5: types.v1.AlertRule.labels:type_name -> types.v1.Obj
+	8,  // 6: types.v1.AlertRule.annotations:type_name -> types.v1.Obj
+	7,  // 7: types.v1.AlertRule.for:type_name -> google.protobuf.Duration
+	7,  // 8: types.v1.AlertRule.keep_firing_for:type_name -> google.protobuf.Duration
+	1,  // 9: types.v1.AlertState.rule:type_name -> types.v1.AlertRule
+	2,  // 10: types.v1.AlertState.unknown:type_name -> types.v1.AlertUnknown
+	3,  // 11: types.v1.AlertState.ok:type_name -> types.v1.AlertOk
+	4,  // 12: types.v1.AlertState.pending:type_name -> types.v1.AlertPending
+	5,  // 13: types.v1.AlertState.firing:type_name -> types.v1.AlertFiring
+	10, // 14: types.v1.AlertState.transitioned_at:type_name -> google.protobuf.Timestamp
+	10, // 15: types.v1.AlertState.last_firing_at:type_name -> google.protobuf.Timestamp
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_alert_proto_init() }
@@ -257,13 +567,19 @@ func file_types_v1_alert_proto_init() {
 	}
 	file_types_v1_query_proto_init()
 	file_types_v1_types_proto_init()
+	file_types_v1_alert_proto_msgTypes[6].OneofWrappers = []any{
+		(*AlertState_Unknown)(nil),
+		(*AlertState_Ok)(nil),
+		(*AlertState_Pending)(nil),
+		(*AlertState_Firing)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_alert_proto_rawDesc), len(file_types_v1_alert_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

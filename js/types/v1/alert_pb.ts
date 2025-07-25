@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3 } from "@bufbuild/protobuf";
+import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { Obj } from "./types_pb";
 import { Query } from "./query_pb";
 
@@ -139,6 +139,212 @@ export class AlertRule extends Message<AlertRule> {
 
   static equals(a: AlertRule | PlainMessage<AlertRule> | undefined, b: AlertRule | PlainMessage<AlertRule> | undefined): boolean {
     return proto3.util.equals(AlertRule, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.AlertUnknown
+ */
+export class AlertUnknown extends Message<AlertUnknown> {
+  constructor(data?: PartialMessage<AlertUnknown>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.AlertUnknown";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AlertUnknown {
+    return new AlertUnknown().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AlertUnknown {
+    return new AlertUnknown().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AlertUnknown {
+    return new AlertUnknown().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AlertUnknown | PlainMessage<AlertUnknown> | undefined, b: AlertUnknown | PlainMessage<AlertUnknown> | undefined): boolean {
+    return proto3.util.equals(AlertUnknown, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.AlertOk
+ */
+export class AlertOk extends Message<AlertOk> {
+  constructor(data?: PartialMessage<AlertOk>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.AlertOk";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AlertOk {
+    return new AlertOk().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AlertOk {
+    return new AlertOk().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AlertOk {
+    return new AlertOk().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AlertOk | PlainMessage<AlertOk> | undefined, b: AlertOk | PlainMessage<AlertOk> | undefined): boolean {
+    return proto3.util.equals(AlertOk, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.AlertPending
+ */
+export class AlertPending extends Message<AlertPending> {
+  constructor(data?: PartialMessage<AlertPending>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.AlertPending";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AlertPending {
+    return new AlertPending().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AlertPending {
+    return new AlertPending().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AlertPending {
+    return new AlertPending().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AlertPending | PlainMessage<AlertPending> | undefined, b: AlertPending | PlainMessage<AlertPending> | undefined): boolean {
+    return proto3.util.equals(AlertPending, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.AlertFiring
+ */
+export class AlertFiring extends Message<AlertFiring> {
+  constructor(data?: PartialMessage<AlertFiring>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.AlertFiring";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AlertFiring {
+    return new AlertFiring().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AlertFiring {
+    return new AlertFiring().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AlertFiring {
+    return new AlertFiring().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AlertFiring | PlainMessage<AlertFiring> | undefined, b: AlertFiring | PlainMessage<AlertFiring> | undefined): boolean {
+    return proto3.util.equals(AlertFiring, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.AlertState
+ */
+export class AlertState extends Message<AlertState> {
+  /**
+   * @generated from field: types.v1.AlertRule rule = 1;
+   */
+  rule?: AlertRule;
+
+  /**
+   * @generated from oneof types.v1.AlertState.status
+   */
+  status: {
+    /**
+     * @generated from field: types.v1.AlertUnknown unknown = 200;
+     */
+    value: AlertUnknown;
+    case: "unknown";
+  } | {
+    /**
+     * @generated from field: types.v1.AlertOk ok = 201;
+     */
+    value: AlertOk;
+    case: "ok";
+  } | {
+    /**
+     * @generated from field: types.v1.AlertPending pending = 202;
+     */
+    value: AlertPending;
+    case: "pending";
+  } | {
+    /**
+     * @generated from field: types.v1.AlertFiring firing = 203;
+     */
+    value: AlertFiring;
+    case: "firing";
+  } | { case: undefined; value?: undefined } = { case: undefined };
+
+  /**
+   * @generated from field: google.protobuf.Timestamp transitioned_at = 3;
+   */
+  transitionedAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp last_firing_at = 4;
+   */
+  lastFiringAt?: Timestamp;
+
+  constructor(data?: PartialMessage<AlertState>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.AlertState";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "rule", kind: "message", T: AlertRule },
+    { no: 200, name: "unknown", kind: "message", T: AlertUnknown, oneof: "status" },
+    { no: 201, name: "ok", kind: "message", T: AlertOk, oneof: "status" },
+    { no: 202, name: "pending", kind: "message", T: AlertPending, oneof: "status" },
+    { no: 203, name: "firing", kind: "message", T: AlertFiring, oneof: "status" },
+    { no: 3, name: "transitioned_at", kind: "message", T: Timestamp },
+    { no: 4, name: "last_firing_at", kind: "message", T: Timestamp },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AlertState {
+    return new AlertState().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): AlertState {
+    return new AlertState().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): AlertState {
+    return new AlertState().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: AlertState | PlainMessage<AlertState> | undefined, b: AlertState | PlainMessage<AlertState> | undefined): boolean {
+    return proto3.util.equals(AlertState, a, b);
   }
 }
 

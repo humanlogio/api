@@ -3,6 +3,7 @@ syntax = "proto3";
 package types.v1;
 
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 import "types/v1/query.proto";
 import "types/v1/types.proto";
 
@@ -24,4 +25,21 @@ message AlertRule {
   types.v1.Obj annotations = 4;
   google.protobuf.Duration for = 51;
   google.protobuf.Duration keep_firing_for = 52;
+}
+
+message AlertUnknown {}
+message AlertOk {}
+message AlertPending {}
+message AlertFiring {}
+
+message AlertState {
+  AlertRule rule = 1;
+  oneof status {
+    AlertUnknown unknown = 200;
+    AlertOk ok = 201;
+    AlertPending pending = 202;
+    AlertFiring firing = 203;
+  }
+  google.protobuf.Timestamp transitioned_at = 3;
+  google.protobuf.Timestamp last_firing_at = 4;
 }
