@@ -301,6 +301,7 @@ func (*AlertPending) Descriptor() ([]byte, []int) {
 
 type AlertFiring struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Labels        *Obj                   `protobuf:"bytes,1,opt,name=labels,proto3" json:"labels,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -333,6 +334,13 @@ func (x *AlertFiring) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AlertFiring.ProtoReflect.Descriptor instead.
 func (*AlertFiring) Descriptor() ([]byte, []int) {
 	return file_types_v1_alert_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *AlertFiring) GetLabels() *Obj {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
 }
 
 type AlertState struct {
@@ -495,8 +503,9 @@ const file_types_v1_alert_proto_rawDesc = "" +
 	"\x0fkeep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringFor\"\x0e\n" +
 	"\fAlertUnknown\"\t\n" +
 	"\aAlertOk\"\x0e\n" +
-	"\fAlertPending\"\r\n" +
-	"\vAlertFiring\"\x88\x03\n" +
+	"\fAlertPending\"4\n" +
+	"\vAlertFiring\x12%\n" +
+	"\x06labels\x18\x01 \x01(\v2\r.types.v1.ObjR\x06labels\"\x88\x03\n" +
 	"\n" +
 	"AlertState\x12'\n" +
 	"\x04rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\x04rule\x123\n" +
@@ -546,18 +555,19 @@ var file_types_v1_alert_proto_depIdxs = []int32{
 	8,  // 6: types.v1.AlertRule.annotations:type_name -> types.v1.Obj
 	7,  // 7: types.v1.AlertRule.for:type_name -> google.protobuf.Duration
 	7,  // 8: types.v1.AlertRule.keep_firing_for:type_name -> google.protobuf.Duration
-	1,  // 9: types.v1.AlertState.rule:type_name -> types.v1.AlertRule
-	2,  // 10: types.v1.AlertState.unknown:type_name -> types.v1.AlertUnknown
-	3,  // 11: types.v1.AlertState.ok:type_name -> types.v1.AlertOk
-	4,  // 12: types.v1.AlertState.pending:type_name -> types.v1.AlertPending
-	5,  // 13: types.v1.AlertState.firing:type_name -> types.v1.AlertFiring
-	10, // 14: types.v1.AlertState.transitioned_at:type_name -> google.protobuf.Timestamp
-	10, // 15: types.v1.AlertState.last_firing_at:type_name -> google.protobuf.Timestamp
-	16, // [16:16] is the sub-list for method output_type
-	16, // [16:16] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	8,  // 9: types.v1.AlertFiring.labels:type_name -> types.v1.Obj
+	1,  // 10: types.v1.AlertState.rule:type_name -> types.v1.AlertRule
+	2,  // 11: types.v1.AlertState.unknown:type_name -> types.v1.AlertUnknown
+	3,  // 12: types.v1.AlertState.ok:type_name -> types.v1.AlertOk
+	4,  // 13: types.v1.AlertState.pending:type_name -> types.v1.AlertPending
+	5,  // 14: types.v1.AlertState.firing:type_name -> types.v1.AlertFiring
+	10, // 15: types.v1.AlertState.transitioned_at:type_name -> google.protobuf.Timestamp
+	10, // 16: types.v1.AlertState.last_firing_at:type_name -> google.protobuf.Timestamp
+	17, // [17:17] is the sub-list for method output_type
+	17, // [17:17] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_alert_proto_init() }

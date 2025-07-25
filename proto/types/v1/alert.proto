@@ -30,7 +30,9 @@ message AlertRule {
 message AlertUnknown {}
 message AlertOk {}
 message AlertPending {}
-message AlertFiring {}
+message AlertFiring {
+  types.v1.Obj labels = 1;
+}
 
 message AlertState {
   AlertRule rule = 1;

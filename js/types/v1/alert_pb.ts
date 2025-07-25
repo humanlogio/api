@@ -239,6 +239,11 @@ export class AlertPending extends Message<AlertPending> {
  * @generated from message types.v1.AlertFiring
  */
 export class AlertFiring extends Message<AlertFiring> {
+  /**
+   * @generated from field: types.v1.Obj labels = 1;
+   */
+  labels?: Obj;
+
   constructor(data?: PartialMessage<AlertFiring>) {
     super();
     proto3.util.initPartial(data, this);
@@ -247,6 +252,7 @@ export class AlertFiring extends Message<AlertFiring> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.AlertFiring";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "labels", kind: "message", T: Obj },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): AlertFiring {
