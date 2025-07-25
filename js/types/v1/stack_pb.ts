@@ -15,15 +15,15 @@ export class StackPointer extends Message<StackPointer> {
    */
   scheme: {
     /**
-     * @generated from field: types.v1.StackPointer.Git remote = 1;
+     * @generated from field: types.v1.StackPointer.RemoteGit remote = 1;
      */
-    value: StackPointer_Git;
+    value: StackPointer_RemoteGit;
     case: "remote";
   } | {
     /**
-     * @generated from field: types.v1.StackPointer.Git localhost = 2;
+     * @generated from field: types.v1.StackPointer.LocalGit localhost = 2;
      */
-    value: StackPointer_Git;
+    value: StackPointer_LocalGit;
     case: "localhost";
   } | {
     /**
@@ -41,8 +41,8 @@ export class StackPointer extends Message<StackPointer> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.StackPointer";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "remote", kind: "message", T: StackPointer_Git, oneof: "scheme" },
-    { no: 2, name: "localhost", kind: "message", T: StackPointer_Git, oneof: "scheme" },
+    { no: 1, name: "remote", kind: "message", T: StackPointer_RemoteGit, oneof: "scheme" },
+    { no: 2, name: "localhost", kind: "message", T: StackPointer_LocalGit, oneof: "scheme" },
     { no: 3, name: "db", kind: "message", T: StackPointer_Virtual, oneof: "scheme" },
   ]);
 
@@ -64,51 +64,106 @@ export class StackPointer extends Message<StackPointer> {
 }
 
 /**
- * @generated from message types.v1.StackPointer.Git
+ * @generated from message types.v1.StackPointer.RemoteGit
  */
-export class StackPointer_Git extends Message<StackPointer_Git> {
+export class StackPointer_RemoteGit extends Message<StackPointer_RemoteGit> {
   /**
-   * @generated from field: string uri = 2;
+   * @generated from field: string remote_url = 1;
    */
-  uri = "";
+  remoteUrl = "";
 
   /**
-   * @generated from field: string path = 3;
-   */
-  path = "";
-
-  /**
-   * @generated from field: string ref = 4;
+   * @generated from field: string ref = 2;
    */
   ref = "";
 
-  constructor(data?: PartialMessage<StackPointer_Git>) {
+  /**
+   * @generated from field: string dashboard_dir = 3;
+   */
+  dashboardDir = "";
+
+  /**
+   * @generated from field: string alert_dir = 4;
+   */
+  alertDir = "";
+
+  constructor(data?: PartialMessage<StackPointer_RemoteGit>) {
     super();
     proto3.util.initPartial(data, this);
   }
 
   static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.StackPointer.Git";
+  static readonly typeName = "types.v1.StackPointer.RemoteGit";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 2, name: "uri", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "ref", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "remote_url", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "ref", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "dashboard_dir", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "alert_dir", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StackPointer_Git {
-    return new StackPointer_Git().fromBinary(bytes, options);
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StackPointer_RemoteGit {
+    return new StackPointer_RemoteGit().fromBinary(bytes, options);
   }
 
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StackPointer_Git {
-    return new StackPointer_Git().fromJson(jsonValue, options);
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StackPointer_RemoteGit {
+    return new StackPointer_RemoteGit().fromJson(jsonValue, options);
   }
 
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StackPointer_Git {
-    return new StackPointer_Git().fromJsonString(jsonString, options);
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StackPointer_RemoteGit {
+    return new StackPointer_RemoteGit().fromJsonString(jsonString, options);
   }
 
-  static equals(a: StackPointer_Git | PlainMessage<StackPointer_Git> | undefined, b: StackPointer_Git | PlainMessage<StackPointer_Git> | undefined): boolean {
-    return proto3.util.equals(StackPointer_Git, a, b);
+  static equals(a: StackPointer_RemoteGit | PlainMessage<StackPointer_RemoteGit> | undefined, b: StackPointer_RemoteGit | PlainMessage<StackPointer_RemoteGit> | undefined): boolean {
+    return proto3.util.equals(StackPointer_RemoteGit, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.StackPointer.LocalGit
+ */
+export class StackPointer_LocalGit extends Message<StackPointer_LocalGit> {
+  /**
+   * @generated from field: string path = 1;
+   */
+  path = "";
+
+  /**
+   * @generated from field: string dashboard_dir = 2;
+   */
+  dashboardDir = "";
+
+  /**
+   * @generated from field: string alert_dir = 3;
+   */
+  alertDir = "";
+
+  constructor(data?: PartialMessage<StackPointer_LocalGit>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.StackPointer.LocalGit";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "dashboard_dir", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "alert_dir", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StackPointer_LocalGit {
+    return new StackPointer_LocalGit().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StackPointer_LocalGit {
+    return new StackPointer_LocalGit().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StackPointer_LocalGit {
+    return new StackPointer_LocalGit().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StackPointer_LocalGit | PlainMessage<StackPointer_LocalGit> | undefined, b: StackPointer_LocalGit | PlainMessage<StackPointer_LocalGit> | undefined): boolean {
+    return proto3.util.equals(StackPointer_LocalGit, a, b);
   }
 }
 
@@ -154,27 +209,22 @@ export class StackPointer_Virtual extends Message<StackPointer_Virtual> {
  */
 export class Stack extends Message<Stack> {
   /**
-   * @generated from field: string id = 1;
-   */
-  id = "";
-
-  /**
-   * @generated from field: string name = 2;
+   * @generated from field: string name = 1;
    */
   name = "";
 
   /**
-   * @generated from field: types.v1.StackPointer pointer = 3;
+   * @generated from field: types.v1.StackPointer pointer = 2;
    */
   pointer?: StackPointer;
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 400;
+   * @generated from field: google.protobuf.Timestamp created_at = 300;
    */
   createdAt?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 401;
+   * @generated from field: google.protobuf.Timestamp updated_at = 301;
    */
   updatedAt?: Timestamp;
 
@@ -186,11 +236,10 @@ export class Stack extends Message<Stack> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Stack";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 3, name: "pointer", kind: "message", T: StackPointer },
-    { no: 400, name: "created_at", kind: "message", T: Timestamp },
-    { no: 401, name: "updated_at", kind: "message", T: Timestamp },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "pointer", kind: "message", T: StackPointer },
+    { no: 300, name: "created_at", kind: "message", T: Timestamp },
+    { no: 301, name: "updated_at", kind: "message", T: Timestamp },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Stack {

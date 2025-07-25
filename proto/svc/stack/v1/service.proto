@@ -29,7 +29,7 @@ message CreateStackResponse {
 
 message GetStackRequest {
   int64 environment_id = 101;
-  string id = 1;
+  string name = 1;
 }
 
 message GetStackResponse {
@@ -46,7 +46,7 @@ message UpdateStackRequest {
     }
   }
   int64 environment_id = 101;
-  string id = 1;
+  string name = 1;
   repeated Mutation mutations = 2;
 }
 
@@ -56,7 +56,7 @@ message UpdateStackResponse {
 
 message DeleteStackRequest {
   int64 environment_id = 101;
-  string id = 1;
+  string name = 1;
 }
 
 message DeleteStackResponse {}

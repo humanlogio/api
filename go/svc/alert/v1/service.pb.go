@@ -27,7 +27,7 @@ const (
 type CreateAlertGroupRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                 `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Interval      *durationpb.Duration   `protobuf:"bytes,2,opt,name=interval,proto3" json:"interval,omitempty"`
 	QueryOffset   *durationpb.Duration   `protobuf:"bytes,3,opt,name=query_offset,json=queryOffset,proto3" json:"query_offset,omitempty"`
@@ -75,9 +75,9 @@ func (x *CreateAlertGroupRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *CreateAlertGroupRequest) GetStackId() string {
+func (x *CreateAlertGroupRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -171,7 +171,7 @@ func (x *CreateAlertGroupResponse) GetAlertGroup() *v1.AlertGroup {
 type GetAlertGroupRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                 `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -214,9 +214,9 @@ func (x *GetAlertGroupRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *GetAlertGroupRequest) GetStackId() string {
+func (x *GetAlertGroupRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -275,7 +275,7 @@ func (x *GetAlertGroupResponse) GetAlertGroup() *v1.AlertGroup {
 type UpdateAlertGroupRequest struct {
 	state         protoimpl.MessageState              `protogen:"open.v1"`
 	EnvironmentId int64                               `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                              `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                              `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	Name          string                              `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Mutations     []*UpdateAlertGroupRequest_Mutation `protobuf:"bytes,2,rep,name=mutations,proto3" json:"mutations,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -319,9 +319,9 @@ func (x *UpdateAlertGroupRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *UpdateAlertGroupRequest) GetStackId() string {
+func (x *UpdateAlertGroupRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -387,7 +387,7 @@ func (x *UpdateAlertGroupResponse) GetAlertGroup() *v1.AlertGroup {
 type DeleteAlertGroupRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                 `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -430,9 +430,9 @@ func (x *DeleteAlertGroupRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *DeleteAlertGroupRequest) GetStackId() string {
+func (x *DeleteAlertGroupRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -483,7 +483,7 @@ func (*DeleteAlertGroupResponse) Descriptor() ([]byte, []int) {
 type ListAlertGroupRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                 `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	Cursor        *v1.Cursor             `protobuf:"bytes,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -527,9 +527,9 @@ func (x *ListAlertGroupRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *ListAlertGroupRequest) GetStackId() string {
+func (x *ListAlertGroupRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -603,7 +603,7 @@ func (x *ListAlertGroupResponse) GetItems() []*ListAlertGroupResponse_ListItem {
 type CreateAlertRuleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                 `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	GroupName     string                 `protobuf:"bytes,103,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Expr          *v1.Query              `protobuf:"bytes,2,opt,name=expr,proto3" json:"expr,omitempty"`
@@ -652,9 +652,9 @@ func (x *CreateAlertRuleRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *CreateAlertRuleRequest) GetStackId() string {
+func (x *CreateAlertRuleRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -755,7 +755,7 @@ func (x *CreateAlertRuleResponse) GetAlertRule() *v1.AlertRule {
 type GetAlertRuleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                 `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	GroupName     string                 `protobuf:"bytes,103,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -799,9 +799,9 @@ func (x *GetAlertRuleRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *GetAlertRuleRequest) GetStackId() string {
+func (x *GetAlertRuleRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -867,7 +867,7 @@ func (x *GetAlertRuleResponse) GetAlertRule() *v1.AlertRule {
 type UpdateAlertRuleRequest struct {
 	state         protoimpl.MessageState             `protogen:"open.v1"`
 	EnvironmentId int64                              `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                             `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                             `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	GroupName     string                             `protobuf:"bytes,103,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
 	Name          string                             `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Mutations     []*UpdateAlertRuleRequest_Mutation `protobuf:"bytes,2,rep,name=mutations,proto3" json:"mutations,omitempty"`
@@ -912,9 +912,9 @@ func (x *UpdateAlertRuleRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *UpdateAlertRuleRequest) GetStackId() string {
+func (x *UpdateAlertRuleRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -987,7 +987,7 @@ func (x *UpdateAlertRuleResponse) GetAlertRule() *v1.AlertRule {
 type DeleteAlertRuleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                 `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	GroupName     string                 `protobuf:"bytes,103,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1031,9 +1031,9 @@ func (x *DeleteAlertRuleRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *DeleteAlertRuleRequest) GetStackId() string {
+func (x *DeleteAlertRuleRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -1091,7 +1091,7 @@ func (*DeleteAlertRuleResponse) Descriptor() ([]byte, []int) {
 type ListAlertRuleRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackId       string                 `protobuf:"bytes,102,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
+	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
 	GroupName     string                 `protobuf:"bytes,103,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
 	Cursor        *v1.Cursor             `protobuf:"bytes,2,opt,name=cursor,proto3" json:"cursor,omitempty"`
 	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -1136,9 +1136,9 @@ func (x *ListAlertRuleRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *ListAlertRuleRequest) GetStackId() string {
+func (x *ListAlertRuleRequest) GetStackName() string {
 	if x != nil {
-		return x.StackId
+		return x.StackName
 	}
 	return ""
 }
@@ -1584,10 +1584,11 @@ var File_svc_alert_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_alert_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1asvc/alert/v1/service.proto\x12\fsvc.alert.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/alert.proto\x1a\x15types/v1/cursor.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\xcc\x02\n" +
+	"\x1asvc/alert/v1/service.proto\x12\fsvc.alert.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/alert.proto\x1a\x15types/v1/cursor.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\xd0\x02\n" +
 	"\x17CreateAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x12\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x125\n" +
 	"\binterval\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\binterval\x12<\n" +
 	"\fquery_offset\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\vqueryOffset\x12\x14\n" +
@@ -1596,17 +1597,19 @@ const file_svc_alert_v1_service_proto_rawDesc = "" +
 	"\x06labels\x18\x06 \x01(\v2\r.types.v1.ObjR\x06labels\"Q\n" +
 	"\x18CreateAlertGroupResponse\x125\n" +
 	"\valert_group\x18\x01 \x01(\v2\x14.types.v1.AlertGroupR\n" +
-	"alertGroup\"l\n" +
+	"alertGroup\"p\n" +
 	"\x14GetAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x12\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"N\n" +
 	"\x15GetAlertGroupResponse\x125\n" +
 	"\valert_group\x18\x01 \x01(\v2\x14.types.v1.AlertGroupR\n" +
-	"alertGroup\"\xc3\x03\n" +
+	"alertGroup\"\xc7\x03\n" +
 	"\x17UpdateAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x12\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12L\n" +
 	"\tmutations\x18\x02 \x03(\v2..svc.alert.v1.UpdateAlertGroupRequest.MutationR\tmutations\x1a\x83\x02\n" +
 	"\bMutation\x12\x1b\n" +
@@ -1619,15 +1622,17 @@ const file_svc_alert_v1_service_proto_rawDesc = "" +
 	"\x02do\"Q\n" +
 	"\x18UpdateAlertGroupResponse\x125\n" +
 	"\valert_group\x18\x01 \x01(\v2\x14.types.v1.AlertGroupR\n" +
-	"alertGroup\"o\n" +
+	"alertGroup\"s\n" +
 	"\x17DeleteAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x12\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"\x1a\n" +
-	"\x18DeleteAlertGroupResponse\"\x99\x01\n" +
+	"\x18DeleteAlertGroupResponse\"\x9d\x01\n" +
 	"\x15ListAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12(\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12(\n" +
 	"\x06cursor\x18\x02 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\"\xc7\x01\n" +
 	"\x16ListAlertGroupResponse\x12$\n" +
@@ -1635,10 +1640,11 @@ const file_svc_alert_v1_service_proto_rawDesc = "" +
 	"\x05items\x18\xc8\x01 \x03(\v2-.svc.alert.v1.ListAlertGroupResponse.ListItemR\x05items\x1aA\n" +
 	"\bListItem\x125\n" +
 	"\valert_group\x18\x02 \x01(\v2\x14.types.v1.AlertGroupR\n" +
-	"alertGroup\"\xfa\x02\n" +
+	"alertGroup\"\xfe\x02\n" +
 	"\x16CreateAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x1d\n" +
 	"\n" +
 	"group_name\x18g \x01(\tR\tgroupName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12#\n" +
@@ -1649,19 +1655,21 @@ const file_svc_alert_v1_service_proto_rawDesc = "" +
 	"\x0fkeep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringFor\"M\n" +
 	"\x17CreateAlertRuleResponse\x122\n" +
 	"\n" +
-	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\x8a\x01\n" +
+	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\x8e\x01\n" +
 	"\x13GetAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x1d\n" +
 	"\n" +
 	"group_name\x18g \x01(\tR\tgroupName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"J\n" +
 	"\x14GetAlertRuleResponse\x122\n" +
 	"\n" +
-	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\xa4\x04\n" +
+	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\xa8\x04\n" +
 	"\x16UpdateAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x1d\n" +
 	"\n" +
 	"group_name\x18g \x01(\tR\tgroupName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12K\n" +
@@ -1677,17 +1685,19 @@ const file_svc_alert_v1_service_proto_rawDesc = "" +
 	"\x02do\"M\n" +
 	"\x17UpdateAlertRuleResponse\x122\n" +
 	"\n" +
-	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\x8d\x01\n" +
+	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\x91\x01\n" +
 	"\x16DeleteAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x1d\n" +
 	"\n" +
 	"group_name\x18g \x01(\tR\tgroupName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"\x19\n" +
-	"\x17DeleteAlertRuleResponse\"\xb7\x01\n" +
+	"\x17DeleteAlertRuleResponse\"\xbb\x01\n" +
 	"\x14ListAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x19\n" +
-	"\bstack_id\x18f \x01(\tR\astackId\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
+	"\n" +
+	"stack_name\x18f \x01(\tR\tstackName\x12\x1d\n" +
 	"\n" +
 	"group_name\x18g \x01(\tR\tgroupName\x12(\n" +
 	"\x06cursor\x18\x02 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +

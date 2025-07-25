@@ -27,7 +27,7 @@ service AlertService {
 
 message CreateAlertGroupRequest {
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string name = 1;
   google.protobuf.Duration interval = 2;
   google.protobuf.Duration query_offset = 3;
@@ -42,7 +42,7 @@ message CreateAlertGroupResponse {
 
 message GetAlertGroupRequest {
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string name = 1;
 }
 
@@ -61,7 +61,7 @@ message UpdateAlertGroupRequest {
     }
   }
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string name = 1;
   repeated Mutation mutations = 2;
 }
@@ -72,7 +72,7 @@ message UpdateAlertGroupResponse {
 
 message DeleteAlertGroupRequest {
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string name = 1;
 }
 
@@ -80,7 +80,7 @@ message DeleteAlertGroupResponse {}
 
 message ListAlertGroupRequest {
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   types.v1.Cursor cursor = 2;
   int32 limit = 3;
 }
@@ -95,7 +95,7 @@ message ListAlertGroupResponse {
 
 message CreateAlertRuleRequest {
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string group_name = 103;
   string name = 1;
   types.v1.Query expr = 2;
@@ -111,7 +111,7 @@ message CreateAlertRuleResponse {
 
 message GetAlertRuleRequest {
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string group_name = 103;
   string name = 1;
 }
@@ -133,7 +133,7 @@ message UpdateAlertRuleRequest {
   }
 
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string group_name = 103;
 
   string name = 1;
@@ -146,7 +146,7 @@ message UpdateAlertRuleResponse {
 
 message DeleteAlertRuleRequest {
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string group_name = 103;
 
   string name = 1;
@@ -156,7 +156,7 @@ message DeleteAlertRuleResponse {}
 
 message ListAlertRuleRequest {
   int64 environment_id = 101;
-  string stack_id = 102;
+  string stack_name = 102;
   string group_name = 103;
 
   types.v1.Cursor cursor = 2;

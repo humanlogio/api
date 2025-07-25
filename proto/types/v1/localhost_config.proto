@@ -162,12 +162,23 @@ message ServeLocalhostConfig {
   OTLP otlp = 101;
 }
 
+message StacksConfig {
+  message LocalhostStackPointer {
+    string name = 1;
+    string path = 2;
+    string dashboard_dir = 3;
+    string alert_dir = 4;
+  }
+  repeated LocalhostStackPointer stacks = 1;
+}
+
 message RuntimeConfig {
   message Features {}
   message ExperimentalFeatures {
     optional string release_channel = 1;
     optional bool send_logs_to_cloud = 2;
     optional ServeLocalhostConfig serve_localhost = 3;
+    optional StacksConfig stacks = 4;
   }
   message ClientConfig {
     enum HTTPProtocol {

@@ -106,9 +106,9 @@ export class GetStackRequest extends Message<GetStackRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: string id = 1;
+   * @generated from field: string name = 1;
    */
-  id = "";
+  name = "";
 
   constructor(data?: PartialMessage<GetStackRequest>) {
     super();
@@ -119,7 +119,7 @@ export class GetStackRequest extends Message<GetStackRequest> {
   static readonly typeName = "svc.stack.v1.GetStackRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStackRequest {
@@ -198,9 +198,9 @@ export class UpdateStackRequest extends Message<UpdateStackRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: string id = 1;
+   * @generated from field: string name = 1;
    */
-  id = "";
+  name = "";
 
   /**
    * @generated from field: repeated svc.stack.v1.UpdateStackRequest.Mutation mutations = 2;
@@ -216,7 +216,7 @@ export class UpdateStackRequest extends Message<UpdateStackRequest> {
   static readonly typeName = "svc.stack.v1.UpdateStackRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "mutations", kind: "message", T: UpdateStackRequest_Mutation, repeated: true },
   ]);
 
@@ -334,9 +334,9 @@ export class DeleteStackRequest extends Message<DeleteStackRequest> {
   environmentId = protoInt64.zero;
 
   /**
-   * @generated from field: string id = 1;
+   * @generated from field: string name = 1;
    */
-  id = "";
+  name = "";
 
   constructor(data?: PartialMessage<DeleteStackRequest>) {
     super();
@@ -347,7 +347,7 @@ export class DeleteStackRequest extends Message<DeleteStackRequest> {
   static readonly typeName = "svc.stack.v1.DeleteStackRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 101, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
-    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DeleteStackRequest {

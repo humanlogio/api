@@ -1261,6 +1261,98 @@ export class ServeLocalhostConfig_OTLP extends Message<ServeLocalhostConfig_OTLP
 }
 
 /**
+ * @generated from message types.v1.StacksConfig
+ */
+export class StacksConfig extends Message<StacksConfig> {
+  /**
+   * @generated from field: repeated types.v1.StacksConfig.LocalhostStackPointer stacks = 1;
+   */
+  stacks: StacksConfig_LocalhostStackPointer[] = [];
+
+  constructor(data?: PartialMessage<StacksConfig>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.StacksConfig";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "stacks", kind: "message", T: StacksConfig_LocalhostStackPointer, repeated: true },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StacksConfig {
+    return new StacksConfig().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StacksConfig {
+    return new StacksConfig().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StacksConfig {
+    return new StacksConfig().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StacksConfig | PlainMessage<StacksConfig> | undefined, b: StacksConfig | PlainMessage<StacksConfig> | undefined): boolean {
+    return proto3.util.equals(StacksConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.StacksConfig.LocalhostStackPointer
+ */
+export class StacksConfig_LocalhostStackPointer extends Message<StacksConfig_LocalhostStackPointer> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: string path = 2;
+   */
+  path = "";
+
+  /**
+   * @generated from field: string dashboard_dir = 3;
+   */
+  dashboardDir = "";
+
+  /**
+   * @generated from field: string alert_dir = 4;
+   */
+  alertDir = "";
+
+  constructor(data?: PartialMessage<StacksConfig_LocalhostStackPointer>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.StacksConfig.LocalhostStackPointer";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 3, name: "dashboard_dir", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "alert_dir", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StacksConfig_LocalhostStackPointer {
+    return new StacksConfig_LocalhostStackPointer().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): StacksConfig_LocalhostStackPointer {
+    return new StacksConfig_LocalhostStackPointer().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): StacksConfig_LocalhostStackPointer {
+    return new StacksConfig_LocalhostStackPointer().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: StacksConfig_LocalhostStackPointer | PlainMessage<StacksConfig_LocalhostStackPointer> | undefined, b: StacksConfig_LocalhostStackPointer | PlainMessage<StacksConfig_LocalhostStackPointer> | undefined): boolean {
+    return proto3.util.equals(StacksConfig_LocalhostStackPointer, a, b);
+  }
+}
+
+/**
  * @generated from message types.v1.RuntimeConfig
  */
 export class RuntimeConfig extends Message<RuntimeConfig> {
@@ -1371,6 +1463,11 @@ export class RuntimeConfig_ExperimentalFeatures extends Message<RuntimeConfig_Ex
    */
   serveLocalhost?: ServeLocalhostConfig;
 
+  /**
+   * @generated from field: optional types.v1.StacksConfig stacks = 4;
+   */
+  stacks?: StacksConfig;
+
   constructor(data?: PartialMessage<RuntimeConfig_ExperimentalFeatures>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1382,6 +1479,7 @@ export class RuntimeConfig_ExperimentalFeatures extends Message<RuntimeConfig_Ex
     { no: 1, name: "release_channel", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
     { no: 2, name: "send_logs_to_cloud", kind: "scalar", T: 8 /* ScalarType.BOOL */, opt: true },
     { no: 3, name: "serve_localhost", kind: "message", T: ServeLocalhostConfig, opt: true },
+    { no: 4, name: "stacks", kind: "message", T: StacksConfig, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): RuntimeConfig_ExperimentalFeatures {

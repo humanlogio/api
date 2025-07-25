@@ -72,7 +72,7 @@ func (x *StackPointer) GetScheme() isStackPointer_Scheme {
 	return nil
 }
 
-func (x *StackPointer) GetRemote() *StackPointer_Git {
+func (x *StackPointer) GetRemote() *StackPointer_RemoteGit {
 	if x != nil {
 		if x, ok := x.Scheme.(*StackPointer_Remote); ok {
 			return x.Remote
@@ -81,7 +81,7 @@ func (x *StackPointer) GetRemote() *StackPointer_Git {
 	return nil
 }
 
-func (x *StackPointer) GetLocalhost() *StackPointer_Git {
+func (x *StackPointer) GetLocalhost() *StackPointer_LocalGit {
 	if x != nil {
 		if x, ok := x.Scheme.(*StackPointer_Localhost); ok {
 			return x.Localhost
@@ -104,11 +104,11 @@ type isStackPointer_Scheme interface {
 }
 
 type StackPointer_Remote struct {
-	Remote *StackPointer_Git `protobuf:"bytes,1,opt,name=remote,proto3,oneof"`
+	Remote *StackPointer_RemoteGit `protobuf:"bytes,1,opt,name=remote,proto3,oneof"`
 }
 
 type StackPointer_Localhost struct {
-	Localhost *StackPointer_Git `protobuf:"bytes,2,opt,name=localhost,proto3,oneof"`
+	Localhost *StackPointer_LocalGit `protobuf:"bytes,2,opt,name=localhost,proto3,oneof"`
 }
 
 type StackPointer_Db struct {
@@ -123,11 +123,10 @@ func (*StackPointer_Db) isStackPointer_Scheme() {}
 
 type Stack struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Pointer       *StackPointer          `protobuf:"bytes,3,opt,name=pointer,proto3" json:"pointer,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,400,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,401,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Pointer       *StackPointer          `protobuf:"bytes,2,opt,name=pointer,proto3" json:"pointer,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,300,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,301,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -162,13 +161,6 @@ func (*Stack) Descriptor() ([]byte, []int) {
 	return file_types_v1_stack_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Stack) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
 func (x *Stack) GetName() string {
 	if x != nil {
 		return x.Name
@@ -197,29 +189,30 @@ func (x *Stack) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type StackPointer_Git struct {
+type StackPointer_RemoteGit struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uri           string                 `protobuf:"bytes,2,opt,name=uri,proto3" json:"uri,omitempty"`
-	Path          string                 `protobuf:"bytes,3,opt,name=path,proto3" json:"path,omitempty"`
-	Ref           string                 `protobuf:"bytes,4,opt,name=ref,proto3" json:"ref,omitempty"`
+	RemoteUrl     string                 `protobuf:"bytes,1,opt,name=remote_url,json=remoteUrl,proto3" json:"remote_url,omitempty"`
+	Ref           string                 `protobuf:"bytes,2,opt,name=ref,proto3" json:"ref,omitempty"`
+	DashboardDir  string                 `protobuf:"bytes,3,opt,name=dashboard_dir,json=dashboardDir,proto3" json:"dashboard_dir,omitempty"`
+	AlertDir      string                 `protobuf:"bytes,4,opt,name=alert_dir,json=alertDir,proto3" json:"alert_dir,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *StackPointer_Git) Reset() {
-	*x = StackPointer_Git{}
+func (x *StackPointer_RemoteGit) Reset() {
+	*x = StackPointer_RemoteGit{}
 	mi := &file_types_v1_stack_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *StackPointer_Git) String() string {
+func (x *StackPointer_RemoteGit) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StackPointer_Git) ProtoMessage() {}
+func (*StackPointer_RemoteGit) ProtoMessage() {}
 
-func (x *StackPointer_Git) ProtoReflect() protoreflect.Message {
+func (x *StackPointer_RemoteGit) ProtoReflect() protoreflect.Message {
 	mi := &file_types_v1_stack_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -231,28 +224,95 @@ func (x *StackPointer_Git) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StackPointer_Git.ProtoReflect.Descriptor instead.
-func (*StackPointer_Git) Descriptor() ([]byte, []int) {
+// Deprecated: Use StackPointer_RemoteGit.ProtoReflect.Descriptor instead.
+func (*StackPointer_RemoteGit) Descriptor() ([]byte, []int) {
 	return file_types_v1_stack_proto_rawDescGZIP(), []int{0, 0}
 }
 
-func (x *StackPointer_Git) GetUri() string {
+func (x *StackPointer_RemoteGit) GetRemoteUrl() string {
 	if x != nil {
-		return x.Uri
+		return x.RemoteUrl
 	}
 	return ""
 }
 
-func (x *StackPointer_Git) GetPath() string {
+func (x *StackPointer_RemoteGit) GetRef() string {
+	if x != nil {
+		return x.Ref
+	}
+	return ""
+}
+
+func (x *StackPointer_RemoteGit) GetDashboardDir() string {
+	if x != nil {
+		return x.DashboardDir
+	}
+	return ""
+}
+
+func (x *StackPointer_RemoteGit) GetAlertDir() string {
+	if x != nil {
+		return x.AlertDir
+	}
+	return ""
+}
+
+type StackPointer_LocalGit struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	DashboardDir  string                 `protobuf:"bytes,2,opt,name=dashboard_dir,json=dashboardDir,proto3" json:"dashboard_dir,omitempty"`
+	AlertDir      string                 `protobuf:"bytes,3,opt,name=alert_dir,json=alertDir,proto3" json:"alert_dir,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StackPointer_LocalGit) Reset() {
+	*x = StackPointer_LocalGit{}
+	mi := &file_types_v1_stack_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StackPointer_LocalGit) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StackPointer_LocalGit) ProtoMessage() {}
+
+func (x *StackPointer_LocalGit) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_stack_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StackPointer_LocalGit.ProtoReflect.Descriptor instead.
+func (*StackPointer_LocalGit) Descriptor() ([]byte, []int) {
+	return file_types_v1_stack_proto_rawDescGZIP(), []int{0, 1}
+}
+
+func (x *StackPointer_LocalGit) GetPath() string {
 	if x != nil {
 		return x.Path
 	}
 	return ""
 }
 
-func (x *StackPointer_Git) GetRef() string {
+func (x *StackPointer_LocalGit) GetDashboardDir() string {
 	if x != nil {
-		return x.Ref
+		return x.DashboardDir
+	}
+	return ""
+}
+
+func (x *StackPointer_LocalGit) GetAlertDir() string {
+	if x != nil {
+		return x.AlertDir
 	}
 	return ""
 }
@@ -266,7 +326,7 @@ type StackPointer_Virtual struct {
 
 func (x *StackPointer_Virtual) Reset() {
 	*x = StackPointer_Virtual{}
-	mi := &file_types_v1_stack_proto_msgTypes[3]
+	mi := &file_types_v1_stack_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -278,7 +338,7 @@ func (x *StackPointer_Virtual) String() string {
 func (*StackPointer_Virtual) ProtoMessage() {}
 
 func (x *StackPointer_Virtual) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_stack_proto_msgTypes[3]
+	mi := &file_types_v1_stack_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +351,7 @@ func (x *StackPointer_Virtual) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StackPointer_Virtual.ProtoReflect.Descriptor instead.
 func (*StackPointer_Virtual) Descriptor() ([]byte, []int) {
-	return file_types_v1_stack_proto_rawDescGZIP(), []int{0, 1}
+	return file_types_v1_stack_proto_rawDescGZIP(), []int{0, 2}
 }
 
 func (x *StackPointer_Virtual) GetUri() string {
@@ -305,26 +365,31 @@ var File_types_v1_stack_proto protoreflect.FileDescriptor
 
 const file_types_v1_stack_proto_rawDesc = "" +
 	"\n" +
-	"\x14types/v1/stack.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x98\x02\n" +
-	"\fStackPointer\x124\n" +
-	"\x06remote\x18\x01 \x01(\v2\x1a.types.v1.StackPointer.GitH\x00R\x06remote\x12:\n" +
-	"\tlocalhost\x18\x02 \x01(\v2\x1a.types.v1.StackPointer.GitH\x00R\tlocalhost\x120\n" +
-	"\x02db\x18\x03 \x01(\v2\x1e.types.v1.StackPointer.VirtualH\x00R\x02db\x1a=\n" +
-	"\x03Git\x12\x10\n" +
-	"\x03uri\x18\x02 \x01(\tR\x03uri\x12\x12\n" +
-	"\x04path\x18\x03 \x01(\tR\x04path\x12\x10\n" +
-	"\x03ref\x18\x04 \x01(\tR\x03ref\x1a\x1b\n" +
+	"\x14types/v1/stack.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc6\x03\n" +
+	"\fStackPointer\x12:\n" +
+	"\x06remote\x18\x01 \x01(\v2 .types.v1.StackPointer.RemoteGitH\x00R\x06remote\x12?\n" +
+	"\tlocalhost\x18\x02 \x01(\v2\x1f.types.v1.StackPointer.LocalGitH\x00R\tlocalhost\x120\n" +
+	"\x02db\x18\x03 \x01(\v2\x1e.types.v1.StackPointer.VirtualH\x00R\x02db\x1a~\n" +
+	"\tRemoteGit\x12\x1d\n" +
+	"\n" +
+	"remote_url\x18\x01 \x01(\tR\tremoteUrl\x12\x10\n" +
+	"\x03ref\x18\x02 \x01(\tR\x03ref\x12#\n" +
+	"\rdashboard_dir\x18\x03 \x01(\tR\fdashboardDir\x12\x1b\n" +
+	"\talert_dir\x18\x04 \x01(\tR\balertDir\x1a`\n" +
+	"\bLocalGit\x12\x12\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\x12#\n" +
+	"\rdashboard_dir\x18\x02 \x01(\tR\fdashboardDir\x12\x1b\n" +
+	"\talert_dir\x18\x03 \x01(\tR\balertDir\x1a\x1b\n" +
 	"\aVirtual\x12\x10\n" +
 	"\x03uri\x18\x01 \x01(\tR\x03uriB\b\n" +
-	"\x06scheme\"\xd5\x01\n" +
-	"\x05Stack\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x120\n" +
-	"\apointer\x18\x03 \x01(\v2\x16.types.v1.StackPointerR\apointer\x12:\n" +
+	"\x06scheme\"\xc5\x01\n" +
+	"\x05Stack\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x120\n" +
+	"\apointer\x18\x02 \x01(\v2\x16.types.v1.StackPointerR\apointer\x12:\n" +
 	"\n" +
-	"created_at\x18\x90\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12:\n" +
+	"created_at\x18\xac\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12:\n" +
 	"\n" +
-	"updated_at\x18\x91\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x8a\x01\n" +
+	"updated_at\x18\xad\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x8a\x01\n" +
 	"\fcom.types.v1B\n" +
 	"StackProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
@@ -340,21 +405,22 @@ func file_types_v1_stack_proto_rawDescGZIP() []byte {
 	return file_types_v1_stack_proto_rawDescData
 }
 
-var file_types_v1_stack_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_types_v1_stack_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_types_v1_stack_proto_goTypes = []any{
-	(*StackPointer)(nil),          // 0: types.v1.StackPointer
-	(*Stack)(nil),                 // 1: types.v1.Stack
-	(*StackPointer_Git)(nil),      // 2: types.v1.StackPointer.Git
-	(*StackPointer_Virtual)(nil),  // 3: types.v1.StackPointer.Virtual
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(*StackPointer)(nil),           // 0: types.v1.StackPointer
+	(*Stack)(nil),                  // 1: types.v1.Stack
+	(*StackPointer_RemoteGit)(nil), // 2: types.v1.StackPointer.RemoteGit
+	(*StackPointer_LocalGit)(nil),  // 3: types.v1.StackPointer.LocalGit
+	(*StackPointer_Virtual)(nil),   // 4: types.v1.StackPointer.Virtual
+	(*timestamppb.Timestamp)(nil),  // 5: google.protobuf.Timestamp
 }
 var file_types_v1_stack_proto_depIdxs = []int32{
-	2, // 0: types.v1.StackPointer.remote:type_name -> types.v1.StackPointer.Git
-	2, // 1: types.v1.StackPointer.localhost:type_name -> types.v1.StackPointer.Git
-	3, // 2: types.v1.StackPointer.db:type_name -> types.v1.StackPointer.Virtual
+	2, // 0: types.v1.StackPointer.remote:type_name -> types.v1.StackPointer.RemoteGit
+	3, // 1: types.v1.StackPointer.localhost:type_name -> types.v1.StackPointer.LocalGit
+	4, // 2: types.v1.StackPointer.db:type_name -> types.v1.StackPointer.Virtual
 	0, // 3: types.v1.Stack.pointer:type_name -> types.v1.StackPointer
-	4, // 4: types.v1.Stack.created_at:type_name -> google.protobuf.Timestamp
-	4, // 5: types.v1.Stack.updated_at:type_name -> google.protobuf.Timestamp
+	5, // 4: types.v1.Stack.created_at:type_name -> google.protobuf.Timestamp
+	5, // 5: types.v1.Stack.updated_at:type_name -> google.protobuf.Timestamp
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name
@@ -378,7 +444,7 @@ func file_types_v1_stack_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_stack_proto_rawDesc), len(file_types_v1_stack_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -8,25 +8,30 @@ import "google/protobuf/timestamp.proto";
 option go_package = "types/v1;typesv1";
 
 message StackPointer {
-  message Git {
-    string uri = 2;
-    string path = 3;
-    string ref = 4;
+  message RemoteGit {
+    string remote_url = 1;
+    string ref = 2;
+    string dashboard_dir = 3;
+    string alert_dir = 4;
+  }
+  message LocalGit {
+    string path = 1;
+    string dashboard_dir = 2;
+    string alert_dir = 3;
   }
   message Virtual {
     string uri = 1;
   }
   oneof scheme {
-    Git remote = 1;
-    Git localhost = 2;
+    RemoteGit remote = 1;
+    LocalGit localhost = 2;
     Virtual db = 3;
   }
 }
 
 message Stack {
-  string id = 1;
-  string name = 2;
-  StackPointer pointer = 3;
-  google.protobuf.Timestamp created_at = 400;
-  google.protobuf.Timestamp updated_at = 401;
+  string name = 1;
+  StackPointer pointer = 2;
+  google.protobuf.Timestamp created_at = 300;
+  google.protobuf.Timestamp updated_at = 301;
 }

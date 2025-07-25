@@ -129,7 +129,7 @@ func (x *CreateStackResponse) GetStack() *v1.Stack {
 type GetStackRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -171,9 +171,9 @@ func (x *GetStackRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *GetStackRequest) GetId() string {
+func (x *GetStackRequest) GetName() string {
 	if x != nil {
-		return x.Id
+		return x.Name
 	}
 	return ""
 }
@@ -241,7 +241,7 @@ func (x *GetStackResponse) GetAlertGroups() []*v1.AlertGroup {
 type UpdateStackRequest struct {
 	state         protoimpl.MessageState         `protogen:"open.v1"`
 	EnvironmentId int64                          `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	Id            string                         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                         `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Mutations     []*UpdateStackRequest_Mutation `protobuf:"bytes,2,rep,name=mutations,proto3" json:"mutations,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -284,9 +284,9 @@ func (x *UpdateStackRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *UpdateStackRequest) GetId() string {
+func (x *UpdateStackRequest) GetName() string {
 	if x != nil {
-		return x.Id
+		return x.Name
 	}
 	return ""
 }
@@ -345,7 +345,7 @@ func (x *UpdateStackResponse) GetStack() *v1.Stack {
 type DeleteStackRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -387,9 +387,9 @@ func (x *DeleteStackRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *DeleteStackRequest) GetId() string {
+func (x *DeleteStackRequest) GetName() string {
 	if x != nil {
-		return x.Id
+		return x.Name
 	}
 	return ""
 }
@@ -678,19 +678,19 @@ const file_svc_stack_v1_service_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x120\n" +
 	"\apointer\x18\x02 \x01(\v2\x16.types.v1.StackPointerR\apointer\"<\n" +
 	"\x13CreateStackResponse\x12%\n" +
-	"\x05stack\x18\x01 \x01(\v2\x0f.types.v1.StackR\x05stack\"H\n" +
+	"\x05stack\x18\x01 \x01(\v2\x0f.types.v1.StackR\x05stack\"L\n" +
 	"\x0fGetStackRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xa7\x01\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"\xa7\x01\n" +
 	"\x10GetStackResponse\x12%\n" +
 	"\x05stack\x18\x01 \x01(\v2\x0f.types.v1.StackR\x05stack\x123\n" +
 	"\n" +
 	"dashboards\x18\x02 \x03(\v2\x13.types.v1.DashboardR\n" +
 	"dashboards\x127\n" +
-	"\falert_groups\x18\x03 \x03(\v2\x14.types.v1.AlertGroupR\valertGroups\"\xfe\x01\n" +
+	"\falert_groups\x18\x03 \x03(\v2\x14.types.v1.AlertGroupR\valertGroups\"\x82\x02\n" +
 	"\x12UpdateStackRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12G\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12G\n" +
 	"\tmutations\x18\x02 \x03(\v2).svc.stack.v1.UpdateStackRequest.MutationR\tmutations\x1ah\n" +
 	"\bMutation\x12\x1b\n" +
 	"\bset_name\x18\x01 \x01(\tH\x00R\asetName\x129\n" +
@@ -698,10 +698,10 @@ const file_svc_stack_v1_service_proto_rawDesc = "" +
 	"setPointerB\x04\n" +
 	"\x02do\"<\n" +
 	"\x13UpdateStackResponse\x12%\n" +
-	"\x05stack\x18\x01 \x01(\v2\x0f.types.v1.StackR\x05stack\"K\n" +
+	"\x05stack\x18\x01 \x01(\v2\x0f.types.v1.StackR\x05stack\"O\n" +
 	"\x12DeleteStackRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x15\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"\x15\n" +
 	"\x13DeleteStackResponse\"y\n" +
 	"\x10ListStackRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12(\n" +
