@@ -432,27 +432,27 @@ func (x *ServeLocalhostConfig) GetOtlp() *ServeLocalhostConfig_OTLP {
 	return nil
 }
 
-type StacksConfig struct {
-	state         protoimpl.MessageState                `protogen:"open.v1"`
-	Stacks        []*StacksConfig_LocalhostStackPointer `protobuf:"bytes,1,rep,name=stacks,proto3" json:"stacks,omitempty"`
+type ProjectsConfig struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Pointers      []*ProjectPointer      `protobuf:"bytes,1,rep,name=pointers,proto3" json:"pointers,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *StacksConfig) Reset() {
-	*x = StacksConfig{}
+func (x *ProjectsConfig) Reset() {
+	*x = ProjectsConfig{}
 	mi := &file_types_v1_localhost_config_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *StacksConfig) String() string {
+func (x *ProjectsConfig) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StacksConfig) ProtoMessage() {}
+func (*ProjectsConfig) ProtoMessage() {}
 
-func (x *StacksConfig) ProtoReflect() protoreflect.Message {
+func (x *ProjectsConfig) ProtoReflect() protoreflect.Message {
 	mi := &file_types_v1_localhost_config_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -464,14 +464,14 @@ func (x *StacksConfig) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StacksConfig.ProtoReflect.Descriptor instead.
-func (*StacksConfig) Descriptor() ([]byte, []int) {
+// Deprecated: Use ProjectsConfig.ProtoReflect.Descriptor instead.
+func (*ProjectsConfig) Descriptor() ([]byte, []int) {
 	return file_types_v1_localhost_config_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *StacksConfig) GetStacks() []*StacksConfig_LocalhostStackPointer {
+func (x *ProjectsConfig) GetPointers() []*ProjectPointer {
 	if x != nil {
-		return x.Stacks
+		return x.Pointers
 	}
 	return nil
 }
@@ -1868,74 +1868,6 @@ func (x *ServeLocalhostConfig_OTLP) GetHttpPort() int64 {
 	return 0
 }
 
-type StacksConfig_LocalhostStackPointer struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Path          string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
-	DashboardDir  string                 `protobuf:"bytes,3,opt,name=dashboard_dir,json=dashboardDir,proto3" json:"dashboard_dir,omitempty"`
-	AlertDir      string                 `protobuf:"bytes,4,opt,name=alert_dir,json=alertDir,proto3" json:"alert_dir,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StacksConfig_LocalhostStackPointer) Reset() {
-	*x = StacksConfig_LocalhostStackPointer{}
-	mi := &file_types_v1_localhost_config_proto_msgTypes[23]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StacksConfig_LocalhostStackPointer) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StacksConfig_LocalhostStackPointer) ProtoMessage() {}
-
-func (x *StacksConfig_LocalhostStackPointer) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_localhost_config_proto_msgTypes[23]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StacksConfig_LocalhostStackPointer.ProtoReflect.Descriptor instead.
-func (*StacksConfig_LocalhostStackPointer) Descriptor() ([]byte, []int) {
-	return file_types_v1_localhost_config_proto_rawDescGZIP(), []int{3, 0}
-}
-
-func (x *StacksConfig_LocalhostStackPointer) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *StacksConfig_LocalhostStackPointer) GetPath() string {
-	if x != nil {
-		return x.Path
-	}
-	return ""
-}
-
-func (x *StacksConfig_LocalhostStackPointer) GetDashboardDir() string {
-	if x != nil {
-		return x.DashboardDir
-	}
-	return ""
-}
-
-func (x *StacksConfig_LocalhostStackPointer) GetAlertDir() string {
-	if x != nil {
-		return x.AlertDir
-	}
-	return ""
-}
-
 type RuntimeConfig_Features struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -1944,7 +1876,7 @@ type RuntimeConfig_Features struct {
 
 func (x *RuntimeConfig_Features) Reset() {
 	*x = RuntimeConfig_Features{}
-	mi := &file_types_v1_localhost_config_proto_msgTypes[24]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1956,7 +1888,7 @@ func (x *RuntimeConfig_Features) String() string {
 func (*RuntimeConfig_Features) ProtoMessage() {}
 
 func (x *RuntimeConfig_Features) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_localhost_config_proto_msgTypes[24]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1977,14 +1909,14 @@ type RuntimeConfig_ExperimentalFeatures struct {
 	ReleaseChannel  *string                `protobuf:"bytes,1,opt,name=release_channel,json=releaseChannel,proto3,oneof" json:"release_channel,omitempty"`
 	SendLogsToCloud *bool                  `protobuf:"varint,2,opt,name=send_logs_to_cloud,json=sendLogsToCloud,proto3,oneof" json:"send_logs_to_cloud,omitempty"`
 	ServeLocalhost  *ServeLocalhostConfig  `protobuf:"bytes,3,opt,name=serve_localhost,json=serveLocalhost,proto3,oneof" json:"serve_localhost,omitempty"`
-	Stacks          *StacksConfig          `protobuf:"bytes,4,opt,name=stacks,proto3,oneof" json:"stacks,omitempty"`
+	Projects        *ProjectsConfig        `protobuf:"bytes,4,opt,name=projects,proto3,oneof" json:"projects,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
 
 func (x *RuntimeConfig_ExperimentalFeatures) Reset() {
 	*x = RuntimeConfig_ExperimentalFeatures{}
-	mi := &file_types_v1_localhost_config_proto_msgTypes[25]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1996,7 +1928,7 @@ func (x *RuntimeConfig_ExperimentalFeatures) String() string {
 func (*RuntimeConfig_ExperimentalFeatures) ProtoMessage() {}
 
 func (x *RuntimeConfig_ExperimentalFeatures) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_localhost_config_proto_msgTypes[25]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2033,9 +1965,9 @@ func (x *RuntimeConfig_ExperimentalFeatures) GetServeLocalhost() *ServeLocalhost
 	return nil
 }
 
-func (x *RuntimeConfig_ExperimentalFeatures) GetStacks() *StacksConfig {
+func (x *RuntimeConfig_ExperimentalFeatures) GetProjects() *ProjectsConfig {
 	if x != nil {
-		return x.Stacks
+		return x.Projects
 	}
 	return nil
 }
@@ -2050,7 +1982,7 @@ type RuntimeConfig_ClientConfig struct {
 
 func (x *RuntimeConfig_ClientConfig) Reset() {
 	*x = RuntimeConfig_ClientConfig{}
-	mi := &file_types_v1_localhost_config_proto_msgTypes[26]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2062,7 +1994,7 @@ func (x *RuntimeConfig_ClientConfig) String() string {
 func (*RuntimeConfig_ClientConfig) ProtoMessage() {}
 
 func (x *RuntimeConfig_ClientConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_localhost_config_proto_msgTypes[26]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2096,7 +2028,7 @@ var File_types_v1_localhost_config_proto protoreflect.FileDescriptor
 
 const file_types_v1_localhost_config_proto_rawDesc = "" +
 	"\n" +
-	"\x1ftypes/v1/localhost_config.proto\x12\btypes.v1\x1a\x1cgoogle/protobuf/struct.proto\"\xb8&\n" +
+	"\x1ftypes/v1/localhost_config.proto\x12\btypes.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x16types/v1/project.proto\"\xb8&\n" +
 	"\fFormatConfig\x125\n" +
 	"\x06themes\x18\x01 \x01(\v2\x1d.types.v1.FormatConfig.ThemesR\x06themes\x12\x1f\n" +
 	"\vskip_fields\x18\x02 \x03(\tR\n" +
@@ -2269,14 +2201,9 @@ const file_types_v1_localhost_config_proto_rawDesc = "" +
 	"\thttp_port\x18\x02 \x01(\x03R\bhttpPortB\x12\n" +
 	"\x10_show_in_systrayB\n" +
 	"\n" +
-	"\b_log_dir\"\xd8\x01\n" +
-	"\fStacksConfig\x12D\n" +
-	"\x06stacks\x18\x01 \x03(\v2,.types.v1.StacksConfig.LocalhostStackPointerR\x06stacks\x1a\x81\x01\n" +
-	"\x15LocalhostStackPointer\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
-	"\x04path\x18\x02 \x01(\tR\x04path\x12#\n" +
-	"\rdashboard_dir\x18\x03 \x01(\tR\fdashboardDir\x12\x1b\n" +
-	"\talert_dir\x18\x04 \x01(\tR\balertDir\"\x94\b\n" +
+	"\b_log_dir\"F\n" +
+	"\x0eProjectsConfig\x124\n" +
+	"\bpointers\x18\x01 \x03(\v2\x18.types.v1.ProjectPointerR\bpointers\"\x9c\b\n" +
 	"\rRuntimeConfig\x12!\n" +
 	"\tinterrupt\x18\x01 \x01(\bH\x00R\tinterrupt\x88\x01\x01\x128\n" +
 	"\x16skip_check_for_updates\x18\x02 \x01(\bH\x01R\x13skipCheckForUpdates\x88\x01\x01\x12<\n" +
@@ -2285,16 +2212,16 @@ const file_types_v1_localhost_config_proto_rawDesc = "" +
 	"\n" +
 	"api_client\x18\x05 \x01(\v2$.types.v1.RuntimeConfig.ClientConfigR\tapiClient\x1a\n" +
 	"\n" +
-	"\bFeatures\x1a\xc3\x02\n" +
+	"\bFeatures\x1a\xcb\x02\n" +
 	"\x14ExperimentalFeatures\x12,\n" +
 	"\x0frelease_channel\x18\x01 \x01(\tH\x00R\x0ereleaseChannel\x88\x01\x01\x120\n" +
 	"\x12send_logs_to_cloud\x18\x02 \x01(\bH\x01R\x0fsendLogsToCloud\x88\x01\x01\x12L\n" +
-	"\x0fserve_localhost\x18\x03 \x01(\v2\x1e.types.v1.ServeLocalhostConfigH\x02R\x0eserveLocalhost\x88\x01\x01\x123\n" +
-	"\x06stacks\x18\x04 \x01(\v2\x16.types.v1.StacksConfigH\x03R\x06stacks\x88\x01\x01B\x12\n" +
+	"\x0fserve_localhost\x18\x03 \x01(\v2\x1e.types.v1.ServeLocalhostConfigH\x02R\x0eserveLocalhost\x88\x01\x01\x129\n" +
+	"\bprojects\x18\x04 \x01(\v2\x18.types.v1.ProjectsConfigH\x03R\bprojects\x88\x01\x01B\x12\n" +
 	"\x10_release_channelB\x15\n" +
 	"\x13_send_logs_to_cloudB\x12\n" +
-	"\x10_serve_localhostB\t\n" +
-	"\a_stacks\x1a\xc4\x02\n" +
+	"\x10_serve_localhostB\v\n" +
+	"\t_projects\x1a\xc4\x02\n" +
 	"\fClientConfig\x12[\n" +
 	"\rhttp_protocol\x18\x01 \x01(\x0e21.types.v1.RuntimeConfig.ClientConfig.HTTPProtocolH\x00R\fhttpProtocol\x88\x01\x01\x12X\n" +
 	"\frpc_protocol\x18\x02 \x01(\x0e20.types.v1.RuntimeConfig.ClientConfig.RPCProtocolH\x01R\vrpcProtocol\x88\x01\x01\"$\n" +
@@ -2330,7 +2257,7 @@ func file_types_v1_localhost_config_proto_rawDescGZIP() []byte {
 }
 
 var file_types_v1_localhost_config_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_types_v1_localhost_config_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
+var file_types_v1_localhost_config_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_types_v1_localhost_config_proto_goTypes = []any{
 	(FormatConfig_ColorMode)(0),                  // 0: types.v1.FormatConfig.ColorMode
 	(RuntimeConfig_ClientConfig_HTTPProtocol)(0), // 1: types.v1.RuntimeConfig.ClientConfig.HTTPProtocol
@@ -2338,7 +2265,7 @@ var file_types_v1_localhost_config_proto_goTypes = []any{
 	(*FormatConfig)(nil),                         // 3: types.v1.FormatConfig
 	(*ParseConfig)(nil),                          // 4: types.v1.ParseConfig
 	(*ServeLocalhostConfig)(nil),                 // 5: types.v1.ServeLocalhostConfig
-	(*StacksConfig)(nil),                         // 6: types.v1.StacksConfig
+	(*ProjectsConfig)(nil),                       // 6: types.v1.ProjectsConfig
 	(*RuntimeConfig)(nil),                        // 7: types.v1.RuntimeConfig
 	(*LocalhostConfig)(nil),                      // 8: types.v1.LocalhostConfig
 	(*FormatConfig_Color)(nil),                   // 9: types.v1.FormatConfig.Color
@@ -2358,11 +2285,11 @@ var file_types_v1_localhost_config_proto_goTypes = []any{
 	(*ParseConfig_Level)(nil),                    // 23: types.v1.ParseConfig.Level
 	(*ParseConfig_KV)(nil),                       // 24: types.v1.ParseConfig.KV
 	(*ServeLocalhostConfig_OTLP)(nil),            // 25: types.v1.ServeLocalhostConfig.OTLP
-	(*StacksConfig_LocalhostStackPointer)(nil),   // 26: types.v1.StacksConfig.LocalhostStackPointer
-	(*RuntimeConfig_Features)(nil),               // 27: types.v1.RuntimeConfig.Features
-	(*RuntimeConfig_ExperimentalFeatures)(nil),   // 28: types.v1.RuntimeConfig.ExperimentalFeatures
-	(*RuntimeConfig_ClientConfig)(nil),           // 29: types.v1.RuntimeConfig.ClientConfig
-	(*structpb.Struct)(nil),                      // 30: google.protobuf.Struct
+	(*RuntimeConfig_Features)(nil),               // 26: types.v1.RuntimeConfig.Features
+	(*RuntimeConfig_ExperimentalFeatures)(nil),   // 27: types.v1.RuntimeConfig.ExperimentalFeatures
+	(*RuntimeConfig_ClientConfig)(nil),           // 28: types.v1.RuntimeConfig.ClientConfig
+	(*structpb.Struct)(nil),                      // 29: google.protobuf.Struct
+	(*ProjectPointer)(nil),                       // 30: types.v1.ProjectPointer
 }
 var file_types_v1_localhost_config_proto_depIdxs = []int32{
 	17, // 0: types.v1.FormatConfig.themes:type_name -> types.v1.FormatConfig.Themes
@@ -2374,12 +2301,12 @@ var file_types_v1_localhost_config_proto_depIdxs = []int32{
 	22, // 6: types.v1.ParseConfig.message:type_name -> types.v1.ParseConfig.Message
 	23, // 7: types.v1.ParseConfig.level:type_name -> types.v1.ParseConfig.Level
 	24, // 8: types.v1.ParseConfig.kv:type_name -> types.v1.ParseConfig.KV
-	30, // 9: types.v1.ServeLocalhostConfig.engine_config:type_name -> google.protobuf.Struct
+	29, // 9: types.v1.ServeLocalhostConfig.engine_config:type_name -> google.protobuf.Struct
 	25, // 10: types.v1.ServeLocalhostConfig.otlp:type_name -> types.v1.ServeLocalhostConfig.OTLP
-	26, // 11: types.v1.StacksConfig.stacks:type_name -> types.v1.StacksConfig.LocalhostStackPointer
-	27, // 12: types.v1.RuntimeConfig.features:type_name -> types.v1.RuntimeConfig.Features
-	28, // 13: types.v1.RuntimeConfig.experimental_features:type_name -> types.v1.RuntimeConfig.ExperimentalFeatures
-	29, // 14: types.v1.RuntimeConfig.api_client:type_name -> types.v1.RuntimeConfig.ClientConfig
+	30, // 11: types.v1.ProjectsConfig.pointers:type_name -> types.v1.ProjectPointer
+	26, // 12: types.v1.RuntimeConfig.features:type_name -> types.v1.RuntimeConfig.Features
+	27, // 13: types.v1.RuntimeConfig.experimental_features:type_name -> types.v1.RuntimeConfig.ExperimentalFeatures
+	28, // 14: types.v1.RuntimeConfig.api_client:type_name -> types.v1.RuntimeConfig.ClientConfig
 	3,  // 15: types.v1.LocalhostConfig.formatter:type_name -> types.v1.FormatConfig
 	4,  // 16: types.v1.LocalhostConfig.parser:type_name -> types.v1.ParseConfig
 	7,  // 17: types.v1.LocalhostConfig.runtime:type_name -> types.v1.RuntimeConfig
@@ -2443,7 +2370,7 @@ var file_types_v1_localhost_config_proto_depIdxs = []int32{
 	16, // 75: types.v1.FormatConfig.Themes.light:type_name -> types.v1.FormatConfig.Theme
 	16, // 76: types.v1.FormatConfig.Themes.dark:type_name -> types.v1.FormatConfig.Theme
 	5,  // 77: types.v1.RuntimeConfig.ExperimentalFeatures.serve_localhost:type_name -> types.v1.ServeLocalhostConfig
-	6,  // 78: types.v1.RuntimeConfig.ExperimentalFeatures.stacks:type_name -> types.v1.StacksConfig
+	6,  // 78: types.v1.RuntimeConfig.ExperimentalFeatures.projects:type_name -> types.v1.ProjectsConfig
 	1,  // 79: types.v1.RuntimeConfig.ClientConfig.http_protocol:type_name -> types.v1.RuntimeConfig.ClientConfig.HTTPProtocol
 	2,  // 80: types.v1.RuntimeConfig.ClientConfig.rpc_protocol:type_name -> types.v1.RuntimeConfig.ClientConfig.RPCProtocol
 	81, // [81:81] is the sub-list for method output_type
@@ -2458,21 +2385,22 @@ func file_types_v1_localhost_config_proto_init() {
 	if File_types_v1_localhost_config_proto != nil {
 		return
 	}
+	file_types_v1_project_proto_init()
 	file_types_v1_localhost_config_proto_msgTypes[0].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[2].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[4].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[7].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[16].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[17].OneofWrappers = []any{}
+	file_types_v1_localhost_config_proto_msgTypes[24].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[25].OneofWrappers = []any{}
-	file_types_v1_localhost_config_proto_msgTypes[26].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_localhost_config_proto_rawDesc), len(file_types_v1_localhost_config_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   27,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

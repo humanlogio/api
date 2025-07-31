@@ -3,6 +3,7 @@ syntax = "proto3";
 package types.v1;
 
 import "google/protobuf/struct.proto";
+import "types/v1/project.proto";
 
 option go_package = "types/v1;typesv1";
 
@@ -162,14 +163,8 @@ message ServeLocalhostConfig {
   OTLP otlp = 101;
 }
 
-message StacksConfig {
-  message LocalhostStackPointer {
-    string name = 1;
-    string path = 2;
-    string dashboard_dir = 3;
-    string alert_dir = 4;
-  }
-  repeated LocalhostStackPointer stacks = 1;
+message ProjectsConfig {
+  repeated types.v1.ProjectPointer pointers = 1;
 }
 
 message RuntimeConfig {
@@ -178,7 +173,7 @@ message RuntimeConfig {
     optional string release_channel = 1;
     optional bool send_logs_to_cloud = 2;
     optional ServeLocalhostConfig serve_localhost = 3;
-    optional StacksConfig stacks = 4;
+    optional ProjectsConfig projects = 4;
   }
   message ClientConfig {
     enum HTTPProtocol {
