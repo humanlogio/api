@@ -25,7 +25,7 @@ const (
 type CreateDashboardRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
+	ProjectName   string                 `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	IsReadonly    bool                   `protobuf:"varint,3,opt,name=is_readonly,json=isReadonly,proto3" json:"is_readonly,omitempty"`
@@ -71,9 +71,9 @@ func (x *CreateDashboardRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *CreateDashboardRequest) GetStackName() string {
+func (x *CreateDashboardRequest) GetProjectName() string {
 	if x != nil {
-		return x.StackName
+		return x.ProjectName
 	}
 	return ""
 }
@@ -153,7 +153,7 @@ func (x *CreateDashboardResponse) GetDashboard() *v1.Dashboard {
 type GetDashboardRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
+	ProjectName   string                 `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -196,9 +196,9 @@ func (x *GetDashboardRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *GetDashboardRequest) GetStackName() string {
+func (x *GetDashboardRequest) GetProjectName() string {
 	if x != nil {
-		return x.StackName
+		return x.ProjectName
 	}
 	return ""
 }
@@ -257,7 +257,7 @@ func (x *GetDashboardResponse) GetDashboard() *v1.Dashboard {
 type UpdateDashboardRequest struct {
 	state         protoimpl.MessageState             `protogen:"open.v1"`
 	EnvironmentId int64                              `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackName     string                             `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
+	ProjectName   string                             `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
 	Id            string                             `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Mutations     []*UpdateDashboardRequest_Mutation `protobuf:"bytes,2,rep,name=mutations,proto3" json:"mutations,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -301,9 +301,9 @@ func (x *UpdateDashboardRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *UpdateDashboardRequest) GetStackName() string {
+func (x *UpdateDashboardRequest) GetProjectName() string {
 	if x != nil {
-		return x.StackName
+		return x.ProjectName
 	}
 	return ""
 }
@@ -369,7 +369,7 @@ func (x *UpdateDashboardResponse) GetDashboard() *v1.Dashboard {
 type DeleteDashboardRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
+	ProjectName   string                 `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -412,9 +412,9 @@ func (x *DeleteDashboardRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *DeleteDashboardRequest) GetStackName() string {
+func (x *DeleteDashboardRequest) GetProjectName() string {
 	if x != nil {
-		return x.StackName
+		return x.ProjectName
 	}
 	return ""
 }
@@ -465,7 +465,7 @@ func (*DeleteDashboardResponse) Descriptor() ([]byte, []int) {
 type ListDashboardRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	StackName     string                 `protobuf:"bytes,102,opt,name=stack_name,json=stackName,proto3" json:"stack_name,omitempty"`
+	ProjectName   string                 `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
 	Cursor        *v1.Cursor             `protobuf:"bytes,1,opt,name=cursor,proto3" json:"cursor,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	DashboardId   int64                  `protobuf:"varint,3,opt,name=dashboard_id,json=dashboardId,proto3" json:"dashboard_id,omitempty"`
@@ -510,9 +510,9 @@ func (x *ListDashboardRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *ListDashboardRequest) GetStackName() string {
+func (x *ListDashboardRequest) GetProjectName() string {
 	if x != nil {
-		return x.StackName
+		return x.ProjectName
 	}
 	return ""
 }
@@ -768,11 +768,10 @@ var File_svc_dashboard_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_dashboard_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1esvc/dashboard/v1/service.proto\x12\x10svc.dashboard.v1\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\"\xd6\x01\n" +
+	"\x1esvc/dashboard/v1/service.proto\x12\x10svc.dashboard.v1\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\"\xda\x01\n" +
 	"\x16CreateDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
-	"\n" +
-	"stack_name\x18f \x01(\tR\tstackName\x12\x12\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
+	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1f\n" +
 	"\vis_readonly\x18\x03 \x01(\bR\n" +
@@ -780,18 +779,16 @@ const file_svc_dashboard_v1_service_proto_rawDesc = "" +
 	"\vperses_json\x18\x04 \x01(\fR\n" +
 	"persesJson\"L\n" +
 	"\x17CreateDashboardResponse\x121\n" +
-	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"k\n" +
+	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"o\n" +
 	"\x13GetDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
-	"\n" +
-	"stack_name\x18f \x01(\tR\tstackName\x12\x0e\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
+	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"I\n" +
 	"\x14GetDashboardResponse\x121\n" +
-	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"\x94\x03\n" +
+	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"\x98\x03\n" +
 	"\x16UpdateDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
-	"\n" +
-	"stack_name\x18f \x01(\tR\tstackName\x12\x0e\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
+	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12O\n" +
 	"\tmutations\x18\x02 \x03(\v21.svc.dashboard.v1.UpdateDashboardRequest.MutationR\tmutations\x1a\xd2\x01\n" +
 	"\bMutation\x12\x1b\n" +
@@ -802,17 +799,15 @@ const file_svc_dashboard_v1_service_proto_rawDesc = "" +
 	"\x0fset_perses_json\x18\x05 \x01(\fH\x00R\rsetPersesJsonB\x04\n" +
 	"\x02do\"L\n" +
 	"\x17UpdateDashboardResponse\x121\n" +
-	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"n\n" +
+	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"r\n" +
 	"\x16DeleteDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
-	"\n" +
-	"stack_name\x18f \x01(\tR\tstackName\x12\x0e\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
+	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x19\n" +
-	"\x17DeleteDashboardResponse\"\xbf\x01\n" +
+	"\x17DeleteDashboardResponse\"\xc3\x01\n" +
 	"\x14ListDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1d\n" +
-	"\n" +
-	"stack_name\x18f \x01(\tR\tstackName\x12(\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
+	"\fproject_name\x18f \x01(\tR\vprojectName\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12!\n" +
 	"\fdashboard_id\x18\x03 \x01(\x03R\vdashboardId\"\xc4\x01\n" +

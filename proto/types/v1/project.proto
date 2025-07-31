@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "types/v1;typesv1";
 
-message StackPointer {
+message ProjectPointer {
   message RemoteGit {
     string remote_url = 1;
     string ref = 2;
@@ -30,9 +30,9 @@ message StackPointer {
   }
 }
 
-message Stack {
+message Project {
   string name = 1;
-  StackPointer pointer = 2;
+  ProjectPointer pointer = 2;
   google.protobuf.Timestamp created_at = 300;
   google.protobuf.Timestamp updated_at = 301;
 }

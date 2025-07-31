@@ -17,7 +17,7 @@ service DashboardService {
 
 message CreateDashboardRequest {
   int64 environment_id = 101;
-  string stack_name = 102;
+  string project_name = 102;
   string name = 1;
   string description = 2;
   bool is_readonly = 3;
@@ -30,7 +30,7 @@ message CreateDashboardResponse {
 
 message GetDashboardRequest {
   int64 environment_id = 101;
-  string stack_name = 102;
+  string project_name = 102;
   string id = 1;
 }
 
@@ -49,7 +49,7 @@ message UpdateDashboardRequest {
     }
   }
   int64 environment_id = 101;
-  string stack_name = 102;
+  string project_name = 102;
   string id = 1;
   repeated Mutation mutations = 2;
 }
@@ -60,7 +60,7 @@ message UpdateDashboardResponse {
 
 message DeleteDashboardRequest {
   int64 environment_id = 101;
-  string stack_name = 102;
+  string project_name = 102;
   string id = 1;
 }
 
@@ -68,7 +68,7 @@ message DeleteDashboardResponse {}
 
 message ListDashboardRequest {
   int64 environment_id = 101;
-  string stack_name = 102;
+  string project_name = 102;
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
   int64 dashboard_id = 3;
