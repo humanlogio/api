@@ -1266,9 +1266,9 @@ export class ServeLocalhostConfig_OTLP extends Message<ServeLocalhostConfig_OTLP
  */
 export class ProjectsConfig extends Message<ProjectsConfig> {
   /**
-   * @generated from field: repeated types.v1.ProjectPointer pointers = 1;
+   * @generated from field: repeated types.v1.ProjectsConfig.Project projects = 1;
    */
-  pointers: ProjectPointer[] = [];
+  projects: ProjectsConfig_Project[] = [];
 
   constructor(data?: PartialMessage<ProjectsConfig>) {
     super();
@@ -1278,7 +1278,7 @@ export class ProjectsConfig extends Message<ProjectsConfig> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.ProjectsConfig";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "pointers", kind: "message", T: ProjectPointer, repeated: true },
+    { no: 1, name: "projects", kind: "message", T: ProjectsConfig_Project, repeated: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectsConfig {
@@ -1295,6 +1295,49 @@ export class ProjectsConfig extends Message<ProjectsConfig> {
 
   static equals(a: ProjectsConfig | PlainMessage<ProjectsConfig> | undefined, b: ProjectsConfig | PlainMessage<ProjectsConfig> | undefined): boolean {
     return proto3.util.equals(ProjectsConfig, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.ProjectsConfig.Project
+ */
+export class ProjectsConfig_Project extends Message<ProjectsConfig_Project> {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name = "";
+
+  /**
+   * @generated from field: types.v1.ProjectPointer pointer = 2;
+   */
+  pointer?: ProjectPointer;
+
+  constructor(data?: PartialMessage<ProjectsConfig_Project>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.ProjectsConfig.Project";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "pointer", kind: "message", T: ProjectPointer },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ProjectsConfig_Project {
+    return new ProjectsConfig_Project().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): ProjectsConfig_Project {
+    return new ProjectsConfig_Project().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): ProjectsConfig_Project {
+    return new ProjectsConfig_Project().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: ProjectsConfig_Project | PlainMessage<ProjectsConfig_Project> | undefined, b: ProjectsConfig_Project | PlainMessage<ProjectsConfig_Project> | undefined): boolean {
+    return proto3.util.equals(ProjectsConfig_Project, a, b);
   }
 }
 

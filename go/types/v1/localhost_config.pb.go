@@ -433,8 +433,8 @@ func (x *ServeLocalhostConfig) GetOtlp() *ServeLocalhostConfig_OTLP {
 }
 
 type ProjectsConfig struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Pointers      []*ProjectPointer      `protobuf:"bytes,1,rep,name=pointers,proto3" json:"pointers,omitempty"`
+	state         protoimpl.MessageState    `protogen:"open.v1"`
+	Projects      []*ProjectsConfig_Project `protobuf:"bytes,1,rep,name=projects,proto3" json:"projects,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -469,9 +469,9 @@ func (*ProjectsConfig) Descriptor() ([]byte, []int) {
 	return file_types_v1_localhost_config_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ProjectsConfig) GetPointers() []*ProjectPointer {
+func (x *ProjectsConfig) GetProjects() []*ProjectsConfig_Project {
 	if x != nil {
-		return x.Pointers
+		return x.Projects
 	}
 	return nil
 }
@@ -1868,6 +1868,58 @@ func (x *ServeLocalhostConfig_OTLP) GetHttpPort() int64 {
 	return 0
 }
 
+type ProjectsConfig_Project struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Pointer       *ProjectPointer        `protobuf:"bytes,2,opt,name=pointer,proto3" json:"pointer,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProjectsConfig_Project) Reset() {
+	*x = ProjectsConfig_Project{}
+	mi := &file_types_v1_localhost_config_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProjectsConfig_Project) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProjectsConfig_Project) ProtoMessage() {}
+
+func (x *ProjectsConfig_Project) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_localhost_config_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProjectsConfig_Project.ProtoReflect.Descriptor instead.
+func (*ProjectsConfig_Project) Descriptor() ([]byte, []int) {
+	return file_types_v1_localhost_config_proto_rawDescGZIP(), []int{3, 0}
+}
+
+func (x *ProjectsConfig_Project) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ProjectsConfig_Project) GetPointer() *ProjectPointer {
+	if x != nil {
+		return x.Pointer
+	}
+	return nil
+}
+
 type RuntimeConfig_Features struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -1876,7 +1928,7 @@ type RuntimeConfig_Features struct {
 
 func (x *RuntimeConfig_Features) Reset() {
 	*x = RuntimeConfig_Features{}
-	mi := &file_types_v1_localhost_config_proto_msgTypes[23]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1888,7 +1940,7 @@ func (x *RuntimeConfig_Features) String() string {
 func (*RuntimeConfig_Features) ProtoMessage() {}
 
 func (x *RuntimeConfig_Features) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_localhost_config_proto_msgTypes[23]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1916,7 +1968,7 @@ type RuntimeConfig_ExperimentalFeatures struct {
 
 func (x *RuntimeConfig_ExperimentalFeatures) Reset() {
 	*x = RuntimeConfig_ExperimentalFeatures{}
-	mi := &file_types_v1_localhost_config_proto_msgTypes[24]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1928,7 +1980,7 @@ func (x *RuntimeConfig_ExperimentalFeatures) String() string {
 func (*RuntimeConfig_ExperimentalFeatures) ProtoMessage() {}
 
 func (x *RuntimeConfig_ExperimentalFeatures) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_localhost_config_proto_msgTypes[24]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1982,7 +2034,7 @@ type RuntimeConfig_ClientConfig struct {
 
 func (x *RuntimeConfig_ClientConfig) Reset() {
 	*x = RuntimeConfig_ClientConfig{}
-	mi := &file_types_v1_localhost_config_proto_msgTypes[25]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1994,7 +2046,7 @@ func (x *RuntimeConfig_ClientConfig) String() string {
 func (*RuntimeConfig_ClientConfig) ProtoMessage() {}
 
 func (x *RuntimeConfig_ClientConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_localhost_config_proto_msgTypes[25]
+	mi := &file_types_v1_localhost_config_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2201,9 +2253,12 @@ const file_types_v1_localhost_config_proto_rawDesc = "" +
 	"\thttp_port\x18\x02 \x01(\x03R\bhttpPortB\x12\n" +
 	"\x10_show_in_systrayB\n" +
 	"\n" +
-	"\b_log_dir\"F\n" +
-	"\x0eProjectsConfig\x124\n" +
-	"\bpointers\x18\x01 \x03(\v2\x18.types.v1.ProjectPointerR\bpointers\"\x9c\b\n" +
+	"\b_log_dir\"\xa1\x01\n" +
+	"\x0eProjectsConfig\x12<\n" +
+	"\bprojects\x18\x01 \x03(\v2 .types.v1.ProjectsConfig.ProjectR\bprojects\x1aQ\n" +
+	"\aProject\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x122\n" +
+	"\apointer\x18\x02 \x01(\v2\x18.types.v1.ProjectPointerR\apointer\"\x9c\b\n" +
 	"\rRuntimeConfig\x12!\n" +
 	"\tinterrupt\x18\x01 \x01(\bH\x00R\tinterrupt\x88\x01\x01\x128\n" +
 	"\x16skip_check_for_updates\x18\x02 \x01(\bH\x01R\x13skipCheckForUpdates\x88\x01\x01\x12<\n" +
@@ -2257,7 +2312,7 @@ func file_types_v1_localhost_config_proto_rawDescGZIP() []byte {
 }
 
 var file_types_v1_localhost_config_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_types_v1_localhost_config_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
+var file_types_v1_localhost_config_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_types_v1_localhost_config_proto_goTypes = []any{
 	(FormatConfig_ColorMode)(0),                  // 0: types.v1.FormatConfig.ColorMode
 	(RuntimeConfig_ClientConfig_HTTPProtocol)(0), // 1: types.v1.RuntimeConfig.ClientConfig.HTTPProtocol
@@ -2285,11 +2340,12 @@ var file_types_v1_localhost_config_proto_goTypes = []any{
 	(*ParseConfig_Level)(nil),                    // 23: types.v1.ParseConfig.Level
 	(*ParseConfig_KV)(nil),                       // 24: types.v1.ParseConfig.KV
 	(*ServeLocalhostConfig_OTLP)(nil),            // 25: types.v1.ServeLocalhostConfig.OTLP
-	(*RuntimeConfig_Features)(nil),               // 26: types.v1.RuntimeConfig.Features
-	(*RuntimeConfig_ExperimentalFeatures)(nil),   // 27: types.v1.RuntimeConfig.ExperimentalFeatures
-	(*RuntimeConfig_ClientConfig)(nil),           // 28: types.v1.RuntimeConfig.ClientConfig
-	(*structpb.Struct)(nil),                      // 29: google.protobuf.Struct
-	(*ProjectPointer)(nil),                       // 30: types.v1.ProjectPointer
+	(*ProjectsConfig_Project)(nil),               // 26: types.v1.ProjectsConfig.Project
+	(*RuntimeConfig_Features)(nil),               // 27: types.v1.RuntimeConfig.Features
+	(*RuntimeConfig_ExperimentalFeatures)(nil),   // 28: types.v1.RuntimeConfig.ExperimentalFeatures
+	(*RuntimeConfig_ClientConfig)(nil),           // 29: types.v1.RuntimeConfig.ClientConfig
+	(*structpb.Struct)(nil),                      // 30: google.protobuf.Struct
+	(*ProjectPointer)(nil),                       // 31: types.v1.ProjectPointer
 }
 var file_types_v1_localhost_config_proto_depIdxs = []int32{
 	17, // 0: types.v1.FormatConfig.themes:type_name -> types.v1.FormatConfig.Themes
@@ -2301,12 +2357,12 @@ var file_types_v1_localhost_config_proto_depIdxs = []int32{
 	22, // 6: types.v1.ParseConfig.message:type_name -> types.v1.ParseConfig.Message
 	23, // 7: types.v1.ParseConfig.level:type_name -> types.v1.ParseConfig.Level
 	24, // 8: types.v1.ParseConfig.kv:type_name -> types.v1.ParseConfig.KV
-	29, // 9: types.v1.ServeLocalhostConfig.engine_config:type_name -> google.protobuf.Struct
+	30, // 9: types.v1.ServeLocalhostConfig.engine_config:type_name -> google.protobuf.Struct
 	25, // 10: types.v1.ServeLocalhostConfig.otlp:type_name -> types.v1.ServeLocalhostConfig.OTLP
-	30, // 11: types.v1.ProjectsConfig.pointers:type_name -> types.v1.ProjectPointer
-	26, // 12: types.v1.RuntimeConfig.features:type_name -> types.v1.RuntimeConfig.Features
-	27, // 13: types.v1.RuntimeConfig.experimental_features:type_name -> types.v1.RuntimeConfig.ExperimentalFeatures
-	28, // 14: types.v1.RuntimeConfig.api_client:type_name -> types.v1.RuntimeConfig.ClientConfig
+	26, // 11: types.v1.ProjectsConfig.projects:type_name -> types.v1.ProjectsConfig.Project
+	27, // 12: types.v1.RuntimeConfig.features:type_name -> types.v1.RuntimeConfig.Features
+	28, // 13: types.v1.RuntimeConfig.experimental_features:type_name -> types.v1.RuntimeConfig.ExperimentalFeatures
+	29, // 14: types.v1.RuntimeConfig.api_client:type_name -> types.v1.RuntimeConfig.ClientConfig
 	3,  // 15: types.v1.LocalhostConfig.formatter:type_name -> types.v1.FormatConfig
 	4,  // 16: types.v1.LocalhostConfig.parser:type_name -> types.v1.ParseConfig
 	7,  // 17: types.v1.LocalhostConfig.runtime:type_name -> types.v1.RuntimeConfig
@@ -2369,15 +2425,16 @@ var file_types_v1_localhost_config_proto_depIdxs = []int32{
 	15, // 74: types.v1.FormatConfig.Theme.tables:type_name -> types.v1.FormatConfig.TableTheme
 	16, // 75: types.v1.FormatConfig.Themes.light:type_name -> types.v1.FormatConfig.Theme
 	16, // 76: types.v1.FormatConfig.Themes.dark:type_name -> types.v1.FormatConfig.Theme
-	5,  // 77: types.v1.RuntimeConfig.ExperimentalFeatures.serve_localhost:type_name -> types.v1.ServeLocalhostConfig
-	6,  // 78: types.v1.RuntimeConfig.ExperimentalFeatures.projects:type_name -> types.v1.ProjectsConfig
-	1,  // 79: types.v1.RuntimeConfig.ClientConfig.http_protocol:type_name -> types.v1.RuntimeConfig.ClientConfig.HTTPProtocol
-	2,  // 80: types.v1.RuntimeConfig.ClientConfig.rpc_protocol:type_name -> types.v1.RuntimeConfig.ClientConfig.RPCProtocol
-	81, // [81:81] is the sub-list for method output_type
-	81, // [81:81] is the sub-list for method input_type
-	81, // [81:81] is the sub-list for extension type_name
-	81, // [81:81] is the sub-list for extension extendee
-	0,  // [0:81] is the sub-list for field type_name
+	31, // 77: types.v1.ProjectsConfig.Project.pointer:type_name -> types.v1.ProjectPointer
+	5,  // 78: types.v1.RuntimeConfig.ExperimentalFeatures.serve_localhost:type_name -> types.v1.ServeLocalhostConfig
+	6,  // 79: types.v1.RuntimeConfig.ExperimentalFeatures.projects:type_name -> types.v1.ProjectsConfig
+	1,  // 80: types.v1.RuntimeConfig.ClientConfig.http_protocol:type_name -> types.v1.RuntimeConfig.ClientConfig.HTTPProtocol
+	2,  // 81: types.v1.RuntimeConfig.ClientConfig.rpc_protocol:type_name -> types.v1.RuntimeConfig.ClientConfig.RPCProtocol
+	82, // [82:82] is the sub-list for method output_type
+	82, // [82:82] is the sub-list for method input_type
+	82, // [82:82] is the sub-list for extension type_name
+	82, // [82:82] is the sub-list for extension extendee
+	0,  // [0:82] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_localhost_config_proto_init() }
@@ -2392,15 +2449,15 @@ func file_types_v1_localhost_config_proto_init() {
 	file_types_v1_localhost_config_proto_msgTypes[7].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[16].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[17].OneofWrappers = []any{}
-	file_types_v1_localhost_config_proto_msgTypes[24].OneofWrappers = []any{}
 	file_types_v1_localhost_config_proto_msgTypes[25].OneofWrappers = []any{}
+	file_types_v1_localhost_config_proto_msgTypes[26].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_localhost_config_proto_rawDesc), len(file_types_v1_localhost_config_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   26,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

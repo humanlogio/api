@@ -164,7 +164,12 @@ message ServeLocalhostConfig {
 }
 
 message ProjectsConfig {
-  repeated types.v1.ProjectPointer pointers = 1;
+  message Project {
+    string name = 1;
+    types.v1.ProjectPointer pointer = 2;
+  }
+
+  repeated Project projects = 1;
 }
 
 message RuntimeConfig {
