@@ -262,6 +262,7 @@ type StackPointer_LocalGit struct {
 	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
 	DashboardDir  string                 `protobuf:"bytes,2,opt,name=dashboard_dir,json=dashboardDir,proto3" json:"dashboard_dir,omitempty"`
 	AlertDir      string                 `protobuf:"bytes,3,opt,name=alert_dir,json=alertDir,proto3" json:"alert_dir,omitempty"`
+	ReadOnly      bool                   `protobuf:"varint,4,opt,name=read_only,json=readOnly,proto3" json:"read_only,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -317,6 +318,13 @@ func (x *StackPointer_LocalGit) GetAlertDir() string {
 	return ""
 }
 
+func (x *StackPointer_LocalGit) GetReadOnly() bool {
+	if x != nil {
+		return x.ReadOnly
+	}
+	return false
+}
+
 type StackPointer_Virtual struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Uri           string                 `protobuf:"bytes,1,opt,name=uri,proto3" json:"uri,omitempty"`
@@ -365,7 +373,7 @@ var File_types_v1_stack_proto protoreflect.FileDescriptor
 
 const file_types_v1_stack_proto_rawDesc = "" +
 	"\n" +
-	"\x14types/v1/stack.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc6\x03\n" +
+	"\x14types/v1/stack.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe3\x03\n" +
 	"\fStackPointer\x12:\n" +
 	"\x06remote\x18\x01 \x01(\v2 .types.v1.StackPointer.RemoteGitH\x00R\x06remote\x12?\n" +
 	"\tlocalhost\x18\x02 \x01(\v2\x1f.types.v1.StackPointer.LocalGitH\x00R\tlocalhost\x120\n" +
@@ -375,11 +383,12 @@ const file_types_v1_stack_proto_rawDesc = "" +
 	"remote_url\x18\x01 \x01(\tR\tremoteUrl\x12\x10\n" +
 	"\x03ref\x18\x02 \x01(\tR\x03ref\x12#\n" +
 	"\rdashboard_dir\x18\x03 \x01(\tR\fdashboardDir\x12\x1b\n" +
-	"\talert_dir\x18\x04 \x01(\tR\balertDir\x1a`\n" +
+	"\talert_dir\x18\x04 \x01(\tR\balertDir\x1a}\n" +
 	"\bLocalGit\x12\x12\n" +
 	"\x04path\x18\x01 \x01(\tR\x04path\x12#\n" +
 	"\rdashboard_dir\x18\x02 \x01(\tR\fdashboardDir\x12\x1b\n" +
-	"\talert_dir\x18\x03 \x01(\tR\balertDir\x1a\x1b\n" +
+	"\talert_dir\x18\x03 \x01(\tR\balertDir\x12\x1b\n" +
+	"\tread_only\x18\x04 \x01(\bR\breadOnly\x1a\x1b\n" +
 	"\aVirtual\x12\x10\n" +
 	"\x03uri\x18\x01 \x01(\tR\x03uriB\b\n" +
 	"\x06scheme\"\xc5\x01\n" +

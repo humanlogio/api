@@ -137,6 +137,11 @@ export class StackPointer_LocalGit extends Message<StackPointer_LocalGit> {
    */
   alertDir = "";
 
+  /**
+   * @generated from field: bool read_only = 4;
+   */
+  readOnly = false;
+
   constructor(data?: PartialMessage<StackPointer_LocalGit>) {
     super();
     proto3.util.initPartial(data, this);
@@ -148,6 +153,7 @@ export class StackPointer_LocalGit extends Message<StackPointer_LocalGit> {
     { no: 1, name: "path", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "dashboard_dir", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "alert_dir", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "read_only", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): StackPointer_LocalGit {
