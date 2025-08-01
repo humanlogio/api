@@ -1376,6 +1376,11 @@ export class ListFavoriteQueryResponse_ListItem extends Message<ListFavoriteQuer
    */
   favorite?: FavoriteQuery;
 
+  /**
+   * @generated from field: optional string error = 2;
+   */
+  error?: string;
+
   constructor(data?: PartialMessage<ListFavoriteQueryResponse_ListItem>) {
     super();
     proto3.util.initPartial(data, this);
@@ -1385,6 +1390,7 @@ export class ListFavoriteQueryResponse_ListItem extends Message<ListFavoriteQuer
   static readonly typeName = "svc.user.v1.ListFavoriteQueryResponse.ListItem";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "favorite", kind: "message", T: FavoriteQuery },
+    { no: 2, name: "error", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ListFavoriteQueryResponse_ListItem {

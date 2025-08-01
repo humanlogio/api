@@ -171,6 +171,7 @@ message ListFavoriteQueryResponse {
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.FavoriteQuery favorite = 1;
+    optional string error = 2;
   }
   repeated ListItem items = 2;
 }

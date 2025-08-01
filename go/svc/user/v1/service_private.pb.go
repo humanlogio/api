@@ -1730,6 +1730,7 @@ func (x *ListQueryHistoryResponse_ListItem) GetEntry() *v1.QueryHistoryEntry {
 type ListFavoriteQueryResponse_ListItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Favorite      *v1.FavoriteQuery      `protobuf:"bytes,1,opt,name=favorite,proto3" json:"favorite,omitempty"`
+	Error         *string                `protobuf:"bytes,2,opt,name=error,proto3,oneof" json:"error,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1769,6 +1770,13 @@ func (x *ListFavoriteQueryResponse_ListItem) GetFavorite() *v1.FavoriteQuery {
 		return x.Favorite
 	}
 	return nil
+}
+
+func (x *ListFavoriteQueryResponse_ListItem) GetError() string {
+	if x != nil && x.Error != nil {
+		return *x.Error
+	}
+	return ""
 }
 
 var File_svc_user_v1_service_private_proto protoreflect.FileDescriptor
@@ -1864,12 +1872,14 @@ const file_svc_user_v1_service_private_proto_rawDesc = "" +
 	"\bfavorite\x18\x01 \x01(\v2\x17.types.v1.FavoriteQueryR\bfavorite\"Z\n" +
 	"\x18ListFavoriteQueryRequest\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\xc9\x01\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\xee\x01\n" +
 	"\x19ListFavoriteQueryResponse\x12$\n" +
 	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12E\n" +
-	"\x05items\x18\x02 \x03(\v2/.svc.user.v1.ListFavoriteQueryResponse.ListItemR\x05items\x1a?\n" +
+	"\x05items\x18\x02 \x03(\v2/.svc.user.v1.ListFavoriteQueryResponse.ListItemR\x05items\x1ad\n" +
 	"\bListItem\x123\n" +
-	"\bfavorite\x18\x01 \x01(\v2\x17.types.v1.FavoriteQueryR\bfavorite\",\n" +
+	"\bfavorite\x18\x01 \x01(\v2\x17.types.v1.FavoriteQueryR\bfavorite\x12\x19\n" +
+	"\x05error\x18\x02 \x01(\tH\x00R\x05error\x88\x01\x01B\b\n" +
+	"\x06_error\",\n" +
 	"\x1aDeleteFavoriteQueryRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"\x1d\n" +
 	"\x1bDeleteFavoriteQueryResponse2\xa0\r\n" +
@@ -2032,6 +2042,7 @@ func file_svc_user_v1_service_private_proto_init() {
 		return
 	}
 	file_svc_user_v1_service_private_proto_msgTypes[6].OneofWrappers = []any{}
+	file_svc_user_v1_service_private_proto_msgTypes[36].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
