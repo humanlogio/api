@@ -1,7 +1,7 @@
 package typesv1
 
 import (
-	semconv "go.opentelemetry.io/otel/semconv/v1.32.0"
+	semconv "go.opentelemetry.io/otel/semconv/v1.34.0"
 )
 
 func (x *Log) IsStructured() bool {

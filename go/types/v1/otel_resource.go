@@ -1,6 +1,6 @@
 package typesv1
 
-import semconv "go.opentelemetry.io/otel/semconv/v1.32.0"
+import semconv "go.opentelemetry.io/otel/semconv/v1.34.0"
 
 func NewResource(schemaURL string, kvs []*KV) *Resource {
 	h64 := fpString(schemaURL)
