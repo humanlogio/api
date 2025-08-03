@@ -10,10 +10,13 @@ enum ScalarType {
   str = 1;
   f64 = 2;
   i64 = 3;
+  u64 = 31;
   bool = 4;
   ts = 5;
   dur = 6;
   blob = 8;
+  trace_id = 90;
+  span_id = 91;
 }
 
 message VarType {
@@ -48,10 +51,13 @@ message Val {
     string str = 201;
     double f64 = 202;
     int64 i64 = 203;
+    uint64 u64 = 212;
     bool bool = 204;
     google.protobuf.Timestamp ts = 205;
     google.protobuf.Duration dur = 206;
     bytes blob = 211;
+    string trace_id = 213;
+    string span_id = 214;
     Arr arr = 207;
     Obj obj = 208;
     Map map = 209;
@@ -83,9 +89,12 @@ message Scalar {
     string str = 201;
     double f64 = 202;
     int64 i64 = 203;
+    uint64 u64 = 205;
     bool bool = 204;
     google.protobuf.Timestamp ts = 207;
     google.protobuf.Duration dur = 208;
+    string trace_id = 209;
+    string span_id = 210;
   }
 }
 

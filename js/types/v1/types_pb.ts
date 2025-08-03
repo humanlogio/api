@@ -31,6 +31,11 @@ export enum ScalarType {
   i64 = 3,
 
   /**
+   * @generated from enum value: u64 = 31;
+   */
+  u64 = 31,
+
+  /**
    * @generated from enum value: bool = 4;
    */
   bool = 4,
@@ -49,6 +54,16 @@ export enum ScalarType {
    * @generated from enum value: blob = 8;
    */
   blob = 8,
+
+  /**
+   * @generated from enum value: trace_id = 90;
+   */
+  trace_id = 90,
+
+  /**
+   * @generated from enum value: span_id = 91;
+   */
+  span_id = 91,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ScalarType)
 proto3.util.setEnumType(ScalarType, "types.v1.ScalarType", [
@@ -56,10 +71,13 @@ proto3.util.setEnumType(ScalarType, "types.v1.ScalarType", [
   { no: 1, name: "str" },
   { no: 2, name: "f64" },
   { no: 3, name: "i64" },
+  { no: 31, name: "u64" },
   { no: 4, name: "bool" },
   { no: 5, name: "ts" },
   { no: 6, name: "dur" },
   { no: 8, name: "blob" },
+  { no: 90, name: "trace_id" },
+  { no: 91, name: "span_id" },
 ]);
 
 /**
@@ -356,6 +374,12 @@ export class Val extends Message<Val> {
     case: "i64";
   } | {
     /**
+     * @generated from field: uint64 u64 = 212;
+     */
+    value: bigint;
+    case: "u64";
+  } | {
+    /**
      * @generated from field: bool bool = 204;
      */
     value: boolean;
@@ -378,6 +402,18 @@ export class Val extends Message<Val> {
      */
     value: Uint8Array;
     case: "blob";
+  } | {
+    /**
+     * @generated from field: string trace_id = 213;
+     */
+    value: string;
+    case: "traceId";
+  } | {
+    /**
+     * @generated from field: string span_id = 214;
+     */
+    value: string;
+    case: "spanId";
   } | {
     /**
      * @generated from field: types.v1.Arr arr = 207;
@@ -416,10 +452,13 @@ export class Val extends Message<Val> {
     { no: 201, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
     { no: 202, name: "f64", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind" },
     { no: 203, name: "i64", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "kind" },
+    { no: 212, name: "u64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, oneof: "kind" },
     { no: 204, name: "bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
     { no: 205, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
     { no: 206, name: "dur", kind: "message", T: Duration, oneof: "kind" },
     { no: 211, name: "blob", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "kind" },
+    { no: 213, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 214, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
     { no: 207, name: "arr", kind: "message", T: Arr, oneof: "kind" },
     { no: 208, name: "obj", kind: "message", T: Obj, oneof: "kind" },
     { no: 209, name: "map", kind: "message", T: Map, oneof: "kind" },
@@ -660,6 +699,12 @@ export class Scalar extends Message<Scalar> {
     case: "i64";
   } | {
     /**
+     * @generated from field: uint64 u64 = 205;
+     */
+    value: bigint;
+    case: "u64";
+  } | {
+    /**
      * @generated from field: bool bool = 204;
      */
     value: boolean;
@@ -676,6 +721,18 @@ export class Scalar extends Message<Scalar> {
      */
     value: Duration;
     case: "dur";
+  } | {
+    /**
+     * @generated from field: string trace_id = 209;
+     */
+    value: string;
+    case: "traceId";
+  } | {
+    /**
+     * @generated from field: string span_id = 210;
+     */
+    value: string;
+    case: "spanId";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Scalar>) {
@@ -690,9 +747,12 @@ export class Scalar extends Message<Scalar> {
     { no: 201, name: "str", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
     { no: 202, name: "f64", kind: "scalar", T: 1 /* ScalarType.DOUBLE */, oneof: "kind" },
     { no: 203, name: "i64", kind: "scalar", T: 3 /* ScalarType.INT64 */, oneof: "kind" },
+    { no: 205, name: "u64", kind: "scalar", T: 4 /* ScalarType.UINT64 */, oneof: "kind" },
     { no: 204, name: "bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
     { no: 207, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
     { no: 208, name: "dur", kind: "message", T: Duration, oneof: "kind" },
+    { no: 209, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 210, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Scalar {

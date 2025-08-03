@@ -26,37 +26,46 @@ const (
 type ScalarType int32
 
 const (
-	ScalarType_unknown ScalarType = 0
-	ScalarType_str     ScalarType = 1
-	ScalarType_f64     ScalarType = 2
-	ScalarType_i64     ScalarType = 3
-	ScalarType_bool    ScalarType = 4
-	ScalarType_ts      ScalarType = 5
-	ScalarType_dur     ScalarType = 6
-	ScalarType_blob    ScalarType = 8
+	ScalarType_unknown  ScalarType = 0
+	ScalarType_str      ScalarType = 1
+	ScalarType_f64      ScalarType = 2
+	ScalarType_i64      ScalarType = 3
+	ScalarType_u64      ScalarType = 31
+	ScalarType_bool     ScalarType = 4
+	ScalarType_ts       ScalarType = 5
+	ScalarType_dur      ScalarType = 6
+	ScalarType_blob     ScalarType = 8
+	ScalarType_trace_id ScalarType = 90
+	ScalarType_span_id  ScalarType = 91
 )
 
 // Enum value maps for ScalarType.
 var (
 	ScalarType_name = map[int32]string{
-		0: "unknown",
-		1: "str",
-		2: "f64",
-		3: "i64",
-		4: "bool",
-		5: "ts",
-		6: "dur",
-		8: "blob",
+		0:  "unknown",
+		1:  "str",
+		2:  "f64",
+		3:  "i64",
+		31: "u64",
+		4:  "bool",
+		5:  "ts",
+		6:  "dur",
+		8:  "blob",
+		90: "trace_id",
+		91: "span_id",
 	}
 	ScalarType_value = map[string]int32{
-		"unknown": 0,
-		"str":     1,
-		"f64":     2,
-		"i64":     3,
-		"bool":    4,
-		"ts":      5,
-		"dur":     6,
-		"blob":    8,
+		"unknown":  0,
+		"str":      1,
+		"f64":      2,
+		"i64":      3,
+		"u64":      31,
+		"bool":     4,
+		"ts":       5,
+		"dur":      6,
+		"blob":     8,
+		"trace_id": 90,
+		"span_id":  91,
 	}
 )
 
@@ -277,10 +286,13 @@ type Val struct {
 	//	*Val_Str
 	//	*Val_F64
 	//	*Val_I64
+	//	*Val_U64
 	//	*Val_Bool
 	//	*Val_Ts
 	//	*Val_Dur
 	//	*Val_Blob
+	//	*Val_TraceId
+	//	*Val_SpanId
 	//	*Val_Arr
 	//	*Val_Obj
 	//	*Val_Map
@@ -361,6 +373,15 @@ func (x *Val) GetI64() int64 {
 	return 0
 }
 
+func (x *Val) GetU64() uint64 {
+	if x != nil {
+		if x, ok := x.Kind.(*Val_U64); ok {
+			return x.U64
+		}
+	}
+	return 0
+}
+
 func (x *Val) GetBool() bool {
 	if x != nil {
 		if x, ok := x.Kind.(*Val_Bool); ok {
@@ -395,6 +416,24 @@ func (x *Val) GetBlob() []byte {
 		}
 	}
 	return nil
+}
+
+func (x *Val) GetTraceId() string {
+	if x != nil {
+		if x, ok := x.Kind.(*Val_TraceId); ok {
+			return x.TraceId
+		}
+	}
+	return ""
+}
+
+func (x *Val) GetSpanId() string {
+	if x != nil {
+		if x, ok := x.Kind.(*Val_SpanId); ok {
+			return x.SpanId
+		}
+	}
+	return ""
 }
 
 func (x *Val) GetArr() *Arr {
@@ -449,6 +488,10 @@ type Val_I64 struct {
 	I64 int64 `protobuf:"varint,203,opt,name=i64,proto3,oneof"`
 }
 
+type Val_U64 struct {
+	U64 uint64 `protobuf:"varint,212,opt,name=u64,proto3,oneof"`
+}
+
 type Val_Bool struct {
 	Bool bool `protobuf:"varint,204,opt,name=bool,proto3,oneof"`
 }
@@ -463,6 +506,14 @@ type Val_Dur struct {
 
 type Val_Blob struct {
 	Blob []byte `protobuf:"bytes,211,opt,name=blob,proto3,oneof"`
+}
+
+type Val_TraceId struct {
+	TraceId string `protobuf:"bytes,213,opt,name=trace_id,json=traceId,proto3,oneof"`
+}
+
+type Val_SpanId struct {
+	SpanId string `protobuf:"bytes,214,opt,name=span_id,json=spanId,proto3,oneof"`
 }
 
 type Val_Arr struct {
@@ -487,6 +538,8 @@ func (*Val_F64) isVal_Kind() {}
 
 func (*Val_I64) isVal_Kind() {}
 
+func (*Val_U64) isVal_Kind() {}
+
 func (*Val_Bool) isVal_Kind() {}
 
 func (*Val_Ts) isVal_Kind() {}
@@ -494,6 +547,10 @@ func (*Val_Ts) isVal_Kind() {}
 func (*Val_Dur) isVal_Kind() {}
 
 func (*Val_Blob) isVal_Kind() {}
+
+func (*Val_TraceId) isVal_Kind() {}
+
+func (*Val_SpanId) isVal_Kind() {}
 
 func (*Val_Arr) isVal_Kind() {}
 
@@ -679,9 +736,12 @@ type Scalar struct {
 	//	*Scalar_Str
 	//	*Scalar_F64
 	//	*Scalar_I64
+	//	*Scalar_U64
 	//	*Scalar_Bool
 	//	*Scalar_Ts
 	//	*Scalar_Dur
+	//	*Scalar_TraceId
+	//	*Scalar_SpanId
 	Kind          isScalar_Kind `protobuf_oneof:"kind"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -758,6 +818,15 @@ func (x *Scalar) GetI64() int64 {
 	return 0
 }
 
+func (x *Scalar) GetU64() uint64 {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_U64); ok {
+			return x.U64
+		}
+	}
+	return 0
+}
+
 func (x *Scalar) GetBool() bool {
 	if x != nil {
 		if x, ok := x.Kind.(*Scalar_Bool); ok {
@@ -785,6 +854,24 @@ func (x *Scalar) GetDur() *durationpb.Duration {
 	return nil
 }
 
+func (x *Scalar) GetTraceId() string {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_TraceId); ok {
+			return x.TraceId
+		}
+	}
+	return ""
+}
+
+func (x *Scalar) GetSpanId() string {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_SpanId); ok {
+			return x.SpanId
+		}
+	}
+	return ""
+}
+
 type isScalar_Kind interface {
 	isScalar_Kind()
 }
@@ -801,6 +888,10 @@ type Scalar_I64 struct {
 	I64 int64 `protobuf:"varint,203,opt,name=i64,proto3,oneof"`
 }
 
+type Scalar_U64 struct {
+	U64 uint64 `protobuf:"varint,205,opt,name=u64,proto3,oneof"`
+}
+
 type Scalar_Bool struct {
 	Bool bool `protobuf:"varint,204,opt,name=bool,proto3,oneof"`
 }
@@ -813,17 +904,31 @@ type Scalar_Dur struct {
 	Dur *durationpb.Duration `protobuf:"bytes,208,opt,name=dur,proto3,oneof"`
 }
 
+type Scalar_TraceId struct {
+	TraceId string `protobuf:"bytes,209,opt,name=trace_id,json=traceId,proto3,oneof"`
+}
+
+type Scalar_SpanId struct {
+	SpanId string `protobuf:"bytes,210,opt,name=span_id,json=spanId,proto3,oneof"`
+}
+
 func (*Scalar_Str) isScalar_Kind() {}
 
 func (*Scalar_F64) isScalar_Kind() {}
 
 func (*Scalar_I64) isScalar_Kind() {}
 
+func (*Scalar_U64) isScalar_Kind() {}
+
 func (*Scalar_Bool) isScalar_Kind() {}
 
 func (*Scalar_Ts) isScalar_Kind() {}
 
 func (*Scalar_Dur) isScalar_Kind() {}
+
+func (*Scalar_TraceId) isScalar_Kind() {}
+
+func (*Scalar_SpanId) isScalar_Kind() {}
 
 type FlatKV struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1553,16 +1658,19 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x04type\";\n" +
 	"\x02KV\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12#\n" +
-	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\x93\x03\n" +
+	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\xe2\x03\n" +
 	"\x03Val\x12%\n" +
 	"\x04type\x18d \x01(\v2\x11.types.v1.VarTypeR\x04type\x12\x13\n" +
 	"\x03str\x18\xc9\x01 \x01(\tH\x00R\x03str\x12\x13\n" +
 	"\x03f64\x18\xca\x01 \x01(\x01H\x00R\x03f64\x12\x13\n" +
-	"\x03i64\x18\xcb\x01 \x01(\x03H\x00R\x03i64\x12\x15\n" +
+	"\x03i64\x18\xcb\x01 \x01(\x03H\x00R\x03i64\x12\x13\n" +
+	"\x03u64\x18\xd4\x01 \x01(\x04H\x00R\x03u64\x12\x15\n" +
 	"\x04bool\x18\xcc\x01 \x01(\bH\x00R\x04bool\x12-\n" +
 	"\x02ts\x18\xcd\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x02ts\x12.\n" +
 	"\x03dur\x18\xce\x01 \x01(\v2\x19.google.protobuf.DurationH\x00R\x03dur\x12\x15\n" +
-	"\x04blob\x18\xd3\x01 \x01(\fH\x00R\x04blob\x12\"\n" +
+	"\x04blob\x18\xd3\x01 \x01(\fH\x00R\x04blob\x12\x1c\n" +
+	"\btrace_id\x18\xd5\x01 \x01(\tH\x00R\atraceId\x12\x1a\n" +
+	"\aspan_id\x18\xd6\x01 \x01(\tH\x00R\x06spanId\x12\"\n" +
 	"\x03arr\x18\xcf\x01 \x01(\v2\r.types.v1.ArrH\x00R\x03arr\x12\"\n" +
 	"\x03obj\x18\xd0\x01 \x01(\v2\r.types.v1.ObjH\x00R\x03obj\x12\"\n" +
 	"\x03map\x18\xd1\x01 \x01(\v2\r.types.v1.MapH\x00R\x03map\x12%\n" +
@@ -1577,15 +1685,18 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x05Entry\x12\x1f\n" +
 	"\x03key\x18\x01 \x01(\v2\r.types.v1.ValR\x03key\x12#\n" +
 	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\x06\n" +
-	"\x04Null\"\xec\x01\n" +
+	"\x04Null\"\xbb\x02\n" +
 	"\x06Scalar\x12%\n" +
 	"\x04type\x18d \x01(\v2\x11.types.v1.VarTypeR\x04type\x12\x13\n" +
 	"\x03str\x18\xc9\x01 \x01(\tH\x00R\x03str\x12\x13\n" +
 	"\x03f64\x18\xca\x01 \x01(\x01H\x00R\x03f64\x12\x13\n" +
-	"\x03i64\x18\xcb\x01 \x01(\x03H\x00R\x03i64\x12\x15\n" +
+	"\x03i64\x18\xcb\x01 \x01(\x03H\x00R\x03i64\x12\x13\n" +
+	"\x03u64\x18\xcd\x01 \x01(\x04H\x00R\x03u64\x12\x15\n" +
 	"\x04bool\x18\xcc\x01 \x01(\bH\x00R\x04bool\x12-\n" +
 	"\x02ts\x18\xcf\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x02ts\x12.\n" +
-	"\x03dur\x18\xd0\x01 \x01(\v2\x19.google.protobuf.DurationH\x00R\x03durB\x06\n" +
+	"\x03dur\x18\xd0\x01 \x01(\v2\x19.google.protobuf.DurationH\x00R\x03dur\x12\x1c\n" +
+	"\btrace_id\x18\xd1\x01 \x01(\tH\x00R\atraceId\x12\x1a\n" +
+	"\aspan_id\x18\xd2\x01 \x01(\tH\x00R\x06spanIdB\x06\n" +
 	"\x04kind\"B\n" +
 	"\x06FlatKV\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12&\n" +
@@ -1610,17 +1721,20 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\aLogType\x1a\n" +
 	"\n" +
 	"\bSpanTypeB\x06\n" +
-	"\x04type*Y\n" +
+	"\x04type*}\n" +
 	"\n" +
 	"ScalarType\x12\v\n" +
 	"\aunknown\x10\x00\x12\a\n" +
 	"\x03str\x10\x01\x12\a\n" +
 	"\x03f64\x10\x02\x12\a\n" +
-	"\x03i64\x10\x03\x12\b\n" +
+	"\x03i64\x10\x03\x12\a\n" +
+	"\x03u64\x10\x1f\x12\b\n" +
 	"\x04bool\x10\x04\x12\x06\n" +
 	"\x02ts\x10\x05\x12\a\n" +
 	"\x03dur\x10\x06\x12\b\n" +
-	"\x04blob\x10\bB\x8a\x01\n" +
+	"\x04blob\x10\b\x12\f\n" +
+	"\btrace_id\x10Z\x12\v\n" +
+	"\aspan_id\x10[B\x8a\x01\n" +
 	"\fcom.types.v1B\n" +
 	"TypesProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
@@ -1727,10 +1841,13 @@ func file_types_v1_types_proto_init() {
 		(*Val_Str)(nil),
 		(*Val_F64)(nil),
 		(*Val_I64)(nil),
+		(*Val_U64)(nil),
 		(*Val_Bool)(nil),
 		(*Val_Ts)(nil),
 		(*Val_Dur)(nil),
 		(*Val_Blob)(nil),
+		(*Val_TraceId)(nil),
+		(*Val_SpanId)(nil),
 		(*Val_Arr)(nil),
 		(*Val_Obj)(nil),
 		(*Val_Map)(nil),
@@ -1740,9 +1857,12 @@ func file_types_v1_types_proto_init() {
 		(*Scalar_Str)(nil),
 		(*Scalar_F64)(nil),
 		(*Scalar_I64)(nil),
+		(*Scalar_U64)(nil),
 		(*Scalar_Bool)(nil),
 		(*Scalar_Ts)(nil),
 		(*Scalar_Dur)(nil),
+		(*Scalar_TraceId)(nil),
+		(*Scalar_SpanId)(nil),
 	}
 	file_types_v1_types_proto_msgTypes[12].OneofWrappers = []any{
 		(*DataStreamType_Multi)(nil),

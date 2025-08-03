@@ -125,6 +125,8 @@ func EqualVal(a, b *Val) bool {
 		return ak.F64 == b.GetF64()
 	case *Val_I64:
 		return ak.I64 == b.GetI64()
+	case *Val_U64:
+		return ak.U64 == b.GetU64()
 	case *Val_Bool:
 		return ak.Bool == b.GetBool()
 	case *Val_Ts:
@@ -133,6 +135,10 @@ func EqualVal(a, b *Val) bool {
 		return ak.Dur == b.GetDur()
 	case *Val_Blob:
 		return bytes.Equal(ak.Blob, b.GetBlob())
+	case *Val_TraceId:
+		return ak.TraceId == b.GetTraceId()
+	case *Val_SpanId:
+		return ak.SpanId == b.GetSpanId()
 	case *Val_Arr:
 		if len(ak.Arr.Items) != len(b.GetArr().Items) {
 			return false
@@ -198,6 +204,10 @@ func TypeI64() *VarType {
 	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_i64}}
 }
 
+func TypeU64() *VarType {
+	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_u64}}
+}
+
 func TypeBool() *VarType {
 	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_bool}}
 }
@@ -212,6 +222,14 @@ func TypeDuration() *VarType {
 
 func TypeBlob() *VarType {
 	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_blob}}
+}
+
+func TypeTraceID() *VarType {
+	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_trace_id}}
+}
+
+func TypeSpanID() *VarType {
+	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_span_id}}
 }
 
 func TypeArr(v ...*VarType) *VarType {
@@ -263,6 +281,11 @@ func ValI64(v int64) *Val {
 	return &Val{Type: typ, Kind: &Val_I64{I64: v}}
 }
 
+func ValU64(v uint64) *Val {
+	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_u64}}
+	return &Val{Type: typ, Kind: &Val_U64{U64: v}}
+}
+
 func ValBool(v bool) *Val {
 	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_bool}}
 	return &Val{Type: typ, Kind: &Val_Bool{Bool: v}}
@@ -291,6 +314,15 @@ func ValDurationPB(v *durationpb.Duration) *Val {
 func ValBlob(blob []byte) *Val {
 	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_blob}}
 	return &Val{Type: typ, Kind: &Val_Blob{Blob: blob}}
+}
+
+func ValTraceID(traceID string) *Val {
+	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_trace_id}}
+	return &Val{Type: typ, Kind: &Val_TraceId{TraceId: traceID}}
+}
+func ValSpanID(spanID string) *Val {
+	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_span_id}}
+	return &Val{Type: typ, Kind: &Val_SpanId{SpanId: spanID}}
 }
 
 func ValArr(v ...*Val) *Val {
