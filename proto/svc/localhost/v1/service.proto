@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.localhost.v1;
 
+import "google/protobuf/timestamp.proto";
 import "types/v1/localhost_config.proto";
 import "types/v1/meta.proto";
 import "types/v1/organization.proto";
@@ -71,5 +72,13 @@ message SetConfigResponse {}
 message GetStatsRequest {}
 
 message GetStatsResponse {
+  message SignalStats {
+    uint64 count = 1;
+    google.protobuf.Timestamp oldest_entry = 2;
+    google.protobuf.Timestamp youngest_entry = 3;
+  }
   types.v1.Val database_stats = 1;
+  SignalStats logs = 2;
+  SignalStats spans = 3;
+  SignalStats metrics = 4;
 }
