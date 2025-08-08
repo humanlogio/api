@@ -4,13 +4,13 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 import { Version } from "../../../types/v1/version_pb";
 import { ResMeta } from "../../../types/v1/meta_pb";
 import { User } from "../../../types/v1/user_pb";
 import { Organization } from "../../../types/v1/organization_pb";
 import { LocalhostConfig } from "../../../types/v1/localhost_config_pb";
-import { Val } from "../../../types/v1/types_pb";
+import { DatabaseStats } from "../../../types/v1/database_pb";
 
 /**
  * @generated from message svc.localhost.v1.PingRequest
@@ -589,24 +589,9 @@ export class GetStatsRequest extends Message<GetStatsRequest> {
  */
 export class GetStatsResponse extends Message<GetStatsResponse> {
   /**
-   * @generated from field: types.v1.Val database_stats = 1;
+   * @generated from field: types.v1.DatabaseStats database_stats = 1;
    */
-  databaseStats?: Val;
-
-  /**
-   * @generated from field: svc.localhost.v1.GetStatsResponse.SignalStats logs = 2;
-   */
-  logs?: GetStatsResponse_SignalStats;
-
-  /**
-   * @generated from field: svc.localhost.v1.GetStatsResponse.SignalStats spans = 3;
-   */
-  spans?: GetStatsResponse_SignalStats;
-
-  /**
-   * @generated from field: svc.localhost.v1.GetStatsResponse.SignalStats metrics = 4;
-   */
-  metrics?: GetStatsResponse_SignalStats;
+  databaseStats?: DatabaseStats;
 
   constructor(data?: PartialMessage<GetStatsResponse>) {
     super();
@@ -616,10 +601,7 @@ export class GetStatsResponse extends Message<GetStatsResponse> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.localhost.v1.GetStatsResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "database_stats", kind: "message", T: Val },
-    { no: 2, name: "logs", kind: "message", T: GetStatsResponse_SignalStats },
-    { no: 3, name: "spans", kind: "message", T: GetStatsResponse_SignalStats },
-    { no: 4, name: "metrics", kind: "message", T: GetStatsResponse_SignalStats },
+    { no: 1, name: "database_stats", kind: "message", T: DatabaseStats },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStatsResponse {
@@ -636,55 +618,6 @@ export class GetStatsResponse extends Message<GetStatsResponse> {
 
   static equals(a: GetStatsResponse | PlainMessage<GetStatsResponse> | undefined, b: GetStatsResponse | PlainMessage<GetStatsResponse> | undefined): boolean {
     return proto3.util.equals(GetStatsResponse, a, b);
-  }
-}
-
-/**
- * @generated from message svc.localhost.v1.GetStatsResponse.SignalStats
- */
-export class GetStatsResponse_SignalStats extends Message<GetStatsResponse_SignalStats> {
-  /**
-   * @generated from field: uint64 count = 1;
-   */
-  count = protoInt64.zero;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp oldest_entry = 2;
-   */
-  oldestEntry?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp youngest_entry = 3;
-   */
-  youngestEntry?: Timestamp;
-
-  constructor(data?: PartialMessage<GetStatsResponse_SignalStats>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "svc.localhost.v1.GetStatsResponse.SignalStats";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "count", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "oldest_entry", kind: "message", T: Timestamp },
-    { no: 3, name: "youngest_entry", kind: "message", T: Timestamp },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetStatsResponse_SignalStats {
-    return new GetStatsResponse_SignalStats().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): GetStatsResponse_SignalStats {
-    return new GetStatsResponse_SignalStats().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): GetStatsResponse_SignalStats {
-    return new GetStatsResponse_SignalStats().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: GetStatsResponse_SignalStats | PlainMessage<GetStatsResponse_SignalStats> | undefined, b: GetStatsResponse_SignalStats | PlainMessage<GetStatsResponse_SignalStats> | undefined): boolean {
-    return proto3.util.equals(GetStatsResponse_SignalStats, a, b);
   }
 }
 

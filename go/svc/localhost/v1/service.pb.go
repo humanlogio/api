@@ -10,7 +10,7 @@ import (
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -639,11 +639,8 @@ func (*GetStatsRequest) Descriptor() ([]byte, []int) {
 }
 
 type GetStatsResponse struct {
-	state         protoimpl.MessageState        `protogen:"open.v1"`
-	DatabaseStats *v1.Val                       `protobuf:"bytes,1,opt,name=database_stats,json=databaseStats,proto3" json:"database_stats,omitempty"`
-	Logs          *GetStatsResponse_SignalStats `protobuf:"bytes,2,opt,name=logs,proto3" json:"logs,omitempty"`
-	Spans         *GetStatsResponse_SignalStats `protobuf:"bytes,3,opt,name=spans,proto3" json:"spans,omitempty"`
-	Metrics       *GetStatsResponse_SignalStats `protobuf:"bytes,4,opt,name=metrics,proto3" json:"metrics,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DatabaseStats *v1.DatabaseStats      `protobuf:"bytes,1,opt,name=database_stats,json=databaseStats,proto3" json:"database_stats,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -678,30 +675,9 @@ func (*GetStatsResponse) Descriptor() ([]byte, []int) {
 	return file_svc_localhost_v1_service_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *GetStatsResponse) GetDatabaseStats() *v1.Val {
+func (x *GetStatsResponse) GetDatabaseStats() *v1.DatabaseStats {
 	if x != nil {
 		return x.DatabaseStats
-	}
-	return nil
-}
-
-func (x *GetStatsResponse) GetLogs() *GetStatsResponse_SignalStats {
-	if x != nil {
-		return x.Logs
-	}
-	return nil
-}
-
-func (x *GetStatsResponse) GetSpans() *GetStatsResponse_SignalStats {
-	if x != nil {
-		return x.Spans
-	}
-	return nil
-}
-
-func (x *GetStatsResponse) GetMetrics() *GetStatsResponse_SignalStats {
-	if x != nil {
-		return x.Metrics
 	}
 	return nil
 }
@@ -766,71 +742,11 @@ func (x *PingResponse_UserDetails) GetDefaultOrganization() *v1.Organization {
 	return nil
 }
 
-type GetStatsResponse_SignalStats struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Count         uint64                 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
-	OldestEntry   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=oldest_entry,json=oldestEntry,proto3" json:"oldest_entry,omitempty"`
-	YoungestEntry *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=youngest_entry,json=youngestEntry,proto3" json:"youngest_entry,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetStatsResponse_SignalStats) Reset() {
-	*x = GetStatsResponse_SignalStats{}
-	mi := &file_svc_localhost_v1_service_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetStatsResponse_SignalStats) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetStatsResponse_SignalStats) ProtoMessage() {}
-
-func (x *GetStatsResponse_SignalStats) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_localhost_v1_service_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetStatsResponse_SignalStats.ProtoReflect.Descriptor instead.
-func (*GetStatsResponse_SignalStats) Descriptor() ([]byte, []int) {
-	return file_svc_localhost_v1_service_proto_rawDescGZIP(), []int{15, 0}
-}
-
-func (x *GetStatsResponse_SignalStats) GetCount() uint64 {
-	if x != nil {
-		return x.Count
-	}
-	return 0
-}
-
-func (x *GetStatsResponse_SignalStats) GetOldestEntry() *timestamppb.Timestamp {
-	if x != nil {
-		return x.OldestEntry
-	}
-	return nil
-}
-
-func (x *GetStatsResponse_SignalStats) GetYoungestEntry() *timestamppb.Timestamp {
-	if x != nil {
-		return x.YoungestEntry
-	}
-	return nil
-}
-
 var File_svc_localhost_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_localhost_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1esvc/localhost/v1/service.proto\x12\x10svc.localhost.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ftypes/v1/localhost_config.proto\x1a\x13types/v1/meta.proto\x1a\x1btypes/v1/organization.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/user.proto\x1a\x16types/v1/version.proto\"\r\n" +
+	"\x1esvc/localhost/v1/service.proto\x12\x10svc.localhost.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17types/v1/database.proto\x1a\x1ftypes/v1/localhost_config.proto\x1a\x13types/v1/meta.proto\x1a\x1btypes/v1/organization.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/user.proto\x1a\x16types/v1/version.proto\"\r\n" +
 	"\vPingRequest\"\xdb\x03\n" +
 	"\fPingResponse\x128\n" +
 	"\x0eclient_version\x18\x01 \x01(\v2\x11.types.v1.VersionR\rclientVersion\x12\"\n" +
@@ -858,16 +774,9 @@ const file_svc_localhost_v1_service_proto_rawDesc = "" +
 	"\x10SetConfigRequest\x121\n" +
 	"\x06config\x18\x01 \x01(\v2\x19.types.v1.LocalhostConfigR\x06config\"\x13\n" +
 	"\x11SetConfigResponse\"\x11\n" +
-	"\x0fGetStatsRequest\"\xc4\x03\n" +
-	"\x10GetStatsResponse\x124\n" +
-	"\x0edatabase_stats\x18\x01 \x01(\v2\r.types.v1.ValR\rdatabaseStats\x12B\n" +
-	"\x04logs\x18\x02 \x01(\v2..svc.localhost.v1.GetStatsResponse.SignalStatsR\x04logs\x12D\n" +
-	"\x05spans\x18\x03 \x01(\v2..svc.localhost.v1.GetStatsResponse.SignalStatsR\x05spans\x12H\n" +
-	"\ametrics\x18\x04 \x01(\v2..svc.localhost.v1.GetStatsResponse.SignalStatsR\ametrics\x1a\xa5\x01\n" +
-	"\vSignalStats\x12\x14\n" +
-	"\x05count\x18\x01 \x01(\x04R\x05count\x12=\n" +
-	"\foldest_entry\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\voldestEntry\x12A\n" +
-	"\x0eyoungest_entry\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\ryoungestEntry2\xa4\x05\n" +
+	"\x0fGetStatsRequest\"R\n" +
+	"\x10GetStatsResponse\x12>\n" +
+	"\x0edatabase_stats\x18\x01 \x01(\v2\x17.types.v1.DatabaseStatsR\rdatabaseStats2\xa4\x05\n" +
 	"\x10LocalhostService\x12E\n" +
 	"\x04Ping\x12\x1d.svc.localhost.v1.PingRequest\x1a\x1e.svc.localhost.v1.PingResponse\x12N\n" +
 	"\aDoLogin\x12 .svc.localhost.v1.DoLoginRequest\x1a!.svc.localhost.v1.DoLoginResponse\x12Q\n" +
@@ -891,70 +800,63 @@ func file_svc_localhost_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_localhost_v1_service_proto_rawDescData
 }
 
-var file_svc_localhost_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_svc_localhost_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_svc_localhost_v1_service_proto_goTypes = []any{
-	(*PingRequest)(nil),                  // 0: svc.localhost.v1.PingRequest
-	(*PingResponse)(nil),                 // 1: svc.localhost.v1.PingResponse
-	(*DoLoginRequest)(nil),               // 2: svc.localhost.v1.DoLoginRequest
-	(*DoLoginResponse)(nil),              // 3: svc.localhost.v1.DoLoginResponse
-	(*DoLogoutRequest)(nil),              // 4: svc.localhost.v1.DoLogoutRequest
-	(*DoLogoutResponse)(nil),             // 5: svc.localhost.v1.DoLogoutResponse
-	(*DoUpdateRequest)(nil),              // 6: svc.localhost.v1.DoUpdateRequest
-	(*DoUpdateResponse)(nil),             // 7: svc.localhost.v1.DoUpdateResponse
-	(*DoRestartRequest)(nil),             // 8: svc.localhost.v1.DoRestartRequest
-	(*DoRestartResponse)(nil),            // 9: svc.localhost.v1.DoRestartResponse
-	(*GetConfigRequest)(nil),             // 10: svc.localhost.v1.GetConfigRequest
-	(*GetConfigResponse)(nil),            // 11: svc.localhost.v1.GetConfigResponse
-	(*SetConfigRequest)(nil),             // 12: svc.localhost.v1.SetConfigRequest
-	(*SetConfigResponse)(nil),            // 13: svc.localhost.v1.SetConfigResponse
-	(*GetStatsRequest)(nil),              // 14: svc.localhost.v1.GetStatsRequest
-	(*GetStatsResponse)(nil),             // 15: svc.localhost.v1.GetStatsResponse
-	(*PingResponse_UserDetails)(nil),     // 16: svc.localhost.v1.PingResponse.UserDetails
-	(*GetStatsResponse_SignalStats)(nil), // 17: svc.localhost.v1.GetStatsResponse.SignalStats
-	(*v1.Version)(nil),                   // 18: types.v1.Version
-	(*v1.ResMeta)(nil),                   // 19: types.v1.ResMeta
-	(*v1.LocalhostConfig)(nil),           // 20: types.v1.LocalhostConfig
-	(*v1.Val)(nil),                       // 21: types.v1.Val
-	(*v1.User)(nil),                      // 22: types.v1.User
-	(*v1.Organization)(nil),              // 23: types.v1.Organization
-	(*timestamppb.Timestamp)(nil),        // 24: google.protobuf.Timestamp
+	(*PingRequest)(nil),              // 0: svc.localhost.v1.PingRequest
+	(*PingResponse)(nil),             // 1: svc.localhost.v1.PingResponse
+	(*DoLoginRequest)(nil),           // 2: svc.localhost.v1.DoLoginRequest
+	(*DoLoginResponse)(nil),          // 3: svc.localhost.v1.DoLoginResponse
+	(*DoLogoutRequest)(nil),          // 4: svc.localhost.v1.DoLogoutRequest
+	(*DoLogoutResponse)(nil),         // 5: svc.localhost.v1.DoLogoutResponse
+	(*DoUpdateRequest)(nil),          // 6: svc.localhost.v1.DoUpdateRequest
+	(*DoUpdateResponse)(nil),         // 7: svc.localhost.v1.DoUpdateResponse
+	(*DoRestartRequest)(nil),         // 8: svc.localhost.v1.DoRestartRequest
+	(*DoRestartResponse)(nil),        // 9: svc.localhost.v1.DoRestartResponse
+	(*GetConfigRequest)(nil),         // 10: svc.localhost.v1.GetConfigRequest
+	(*GetConfigResponse)(nil),        // 11: svc.localhost.v1.GetConfigResponse
+	(*SetConfigRequest)(nil),         // 12: svc.localhost.v1.SetConfigRequest
+	(*SetConfigResponse)(nil),        // 13: svc.localhost.v1.SetConfigResponse
+	(*GetStatsRequest)(nil),          // 14: svc.localhost.v1.GetStatsRequest
+	(*GetStatsResponse)(nil),         // 15: svc.localhost.v1.GetStatsResponse
+	(*PingResponse_UserDetails)(nil), // 16: svc.localhost.v1.PingResponse.UserDetails
+	(*v1.Version)(nil),               // 17: types.v1.Version
+	(*v1.ResMeta)(nil),               // 18: types.v1.ResMeta
+	(*v1.LocalhostConfig)(nil),       // 19: types.v1.LocalhostConfig
+	(*v1.DatabaseStats)(nil),         // 20: types.v1.DatabaseStats
+	(*v1.User)(nil),                  // 21: types.v1.User
+	(*v1.Organization)(nil),          // 22: types.v1.Organization
 }
 var file_svc_localhost_v1_service_proto_depIdxs = []int32{
-	18, // 0: svc.localhost.v1.PingResponse.client_version:type_name -> types.v1.Version
+	17, // 0: svc.localhost.v1.PingResponse.client_version:type_name -> types.v1.Version
 	16, // 1: svc.localhost.v1.PingResponse.logged_in_user:type_name -> svc.localhost.v1.PingResponse.UserDetails
-	19, // 2: svc.localhost.v1.PingResponse.meta:type_name -> types.v1.ResMeta
-	20, // 3: svc.localhost.v1.GetConfigResponse.config:type_name -> types.v1.LocalhostConfig
-	20, // 4: svc.localhost.v1.SetConfigRequest.config:type_name -> types.v1.LocalhostConfig
-	21, // 5: svc.localhost.v1.GetStatsResponse.database_stats:type_name -> types.v1.Val
-	17, // 6: svc.localhost.v1.GetStatsResponse.logs:type_name -> svc.localhost.v1.GetStatsResponse.SignalStats
-	17, // 7: svc.localhost.v1.GetStatsResponse.spans:type_name -> svc.localhost.v1.GetStatsResponse.SignalStats
-	17, // 8: svc.localhost.v1.GetStatsResponse.metrics:type_name -> svc.localhost.v1.GetStatsResponse.SignalStats
-	22, // 9: svc.localhost.v1.PingResponse.UserDetails.user:type_name -> types.v1.User
-	23, // 10: svc.localhost.v1.PingResponse.UserDetails.current_organization:type_name -> types.v1.Organization
-	23, // 11: svc.localhost.v1.PingResponse.UserDetails.default_organization:type_name -> types.v1.Organization
-	24, // 12: svc.localhost.v1.GetStatsResponse.SignalStats.oldest_entry:type_name -> google.protobuf.Timestamp
-	24, // 13: svc.localhost.v1.GetStatsResponse.SignalStats.youngest_entry:type_name -> google.protobuf.Timestamp
-	0,  // 14: svc.localhost.v1.LocalhostService.Ping:input_type -> svc.localhost.v1.PingRequest
-	2,  // 15: svc.localhost.v1.LocalhostService.DoLogin:input_type -> svc.localhost.v1.DoLoginRequest
-	4,  // 16: svc.localhost.v1.LocalhostService.DoLogout:input_type -> svc.localhost.v1.DoLogoutRequest
-	6,  // 17: svc.localhost.v1.LocalhostService.DoUpdate:input_type -> svc.localhost.v1.DoUpdateRequest
-	8,  // 18: svc.localhost.v1.LocalhostService.DoRestart:input_type -> svc.localhost.v1.DoRestartRequest
-	10, // 19: svc.localhost.v1.LocalhostService.GetConfig:input_type -> svc.localhost.v1.GetConfigRequest
-	12, // 20: svc.localhost.v1.LocalhostService.SetConfig:input_type -> svc.localhost.v1.SetConfigRequest
-	14, // 21: svc.localhost.v1.LocalhostService.GetStats:input_type -> svc.localhost.v1.GetStatsRequest
-	1,  // 22: svc.localhost.v1.LocalhostService.Ping:output_type -> svc.localhost.v1.PingResponse
-	3,  // 23: svc.localhost.v1.LocalhostService.DoLogin:output_type -> svc.localhost.v1.DoLoginResponse
-	5,  // 24: svc.localhost.v1.LocalhostService.DoLogout:output_type -> svc.localhost.v1.DoLogoutResponse
-	7,  // 25: svc.localhost.v1.LocalhostService.DoUpdate:output_type -> svc.localhost.v1.DoUpdateResponse
-	9,  // 26: svc.localhost.v1.LocalhostService.DoRestart:output_type -> svc.localhost.v1.DoRestartResponse
-	11, // 27: svc.localhost.v1.LocalhostService.GetConfig:output_type -> svc.localhost.v1.GetConfigResponse
-	13, // 28: svc.localhost.v1.LocalhostService.SetConfig:output_type -> svc.localhost.v1.SetConfigResponse
-	15, // 29: svc.localhost.v1.LocalhostService.GetStats:output_type -> svc.localhost.v1.GetStatsResponse
-	22, // [22:30] is the sub-list for method output_type
-	14, // [14:22] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	18, // 2: svc.localhost.v1.PingResponse.meta:type_name -> types.v1.ResMeta
+	19, // 3: svc.localhost.v1.GetConfigResponse.config:type_name -> types.v1.LocalhostConfig
+	19, // 4: svc.localhost.v1.SetConfigRequest.config:type_name -> types.v1.LocalhostConfig
+	20, // 5: svc.localhost.v1.GetStatsResponse.database_stats:type_name -> types.v1.DatabaseStats
+	21, // 6: svc.localhost.v1.PingResponse.UserDetails.user:type_name -> types.v1.User
+	22, // 7: svc.localhost.v1.PingResponse.UserDetails.current_organization:type_name -> types.v1.Organization
+	22, // 8: svc.localhost.v1.PingResponse.UserDetails.default_organization:type_name -> types.v1.Organization
+	0,  // 9: svc.localhost.v1.LocalhostService.Ping:input_type -> svc.localhost.v1.PingRequest
+	2,  // 10: svc.localhost.v1.LocalhostService.DoLogin:input_type -> svc.localhost.v1.DoLoginRequest
+	4,  // 11: svc.localhost.v1.LocalhostService.DoLogout:input_type -> svc.localhost.v1.DoLogoutRequest
+	6,  // 12: svc.localhost.v1.LocalhostService.DoUpdate:input_type -> svc.localhost.v1.DoUpdateRequest
+	8,  // 13: svc.localhost.v1.LocalhostService.DoRestart:input_type -> svc.localhost.v1.DoRestartRequest
+	10, // 14: svc.localhost.v1.LocalhostService.GetConfig:input_type -> svc.localhost.v1.GetConfigRequest
+	12, // 15: svc.localhost.v1.LocalhostService.SetConfig:input_type -> svc.localhost.v1.SetConfigRequest
+	14, // 16: svc.localhost.v1.LocalhostService.GetStats:input_type -> svc.localhost.v1.GetStatsRequest
+	1,  // 17: svc.localhost.v1.LocalhostService.Ping:output_type -> svc.localhost.v1.PingResponse
+	3,  // 18: svc.localhost.v1.LocalhostService.DoLogin:output_type -> svc.localhost.v1.DoLoginResponse
+	5,  // 19: svc.localhost.v1.LocalhostService.DoLogout:output_type -> svc.localhost.v1.DoLogoutResponse
+	7,  // 20: svc.localhost.v1.LocalhostService.DoUpdate:output_type -> svc.localhost.v1.DoUpdateResponse
+	9,  // 21: svc.localhost.v1.LocalhostService.DoRestart:output_type -> svc.localhost.v1.DoRestartResponse
+	11, // 22: svc.localhost.v1.LocalhostService.GetConfig:output_type -> svc.localhost.v1.GetConfigResponse
+	13, // 23: svc.localhost.v1.LocalhostService.SetConfig:output_type -> svc.localhost.v1.SetConfigResponse
+	15, // 24: svc.localhost.v1.LocalhostService.GetStats:output_type -> svc.localhost.v1.GetStatsResponse
+	17, // [17:25] is the sub-list for method output_type
+	9,  // [9:17] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_svc_localhost_v1_service_proto_init() }
@@ -968,7 +870,7 @@ func file_svc_localhost_v1_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_localhost_v1_service_proto_rawDesc), len(file_svc_localhost_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   18,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

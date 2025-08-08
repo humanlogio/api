@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/timestamp.proto";
+import "types/v1/types.proto";
+
+option go_package = "types/v1;typesv1";
+
+message SignalStats {
+  uint64 count = 1;
+  google.protobuf.Timestamp oldest_entry = 2;
+  google.protobuf.Timestamp youngest_entry = 3;
+  optional uint64 storage_size_bytes = 4;
+  optional uint64 ingested_size_bytes = 5;
+}
+
+message DatabaseStats {
+  SignalStats logs = 1;
+  SignalStats spans = 2;
+  SignalStats metrics = 3;
+  types.v1.Val extra = 10;
+}
