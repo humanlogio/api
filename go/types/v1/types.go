@@ -125,8 +125,8 @@ func EqualVal(a, b *Val) bool {
 		return ak.F64 == b.GetF64()
 	case *Val_I64:
 		return ak.I64 == b.GetI64()
-	case *Val_U64:
-		return ak.U64 == b.GetU64()
+	case *Val_Hash64:
+		return ak.Hash64 == b.GetHash64()
 	case *Val_Bool:
 		return ak.Bool == b.GetBool()
 	case *Val_Ts:
@@ -204,8 +204,8 @@ func TypeI64() *VarType {
 	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_i64}}
 }
 
-func TypeU64() *VarType {
-	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_u64}}
+func TypeHash64() *VarType {
+	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_hash64}}
 }
 
 func TypeBool() *VarType {
@@ -281,9 +281,9 @@ func ValI64(v int64) *Val {
 	return &Val{Type: typ, Kind: &Val_I64{I64: v}}
 }
 
-func ValU64(v uint64) *Val {
-	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_u64}}
-	return &Val{Type: typ, Kind: &Val_U64{U64: v}}
+func ValHash64(v uint64) *Val {
+	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_hash64}}
+	return &Val{Type: typ, Kind: &Val_Hash64{Hash64: v}}
 }
 
 func ValBool(v bool) *Val {
