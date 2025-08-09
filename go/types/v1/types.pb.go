@@ -30,7 +30,7 @@ const (
 	ScalarType_str      ScalarType = 1
 	ScalarType_f64      ScalarType = 2
 	ScalarType_i64      ScalarType = 3
-	ScalarType_u64      ScalarType = 31
+	ScalarType_hash64   ScalarType = 31
 	ScalarType_bool     ScalarType = 4
 	ScalarType_ts       ScalarType = 5
 	ScalarType_dur      ScalarType = 6
@@ -46,7 +46,7 @@ var (
 		1:  "str",
 		2:  "f64",
 		3:  "i64",
-		31: "u64",
+		31: "hash64",
 		4:  "bool",
 		5:  "ts",
 		6:  "dur",
@@ -59,7 +59,7 @@ var (
 		"str":      1,
 		"f64":      2,
 		"i64":      3,
-		"u64":      31,
+		"hash64":   31,
 		"bool":     4,
 		"ts":       5,
 		"dur":      6,
@@ -286,7 +286,7 @@ type Val struct {
 	//	*Val_Str
 	//	*Val_F64
 	//	*Val_I64
-	//	*Val_U64
+	//	*Val_Hash64
 	//	*Val_Bool
 	//	*Val_Ts
 	//	*Val_Dur
@@ -373,10 +373,10 @@ func (x *Val) GetI64() int64 {
 	return 0
 }
 
-func (x *Val) GetU64() uint64 {
+func (x *Val) GetHash64() uint64 {
 	if x != nil {
-		if x, ok := x.Kind.(*Val_U64); ok {
-			return x.U64
+		if x, ok := x.Kind.(*Val_Hash64); ok {
+			return x.Hash64
 		}
 	}
 	return 0
@@ -488,8 +488,8 @@ type Val_I64 struct {
 	I64 int64 `protobuf:"varint,203,opt,name=i64,proto3,oneof"`
 }
 
-type Val_U64 struct {
-	U64 uint64 `protobuf:"varint,212,opt,name=u64,proto3,oneof"`
+type Val_Hash64 struct {
+	Hash64 uint64 `protobuf:"varint,212,opt,name=hash64,proto3,oneof"`
 }
 
 type Val_Bool struct {
@@ -538,7 +538,7 @@ func (*Val_F64) isVal_Kind() {}
 
 func (*Val_I64) isVal_Kind() {}
 
-func (*Val_U64) isVal_Kind() {}
+func (*Val_Hash64) isVal_Kind() {}
 
 func (*Val_Bool) isVal_Kind() {}
 
@@ -736,7 +736,7 @@ type Scalar struct {
 	//	*Scalar_Str
 	//	*Scalar_F64
 	//	*Scalar_I64
-	//	*Scalar_U64
+	//	*Scalar_Hash64
 	//	*Scalar_Bool
 	//	*Scalar_Ts
 	//	*Scalar_Dur
@@ -818,10 +818,10 @@ func (x *Scalar) GetI64() int64 {
 	return 0
 }
 
-func (x *Scalar) GetU64() uint64 {
+func (x *Scalar) GetHash64() uint64 {
 	if x != nil {
-		if x, ok := x.Kind.(*Scalar_U64); ok {
-			return x.U64
+		if x, ok := x.Kind.(*Scalar_Hash64); ok {
+			return x.Hash64
 		}
 	}
 	return 0
@@ -888,8 +888,8 @@ type Scalar_I64 struct {
 	I64 int64 `protobuf:"varint,203,opt,name=i64,proto3,oneof"`
 }
 
-type Scalar_U64 struct {
-	U64 uint64 `protobuf:"varint,205,opt,name=u64,proto3,oneof"`
+type Scalar_Hash64 struct {
+	Hash64 uint64 `protobuf:"varint,205,opt,name=hash64,proto3,oneof"`
 }
 
 type Scalar_Bool struct {
@@ -918,7 +918,7 @@ func (*Scalar_F64) isScalar_Kind() {}
 
 func (*Scalar_I64) isScalar_Kind() {}
 
-func (*Scalar_U64) isScalar_Kind() {}
+func (*Scalar_Hash64) isScalar_Kind() {}
 
 func (*Scalar_Bool) isScalar_Kind() {}
 
@@ -1658,13 +1658,13 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x04type\";\n" +
 	"\x02KV\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12#\n" +
-	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\xe2\x03\n" +
+	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\xe8\x03\n" +
 	"\x03Val\x12%\n" +
 	"\x04type\x18d \x01(\v2\x11.types.v1.VarTypeR\x04type\x12\x13\n" +
 	"\x03str\x18\xc9\x01 \x01(\tH\x00R\x03str\x12\x13\n" +
 	"\x03f64\x18\xca\x01 \x01(\x01H\x00R\x03f64\x12\x13\n" +
-	"\x03i64\x18\xcb\x01 \x01(\x03H\x00R\x03i64\x12\x13\n" +
-	"\x03u64\x18\xd4\x01 \x01(\x04H\x00R\x03u64\x12\x15\n" +
+	"\x03i64\x18\xcb\x01 \x01(\x03H\x00R\x03i64\x12\x19\n" +
+	"\x06hash64\x18\xd4\x01 \x01(\x04H\x00R\x06hash64\x12\x15\n" +
 	"\x04bool\x18\xcc\x01 \x01(\bH\x00R\x04bool\x12-\n" +
 	"\x02ts\x18\xcd\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x02ts\x12.\n" +
 	"\x03dur\x18\xce\x01 \x01(\v2\x19.google.protobuf.DurationH\x00R\x03dur\x12\x15\n" +
@@ -1685,13 +1685,13 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x05Entry\x12\x1f\n" +
 	"\x03key\x18\x01 \x01(\v2\r.types.v1.ValR\x03key\x12#\n" +
 	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\x06\n" +
-	"\x04Null\"\xbb\x02\n" +
+	"\x04Null\"\xc1\x02\n" +
 	"\x06Scalar\x12%\n" +
 	"\x04type\x18d \x01(\v2\x11.types.v1.VarTypeR\x04type\x12\x13\n" +
 	"\x03str\x18\xc9\x01 \x01(\tH\x00R\x03str\x12\x13\n" +
 	"\x03f64\x18\xca\x01 \x01(\x01H\x00R\x03f64\x12\x13\n" +
-	"\x03i64\x18\xcb\x01 \x01(\x03H\x00R\x03i64\x12\x13\n" +
-	"\x03u64\x18\xcd\x01 \x01(\x04H\x00R\x03u64\x12\x15\n" +
+	"\x03i64\x18\xcb\x01 \x01(\x03H\x00R\x03i64\x12\x19\n" +
+	"\x06hash64\x18\xcd\x01 \x01(\x04H\x00R\x06hash64\x12\x15\n" +
 	"\x04bool\x18\xcc\x01 \x01(\bH\x00R\x04bool\x12-\n" +
 	"\x02ts\x18\xcf\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x02ts\x12.\n" +
 	"\x03dur\x18\xd0\x01 \x01(\v2\x19.google.protobuf.DurationH\x00R\x03dur\x12\x1c\n" +
@@ -1721,14 +1721,15 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\aLogType\x1a\n" +
 	"\n" +
 	"\bSpanTypeB\x06\n" +
-	"\x04type*}\n" +
+	"\x04type*\x80\x01\n" +
 	"\n" +
 	"ScalarType\x12\v\n" +
 	"\aunknown\x10\x00\x12\a\n" +
 	"\x03str\x10\x01\x12\a\n" +
 	"\x03f64\x10\x02\x12\a\n" +
-	"\x03i64\x10\x03\x12\a\n" +
-	"\x03u64\x10\x1f\x12\b\n" +
+	"\x03i64\x10\x03\x12\n" +
+	"\n" +
+	"\x06hash64\x10\x1f\x12\b\n" +
 	"\x04bool\x10\x04\x12\x06\n" +
 	"\x02ts\x10\x05\x12\a\n" +
 	"\x03dur\x10\x06\x12\b\n" +
@@ -1841,7 +1842,7 @@ func file_types_v1_types_proto_init() {
 		(*Val_Str)(nil),
 		(*Val_F64)(nil),
 		(*Val_I64)(nil),
-		(*Val_U64)(nil),
+		(*Val_Hash64)(nil),
 		(*Val_Bool)(nil),
 		(*Val_Ts)(nil),
 		(*Val_Dur)(nil),
@@ -1857,7 +1858,7 @@ func file_types_v1_types_proto_init() {
 		(*Scalar_Str)(nil),
 		(*Scalar_F64)(nil),
 		(*Scalar_I64)(nil),
-		(*Scalar_U64)(nil),
+		(*Scalar_Hash64)(nil),
 		(*Scalar_Bool)(nil),
 		(*Scalar_Ts)(nil),
 		(*Scalar_Dur)(nil),

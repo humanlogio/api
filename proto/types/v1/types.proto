@@ -10,7 +10,7 @@ enum ScalarType {
   str = 1;
   f64 = 2;
   i64 = 3;
-  u64 = 31;
+  hash64 = 31;
   bool = 4;
   ts = 5;
   dur = 6;
@@ -51,7 +51,7 @@ message Val {
     string str = 201;
     double f64 = 202;
     int64 i64 = 203;
-    uint64 u64 = 212;
+    uint64 hash64 = 212;
     bool bool = 204;
     google.protobuf.Timestamp ts = 205;
     google.protobuf.Duration dur = 206;
@@ -89,7 +89,7 @@ message Scalar {
     string str = 201;
     double f64 = 202;
     int64 i64 = 203;
-    uint64 u64 = 205;
+    uint64 hash64 = 205;
     bool bool = 204;
     google.protobuf.Timestamp ts = 207;
     google.protobuf.Duration dur = 208;
