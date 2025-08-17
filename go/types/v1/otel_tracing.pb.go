@@ -184,7 +184,7 @@ func (x *Trace) GetSpans() []*Span {
 
 type Span struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ulid          string                 `protobuf:"bytes,100,opt,name=ulid,proto3" json:"ulid,omitempty"`
+	Ulid          *ULID                  `protobuf:"bytes,100,opt,name=ulid,proto3" json:"ulid,omitempty"`
 	Indextime     *timestamppb.Timestamp `protobuf:"bytes,101,opt,name=indextime,proto3" json:"indextime,omitempty"`
 	TraceId       string                 `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
 	SpanId        string                 `protobuf:"bytes,2,opt,name=span_id,json=spanId,proto3" json:"span_id,omitempty"`
@@ -236,11 +236,11 @@ func (*Span) Descriptor() ([]byte, []int) {
 	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *Span) GetUlid() string {
+func (x *Span) GetUlid() *ULID {
 	if x != nil {
 		return x.Ulid
 	}
-	return ""
+	return nil
 }
 
 func (x *Span) GetIndextime() *timestamppb.Timestamp {
@@ -554,12 +554,12 @@ var File_types_v1_otel_tracing_proto protoreflect.FileDescriptor
 
 const file_types_v1_otel_tracing_proto_rawDesc = "" +
 	"\n" +
-	"\x1btypes/v1/otel_tracing.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\"H\n" +
+	"\x1btypes/v1/otel_tracing.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/ulid.proto\"H\n" +
 	"\x05Trace\x12\x19\n" +
 	"\btrace_id\x18\x01 \x01(\tR\atraceId\x12$\n" +
-	"\x05spans\x18\x02 \x03(\v2\x0e.types.v1.SpanR\x05spans\"\xa1\t\n" +
-	"\x04Span\x12\x12\n" +
-	"\x04ulid\x18d \x01(\tR\x04ulid\x128\n" +
+	"\x05spans\x18\x02 \x03(\v2\x0e.types.v1.SpanR\x05spans\"\xb1\t\n" +
+	"\x04Span\x12\"\n" +
+	"\x04ulid\x18d \x01(\v2\x0e.types.v1.ULIDR\x04ulid\x128\n" +
 	"\tindextime\x18e \x01(\v2\x1a.google.protobuf.TimestampR\tindextime\x12\x19\n" +
 	"\btrace_id\x18\x01 \x01(\tR\atraceId\x12\x17\n" +
 	"\aspan_id\x18\x02 \x01(\tR\x06spanId\x12\x1f\n" +
@@ -632,33 +632,35 @@ var file_types_v1_otel_tracing_proto_goTypes = []any{
 	(*Span_Event)(nil),            // 4: types.v1.Span.Event
 	(*Span_Link)(nil),             // 5: types.v1.Span.Link
 	(*Span_Status)(nil),           // 6: types.v1.Span.Status
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),   // 8: google.protobuf.Duration
-	(*Resource)(nil),              // 9: types.v1.Resource
-	(*Scope)(nil),                 // 10: types.v1.Scope
-	(*KV)(nil),                    // 11: types.v1.KV
+	(*ULID)(nil),                  // 7: types.v1.ULID
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),   // 9: google.protobuf.Duration
+	(*Resource)(nil),              // 10: types.v1.Resource
+	(*Scope)(nil),                 // 11: types.v1.Scope
+	(*KV)(nil),                    // 12: types.v1.KV
 }
 var file_types_v1_otel_tracing_proto_depIdxs = []int32{
 	3,  // 0: types.v1.Trace.spans:type_name -> types.v1.Span
-	7,  // 1: types.v1.Span.indextime:type_name -> google.protobuf.Timestamp
-	0,  // 2: types.v1.Span.kind:type_name -> types.v1.Span.SpanKind
-	7,  // 3: types.v1.Span.time:type_name -> google.protobuf.Timestamp
-	8,  // 4: types.v1.Span.duration:type_name -> google.protobuf.Duration
-	9,  // 5: types.v1.Span.resource:type_name -> types.v1.Resource
-	10, // 6: types.v1.Span.scope:type_name -> types.v1.Scope
-	11, // 7: types.v1.Span.attributes:type_name -> types.v1.KV
-	4,  // 8: types.v1.Span.events:type_name -> types.v1.Span.Event
-	5,  // 9: types.v1.Span.links:type_name -> types.v1.Span.Link
-	6,  // 10: types.v1.Span.status:type_name -> types.v1.Span.Status
-	7,  // 11: types.v1.Span.Event.timestamp:type_name -> google.protobuf.Timestamp
-	11, // 12: types.v1.Span.Event.kvs:type_name -> types.v1.KV
-	11, // 13: types.v1.Span.Link.kvs:type_name -> types.v1.KV
-	1,  // 14: types.v1.Span.Status.code:type_name -> types.v1.Span.Status.Code
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	7,  // 1: types.v1.Span.ulid:type_name -> types.v1.ULID
+	8,  // 2: types.v1.Span.indextime:type_name -> google.protobuf.Timestamp
+	0,  // 3: types.v1.Span.kind:type_name -> types.v1.Span.SpanKind
+	8,  // 4: types.v1.Span.time:type_name -> google.protobuf.Timestamp
+	9,  // 5: types.v1.Span.duration:type_name -> google.protobuf.Duration
+	10, // 6: types.v1.Span.resource:type_name -> types.v1.Resource
+	11, // 7: types.v1.Span.scope:type_name -> types.v1.Scope
+	12, // 8: types.v1.Span.attributes:type_name -> types.v1.KV
+	4,  // 9: types.v1.Span.events:type_name -> types.v1.Span.Event
+	5,  // 10: types.v1.Span.links:type_name -> types.v1.Span.Link
+	6,  // 11: types.v1.Span.status:type_name -> types.v1.Span.Status
+	8,  // 12: types.v1.Span.Event.timestamp:type_name -> google.protobuf.Timestamp
+	12, // 13: types.v1.Span.Event.kvs:type_name -> types.v1.KV
+	12, // 14: types.v1.Span.Link.kvs:type_name -> types.v1.KV
+	1,  // 15: types.v1.Span.Status.code:type_name -> types.v1.Span.Status.Code
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_otel_tracing_proto_init() }
@@ -669,6 +671,7 @@ func file_types_v1_otel_tracing_proto_init() {
 	file_types_v1_otel_resource_proto_init()
 	file_types_v1_otel_scope_proto_init()
 	file_types_v1_types_proto_init()
+	file_types_v1_ulid_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

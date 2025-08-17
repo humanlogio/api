@@ -7,6 +7,7 @@ import "google/protobuf/timestamp.proto";
 import "types/v1/otel_resource.proto";
 import "types/v1/otel_scope.proto";
 import "types/v1/types.proto";
+import "types/v1/ulid.proto";
 
 option go_package = "types/v1;typesv1";
 
@@ -45,7 +46,7 @@ message Span {
     string message = 1;
     Code code = 2;
   }
-  string ulid = 100;
+  ULID ulid = 100;
   google.protobuf.Timestamp indextime = 101;
   string trace_id = 1;
   string span_id = 2;

@@ -24,7 +24,7 @@ const (
 
 type Log struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
-	Ulid              string                 `protobuf:"bytes,100,opt,name=ulid,proto3" json:"ulid,omitempty"`
+	Ulid              *ULID                  `protobuf:"bytes,100,opt,name=ulid,proto3" json:"ulid,omitempty"`
 	ObservedTimestamp *timestamppb.Timestamp `protobuf:"bytes,101,opt,name=observed_timestamp,json=observedTimestamp,proto3" json:"observed_timestamp,omitempty"`
 	Raw               []byte                 `protobuf:"bytes,102,opt,name=raw,proto3" json:"raw,omitempty"`
 	Timestamp         *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
@@ -72,11 +72,11 @@ func (*Log) Descriptor() ([]byte, []int) {
 	return file_types_v1_otel_logging_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Log) GetUlid() string {
+func (x *Log) GetUlid() *ULID {
 	if x != nil {
 		return x.Ulid
 	}
-	return ""
+	return nil
 }
 
 func (x *Log) GetObservedTimestamp() *timestamppb.Timestamp {
@@ -174,9 +174,9 @@ var File_types_v1_otel_logging_proto protoreflect.FileDescriptor
 
 const file_types_v1_otel_logging_proto_rawDesc = "" +
 	"\n" +
-	"\x1btypes/v1/otel_logging.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/ulid.proto\"\xb2\x04\n" +
-	"\x03Log\x12\x12\n" +
-	"\x04ulid\x18d \x01(\tR\x04ulid\x12I\n" +
+	"\x1btypes/v1/otel_logging.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/ulid.proto\"\xc2\x04\n" +
+	"\x03Log\x12\"\n" +
+	"\x04ulid\x18d \x01(\v2\x0e.types.v1.ULIDR\x04ulid\x12I\n" +
 	"\x12observed_timestamp\x18e \x01(\v2\x1a.google.protobuf.TimestampR\x11observedTimestamp\x12\x10\n" +
 	"\x03raw\x18f \x01(\fR\x03raw\x128\n" +
 	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x1e\n" +
@@ -214,22 +214,24 @@ func file_types_v1_otel_logging_proto_rawDescGZIP() []byte {
 var file_types_v1_otel_logging_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_types_v1_otel_logging_proto_goTypes = []any{
 	(*Log)(nil),                   // 0: types.v1.Log
-	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
-	(*Resource)(nil),              // 2: types.v1.Resource
-	(*Scope)(nil),                 // 3: types.v1.Scope
-	(*KV)(nil),                    // 4: types.v1.KV
+	(*ULID)(nil),                  // 1: types.v1.ULID
+	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*Resource)(nil),              // 3: types.v1.Resource
+	(*Scope)(nil),                 // 4: types.v1.Scope
+	(*KV)(nil),                    // 5: types.v1.KV
 }
 var file_types_v1_otel_logging_proto_depIdxs = []int32{
-	1, // 0: types.v1.Log.observed_timestamp:type_name -> google.protobuf.Timestamp
-	1, // 1: types.v1.Log.timestamp:type_name -> google.protobuf.Timestamp
-	2, // 2: types.v1.Log.resource:type_name -> types.v1.Resource
-	3, // 3: types.v1.Log.scope:type_name -> types.v1.Scope
-	4, // 4: types.v1.Log.attributes:type_name -> types.v1.KV
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	1, // 0: types.v1.Log.ulid:type_name -> types.v1.ULID
+	2, // 1: types.v1.Log.observed_timestamp:type_name -> google.protobuf.Timestamp
+	2, // 2: types.v1.Log.timestamp:type_name -> google.protobuf.Timestamp
+	3, // 3: types.v1.Log.resource:type_name -> types.v1.Resource
+	4, // 4: types.v1.Log.scope:type_name -> types.v1.Scope
+	5, // 5: types.v1.Log.attributes:type_name -> types.v1.KV
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_otel_logging_proto_init() }

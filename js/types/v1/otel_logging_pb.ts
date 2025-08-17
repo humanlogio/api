@@ -5,6 +5,7 @@
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { ULID } from "./ulid_pb";
 import { Resource } from "./otel_resource_pb";
 import { Scope } from "./otel_scope_pb";
 import { KV } from "./types_pb";
@@ -14,9 +15,9 @@ import { KV } from "./types_pb";
  */
 export class Log extends Message<Log> {
   /**
-   * @generated from field: string ulid = 100;
+   * @generated from field: types.v1.ULID ulid = 100;
    */
-  ulid = "";
+  ulid?: ULID;
 
   /**
    * @generated from field: google.protobuf.Timestamp observed_timestamp = 101;
@@ -91,7 +92,7 @@ export class Log extends Message<Log> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Log";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 100, name: "ulid", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 100, name: "ulid", kind: "message", T: ULID },
     { no: 101, name: "observed_timestamp", kind: "message", T: Timestamp },
     { no: 102, name: "raw", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 2, name: "timestamp", kind: "message", T: Timestamp },

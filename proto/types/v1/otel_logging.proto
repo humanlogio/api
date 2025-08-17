@@ -11,7 +11,7 @@ import "types/v1/ulid.proto";
 option go_package = "types/v1;typesv1";
 
 message Log {
-  string ulid = 100;
+  ULID ulid = 100;
   google.protobuf.Timestamp observed_timestamp = 101;
   bytes raw = 102;
   google.protobuf.Timestamp timestamp = 2;
