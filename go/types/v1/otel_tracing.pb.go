@@ -78,7 +78,7 @@ func (x Span_SpanKind) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Span_SpanKind.Descriptor instead.
 func (Span_SpanKind) EnumDescriptor() ([]byte, []int) {
-	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{1, 0}
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{3, 0}
 }
 
 type Span_Status_Code int32
@@ -127,12 +127,108 @@ func (x Span_Status_Code) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Span_Status_Code.Descriptor instead.
 func (Span_Status_Code) EnumDescriptor() ([]byte, []int) {
-	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{1, 2, 0}
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{3, 2, 0}
+}
+
+type TraceID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	High          uint64                 `protobuf:"varint,1,opt,name=high,proto3" json:"high,omitempty"`
+	Low           uint64                 `protobuf:"varint,2,opt,name=low,proto3" json:"low,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TraceID) Reset() {
+	*x = TraceID{}
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TraceID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TraceID) ProtoMessage() {}
+
+func (x *TraceID) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TraceID.ProtoReflect.Descriptor instead.
+func (*TraceID) Descriptor() ([]byte, []int) {
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *TraceID) GetHigh() uint64 {
+	if x != nil {
+		return x.High
+	}
+	return 0
+}
+
+func (x *TraceID) GetLow() uint64 {
+	if x != nil {
+		return x.Low
+	}
+	return 0
+}
+
+type SpanID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SpanID) Reset() {
+	*x = SpanID{}
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SpanID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SpanID) ProtoMessage() {}
+
+func (x *SpanID) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SpanID.ProtoReflect.Descriptor instead.
+func (*SpanID) Descriptor() ([]byte, []int) {
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *SpanID) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
 }
 
 type Trace struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TraceId       string                 `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
+	TraceId       *TraceID               `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
 	Spans         []*Span                `protobuf:"bytes,2,rep,name=spans,proto3" json:"spans,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -140,7 +236,7 @@ type Trace struct {
 
 func (x *Trace) Reset() {
 	*x = Trace{}
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[0]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -152,7 +248,7 @@ func (x *Trace) String() string {
 func (*Trace) ProtoMessage() {}
 
 func (x *Trace) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[0]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -165,14 +261,14 @@ func (x *Trace) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Trace.ProtoReflect.Descriptor instead.
 func (*Trace) Descriptor() ([]byte, []int) {
-	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{0}
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Trace) GetTraceId() string {
+func (x *Trace) GetTraceId() *TraceID {
 	if x != nil {
 		return x.TraceId
 	}
-	return ""
+	return nil
 }
 
 func (x *Trace) GetSpans() []*Span {
@@ -186,10 +282,10 @@ type Span struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Ulid          *ULID                  `protobuf:"bytes,100,opt,name=ulid,proto3" json:"ulid,omitempty"`
 	Indextime     *timestamppb.Timestamp `protobuf:"bytes,101,opt,name=indextime,proto3" json:"indextime,omitempty"`
-	TraceId       string                 `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
-	SpanId        string                 `protobuf:"bytes,2,opt,name=span_id,json=spanId,proto3" json:"span_id,omitempty"`
+	TraceId       *TraceID               `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
+	SpanId        *SpanID                `protobuf:"bytes,2,opt,name=span_id,json=spanId,proto3" json:"span_id,omitempty"`
 	TraceState    string                 `protobuf:"bytes,3,opt,name=trace_state,json=traceState,proto3" json:"trace_state,omitempty"`
-	ParentSpanId  string                 `protobuf:"bytes,4,opt,name=parent_span_id,json=parentSpanId,proto3" json:"parent_span_id,omitempty"`
+	ParentSpanId  *SpanID                `protobuf:"bytes,4,opt,name=parent_span_id,json=parentSpanId,proto3" json:"parent_span_id,omitempty"`
 	Flags         uint32                 `protobuf:"varint,5,opt,name=flags,proto3" json:"flags,omitempty"`
 	Name          string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
 	Kind          Span_SpanKind          `protobuf:"varint,7,opt,name=kind,proto3,enum=types.v1.Span_SpanKind" json:"kind,omitempty"`
@@ -208,7 +304,7 @@ type Span struct {
 
 func (x *Span) Reset() {
 	*x = Span{}
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[1]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -220,7 +316,7 @@ func (x *Span) String() string {
 func (*Span) ProtoMessage() {}
 
 func (x *Span) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[1]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -233,7 +329,7 @@ func (x *Span) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Span.ProtoReflect.Descriptor instead.
 func (*Span) Descriptor() ([]byte, []int) {
-	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{1}
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Span) GetUlid() *ULID {
@@ -250,18 +346,18 @@ func (x *Span) GetIndextime() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Span) GetTraceId() string {
+func (x *Span) GetTraceId() *TraceID {
 	if x != nil {
 		return x.TraceId
 	}
-	return ""
+	return nil
 }
 
-func (x *Span) GetSpanId() string {
+func (x *Span) GetSpanId() *SpanID {
 	if x != nil {
 		return x.SpanId
 	}
-	return ""
+	return nil
 }
 
 func (x *Span) GetTraceState() string {
@@ -271,11 +367,11 @@ func (x *Span) GetTraceState() string {
 	return ""
 }
 
-func (x *Span) GetParentSpanId() string {
+func (x *Span) GetParentSpanId() *SpanID {
 	if x != nil {
 		return x.ParentSpanId
 	}
-	return ""
+	return nil
 }
 
 func (x *Span) GetFlags() uint32 {
@@ -373,7 +469,7 @@ type Span_Event struct {
 
 func (x *Span_Event) Reset() {
 	*x = Span_Event{}
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[2]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -385,7 +481,7 @@ func (x *Span_Event) String() string {
 func (*Span_Event) ProtoMessage() {}
 
 func (x *Span_Event) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[2]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -398,7 +494,7 @@ func (x *Span_Event) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Span_Event.ProtoReflect.Descriptor instead.
 func (*Span_Event) Descriptor() ([]byte, []int) {
-	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{1, 0}
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{3, 0}
 }
 
 func (x *Span_Event) GetTimestamp() *timestamppb.Timestamp {
@@ -424,8 +520,8 @@ func (x *Span_Event) GetKvs() []*KV {
 
 type Span_Link struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TraceId       string                 `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
-	SpanId        string                 `protobuf:"bytes,2,opt,name=span_id,json=spanId,proto3" json:"span_id,omitempty"`
+	TraceId       *TraceID               `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3" json:"trace_id,omitempty"`
+	SpanId        *SpanID                `protobuf:"bytes,2,opt,name=span_id,json=spanId,proto3" json:"span_id,omitempty"`
 	TraceState    string                 `protobuf:"bytes,3,opt,name=trace_state,json=traceState,proto3" json:"trace_state,omitempty"`
 	Kvs           []*KV                  `protobuf:"bytes,4,rep,name=kvs,proto3" json:"kvs,omitempty"`
 	Flags         uint32                 `protobuf:"varint,5,opt,name=flags,proto3" json:"flags,omitempty"`
@@ -435,7 +531,7 @@ type Span_Link struct {
 
 func (x *Span_Link) Reset() {
 	*x = Span_Link{}
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[3]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -447,7 +543,7 @@ func (x *Span_Link) String() string {
 func (*Span_Link) ProtoMessage() {}
 
 func (x *Span_Link) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[3]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -460,21 +556,21 @@ func (x *Span_Link) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Span_Link.ProtoReflect.Descriptor instead.
 func (*Span_Link) Descriptor() ([]byte, []int) {
-	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{1, 1}
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{3, 1}
 }
 
-func (x *Span_Link) GetTraceId() string {
+func (x *Span_Link) GetTraceId() *TraceID {
 	if x != nil {
 		return x.TraceId
 	}
-	return ""
+	return nil
 }
 
-func (x *Span_Link) GetSpanId() string {
+func (x *Span_Link) GetSpanId() *SpanID {
 	if x != nil {
 		return x.SpanId
 	}
-	return ""
+	return nil
 }
 
 func (x *Span_Link) GetTraceState() string {
@@ -508,7 +604,7 @@ type Span_Status struct {
 
 func (x *Span_Status) Reset() {
 	*x = Span_Status{}
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[4]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -520,7 +616,7 @@ func (x *Span_Status) String() string {
 func (*Span_Status) ProtoMessage() {}
 
 func (x *Span_Status) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_otel_tracing_proto_msgTypes[4]
+	mi := &file_types_v1_otel_tracing_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -533,7 +629,7 @@ func (x *Span_Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Span_Status.ProtoReflect.Descriptor instead.
 func (*Span_Status) Descriptor() ([]byte, []int) {
-	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{1, 2}
+	return file_types_v1_otel_tracing_proto_rawDescGZIP(), []int{3, 2}
 }
 
 func (x *Span_Status) GetMessage() string {
@@ -554,18 +650,24 @@ var File_types_v1_otel_tracing_proto protoreflect.FileDescriptor
 
 const file_types_v1_otel_tracing_proto_rawDesc = "" +
 	"\n" +
-	"\x1btypes/v1/otel_tracing.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/ulid.proto\"H\n" +
-	"\x05Trace\x12\x19\n" +
-	"\btrace_id\x18\x01 \x01(\tR\atraceId\x12$\n" +
-	"\x05spans\x18\x02 \x03(\v2\x0e.types.v1.SpanR\x05spans\"\xb1\t\n" +
+	"\x1btypes/v1/otel_tracing.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/ulid.proto\"/\n" +
+	"\aTraceID\x12\x12\n" +
+	"\x04high\x18\x01 \x01(\x04R\x04high\x12\x10\n" +
+	"\x03low\x18\x02 \x01(\x04R\x03low\"\x18\n" +
+	"\x06SpanID\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"[\n" +
+	"\x05Trace\x12,\n" +
+	"\btrace_id\x18\x01 \x01(\v2\x11.types.v1.TraceIDR\atraceId\x12$\n" +
+	"\x05spans\x18\x02 \x03(\v2\x0e.types.v1.SpanR\x05spans\"\x8d\n" +
+	"\n" +
 	"\x04Span\x12\"\n" +
 	"\x04ulid\x18d \x01(\v2\x0e.types.v1.ULIDR\x04ulid\x128\n" +
-	"\tindextime\x18e \x01(\v2\x1a.google.protobuf.TimestampR\tindextime\x12\x19\n" +
-	"\btrace_id\x18\x01 \x01(\tR\atraceId\x12\x17\n" +
-	"\aspan_id\x18\x02 \x01(\tR\x06spanId\x12\x1f\n" +
+	"\tindextime\x18e \x01(\v2\x1a.google.protobuf.TimestampR\tindextime\x12,\n" +
+	"\btrace_id\x18\x01 \x01(\v2\x11.types.v1.TraceIDR\atraceId\x12)\n" +
+	"\aspan_id\x18\x02 \x01(\v2\x10.types.v1.SpanIDR\x06spanId\x12\x1f\n" +
 	"\vtrace_state\x18\x03 \x01(\tR\n" +
-	"traceState\x12$\n" +
-	"\x0eparent_span_id\x18\x04 \x01(\tR\fparentSpanId\x12\x14\n" +
+	"traceState\x126\n" +
+	"\x0eparent_span_id\x18\x04 \x01(\v2\x10.types.v1.SpanIDR\fparentSpanId\x12\x14\n" +
 	"\x05flags\x18\x05 \x01(\rR\x05flags\x12\x12\n" +
 	"\x04name\x18\x06 \x01(\tR\x04name\x12+\n" +
 	"\x04kind\x18\a \x01(\x0e2\x17.types.v1.Span.SpanKindR\x04kind\x12!\n" +
@@ -584,10 +686,10 @@ const file_types_v1_otel_tracing_proto_rawDesc = "" +
 	"\x05Event\x128\n" +
 	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1e\n" +
-	"\x03kvs\x18\x03 \x03(\v2\f.types.v1.KVR\x03kvs\x1a\x91\x01\n" +
-	"\x04Link\x12\x19\n" +
-	"\btrace_id\x18\x01 \x01(\tR\atraceId\x12\x17\n" +
-	"\aspan_id\x18\x02 \x01(\tR\x06spanId\x12\x1f\n" +
+	"\x03kvs\x18\x03 \x03(\v2\f.types.v1.KVR\x03kvs\x1a\xb6\x01\n" +
+	"\x04Link\x12,\n" +
+	"\btrace_id\x18\x01 \x01(\v2\x11.types.v1.TraceIDR\atraceId\x12)\n" +
+	"\aspan_id\x18\x02 \x01(\v2\x10.types.v1.SpanIDR\x06spanId\x12\x1f\n" +
 	"\vtrace_state\x18\x03 \x01(\tR\n" +
 	"traceState\x12\x1e\n" +
 	"\x03kvs\x18\x04 \x03(\v2\f.types.v1.KVR\x03kvs\x12\x14\n" +
@@ -623,44 +725,52 @@ func file_types_v1_otel_tracing_proto_rawDescGZIP() []byte {
 }
 
 var file_types_v1_otel_tracing_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_types_v1_otel_tracing_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_types_v1_otel_tracing_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_types_v1_otel_tracing_proto_goTypes = []any{
 	(Span_SpanKind)(0),            // 0: types.v1.Span.SpanKind
 	(Span_Status_Code)(0),         // 1: types.v1.Span.Status.Code
-	(*Trace)(nil),                 // 2: types.v1.Trace
-	(*Span)(nil),                  // 3: types.v1.Span
-	(*Span_Event)(nil),            // 4: types.v1.Span.Event
-	(*Span_Link)(nil),             // 5: types.v1.Span.Link
-	(*Span_Status)(nil),           // 6: types.v1.Span.Status
-	(*ULID)(nil),                  // 7: types.v1.ULID
-	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),   // 9: google.protobuf.Duration
-	(*Resource)(nil),              // 10: types.v1.Resource
-	(*Scope)(nil),                 // 11: types.v1.Scope
-	(*KV)(nil),                    // 12: types.v1.KV
+	(*TraceID)(nil),               // 2: types.v1.TraceID
+	(*SpanID)(nil),                // 3: types.v1.SpanID
+	(*Trace)(nil),                 // 4: types.v1.Trace
+	(*Span)(nil),                  // 5: types.v1.Span
+	(*Span_Event)(nil),            // 6: types.v1.Span.Event
+	(*Span_Link)(nil),             // 7: types.v1.Span.Link
+	(*Span_Status)(nil),           // 8: types.v1.Span.Status
+	(*ULID)(nil),                  // 9: types.v1.ULID
+	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),   // 11: google.protobuf.Duration
+	(*Resource)(nil),              // 12: types.v1.Resource
+	(*Scope)(nil),                 // 13: types.v1.Scope
+	(*KV)(nil),                    // 14: types.v1.KV
 }
 var file_types_v1_otel_tracing_proto_depIdxs = []int32{
-	3,  // 0: types.v1.Trace.spans:type_name -> types.v1.Span
-	7,  // 1: types.v1.Span.ulid:type_name -> types.v1.ULID
-	8,  // 2: types.v1.Span.indextime:type_name -> google.protobuf.Timestamp
-	0,  // 3: types.v1.Span.kind:type_name -> types.v1.Span.SpanKind
-	8,  // 4: types.v1.Span.time:type_name -> google.protobuf.Timestamp
-	9,  // 5: types.v1.Span.duration:type_name -> google.protobuf.Duration
-	10, // 6: types.v1.Span.resource:type_name -> types.v1.Resource
-	11, // 7: types.v1.Span.scope:type_name -> types.v1.Scope
-	12, // 8: types.v1.Span.attributes:type_name -> types.v1.KV
-	4,  // 9: types.v1.Span.events:type_name -> types.v1.Span.Event
-	5,  // 10: types.v1.Span.links:type_name -> types.v1.Span.Link
-	6,  // 11: types.v1.Span.status:type_name -> types.v1.Span.Status
-	8,  // 12: types.v1.Span.Event.timestamp:type_name -> google.protobuf.Timestamp
-	12, // 13: types.v1.Span.Event.kvs:type_name -> types.v1.KV
-	12, // 14: types.v1.Span.Link.kvs:type_name -> types.v1.KV
-	1,  // 15: types.v1.Span.Status.code:type_name -> types.v1.Span.Status.Code
-	16, // [16:16] is the sub-list for method output_type
-	16, // [16:16] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	2,  // 0: types.v1.Trace.trace_id:type_name -> types.v1.TraceID
+	5,  // 1: types.v1.Trace.spans:type_name -> types.v1.Span
+	9,  // 2: types.v1.Span.ulid:type_name -> types.v1.ULID
+	10, // 3: types.v1.Span.indextime:type_name -> google.protobuf.Timestamp
+	2,  // 4: types.v1.Span.trace_id:type_name -> types.v1.TraceID
+	3,  // 5: types.v1.Span.span_id:type_name -> types.v1.SpanID
+	3,  // 6: types.v1.Span.parent_span_id:type_name -> types.v1.SpanID
+	0,  // 7: types.v1.Span.kind:type_name -> types.v1.Span.SpanKind
+	10, // 8: types.v1.Span.time:type_name -> google.protobuf.Timestamp
+	11, // 9: types.v1.Span.duration:type_name -> google.protobuf.Duration
+	12, // 10: types.v1.Span.resource:type_name -> types.v1.Resource
+	13, // 11: types.v1.Span.scope:type_name -> types.v1.Scope
+	14, // 12: types.v1.Span.attributes:type_name -> types.v1.KV
+	6,  // 13: types.v1.Span.events:type_name -> types.v1.Span.Event
+	7,  // 14: types.v1.Span.links:type_name -> types.v1.Span.Link
+	8,  // 15: types.v1.Span.status:type_name -> types.v1.Span.Status
+	10, // 16: types.v1.Span.Event.timestamp:type_name -> google.protobuf.Timestamp
+	14, // 17: types.v1.Span.Event.kvs:type_name -> types.v1.KV
+	2,  // 18: types.v1.Span.Link.trace_id:type_name -> types.v1.TraceID
+	3,  // 19: types.v1.Span.Link.span_id:type_name -> types.v1.SpanID
+	14, // 20: types.v1.Span.Link.kvs:type_name -> types.v1.KV
+	1,  // 21: types.v1.Span.Status.code:type_name -> types.v1.Span.Status.Code
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_otel_tracing_proto_init() }
@@ -678,7 +788,7 @@ func file_types_v1_otel_tracing_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_otel_tracing_proto_rawDesc), len(file_types_v1_otel_tracing_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

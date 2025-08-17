@@ -4,20 +4,100 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
 import { ULID } from "./ulid_pb";
 import { Resource } from "./otel_resource_pb";
 import { Scope } from "./otel_scope_pb";
 import { KV } from "./types_pb";
 
 /**
+ * @generated from message types.v1.TraceID
+ */
+export class TraceID extends Message<TraceID> {
+  /**
+   * @generated from field: uint64 high = 1;
+   */
+  high = protoInt64.zero;
+
+  /**
+   * @generated from field: uint64 low = 2;
+   */
+  low = protoInt64.zero;
+
+  constructor(data?: PartialMessage<TraceID>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TraceID";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "high", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "low", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TraceID {
+    return new TraceID().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TraceID {
+    return new TraceID().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TraceID {
+    return new TraceID().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TraceID | PlainMessage<TraceID> | undefined, b: TraceID | PlainMessage<TraceID> | undefined): boolean {
+    return proto3.util.equals(TraceID, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SpanID
+ */
+export class SpanID extends Message<SpanID> {
+  /**
+   * @generated from field: uint64 id = 1;
+   */
+  id = protoInt64.zero;
+
+  constructor(data?: PartialMessage<SpanID>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SpanID";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SpanID {
+    return new SpanID().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SpanID {
+    return new SpanID().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SpanID {
+    return new SpanID().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SpanID | PlainMessage<SpanID> | undefined, b: SpanID | PlainMessage<SpanID> | undefined): boolean {
+    return proto3.util.equals(SpanID, a, b);
+  }
+}
+
+/**
  * @generated from message types.v1.Trace
  */
 export class Trace extends Message<Trace> {
   /**
-   * @generated from field: string trace_id = 1;
+   * @generated from field: types.v1.TraceID trace_id = 1;
    */
-  traceId = "";
+  traceId?: TraceID;
 
   /**
    * @generated from field: repeated types.v1.Span spans = 2;
@@ -32,7 +112,7 @@ export class Trace extends Message<Trace> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Trace";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "trace_id", kind: "message", T: TraceID },
     { no: 2, name: "spans", kind: "message", T: Span, repeated: true },
   ]);
 
@@ -68,14 +148,14 @@ export class Span extends Message<Span> {
   indextime?: Timestamp;
 
   /**
-   * @generated from field: string trace_id = 1;
+   * @generated from field: types.v1.TraceID trace_id = 1;
    */
-  traceId = "";
+  traceId?: TraceID;
 
   /**
-   * @generated from field: string span_id = 2;
+   * @generated from field: types.v1.SpanID span_id = 2;
    */
-  spanId = "";
+  spanId?: SpanID;
 
   /**
    * @generated from field: string trace_state = 3;
@@ -83,9 +163,9 @@ export class Span extends Message<Span> {
   traceState = "";
 
   /**
-   * @generated from field: string parent_span_id = 4;
+   * @generated from field: types.v1.SpanID parent_span_id = 4;
    */
-  parentSpanId = "";
+  parentSpanId?: SpanID;
 
   /**
    * @generated from field: uint32 flags = 5;
@@ -157,10 +237,10 @@ export class Span extends Message<Span> {
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 100, name: "ulid", kind: "message", T: ULID },
     { no: 101, name: "indextime", kind: "message", T: Timestamp },
-    { no: 1, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "trace_id", kind: "message", T: TraceID },
+    { no: 2, name: "span_id", kind: "message", T: SpanID },
     { no: 3, name: "trace_state", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 4, name: "parent_span_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 4, name: "parent_span_id", kind: "message", T: SpanID },
     { no: 5, name: "flags", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 6, name: "name", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "kind", kind: "enum", T: proto3.getEnumType(Span_SpanKind) },
@@ -290,14 +370,14 @@ export class Span_Event extends Message<Span_Event> {
  */
 export class Span_Link extends Message<Span_Link> {
   /**
-   * @generated from field: string trace_id = 1;
+   * @generated from field: types.v1.TraceID trace_id = 1;
    */
-  traceId = "";
+  traceId?: TraceID;
 
   /**
-   * @generated from field: string span_id = 2;
+   * @generated from field: types.v1.SpanID span_id = 2;
    */
-  spanId = "";
+  spanId?: SpanID;
 
   /**
    * @generated from field: string trace_state = 3;
@@ -322,8 +402,8 @@ export class Span_Link extends Message<Span_Link> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.Span.Link";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
-    { no: 2, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "trace_id", kind: "message", T: TraceID },
+    { no: 2, name: "span_id", kind: "message", T: SpanID },
     { no: 3, name: "trace_state", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 4, name: "kvs", kind: "message", T: KV, repeated: true },
     { no: 5, name: "flags", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },

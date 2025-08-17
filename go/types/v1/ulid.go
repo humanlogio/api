@@ -2,9 +2,13 @@ package typesv1
 
 import "encoding/binary"
 
-func ULIDFromBytes(out *ULID, ulid [16]byte) {
+func ULIDFromBytes(out *ULID, ulid [16]byte) *ULID {
+	if out == nil {
+		out = new(ULID)
+	}
 	out.High = binary.BigEndian.Uint64(ulid[0:8])
 	out.Low = binary.BigEndian.Uint64(ulid[8:16])
+	return out
 }
 
 func ULIDToBytes(b []byte, in *ULID) [16]byte {

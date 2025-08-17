@@ -1,6 +1,7 @@
 package typesv1
 
 import (
+	"github.com/oklog/ulid/v2"
 	semconv "go.opentelemetry.io/otel/semconv/v1.34.0"
 )
 
@@ -13,7 +14,8 @@ func (x *Log) IsStructured() bool {
 
 func (x *Log) FindAttr(k string) *Val {
 	if k == string(semconv.LogRecordUIDKey) {
-		return ValStr(x.Ulid)
+		u := ulid.ULID(ULIDToBytes(nil, x.Ulid))
+		return ValStr(u.String())
 	}
 	if k == string(semconv.LogRecordOriginalKey) {
 		return ValBlob(x.Raw)

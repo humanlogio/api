@@ -6,6 +6,7 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { ULID } from "./ulid_pb";
+import { SpanID, TraceID } from "./otel_tracing_pb";
 import { Resource } from "./otel_resource_pb";
 import { Scope } from "./otel_scope_pb";
 import { KV } from "./types_pb";
@@ -35,14 +36,14 @@ export class Log extends Message<Log> {
   timestamp?: Timestamp;
 
   /**
-   * @generated from field: optional string trace_id = 3;
+   * @generated from field: optional types.v1.TraceID trace_id = 3;
    */
-  traceId?: string;
+  traceId?: TraceID;
 
   /**
-   * @generated from field: optional string span_id = 4;
+   * @generated from field: optional types.v1.SpanID span_id = 4;
    */
-  spanId?: string;
+  spanId?: SpanID;
 
   /**
    * @generated from field: uint32 trace_flags = 5;
@@ -96,8 +97,8 @@ export class Log extends Message<Log> {
     { no: 101, name: "observed_timestamp", kind: "message", T: Timestamp },
     { no: 102, name: "raw", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
     { no: 2, name: "timestamp", kind: "message", T: Timestamp },
-    { no: 3, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
-    { no: 4, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, opt: true },
+    { no: 3, name: "trace_id", kind: "message", T: TraceID, opt: true },
+    { no: 4, name: "span_id", kind: "message", T: SpanID, opt: true },
     { no: 5, name: "trace_flags", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },
     { no: 6, name: "severity_text", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 7, name: "severity_number", kind: "scalar", T: 13 /* ScalarType.UINT32 */ },

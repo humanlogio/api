@@ -5,6 +5,7 @@ package types.v1;
 import "google/protobuf/timestamp.proto";
 import "types/v1/otel_resource.proto";
 import "types/v1/otel_scope.proto";
+import "types/v1/otel_tracing.proto";
 import "types/v1/types.proto";
 import "types/v1/ulid.proto";
 
@@ -15,8 +16,8 @@ message Log {
   google.protobuf.Timestamp observed_timestamp = 101;
   bytes raw = 102;
   google.protobuf.Timestamp timestamp = 2;
-  optional string trace_id = 3;
-  optional string span_id = 4;
+  optional TraceID trace_id = 3;
+  optional SpanID span_id = 4;
   uint32 trace_flags = 5;
   string severity_text = 6;
   uint32 severity_number = 7;

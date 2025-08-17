@@ -8,6 +8,7 @@ require (
 	connectrpc.com/connect v1.16.2
 	github.com/blang/semver v3.5.1+incompatible
 	github.com/cespare/xxhash v1.1.0
+	github.com/oklog/ulid/v2 v2.1.1
 	github.com/stretchr/testify v1.10.0
 	go.opentelemetry.io/otel v1.37.0
 	go.opentelemetry.io/proto/otlp v1.7.0

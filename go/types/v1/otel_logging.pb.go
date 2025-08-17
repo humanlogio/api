@@ -28,8 +28,8 @@ type Log struct {
 	ObservedTimestamp *timestamppb.Timestamp `protobuf:"bytes,101,opt,name=observed_timestamp,json=observedTimestamp,proto3" json:"observed_timestamp,omitempty"`
 	Raw               []byte                 `protobuf:"bytes,102,opt,name=raw,proto3" json:"raw,omitempty"`
 	Timestamp         *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	TraceId           *string                `protobuf:"bytes,3,opt,name=trace_id,json=traceId,proto3,oneof" json:"trace_id,omitempty"`
-	SpanId            *string                `protobuf:"bytes,4,opt,name=span_id,json=spanId,proto3,oneof" json:"span_id,omitempty"`
+	TraceId           *TraceID               `protobuf:"bytes,3,opt,name=trace_id,json=traceId,proto3,oneof" json:"trace_id,omitempty"`
+	SpanId            *SpanID                `protobuf:"bytes,4,opt,name=span_id,json=spanId,proto3,oneof" json:"span_id,omitempty"`
 	TraceFlags        uint32                 `protobuf:"varint,5,opt,name=trace_flags,json=traceFlags,proto3" json:"trace_flags,omitempty"`
 	SeverityText      string                 `protobuf:"bytes,6,opt,name=severity_text,json=severityText,proto3" json:"severity_text,omitempty"`
 	SeverityNumber    uint32                 `protobuf:"varint,7,opt,name=severity_number,json=severityNumber,proto3" json:"severity_number,omitempty"`
@@ -100,18 +100,18 @@ func (x *Log) GetTimestamp() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Log) GetTraceId() string {
-	if x != nil && x.TraceId != nil {
-		return *x.TraceId
+func (x *Log) GetTraceId() *TraceID {
+	if x != nil {
+		return x.TraceId
 	}
-	return ""
+	return nil
 }
 
-func (x *Log) GetSpanId() string {
-	if x != nil && x.SpanId != nil {
-		return *x.SpanId
+func (x *Log) GetSpanId() *SpanID {
+	if x != nil {
+		return x.SpanId
 	}
-	return ""
+	return nil
 }
 
 func (x *Log) GetTraceFlags() uint32 {
@@ -174,14 +174,14 @@ var File_types_v1_otel_logging_proto protoreflect.FileDescriptor
 
 const file_types_v1_otel_logging_proto_rawDesc = "" +
 	"\n" +
-	"\x1btypes/v1/otel_logging.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/ulid.proto\"\xc2\x04\n" +
+	"\x1btypes/v1/otel_logging.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x1btypes/v1/otel_tracing.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/ulid.proto\"\xe7\x04\n" +
 	"\x03Log\x12\"\n" +
 	"\x04ulid\x18d \x01(\v2\x0e.types.v1.ULIDR\x04ulid\x12I\n" +
 	"\x12observed_timestamp\x18e \x01(\v2\x1a.google.protobuf.TimestampR\x11observedTimestamp\x12\x10\n" +
 	"\x03raw\x18f \x01(\fR\x03raw\x128\n" +
-	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x1e\n" +
-	"\btrace_id\x18\x03 \x01(\tH\x00R\atraceId\x88\x01\x01\x12\x1c\n" +
-	"\aspan_id\x18\x04 \x01(\tH\x01R\x06spanId\x88\x01\x01\x12\x1f\n" +
+	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x121\n" +
+	"\btrace_id\x18\x03 \x01(\v2\x11.types.v1.TraceIDH\x00R\atraceId\x88\x01\x01\x12.\n" +
+	"\aspan_id\x18\x04 \x01(\v2\x10.types.v1.SpanIDH\x01R\x06spanId\x88\x01\x01\x12\x1f\n" +
 	"\vtrace_flags\x18\x05 \x01(\rR\n" +
 	"traceFlags\x12#\n" +
 	"\rseverity_text\x18\x06 \x01(\tR\fseverityText\x12'\n" +
@@ -216,22 +216,26 @@ var file_types_v1_otel_logging_proto_goTypes = []any{
 	(*Log)(nil),                   // 0: types.v1.Log
 	(*ULID)(nil),                  // 1: types.v1.ULID
 	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
-	(*Resource)(nil),              // 3: types.v1.Resource
-	(*Scope)(nil),                 // 4: types.v1.Scope
-	(*KV)(nil),                    // 5: types.v1.KV
+	(*TraceID)(nil),               // 3: types.v1.TraceID
+	(*SpanID)(nil),                // 4: types.v1.SpanID
+	(*Resource)(nil),              // 5: types.v1.Resource
+	(*Scope)(nil),                 // 6: types.v1.Scope
+	(*KV)(nil),                    // 7: types.v1.KV
 }
 var file_types_v1_otel_logging_proto_depIdxs = []int32{
 	1, // 0: types.v1.Log.ulid:type_name -> types.v1.ULID
 	2, // 1: types.v1.Log.observed_timestamp:type_name -> google.protobuf.Timestamp
 	2, // 2: types.v1.Log.timestamp:type_name -> google.protobuf.Timestamp
-	3, // 3: types.v1.Log.resource:type_name -> types.v1.Resource
-	4, // 4: types.v1.Log.scope:type_name -> types.v1.Scope
-	5, // 5: types.v1.Log.attributes:type_name -> types.v1.KV
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	3, // 3: types.v1.Log.trace_id:type_name -> types.v1.TraceID
+	4, // 4: types.v1.Log.span_id:type_name -> types.v1.SpanID
+	5, // 5: types.v1.Log.resource:type_name -> types.v1.Resource
+	6, // 6: types.v1.Log.scope:type_name -> types.v1.Scope
+	7, // 7: types.v1.Log.attributes:type_name -> types.v1.KV
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_otel_logging_proto_init() }
@@ -241,6 +245,7 @@ func file_types_v1_otel_logging_proto_init() {
 	}
 	file_types_v1_otel_resource_proto_init()
 	file_types_v1_otel_scope_proto_init()
+	file_types_v1_otel_tracing_proto_init()
 	file_types_v1_types_proto_init()
 	file_types_v1_ulid_proto_init()
 	file_types_v1_otel_logging_proto_msgTypes[0].OneofWrappers = []any{}
