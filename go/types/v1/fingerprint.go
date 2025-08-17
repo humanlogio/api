@@ -19,6 +19,9 @@ const (
 	tagArray      = uint8(0x8)
 	tagMapEntries = uint8(0x9)
 	tagKVs        = uint8(0xA)
+	tagHash64     = uint8(0xB)
+	tagTraceID    = uint8(0xC)
+	tagSpanID     = uint8(0xD)
 )
 
 var (
@@ -33,21 +36,27 @@ var (
 func Hash64Value(val *Val) uint64 {
 	switch vv := val.Kind.(type) {
 	case *Val_Str:
-		return fpString(vv.Str)
+		return Hash64String(vv.Str)
+	case *Val_TraceId:
+		return Hash64TraceID(vv.TraceId)
+	case *Val_SpanId:
+		return Hash64SpanID(vv.SpanId)
 	case *Val_Blob:
-		return fpBlob(vv.Blob)
+		return Hash64Blob(vv.Blob)
 	case *Val_Null:
-		return fpNull()
+		return Hash64Null()
 	case *Val_Bool:
-		return fpBool(vv.Bool)
+		return Hash64Bool(vv.Bool)
 	case *Val_I64:
-		return fpI64(vv.I64)
+		return Hash64I64(vv.I64)
 	case *Val_F64:
-		return fpF64(vv.F64)
+		return Hash64F64(vv.F64)
+	case *Val_Hash64:
+		return Hash64Hash64(vv.Hash64)
 	case *Val_Ts:
-		return fpTs(vv.Ts.Seconds, vv.Ts.Nanos)
+		return Hash64Ts(vv.Ts.Seconds, vv.Ts.Nanos)
 	case *Val_Dur:
-		return fpDur(vv.Dur.Seconds, vv.Dur.Nanos)
+		return Hash64Dur(vv.Dur.Seconds, vv.Dur.Nanos)
 	case *Val_Arr:
 		return Hash64Values_orderDoesntMatter(vv.Arr.Items)
 	case *Val_Obj:
@@ -86,28 +95,38 @@ func Hash64Values_orderDoesntMatter(arr []*Val) uint64 {
 	return xored
 }
 
-func fpString(v string) uint64 {
+func Hash64String(v string) uint64 {
 	fp := slices.Concat([]byte{tagStr}, []byte(v))
 	return xxhash.Sum64(fp)
 }
 
-func fpBlob(v []byte) uint64 {
+func Hash64TraceID(v string) uint64 {
+	fp := slices.Concat([]byte{tagTraceID}, []byte(v))
+	return xxhash.Sum64(fp)
+}
+
+func Hash64SpanID(v string) uint64 {
+	fp := slices.Concat([]byte{tagSpanID}, []byte(v))
+	return xxhash.Sum64(fp)
+}
+
+func Hash64Blob(v []byte) uint64 {
 	fp := slices.Concat([]byte{tagBlob}, v)
 	return xxhash.Sum64(fp)
 }
 
-func fpNull() uint64 {
+func Hash64Null() uint64 {
 	return nullh
 }
 
-func fpBool(v bool) uint64 {
+func Hash64Bool(v bool) uint64 {
 	if v {
 		return trueh
 	}
 	return falseh
 }
 
-func fpI64(v int64) uint64 {
+func Hash64I64(v int64) uint64 {
 	fp := []byte{
 		tagI64,
 		byte(v >> 52),
@@ -121,7 +140,7 @@ func fpI64(v int64) uint64 {
 	return xxhash.Sum64(fp)
 }
 
-func fpF64(v float64) uint64 {
+func Hash64F64(v float64) uint64 {
 	fp := []byte{
 		tagF64,
 		byte(int64(v) >> 52),
@@ -135,7 +154,21 @@ func fpF64(v float64) uint64 {
 	return xxhash.Sum64(fp)
 }
 
-func fpTs(seconds int64, nanos int32) uint64 {
+func Hash64Hash64(v uint64) uint64 {
+	fp := []byte{
+		tagHash64,
+		byte(v >> 52),
+		byte(v >> 48),
+		byte(v >> 32),
+		byte(v >> 24),
+		byte(v >> 16),
+		byte(v >> 8),
+		byte(v >> 0),
+	}
+	return xxhash.Sum64(fp)
+}
+
+func Hash64Ts(seconds int64, nanos int32) uint64 {
 	fp := []byte{
 		tagTs,
 		byte(nanos >> 24),
@@ -152,7 +185,7 @@ func fpTs(seconds int64, nanos int32) uint64 {
 	return xxhash.Sum64(fp)
 }
 
-func fpDur(seconds int64, nanos int32) uint64 {
+func Hash64Dur(seconds int64, nanos int32) uint64 {
 	fp := []byte{
 		tagDur,
 		byte(nanos >> 24),

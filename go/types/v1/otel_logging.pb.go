@@ -174,7 +174,7 @@ var File_types_v1_otel_logging_proto protoreflect.FileDescriptor
 
 const file_types_v1_otel_logging_proto_rawDesc = "" +
 	"\n" +
-	"\x1btypes/v1/otel_logging.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\"\xb2\x04\n" +
+	"\x1btypes/v1/otel_logging.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/ulid.proto\"\xb2\x04\n" +
 	"\x03Log\x12\x12\n" +
 	"\x04ulid\x18d \x01(\tR\x04ulid\x12I\n" +
 	"\x12observed_timestamp\x18e \x01(\v2\x1a.google.protobuf.TimestampR\x11observedTimestamp\x12\x10\n" +
@@ -240,6 +240,7 @@ func file_types_v1_otel_logging_proto_init() {
 	file_types_v1_otel_resource_proto_init()
 	file_types_v1_otel_scope_proto_init()
 	file_types_v1_types_proto_init()
+	file_types_v1_ulid_proto_init()
 	file_types_v1_otel_logging_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
