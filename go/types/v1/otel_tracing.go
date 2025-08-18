@@ -38,6 +38,11 @@ func TraceIDFromHex(out *TraceID, id string) (*TraceID, error) {
 	return TraceIDFromBytesSlice(out, b)
 }
 
+func TraceIDToHex(in *TraceID) string {
+	raw := TraceIDToBytes(nil, in)
+	return hex.EncodeToString(raw[:])
+}
+
 func TraceIDToBytes(b []byte, in *TraceID) [16]byte {
 	b = binary.BigEndian.AppendUint64(b, in.High)
 	b = binary.BigEndian.AppendUint64(b, in.Low)
@@ -72,6 +77,11 @@ func SpanIDFromHex(out *SpanID, id string) (*SpanID, error) {
 		return nil, err
 	}
 	return SpanIDFromBytesSlice(out, b)
+}
+
+func SpanIDToHex(in *SpanID) string {
+	raw := SpanIDToBytes(nil, in)
+	return hex.EncodeToString(raw[:])
 }
 
 func SpanIDToBytes(b []byte, in *SpanID) [8]byte {
