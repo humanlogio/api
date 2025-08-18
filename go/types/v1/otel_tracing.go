@@ -16,17 +16,32 @@ func TraceIDFromBytesArray(out *TraceID, id [16]byte) *TraceID {
 }
 
 func TraceIDFromBytesSlice(out *TraceID, id []byte) (*TraceID, error) {
-	if len(id) < 16 {
-		return nil, fmt.Errorf("trace_id has less than 128 bits: %d", len(id)*8)
+	n := len(id)
+	if n == 0 {
+		return nil, fmt.Errorf("trace_id empty")
 	}
-	if len(id) > 16 {
-		return nil, fmt.Errorf("trace_id has more than 128 bits: %d", len(id)*8)
+	if n > 16 {
+		return nil, fmt.Errorf("trace_id has more than 128 bits: %d", n*8)
+	}
+
+	var hi, lo uint64
+	if n == 16 {
+		hi = binary.BigEndian.Uint64(id[0:8])
+		lo = binary.BigEndian.Uint64(id[8:16])
+	} else {
+		var buf [16]byte
+		copy(buf[16-n:], id)
+		hi = binary.BigEndian.Uint64(buf[0:8])
+		lo = binary.BigEndian.Uint64(buf[8:16])
+	}
+	if (hi | lo) == 0 {
+		return nil, fmt.Errorf("trace_id is all zeros")
 	}
 	if out == nil {
 		out = new(TraceID)
 	}
-	out.High = binary.BigEndian.Uint64(id[0:8])
-	out.Low = binary.BigEndian.Uint64(id[8:16])
+	out.High = hi
+	out.Low = lo
 	return out, nil
 }
 
@@ -58,16 +73,22 @@ func SpanIDFromBytesArray(out *SpanID, id [8]byte) *SpanID {
 }
 
 func SpanIDFromBytesSlice(out *SpanID, id []byte) (*SpanID, error) {
-	if len(id) < 8 {
-		return nil, fmt.Errorf("trace_id has less than 64 bits: %d", len(id)*8)
+	n := len(id)
+	var v uint64
+	if n == 8 {
+		v = binary.BigEndian.Uint64(id)
+	} else {
+		var buf [8]byte
+		copy(buf[8-n:], id)
+		v = binary.BigEndian.Uint64(buf[:])
 	}
-	if len(id) > 8 {
-		return nil, fmt.Errorf("trace_id has more than 64 bits: %d", len(id)*8)
+	if v == 0 {
+		return nil, fmt.Errorf("span_id is all zeros")
 	}
 	if out == nil {
 		out = new(SpanID)
 	}
-	out.Id = binary.BigEndian.Uint64(id[0:8])
+	out.Id = v
 	return out, nil
 }
 
