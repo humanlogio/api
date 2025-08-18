@@ -16,3 +16,17 @@ func ULIDToBytes(b []byte, in *ULID) [16]byte {
 	b = binary.BigEndian.AppendUint64(b, in.Low)
 	return *(*[16]byte)(b[:16])
 }
+
+func (ul *ULID) Compare(other *ULID) int {
+	if ul.High < other.High {
+		return -1
+	} else if ul.High > other.High {
+		return 1
+	}
+	if ul.Low < other.Low {
+		return -1
+	} else if ul.Low > other.Low {
+		return 1
+	}
+	return 0
+}
