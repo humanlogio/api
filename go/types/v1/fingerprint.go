@@ -104,59 +104,64 @@ func Hash64String(v string) uint64 {
 }
 
 func Hash64TraceID(v *TraceID) uint64 {
-	fp := []byte{
+	fp := [17]byte{
 		tagTraceID,
-		byte(v.High >> 52),
+		byte(v.High >> 56),
 		byte(v.High >> 48),
+		byte(v.High >> 40),
 		byte(v.High >> 32),
 		byte(v.High >> 24),
 		byte(v.High >> 16),
 		byte(v.High >> 8),
-		byte(v.High >> 0),
-		byte(v.Low >> 52),
+		byte(v.High),
+		byte(v.Low >> 56),
 		byte(v.Low >> 48),
+		byte(v.Low >> 40),
 		byte(v.Low >> 32),
 		byte(v.Low >> 24),
 		byte(v.Low >> 16),
 		byte(v.Low >> 8),
-		byte(v.Low >> 0),
+		byte(v.Low),
 	}
-	return xxhash.Sum64(fp)
+	return xxhash.Sum64(fp[:])
 }
 
 func Hash64SpanID(v *SpanID) uint64 {
-	fp := []byte{
+	fp := [9]byte{
 		tagSpanID,
-		byte(v.Id >> 52),
+		byte(v.Id >> 56),
 		byte(v.Id >> 48),
+		byte(v.Id >> 40),
 		byte(v.Id >> 32),
 		byte(v.Id >> 24),
 		byte(v.Id >> 16),
 		byte(v.Id >> 8),
-		byte(v.Id >> 0),
+		byte(v.Id),
 	}
-	return xxhash.Sum64(fp)
+	return xxhash.Sum64(fp[:])
 }
 
 func Hash64ULID(v *ULID) uint64 {
-	fp := []byte{
+	fp := [17]byte{
 		tagULID,
-		byte(v.High >> 52),
+		byte(v.High >> 56),
 		byte(v.High >> 48),
+		byte(v.High >> 40),
 		byte(v.High >> 32),
 		byte(v.High >> 24),
 		byte(v.High >> 16),
 		byte(v.High >> 8),
-		byte(v.High >> 0),
-		byte(v.Low >> 52),
+		byte(v.High),
+		byte(v.Low >> 56),
 		byte(v.Low >> 48),
+		byte(v.Low >> 40),
 		byte(v.Low >> 32),
 		byte(v.Low >> 24),
 		byte(v.Low >> 16),
 		byte(v.Low >> 8),
-		byte(v.Low >> 0),
+		byte(v.Low),
 	}
-	return xxhash.Sum64(fp)
+	return xxhash.Sum64(fp[:])
 }
 
 func Hash64Blob(v []byte) uint64 {
@@ -176,77 +181,86 @@ func Hash64Bool(v bool) uint64 {
 }
 
 func Hash64I64(v int64) uint64 {
-	fp := []byte{
+	fp := [9]byte{
 		tagI64,
-		byte(v >> 52),
+		byte(v >> 56),
 		byte(v >> 48),
+		byte(v >> 40),
 		byte(v >> 32),
 		byte(v >> 24),
 		byte(v >> 16),
 		byte(v >> 8),
-		byte(v >> 0),
+		byte(v),
 	}
-	return xxhash.Sum64(fp)
+	return xxhash.Sum64(fp[:])
 }
 
 func Hash64F64(v float64) uint64 {
-	fp := []byte{
+	fp := [9]byte{
 		tagF64,
-		byte(int64(v) >> 52),
+		byte(int64(v) >> 56),
 		byte(int64(v) >> 48),
+		byte(int64(v) >> 40),
 		byte(int64(v) >> 32),
 		byte(int64(v) >> 24),
 		byte(int64(v) >> 16),
 		byte(int64(v) >> 8),
-		byte(int64(v) >> 0),
+		byte(int64(v)),
 	}
-	return xxhash.Sum64(fp)
+	return xxhash.Sum64(fp[:])
 }
 
 func Hash64Hash64(v uint64) uint64 {
-	fp := []byte{
+	fp := [9]byte{
 		tagHash64,
-		byte(v >> 52),
+		byte(v >> 56),
 		byte(v >> 48),
+		byte(v >> 40),
 		byte(v >> 32),
 		byte(v >> 24),
 		byte(v >> 16),
 		byte(v >> 8),
-		byte(v >> 0),
+		byte(v),
 	}
-	return xxhash.Sum64(fp)
+	return xxhash.Sum64(fp[:])
 }
 
 func Hash64Ts(seconds int64, nanos int32) uint64 {
-	fp := []byte{
+	fp := [13]byte{
 		tagTs,
 		byte(nanos >> 24),
 		byte(nanos >> 16),
 		byte(nanos >> 8),
-		byte(seconds >> 52),
+		byte(nanos),
+
+		byte(seconds >> 56),
 		byte(seconds >> 48),
+		byte(seconds >> 40),
 		byte(seconds >> 32),
 		byte(seconds >> 24),
 		byte(seconds >> 16),
 		byte(seconds >> 8),
-		byte(seconds >> 0),
+		byte(seconds),
 	}
-	return xxhash.Sum64(fp)
+	return xxhash.Sum64(fp[:])
 }
 
 func Hash64Dur(seconds int64, nanos int32) uint64 {
-	fp := []byte{
+	fp := [13]byte{
 		tagDur,
 		byte(nanos >> 24),
 		byte(nanos >> 16),
 		byte(nanos >> 8),
-		byte(seconds >> 52),
+		byte(nanos),
+
+		byte(seconds >> 56),
 		byte(seconds >> 48),
+		byte(seconds >> 40),
 		byte(seconds >> 32),
 		byte(seconds >> 24),
 		byte(seconds >> 16),
 		byte(seconds >> 8),
-		byte(seconds >> 0),
+		byte(seconds),
 	}
-	return xxhash.Sum64(fp)
+	return xxhash.Sum64(fp[:])
 }
