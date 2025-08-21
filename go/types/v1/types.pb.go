@@ -37,6 +37,7 @@ const (
 	ScalarType_blob     ScalarType = 8
 	ScalarType_trace_id ScalarType = 90
 	ScalarType_span_id  ScalarType = 91
+	ScalarType_ulid     ScalarType = 92
 )
 
 // Enum value maps for ScalarType.
@@ -53,6 +54,7 @@ var (
 		8:  "blob",
 		90: "trace_id",
 		91: "span_id",
+		92: "ulid",
 	}
 	ScalarType_value = map[string]int32{
 		"unknown":  0,
@@ -66,6 +68,7 @@ var (
 		"blob":     8,
 		"trace_id": 90,
 		"span_id":  91,
+		"ulid":     92,
 	}
 )
 
@@ -293,6 +296,7 @@ type Val struct {
 	//	*Val_Blob
 	//	*Val_TraceId
 	//	*Val_SpanId
+	//	*Val_Ulid
 	//	*Val_Arr
 	//	*Val_Obj
 	//	*Val_Map
@@ -418,22 +422,31 @@ func (x *Val) GetBlob() []byte {
 	return nil
 }
 
-func (x *Val) GetTraceId() string {
+func (x *Val) GetTraceId() *TraceID {
 	if x != nil {
 		if x, ok := x.Kind.(*Val_TraceId); ok {
 			return x.TraceId
 		}
 	}
-	return ""
+	return nil
 }
 
-func (x *Val) GetSpanId() string {
+func (x *Val) GetSpanId() *SpanID {
 	if x != nil {
 		if x, ok := x.Kind.(*Val_SpanId); ok {
 			return x.SpanId
 		}
 	}
-	return ""
+	return nil
+}
+
+func (x *Val) GetUlid() *ULID {
+	if x != nil {
+		if x, ok := x.Kind.(*Val_Ulid); ok {
+			return x.Ulid
+		}
+	}
+	return nil
 }
 
 func (x *Val) GetArr() *Arr {
@@ -509,11 +522,15 @@ type Val_Blob struct {
 }
 
 type Val_TraceId struct {
-	TraceId string `protobuf:"bytes,213,opt,name=trace_id,json=traceId,proto3,oneof"`
+	TraceId *TraceID `protobuf:"bytes,213,opt,name=trace_id,json=traceId,proto3,oneof"`
 }
 
 type Val_SpanId struct {
-	SpanId string `protobuf:"bytes,214,opt,name=span_id,json=spanId,proto3,oneof"`
+	SpanId *SpanID `protobuf:"bytes,214,opt,name=span_id,json=spanId,proto3,oneof"`
+}
+
+type Val_Ulid struct {
+	Ulid *ULID `protobuf:"bytes,215,opt,name=ulid,proto3,oneof"`
 }
 
 type Val_Arr struct {
@@ -551,6 +568,8 @@ func (*Val_Blob) isVal_Kind() {}
 func (*Val_TraceId) isVal_Kind() {}
 
 func (*Val_SpanId) isVal_Kind() {}
+
+func (*Val_Ulid) isVal_Kind() {}
 
 func (*Val_Arr) isVal_Kind() {}
 
@@ -742,6 +761,7 @@ type Scalar struct {
 	//	*Scalar_Dur
 	//	*Scalar_TraceId
 	//	*Scalar_SpanId
+	//	*Scalar_Ulid
 	Kind          isScalar_Kind `protobuf_oneof:"kind"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -854,22 +874,31 @@ func (x *Scalar) GetDur() *durationpb.Duration {
 	return nil
 }
 
-func (x *Scalar) GetTraceId() string {
+func (x *Scalar) GetTraceId() *TraceID {
 	if x != nil {
 		if x, ok := x.Kind.(*Scalar_TraceId); ok {
 			return x.TraceId
 		}
 	}
-	return ""
+	return nil
 }
 
-func (x *Scalar) GetSpanId() string {
+func (x *Scalar) GetSpanId() *SpanID {
 	if x != nil {
 		if x, ok := x.Kind.(*Scalar_SpanId); ok {
 			return x.SpanId
 		}
 	}
-	return ""
+	return nil
+}
+
+func (x *Scalar) GetUlid() *ULID {
+	if x != nil {
+		if x, ok := x.Kind.(*Scalar_Ulid); ok {
+			return x.Ulid
+		}
+	}
+	return nil
 }
 
 type isScalar_Kind interface {
@@ -905,11 +934,15 @@ type Scalar_Dur struct {
 }
 
 type Scalar_TraceId struct {
-	TraceId string `protobuf:"bytes,209,opt,name=trace_id,json=traceId,proto3,oneof"`
+	TraceId *TraceID `protobuf:"bytes,209,opt,name=trace_id,json=traceId,proto3,oneof"`
 }
 
 type Scalar_SpanId struct {
-	SpanId string `protobuf:"bytes,210,opt,name=span_id,json=spanId,proto3,oneof"`
+	SpanId *SpanID `protobuf:"bytes,210,opt,name=span_id,json=spanId,proto3,oneof"`
+}
+
+type Scalar_Ulid struct {
+	Ulid *ULID `protobuf:"bytes,211,opt,name=ulid,proto3,oneof"`
 }
 
 func (*Scalar_Str) isScalar_Kind() {}
@@ -929,6 +962,8 @@ func (*Scalar_Dur) isScalar_Kind() {}
 func (*Scalar_TraceId) isScalar_Kind() {}
 
 func (*Scalar_SpanId) isScalar_Kind() {}
+
+func (*Scalar_Ulid) isScalar_Kind() {}
 
 type FlatKV struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1236,6 +1271,102 @@ func (*DataStreamType_Logs) isDataStreamType_Type() {}
 
 func (*DataStreamType_Spans) isDataStreamType_Type() {}
 
+type TraceID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	High          uint64                 `protobuf:"varint,1,opt,name=high,proto3" json:"high,omitempty"`
+	Low           uint64                 `protobuf:"varint,2,opt,name=low,proto3" json:"low,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TraceID) Reset() {
+	*x = TraceID{}
+	mi := &file_types_v1_types_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TraceID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TraceID) ProtoMessage() {}
+
+func (x *TraceID) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TraceID.ProtoReflect.Descriptor instead.
+func (*TraceID) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *TraceID) GetHigh() uint64 {
+	if x != nil {
+		return x.High
+	}
+	return 0
+}
+
+func (x *TraceID) GetLow() uint64 {
+	if x != nil {
+		return x.Low
+	}
+	return 0
+}
+
+type SpanID struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SpanID) Reset() {
+	*x = SpanID{}
+	mi := &file_types_v1_types_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SpanID) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SpanID) ProtoMessage() {}
+
+func (x *SpanID) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_types_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SpanID.ProtoReflect.Descriptor instead.
+func (*SpanID) Descriptor() ([]byte, []int) {
+	return file_types_v1_types_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *SpanID) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
 type VarType_ArrayType struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Items         *VarType               `protobuf:"bytes,1,opt,name=items,proto3" json:"items,omitempty"`
@@ -1245,7 +1376,7 @@ type VarType_ArrayType struct {
 
 func (x *VarType_ArrayType) Reset() {
 	*x = VarType_ArrayType{}
-	mi := &file_types_v1_types_proto_msgTypes[13]
+	mi := &file_types_v1_types_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1257,7 +1388,7 @@ func (x *VarType_ArrayType) String() string {
 func (*VarType_ArrayType) ProtoMessage() {}
 
 func (x *VarType_ArrayType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[13]
+	mi := &file_types_v1_types_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1289,7 +1420,7 @@ type VarType_ObjectType struct {
 
 func (x *VarType_ObjectType) Reset() {
 	*x = VarType_ObjectType{}
-	mi := &file_types_v1_types_proto_msgTypes[14]
+	mi := &file_types_v1_types_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1301,7 +1432,7 @@ func (x *VarType_ObjectType) String() string {
 func (*VarType_ObjectType) ProtoMessage() {}
 
 func (x *VarType_ObjectType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[14]
+	mi := &file_types_v1_types_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1334,7 +1465,7 @@ type VarType_MapType struct {
 
 func (x *VarType_MapType) Reset() {
 	*x = VarType_MapType{}
-	mi := &file_types_v1_types_proto_msgTypes[15]
+	mi := &file_types_v1_types_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1346,7 +1477,7 @@ func (x *VarType_MapType) String() string {
 func (*VarType_MapType) ProtoMessage() {}
 
 func (x *VarType_MapType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[15]
+	mi := &file_types_v1_types_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1384,7 +1515,7 @@ type VarType_Null struct {
 
 func (x *VarType_Null) Reset() {
 	*x = VarType_Null{}
-	mi := &file_types_v1_types_proto_msgTypes[16]
+	mi := &file_types_v1_types_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1396,7 +1527,7 @@ func (x *VarType_Null) String() string {
 func (*VarType_Null) ProtoMessage() {}
 
 func (x *VarType_Null) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[16]
+	mi := &file_types_v1_types_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1422,7 +1553,7 @@ type Map_Entry struct {
 
 func (x *Map_Entry) Reset() {
 	*x = Map_Entry{}
-	mi := &file_types_v1_types_proto_msgTypes[18]
+	mi := &file_types_v1_types_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1434,7 +1565,7 @@ func (x *Map_Entry) String() string {
 func (*Map_Entry) ProtoMessage() {}
 
 func (x *Map_Entry) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[18]
+	mi := &file_types_v1_types_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1474,7 +1605,7 @@ type TableType_Column struct {
 
 func (x *TableType_Column) Reset() {
 	*x = TableType_Column{}
-	mi := &file_types_v1_types_proto_msgTypes[19]
+	mi := &file_types_v1_types_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1486,7 +1617,7 @@ func (x *TableType_Column) String() string {
 func (*TableType_Column) ProtoMessage() {}
 
 func (x *TableType_Column) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[19]
+	mi := &file_types_v1_types_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1525,7 +1656,7 @@ type DataStreamType_MultiDataStreamType struct {
 
 func (x *DataStreamType_MultiDataStreamType) Reset() {
 	*x = DataStreamType_MultiDataStreamType{}
-	mi := &file_types_v1_types_proto_msgTypes[20]
+	mi := &file_types_v1_types_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1537,7 +1668,7 @@ func (x *DataStreamType_MultiDataStreamType) String() string {
 func (*DataStreamType_MultiDataStreamType) ProtoMessage() {}
 
 func (x *DataStreamType_MultiDataStreamType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[20]
+	mi := &file_types_v1_types_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1568,7 +1699,7 @@ type DataStreamType_LogType struct {
 
 func (x *DataStreamType_LogType) Reset() {
 	*x = DataStreamType_LogType{}
-	mi := &file_types_v1_types_proto_msgTypes[21]
+	mi := &file_types_v1_types_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1580,7 +1711,7 @@ func (x *DataStreamType_LogType) String() string {
 func (*DataStreamType_LogType) ProtoMessage() {}
 
 func (x *DataStreamType_LogType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[21]
+	mi := &file_types_v1_types_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1604,7 +1735,7 @@ type DataStreamType_SpanType struct {
 
 func (x *DataStreamType_SpanType) Reset() {
 	*x = DataStreamType_SpanType{}
-	mi := &file_types_v1_types_proto_msgTypes[22]
+	mi := &file_types_v1_types_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1616,7 +1747,7 @@ func (x *DataStreamType_SpanType) String() string {
 func (*DataStreamType_SpanType) ProtoMessage() {}
 
 func (x *DataStreamType_SpanType) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_types_proto_msgTypes[22]
+	mi := &file_types_v1_types_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1636,7 +1767,7 @@ var File_types_v1_types_proto protoreflect.FileDescriptor
 
 const file_types_v1_types_proto_rawDesc = "" +
 	"\n" +
-	"\x14types/v1/types.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb5\x04\n" +
+	"\x14types/v1/types.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13types/v1/ulid.proto\"\xb5\x04\n" +
 	"\aVarType\x12.\n" +
 	"\x06scalar\x18\x01 \x01(\x0e2\x14.types.v1.ScalarTypeH\x00R\x06scalar\x123\n" +
 	"\x05array\x18\x02 \x01(\v2\x1b.types.v1.VarType.ArrayTypeH\x00R\x05array\x126\n" +
@@ -1658,7 +1789,7 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x04type\";\n" +
 	"\x02KV\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12#\n" +
-	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\xe8\x03\n" +
+	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\xb4\x04\n" +
 	"\x03Val\x12%\n" +
 	"\x04type\x18d \x01(\v2\x11.types.v1.VarTypeR\x04type\x12\x13\n" +
 	"\x03str\x18\xc9\x01 \x01(\tH\x00R\x03str\x12\x13\n" +
@@ -1668,9 +1799,10 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x04bool\x18\xcc\x01 \x01(\bH\x00R\x04bool\x12-\n" +
 	"\x02ts\x18\xcd\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x02ts\x12.\n" +
 	"\x03dur\x18\xce\x01 \x01(\v2\x19.google.protobuf.DurationH\x00R\x03dur\x12\x15\n" +
-	"\x04blob\x18\xd3\x01 \x01(\fH\x00R\x04blob\x12\x1c\n" +
-	"\btrace_id\x18\xd5\x01 \x01(\tH\x00R\atraceId\x12\x1a\n" +
-	"\aspan_id\x18\xd6\x01 \x01(\tH\x00R\x06spanId\x12\"\n" +
+	"\x04blob\x18\xd3\x01 \x01(\fH\x00R\x04blob\x12/\n" +
+	"\btrace_id\x18\xd5\x01 \x01(\v2\x11.types.v1.TraceIDH\x00R\atraceId\x12,\n" +
+	"\aspan_id\x18\xd6\x01 \x01(\v2\x10.types.v1.SpanIDH\x00R\x06spanId\x12%\n" +
+	"\x04ulid\x18\xd7\x01 \x01(\v2\x0e.types.v1.ULIDH\x00R\x04ulid\x12\"\n" +
 	"\x03arr\x18\xcf\x01 \x01(\v2\r.types.v1.ArrH\x00R\x03arr\x12\"\n" +
 	"\x03obj\x18\xd0\x01 \x01(\v2\r.types.v1.ObjH\x00R\x03obj\x12\"\n" +
 	"\x03map\x18\xd1\x01 \x01(\v2\r.types.v1.MapH\x00R\x03map\x12%\n" +
@@ -1685,7 +1817,7 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x05Entry\x12\x1f\n" +
 	"\x03key\x18\x01 \x01(\v2\r.types.v1.ValR\x03key\x12#\n" +
 	"\x05value\x18\x02 \x01(\v2\r.types.v1.ValR\x05value\"\x06\n" +
-	"\x04Null\"\xc1\x02\n" +
+	"\x04Null\"\x8d\x03\n" +
 	"\x06Scalar\x12%\n" +
 	"\x04type\x18d \x01(\v2\x11.types.v1.VarTypeR\x04type\x12\x13\n" +
 	"\x03str\x18\xc9\x01 \x01(\tH\x00R\x03str\x12\x13\n" +
@@ -1694,9 +1826,10 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x06hash64\x18\xcd\x01 \x01(\x04H\x00R\x06hash64\x12\x15\n" +
 	"\x04bool\x18\xcc\x01 \x01(\bH\x00R\x04bool\x12-\n" +
 	"\x02ts\x18\xcf\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x02ts\x12.\n" +
-	"\x03dur\x18\xd0\x01 \x01(\v2\x19.google.protobuf.DurationH\x00R\x03dur\x12\x1c\n" +
-	"\btrace_id\x18\xd1\x01 \x01(\tH\x00R\atraceId\x12\x1a\n" +
-	"\aspan_id\x18\xd2\x01 \x01(\tH\x00R\x06spanIdB\x06\n" +
+	"\x03dur\x18\xd0\x01 \x01(\v2\x19.google.protobuf.DurationH\x00R\x03dur\x12/\n" +
+	"\btrace_id\x18\xd1\x01 \x01(\v2\x11.types.v1.TraceIDH\x00R\atraceId\x12,\n" +
+	"\aspan_id\x18\xd2\x01 \x01(\v2\x10.types.v1.SpanIDH\x00R\x06spanId\x12%\n" +
+	"\x04ulid\x18\xd3\x01 \x01(\v2\x0e.types.v1.ULIDH\x00R\x04ulidB\x06\n" +
 	"\x04kind\"B\n" +
 	"\x06FlatKV\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12&\n" +
@@ -1721,7 +1854,12 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\aLogType\x1a\n" +
 	"\n" +
 	"\bSpanTypeB\x06\n" +
-	"\x04type*\x80\x01\n" +
+	"\x04type\"/\n" +
+	"\aTraceID\x12\x12\n" +
+	"\x04high\x18\x01 \x01(\x04R\x04high\x12\x10\n" +
+	"\x03low\x18\x02 \x01(\x04R\x03low\"\x18\n" +
+	"\x06SpanID\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id*\x8a\x01\n" +
 	"\n" +
 	"ScalarType\x12\v\n" +
 	"\aunknown\x10\x00\x12\a\n" +
@@ -1735,7 +1873,8 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\x03dur\x10\x06\x12\b\n" +
 	"\x04blob\x10\b\x12\f\n" +
 	"\btrace_id\x10Z\x12\v\n" +
-	"\aspan_id\x10[B\x8a\x01\n" +
+	"\aspan_id\x10[\x12\b\n" +
+	"\x04ulid\x10\\B\x8a\x01\n" +
 	"\fcom.types.v1B\n" +
 	"TypesProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
@@ -1752,7 +1891,7 @@ func file_types_v1_types_proto_rawDescGZIP() []byte {
 }
 
 var file_types_v1_types_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_types_v1_types_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_types_v1_types_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_types_v1_types_proto_goTypes = []any{
 	(ScalarType)(0),            // 0: types.v1.ScalarType
 	(*VarType)(nil),            // 1: types.v1.VarType
@@ -1768,62 +1907,71 @@ var file_types_v1_types_proto_goTypes = []any{
 	(*TableType)(nil),          // 11: types.v1.TableType
 	(*Table)(nil),              // 12: types.v1.Table
 	(*DataStreamType)(nil),     // 13: types.v1.DataStreamType
-	(*VarType_ArrayType)(nil),  // 14: types.v1.VarType.ArrayType
-	(*VarType_ObjectType)(nil), // 15: types.v1.VarType.ObjectType
-	(*VarType_MapType)(nil),    // 16: types.v1.VarType.MapType
-	(*VarType_Null)(nil),       // 17: types.v1.VarType.Null
-	nil,                        // 18: types.v1.VarType.ObjectType.KvsEntry
-	(*Map_Entry)(nil),          // 19: types.v1.Map.Entry
-	(*TableType_Column)(nil),   // 20: types.v1.TableType.Column
-	(*DataStreamType_MultiDataStreamType)(nil), // 21: types.v1.DataStreamType.MultiDataStreamType
-	(*DataStreamType_LogType)(nil),             // 22: types.v1.DataStreamType.LogType
-	(*DataStreamType_SpanType)(nil),            // 23: types.v1.DataStreamType.SpanType
-	(*timestamppb.Timestamp)(nil),              // 24: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),                // 25: google.protobuf.Duration
+	(*TraceID)(nil),            // 14: types.v1.TraceID
+	(*SpanID)(nil),             // 15: types.v1.SpanID
+	(*VarType_ArrayType)(nil),  // 16: types.v1.VarType.ArrayType
+	(*VarType_ObjectType)(nil), // 17: types.v1.VarType.ObjectType
+	(*VarType_MapType)(nil),    // 18: types.v1.VarType.MapType
+	(*VarType_Null)(nil),       // 19: types.v1.VarType.Null
+	nil,                        // 20: types.v1.VarType.ObjectType.KvsEntry
+	(*Map_Entry)(nil),          // 21: types.v1.Map.Entry
+	(*TableType_Column)(nil),   // 22: types.v1.TableType.Column
+	(*DataStreamType_MultiDataStreamType)(nil), // 23: types.v1.DataStreamType.MultiDataStreamType
+	(*DataStreamType_LogType)(nil),             // 24: types.v1.DataStreamType.LogType
+	(*DataStreamType_SpanType)(nil),            // 25: types.v1.DataStreamType.SpanType
+	(*timestamppb.Timestamp)(nil),              // 26: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),                // 27: google.protobuf.Duration
+	(*ULID)(nil),                               // 28: types.v1.ULID
 }
 var file_types_v1_types_proto_depIdxs = []int32{
 	0,  // 0: types.v1.VarType.scalar:type_name -> types.v1.ScalarType
-	14, // 1: types.v1.VarType.array:type_name -> types.v1.VarType.ArrayType
-	15, // 2: types.v1.VarType.object:type_name -> types.v1.VarType.ObjectType
-	16, // 3: types.v1.VarType.map:type_name -> types.v1.VarType.MapType
-	17, // 4: types.v1.VarType.null:type_name -> types.v1.VarType.Null
+	16, // 1: types.v1.VarType.array:type_name -> types.v1.VarType.ArrayType
+	17, // 2: types.v1.VarType.object:type_name -> types.v1.VarType.ObjectType
+	18, // 3: types.v1.VarType.map:type_name -> types.v1.VarType.MapType
+	19, // 4: types.v1.VarType.null:type_name -> types.v1.VarType.Null
 	3,  // 5: types.v1.KV.value:type_name -> types.v1.Val
 	1,  // 6: types.v1.Val.type:type_name -> types.v1.VarType
-	24, // 7: types.v1.Val.ts:type_name -> google.protobuf.Timestamp
-	25, // 8: types.v1.Val.dur:type_name -> google.protobuf.Duration
-	5,  // 9: types.v1.Val.arr:type_name -> types.v1.Arr
-	4,  // 10: types.v1.Val.obj:type_name -> types.v1.Obj
-	6,  // 11: types.v1.Val.map:type_name -> types.v1.Map
-	7,  // 12: types.v1.Val.null:type_name -> types.v1.Null
-	2,  // 13: types.v1.Obj.kvs:type_name -> types.v1.KV
-	3,  // 14: types.v1.Arr.items:type_name -> types.v1.Val
-	19, // 15: types.v1.Map.entries:type_name -> types.v1.Map.Entry
-	1,  // 16: types.v1.Scalar.type:type_name -> types.v1.VarType
-	24, // 17: types.v1.Scalar.ts:type_name -> google.protobuf.Timestamp
-	25, // 18: types.v1.Scalar.dur:type_name -> google.protobuf.Duration
-	8,  // 19: types.v1.FlatKV.value:type_name -> types.v1.Scalar
-	8,  // 20: types.v1.FlatArr.items:type_name -> types.v1.Scalar
-	20, // 21: types.v1.TableType.columns:type_name -> types.v1.TableType.Column
-	11, // 22: types.v1.Table.type:type_name -> types.v1.TableType
-	5,  // 23: types.v1.Table.rows:type_name -> types.v1.Arr
-	21, // 24: types.v1.DataStreamType.multi:type_name -> types.v1.DataStreamType.MultiDataStreamType
-	11, // 25: types.v1.DataStreamType.table:type_name -> types.v1.TableType
-	22, // 26: types.v1.DataStreamType.logs:type_name -> types.v1.DataStreamType.LogType
-	23, // 27: types.v1.DataStreamType.spans:type_name -> types.v1.DataStreamType.SpanType
-	1,  // 28: types.v1.VarType.ArrayType.items:type_name -> types.v1.VarType
-	18, // 29: types.v1.VarType.ObjectType.kvs:type_name -> types.v1.VarType.ObjectType.KvsEntry
-	1,  // 30: types.v1.VarType.MapType.key:type_name -> types.v1.VarType
-	1,  // 31: types.v1.VarType.MapType.value:type_name -> types.v1.VarType
-	1,  // 32: types.v1.VarType.ObjectType.KvsEntry.value:type_name -> types.v1.VarType
-	3,  // 33: types.v1.Map.Entry.key:type_name -> types.v1.Val
-	3,  // 34: types.v1.Map.Entry.value:type_name -> types.v1.Val
-	1,  // 35: types.v1.TableType.Column.type:type_name -> types.v1.VarType
-	13, // 36: types.v1.DataStreamType.MultiDataStreamType.streams:type_name -> types.v1.DataStreamType
-	37, // [37:37] is the sub-list for method output_type
-	37, // [37:37] is the sub-list for method input_type
-	37, // [37:37] is the sub-list for extension type_name
-	37, // [37:37] is the sub-list for extension extendee
-	0,  // [0:37] is the sub-list for field type_name
+	26, // 7: types.v1.Val.ts:type_name -> google.protobuf.Timestamp
+	27, // 8: types.v1.Val.dur:type_name -> google.protobuf.Duration
+	14, // 9: types.v1.Val.trace_id:type_name -> types.v1.TraceID
+	15, // 10: types.v1.Val.span_id:type_name -> types.v1.SpanID
+	28, // 11: types.v1.Val.ulid:type_name -> types.v1.ULID
+	5,  // 12: types.v1.Val.arr:type_name -> types.v1.Arr
+	4,  // 13: types.v1.Val.obj:type_name -> types.v1.Obj
+	6,  // 14: types.v1.Val.map:type_name -> types.v1.Map
+	7,  // 15: types.v1.Val.null:type_name -> types.v1.Null
+	2,  // 16: types.v1.Obj.kvs:type_name -> types.v1.KV
+	3,  // 17: types.v1.Arr.items:type_name -> types.v1.Val
+	21, // 18: types.v1.Map.entries:type_name -> types.v1.Map.Entry
+	1,  // 19: types.v1.Scalar.type:type_name -> types.v1.VarType
+	26, // 20: types.v1.Scalar.ts:type_name -> google.protobuf.Timestamp
+	27, // 21: types.v1.Scalar.dur:type_name -> google.protobuf.Duration
+	14, // 22: types.v1.Scalar.trace_id:type_name -> types.v1.TraceID
+	15, // 23: types.v1.Scalar.span_id:type_name -> types.v1.SpanID
+	28, // 24: types.v1.Scalar.ulid:type_name -> types.v1.ULID
+	8,  // 25: types.v1.FlatKV.value:type_name -> types.v1.Scalar
+	8,  // 26: types.v1.FlatArr.items:type_name -> types.v1.Scalar
+	22, // 27: types.v1.TableType.columns:type_name -> types.v1.TableType.Column
+	11, // 28: types.v1.Table.type:type_name -> types.v1.TableType
+	5,  // 29: types.v1.Table.rows:type_name -> types.v1.Arr
+	23, // 30: types.v1.DataStreamType.multi:type_name -> types.v1.DataStreamType.MultiDataStreamType
+	11, // 31: types.v1.DataStreamType.table:type_name -> types.v1.TableType
+	24, // 32: types.v1.DataStreamType.logs:type_name -> types.v1.DataStreamType.LogType
+	25, // 33: types.v1.DataStreamType.spans:type_name -> types.v1.DataStreamType.SpanType
+	1,  // 34: types.v1.VarType.ArrayType.items:type_name -> types.v1.VarType
+	20, // 35: types.v1.VarType.ObjectType.kvs:type_name -> types.v1.VarType.ObjectType.KvsEntry
+	1,  // 36: types.v1.VarType.MapType.key:type_name -> types.v1.VarType
+	1,  // 37: types.v1.VarType.MapType.value:type_name -> types.v1.VarType
+	1,  // 38: types.v1.VarType.ObjectType.KvsEntry.value:type_name -> types.v1.VarType
+	3,  // 39: types.v1.Map.Entry.key:type_name -> types.v1.Val
+	3,  // 40: types.v1.Map.Entry.value:type_name -> types.v1.Val
+	1,  // 41: types.v1.TableType.Column.type:type_name -> types.v1.VarType
+	13, // 42: types.v1.DataStreamType.MultiDataStreamType.streams:type_name -> types.v1.DataStreamType
+	43, // [43:43] is the sub-list for method output_type
+	43, // [43:43] is the sub-list for method input_type
+	43, // [43:43] is the sub-list for extension type_name
+	43, // [43:43] is the sub-list for extension extendee
+	0,  // [0:43] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_types_proto_init() }
@@ -1831,6 +1979,7 @@ func file_types_v1_types_proto_init() {
 	if File_types_v1_types_proto != nil {
 		return
 	}
+	file_types_v1_ulid_proto_init()
 	file_types_v1_types_proto_msgTypes[0].OneofWrappers = []any{
 		(*VarType_Scalar)(nil),
 		(*VarType_Array)(nil),
@@ -1849,6 +1998,7 @@ func file_types_v1_types_proto_init() {
 		(*Val_Blob)(nil),
 		(*Val_TraceId)(nil),
 		(*Val_SpanId)(nil),
+		(*Val_Ulid)(nil),
 		(*Val_Arr)(nil),
 		(*Val_Obj)(nil),
 		(*Val_Map)(nil),
@@ -1864,6 +2014,7 @@ func file_types_v1_types_proto_init() {
 		(*Scalar_Dur)(nil),
 		(*Scalar_TraceId)(nil),
 		(*Scalar_SpanId)(nil),
+		(*Scalar_Ulid)(nil),
 	}
 	file_types_v1_types_proto_msgTypes[12].OneofWrappers = []any{
 		(*DataStreamType_Multi)(nil),
@@ -1877,7 +2028,7 @@ func file_types_v1_types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_types_proto_rawDesc), len(file_types_v1_types_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   23,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

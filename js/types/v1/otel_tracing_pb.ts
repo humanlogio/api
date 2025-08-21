@@ -4,91 +4,11 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { KV, SpanID, TraceID } from "./types_pb";
 import { ULID } from "./ulid_pb";
 import { Resource } from "./otel_resource_pb";
 import { Scope } from "./otel_scope_pb";
-import { KV } from "./types_pb";
-
-/**
- * @generated from message types.v1.TraceID
- */
-export class TraceID extends Message<TraceID> {
-  /**
-   * @generated from field: uint64 high = 1;
-   */
-  high = protoInt64.zero;
-
-  /**
-   * @generated from field: uint64 low = 2;
-   */
-  low = protoInt64.zero;
-
-  constructor(data?: PartialMessage<TraceID>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.TraceID";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "high", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "low", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TraceID {
-    return new TraceID().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TraceID {
-    return new TraceID().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TraceID {
-    return new TraceID().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: TraceID | PlainMessage<TraceID> | undefined, b: TraceID | PlainMessage<TraceID> | undefined): boolean {
-    return proto3.util.equals(TraceID, a, b);
-  }
-}
-
-/**
- * @generated from message types.v1.SpanID
- */
-export class SpanID extends Message<SpanID> {
-  /**
-   * @generated from field: uint64 id = 1;
-   */
-  id = protoInt64.zero;
-
-  constructor(data?: PartialMessage<SpanID>) {
-    super();
-    proto3.util.initPartial(data, this);
-  }
-
-  static readonly runtime: typeof proto3 = proto3;
-  static readonly typeName = "types.v1.SpanID";
-  static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-  ]);
-
-  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SpanID {
-    return new SpanID().fromBinary(bytes, options);
-  }
-
-  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SpanID {
-    return new SpanID().fromJson(jsonValue, options);
-  }
-
-  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SpanID {
-    return new SpanID().fromJsonString(jsonString, options);
-  }
-
-  static equals(a: SpanID | PlainMessage<SpanID> | undefined, b: SpanID | PlainMessage<SpanID> | undefined): boolean {
-    return proto3.util.equals(SpanID, a, b);
-  }
-}
 
 /**
  * @generated from message types.v1.Trace

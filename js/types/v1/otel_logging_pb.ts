@@ -6,10 +6,9 @@
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
 import { Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { ULID } from "./ulid_pb";
-import { SpanID, TraceID } from "./otel_tracing_pb";
+import { KV, SpanID, TraceID } from "./types_pb";
 import { Resource } from "./otel_resource_pb";
 import { Scope } from "./otel_scope_pb";
-import { KV } from "./types_pb";
 
 /**
  * @generated from message types.v1.Log

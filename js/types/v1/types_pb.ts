@@ -4,7 +4,8 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
+import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { ULID } from "./ulid_pb";
 
 /**
  * @generated from enum types.v1.ScalarType
@@ -64,6 +65,11 @@ export enum ScalarType {
    * @generated from enum value: span_id = 91;
    */
   span_id = 91,
+
+  /**
+   * @generated from enum value: ulid = 92;
+   */
+  ulid = 92,
 }
 // Retrieve enum metadata with: proto3.getEnumType(ScalarType)
 proto3.util.setEnumType(ScalarType, "types.v1.ScalarType", [
@@ -78,6 +84,7 @@ proto3.util.setEnumType(ScalarType, "types.v1.ScalarType", [
   { no: 8, name: "blob" },
   { no: 90, name: "trace_id" },
   { no: 91, name: "span_id" },
+  { no: 92, name: "ulid" },
 ]);
 
 /**
@@ -404,16 +411,22 @@ export class Val extends Message<Val> {
     case: "blob";
   } | {
     /**
-     * @generated from field: string trace_id = 213;
+     * @generated from field: types.v1.TraceID trace_id = 213;
      */
-    value: string;
+    value: TraceID;
     case: "traceId";
   } | {
     /**
-     * @generated from field: string span_id = 214;
+     * @generated from field: types.v1.SpanID span_id = 214;
      */
-    value: string;
+    value: SpanID;
     case: "spanId";
+  } | {
+    /**
+     * @generated from field: types.v1.ULID ulid = 215;
+     */
+    value: ULID;
+    case: "ulid";
   } | {
     /**
      * @generated from field: types.v1.Arr arr = 207;
@@ -457,8 +470,9 @@ export class Val extends Message<Val> {
     { no: 205, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
     { no: 206, name: "dur", kind: "message", T: Duration, oneof: "kind" },
     { no: 211, name: "blob", kind: "scalar", T: 12 /* ScalarType.BYTES */, oneof: "kind" },
-    { no: 213, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
-    { no: 214, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 213, name: "trace_id", kind: "message", T: TraceID, oneof: "kind" },
+    { no: 214, name: "span_id", kind: "message", T: SpanID, oneof: "kind" },
+    { no: 215, name: "ulid", kind: "message", T: ULID, oneof: "kind" },
     { no: 207, name: "arr", kind: "message", T: Arr, oneof: "kind" },
     { no: 208, name: "obj", kind: "message", T: Obj, oneof: "kind" },
     { no: 209, name: "map", kind: "message", T: Map, oneof: "kind" },
@@ -723,16 +737,22 @@ export class Scalar extends Message<Scalar> {
     case: "dur";
   } | {
     /**
-     * @generated from field: string trace_id = 209;
+     * @generated from field: types.v1.TraceID trace_id = 209;
      */
-    value: string;
+    value: TraceID;
     case: "traceId";
   } | {
     /**
-     * @generated from field: string span_id = 210;
+     * @generated from field: types.v1.SpanID span_id = 210;
      */
-    value: string;
+    value: SpanID;
     case: "spanId";
+  } | {
+    /**
+     * @generated from field: types.v1.ULID ulid = 211;
+     */
+    value: ULID;
+    case: "ulid";
   } | { case: undefined; value?: undefined } = { case: undefined };
 
   constructor(data?: PartialMessage<Scalar>) {
@@ -751,8 +771,9 @@ export class Scalar extends Message<Scalar> {
     { no: 204, name: "bool", kind: "scalar", T: 8 /* ScalarType.BOOL */, oneof: "kind" },
     { no: 207, name: "ts", kind: "message", T: Timestamp, oneof: "kind" },
     { no: 208, name: "dur", kind: "message", T: Duration, oneof: "kind" },
-    { no: 209, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
-    { no: 210, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "kind" },
+    { no: 209, name: "trace_id", kind: "message", T: TraceID, oneof: "kind" },
+    { no: 210, name: "span_id", kind: "message", T: SpanID, oneof: "kind" },
+    { no: 211, name: "ulid", kind: "message", T: ULID, oneof: "kind" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): Scalar {
@@ -1135,6 +1156,86 @@ export class DataStreamType_SpanType extends Message<DataStreamType_SpanType> {
 
   static equals(a: DataStreamType_SpanType | PlainMessage<DataStreamType_SpanType> | undefined, b: DataStreamType_SpanType | PlainMessage<DataStreamType_SpanType> | undefined): boolean {
     return proto3.util.equals(DataStreamType_SpanType, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.TraceID
+ */
+export class TraceID extends Message<TraceID> {
+  /**
+   * @generated from field: uint64 high = 1;
+   */
+  high = protoInt64.zero;
+
+  /**
+   * @generated from field: uint64 low = 2;
+   */
+  low = protoInt64.zero;
+
+  constructor(data?: PartialMessage<TraceID>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.TraceID";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "high", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 2, name: "low", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TraceID {
+    return new TraceID().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): TraceID {
+    return new TraceID().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): TraceID {
+    return new TraceID().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: TraceID | PlainMessage<TraceID> | undefined, b: TraceID | PlainMessage<TraceID> | undefined): boolean {
+    return proto3.util.equals(TraceID, a, b);
+  }
+}
+
+/**
+ * @generated from message types.v1.SpanID
+ */
+export class SpanID extends Message<SpanID> {
+  /**
+   * @generated from field: uint64 id = 1;
+   */
+  id = protoInt64.zero;
+
+  constructor(data?: PartialMessage<SpanID>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "types.v1.SpanID";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SpanID {
+    return new SpanID().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): SpanID {
+    return new SpanID().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): SpanID {
+    return new SpanID().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: SpanID | PlainMessage<SpanID> | undefined, b: SpanID | PlainMessage<SpanID> | undefined): boolean {
+    return proto3.util.equals(SpanID, a, b);
   }
 }
 

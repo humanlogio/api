@@ -4,6 +4,7 @@ package types.v1;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
+import "types/v1/ulid.proto";
 
 enum ScalarType {
   unknown = 0;
@@ -17,6 +18,7 @@ enum ScalarType {
   blob = 8;
   trace_id = 90;
   span_id = 91;
+  ulid = 92;
 }
 
 message VarType {
@@ -56,8 +58,9 @@ message Val {
     google.protobuf.Timestamp ts = 205;
     google.protobuf.Duration dur = 206;
     bytes blob = 211;
-    string trace_id = 213;
-    string span_id = 214;
+    TraceID trace_id = 213;
+    SpanID span_id = 214;
+    ULID ulid = 215;
     Arr arr = 207;
     Obj obj = 208;
     Map map = 209;
@@ -93,8 +96,9 @@ message Scalar {
     bool bool = 204;
     google.protobuf.Timestamp ts = 207;
     google.protobuf.Duration dur = 208;
-    string trace_id = 209;
-    string span_id = 210;
+    TraceID trace_id = 209;
+    SpanID span_id = 210;
+    ULID ulid = 211;
   }
 }
 
@@ -132,4 +136,13 @@ message DataStreamType {
     LogType logs = 3;
     SpanType spans = 4;
   }
+}
+
+message TraceID {
+  uint64 high = 1;
+  uint64 low = 2;
+}
+
+message SpanID {
+  uint64 id = 1;
 }

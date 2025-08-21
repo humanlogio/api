@@ -11,15 +11,6 @@ import "types/v1/ulid.proto";
 
 option go_package = "types/v1;typesv1";
 
-message TraceID {
-  uint64 high = 1;
-  uint64 low = 2;
-}
-
-message SpanID {
-  uint64 id = 1;
-}
-
 message Trace {
   TraceID trace_id = 1;
   repeated Span spans = 2;
