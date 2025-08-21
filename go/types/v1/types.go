@@ -139,6 +139,8 @@ func EqualVal(a, b *Val) bool {
 		return ak.TraceId == b.GetTraceId()
 	case *Val_SpanId:
 		return ak.SpanId == b.GetSpanId()
+	case *Val_Ulid:
+		return ak.Ulid == b.GetUlid()
 	case *Val_Arr:
 		if len(ak.Arr.Items) != len(b.GetArr().Items) {
 			return false
@@ -232,6 +234,10 @@ func TypeSpanID() *VarType {
 	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_span_id}}
 }
 
+func TypeULID() *VarType {
+	return &VarType{Type: &VarType_Scalar{Scalar: ScalarType_ulid}}
+}
+
 func TypeArr(v ...*VarType) *VarType {
 	atyp := &VarType_ArrayType{Items: &VarType{Type: &VarType_Scalar{Scalar: ScalarType_unknown}}}
 	for i, item := range v {
@@ -316,13 +322,18 @@ func ValBlob(blob []byte) *Val {
 	return &Val{Type: typ, Kind: &Val_Blob{Blob: blob}}
 }
 
-func ValTraceID(traceID string) *Val {
+func ValTraceID(traceID *TraceID) *Val {
 	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_trace_id}}
 	return &Val{Type: typ, Kind: &Val_TraceId{TraceId: traceID}}
 }
-func ValSpanID(spanID string) *Val {
+func ValSpanID(spanID *SpanID) *Val {
 	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_span_id}}
 	return &Val{Type: typ, Kind: &Val_SpanId{SpanId: spanID}}
+}
+
+func ValULID(ul *ULID) *Val {
+	typ := &VarType{Type: &VarType_Scalar{Scalar: ScalarType_ulid}}
+	return &Val{Type: typ, Kind: &Val_Ulid{Ulid: ul}}
 }
 
 func ValArr(v ...*Val) *Val {
