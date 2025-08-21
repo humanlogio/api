@@ -22,6 +22,7 @@ const (
 	tagHash64     = uint8(0xB)
 	tagTraceID    = uint8(0xC)
 	tagSpanID     = uint8(0xD)
+	tagULID       = uint8(0xE)
 )
 
 var (
@@ -41,6 +42,8 @@ func Hash64Value(val *Val) uint64 {
 		return Hash64TraceID(vv.TraceId)
 	case *Val_SpanId:
 		return Hash64SpanID(vv.SpanId)
+	case *Val_Ulid:
+		return Hash64ULID(vv.Ulid)
 	case *Val_Blob:
 		return Hash64Blob(vv.Blob)
 	case *Val_Null:
@@ -100,13 +103,59 @@ func Hash64String(v string) uint64 {
 	return xxhash.Sum64(fp)
 }
 
-func Hash64TraceID(v string) uint64 {
-	fp := slices.Concat([]byte{tagTraceID}, []byte(v))
+func Hash64TraceID(v *TraceID) uint64 {
+	fp := []byte{
+		tagTraceID,
+		byte(v.High >> 52),
+		byte(v.High >> 48),
+		byte(v.High >> 32),
+		byte(v.High >> 24),
+		byte(v.High >> 16),
+		byte(v.High >> 8),
+		byte(v.High >> 0),
+		byte(v.Low >> 52),
+		byte(v.Low >> 48),
+		byte(v.Low >> 32),
+		byte(v.Low >> 24),
+		byte(v.Low >> 16),
+		byte(v.Low >> 8),
+		byte(v.Low >> 0),
+	}
 	return xxhash.Sum64(fp)
 }
 
-func Hash64SpanID(v string) uint64 {
-	fp := slices.Concat([]byte{tagSpanID}, []byte(v))
+func Hash64SpanID(v *SpanID) uint64 {
+	fp := []byte{
+		tagSpanID,
+		byte(v.Id >> 52),
+		byte(v.Id >> 48),
+		byte(v.Id >> 32),
+		byte(v.Id >> 24),
+		byte(v.Id >> 16),
+		byte(v.Id >> 8),
+		byte(v.Id >> 0),
+	}
+	return xxhash.Sum64(fp)
+}
+
+func Hash64ULID(v *ULID) uint64 {
+	fp := []byte{
+		tagULID,
+		byte(v.High >> 52),
+		byte(v.High >> 48),
+		byte(v.High >> 32),
+		byte(v.High >> 24),
+		byte(v.High >> 16),
+		byte(v.High >> 8),
+		byte(v.High >> 0),
+		byte(v.Low >> 52),
+		byte(v.Low >> 48),
+		byte(v.Low >> 32),
+		byte(v.Low >> 24),
+		byte(v.Low >> 16),
+		byte(v.Low >> 8),
+		byte(v.Low >> 0),
+	}
 	return xxhash.Sum64(fp)
 }
 
