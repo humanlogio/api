@@ -62,10 +62,10 @@ func SpanIDFromHex(out *SpanID, id string) (*SpanID, error) {
 }
 
 func SpanIDToHex(in *SpanID) string {
-	raw := SpanIDToBytes(nil, in)
+	raw := SpanIDToBytes(in)
 	return hex.EncodeToString(raw[:])
 }
 
-func SpanIDToBytes(b []byte, in *SpanID) []byte {
+func SpanIDToBytes(in *SpanID) []byte {
 	return in.Raw
 }
