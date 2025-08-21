@@ -104,40 +104,12 @@ func Hash64String(v string) uint64 {
 }
 
 func Hash64TraceID(v *TraceID) uint64 {
-	fp := [17]byte{
-		tagTraceID,
-		byte(v.High >> 56),
-		byte(v.High >> 48),
-		byte(v.High >> 40),
-		byte(v.High >> 32),
-		byte(v.High >> 24),
-		byte(v.High >> 16),
-		byte(v.High >> 8),
-		byte(v.High),
-		byte(v.Low >> 56),
-		byte(v.Low >> 48),
-		byte(v.Low >> 40),
-		byte(v.Low >> 32),
-		byte(v.Low >> 24),
-		byte(v.Low >> 16),
-		byte(v.Low >> 8),
-		byte(v.Low),
-	}
+	fp := slices.Concat([]byte{tagTraceID}, v.Raw)
 	return xxhash.Sum64(fp[:])
 }
 
 func Hash64SpanID(v *SpanID) uint64 {
-	fp := [9]byte{
-		tagSpanID,
-		byte(v.Id >> 56),
-		byte(v.Id >> 48),
-		byte(v.Id >> 40),
-		byte(v.Id >> 32),
-		byte(v.Id >> 24),
-		byte(v.Id >> 16),
-		byte(v.Id >> 8),
-		byte(v.Id),
-	}
+	fp := slices.Concat([]byte{tagSpanID}, v.Raw)
 	return xxhash.Sum64(fp[:])
 }
 

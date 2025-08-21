@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Duration, Message, proto3, protoInt64, Timestamp } from "@bufbuild/protobuf";
+import { Duration, Message, proto3, Timestamp } from "@bufbuild/protobuf";
 import { ULID } from "./ulid_pb";
 
 /**
@@ -1164,14 +1164,9 @@ export class DataStreamType_SpanType extends Message<DataStreamType_SpanType> {
  */
 export class TraceID extends Message<TraceID> {
   /**
-   * @generated from field: uint64 high = 1;
+   * @generated from field: bytes raw = 1;
    */
-  high = protoInt64.zero;
-
-  /**
-   * @generated from field: uint64 low = 2;
-   */
-  low = protoInt64.zero;
+  raw = new Uint8Array(0);
 
   constructor(data?: PartialMessage<TraceID>) {
     super();
@@ -1181,8 +1176,7 @@ export class TraceID extends Message<TraceID> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.TraceID";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "high", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
-    { no: 2, name: "low", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: "raw", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): TraceID {
@@ -1207,9 +1201,9 @@ export class TraceID extends Message<TraceID> {
  */
 export class SpanID extends Message<SpanID> {
   /**
-   * @generated from field: uint64 id = 1;
+   * @generated from field: bytes raw = 1;
    */
-  id = protoInt64.zero;
+  raw = new Uint8Array(0);
 
   constructor(data?: PartialMessage<SpanID>) {
     super();
@@ -1219,7 +1213,7 @@ export class SpanID extends Message<SpanID> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "types.v1.SpanID";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: "raw", kind: "scalar", T: 12 /* ScalarType.BYTES */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): SpanID {

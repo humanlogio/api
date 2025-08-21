@@ -1,50 +1,23 @@
 package typesv1
 
 import (
-	"encoding/binary"
 	"encoding/hex"
-	"fmt"
 )
 
 func TraceIDFromBytesArray(out *TraceID, id [16]byte) *TraceID {
 	if out == nil {
 		out = new(TraceID)
 	}
-	out.High = binary.BigEndian.Uint64(id[0:8])
-	out.Low = binary.BigEndian.Uint64(id[8:16])
+	out.Raw = id[:]
 	return out
 }
 
-func TraceIDFromBytesSlice(out *TraceID, id []byte) (*TraceID, error) {
-	n := len(id)
-	if n == 0 {
-		return nil, nil
-	}
-	if n > 16 {
-		return nil, fmt.Errorf("trace_id has more than 128 bits: %d", n*8)
-	}
-
-	var hi, lo uint64
-	if n == 16 {
-		hi = binary.BigEndian.Uint64(id[0:8])
-		lo = binary.BigEndian.Uint64(id[8:16])
-	} else if n < 16 {
-		var buf [16]byte
-		copy(buf[16-n:], id)
-		hi = binary.BigEndian.Uint64(buf[0:8])
-		lo = binary.BigEndian.Uint64(buf[8:16])
-	} else {
-		return nil, fmt.Errorf("trace_id is too large: %d bits", n*8)
-	}
-	if (hi | lo) == 0 {
-		return nil, fmt.Errorf("trace_id is all zeros")
-	}
+func TraceIDFromBytesSlice(out *TraceID, id []byte) *TraceID {
 	if out == nil {
 		out = new(TraceID)
 	}
-	out.High = hi
-	out.Low = lo
-	return out, nil
+	out.Raw = id
+	return out
 }
 
 func TraceIDFromHex(out *TraceID, id string) (*TraceID, error) {
@@ -52,50 +25,32 @@ func TraceIDFromHex(out *TraceID, id string) (*TraceID, error) {
 	if err != nil {
 		return nil, err
 	}
-	return TraceIDFromBytesSlice(out, b)
+	return TraceIDFromBytesSlice(out, b), nil
 }
 
 func TraceIDToHex(in *TraceID) string {
-	raw := TraceIDToBytes(nil, in)
+	raw := TraceIDToBytes(in)
 	return hex.EncodeToString(raw[:])
 }
 
-func TraceIDToBytes(b []byte, in *TraceID) [16]byte {
-	b = binary.BigEndian.AppendUint64(b, in.High)
-	b = binary.BigEndian.AppendUint64(b, in.Low)
-	return *(*[16]byte)(b[:16])
+func TraceIDToBytes(in *TraceID) []byte {
+	return in.Raw
 }
 
 func SpanIDFromBytesArray(out *SpanID, id [8]byte) *SpanID {
 	if out == nil {
 		out = new(SpanID)
 	}
-	out.Id = binary.BigEndian.Uint64(id[0:8])
+	out.Raw = id[:]
 	return out
 }
 
-func SpanIDFromBytesSlice(out *SpanID, id []byte) (*SpanID, error) {
-	n := len(id)
-	var v uint64
-	if n == 0 {
-		return nil, nil
-	} else if n == 8 {
-		v = binary.BigEndian.Uint64(id)
-	} else if n < 8 {
-		var buf [8]byte
-		copy(buf[8-n:], id)
-		v = binary.BigEndian.Uint64(buf[:])
-	} else {
-		return nil, fmt.Errorf("span_id is too large: %d bits", n*8)
-	}
-	if v == 0 {
-		return nil, fmt.Errorf("span_id is all zeros")
-	}
+func SpanIDFromBytesSlice(out *SpanID, id []byte) *SpanID {
 	if out == nil {
 		out = new(SpanID)
 	}
-	out.Id = v
-	return out, nil
+	out.Raw = id
+	return out
 }
 
 func SpanIDFromHex(out *SpanID, id string) (*SpanID, error) {
@@ -103,7 +58,7 @@ func SpanIDFromHex(out *SpanID, id string) (*SpanID, error) {
 	if err != nil {
 		return nil, err
 	}
-	return SpanIDFromBytesSlice(out, b)
+	return SpanIDFromBytesSlice(out, b), nil
 }
 
 func SpanIDToHex(in *SpanID) string {
@@ -111,7 +66,6 @@ func SpanIDToHex(in *SpanID) string {
 	return hex.EncodeToString(raw[:])
 }
 
-func SpanIDToBytes(b []byte, in *SpanID) [8]byte {
-	b = binary.BigEndian.AppendUint64(b, in.Id)
-	return *(*[8]byte)(b[:8])
+func SpanIDToBytes(b []byte, in *SpanID) []byte {
+	return in.Raw
 }

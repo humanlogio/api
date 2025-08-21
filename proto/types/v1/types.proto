@@ -139,10 +139,9 @@ message DataStreamType {
 }
 
 message TraceID {
-  uint64 high = 1;
-  uint64 low = 2;
+  bytes raw = 1;
 }
 
 message SpanID {
-  uint64 id = 1;
+  bytes raw = 1;
 }

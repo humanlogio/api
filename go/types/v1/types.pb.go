@@ -1273,8 +1273,7 @@ func (*DataStreamType_Spans) isDataStreamType_Type() {}
 
 type TraceID struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	High          uint64                 `protobuf:"varint,1,opt,name=high,proto3" json:"high,omitempty"`
-	Low           uint64                 `protobuf:"varint,2,opt,name=low,proto3" json:"low,omitempty"`
+	Raw           []byte                 `protobuf:"bytes,1,opt,name=raw,proto3" json:"raw,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1309,23 +1308,16 @@ func (*TraceID) Descriptor() ([]byte, []int) {
 	return file_types_v1_types_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *TraceID) GetHigh() uint64 {
+func (x *TraceID) GetRaw() []byte {
 	if x != nil {
-		return x.High
+		return x.Raw
 	}
-	return 0
-}
-
-func (x *TraceID) GetLow() uint64 {
-	if x != nil {
-		return x.Low
-	}
-	return 0
+	return nil
 }
 
 type SpanID struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Raw           []byte                 `protobuf:"bytes,1,opt,name=raw,proto3" json:"raw,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1360,11 +1352,11 @@ func (*SpanID) Descriptor() ([]byte, []int) {
 	return file_types_v1_types_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *SpanID) GetId() uint64 {
+func (x *SpanID) GetRaw() []byte {
 	if x != nil {
-		return x.Id
+		return x.Raw
 	}
-	return 0
+	return nil
 }
 
 type VarType_ArrayType struct {
@@ -1854,12 +1846,11 @@ const file_types_v1_types_proto_rawDesc = "" +
 	"\aLogType\x1a\n" +
 	"\n" +
 	"\bSpanTypeB\x06\n" +
-	"\x04type\"/\n" +
-	"\aTraceID\x12\x12\n" +
-	"\x04high\x18\x01 \x01(\x04R\x04high\x12\x10\n" +
-	"\x03low\x18\x02 \x01(\x04R\x03low\"\x18\n" +
-	"\x06SpanID\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id*\x8a\x01\n" +
+	"\x04type\"\x1b\n" +
+	"\aTraceID\x12\x10\n" +
+	"\x03raw\x18\x01 \x01(\fR\x03raw\"\x1a\n" +
+	"\x06SpanID\x12\x10\n" +
+	"\x03raw\x18\x01 \x01(\fR\x03raw*\x8a\x01\n" +
 	"\n" +
 	"ScalarType\x12\v\n" +
 	"\aunknown\x10\x00\x12\a\n" +
