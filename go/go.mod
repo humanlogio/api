@@ -1,8 +1,6 @@
 module github.com/humanlogio/api/go
 
-go 1.23.0
-
-toolchain go1.24.3
+go 1.25
 
 require (
 	connectrpc.com/connect v1.16.2
