@@ -1,0 +1,44 @@
+name: lint and test
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        go: [stable]
+        os:
+        - ubuntu-latest
+        - macos-latest
+
+    name: test
+    runs-on: ${{ matrix.os }}
+    env:
+      GOEXPERIMENT: jsonv2
+    steps:
+
+    - name: Set up Go 1.23
+      uses: actions/setup-go@v5
+      with:
+          go-version: ${{ matrix.go }}
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - uses: pkgxdev/setup@v4
+      with:
+        +:  buf
+
+    - name: setup codegen deps
+      run: script/install_codegen_deps
+
+    - name: Lint
+      run: script/lint
+
+    - name: Test
+      run: script/test

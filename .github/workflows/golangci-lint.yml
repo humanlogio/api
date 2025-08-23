@@ -1,0 +1,40 @@
+name: golangci-lint
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+  checks: write
+
+jobs:
+  golangci:
+    strategy:
+      matrix:
+        go: [stable]
+        os:
+        - ubuntu-latest
+        - macos-latest
+
+    name: lint
+    runs-on: ${{ matrix.os }}
+    env:
+      GOEXPERIMENT: jsonv2
+    steps:
+
+      - uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v8
+        with:
+          working-directory: ./go
+          version: v2.4.0
+          args: --fast-only --timeout 10m
