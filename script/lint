@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -eu
+
+root=$(git rev-parse --show-toplevel)
+
+tag=$(git rev-parse --short HEAD)
+
+function check_nothing_to_generate() {
+    ${root}/script/generate
+    if [[ $(git status --porcelain) ]]; then
+        echo $(git diff)
+        echo "generated files are out of date, run 'script/generate'"
+        exit 1
+    else
+        exit 0
+    fi
+}
+
+function main() {
+    check_nothing_to_generate
+}
+
+main

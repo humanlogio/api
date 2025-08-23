@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+
+# eval "$(pkgx --shellcode)"
+root=$(git rev-parse --show-toplevel)
+
+function main() {
+    pushd ${root}
+    npm install \
+        --save-dev \
+        @connectrpc/connect \
+        @connectrpc/connect-web \
+        @connectrpc/connect-query \
+        @connectrpc/protoc-gen-connect-es \
+        @bufbuild/protoc-gen-es \
+        @bufbuild/buf
+
+    go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+    go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
+}
+
+main
