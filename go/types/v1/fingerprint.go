@@ -2,6 +2,7 @@ package typesv1
 
 import (
 	"fmt"
+	"iter"
 	"slices"
 
 	"github.com/cespare/xxhash"
@@ -34,16 +35,30 @@ var (
 	tagKVsh        = xxhash.Sum64([]byte{tagKVs})
 )
 
+func Hash64Resource(schemaURL string, kvs iter.Seq2[string, Valuer]) uint64 {
+	h64 := Hash64String(schemaURL)
+	h64 ^= Hash64AnyKVs_orderDoesntMatter(kvs)
+	return h64
+}
+
+func Hash64Scope(schemaURL, name, version string, kvs iter.Seq2[string, Valuer]) uint64 {
+	h64 := Hash64String(schemaURL)
+	h64 ^= Hash64String(name)
+	h64 ^= Hash64String(version)
+	h64 ^= Hash64AnyKVs_orderDoesntMatter(kvs)
+	return h64
+}
+
 func Hash64Value(val *Val) uint64 {
 	switch vv := val.Kind.(type) {
 	case *Val_Str:
 		return Hash64String(vv.Str)
 	case *Val_TraceId:
-		return Hash64TraceID(vv.TraceId)
+		return Hash64TraceID(vv.TraceId.Raw)
 	case *Val_SpanId:
-		return Hash64SpanID(vv.SpanId)
+		return Hash64SpanID(vv.SpanId.Raw)
 	case *Val_Ulid:
-		return Hash64ULID(vv.Ulid)
+		return Hash64ULID(vv.Ulid.High, vv.Ulid.Low)
 	case *Val_Blob:
 		return Hash64Blob(vv.Blob)
 	case *Val_Null:
@@ -98,40 +113,91 @@ func Hash64Values_orderDoesntMatter(arr []*Val) uint64 {
 	return xored
 }
 
+func Hash64Any(v Valuer) uint64 {
+	return v(
+		Hash64String,
+		Hash64TraceID,
+		Hash64SpanID,
+		Hash64ULID,
+		Hash64Blob,
+		Hash64Null,
+		Hash64Bool,
+		Hash64I64,
+		Hash64F64,
+		Hash64Hash64,
+		Hash64Ts,
+		Hash64Dur,
+		Hash64AnyArray_orderDoesntMatter,
+		Hash64AnyKVs_orderDoesntMatter,
+		Hash64AnyMaps_orderDoesntMatter,
+	)
+}
+
+func Hash64AnyArray_orderDoesntMatter(items iter.Seq[Valuer]) uint64 {
+	xored := tagArrayh
+	for el := range items {
+		h := Hash64Any(el)
+		xored ^= h
+	}
+	return xored
+}
+
+func Hash64AnyKVs_orderDoesntMatter(kvs iter.Seq2[string, Valuer]) uint64 {
+	xored := tagKVsh
+	for k, v := range kvs {
+		kh := xxhash.Sum64String(k)
+		vh := Hash64Any(v)
+		h := kh ^ vh
+		xored ^= h
+	}
+	return xored
+}
+
+func Hash64AnyMaps_orderDoesntMatter(kvs iter.Seq2[Valuer, Valuer]) uint64 {
+	xored := tagMapEntriesh
+	for k, v := range kvs {
+		kh := Hash64Any(k)
+		vh := Hash64Any(v)
+		h := kh ^ vh
+		xored ^= h
+	}
+	return xored
+}
+
 func Hash64String(v string) uint64 {
 	fp := slices.Concat([]byte{tagStr}, []byte(v))
 	return xxhash.Sum64(fp)
 }
 
-func Hash64TraceID(v *TraceID) uint64 {
-	fp := slices.Concat([]byte{tagTraceID}, v.Raw)
+func Hash64TraceID(v []byte) uint64 {
+	fp := slices.Concat([]byte{tagTraceID}, v)
 	return xxhash.Sum64(fp[:])
 }
 
-func Hash64SpanID(v *SpanID) uint64 {
-	fp := slices.Concat([]byte{tagSpanID}, v.Raw)
+func Hash64SpanID(v []byte) uint64 {
+	fp := slices.Concat([]byte{tagSpanID}, v)
 	return xxhash.Sum64(fp[:])
 }
 
-func Hash64ULID(v *ULID) uint64 {
+func Hash64ULID(hi, lo uint64) uint64 {
 	fp := [17]byte{
 		tagULID,
-		byte(v.High >> 56),
-		byte(v.High >> 48),
-		byte(v.High >> 40),
-		byte(v.High >> 32),
-		byte(v.High >> 24),
-		byte(v.High >> 16),
-		byte(v.High >> 8),
-		byte(v.High),
-		byte(v.Low >> 56),
-		byte(v.Low >> 48),
-		byte(v.Low >> 40),
-		byte(v.Low >> 32),
-		byte(v.Low >> 24),
-		byte(v.Low >> 16),
-		byte(v.Low >> 8),
-		byte(v.Low),
+		byte(hi >> 56),
+		byte(hi >> 48),
+		byte(hi >> 40),
+		byte(hi >> 32),
+		byte(hi >> 24),
+		byte(hi >> 16),
+		byte(hi >> 8),
+		byte(hi),
+		byte(lo >> 56),
+		byte(lo >> 48),
+		byte(lo >> 40),
+		byte(lo >> 32),
+		byte(lo >> 24),
+		byte(lo >> 16),
+		byte(lo >> 8),
+		byte(lo),
 	}
 	return xxhash.Sum64(fp[:])
 }
@@ -235,4 +301,459 @@ func Hash64Dur(seconds int64, nanos int32) uint64 {
 		byte(seconds),
 	}
 	return xxhash.Sum64(fp[:])
+}
+
+type Valuer func(
+	onStr func(string) uint64,
+	onTraceId func([]byte) uint64,
+	onSpanId func([]byte) uint64,
+	onUlid func(hi uint64, lo uint64) uint64,
+	onBlob func([]byte) uint64,
+	onNull func() uint64,
+	onBool func(bool) uint64,
+	onI64 func(int64) uint64,
+	onF64 func(float64) uint64,
+	onHash64 func(uint64) uint64,
+	onTs func(seconds int64, nanos int32) uint64,
+	onDur func(seconds int64, nanos int32) uint64,
+	onArr func(iter.Seq[Valuer]) uint64,
+	onObj func(iter.Seq2[string, Valuer]) uint64,
+	onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+) uint64
+
+func KVsToValuer(kvs []*KV) iter.Seq2[string, Valuer] {
+	return func(yield func(string, Valuer) bool) {
+		for _, kv := range kvs {
+			if !yield(kv.Key, ValuerVal(kv.Value)) {
+				return
+			}
+		}
+	}
+}
+
+func ValsToValuer(vals []*Val) iter.Seq[Valuer] {
+	return func(yield func(Valuer) bool) {
+		for _, el := range vals {
+			if !yield(ValuerVal(el)) {
+				return
+			}
+		}
+	}
+}
+
+func ObjectToValuer(obj *Obj) iter.Seq2[string, Valuer] {
+	return KVsToValuer(obj.Kvs)
+}
+
+func MapToValuer(mm *Map) iter.Seq2[Valuer, Valuer] {
+	return func(yield func(Valuer, Valuer) bool) {
+		for _, kv := range mm.Entries {
+			if !yield(ValuerVal(kv.Key), ValuerVal(kv.Value)) {
+				return
+			}
+		}
+	}
+}
+
+func ValuerVal(val *Val) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		switch vv := val.Kind.(type) {
+		case *Val_Str:
+			return onStr(vv.Str)
+		case *Val_F64:
+			return onF64(vv.F64)
+		case *Val_I64:
+			return onI64(vv.I64)
+		case *Val_Hash64:
+			return onHash64(vv.Hash64)
+		case *Val_Bool:
+			return onBool(vv.Bool)
+		case *Val_Ts:
+			return onTs(vv.Ts.Seconds, vv.Ts.Nanos)
+		case *Val_Dur:
+			return onDur(vv.Dur.Seconds, vv.Dur.Nanos)
+		case *Val_Blob:
+			return onBlob(vv.Blob)
+		case *Val_TraceId:
+			return onTraceId(vv.TraceId.Raw)
+		case *Val_SpanId:
+			return onSpanId(vv.SpanId.Raw)
+		case *Val_Ulid:
+			return onUlid(vv.Ulid.High, vv.Ulid.Low)
+		case *Val_Arr:
+			return onArr(ValsToValuer(vv.Arr.Items))
+		case *Val_Obj:
+			return onObj(ObjectToValuer(vv.Obj))
+		case *Val_Map:
+			return onMap(MapToValuer(vv.Map))
+		case *Val_Null:
+			return onNull()
+		default:
+			panic(fmt.Sprintf("missing case: %T (%v)", vv, vv))
+		}
+	}
+}
+
+func ValuerString(v string) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onStr(v)
+	}
+}
+
+func ValuerTraceID(v []byte) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onTraceId(v)
+	}
+}
+
+func ValuerSpanID(v []byte) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onSpanId(v)
+	}
+}
+
+func ValuerULID(hi, lo uint64) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onUlid(hi, lo)
+	}
+}
+
+func ValuerBlob(v []byte) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onBlob(v)
+	}
+}
+func ValuerNull() Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onNull()
+	}
+}
+
+func ValuerBool(v bool) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onBool(v)
+	}
+}
+
+func ValuerI64(v int64) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onI64(v)
+	}
+}
+
+func ValuerF64(v float64) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onF64(v)
+	}
+}
+
+func ValuerHash64(v uint64) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onHash64(v)
+	}
+}
+
+func ValuerTimestamp(seconds int64, nanos int32) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onTs(seconds, nanos)
+	}
+}
+
+func ValuerDuration(seconds int64, nanos int32) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onDur(seconds, nanos)
+	}
+}
+
+func ValuerIteratorFromSlice(v []Valuer) iter.Seq[Valuer] {
+	return func(yield func(Valuer) bool) {
+		for _, el := range v {
+			if !yield(el) {
+				return
+			}
+		}
+	}
+}
+
+func ValuerArr(v iter.Seq[Valuer]) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onArr(v)
+	}
+}
+
+func ValuerIteratorFromObjMap(v map[string]Valuer) iter.Seq2[string, Valuer] {
+	return func(yield func(string, Valuer) bool) {
+		for k, v := range v {
+			if !yield(k, v) {
+				return
+			}
+		}
+	}
+}
+
+func ValuerObj(v iter.Seq2[string, Valuer]) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onObj(v)
+	}
+}
+
+type ValuerMapEntry struct {
+	Key    Valuer
+	Valuer Valuer
+}
+
+func ValuerIteratorFromMap(kvs []ValuerMapEntry) iter.Seq2[Valuer, Valuer] {
+	return func(yield func(Valuer, Valuer) bool) {
+		for _, kv := range kvs {
+			if !yield(kv.Key, kv.Valuer) {
+				return
+			}
+		}
+	}
+}
+
+func ValuerMap(v iter.Seq2[Valuer, Valuer]) Valuer {
+	return func(
+		onStr func(string) uint64,
+		onTraceId, onSpanId func([]byte) uint64,
+		onUlid func(hi uint64, lo uint64) uint64,
+		onBlob func([]byte) uint64,
+		onNull func() uint64,
+		onBool func(bool) uint64,
+		onI64 func(int64) uint64,
+		onF64 func(float64) uint64,
+		onHash64 func(uint64) uint64,
+		onTs,
+		onDur func(seconds int64, nanos int32) uint64,
+		onArr func(iter.Seq[Valuer]) uint64,
+		onObj func(iter.Seq2[string, Valuer]) uint64,
+		onMap func(iter.Seq2[Valuer, Valuer]) uint64,
+	) uint64 {
+		return onMap(v)
+	}
 }

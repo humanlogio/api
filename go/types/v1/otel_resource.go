@@ -3,10 +3,8 @@ package typesv1
 import semconv "go.opentelemetry.io/otel/semconv/v1.34.0"
 
 func NewResource(schemaURL string, kvs []*KV) *Resource {
-	h64 := Hash64String(schemaURL)
-	h64 ^= Hash64KeyValues_orderDoesntMatter(kvs)
 	return &Resource{
-		ResourceHash_64: h64,
+		ResourceHash_64: Hash64Resource(schemaURL, KVsToValuer(kvs)),
 		SchemaUrl:       schemaURL,
 		Attributes:      kvs,
 	}
