@@ -145,8 +145,12 @@ func (x *SummarizeEventsResponse) GetBuckets() []*SummarizeEventsResponse_Bucket
 }
 
 type ParseRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Query string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	// if provided, the query's data type will be evaluated for the environment
+	// this requires looking up the environment, so the user must be logged in
+	// and have access to the environment to request this information
+	EnvironmentId *int64 `protobuf:"varint,2,opt,name=environment_id,json=environmentId,proto3,oneof" json:"environment_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -188,10 +192,18 @@ func (x *ParseRequest) GetQuery() string {
 	return ""
 }
 
+func (x *ParseRequest) GetEnvironmentId() int64 {
+	if x != nil && x.EnvironmentId != nil {
+		return *x.EnvironmentId
+	}
+	return 0
+}
+
 type ParseResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Query         *v1.Query              `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	DataType      *v1.DataStreamType     `protobuf:"bytes,2,opt,name=data_type,json=dataType,proto3" json:"data_type,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Query *v1.Query              `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	// will be populated if user is logged in and `environment_id` is specified
+	DataType      *v1.DataStreamType `protobuf:"bytes,2,opt,name=data_type,json=dataType,proto3,oneof" json:"data_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -831,12 +843,16 @@ const file_svc_query_v1_service_proto_rawDesc = "" +
 	"\x06Bucket\x12*\n" +
 	"\x02ts\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x02ts\x12\x1f\n" +
 	"\vevent_count\x18\x02 \x01(\x04R\n" +
-	"eventCount\"$\n" +
+	"eventCount\"c\n" +
 	"\fParseRequest\x12\x14\n" +
-	"\x05query\x18\x01 \x01(\tR\x05query\"m\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x12*\n" +
+	"\x0eenvironment_id\x18\x02 \x01(\x03H\x00R\renvironmentId\x88\x01\x01B\x11\n" +
+	"\x0f_environment_id\"\x80\x01\n" +
 	"\rParseResponse\x12%\n" +
-	"\x05query\x18\x01 \x01(\v2\x0f.types.v1.QueryR\x05query\x125\n" +
-	"\tdata_type\x18\x02 \x01(\v2\x18.types.v1.DataStreamTypeR\bdataType\"W\n" +
+	"\x05query\x18\x01 \x01(\v2\x0f.types.v1.QueryR\x05query\x12:\n" +
+	"\tdata_type\x18\x02 \x01(\v2\x18.types.v1.DataStreamTypeH\x00R\bdataType\x88\x01\x01B\f\n" +
+	"\n" +
+	"_data_type\"W\n" +
 	"\rFormatRequest\x12\x12\n" +
 	"\x03raw\x18\x01 \x01(\tH\x00R\x03raw\x12)\n" +
 	"\x06parsed\x18\x02 \x01(\v2\x0f.types.v1.QueryH\x00R\x06parsedB\a\n" +
@@ -957,6 +973,8 @@ func file_svc_query_v1_service_proto_init() {
 		return
 	}
 	file_svc_query_v1_service_proto_msgTypes[0].OneofWrappers = []any{}
+	file_svc_query_v1_service_proto_msgTypes[2].OneofWrappers = []any{}
+	file_svc_query_v1_service_proto_msgTypes[3].OneofWrappers = []any{}
 	file_svc_query_v1_service_proto_msgTypes[4].OneofWrappers = []any{
 		(*FormatRequest_Raw)(nil),
 		(*FormatRequest_Parsed)(nil),

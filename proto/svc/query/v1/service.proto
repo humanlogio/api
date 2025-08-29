@@ -48,11 +48,16 @@ message SummarizeEventsResponse {
 
 message ParseRequest {
   string query = 1;
+  // if provided, the query's data type will be evaluated for the environment
+  // this requires looking up the environment, so the user must be logged in
+  // and have access to the environment to request this information
+  optional int64 environment_id = 2;
 }
 
 message ParseResponse {
   types.v1.Query query = 1;
-  types.v1.DataStreamType data_type = 2;
+  // will be populated if user is logged in and `environment_id` is specified
+  optional types.v1.DataStreamType data_type = 2;
 }
 
 message FormatRequest {
