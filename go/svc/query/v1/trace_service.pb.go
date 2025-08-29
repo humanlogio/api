@@ -23,7 +23,8 @@ const (
 )
 
 type GetTraceRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EnvironmentId int64                  `protobuf:"varint,1,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
 	// Types that are valid to be assigned to By:
 	//
 	//	*GetTraceRequest_TraceId
@@ -63,6 +64,13 @@ func (*GetTraceRequest) Descriptor() ([]byte, []int) {
 	return file_svc_query_v1_trace_service_proto_rawDescGZIP(), []int{0}
 }
 
+func (x *GetTraceRequest) GetEnvironmentId() int64 {
+	if x != nil {
+		return x.EnvironmentId
+	}
+	return 0
+}
+
 func (x *GetTraceRequest) GetBy() isGetTraceRequest_By {
 	if x != nil {
 		return x.By
@@ -93,11 +101,11 @@ type isGetTraceRequest_By interface {
 }
 
 type GetTraceRequest_TraceId struct {
-	TraceId string `protobuf:"bytes,1,opt,name=trace_id,json=traceId,proto3,oneof"`
+	TraceId string `protobuf:"bytes,201,opt,name=trace_id,json=traceId,proto3,oneof"`
 }
 
 type GetTraceRequest_SpanId struct {
-	SpanId string `protobuf:"bytes,2,opt,name=span_id,json=spanId,proto3,oneof"`
+	SpanId string `protobuf:"bytes,202,opt,name=span_id,json=spanId,proto3,oneof"`
 }
 
 func (*GetTraceRequest_TraceId) isGetTraceRequest_By() {}
@@ -150,7 +158,8 @@ func (x *GetTraceResponse) GetTrace() *v1.Trace {
 
 type GetSpanRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SpanId        string                 `protobuf:"bytes,1,opt,name=span_id,json=spanId,proto3" json:"span_id,omitempty"`
+	EnvironmentId int64                  `protobuf:"varint,1,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	SpanId        string                 `protobuf:"bytes,2,opt,name=span_id,json=spanId,proto3" json:"span_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -183,6 +192,13 @@ func (x *GetSpanRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetSpanRequest.ProtoReflect.Descriptor instead.
 func (*GetSpanRequest) Descriptor() ([]byte, []int) {
 	return file_svc_query_v1_trace_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetSpanRequest) GetEnvironmentId() int64 {
+	if x != nil {
+		return x.EnvironmentId
+	}
+	return 0
 }
 
 func (x *GetSpanRequest) GetSpanId() string {
@@ -240,15 +256,17 @@ var File_svc_query_v1_trace_service_proto protoreflect.FileDescriptor
 
 const file_svc_query_v1_trace_service_proto_rawDesc = "" +
 	"\n" +
-	" svc/query/v1/trace_service.proto\x12\fsvc.query.v1\x1a\x1btypes/v1/otel_tracing.proto\"O\n" +
-	"\x0fGetTraceRequest\x12\x1b\n" +
-	"\btrace_id\x18\x01 \x01(\tH\x00R\atraceId\x12\x19\n" +
-	"\aspan_id\x18\x02 \x01(\tH\x00R\x06spanIdB\x04\n" +
+	" svc/query/v1/trace_service.proto\x12\fsvc.query.v1\x1a\x1btypes/v1/otel_tracing.proto\"x\n" +
+	"\x0fGetTraceRequest\x12%\n" +
+	"\x0eenvironment_id\x18\x01 \x01(\x03R\renvironmentId\x12\x1c\n" +
+	"\btrace_id\x18\xc9\x01 \x01(\tH\x00R\atraceId\x12\x1a\n" +
+	"\aspan_id\x18\xca\x01 \x01(\tH\x00R\x06spanIdB\x04\n" +
 	"\x02by\"9\n" +
 	"\x10GetTraceResponse\x12%\n" +
-	"\x05trace\x18\x01 \x01(\v2\x0f.types.v1.TraceR\x05trace\")\n" +
-	"\x0eGetSpanRequest\x12\x17\n" +
-	"\aspan_id\x18\x01 \x01(\tR\x06spanId\"5\n" +
+	"\x05trace\x18\x01 \x01(\v2\x0f.types.v1.TraceR\x05trace\"P\n" +
+	"\x0eGetSpanRequest\x12%\n" +
+	"\x0eenvironment_id\x18\x01 \x01(\x03R\renvironmentId\x12\x17\n" +
+	"\aspan_id\x18\x02 \x01(\tR\x06spanId\"5\n" +
 	"\x0fGetSpanResponse\x12\"\n" +
 	"\x04span\x18\x01 \x01(\v2\x0e.types.v1.SpanR\x04span2\xa1\x01\n" +
 	"\fTraceService\x12I\n" +

@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3 } from "@bufbuild/protobuf";
+import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
 import { Span, Trace } from "../../../types/v1/otel_tracing_pb";
 
 /**
@@ -12,17 +12,22 @@ import { Span, Trace } from "../../../types/v1/otel_tracing_pb";
  */
 export class GetTraceRequest extends Message<GetTraceRequest> {
   /**
+   * @generated from field: int64 environment_id = 1;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
    * @generated from oneof svc.query.v1.GetTraceRequest.by
    */
   by: {
     /**
-     * @generated from field: string trace_id = 1;
+     * @generated from field: string trace_id = 201;
      */
     value: string;
     case: "traceId";
   } | {
     /**
-     * @generated from field: string span_id = 2;
+     * @generated from field: string span_id = 202;
      */
     value: string;
     case: "spanId";
@@ -36,8 +41,9 @@ export class GetTraceRequest extends Message<GetTraceRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.query.v1.GetTraceRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "by" },
-    { no: 2, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "by" },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 201, name: "trace_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "by" },
+    { no: 202, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */, oneof: "by" },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetTraceRequest {
@@ -99,7 +105,12 @@ export class GetTraceResponse extends Message<GetTraceResponse> {
  */
 export class GetSpanRequest extends Message<GetSpanRequest> {
   /**
-   * @generated from field: string span_id = 1;
+   * @generated from field: int64 environment_id = 1;
+   */
+  environmentId = protoInt64.zero;
+
+  /**
+   * @generated from field: string span_id = 2;
    */
   spanId = "";
 
@@ -111,7 +122,8 @@ export class GetSpanRequest extends Message<GetSpanRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "svc.query.v1.GetSpanRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 1, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */ },
+    { no: 2, name: "span_id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): GetSpanRequest {
