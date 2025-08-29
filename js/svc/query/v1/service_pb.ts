@@ -161,6 +161,15 @@ export class ParseRequest extends Message<ParseRequest> {
    */
   query = "";
 
+  /**
+   * if provided, the query's data type will be evaluated for the environment
+   * this requires looking up the environment, so the user must be logged in
+   * and have access to the environment to request this information
+   *
+   * @generated from field: optional int64 environment_id = 2;
+   */
+  environmentId?: bigint;
+
   constructor(data?: PartialMessage<ParseRequest>) {
     super();
     proto3.util.initPartial(data, this);
@@ -170,6 +179,7 @@ export class ParseRequest extends Message<ParseRequest> {
   static readonly typeName = "svc.query.v1.ParseRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "query", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+    { no: 2, name: "environment_id", kind: "scalar", T: 3 /* ScalarType.INT64 */, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseRequest {
@@ -199,7 +209,9 @@ export class ParseResponse extends Message<ParseResponse> {
   query?: Query;
 
   /**
-   * @generated from field: types.v1.DataStreamType data_type = 2;
+   * will be populated if user is logged in and `environment_id` is specified
+   *
+   * @generated from field: optional types.v1.DataStreamType data_type = 2;
    */
   dataType?: DataStreamType;
 
@@ -212,7 +224,7 @@ export class ParseResponse extends Message<ParseResponse> {
   static readonly typeName = "svc.query.v1.ParseResponse";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
     { no: 1, name: "query", kind: "message", T: Query },
-    { no: 2, name: "data_type", kind: "message", T: DataStreamType },
+    { no: 2, name: "data_type", kind: "message", T: DataStreamType, opt: true },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): ParseResponse {
