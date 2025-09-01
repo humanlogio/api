@@ -87,10 +87,10 @@ var File_types_v1_organization_proto protoreflect.FileDescriptor
 
 const file_types_v1_organization_proto_rawDesc = "" +
 	"\n" +
-	"\x1btypes/v1/organization.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x01\n" +
+	"\x1btypes/v1/organization.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x94\x01\n" +
 	"\fOrganization\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12B\n" +
-	"\x04name\x18\x02 \x01(\tB.\xbaH+r)2'^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$R\x04name\x129\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x129\n" +
+	"\x04name\x18\x02 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x04name\x129\n" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\x91\x01\n" +
 	"\fcom.types.v1B\x11OrganizationProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"

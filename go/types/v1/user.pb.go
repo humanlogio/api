@@ -203,11 +203,11 @@ var File_types_v1_user_proto protoreflect.FileDescriptor
 
 const file_types_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x13types/v1/user.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcf\x02\n" +
+	"\x13types/v1/user.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc6\x02\n" +
 	"\x04User\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12J\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12A\n" +
 	"\busername\x18\n" +
-	" \x01(\tB.\xbaH+r)2'^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$R\busername\x12\x1d\n" +
+	" \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busername\x12\x1d\n" +
 	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12.\n" +
 	"\x13profile_picture_url\x18\x03 \x01(\tR\x11profilePictureUrl\x12\x1d\n" +
 	"\n" +
@@ -215,10 +215,10 @@ const file_types_v1_user_proto_rawDesc = "" +
 	"\tlast_name\x18\x05 \x01(\tR\blastName\x12%\n" +
 	"\x0eemail_verified\x18\x06 \x01(\bR\remailVerified\x129\n" +
 	"\n" +
-	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xff\x01\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xf6\x01\n" +
 	"\n" +
-	"PublicUser\x12J\n" +
-	"\busername\x18\x01 \x01(\tB.\xbaH+r)2'^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$R\busername\x12.\n" +
+	"PublicUser\x12A\n" +
+	"\busername\x18\x01 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busername\x12.\n" +
 	"\x13profile_picture_url\x18\x02 \x01(\tR\x11profilePictureUrl\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x03 \x01(\tR\tfirstName\x12\x1b\n" +
