@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.organization.v1;
 
+import "buf/validate/validate.proto";
 import "types/v1/cursor.proto";
 import "types/v1/environment.proto";
 import "types/v1/organization.proto";
@@ -38,7 +39,7 @@ message CreateEnvironmentRequest {
     string price_id = 2;
   }
 
-  string environment_name = 1;
+  string environment_name = 1 [(buf.validate.field).string.pattern = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$"];
   oneof payment {
     Stripe stripe = 201;
   }

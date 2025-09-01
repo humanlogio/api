@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.user.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 import "types/v1/cursor.proto";
 import "types/v1/data.proto";
@@ -65,14 +66,14 @@ message RefreshUserTokenResponse {
 message UpdateUserRequest {
   optional string first_name = 1;
   optional string last_name = 2;
-  optional string username = 3;
+  optional string username = 3 [(buf.validate.field).string.pattern = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$"];
 }
 message UpdateUserResponse {
   types.v1.User user = 1;
 }
 
 message CreateOrganizationRequest {
-  string name = 1;
+  string name = 1 [(buf.validate.field).string.pattern = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$"];
 }
 
 message CreateOrganizationResponse {

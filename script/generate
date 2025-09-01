@@ -8,11 +8,14 @@ root=$(git rev-parse --show-toplevel)
 function main() {
     pushd ${root}
     generate_protobuf
+    pushd ${root}/go
+    go mod tidy
 }
 
 function generate_protobuf() {
     export PATH=${PATH}:${root}/node_modules/.bin
     pkgx buf format -w
+    pkgx buf dep update proto
     pkgx buf generate
 }
 

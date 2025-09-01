@@ -7,6 +7,7 @@
 package userv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1783,7 +1784,7 @@ var File_svc_user_v1_service_private_proto protoreflect.FileDescriptor
 
 const file_svc_user_v1_service_private_proto_rawDesc = "" +
 	"\n" +
-	"!svc/user/v1/service_private.proto\x12\vsvc.user.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15types/v1/cursor.proto\x1a\x13types/v1/data.proto\x1a\x1dtypes/v1/favorite_query.proto\x1a\x1ftypes/v1/localhost_config.proto\x1a\x1btypes/v1/organization.proto\x1a\x14types/v1/query.proto\x1a\"types/v1/query_history_entry.proto\x1a\x13types/v1/user.proto\"\x0f\n" +
+	"!svc/user/v1/service_private.proto\x12\vsvc.user.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15types/v1/cursor.proto\x1a\x13types/v1/data.proto\x1a\x1dtypes/v1/favorite_query.proto\x1a\x1ftypes/v1/localhost_config.proto\x1a\x1btypes/v1/organization.proto\x1a\x14types/v1/query.proto\x1a\"types/v1/query_history_entry.proto\x1a\x13types/v1/user.proto\"\x0f\n" +
 	"\rWhoamiRequest\"\xca\x01\n" +
 	"\x0eWhoamiResponse\x12\"\n" +
 	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\x12I\n" +
@@ -1800,20 +1801,20 @@ const file_svc_user_v1_service_private_proto_rawDesc = "" +
 	"\n" +
 	"refresh_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\trefreshAt\x129\n" +
 	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xa4\x01\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xd4\x01\n" +
 	"\x11UpdateUserRequest\x12\"\n" +
 	"\n" +
 	"first_name\x18\x01 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12 \n" +
-	"\tlast_name\x18\x02 \x01(\tH\x01R\blastName\x88\x01\x01\x12\x1f\n" +
-	"\busername\x18\x03 \x01(\tH\x02R\busername\x88\x01\x01B\r\n" +
+	"\tlast_name\x18\x02 \x01(\tH\x01R\blastName\x88\x01\x01\x12O\n" +
+	"\busername\x18\x03 \x01(\tB.\xbaH+r)2'^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$H\x02R\busername\x88\x01\x01B\r\n" +
 	"\v_first_nameB\f\n" +
 	"\n" +
 	"_last_nameB\v\n" +
 	"\t_username\"8\n" +
 	"\x12UpdateUserResponse\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"/\n" +
-	"\x19CreateOrganizationRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"X\n" +
+	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"_\n" +
+	"\x19CreateOrganizationRequest\x12B\n" +
+	"\x04name\x18\x01 \x01(\tB.\xbaH+r)2'^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$R\x04name\"X\n" +
 	"\x1aCreateOrganizationResponse\x12:\n" +
 	"\forganization\x18\x01 \x01(\v2\x16.types.v1.OrganizationR\forganization\"Y\n" +
 	"\x17ListOrganizationRequest\x12(\n" +

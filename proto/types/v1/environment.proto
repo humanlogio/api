@@ -2,9 +2,11 @@ syntax = "proto3";
 
 package types.v1;
 
+import "buf/validate/validate.proto";
+
 option go_package = "types/v1;typesv1";
 
 message Environment {
   int64 id = 1;
-  string name = 2;
+  string name = 2 [(buf.validate.field).string.pattern = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$"];
 }

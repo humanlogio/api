@@ -7,14 +7,17 @@ root=$(git rev-parse --show-toplevel)
 
 function main() {
     pushd ${root}
-    npm install \
-        --save-dev \
-        @connectrpc/connect \
-        @connectrpc/connect-web \
-        @connectrpc/connect-query \
-        @connectrpc/protoc-gen-connect-es \
-        @bufbuild/protoc-gen-es \
-        @bufbuild/buf
+    # runtime deps
+    npm i @connectrpc/connect@^2 \
+        @connectrpc/connect-web@^2 \
+        @connectrpc/connect-query@^2 \
+        @bufbuild/protobuf@^2.7.0 \
+        @bufbuild/protovalidate@^0.8.0
+
+    # dev-time generators / tools
+    npm i -D @bufbuild/buf@latest \
+            @bufbuild/protoc-gen-es@^2.7.0 \
+            @connectrpc/protoc-gen-connect-query@^2.1.1
 
     go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
     go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
