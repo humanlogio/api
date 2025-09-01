@@ -2,14 +2,15 @@ syntax = "proto3";
 
 package types.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "types/v1;typesv1";
 
 message User {
   int64 id = 1;
-  string username = 10;
-  string email = 2;
+  string username = 10 [(buf.validate.field).string.pattern = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$"];
+  string email = 2 [(buf.validate.field).string.email = true];
   string profile_picture_url = 3;
   string first_name = 4;
   string last_name = 5;
@@ -18,7 +19,7 @@ message User {
 }
 
 message PublicUser {
-  string username = 1;
+  string username = 1 [(buf.validate.field).string.pattern = "^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$"];
   string profile_picture_url = 2;
   string first_name = 3;
   string last_name = 4;

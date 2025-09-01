@@ -7,6 +7,7 @@
 package organizationv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1804,9 +1805,9 @@ var File_svc_organization_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"!svc/organization/v1/service.proto\x12\x13svc.organization.v1\x1a\x15types/v1/cursor.proto\x1a\x1atypes/v1/environment.proto\x1a\x1btypes/v1/organization.proto\x1a\x1dtypes/v1/payment_method.proto\x1a\x16types/v1/product.proto\x1a\x1btypes/v1/subscription.proto\x1a\x13types/v1/user.proto\"\xf5\x01\n" +
-	"\x18CreateEnvironmentRequest\x12)\n" +
-	"\x10environment_name\x18\x01 \x01(\tR\x0fenvironmentName\x12O\n" +
+	"!svc/organization/v1/service.proto\x12\x13svc.organization.v1\x1a\x1bbuf/validate/validate.proto\x1a\x15types/v1/cursor.proto\x1a\x1atypes/v1/environment.proto\x1a\x1btypes/v1/organization.proto\x1a\x1dtypes/v1/payment_method.proto\x1a\x16types/v1/product.proto\x1a\x1btypes/v1/subscription.proto\x1a\x13types/v1/user.proto\"\xa5\x02\n" +
+	"\x18CreateEnvironmentRequest\x12Y\n" +
+	"\x10environment_name\x18\x01 \x01(\tB.\xbaH+r)2'^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$R\x0fenvironmentName\x12O\n" +
 	"\x06stripe\x18\xc9\x01 \x01(\v24.svc.organization.v1.CreateEnvironmentRequest.StripeH\x00R\x06stripe\x1aR\n" +
 	"\x06Stripe\x12-\n" +
 	"\x12confirmation_token\x18\x01 \x01(\tR\x11confirmationToken\x12\x19\n" +

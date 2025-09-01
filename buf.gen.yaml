@@ -4,6 +4,9 @@ managed:
   override:
     - file_option: go_package_prefix
       value: github.com/humanlogio/api/go
+  disable:
+    - file_option: go_package_prefix
+      module: buf.build/bufbuild/protovalidate
 plugins:
   - local: protoc-gen-go
     out: go
@@ -12,11 +15,6 @@ plugins:
     out: go
     opt: paths=source_relative
   - local: protoc-gen-es
-    out: js
-    opt:
-      - target=ts
-      - import_extension=none
-  - local: protoc-gen-connect-es
     out: js
     opt:
       - target=ts
