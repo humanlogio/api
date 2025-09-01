@@ -1801,20 +1801,20 @@ const file_svc_user_v1_service_private_proto_rawDesc = "" +
 	"\n" +
 	"refresh_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\trefreshAt\x129\n" +
 	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xd4\x01\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xcb\x01\n" +
 	"\x11UpdateUserRequest\x12\"\n" +
 	"\n" +
 	"first_name\x18\x01 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12 \n" +
-	"\tlast_name\x18\x02 \x01(\tH\x01R\blastName\x88\x01\x01\x12O\n" +
-	"\busername\x18\x03 \x01(\tB.\xbaH+r)2'^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$H\x02R\busername\x88\x01\x01B\r\n" +
+	"\tlast_name\x18\x02 \x01(\tH\x01R\blastName\x88\x01\x01\x12F\n" +
+	"\busername\x18\x03 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$H\x02R\busername\x88\x01\x01B\r\n" +
 	"\v_first_nameB\f\n" +
 	"\n" +
 	"_last_nameB\v\n" +
 	"\t_username\"8\n" +
 	"\x12UpdateUserResponse\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"_\n" +
-	"\x19CreateOrganizationRequest\x12B\n" +
-	"\x04name\x18\x01 \x01(\tB.\xbaH+r)2'^[a-z\\d](?:[a-z\\d]|-(?=[a-z\\d])){0,38}$R\x04name\"X\n" +
+	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"V\n" +
+	"\x19CreateOrganizationRequest\x129\n" +
+	"\x04name\x18\x01 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x04name\"X\n" +
 	"\x1aCreateOrganizationResponse\x12:\n" +
 	"\forganization\x18\x01 \x01(\v2\x16.types.v1.OrganizationR\forganization\"Y\n" +
 	"\x17ListOrganizationRequest\x12(\n" +
