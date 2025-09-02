@@ -35,6 +35,9 @@ const (
 const (
 	// LocalhostServicePingProcedure is the fully-qualified name of the LocalhostService's Ping RPC.
 	LocalhostServicePingProcedure = "/svc.localhost.v1.LocalhostService/Ping"
+	// LocalhostServicePingStreamProcedure is the fully-qualified name of the LocalhostService's
+	// PingStream RPC.
+	LocalhostServicePingStreamProcedure = "/svc.localhost.v1.LocalhostService/PingStream"
 	// LocalhostServiceDoLoginProcedure is the fully-qualified name of the LocalhostService's DoLogin
 	// RPC.
 	LocalhostServiceDoLoginProcedure = "/svc.localhost.v1.LocalhostService/DoLogin"
@@ -61,6 +64,7 @@ const (
 // LocalhostServiceClient is a client for the svc.localhost.v1.LocalhostService service.
 type LocalhostServiceClient interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
+	PingStream(context.Context, *connect.Request[v1.PingRequest]) (*connect.ServerStreamForClient[v1.PingResponse], error)
 	DoLogin(context.Context, *connect.Request[v1.DoLoginRequest]) (*connect.Response[v1.DoLoginResponse], error)
 	DoLogout(context.Context, *connect.Request[v1.DoLogoutRequest]) (*connect.Response[v1.DoLogoutResponse], error)
 	DoUpdate(context.Context, *connect.Request[v1.DoUpdateRequest]) (*connect.Response[v1.DoUpdateResponse], error)
@@ -85,6 +89,12 @@ func NewLocalhostServiceClient(httpClient connect.HTTPClient, baseURL string, op
 			httpClient,
 			baseURL+LocalhostServicePingProcedure,
 			connect.WithSchema(localhostServiceMethods.ByName("Ping")),
+			connect.WithClientOptions(opts...),
+		),
+		pingStream: connect.NewClient[v1.PingRequest, v1.PingResponse](
+			httpClient,
+			baseURL+LocalhostServicePingStreamProcedure,
+			connect.WithSchema(localhostServiceMethods.ByName("PingStream")),
 			connect.WithClientOptions(opts...),
 		),
 		doLogin: connect.NewClient[v1.DoLoginRequest, v1.DoLoginResponse](
@@ -134,19 +144,25 @@ func NewLocalhostServiceClient(httpClient connect.HTTPClient, baseURL string, op
 
 // localhostServiceClient implements LocalhostServiceClient.
 type localhostServiceClient struct {
-	ping      *connect.Client[v1.PingRequest, v1.PingResponse]
-	doLogin   *connect.Client[v1.DoLoginRequest, v1.DoLoginResponse]
-	doLogout  *connect.Client[v1.DoLogoutRequest, v1.DoLogoutResponse]
-	doUpdate  *connect.Client[v1.DoUpdateRequest, v1.DoUpdateResponse]
-	doRestart *connect.Client[v1.DoRestartRequest, v1.DoRestartResponse]
-	getConfig *connect.Client[v1.GetConfigRequest, v1.GetConfigResponse]
-	setConfig *connect.Client[v1.SetConfigRequest, v1.SetConfigResponse]
-	getStats  *connect.Client[v1.GetStatsRequest, v1.GetStatsResponse]
+	ping       *connect.Client[v1.PingRequest, v1.PingResponse]
+	pingStream *connect.Client[v1.PingRequest, v1.PingResponse]
+	doLogin    *connect.Client[v1.DoLoginRequest, v1.DoLoginResponse]
+	doLogout   *connect.Client[v1.DoLogoutRequest, v1.DoLogoutResponse]
+	doUpdate   *connect.Client[v1.DoUpdateRequest, v1.DoUpdateResponse]
+	doRestart  *connect.Client[v1.DoRestartRequest, v1.DoRestartResponse]
+	getConfig  *connect.Client[v1.GetConfigRequest, v1.GetConfigResponse]
+	setConfig  *connect.Client[v1.SetConfigRequest, v1.SetConfigResponse]
+	getStats   *connect.Client[v1.GetStatsRequest, v1.GetStatsResponse]
 }
 
 // Ping calls svc.localhost.v1.LocalhostService.Ping.
 func (c *localhostServiceClient) Ping(ctx context.Context, req *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error) {
 	return c.ping.CallUnary(ctx, req)
+}
+
+// PingStream calls svc.localhost.v1.LocalhostService.PingStream.
+func (c *localhostServiceClient) PingStream(ctx context.Context, req *connect.Request[v1.PingRequest]) (*connect.ServerStreamForClient[v1.PingResponse], error) {
+	return c.pingStream.CallServerStream(ctx, req)
 }
 
 // DoLogin calls svc.localhost.v1.LocalhostService.DoLogin.
@@ -187,6 +203,7 @@ func (c *localhostServiceClient) GetStats(ctx context.Context, req *connect.Requ
 // LocalhostServiceHandler is an implementation of the svc.localhost.v1.LocalhostService service.
 type LocalhostServiceHandler interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
+	PingStream(context.Context, *connect.Request[v1.PingRequest], *connect.ServerStream[v1.PingResponse]) error
 	DoLogin(context.Context, *connect.Request[v1.DoLoginRequest]) (*connect.Response[v1.DoLoginResponse], error)
 	DoLogout(context.Context, *connect.Request[v1.DoLogoutRequest]) (*connect.Response[v1.DoLogoutResponse], error)
 	DoUpdate(context.Context, *connect.Request[v1.DoUpdateRequest]) (*connect.Response[v1.DoUpdateResponse], error)
@@ -207,6 +224,12 @@ func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.Han
 		LocalhostServicePingProcedure,
 		svc.Ping,
 		connect.WithSchema(localhostServiceMethods.ByName("Ping")),
+		connect.WithHandlerOptions(opts...),
+	)
+	localhostServicePingStreamHandler := connect.NewServerStreamHandler(
+		LocalhostServicePingStreamProcedure,
+		svc.PingStream,
+		connect.WithSchema(localhostServiceMethods.ByName("PingStream")),
 		connect.WithHandlerOptions(opts...),
 	)
 	localhostServiceDoLoginHandler := connect.NewUnaryHandler(
@@ -255,6 +278,8 @@ func NewLocalhostServiceHandler(svc LocalhostServiceHandler, opts ...connect.Han
 		switch r.URL.Path {
 		case LocalhostServicePingProcedure:
 			localhostServicePingHandler.ServeHTTP(w, r)
+		case LocalhostServicePingStreamProcedure:
+			localhostServicePingStreamHandler.ServeHTTP(w, r)
 		case LocalhostServiceDoLoginProcedure:
 			localhostServiceDoLoginHandler.ServeHTTP(w, r)
 		case LocalhostServiceDoLogoutProcedure:
@@ -280,6 +305,10 @@ type UnimplementedLocalhostServiceHandler struct{}
 
 func (UnimplementedLocalhostServiceHandler) Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.localhost.v1.LocalhostService.Ping is not implemented"))
+}
+
+func (UnimplementedLocalhostServiceHandler) PingStream(context.Context, *connect.Request[v1.PingRequest], *connect.ServerStream[v1.PingResponse]) error {
+	return connect.NewError(connect.CodeUnimplemented, errors.New("svc.localhost.v1.LocalhostService.PingStream is not implemented"))
 }
 
 func (UnimplementedLocalhostServiceHandler) DoLogin(context.Context, *connect.Request[v1.DoLoginRequest]) (*connect.Response[v1.DoLoginResponse], error) {
