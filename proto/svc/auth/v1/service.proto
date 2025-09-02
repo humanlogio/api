@@ -38,7 +38,10 @@ message GetAuthURLResponse {
 }
 
 message BeginDeviceAuthRequest {
-  string organization = 1;
+  oneof organization {
+    int64 by_id = 100;
+    string by_name = 101;
+  }
   string return_to_url = 2;
 }
 
