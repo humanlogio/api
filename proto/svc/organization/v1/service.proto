@@ -100,7 +100,7 @@ message ListUserResponse {
 }
 
 message InviteUserRequest {
-  int64 user_email = 1;
+  string user_email = 1;
 }
 message InviteUserResponse {}
 
