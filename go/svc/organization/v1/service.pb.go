@@ -507,7 +507,7 @@ func (x *ListUserResponse) GetItems() []*ListUserResponse_ListItem {
 
 type InviteUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserEmail     int64                  `protobuf:"varint,1,opt,name=user_email,json=userEmail,proto3" json:"user_email,omitempty"`
+	UserEmail     string                 `protobuf:"bytes,1,opt,name=user_email,json=userEmail,proto3" json:"user_email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -542,11 +542,11 @@ func (*InviteUserRequest) Descriptor() ([]byte, []int) {
 	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *InviteUserRequest) GetUserEmail() int64 {
+func (x *InviteUserRequest) GetUserEmail() string {
 	if x != nil {
 		return x.UserEmail
 	}
-	return 0
+	return ""
 }
 
 type InviteUserResponse struct {
@@ -1845,7 +1845,7 @@ const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"2\n" +
 	"\x11InviteUserRequest\x12\x1d\n" +
 	"\n" +
-	"user_email\x18\x01 \x01(\x03R\tuserEmail\"\x14\n" +
+	"user_email\x18\x01 \x01(\tR\tuserEmail\"\x14\n" +
 	"\x12InviteUserResponse\",\n" +
 	"\x11RevokeUserRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"\x14\n" +
