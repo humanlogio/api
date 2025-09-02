@@ -229,9 +229,13 @@ func (x *GetAuthURLResponse) GetAuthUrl() string {
 }
 
 type BeginDeviceAuthRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Organization  string                 `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
-	ReturnToUrl   string                 `protobuf:"bytes,2,opt,name=return_to_url,json=returnToUrl,proto3" json:"return_to_url,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Organization:
+	//
+	//	*BeginDeviceAuthRequest_ById
+	//	*BeginDeviceAuthRequest_ByName
+	Organization  isBeginDeviceAuthRequest_Organization `protobuf_oneof:"organization"`
+	ReturnToUrl   string                                `protobuf:"bytes,2,opt,name=return_to_url,json=returnToUrl,proto3" json:"return_to_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -266,9 +270,27 @@ func (*BeginDeviceAuthRequest) Descriptor() ([]byte, []int) {
 	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *BeginDeviceAuthRequest) GetOrganization() string {
+func (x *BeginDeviceAuthRequest) GetOrganization() isBeginDeviceAuthRequest_Organization {
 	if x != nil {
 		return x.Organization
+	}
+	return nil
+}
+
+func (x *BeginDeviceAuthRequest) GetById() int64 {
+	if x != nil {
+		if x, ok := x.Organization.(*BeginDeviceAuthRequest_ById); ok {
+			return x.ById
+		}
+	}
+	return 0
+}
+
+func (x *BeginDeviceAuthRequest) GetByName() string {
+	if x != nil {
+		if x, ok := x.Organization.(*BeginDeviceAuthRequest_ByName); ok {
+			return x.ByName
+		}
 	}
 	return ""
 }
@@ -279,6 +301,22 @@ func (x *BeginDeviceAuthRequest) GetReturnToUrl() string {
 	}
 	return ""
 }
+
+type isBeginDeviceAuthRequest_Organization interface {
+	isBeginDeviceAuthRequest_Organization()
+}
+
+type BeginDeviceAuthRequest_ById struct {
+	ById int64 `protobuf:"varint,100,opt,name=by_id,json=byId,proto3,oneof"`
+}
+
+type BeginDeviceAuthRequest_ByName struct {
+	ByName string `protobuf:"bytes,101,opt,name=by_name,json=byName,proto3,oneof"`
+}
+
+func (*BeginDeviceAuthRequest_ById) isBeginDeviceAuthRequest_Organization() {}
+
+func (*BeginDeviceAuthRequest_ByName) isBeginDeviceAuthRequest_Organization() {}
 
 type BeginDeviceAuthResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -487,10 +525,12 @@ const file_svc_auth_v1_service_proto_rawDesc = "" +
 	"\x10operating_system\x18\x02 \x01(\tR\x0foperatingSystem\x126\n" +
 	"\rusing_version\x18\x03 \x01(\v2\x11.types.v1.VersionR\fusingVersion\"/\n" +
 	"\x12GetAuthURLResponse\x12\x19\n" +
-	"\bauth_url\x18\x01 \x01(\tR\aauthUrl\"`\n" +
-	"\x16BeginDeviceAuthRequest\x12\"\n" +
-	"\forganization\x18\x01 \x01(\tR\forganization\x12\"\n" +
-	"\rreturn_to_url\x18\x02 \x01(\tR\vreturnToUrl\"\xe4\x01\n" +
+	"\bauth_url\x18\x01 \x01(\tR\aauthUrl\"~\n" +
+	"\x16BeginDeviceAuthRequest\x12\x15\n" +
+	"\x05by_id\x18d \x01(\x03H\x00R\x04byId\x12\x19\n" +
+	"\aby_name\x18e \x01(\tH\x00R\x06byName\x12\"\n" +
+	"\rreturn_to_url\x18\x02 \x01(\tR\vreturnToUrlB\x0e\n" +
+	"\forganization\"\xe4\x01\n" +
 	"\x17BeginDeviceAuthResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\x12\x1f\n" +
 	"\vdevice_code\x18\x02 \x01(\tR\n" +
@@ -567,6 +607,10 @@ func file_svc_auth_v1_service_proto_init() {
 	file_svc_auth_v1_service_proto_msgTypes[0].OneofWrappers = []any{
 		(*GetAuthURLRequest_ById)(nil),
 		(*GetAuthURLRequest_ByName)(nil),
+	}
+	file_svc_auth_v1_service_proto_msgTypes[3].OneofWrappers = []any{
+		(*BeginDeviceAuthRequest_ById)(nil),
+		(*BeginDeviceAuthRequest_ByName)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
