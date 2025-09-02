@@ -15,6 +15,7 @@ option go_package = "svc/localhost/v1;localhostv1";
 
 service LocalhostService {
   rpc Ping(PingRequest) returns (PingResponse);
+  rpc PingStream(PingRequest) returns (stream PingResponse);
   rpc DoLogin(DoLoginRequest) returns (DoLoginResponse);
   rpc DoLogout(DoLogoutRequest) returns (DoLogoutResponse);
   rpc DoUpdate(DoUpdateRequest) returns (DoUpdateResponse);

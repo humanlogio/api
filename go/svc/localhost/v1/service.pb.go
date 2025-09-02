@@ -776,9 +776,11 @@ const file_svc_localhost_v1_service_proto_rawDesc = "" +
 	"\x11SetConfigResponse\"\x11\n" +
 	"\x0fGetStatsRequest\"R\n" +
 	"\x10GetStatsResponse\x12>\n" +
-	"\x0edatabase_stats\x18\x01 \x01(\v2\x17.types.v1.DatabaseStatsR\rdatabaseStats2\xa4\x05\n" +
+	"\x0edatabase_stats\x18\x01 \x01(\v2\x17.types.v1.DatabaseStatsR\rdatabaseStats2\xf3\x05\n" +
 	"\x10LocalhostService\x12E\n" +
-	"\x04Ping\x12\x1d.svc.localhost.v1.PingRequest\x1a\x1e.svc.localhost.v1.PingResponse\x12N\n" +
+	"\x04Ping\x12\x1d.svc.localhost.v1.PingRequest\x1a\x1e.svc.localhost.v1.PingResponse\x12M\n" +
+	"\n" +
+	"PingStream\x12\x1d.svc.localhost.v1.PingRequest\x1a\x1e.svc.localhost.v1.PingResponse0\x01\x12N\n" +
 	"\aDoLogin\x12 .svc.localhost.v1.DoLoginRequest\x1a!.svc.localhost.v1.DoLoginResponse\x12Q\n" +
 	"\bDoLogout\x12!.svc.localhost.v1.DoLogoutRequest\x1a\".svc.localhost.v1.DoLogoutResponse\x12Q\n" +
 	"\bDoUpdate\x12!.svc.localhost.v1.DoUpdateRequest\x1a\".svc.localhost.v1.DoUpdateResponse\x12T\n" +
@@ -837,23 +839,25 @@ var file_svc_localhost_v1_service_proto_depIdxs = []int32{
 	22, // 7: svc.localhost.v1.PingResponse.UserDetails.current_organization:type_name -> types.v1.Organization
 	22, // 8: svc.localhost.v1.PingResponse.UserDetails.default_organization:type_name -> types.v1.Organization
 	0,  // 9: svc.localhost.v1.LocalhostService.Ping:input_type -> svc.localhost.v1.PingRequest
-	2,  // 10: svc.localhost.v1.LocalhostService.DoLogin:input_type -> svc.localhost.v1.DoLoginRequest
-	4,  // 11: svc.localhost.v1.LocalhostService.DoLogout:input_type -> svc.localhost.v1.DoLogoutRequest
-	6,  // 12: svc.localhost.v1.LocalhostService.DoUpdate:input_type -> svc.localhost.v1.DoUpdateRequest
-	8,  // 13: svc.localhost.v1.LocalhostService.DoRestart:input_type -> svc.localhost.v1.DoRestartRequest
-	10, // 14: svc.localhost.v1.LocalhostService.GetConfig:input_type -> svc.localhost.v1.GetConfigRequest
-	12, // 15: svc.localhost.v1.LocalhostService.SetConfig:input_type -> svc.localhost.v1.SetConfigRequest
-	14, // 16: svc.localhost.v1.LocalhostService.GetStats:input_type -> svc.localhost.v1.GetStatsRequest
-	1,  // 17: svc.localhost.v1.LocalhostService.Ping:output_type -> svc.localhost.v1.PingResponse
-	3,  // 18: svc.localhost.v1.LocalhostService.DoLogin:output_type -> svc.localhost.v1.DoLoginResponse
-	5,  // 19: svc.localhost.v1.LocalhostService.DoLogout:output_type -> svc.localhost.v1.DoLogoutResponse
-	7,  // 20: svc.localhost.v1.LocalhostService.DoUpdate:output_type -> svc.localhost.v1.DoUpdateResponse
-	9,  // 21: svc.localhost.v1.LocalhostService.DoRestart:output_type -> svc.localhost.v1.DoRestartResponse
-	11, // 22: svc.localhost.v1.LocalhostService.GetConfig:output_type -> svc.localhost.v1.GetConfigResponse
-	13, // 23: svc.localhost.v1.LocalhostService.SetConfig:output_type -> svc.localhost.v1.SetConfigResponse
-	15, // 24: svc.localhost.v1.LocalhostService.GetStats:output_type -> svc.localhost.v1.GetStatsResponse
-	17, // [17:25] is the sub-list for method output_type
-	9,  // [9:17] is the sub-list for method input_type
+	0,  // 10: svc.localhost.v1.LocalhostService.PingStream:input_type -> svc.localhost.v1.PingRequest
+	2,  // 11: svc.localhost.v1.LocalhostService.DoLogin:input_type -> svc.localhost.v1.DoLoginRequest
+	4,  // 12: svc.localhost.v1.LocalhostService.DoLogout:input_type -> svc.localhost.v1.DoLogoutRequest
+	6,  // 13: svc.localhost.v1.LocalhostService.DoUpdate:input_type -> svc.localhost.v1.DoUpdateRequest
+	8,  // 14: svc.localhost.v1.LocalhostService.DoRestart:input_type -> svc.localhost.v1.DoRestartRequest
+	10, // 15: svc.localhost.v1.LocalhostService.GetConfig:input_type -> svc.localhost.v1.GetConfigRequest
+	12, // 16: svc.localhost.v1.LocalhostService.SetConfig:input_type -> svc.localhost.v1.SetConfigRequest
+	14, // 17: svc.localhost.v1.LocalhostService.GetStats:input_type -> svc.localhost.v1.GetStatsRequest
+	1,  // 18: svc.localhost.v1.LocalhostService.Ping:output_type -> svc.localhost.v1.PingResponse
+	1,  // 19: svc.localhost.v1.LocalhostService.PingStream:output_type -> svc.localhost.v1.PingResponse
+	3,  // 20: svc.localhost.v1.LocalhostService.DoLogin:output_type -> svc.localhost.v1.DoLoginResponse
+	5,  // 21: svc.localhost.v1.LocalhostService.DoLogout:output_type -> svc.localhost.v1.DoLogoutResponse
+	7,  // 22: svc.localhost.v1.LocalhostService.DoUpdate:output_type -> svc.localhost.v1.DoUpdateResponse
+	9,  // 23: svc.localhost.v1.LocalhostService.DoRestart:output_type -> svc.localhost.v1.DoRestartResponse
+	11, // 24: svc.localhost.v1.LocalhostService.GetConfig:output_type -> svc.localhost.v1.GetConfigResponse
+	13, // 25: svc.localhost.v1.LocalhostService.SetConfig:output_type -> svc.localhost.v1.SetConfigResponse
+	15, // 26: svc.localhost.v1.LocalhostService.GetStats:output_type -> svc.localhost.v1.GetStatsResponse
+	18, // [18:27] is the sub-list for method output_type
+	9,  // [9:18] is the sub-list for method input_type
 	9,  // [9:9] is the sub-list for extension type_name
 	9,  // [9:9] is the sub-list for extension extendee
 	0,  // [0:9] is the sub-list for field type_name
