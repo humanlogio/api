@@ -16,11 +16,13 @@ plugins:
     opt: paths=source_relative
   - local: protoc-gen-es
     out: js
+    include_imports: true
     opt:
       - target=ts
       - import_extension=none
   - local: protoc-gen-connect-query
     out: js
+    include_imports: true
     opt:
       - target=ts
       - import_extension=none
