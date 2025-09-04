@@ -22,7 +22,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ListMachineRequest struct {
+type ListResourceRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Cursor        *v1.Cursor             `protobuf:"bytes,1,opt,name=cursor,proto3" json:"cursor,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
@@ -31,20 +31,20 @@ type ListMachineRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListMachineRequest) Reset() {
-	*x = ListMachineRequest{}
+func (x *ListResourceRequest) Reset() {
+	*x = ListResourceRequest{}
 	mi := &file_svc_environment_v1_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListMachineRequest) String() string {
+func (x *ListResourceRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListMachineRequest) ProtoMessage() {}
+func (*ListResourceRequest) ProtoMessage() {}
 
-func (x *ListMachineRequest) ProtoReflect() protoreflect.Message {
+func (x *ListResourceRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_environment_v1_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,54 +56,54 @@ func (x *ListMachineRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListMachineRequest.ProtoReflect.Descriptor instead.
-func (*ListMachineRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListResourceRequest.ProtoReflect.Descriptor instead.
+func (*ListResourceRequest) Descriptor() ([]byte, []int) {
 	return file_svc_environment_v1_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ListMachineRequest) GetCursor() *v1.Cursor {
+func (x *ListResourceRequest) GetCursor() *v1.Cursor {
 	if x != nil {
 		return x.Cursor
 	}
 	return nil
 }
 
-func (x *ListMachineRequest) GetLimit() int32 {
+func (x *ListResourceRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *ListMachineRequest) GetEnvironmentId() int64 {
+func (x *ListResourceRequest) GetEnvironmentId() int64 {
 	if x != nil {
 		return x.EnvironmentId
 	}
 	return 0
 }
 
-type ListMachineResponse struct {
-	state         protoimpl.MessageState          `protogen:"open.v1"`
-	Next          *v1.Cursor                      `protobuf:"bytes,1,opt,name=next,proto3" json:"next,omitempty"`
-	Items         []*ListMachineResponse_ListItem `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
+type ListResourceResponse struct {
+	state         protoimpl.MessageState           `protogen:"open.v1"`
+	Next          *v1.Cursor                       `protobuf:"bytes,1,opt,name=next,proto3" json:"next,omitempty"`
+	Items         []*ListResourceResponse_ListItem `protobuf:"bytes,2,rep,name=items,proto3" json:"items,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListMachineResponse) Reset() {
-	*x = ListMachineResponse{}
+func (x *ListResourceResponse) Reset() {
+	*x = ListResourceResponse{}
 	mi := &file_svc_environment_v1_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListMachineResponse) String() string {
+func (x *ListResourceResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListMachineResponse) ProtoMessage() {}
+func (*ListResourceResponse) ProtoMessage() {}
 
-func (x *ListMachineResponse) ProtoReflect() protoreflect.Message {
+func (x *ListResourceResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_environment_v1_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -115,46 +115,46 @@ func (x *ListMachineResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListMachineResponse.ProtoReflect.Descriptor instead.
-func (*ListMachineResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListResourceResponse.ProtoReflect.Descriptor instead.
+func (*ListResourceResponse) Descriptor() ([]byte, []int) {
 	return file_svc_environment_v1_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ListMachineResponse) GetNext() *v1.Cursor {
+func (x *ListResourceResponse) GetNext() *v1.Cursor {
 	if x != nil {
 		return x.Next
 	}
 	return nil
 }
 
-func (x *ListMachineResponse) GetItems() []*ListMachineResponse_ListItem {
+func (x *ListResourceResponse) GetItems() []*ListResourceResponse_ListItem {
 	if x != nil {
 		return x.Items
 	}
 	return nil
 }
 
-type ListMachineResponse_ListItem struct {
+type ListResourceResponse_ListItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Machine       *v1.Machine            `protobuf:"bytes,1,opt,name=machine,proto3" json:"machine,omitempty"`
+	Resource      *v1.Resource           `protobuf:"bytes,1,opt,name=resource,proto3" json:"resource,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListMachineResponse_ListItem) Reset() {
-	*x = ListMachineResponse_ListItem{}
+func (x *ListResourceResponse_ListItem) Reset() {
+	*x = ListResourceResponse_ListItem{}
 	mi := &file_svc_environment_v1_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListMachineResponse_ListItem) String() string {
+func (x *ListResourceResponse_ListItem) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListMachineResponse_ListItem) ProtoMessage() {}
+func (*ListResourceResponse_ListItem) ProtoMessage() {}
 
-func (x *ListMachineResponse_ListItem) ProtoReflect() protoreflect.Message {
+func (x *ListResourceResponse_ListItem) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_environment_v1_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -166,14 +166,14 @@ func (x *ListMachineResponse_ListItem) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListMachineResponse_ListItem.ProtoReflect.Descriptor instead.
-func (*ListMachineResponse_ListItem) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListResourceResponse_ListItem.ProtoReflect.Descriptor instead.
+func (*ListResourceResponse_ListItem) Descriptor() ([]byte, []int) {
 	return file_svc_environment_v1_service_proto_rawDescGZIP(), []int{1, 0}
 }
 
-func (x *ListMachineResponse_ListItem) GetMachine() *v1.Machine {
+func (x *ListResourceResponse_ListItem) GetResource() *v1.Resource {
 	if x != nil {
-		return x.Machine
+		return x.Resource
 	}
 	return nil
 }
@@ -182,18 +182,18 @@ var File_svc_environment_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_environment_v1_service_proto_rawDesc = "" +
 	"\n" +
-	" svc/environment/v1/service.proto\x12\x12svc.environment.v1\x1a\x15types/v1/cursor.proto\x1a\x1atypes/v1/environment.proto\x1a\x16types/v1/machine.proto\"{\n" +
-	"\x12ListMachineRequest\x12(\n" +
+	" svc/environment/v1/service.proto\x12\x12svc.environment.v1\x1a\x15types/v1/cursor.proto\x1a\x1atypes/v1/environment.proto\x1a\x1ctypes/v1/otel_resource.proto\"|\n" +
+	"\x13ListResourceRequest\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12%\n" +
-	"\x0eenvironment_id\x18\x03 \x01(\x03R\renvironmentId\"\xbc\x01\n" +
-	"\x13ListMachineResponse\x12$\n" +
-	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12F\n" +
-	"\x05items\x18\x02 \x03(\v20.svc.environment.v1.ListMachineResponse.ListItemR\x05items\x1a7\n" +
-	"\bListItem\x12+\n" +
-	"\amachine\x18\x01 \x01(\v2\x11.types.v1.MachineR\amachine2t\n" +
-	"\x12EnvironmentService\x12^\n" +
-	"\vListMachine\x12&.svc.environment.v1.ListMachineRequest\x1a'.svc.environment.v1.ListMachineResponseB\xcf\x01\n" +
+	"\x0eenvironment_id\x18\x03 \x01(\x03R\renvironmentId\"\xc1\x01\n" +
+	"\x14ListResourceResponse\x12$\n" +
+	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12G\n" +
+	"\x05items\x18\x02 \x03(\v21.svc.environment.v1.ListResourceResponse.ListItemR\x05items\x1a:\n" +
+	"\bListItem\x12.\n" +
+	"\bresource\x18\x01 \x01(\v2\x12.types.v1.ResourceR\bresource2w\n" +
+	"\x12EnvironmentService\x12a\n" +
+	"\fListResource\x12'.svc.environment.v1.ListResourceRequest\x1a(.svc.environment.v1.ListResourceResponseB\xcf\x01\n" +
 	"\x16com.svc.environment.v1B\fServiceProtoP\x01Z=github.com/humanlogio/api/go/svc/environment/v1;environmentv1\xa2\x02\x03SEX\xaa\x02\x12Svc.Environment.V1\xca\x02\x12Svc\\Environment\\V1\xe2\x02\x1eSvc\\Environment\\V1\\GPBMetadata\xea\x02\x14Svc::Environment::V1b\x06proto3"
 
 var (
@@ -210,19 +210,19 @@ func file_svc_environment_v1_service_proto_rawDescGZIP() []byte {
 
 var file_svc_environment_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_svc_environment_v1_service_proto_goTypes = []any{
-	(*ListMachineRequest)(nil),           // 0: svc.environment.v1.ListMachineRequest
-	(*ListMachineResponse)(nil),          // 1: svc.environment.v1.ListMachineResponse
-	(*ListMachineResponse_ListItem)(nil), // 2: svc.environment.v1.ListMachineResponse.ListItem
-	(*v1.Cursor)(nil),                    // 3: types.v1.Cursor
-	(*v1.Machine)(nil),                   // 4: types.v1.Machine
+	(*ListResourceRequest)(nil),           // 0: svc.environment.v1.ListResourceRequest
+	(*ListResourceResponse)(nil),          // 1: svc.environment.v1.ListResourceResponse
+	(*ListResourceResponse_ListItem)(nil), // 2: svc.environment.v1.ListResourceResponse.ListItem
+	(*v1.Cursor)(nil),                     // 3: types.v1.Cursor
+	(*v1.Resource)(nil),                   // 4: types.v1.Resource
 }
 var file_svc_environment_v1_service_proto_depIdxs = []int32{
-	3, // 0: svc.environment.v1.ListMachineRequest.cursor:type_name -> types.v1.Cursor
-	3, // 1: svc.environment.v1.ListMachineResponse.next:type_name -> types.v1.Cursor
-	2, // 2: svc.environment.v1.ListMachineResponse.items:type_name -> svc.environment.v1.ListMachineResponse.ListItem
-	4, // 3: svc.environment.v1.ListMachineResponse.ListItem.machine:type_name -> types.v1.Machine
-	0, // 4: svc.environment.v1.EnvironmentService.ListMachine:input_type -> svc.environment.v1.ListMachineRequest
-	1, // 5: svc.environment.v1.EnvironmentService.ListMachine:output_type -> svc.environment.v1.ListMachineResponse
+	3, // 0: svc.environment.v1.ListResourceRequest.cursor:type_name -> types.v1.Cursor
+	3, // 1: svc.environment.v1.ListResourceResponse.next:type_name -> types.v1.Cursor
+	2, // 2: svc.environment.v1.ListResourceResponse.items:type_name -> svc.environment.v1.ListResourceResponse.ListItem
+	4, // 3: svc.environment.v1.ListResourceResponse.ListItem.resource:type_name -> types.v1.Resource
+	0, // 4: svc.environment.v1.EnvironmentService.ListResource:input_type -> svc.environment.v1.ListResourceRequest
+	1, // 5: svc.environment.v1.EnvironmentService.ListResource:output_type -> svc.environment.v1.ListResourceResponse
 	5, // [5:6] is the sub-list for method output_type
 	4, // [4:5] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name

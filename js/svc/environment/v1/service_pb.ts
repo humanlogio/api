@@ -7,20 +7,20 @@ import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2
 import type { Cursor } from "../../../types/v1/cursor_pb";
 import { file_types_v1_cursor } from "../../../types/v1/cursor_pb";
 import { file_types_v1_environment } from "../../../types/v1/environment_pb";
-import type { Machine } from "../../../types/v1/machine_pb";
-import { file_types_v1_machine } from "../../../types/v1/machine_pb";
+import type { Resource } from "../../../types/v1/otel_resource_pb";
+import { file_types_v1_otel_resource } from "../../../types/v1/otel_resource_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file svc/environment/v1/service.proto.
  */
 export const file_svc_environment_v1_service: GenFile = /*@__PURE__*/
-  fileDesc("CiBzdmMvZW52aXJvbm1lbnQvdjEvc2VydmljZS5wcm90bxISc3ZjLmVudmlyb25tZW50LnYxIl0KEkxpc3RNYWNoaW5lUmVxdWVzdBIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUSFgoOZW52aXJvbm1lbnRfaWQYAyABKAMipgEKE0xpc3RNYWNoaW5lUmVzcG9uc2USHgoEbmV4dBgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchI/CgVpdGVtcxgCIAMoCzIwLnN2Yy5lbnZpcm9ubWVudC52MS5MaXN0TWFjaGluZVJlc3BvbnNlLkxpc3RJdGVtGi4KCExpc3RJdGVtEiIKB21hY2hpbmUYASABKAsyES50eXBlcy52MS5NYWNoaW5lMnQKEkVudmlyb25tZW50U2VydmljZRJeCgtMaXN0TWFjaGluZRImLnN2Yy5lbnZpcm9ubWVudC52MS5MaXN0TWFjaGluZVJlcXVlc3QaJy5zdmMuZW52aXJvbm1lbnQudjEuTGlzdE1hY2hpbmVSZXNwb25zZULPAQoWY29tLnN2Yy5lbnZpcm9ubWVudC52MUIMU2VydmljZVByb3RvUAFaPWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vc3ZjL2Vudmlyb25tZW50L3YxO2Vudmlyb25tZW50djGiAgNTRViqAhJTdmMuRW52aXJvbm1lbnQuVjHKAhJTdmNcRW52aXJvbm1lbnRcVjHiAh5TdmNcRW52aXJvbm1lbnRcVjFcR1BCTWV0YWRhdGHqAhRTdmM6OkVudmlyb25tZW50OjpWMWIGcHJvdG8z", [file_types_v1_cursor, file_types_v1_environment, file_types_v1_machine]);
+  fileDesc("CiBzdmMvZW52aXJvbm1lbnQvdjEvc2VydmljZS5wcm90bxISc3ZjLmVudmlyb25tZW50LnYxIl4KE0xpc3RSZXNvdXJjZVJlcXVlc3QSIAoGY3Vyc29yGAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEg0KBWxpbWl0GAIgASgFEhYKDmVudmlyb25tZW50X2lkGAMgASgDIqoBChRMaXN0UmVzb3VyY2VSZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEkAKBWl0ZW1zGAIgAygLMjEuc3ZjLmVudmlyb25tZW50LnYxLkxpc3RSZXNvdXJjZVJlc3BvbnNlLkxpc3RJdGVtGjAKCExpc3RJdGVtEiQKCHJlc291cmNlGAEgASgLMhIudHlwZXMudjEuUmVzb3VyY2UydwoSRW52aXJvbm1lbnRTZXJ2aWNlEmEKDExpc3RSZXNvdXJjZRInLnN2Yy5lbnZpcm9ubWVudC52MS5MaXN0UmVzb3VyY2VSZXF1ZXN0Giguc3ZjLmVudmlyb25tZW50LnYxLkxpc3RSZXNvdXJjZVJlc3BvbnNlQs8BChZjb20uc3ZjLmVudmlyb25tZW50LnYxQgxTZXJ2aWNlUHJvdG9QAVo9Z2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby9zdmMvZW52aXJvbm1lbnQvdjE7ZW52aXJvbm1lbnR2MaICA1NFWKoCElN2Yy5FbnZpcm9ubWVudC5WMcoCElN2Y1xFbnZpcm9ubWVudFxWMeICHlN2Y1xFbnZpcm9ubWVudFxWMVxHUEJNZXRhZGF0YeoCFFN2Yzo6RW52aXJvbm1lbnQ6OlYxYgZwcm90bzM", [file_types_v1_cursor, file_types_v1_environment, file_types_v1_otel_resource]);
 
 /**
- * @generated from message svc.environment.v1.ListMachineRequest
+ * @generated from message svc.environment.v1.ListResourceRequest
  */
-export type ListMachineRequest = Message<"svc.environment.v1.ListMachineRequest"> & {
+export type ListResourceRequest = Message<"svc.environment.v1.ListResourceRequest"> & {
   /**
    * @generated from field: types.v1.Cursor cursor = 1;
    */
@@ -38,49 +38,49 @@ export type ListMachineRequest = Message<"svc.environment.v1.ListMachineRequest"
 };
 
 /**
- * Describes the message svc.environment.v1.ListMachineRequest.
- * Use `create(ListMachineRequestSchema)` to create a new message.
+ * Describes the message svc.environment.v1.ListResourceRequest.
+ * Use `create(ListResourceRequestSchema)` to create a new message.
  */
-export const ListMachineRequestSchema: GenMessage<ListMachineRequest> = /*@__PURE__*/
+export const ListResourceRequestSchema: GenMessage<ListResourceRequest> = /*@__PURE__*/
   messageDesc(file_svc_environment_v1_service, 0);
 
 /**
- * @generated from message svc.environment.v1.ListMachineResponse
+ * @generated from message svc.environment.v1.ListResourceResponse
  */
-export type ListMachineResponse = Message<"svc.environment.v1.ListMachineResponse"> & {
+export type ListResourceResponse = Message<"svc.environment.v1.ListResourceResponse"> & {
   /**
    * @generated from field: types.v1.Cursor next = 1;
    */
   next?: Cursor;
 
   /**
-   * @generated from field: repeated svc.environment.v1.ListMachineResponse.ListItem items = 2;
+   * @generated from field: repeated svc.environment.v1.ListResourceResponse.ListItem items = 2;
    */
-  items: ListMachineResponse_ListItem[];
+  items: ListResourceResponse_ListItem[];
 };
 
 /**
- * Describes the message svc.environment.v1.ListMachineResponse.
- * Use `create(ListMachineResponseSchema)` to create a new message.
+ * Describes the message svc.environment.v1.ListResourceResponse.
+ * Use `create(ListResourceResponseSchema)` to create a new message.
  */
-export const ListMachineResponseSchema: GenMessage<ListMachineResponse> = /*@__PURE__*/
+export const ListResourceResponseSchema: GenMessage<ListResourceResponse> = /*@__PURE__*/
   messageDesc(file_svc_environment_v1_service, 1);
 
 /**
- * @generated from message svc.environment.v1.ListMachineResponse.ListItem
+ * @generated from message svc.environment.v1.ListResourceResponse.ListItem
  */
-export type ListMachineResponse_ListItem = Message<"svc.environment.v1.ListMachineResponse.ListItem"> & {
+export type ListResourceResponse_ListItem = Message<"svc.environment.v1.ListResourceResponse.ListItem"> & {
   /**
-   * @generated from field: types.v1.Machine machine = 1;
+   * @generated from field: types.v1.Resource resource = 1;
    */
-  machine?: Machine;
+  resource?: Resource;
 };
 
 /**
- * Describes the message svc.environment.v1.ListMachineResponse.ListItem.
- * Use `create(ListMachineResponse_ListItemSchema)` to create a new message.
+ * Describes the message svc.environment.v1.ListResourceResponse.ListItem.
+ * Use `create(ListResourceResponse_ListItemSchema)` to create a new message.
  */
-export const ListMachineResponse_ListItemSchema: GenMessage<ListMachineResponse_ListItem> = /*@__PURE__*/
+export const ListResourceResponse_ListItemSchema: GenMessage<ListResourceResponse_ListItem> = /*@__PURE__*/
   messageDesc(file_svc_environment_v1_service, 1, 0);
 
 /**
@@ -88,12 +88,12 @@ export const ListMachineResponse_ListItemSchema: GenMessage<ListMachineResponse_
  */
 export const EnvironmentService: GenService<{
   /**
-   * @generated from rpc svc.environment.v1.EnvironmentService.ListMachine
+   * @generated from rpc svc.environment.v1.EnvironmentService.ListResource
    */
-  listMachine: {
+  listResource: {
     methodKind: "unary";
-    input: typeof ListMachineRequestSchema;
-    output: typeof ListMachineResponseSchema;
+    input: typeof ListResourceRequestSchema;
+    output: typeof ListResourceResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_svc_environment_v1_service, 0);

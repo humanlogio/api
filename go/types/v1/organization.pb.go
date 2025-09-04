@@ -83,6 +83,312 @@ func (x *Organization) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+type Invitation struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Id    int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// Types that are valid to be assigned to State:
+	//
+	//	*Invitation_Pending
+	//	*Invitation_Accepted
+	//	*Invitation_Revoked
+	//	*Invitation_Expired
+	State         isInvitation_State `protobuf_oneof:"state"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Invitation) Reset() {
+	*x = Invitation{}
+	mi := &file_types_v1_organization_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Invitation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Invitation) ProtoMessage() {}
+
+func (x *Invitation) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_organization_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Invitation.ProtoReflect.Descriptor instead.
+func (*Invitation) Descriptor() ([]byte, []int) {
+	return file_types_v1_organization_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Invitation) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Invitation) GetState() isInvitation_State {
+	if x != nil {
+		return x.State
+	}
+	return nil
+}
+
+func (x *Invitation) GetPending() *Invitation_StatePending {
+	if x != nil {
+		if x, ok := x.State.(*Invitation_Pending); ok {
+			return x.Pending
+		}
+	}
+	return nil
+}
+
+func (x *Invitation) GetAccepted() *Invitation_StateAccepted {
+	if x != nil {
+		if x, ok := x.State.(*Invitation_Accepted); ok {
+			return x.Accepted
+		}
+	}
+	return nil
+}
+
+func (x *Invitation) GetRevoked() *Invitation_StateRevoked {
+	if x != nil {
+		if x, ok := x.State.(*Invitation_Revoked); ok {
+			return x.Revoked
+		}
+	}
+	return nil
+}
+
+func (x *Invitation) GetExpired() *Invitation_StateExpired {
+	if x != nil {
+		if x, ok := x.State.(*Invitation_Expired); ok {
+			return x.Expired
+		}
+	}
+	return nil
+}
+
+type isInvitation_State interface {
+	isInvitation_State()
+}
+
+type Invitation_Pending struct {
+	Pending *Invitation_StatePending `protobuf:"bytes,201,opt,name=pending,proto3,oneof"`
+}
+
+type Invitation_Accepted struct {
+	Accepted *Invitation_StateAccepted `protobuf:"bytes,202,opt,name=accepted,proto3,oneof"`
+}
+
+type Invitation_Revoked struct {
+	Revoked *Invitation_StateRevoked `protobuf:"bytes,203,opt,name=revoked,proto3,oneof"`
+}
+
+type Invitation_Expired struct {
+	Expired *Invitation_StateExpired `protobuf:"bytes,204,opt,name=expired,proto3,oneof"`
+}
+
+func (*Invitation_Pending) isInvitation_State() {}
+
+func (*Invitation_Accepted) isInvitation_State() {}
+
+func (*Invitation_Revoked) isInvitation_State() {}
+
+func (*Invitation_Expired) isInvitation_State() {}
+
+type Invitation_StatePending struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Invitation_StatePending) Reset() {
+	*x = Invitation_StatePending{}
+	mi := &file_types_v1_organization_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Invitation_StatePending) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Invitation_StatePending) ProtoMessage() {}
+
+func (x *Invitation_StatePending) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_organization_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Invitation_StatePending.ProtoReflect.Descriptor instead.
+func (*Invitation_StatePending) Descriptor() ([]byte, []int) {
+	return file_types_v1_organization_proto_rawDescGZIP(), []int{1, 0}
+}
+
+func (x *Invitation_StatePending) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Invitation_StatePending) GetExpiresAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ExpiresAt
+	}
+	return nil
+}
+
+type Invitation_StateAccepted struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AcceptedAt    *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=accepted_at,json=acceptedAt,proto3" json:"accepted_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Invitation_StateAccepted) Reset() {
+	*x = Invitation_StateAccepted{}
+	mi := &file_types_v1_organization_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Invitation_StateAccepted) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Invitation_StateAccepted) ProtoMessage() {}
+
+func (x *Invitation_StateAccepted) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_organization_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Invitation_StateAccepted.ProtoReflect.Descriptor instead.
+func (*Invitation_StateAccepted) Descriptor() ([]byte, []int) {
+	return file_types_v1_organization_proto_rawDescGZIP(), []int{1, 1}
+}
+
+func (x *Invitation_StateAccepted) GetAcceptedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AcceptedAt
+	}
+	return nil
+}
+
+type Invitation_StateRevoked struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RevokedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=revoked_at,json=revokedAt,proto3" json:"revoked_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Invitation_StateRevoked) Reset() {
+	*x = Invitation_StateRevoked{}
+	mi := &file_types_v1_organization_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Invitation_StateRevoked) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Invitation_StateRevoked) ProtoMessage() {}
+
+func (x *Invitation_StateRevoked) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_organization_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Invitation_StateRevoked.ProtoReflect.Descriptor instead.
+func (*Invitation_StateRevoked) Descriptor() ([]byte, []int) {
+	return file_types_v1_organization_proto_rawDescGZIP(), []int{1, 2}
+}
+
+func (x *Invitation_StateRevoked) GetRevokedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RevokedAt
+	}
+	return nil
+}
+
+type Invitation_StateExpired struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ExpiredAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=expired_at,json=expiredAt,proto3" json:"expired_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Invitation_StateExpired) Reset() {
+	*x = Invitation_StateExpired{}
+	mi := &file_types_v1_organization_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Invitation_StateExpired) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Invitation_StateExpired) ProtoMessage() {}
+
+func (x *Invitation_StateExpired) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_organization_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Invitation_StateExpired.ProtoReflect.Descriptor instead.
+func (*Invitation_StateExpired) Descriptor() ([]byte, []int) {
+	return file_types_v1_organization_proto_rawDescGZIP(), []int{1, 3}
+}
+
+func (x *Invitation_StateExpired) GetExpiredAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ExpiredAt
+	}
+	return nil
+}
+
 var File_types_v1_organization_proto protoreflect.FileDescriptor
 
 const file_types_v1_organization_proto_rawDesc = "" +
@@ -92,7 +398,29 @@ const file_types_v1_organization_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x129\n" +
 	"\x04name\x18\x02 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x04name\x129\n" +
 	"\n" +
-	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\x91\x01\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x93\x05\n" +
+	"\n" +
+	"Invitation\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12>\n" +
+	"\apending\x18\xc9\x01 \x01(\v2!.types.v1.Invitation.StatePendingH\x00R\apending\x12A\n" +
+	"\baccepted\x18\xca\x01 \x01(\v2\".types.v1.Invitation.StateAcceptedH\x00R\baccepted\x12>\n" +
+	"\arevoked\x18\xcb\x01 \x01(\v2!.types.v1.Invitation.StateRevokedH\x00R\arevoked\x12>\n" +
+	"\aexpired\x18\xcc\x01 \x01(\v2!.types.v1.Invitation.StateExpiredH\x00R\aexpired\x1a\x84\x01\n" +
+	"\fStatePending\x129\n" +
+	"\n" +
+	"created_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x1aL\n" +
+	"\rStateAccepted\x12;\n" +
+	"\vaccepted_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"acceptedAt\x1aI\n" +
+	"\fStateRevoked\x129\n" +
+	"\n" +
+	"revoked_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\trevokedAt\x1aI\n" +
+	"\fStateExpired\x129\n" +
+	"\n" +
+	"expired_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAtB\a\n" +
+	"\x05stateB\x91\x01\n" +
 	"\fcom.types.v1B\x11OrganizationProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
 var (
@@ -107,18 +435,32 @@ func file_types_v1_organization_proto_rawDescGZIP() []byte {
 	return file_types_v1_organization_proto_rawDescData
 }
 
-var file_types_v1_organization_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_types_v1_organization_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_types_v1_organization_proto_goTypes = []any{
-	(*Organization)(nil),          // 0: types.v1.Organization
-	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
+	(*Organization)(nil),             // 0: types.v1.Organization
+	(*Invitation)(nil),               // 1: types.v1.Invitation
+	(*Invitation_StatePending)(nil),  // 2: types.v1.Invitation.StatePending
+	(*Invitation_StateAccepted)(nil), // 3: types.v1.Invitation.StateAccepted
+	(*Invitation_StateRevoked)(nil),  // 4: types.v1.Invitation.StateRevoked
+	(*Invitation_StateExpired)(nil),  // 5: types.v1.Invitation.StateExpired
+	(*timestamppb.Timestamp)(nil),    // 6: google.protobuf.Timestamp
 }
 var file_types_v1_organization_proto_depIdxs = []int32{
-	1, // 0: types.v1.Organization.created_at:type_name -> google.protobuf.Timestamp
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	6,  // 0: types.v1.Organization.created_at:type_name -> google.protobuf.Timestamp
+	2,  // 1: types.v1.Invitation.pending:type_name -> types.v1.Invitation.StatePending
+	3,  // 2: types.v1.Invitation.accepted:type_name -> types.v1.Invitation.StateAccepted
+	4,  // 3: types.v1.Invitation.revoked:type_name -> types.v1.Invitation.StateRevoked
+	5,  // 4: types.v1.Invitation.expired:type_name -> types.v1.Invitation.StateExpired
+	6,  // 5: types.v1.Invitation.StatePending.created_at:type_name -> google.protobuf.Timestamp
+	6,  // 6: types.v1.Invitation.StatePending.expires_at:type_name -> google.protobuf.Timestamp
+	6,  // 7: types.v1.Invitation.StateAccepted.accepted_at:type_name -> google.protobuf.Timestamp
+	6,  // 8: types.v1.Invitation.StateRevoked.revoked_at:type_name -> google.protobuf.Timestamp
+	6,  // 9: types.v1.Invitation.StateExpired.expired_at:type_name -> google.protobuf.Timestamp
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_organization_proto_init() }
@@ -126,13 +468,19 @@ func file_types_v1_organization_proto_init() {
 	if File_types_v1_organization_proto != nil {
 		return
 	}
+	file_types_v1_organization_proto_msgTypes[1].OneofWrappers = []any{
+		(*Invitation_Pending)(nil),
+		(*Invitation_Accepted)(nil),
+		(*Invitation_Revoked)(nil),
+		(*Invitation_Expired)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_organization_proto_rawDesc), len(file_types_v1_organization_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -20,7 +20,8 @@ service OrganizationService {
 
   rpc ListUser(ListUserRequest) returns (ListUserResponse) {}
   rpc InviteUser(InviteUserRequest) returns (InviteUserResponse) {}
-  rpc RevokeUser(RevokeUserRequest) returns (RevokeUserResponse) {}
+  rpc RevokeUserInvitation(RevokeUserInvitationRequest) returns (RevokeUserInvitationResponse) {}
+  rpc ListUserInvitation(ListUserInvitationRequest) returns (ListUserInvitationResponse) {}
 
   rpc CreateAddonSubscription(CreateAddonSubscriptionRequest) returns (CreateAddonSubscriptionResponse) {}
   rpc ListAddonSubscription(ListAddonSubscriptionRequest) returns (ListAddonSubscriptionResponse) {}
@@ -102,12 +103,28 @@ message ListUserResponse {
 message InviteUserRequest {
   string user_email = 1;
 }
-message InviteUserResponse {}
-
-message RevokeUserRequest {
-  int64 user_id = 1;
+message InviteUserResponse {
+  types.v1.Invitation invitation = 1;
 }
-message RevokeUserResponse {}
+
+message RevokeUserInvitationRequest {
+  int64 invite_id = 1;
+}
+message RevokeUserInvitationResponse {
+  types.v1.Invitation invitation = 1;
+}
+
+message ListUserInvitationRequest {
+  types.v1.Cursor cursor = 1;
+  int32 limit = 2;
+}
+message ListUserInvitationResponse {
+  types.v1.Cursor next = 1;
+  message ListItem {
+    types.v1.Invitation invitation = 1;
+  }
+  repeated ListItem items = 2;
+}
 
 message CreateAddonSubscriptionRequest {
   message Stripe {

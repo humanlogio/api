@@ -4,24 +4,24 @@ package svc.environment.v1;
 
 import "types/v1/cursor.proto";
 import "types/v1/environment.proto";
-import "types/v1/machine.proto";
+import "types/v1/otel_resource.proto";
 
 option go_package = "svc/environment/v1;environmentv1";
 
 service EnvironmentService {
-  rpc ListMachine(ListMachineRequest) returns (ListMachineResponse);
+  rpc ListResource(ListResourceRequest) returns (ListResourceResponse);
 }
 
-message ListMachineRequest {
+message ListResourceRequest {
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
   int64 environment_id = 3;
 }
 
-message ListMachineResponse {
+message ListResourceResponse {
   types.v1.Cursor next = 1;
   message ListItem {
-    types.v1.Machine machine = 1;
+    types.v1.Resource resource = 1;
   }
   repeated ListItem items = 2;
 }

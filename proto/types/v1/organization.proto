@@ -16,3 +16,27 @@ message Organization {
   ];
   google.protobuf.Timestamp created_at = 7;
 }
+
+message Invitation {
+  message StatePending {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Timestamp expires_at = 2;
+  }
+  message StateAccepted {
+    google.protobuf.Timestamp accepted_at = 1;
+  }
+  message StateRevoked {
+    google.protobuf.Timestamp revoked_at = 1;
+  }
+  message StateExpired {
+    google.protobuf.Timestamp expired_at = 1;
+  }
+
+  int64 id = 1;
+  oneof state {
+    StatePending pending = 201;
+    StateAccepted accepted = 202;
+    StateRevoked revoked = 203;
+    StateExpired expired = 204;
+  }
+}

@@ -18,3 +18,8 @@ export const beginDeviceAuth = AuthService.method.beginDeviceAuth;
  * @generated from rpc svc.auth.v1.AuthService.CompleteDeviceAuth
  */
 export const completeDeviceAuth = AuthService.method.completeDeviceAuth;
+
+/**
+ * @generated from rpc svc.auth.v1.AuthService.CheckUsername
+ */
+export const checkUsername = AuthService.method.checkUsername;

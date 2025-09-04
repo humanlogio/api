@@ -18,7 +18,41 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file svc/auth/v1/service.proto.
  */
 export const file_svc_auth_v1_service: GenFile = /*@__PURE__*/
-  fileDesc("ChlzdmMvYXV0aC92MS9zZXJ2aWNlLnByb3RvEgtzdmMuYXV0aC52MSKTAQoRR2V0QXV0aFVSTFJlcXVlc3QSDwoFYnlfaWQYZCABKANIABIRCgdieV9uYW1lGGUgASgJSAASFQoNcmV0dXJuX3RvX3VybBgCIAEoCRIzCglsb2NhbGhvc3QYAyABKAsyIC5zdmMuYXV0aC52MS5Mb2NhbGhvc3RWaWFCcm93c2VyQg4KDG9yZ2FuaXphdGlvbiJvChNMb2NhbGhvc3RWaWFCcm93c2VyEhQKDGFyY2hpdGVjdHVyZRgBIAEoCRIYChBvcGVyYXRpbmdfc3lzdGVtGAIgASgJEigKDXVzaW5nX3ZlcnNpb24YAyABKAsyES50eXBlcy52MS5WZXJzaW9uIiYKEkdldEF1dGhVUkxSZXNwb25zZRIQCghhdXRoX3VybBgBIAEoCSJjChZCZWdpbkRldmljZUF1dGhSZXF1ZXN0Eg8KBWJ5X2lkGGQgASgDSAASEQoHYnlfbmFtZRhlIAEoCUgAEhUKDXJldHVybl90b191cmwYAiABKAlCDgoMb3JnYW5pemF0aW9uIrABChdCZWdpbkRldmljZUF1dGhSZXNwb25zZRILCgN1cmwYASABKAkSEwoLZGV2aWNlX2NvZGUYAiABKAkSEQoJdXNlcl9jb2RlGAMgASgJEi4KCmV4cGlyZXNfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjAKDXBvbGxfaW50ZXJ2YWwYBSABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24icwoZQ29tcGxldGVEZXZpY2VBdXRoUmVxdWVzdBITCgtkZXZpY2VfY29kZRgBIAEoCRIRCgl1c2VyX2NvZGUYAiABKAkSFAoMYXJjaGl0ZWN0dXJlGAUgASgJEhgKEG9wZXJhdGluZ19zeXN0ZW0YBiABKAkiQAoaQ29tcGxldGVEZXZpY2VBdXRoUmVzcG9uc2USIgoFdG9rZW4YASABKAsyEy50eXBlcy52MS5Vc2VyVG9rZW4ypwIKC0F1dGhTZXJ2aWNlEk8KCkdldEF1dGhVUkwSHi5zdmMuYXV0aC52MS5HZXRBdXRoVVJMUmVxdWVzdBofLnN2Yy5hdXRoLnYxLkdldEF1dGhVUkxSZXNwb25zZSIAEl4KD0JlZ2luRGV2aWNlQXV0aBIjLnN2Yy5hdXRoLnYxLkJlZ2luRGV2aWNlQXV0aFJlcXVlc3QaJC5zdmMuYXV0aC52MS5CZWdpbkRldmljZUF1dGhSZXNwb25zZSIAEmcKEkNvbXBsZXRlRGV2aWNlQXV0aBImLnN2Yy5hdXRoLnYxLkNvbXBsZXRlRGV2aWNlQXV0aFJlcXVlc3QaJy5zdmMuYXV0aC52MS5Db21wbGV0ZURldmljZUF1dGhSZXNwb25zZSIAQp4BCg9jb20uc3ZjLmF1dGgudjFCDFNlcnZpY2VQcm90b1ABWi9naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3N2Yy9hdXRoL3YxO2F1dGh2MaICA1NBWKoCC1N2Yy5BdXRoLlYxygILU3ZjXEF1dGhcVjHiAhdTdmNcQXV0aFxWMVxHUEJNZXRhZGF0YeoCDVN2Yzo6QXV0aDo6VjFiBnByb3RvMw", [file_google_protobuf_duration, file_google_protobuf_timestamp, file_types_v1_environment, file_types_v1_meta, file_types_v1_user_token, file_types_v1_version]);
+  fileDesc("ChlzdmMvYXV0aC92MS9zZXJ2aWNlLnByb3RvEgtzdmMuYXV0aC52MSIoChRDaGVja1VzZXJuYW1lUmVxdWVzdBIQCgh1c2VybmFtZRgBIAEoCSIqChVDaGVja1VzZXJuYW1lUmVzcG9uc2USEQoJYXZhaWxhYmxlGAEgASgIIqUBChFHZXRBdXRoVVJMUmVxdWVzdBIPCgVieV9pZBhkIAEoA0gAEhEKB2J5X25hbWUYZSABKAlIABIVCg1yZXR1cm5fdG9fdXJsGAIgASgJEjMKCWxvY2FsaG9zdBgDIAEoCzIgLnN2Yy5hdXRoLnYxLkxvY2FsaG9zdFZpYUJyb3dzZXISEAoIdXNlcm5hbWUYBCABKAlCDgoMb3JnYW5pemF0aW9uIm8KE0xvY2FsaG9zdFZpYUJyb3dzZXISFAoMYXJjaGl0ZWN0dXJlGAEgASgJEhgKEG9wZXJhdGluZ19zeXN0ZW0YAiABKAkSKAoNdXNpbmdfdmVyc2lvbhgDIAEoCzIRLnR5cGVzLnYxLlZlcnNpb24iJgoSR2V0QXV0aFVSTFJlc3BvbnNlEhAKCGF1dGhfdXJsGAEgASgJImMKFkJlZ2luRGV2aWNlQXV0aFJlcXVlc3QSDwoFYnlfaWQYZCABKANIABIRCgdieV9uYW1lGGUgASgJSAASFQoNcmV0dXJuX3RvX3VybBgCIAEoCUIOCgxvcmdhbml6YXRpb24isAEKF0JlZ2luRGV2aWNlQXV0aFJlc3BvbnNlEgsKA3VybBgBIAEoCRITCgtkZXZpY2VfY29kZRgCIAEoCRIRCgl1c2VyX2NvZGUYAyABKAkSLgoKZXhwaXJlc19hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMAoNcG9sbF9pbnRlcnZhbBgFIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbiJzChlDb21wbGV0ZURldmljZUF1dGhSZXF1ZXN0EhMKC2RldmljZV9jb2RlGAEgASgJEhEKCXVzZXJfY29kZRgCIAEoCRIUCgxhcmNoaXRlY3R1cmUYBSABKAkSGAoQb3BlcmF0aW5nX3N5c3RlbRgGIAEoCSJAChpDb21wbGV0ZURldmljZUF1dGhSZXNwb25zZRIiCgV0b2tlbhgBIAEoCzITLnR5cGVzLnYxLlVzZXJUb2tlbjKBAwoLQXV0aFNlcnZpY2USTwoKR2V0QXV0aFVSTBIeLnN2Yy5hdXRoLnYxLkdldEF1dGhVUkxSZXF1ZXN0Gh8uc3ZjLmF1dGgudjEuR2V0QXV0aFVSTFJlc3BvbnNlIgASXgoPQmVnaW5EZXZpY2VBdXRoEiMuc3ZjLmF1dGgudjEuQmVnaW5EZXZpY2VBdXRoUmVxdWVzdBokLnN2Yy5hdXRoLnYxLkJlZ2luRGV2aWNlQXV0aFJlc3BvbnNlIgASZwoSQ29tcGxldGVEZXZpY2VBdXRoEiYuc3ZjLmF1dGgudjEuQ29tcGxldGVEZXZpY2VBdXRoUmVxdWVzdBonLnN2Yy5hdXRoLnYxLkNvbXBsZXRlRGV2aWNlQXV0aFJlc3BvbnNlIgASWAoNQ2hlY2tVc2VybmFtZRIhLnN2Yy5hdXRoLnYxLkNoZWNrVXNlcm5hbWVSZXF1ZXN0GiIuc3ZjLmF1dGgudjEuQ2hlY2tVc2VybmFtZVJlc3BvbnNlIgBCngEKD2NvbS5zdmMuYXV0aC52MUIMU2VydmljZVByb3RvUAFaL2dpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vc3ZjL2F1dGgvdjE7YXV0aHYxogIDU0FYqgILU3ZjLkF1dGguVjHKAgtTdmNcQXV0aFxWMeICF1N2Y1xBdXRoXFYxXEdQQk1ldGFkYXRh6gINU3ZjOjpBdXRoOjpWMWIGcHJvdG8z", [file_google_protobuf_duration, file_google_protobuf_timestamp, file_types_v1_environment, file_types_v1_meta, file_types_v1_user_token, file_types_v1_version]);
+
+/**
+ * @generated from message svc.auth.v1.CheckUsernameRequest
+ */
+export type CheckUsernameRequest = Message<"svc.auth.v1.CheckUsernameRequest"> & {
+  /**
+   * @generated from field: string username = 1;
+   */
+  username: string;
+};
+
+/**
+ * Describes the message svc.auth.v1.CheckUsernameRequest.
+ * Use `create(CheckUsernameRequestSchema)` to create a new message.
+ */
+export const CheckUsernameRequestSchema: GenMessage<CheckUsernameRequest> = /*@__PURE__*/
+  messageDesc(file_svc_auth_v1_service, 0);
+
+/**
+ * @generated from message svc.auth.v1.CheckUsernameResponse
+ */
+export type CheckUsernameResponse = Message<"svc.auth.v1.CheckUsernameResponse"> & {
+  /**
+   * @generated from field: bool available = 1;
+   */
+  available: boolean;
+};
+
+/**
+ * Describes the message svc.auth.v1.CheckUsernameResponse.
+ * Use `create(CheckUsernameResponseSchema)` to create a new message.
+ */
+export const CheckUsernameResponseSchema: GenMessage<CheckUsernameResponse> = /*@__PURE__*/
+  messageDesc(file_svc_auth_v1_service, 1);
 
 /**
  * @generated from message svc.auth.v1.GetAuthURLRequest
@@ -52,6 +86,11 @@ export type GetAuthURLRequest = Message<"svc.auth.v1.GetAuthURLRequest"> & {
    * @generated from field: svc.auth.v1.LocalhostViaBrowser localhost = 3;
    */
   localhost?: LocalhostViaBrowser;
+
+  /**
+   * @generated from field: string username = 4;
+   */
+  username: string;
 };
 
 /**
@@ -59,7 +98,7 @@ export type GetAuthURLRequest = Message<"svc.auth.v1.GetAuthURLRequest"> & {
  * Use `create(GetAuthURLRequestSchema)` to create a new message.
  */
 export const GetAuthURLRequestSchema: GenMessage<GetAuthURLRequest> = /*@__PURE__*/
-  messageDesc(file_svc_auth_v1_service, 0);
+  messageDesc(file_svc_auth_v1_service, 2);
 
 /**
  * @generated from message svc.auth.v1.LocalhostViaBrowser
@@ -86,7 +125,7 @@ export type LocalhostViaBrowser = Message<"svc.auth.v1.LocalhostViaBrowser"> & {
  * Use `create(LocalhostViaBrowserSchema)` to create a new message.
  */
 export const LocalhostViaBrowserSchema: GenMessage<LocalhostViaBrowser> = /*@__PURE__*/
-  messageDesc(file_svc_auth_v1_service, 1);
+  messageDesc(file_svc_auth_v1_service, 3);
 
 /**
  * @generated from message svc.auth.v1.GetAuthURLResponse
@@ -103,7 +142,7 @@ export type GetAuthURLResponse = Message<"svc.auth.v1.GetAuthURLResponse"> & {
  * Use `create(GetAuthURLResponseSchema)` to create a new message.
  */
 export const GetAuthURLResponseSchema: GenMessage<GetAuthURLResponse> = /*@__PURE__*/
-  messageDesc(file_svc_auth_v1_service, 2);
+  messageDesc(file_svc_auth_v1_service, 4);
 
 /**
  * @generated from message svc.auth.v1.BeginDeviceAuthRequest
@@ -137,7 +176,7 @@ export type BeginDeviceAuthRequest = Message<"svc.auth.v1.BeginDeviceAuthRequest
  * Use `create(BeginDeviceAuthRequestSchema)` to create a new message.
  */
 export const BeginDeviceAuthRequestSchema: GenMessage<BeginDeviceAuthRequest> = /*@__PURE__*/
-  messageDesc(file_svc_auth_v1_service, 3);
+  messageDesc(file_svc_auth_v1_service, 5);
 
 /**
  * @generated from message svc.auth.v1.BeginDeviceAuthResponse
@@ -176,7 +215,7 @@ export type BeginDeviceAuthResponse = Message<"svc.auth.v1.BeginDeviceAuthRespon
  * Use `create(BeginDeviceAuthResponseSchema)` to create a new message.
  */
 export const BeginDeviceAuthResponseSchema: GenMessage<BeginDeviceAuthResponse> = /*@__PURE__*/
-  messageDesc(file_svc_auth_v1_service, 4);
+  messageDesc(file_svc_auth_v1_service, 6);
 
 /**
  * @generated from message svc.auth.v1.CompleteDeviceAuthRequest
@@ -211,7 +250,7 @@ export type CompleteDeviceAuthRequest = Message<"svc.auth.v1.CompleteDeviceAuthR
  * Use `create(CompleteDeviceAuthRequestSchema)` to create a new message.
  */
 export const CompleteDeviceAuthRequestSchema: GenMessage<CompleteDeviceAuthRequest> = /*@__PURE__*/
-  messageDesc(file_svc_auth_v1_service, 5);
+  messageDesc(file_svc_auth_v1_service, 7);
 
 /**
  * @generated from message svc.auth.v1.CompleteDeviceAuthResponse
@@ -228,7 +267,7 @@ export type CompleteDeviceAuthResponse = Message<"svc.auth.v1.CompleteDeviceAuth
  * Use `create(CompleteDeviceAuthResponseSchema)` to create a new message.
  */
 export const CompleteDeviceAuthResponseSchema: GenMessage<CompleteDeviceAuthResponse> = /*@__PURE__*/
-  messageDesc(file_svc_auth_v1_service, 6);
+  messageDesc(file_svc_auth_v1_service, 8);
 
 /**
  * @generated from service svc.auth.v1.AuthService
@@ -257,6 +296,14 @@ export const AuthService: GenService<{
     methodKind: "unary";
     input: typeof CompleteDeviceAuthRequestSchema;
     output: typeof CompleteDeviceAuthResponseSchema;
+  },
+  /**
+   * @generated from rpc svc.auth.v1.AuthService.CheckUsername
+   */
+  checkUsername: {
+    methodKind: "unary";
+    input: typeof CheckUsernameRequestSchema;
+    output: typeof CheckUsernameResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_svc_auth_v1_service, 0);
