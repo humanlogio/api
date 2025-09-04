@@ -41,6 +41,9 @@ const (
 	// AuthServiceCompleteDeviceAuthProcedure is the fully-qualified name of the AuthService's
 	// CompleteDeviceAuth RPC.
 	AuthServiceCompleteDeviceAuthProcedure = "/svc.auth.v1.AuthService/CompleteDeviceAuth"
+	// AuthServiceCheckUsernameProcedure is the fully-qualified name of the AuthService's CheckUsername
+	// RPC.
+	AuthServiceCheckUsernameProcedure = "/svc.auth.v1.AuthService/CheckUsername"
 )
 
 // AuthServiceClient is a client for the svc.auth.v1.AuthService service.
@@ -48,6 +51,7 @@ type AuthServiceClient interface {
 	GetAuthURL(context.Context, *connect.Request[v1.GetAuthURLRequest]) (*connect.Response[v1.GetAuthURLResponse], error)
 	BeginDeviceAuth(context.Context, *connect.Request[v1.BeginDeviceAuthRequest]) (*connect.Response[v1.BeginDeviceAuthResponse], error)
 	CompleteDeviceAuth(context.Context, *connect.Request[v1.CompleteDeviceAuthRequest]) (*connect.Response[v1.CompleteDeviceAuthResponse], error)
+	CheckUsername(context.Context, *connect.Request[v1.CheckUsernameRequest]) (*connect.Response[v1.CheckUsernameResponse], error)
 }
 
 // NewAuthServiceClient constructs a client for the svc.auth.v1.AuthService service. By default, it
@@ -79,6 +83,12 @@ func NewAuthServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			connect.WithSchema(authServiceMethods.ByName("CompleteDeviceAuth")),
 			connect.WithClientOptions(opts...),
 		),
+		checkUsername: connect.NewClient[v1.CheckUsernameRequest, v1.CheckUsernameResponse](
+			httpClient,
+			baseURL+AuthServiceCheckUsernameProcedure,
+			connect.WithSchema(authServiceMethods.ByName("CheckUsername")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -87,6 +97,7 @@ type authServiceClient struct {
 	getAuthURL         *connect.Client[v1.GetAuthURLRequest, v1.GetAuthURLResponse]
 	beginDeviceAuth    *connect.Client[v1.BeginDeviceAuthRequest, v1.BeginDeviceAuthResponse]
 	completeDeviceAuth *connect.Client[v1.CompleteDeviceAuthRequest, v1.CompleteDeviceAuthResponse]
+	checkUsername      *connect.Client[v1.CheckUsernameRequest, v1.CheckUsernameResponse]
 }
 
 // GetAuthURL calls svc.auth.v1.AuthService.GetAuthURL.
@@ -104,11 +115,17 @@ func (c *authServiceClient) CompleteDeviceAuth(ctx context.Context, req *connect
 	return c.completeDeviceAuth.CallUnary(ctx, req)
 }
 
+// CheckUsername calls svc.auth.v1.AuthService.CheckUsername.
+func (c *authServiceClient) CheckUsername(ctx context.Context, req *connect.Request[v1.CheckUsernameRequest]) (*connect.Response[v1.CheckUsernameResponse], error) {
+	return c.checkUsername.CallUnary(ctx, req)
+}
+
 // AuthServiceHandler is an implementation of the svc.auth.v1.AuthService service.
 type AuthServiceHandler interface {
 	GetAuthURL(context.Context, *connect.Request[v1.GetAuthURLRequest]) (*connect.Response[v1.GetAuthURLResponse], error)
 	BeginDeviceAuth(context.Context, *connect.Request[v1.BeginDeviceAuthRequest]) (*connect.Response[v1.BeginDeviceAuthResponse], error)
 	CompleteDeviceAuth(context.Context, *connect.Request[v1.CompleteDeviceAuthRequest]) (*connect.Response[v1.CompleteDeviceAuthResponse], error)
+	CheckUsername(context.Context, *connect.Request[v1.CheckUsernameRequest]) (*connect.Response[v1.CheckUsernameResponse], error)
 }
 
 // NewAuthServiceHandler builds an HTTP handler from the service implementation. It returns the path
@@ -136,6 +153,12 @@ func NewAuthServiceHandler(svc AuthServiceHandler, opts ...connect.HandlerOption
 		connect.WithSchema(authServiceMethods.ByName("CompleteDeviceAuth")),
 		connect.WithHandlerOptions(opts...),
 	)
+	authServiceCheckUsernameHandler := connect.NewUnaryHandler(
+		AuthServiceCheckUsernameProcedure,
+		svc.CheckUsername,
+		connect.WithSchema(authServiceMethods.ByName("CheckUsername")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.auth.v1.AuthService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case AuthServiceGetAuthURLProcedure:
@@ -144,6 +167,8 @@ func NewAuthServiceHandler(svc AuthServiceHandler, opts ...connect.HandlerOption
 			authServiceBeginDeviceAuthHandler.ServeHTTP(w, r)
 		case AuthServiceCompleteDeviceAuthProcedure:
 			authServiceCompleteDeviceAuthHandler.ServeHTTP(w, r)
+		case AuthServiceCheckUsernameProcedure:
+			authServiceCheckUsernameHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -163,4 +188,8 @@ func (UnimplementedAuthServiceHandler) BeginDeviceAuth(context.Context, *connect
 
 func (UnimplementedAuthServiceHandler) CompleteDeviceAuth(context.Context, *connect.Request[v1.CompleteDeviceAuthRequest]) (*connect.Response[v1.CompleteDeviceAuthResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.auth.v1.AuthService.CompleteDeviceAuth is not implemented"))
+}
+
+func (UnimplementedAuthServiceHandler) CheckUsername(context.Context, *connect.Request[v1.CheckUsernameRequest]) (*connect.Response[v1.CheckUsernameResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.auth.v1.AuthService.CheckUsername is not implemented"))
 }

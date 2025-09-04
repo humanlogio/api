@@ -5,6 +5,6 @@
 import { EnvironmentService } from "./service_pb";
 
 /**
- * @generated from rpc svc.environment.v1.EnvironmentService.ListMachine
+ * @generated from rpc svc.environment.v1.EnvironmentService.ListResource
  */
-export const listMachine = EnvironmentService.method.listMachine;
+export const listResource = EnvironmentService.method.listResource;

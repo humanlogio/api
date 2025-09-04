@@ -30,9 +30,14 @@ export const listUser = OrganizationService.method.listUser;
 export const inviteUser = OrganizationService.method.inviteUser;
 
 /**
- * @generated from rpc svc.organization.v1.OrganizationService.RevokeUser
+ * @generated from rpc svc.organization.v1.OrganizationService.RevokeUserInvitation
  */
-export const revokeUser = OrganizationService.method.revokeUser;
+export const revokeUserInvitation = OrganizationService.method.revokeUserInvitation;
+
+/**
+ * @generated from rpc svc.organization.v1.OrganizationService.ListUserInvitation
+ */
+export const listUserInvitation = OrganizationService.method.listUserInvitation;
 
 /**
  * @generated from rpc svc.organization.v1.OrganizationService.CreateAddonSubscription

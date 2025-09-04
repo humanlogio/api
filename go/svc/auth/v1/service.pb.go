@@ -24,6 +24,94 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type CheckUsernameRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckUsernameRequest) Reset() {
+	*x = CheckUsernameRequest{}
+	mi := &file_svc_auth_v1_service_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckUsernameRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckUsernameRequest) ProtoMessage() {}
+
+func (x *CheckUsernameRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_auth_v1_service_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckUsernameRequest.ProtoReflect.Descriptor instead.
+func (*CheckUsernameRequest) Descriptor() ([]byte, []int) {
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *CheckUsernameRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+type CheckUsernameResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Available     bool                   `protobuf:"varint,1,opt,name=available,proto3" json:"available,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckUsernameResponse) Reset() {
+	*x = CheckUsernameResponse{}
+	mi := &file_svc_auth_v1_service_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckUsernameResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckUsernameResponse) ProtoMessage() {}
+
+func (x *CheckUsernameResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_auth_v1_service_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckUsernameResponse.ProtoReflect.Descriptor instead.
+func (*CheckUsernameResponse) Descriptor() ([]byte, []int) {
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CheckUsernameResponse) GetAvailable() bool {
+	if x != nil {
+		return x.Available
+	}
+	return false
+}
+
 type GetAuthURLRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// optional: if an org is specified
@@ -35,13 +123,14 @@ type GetAuthURLRequest struct {
 	Organization  isGetAuthURLRequest_Organization `protobuf_oneof:"organization"`
 	ReturnToUrl   string                           `protobuf:"bytes,2,opt,name=return_to_url,json=returnToUrl,proto3" json:"return_to_url,omitempty"`
 	Localhost     *LocalhostViaBrowser             `protobuf:"bytes,3,opt,name=localhost,proto3" json:"localhost,omitempty"`
+	Username      string                           `protobuf:"bytes,4,opt,name=username,proto3" json:"username,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetAuthURLRequest) Reset() {
 	*x = GetAuthURLRequest{}
-	mi := &file_svc_auth_v1_service_proto_msgTypes[0]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -53,7 +142,7 @@ func (x *GetAuthURLRequest) String() string {
 func (*GetAuthURLRequest) ProtoMessage() {}
 
 func (x *GetAuthURLRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_auth_v1_service_proto_msgTypes[0]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -66,7 +155,7 @@ func (x *GetAuthURLRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAuthURLRequest.ProtoReflect.Descriptor instead.
 func (*GetAuthURLRequest) Descriptor() ([]byte, []int) {
-	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{0}
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetAuthURLRequest) GetOrganization() isGetAuthURLRequest_Organization {
@@ -108,6 +197,13 @@ func (x *GetAuthURLRequest) GetLocalhost() *LocalhostViaBrowser {
 	return nil
 }
 
+func (x *GetAuthURLRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
 type isGetAuthURLRequest_Organization interface {
 	isGetAuthURLRequest_Organization()
 }
@@ -135,7 +231,7 @@ type LocalhostViaBrowser struct {
 
 func (x *LocalhostViaBrowser) Reset() {
 	*x = LocalhostViaBrowser{}
-	mi := &file_svc_auth_v1_service_proto_msgTypes[1]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -147,7 +243,7 @@ func (x *LocalhostViaBrowser) String() string {
 func (*LocalhostViaBrowser) ProtoMessage() {}
 
 func (x *LocalhostViaBrowser) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_auth_v1_service_proto_msgTypes[1]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -160,7 +256,7 @@ func (x *LocalhostViaBrowser) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LocalhostViaBrowser.ProtoReflect.Descriptor instead.
 func (*LocalhostViaBrowser) Descriptor() ([]byte, []int) {
-	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{1}
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *LocalhostViaBrowser) GetArchitecture() string {
@@ -193,7 +289,7 @@ type GetAuthURLResponse struct {
 
 func (x *GetAuthURLResponse) Reset() {
 	*x = GetAuthURLResponse{}
-	mi := &file_svc_auth_v1_service_proto_msgTypes[2]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -205,7 +301,7 @@ func (x *GetAuthURLResponse) String() string {
 func (*GetAuthURLResponse) ProtoMessage() {}
 
 func (x *GetAuthURLResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_auth_v1_service_proto_msgTypes[2]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +314,7 @@ func (x *GetAuthURLResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAuthURLResponse.ProtoReflect.Descriptor instead.
 func (*GetAuthURLResponse) Descriptor() ([]byte, []int) {
-	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{2}
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetAuthURLResponse) GetAuthUrl() string {
@@ -242,7 +338,7 @@ type BeginDeviceAuthRequest struct {
 
 func (x *BeginDeviceAuthRequest) Reset() {
 	*x = BeginDeviceAuthRequest{}
-	mi := &file_svc_auth_v1_service_proto_msgTypes[3]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -254,7 +350,7 @@ func (x *BeginDeviceAuthRequest) String() string {
 func (*BeginDeviceAuthRequest) ProtoMessage() {}
 
 func (x *BeginDeviceAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_auth_v1_service_proto_msgTypes[3]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -267,7 +363,7 @@ func (x *BeginDeviceAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BeginDeviceAuthRequest.ProtoReflect.Descriptor instead.
 func (*BeginDeviceAuthRequest) Descriptor() ([]byte, []int) {
-	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{3}
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *BeginDeviceAuthRequest) GetOrganization() isBeginDeviceAuthRequest_Organization {
@@ -332,7 +428,7 @@ type BeginDeviceAuthResponse struct {
 
 func (x *BeginDeviceAuthResponse) Reset() {
 	*x = BeginDeviceAuthResponse{}
-	mi := &file_svc_auth_v1_service_proto_msgTypes[4]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -344,7 +440,7 @@ func (x *BeginDeviceAuthResponse) String() string {
 func (*BeginDeviceAuthResponse) ProtoMessage() {}
 
 func (x *BeginDeviceAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_auth_v1_service_proto_msgTypes[4]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -357,7 +453,7 @@ func (x *BeginDeviceAuthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BeginDeviceAuthResponse.ProtoReflect.Descriptor instead.
 func (*BeginDeviceAuthResponse) Descriptor() ([]byte, []int) {
-	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{4}
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *BeginDeviceAuthResponse) GetUrl() string {
@@ -409,7 +505,7 @@ type CompleteDeviceAuthRequest struct {
 
 func (x *CompleteDeviceAuthRequest) Reset() {
 	*x = CompleteDeviceAuthRequest{}
-	mi := &file_svc_auth_v1_service_proto_msgTypes[5]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -421,7 +517,7 @@ func (x *CompleteDeviceAuthRequest) String() string {
 func (*CompleteDeviceAuthRequest) ProtoMessage() {}
 
 func (x *CompleteDeviceAuthRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_auth_v1_service_proto_msgTypes[5]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -434,7 +530,7 @@ func (x *CompleteDeviceAuthRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CompleteDeviceAuthRequest.ProtoReflect.Descriptor instead.
 func (*CompleteDeviceAuthRequest) Descriptor() ([]byte, []int) {
-	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{5}
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CompleteDeviceAuthRequest) GetDeviceCode() string {
@@ -474,7 +570,7 @@ type CompleteDeviceAuthResponse struct {
 
 func (x *CompleteDeviceAuthResponse) Reset() {
 	*x = CompleteDeviceAuthResponse{}
-	mi := &file_svc_auth_v1_service_proto_msgTypes[6]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -486,7 +582,7 @@ func (x *CompleteDeviceAuthResponse) String() string {
 func (*CompleteDeviceAuthResponse) ProtoMessage() {}
 
 func (x *CompleteDeviceAuthResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_auth_v1_service_proto_msgTypes[6]
+	mi := &file_svc_auth_v1_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -499,7 +595,7 @@ func (x *CompleteDeviceAuthResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CompleteDeviceAuthResponse.ProtoReflect.Descriptor instead.
 func (*CompleteDeviceAuthResponse) Descriptor() ([]byte, []int) {
-	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{6}
+	return file_svc_auth_v1_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CompleteDeviceAuthResponse) GetToken() *v1.UserToken {
@@ -513,12 +609,17 @@ var File_svc_auth_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_auth_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x19svc/auth/v1/service.proto\x12\vsvc.auth.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1atypes/v1/environment.proto\x1a\x13types/v1/meta.proto\x1a\x19types/v1/user_token.proto\x1a\x16types/v1/version.proto\"\xb9\x01\n" +
+	"\x19svc/auth/v1/service.proto\x12\vsvc.auth.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1atypes/v1/environment.proto\x1a\x13types/v1/meta.proto\x1a\x19types/v1/user_token.proto\x1a\x16types/v1/version.proto\"2\n" +
+	"\x14CheckUsernameRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\"5\n" +
+	"\x15CheckUsernameResponse\x12\x1c\n" +
+	"\tavailable\x18\x01 \x01(\bR\tavailable\"\xd5\x01\n" +
 	"\x11GetAuthURLRequest\x12\x15\n" +
 	"\x05by_id\x18d \x01(\x03H\x00R\x04byId\x12\x19\n" +
 	"\aby_name\x18e \x01(\tH\x00R\x06byName\x12\"\n" +
 	"\rreturn_to_url\x18\x02 \x01(\tR\vreturnToUrl\x12>\n" +
-	"\tlocalhost\x18\x03 \x01(\v2 .svc.auth.v1.LocalhostViaBrowserR\tlocalhostB\x0e\n" +
+	"\tlocalhost\x18\x03 \x01(\v2 .svc.auth.v1.LocalhostViaBrowserR\tlocalhost\x12\x1a\n" +
+	"\busername\x18\x04 \x01(\tR\busernameB\x0e\n" +
 	"\forganization\"\x9c\x01\n" +
 	"\x13LocalhostViaBrowser\x12\"\n" +
 	"\farchitecture\x18\x01 \x01(\tR\farchitecture\x12)\n" +
@@ -546,12 +647,13 @@ const file_svc_auth_v1_service_proto_rawDesc = "" +
 	"\farchitecture\x18\x05 \x01(\tR\farchitecture\x12)\n" +
 	"\x10operating_system\x18\x06 \x01(\tR\x0foperatingSystem\"G\n" +
 	"\x1aCompleteDeviceAuthResponse\x12)\n" +
-	"\x05token\x18\x01 \x01(\v2\x13.types.v1.UserTokenR\x05token2\xa7\x02\n" +
+	"\x05token\x18\x01 \x01(\v2\x13.types.v1.UserTokenR\x05token2\x81\x03\n" +
 	"\vAuthService\x12O\n" +
 	"\n" +
 	"GetAuthURL\x12\x1e.svc.auth.v1.GetAuthURLRequest\x1a\x1f.svc.auth.v1.GetAuthURLResponse\"\x00\x12^\n" +
 	"\x0fBeginDeviceAuth\x12#.svc.auth.v1.BeginDeviceAuthRequest\x1a$.svc.auth.v1.BeginDeviceAuthResponse\"\x00\x12g\n" +
-	"\x12CompleteDeviceAuth\x12&.svc.auth.v1.CompleteDeviceAuthRequest\x1a'.svc.auth.v1.CompleteDeviceAuthResponse\"\x00B\x9e\x01\n" +
+	"\x12CompleteDeviceAuth\x12&.svc.auth.v1.CompleteDeviceAuthRequest\x1a'.svc.auth.v1.CompleteDeviceAuthResponse\"\x00\x12X\n" +
+	"\rCheckUsername\x12!.svc.auth.v1.CheckUsernameRequest\x1a\".svc.auth.v1.CheckUsernameResponse\"\x00B\x9e\x01\n" +
 	"\x0fcom.svc.auth.v1B\fServiceProtoP\x01Z/github.com/humanlogio/api/go/svc/auth/v1;authv1\xa2\x02\x03SAX\xaa\x02\vSvc.Auth.V1\xca\x02\vSvc\\Auth\\V1\xe2\x02\x17Svc\\Auth\\V1\\GPBMetadata\xea\x02\rSvc::Auth::V1b\x06proto3"
 
 var (
@@ -566,34 +668,38 @@ func file_svc_auth_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_auth_v1_service_proto_rawDescData
 }
 
-var file_svc_auth_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_svc_auth_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_svc_auth_v1_service_proto_goTypes = []any{
-	(*GetAuthURLRequest)(nil),          // 0: svc.auth.v1.GetAuthURLRequest
-	(*LocalhostViaBrowser)(nil),        // 1: svc.auth.v1.LocalhostViaBrowser
-	(*GetAuthURLResponse)(nil),         // 2: svc.auth.v1.GetAuthURLResponse
-	(*BeginDeviceAuthRequest)(nil),     // 3: svc.auth.v1.BeginDeviceAuthRequest
-	(*BeginDeviceAuthResponse)(nil),    // 4: svc.auth.v1.BeginDeviceAuthResponse
-	(*CompleteDeviceAuthRequest)(nil),  // 5: svc.auth.v1.CompleteDeviceAuthRequest
-	(*CompleteDeviceAuthResponse)(nil), // 6: svc.auth.v1.CompleteDeviceAuthResponse
-	(*v1.Version)(nil),                 // 7: types.v1.Version
-	(*timestamppb.Timestamp)(nil),      // 8: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),        // 9: google.protobuf.Duration
-	(*v1.UserToken)(nil),               // 10: types.v1.UserToken
+	(*CheckUsernameRequest)(nil),       // 0: svc.auth.v1.CheckUsernameRequest
+	(*CheckUsernameResponse)(nil),      // 1: svc.auth.v1.CheckUsernameResponse
+	(*GetAuthURLRequest)(nil),          // 2: svc.auth.v1.GetAuthURLRequest
+	(*LocalhostViaBrowser)(nil),        // 3: svc.auth.v1.LocalhostViaBrowser
+	(*GetAuthURLResponse)(nil),         // 4: svc.auth.v1.GetAuthURLResponse
+	(*BeginDeviceAuthRequest)(nil),     // 5: svc.auth.v1.BeginDeviceAuthRequest
+	(*BeginDeviceAuthResponse)(nil),    // 6: svc.auth.v1.BeginDeviceAuthResponse
+	(*CompleteDeviceAuthRequest)(nil),  // 7: svc.auth.v1.CompleteDeviceAuthRequest
+	(*CompleteDeviceAuthResponse)(nil), // 8: svc.auth.v1.CompleteDeviceAuthResponse
+	(*v1.Version)(nil),                 // 9: types.v1.Version
+	(*timestamppb.Timestamp)(nil),      // 10: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),        // 11: google.protobuf.Duration
+	(*v1.UserToken)(nil),               // 12: types.v1.UserToken
 }
 var file_svc_auth_v1_service_proto_depIdxs = []int32{
-	1,  // 0: svc.auth.v1.GetAuthURLRequest.localhost:type_name -> svc.auth.v1.LocalhostViaBrowser
-	7,  // 1: svc.auth.v1.LocalhostViaBrowser.using_version:type_name -> types.v1.Version
-	8,  // 2: svc.auth.v1.BeginDeviceAuthResponse.expires_at:type_name -> google.protobuf.Timestamp
-	9,  // 3: svc.auth.v1.BeginDeviceAuthResponse.poll_interval:type_name -> google.protobuf.Duration
-	10, // 4: svc.auth.v1.CompleteDeviceAuthResponse.token:type_name -> types.v1.UserToken
-	0,  // 5: svc.auth.v1.AuthService.GetAuthURL:input_type -> svc.auth.v1.GetAuthURLRequest
-	3,  // 6: svc.auth.v1.AuthService.BeginDeviceAuth:input_type -> svc.auth.v1.BeginDeviceAuthRequest
-	5,  // 7: svc.auth.v1.AuthService.CompleteDeviceAuth:input_type -> svc.auth.v1.CompleteDeviceAuthRequest
-	2,  // 8: svc.auth.v1.AuthService.GetAuthURL:output_type -> svc.auth.v1.GetAuthURLResponse
-	4,  // 9: svc.auth.v1.AuthService.BeginDeviceAuth:output_type -> svc.auth.v1.BeginDeviceAuthResponse
-	6,  // 10: svc.auth.v1.AuthService.CompleteDeviceAuth:output_type -> svc.auth.v1.CompleteDeviceAuthResponse
-	8,  // [8:11] is the sub-list for method output_type
-	5,  // [5:8] is the sub-list for method input_type
+	3,  // 0: svc.auth.v1.GetAuthURLRequest.localhost:type_name -> svc.auth.v1.LocalhostViaBrowser
+	9,  // 1: svc.auth.v1.LocalhostViaBrowser.using_version:type_name -> types.v1.Version
+	10, // 2: svc.auth.v1.BeginDeviceAuthResponse.expires_at:type_name -> google.protobuf.Timestamp
+	11, // 3: svc.auth.v1.BeginDeviceAuthResponse.poll_interval:type_name -> google.protobuf.Duration
+	12, // 4: svc.auth.v1.CompleteDeviceAuthResponse.token:type_name -> types.v1.UserToken
+	2,  // 5: svc.auth.v1.AuthService.GetAuthURL:input_type -> svc.auth.v1.GetAuthURLRequest
+	5,  // 6: svc.auth.v1.AuthService.BeginDeviceAuth:input_type -> svc.auth.v1.BeginDeviceAuthRequest
+	7,  // 7: svc.auth.v1.AuthService.CompleteDeviceAuth:input_type -> svc.auth.v1.CompleteDeviceAuthRequest
+	0,  // 8: svc.auth.v1.AuthService.CheckUsername:input_type -> svc.auth.v1.CheckUsernameRequest
+	4,  // 9: svc.auth.v1.AuthService.GetAuthURL:output_type -> svc.auth.v1.GetAuthURLResponse
+	6,  // 10: svc.auth.v1.AuthService.BeginDeviceAuth:output_type -> svc.auth.v1.BeginDeviceAuthResponse
+	8,  // 11: svc.auth.v1.AuthService.CompleteDeviceAuth:output_type -> svc.auth.v1.CompleteDeviceAuthResponse
+	1,  // 12: svc.auth.v1.AuthService.CheckUsername:output_type -> svc.auth.v1.CheckUsernameResponse
+	9,  // [9:13] is the sub-list for method output_type
+	5,  // [5:9] is the sub-list for method input_type
 	5,  // [5:5] is the sub-list for extension type_name
 	5,  // [5:5] is the sub-list for extension extendee
 	0,  // [0:5] is the sub-list for field type_name
@@ -604,11 +710,11 @@ func file_svc_auth_v1_service_proto_init() {
 	if File_svc_auth_v1_service_proto != nil {
 		return
 	}
-	file_svc_auth_v1_service_proto_msgTypes[0].OneofWrappers = []any{
+	file_svc_auth_v1_service_proto_msgTypes[2].OneofWrappers = []any{
 		(*GetAuthURLRequest_ById)(nil),
 		(*GetAuthURLRequest_ByName)(nil),
 	}
-	file_svc_auth_v1_service_proto_msgTypes[3].OneofWrappers = []any{
+	file_svc_auth_v1_service_proto_msgTypes[5].OneofWrappers = []any{
 		(*BeginDeviceAuthRequest_ById)(nil),
 		(*BeginDeviceAuthRequest_ByName)(nil),
 	}
@@ -618,7 +724,7 @@ func file_svc_auth_v1_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_auth_v1_service_proto_rawDesc), len(file_svc_auth_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

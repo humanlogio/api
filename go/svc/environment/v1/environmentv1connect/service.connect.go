@@ -33,14 +33,14 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// EnvironmentServiceListMachineProcedure is the fully-qualified name of the EnvironmentService's
-	// ListMachine RPC.
-	EnvironmentServiceListMachineProcedure = "/svc.environment.v1.EnvironmentService/ListMachine"
+	// EnvironmentServiceListResourceProcedure is the fully-qualified name of the EnvironmentService's
+	// ListResource RPC.
+	EnvironmentServiceListResourceProcedure = "/svc.environment.v1.EnvironmentService/ListResource"
 )
 
 // EnvironmentServiceClient is a client for the svc.environment.v1.EnvironmentService service.
 type EnvironmentServiceClient interface {
-	ListMachine(context.Context, *connect.Request[v1.ListMachineRequest]) (*connect.Response[v1.ListMachineResponse], error)
+	ListResource(context.Context, *connect.Request[v1.ListResourceRequest]) (*connect.Response[v1.ListResourceResponse], error)
 }
 
 // NewEnvironmentServiceClient constructs a client for the svc.environment.v1.EnvironmentService
@@ -54,10 +54,10 @@ func NewEnvironmentServiceClient(httpClient connect.HTTPClient, baseURL string, 
 	baseURL = strings.TrimRight(baseURL, "/")
 	environmentServiceMethods := v1.File_svc_environment_v1_service_proto.Services().ByName("EnvironmentService").Methods()
 	return &environmentServiceClient{
-		listMachine: connect.NewClient[v1.ListMachineRequest, v1.ListMachineResponse](
+		listResource: connect.NewClient[v1.ListResourceRequest, v1.ListResourceResponse](
 			httpClient,
-			baseURL+EnvironmentServiceListMachineProcedure,
-			connect.WithSchema(environmentServiceMethods.ByName("ListMachine")),
+			baseURL+EnvironmentServiceListResourceProcedure,
+			connect.WithSchema(environmentServiceMethods.ByName("ListResource")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -65,18 +65,18 @@ func NewEnvironmentServiceClient(httpClient connect.HTTPClient, baseURL string, 
 
 // environmentServiceClient implements EnvironmentServiceClient.
 type environmentServiceClient struct {
-	listMachine *connect.Client[v1.ListMachineRequest, v1.ListMachineResponse]
+	listResource *connect.Client[v1.ListResourceRequest, v1.ListResourceResponse]
 }
 
-// ListMachine calls svc.environment.v1.EnvironmentService.ListMachine.
-func (c *environmentServiceClient) ListMachine(ctx context.Context, req *connect.Request[v1.ListMachineRequest]) (*connect.Response[v1.ListMachineResponse], error) {
-	return c.listMachine.CallUnary(ctx, req)
+// ListResource calls svc.environment.v1.EnvironmentService.ListResource.
+func (c *environmentServiceClient) ListResource(ctx context.Context, req *connect.Request[v1.ListResourceRequest]) (*connect.Response[v1.ListResourceResponse], error) {
+	return c.listResource.CallUnary(ctx, req)
 }
 
 // EnvironmentServiceHandler is an implementation of the svc.environment.v1.EnvironmentService
 // service.
 type EnvironmentServiceHandler interface {
-	ListMachine(context.Context, *connect.Request[v1.ListMachineRequest]) (*connect.Response[v1.ListMachineResponse], error)
+	ListResource(context.Context, *connect.Request[v1.ListResourceRequest]) (*connect.Response[v1.ListResourceResponse], error)
 }
 
 // NewEnvironmentServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -86,16 +86,16 @@ type EnvironmentServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewEnvironmentServiceHandler(svc EnvironmentServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	environmentServiceMethods := v1.File_svc_environment_v1_service_proto.Services().ByName("EnvironmentService").Methods()
-	environmentServiceListMachineHandler := connect.NewUnaryHandler(
-		EnvironmentServiceListMachineProcedure,
-		svc.ListMachine,
-		connect.WithSchema(environmentServiceMethods.ByName("ListMachine")),
+	environmentServiceListResourceHandler := connect.NewUnaryHandler(
+		EnvironmentServiceListResourceProcedure,
+		svc.ListResource,
+		connect.WithSchema(environmentServiceMethods.ByName("ListResource")),
 		connect.WithHandlerOptions(opts...),
 	)
 	return "/svc.environment.v1.EnvironmentService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case EnvironmentServiceListMachineProcedure:
-			environmentServiceListMachineHandler.ServeHTTP(w, r)
+		case EnvironmentServiceListResourceProcedure:
+			environmentServiceListResourceHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -105,6 +105,6 @@ func NewEnvironmentServiceHandler(svc EnvironmentServiceHandler, opts ...connect
 // UnimplementedEnvironmentServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedEnvironmentServiceHandler struct{}
 
-func (UnimplementedEnvironmentServiceHandler) ListMachine(context.Context, *connect.Request[v1.ListMachineRequest]) (*connect.Response[v1.ListMachineResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.environment.v1.EnvironmentService.ListMachine is not implemented"))
+func (UnimplementedEnvironmentServiceHandler) ListResource(context.Context, *connect.Request[v1.ListResourceRequest]) (*connect.Response[v1.ListResourceResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.environment.v1.EnvironmentService.ListResource is not implemented"))
 }
