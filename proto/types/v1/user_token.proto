@@ -9,4 +9,5 @@ option go_package = "types/v1;typesv1";
 message UserToken {
   int64 user_id = 1;
   string token = 2;
+  string username = 3;
 }

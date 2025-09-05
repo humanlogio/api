@@ -11,7 +11,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/user_token.proto.
  */
 export const file_types_v1_user_token: GenFile = /*@__PURE__*/
-  fileDesc("Chl0eXBlcy92MS91c2VyX3Rva2VuLnByb3RvEgh0eXBlcy52MSIrCglVc2VyVG9rZW4SDwoHdXNlcl9pZBgBIAEoAxINCgV0b2tlbhgCIAEoCUKOAQoMY29tLnR5cGVzLnYxQg5Vc2VyVG9rZW5Qcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_google_protobuf_timestamp]);
+  fileDesc("Chl0eXBlcy92MS91c2VyX3Rva2VuLnByb3RvEgh0eXBlcy52MSI9CglVc2VyVG9rZW4SDwoHdXNlcl9pZBgBIAEoAxINCgV0b2tlbhgCIAEoCRIQCgh1c2VybmFtZRgDIAEoCUKOAQoMY29tLnR5cGVzLnYxQg5Vc2VyVG9rZW5Qcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message types.v1.UserToken
@@ -26,6 +26,11 @@ export type UserToken = Message<"types.v1.UserToken"> & {
    * @generated from field: string token = 2;
    */
   token: string;
+
+  /**
+   * @generated from field: string username = 3;
+   */
+  username: string;
 };
 
 /**
