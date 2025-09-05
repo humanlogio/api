@@ -141,8 +141,8 @@ func (x *Organization) GetCreatedAt() *timestamppb.Timestamp {
 type Invitation struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	InvitedToOrgId   int64                  `protobuf:"varint,2,opt,name=invited_to_org_id,json=invitedToOrgId,proto3" json:"invited_to_org_id,omitempty"`
-	InvitedUserId    int64                  `protobuf:"varint,3,opt,name=invited_user_id,json=invitedUserId,proto3" json:"invited_user_id,omitempty"`
+	InvitedTo        *Organization          `protobuf:"bytes,2,opt,name=invited_to,json=invitedTo,proto3" json:"invited_to,omitempty"`
+	InvitedBy        *PublicUser            `protobuf:"bytes,3,opt,name=invited_by,json=invitedBy,proto3" json:"invited_by,omitempty"`
 	InvitedUserEmail string                 `protobuf:"bytes,4,opt,name=invited_user_email,json=invitedUserEmail,proto3" json:"invited_user_email,omitempty"`
 	State            Invitation_State       `protobuf:"varint,5,opt,name=state,proto3,enum=types.v1.Invitation_State" json:"state,omitempty"`
 	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
@@ -191,18 +191,18 @@ func (x *Invitation) GetId() int64 {
 	return 0
 }
 
-func (x *Invitation) GetInvitedToOrgId() int64 {
+func (x *Invitation) GetInvitedTo() *Organization {
 	if x != nil {
-		return x.InvitedToOrgId
+		return x.InvitedTo
 	}
-	return 0
+	return nil
 }
 
-func (x *Invitation) GetInvitedUserId() int64 {
+func (x *Invitation) GetInvitedBy() *PublicUser {
 	if x != nil {
-		return x.InvitedUserId
+		return x.InvitedBy
 	}
-	return 0
+	return nil
 }
 
 func (x *Invitation) GetInvitedUserEmail() string {
@@ -258,17 +258,19 @@ var File_types_v1_organization_proto protoreflect.FileDescriptor
 
 const file_types_v1_organization_proto_rawDesc = "" +
 	"\n" +
-	"\x1btypes/v1/organization.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x94\x01\n" +
+	"\x1btypes/v1/organization.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13types/v1/user.proto\"\x94\x01\n" +
 	"\fOrganization\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x129\n" +
 	"\x04name\x18\x02 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x04name\x129\n" +
 	"\n" +
-	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xc5\x04\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xde\x04\n" +
 	"\n" +
 	"Invitation\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12)\n" +
-	"\x11invited_to_org_id\x18\x02 \x01(\x03R\x0einvitedToOrgId\x12&\n" +
-	"\x0finvited_user_id\x18\x03 \x01(\x03R\rinvitedUserId\x12,\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x125\n" +
+	"\n" +
+	"invited_to\x18\x02 \x01(\v2\x16.types.v1.OrganizationR\tinvitedTo\x123\n" +
+	"\n" +
+	"invited_by\x18\x03 \x01(\v2\x14.types.v1.PublicUserR\tinvitedBy\x12,\n" +
 	"\x12invited_user_email\x18\x04 \x01(\tR\x10invitedUserEmail\x120\n" +
 	"\x05state\x18\x05 \x01(\x0e2\x1a.types.v1.Invitation.StateR\x05state\x129\n" +
 	"\n" +
@@ -309,20 +311,23 @@ var file_types_v1_organization_proto_goTypes = []any{
 	(*Organization)(nil),          // 1: types.v1.Organization
 	(*Invitation)(nil),            // 2: types.v1.Invitation
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
+	(*PublicUser)(nil),            // 4: types.v1.PublicUser
 }
 var file_types_v1_organization_proto_depIdxs = []int32{
 	3, // 0: types.v1.Organization.created_at:type_name -> google.protobuf.Timestamp
-	0, // 1: types.v1.Invitation.state:type_name -> types.v1.Invitation.State
-	3, // 2: types.v1.Invitation.created_at:type_name -> google.protobuf.Timestamp
-	3, // 3: types.v1.Invitation.updated_at:type_name -> google.protobuf.Timestamp
-	3, // 4: types.v1.Invitation.expires_at:type_name -> google.protobuf.Timestamp
-	3, // 5: types.v1.Invitation.accepted_at:type_name -> google.protobuf.Timestamp
-	3, // 6: types.v1.Invitation.revoked_at:type_name -> google.protobuf.Timestamp
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	1, // 1: types.v1.Invitation.invited_to:type_name -> types.v1.Organization
+	4, // 2: types.v1.Invitation.invited_by:type_name -> types.v1.PublicUser
+	0, // 3: types.v1.Invitation.state:type_name -> types.v1.Invitation.State
+	3, // 4: types.v1.Invitation.created_at:type_name -> google.protobuf.Timestamp
+	3, // 5: types.v1.Invitation.updated_at:type_name -> google.protobuf.Timestamp
+	3, // 6: types.v1.Invitation.expires_at:type_name -> google.protobuf.Timestamp
+	3, // 7: types.v1.Invitation.accepted_at:type_name -> google.protobuf.Timestamp
+	3, // 8: types.v1.Invitation.revoked_at:type_name -> google.protobuf.Timestamp
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_organization_proto_init() }
@@ -330,6 +335,7 @@ func file_types_v1_organization_proto_init() {
 	if File_types_v1_organization_proto != nil {
 		return
 	}
+	file_types_v1_user_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
