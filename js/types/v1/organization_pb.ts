@@ -2,8 +2,8 @@
 // @generated from file types/v1/organization.proto (package types.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/organization.proto.
  */
 export const file_types_v1_organization: GenFile = /*@__PURE__*/
-  fileDesc("Cht0eXBlcy92MS9vcmdhbml6YXRpb24ucHJvdG8SCHR5cGVzLnYxIn8KDE9yZ2FuaXphdGlvbhIKCgJpZBgBIAEoAxIzCgRuYW1lGAIgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIrEECgpJbnZpdGF0aW9uEgoKAmlkGAEgASgDEjUKB3BlbmRpbmcYyQEgASgLMiEudHlwZXMudjEuSW52aXRhdGlvbi5TdGF0ZVBlbmRpbmdIABI3CghhY2NlcHRlZBjKASABKAsyIi50eXBlcy52MS5JbnZpdGF0aW9uLlN0YXRlQWNjZXB0ZWRIABI1CgdyZXZva2VkGMsBIAEoCzIhLnR5cGVzLnYxLkludml0YXRpb24uU3RhdGVSZXZva2VkSAASNQoHZXhwaXJlZBjMASABKAsyIS50eXBlcy52MS5JbnZpdGF0aW9uLlN0YXRlRXhwaXJlZEgAGm4KDFN0YXRlUGVuZGluZxIuCgpjcmVhdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpleHBpcmVzX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBpACg1TdGF0ZUFjY2VwdGVkEi8KC2FjY2VwdGVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBo+CgxTdGF0ZVJldm9rZWQSLgoKcmV2b2tlZF9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAaPgoMU3RhdGVFeHBpcmVkEi4KCmV4cGlyZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQgcKBXN0YXRlQpEBCgxjb20udHlwZXMudjFCEU9yZ2FuaXphdGlvblByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp]);
+  fileDesc("Cht0eXBlcy92MS9vcmdhbml6YXRpb24ucHJvdG8SCHR5cGVzLnYxIn8KDE9yZ2FuaXphdGlvbhIKCgJpZBgBIAEoAxIzCgRuYW1lGAIgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wItEDCgpJbnZpdGF0aW9uEgoKAmlkGAEgASgDEhkKEWludml0ZWRfdG9fb3JnX2lkGAIgASgDEhcKD2ludml0ZWRfdXNlcl9pZBgDIAEoAxIaChJpbnZpdGVkX3VzZXJfZW1haWwYBCABKAkSKQoFc3RhdGUYBSABKA4yGi50eXBlcy52MS5JbnZpdGF0aW9uLlN0YXRlEi4KCmNyZWF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCmV4cGlyZXNfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC2FjY2VwdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpyZXZva2VkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJLCgVTdGF0ZRINCglVTkRFRklORUQQABILCgdQRU5ESU5HEAESDAoIQUNDRVBURUQQAhILCgdSRVZPS0VEEAMSCwoHRVhQSVJFRBAEQpEBCgxjb20udHlwZXMudjFCEU9yZ2FuaXphdGlvblByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message types.v1.Organization
@@ -52,33 +52,49 @@ export type Invitation = Message<"types.v1.Invitation"> & {
   id: bigint;
 
   /**
-   * @generated from oneof types.v1.Invitation.state
+   * @generated from field: int64 invited_to_org_id = 2;
    */
-  state: {
-    /**
-     * @generated from field: types.v1.Invitation.StatePending pending = 201;
-     */
-    value: Invitation_StatePending;
-    case: "pending";
-  } | {
-    /**
-     * @generated from field: types.v1.Invitation.StateAccepted accepted = 202;
-     */
-    value: Invitation_StateAccepted;
-    case: "accepted";
-  } | {
-    /**
-     * @generated from field: types.v1.Invitation.StateRevoked revoked = 203;
-     */
-    value: Invitation_StateRevoked;
-    case: "revoked";
-  } | {
-    /**
-     * @generated from field: types.v1.Invitation.StateExpired expired = 204;
-     */
-    value: Invitation_StateExpired;
-    case: "expired";
-  } | { case: undefined; value?: undefined };
+  invitedToOrgId: bigint;
+
+  /**
+   * @generated from field: int64 invited_user_id = 3;
+   */
+  invitedUserId: bigint;
+
+  /**
+   * @generated from field: string invited_user_email = 4;
+   */
+  invitedUserEmail: string;
+
+  /**
+   * @generated from field: types.v1.Invitation.State state = 5;
+   */
+  state: Invitation_State;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 7;
+   */
+  updatedAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp expires_at = 8;
+   */
+  expiresAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp accepted_at = 9;
+   */
+  acceptedAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp revoked_at = 10;
+   */
+  revokedAt?: Timestamp;
 };
 
 /**
@@ -89,75 +105,38 @@ export const InvitationSchema: GenMessage<Invitation> = /*@__PURE__*/
   messageDesc(file_types_v1_organization, 1);
 
 /**
- * @generated from message types.v1.Invitation.StatePending
+ * @generated from enum types.v1.Invitation.State
  */
-export type Invitation_StatePending = Message<"types.v1.Invitation.StatePending"> & {
+export enum Invitation_State {
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 1;
+   * @generated from enum value: UNDEFINED = 0;
    */
-  createdAt?: Timestamp;
+  UNDEFINED = 0,
 
   /**
-   * @generated from field: google.protobuf.Timestamp expires_at = 2;
+   * @generated from enum value: PENDING = 1;
    */
-  expiresAt?: Timestamp;
-};
+  PENDING = 1,
 
-/**
- * Describes the message types.v1.Invitation.StatePending.
- * Use `create(Invitation_StatePendingSchema)` to create a new message.
- */
-export const Invitation_StatePendingSchema: GenMessage<Invitation_StatePending> = /*@__PURE__*/
-  messageDesc(file_types_v1_organization, 1, 0);
-
-/**
- * @generated from message types.v1.Invitation.StateAccepted
- */
-export type Invitation_StateAccepted = Message<"types.v1.Invitation.StateAccepted"> & {
   /**
-   * @generated from field: google.protobuf.Timestamp accepted_at = 1;
+   * @generated from enum value: ACCEPTED = 2;
    */
-  acceptedAt?: Timestamp;
-};
+  ACCEPTED = 2,
 
-/**
- * Describes the message types.v1.Invitation.StateAccepted.
- * Use `create(Invitation_StateAcceptedSchema)` to create a new message.
- */
-export const Invitation_StateAcceptedSchema: GenMessage<Invitation_StateAccepted> = /*@__PURE__*/
-  messageDesc(file_types_v1_organization, 1, 1);
-
-/**
- * @generated from message types.v1.Invitation.StateRevoked
- */
-export type Invitation_StateRevoked = Message<"types.v1.Invitation.StateRevoked"> & {
   /**
-   * @generated from field: google.protobuf.Timestamp revoked_at = 1;
+   * @generated from enum value: REVOKED = 3;
    */
-  revokedAt?: Timestamp;
-};
+  REVOKED = 3,
 
-/**
- * Describes the message types.v1.Invitation.StateRevoked.
- * Use `create(Invitation_StateRevokedSchema)` to create a new message.
- */
-export const Invitation_StateRevokedSchema: GenMessage<Invitation_StateRevoked> = /*@__PURE__*/
-  messageDesc(file_types_v1_organization, 1, 2);
-
-/**
- * @generated from message types.v1.Invitation.StateExpired
- */
-export type Invitation_StateExpired = Message<"types.v1.Invitation.StateExpired"> & {
   /**
-   * @generated from field: google.protobuf.Timestamp expired_at = 1;
+   * @generated from enum value: EXPIRED = 4;
    */
-  expiredAt?: Timestamp;
-};
+  EXPIRED = 4,
+}
 
 /**
- * Describes the message types.v1.Invitation.StateExpired.
- * Use `create(Invitation_StateExpiredSchema)` to create a new message.
+ * Describes the enum types.v1.Invitation.State.
  */
-export const Invitation_StateExpiredSchema: GenMessage<Invitation_StateExpired> = /*@__PURE__*/
-  messageDesc(file_types_v1_organization, 1, 3);
+export const Invitation_StateSchema: GenEnum<Invitation_State> = /*@__PURE__*/
+  enumDesc(file_types_v1_organization, 1, 0);
 
