@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/organization.proto.
  */
 export const file_types_v1_organization: GenFile = /*@__PURE__*/
-  fileDesc("Cht0eXBlcy92MS9vcmdhbml6YXRpb24ucHJvdG8SCHR5cGVzLnYxIn8KDE9yZ2FuaXphdGlvbhIKCgJpZBgBIAEoAxIzCgRuYW1lGAIgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIvMDCgpJbnZpdGF0aW9uEgoKAmlkGAEgASgDEioKCmludml0ZWRfdG8YAiABKAsyFi50eXBlcy52MS5Pcmdhbml6YXRpb24SKAoKaW52aXRlZF9ieRgDIAEoCzIULnR5cGVzLnYxLlB1YmxpY1VzZXISGgoSaW52aXRlZF91c2VyX2VtYWlsGAQgASgJEikKBXN0YXRlGAUgASgOMhoudHlwZXMudjEuSW52aXRhdGlvbi5TdGF0ZRIuCgpjcmVhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgp1cGRhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpleHBpcmVzX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgthY2NlcHRlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKcmV2b2tlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiSwoFU3RhdGUSDQoJVU5ERUZJTkVEEAASCwoHUEVORElORxABEgwKCEFDQ0VQVEVEEAISCwoHUkVWT0tFRBADEgsKB0VYUElSRUQQBEKRAQoMY29tLnR5cGVzLnYxQhFPcmdhbml6YXRpb25Qcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_timestamp, file_types_v1_user]);
+  fileDesc("Cht0eXBlcy92MS9vcmdhbml6YXRpb24ucHJvdG8SCHR5cGVzLnYxIn8KDE9yZ2FuaXphdGlvbhIKCgJpZBgBIAEoAxIzCgRuYW1lGAIgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIswDCgpJbnZpdGF0aW9uEgoKAmlkGAEgASgDEigKCmludml0ZWRfYnkYAiABKAsyFC50eXBlcy52MS5QdWJsaWNVc2VyEhoKEmludml0ZWRfdXNlcl9lbWFpbBgDIAEoCRIpCgVzdGF0ZRgEIAEoDjIaLnR5cGVzLnYxLkludml0YXRpb24uU3RhdGUSLwoKY3JlYXRlZF9hdBj1AyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KCnVwZGF0ZWRfYXQY9gMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgpleHBpcmVzX2F0GPcDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMAoLYWNjZXB0ZWRfYXQY+AMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgpyZXZva2VkX2F0GPkDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiSwoFU3RhdGUSDQoJVU5ERUZJTkVEEAASCwoHUEVORElORxABEgwKCEFDQ0VQVEVEEAISCwoHUkVWT0tFRBADEgsKB0VYUElSRUQQBEKRAQoMY29tLnR5cGVzLnYxQhFPcmdhbml6YXRpb25Qcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_timestamp, file_types_v1_user]);
 
 /**
  * @generated from message types.v1.Organization
@@ -54,47 +54,42 @@ export type Invitation = Message<"types.v1.Invitation"> & {
   id: bigint;
 
   /**
-   * @generated from field: types.v1.Organization invited_to = 2;
-   */
-  invitedTo?: Organization;
-
-  /**
-   * @generated from field: types.v1.PublicUser invited_by = 3;
+   * @generated from field: types.v1.PublicUser invited_by = 2;
    */
   invitedBy?: PublicUser;
 
   /**
-   * @generated from field: string invited_user_email = 4;
+   * @generated from field: string invited_user_email = 3;
    */
   invitedUserEmail: string;
 
   /**
-   * @generated from field: types.v1.Invitation.State state = 5;
+   * @generated from field: types.v1.Invitation.State state = 4;
    */
   state: Invitation_State;
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 6;
+   * @generated from field: google.protobuf.Timestamp created_at = 501;
    */
   createdAt?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 7;
+   * @generated from field: google.protobuf.Timestamp updated_at = 502;
    */
   updatedAt?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp expires_at = 8;
+   * @generated from field: google.protobuf.Timestamp expires_at = 503;
    */
   expiresAt?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp accepted_at = 9;
+   * @generated from field: google.protobuf.Timestamp accepted_at = 504;
    */
   acceptedAt?: Timestamp;
 
   /**
-   * @generated from field: google.protobuf.Timestamp revoked_at = 10;
+   * @generated from field: google.protobuf.Timestamp revoked_at = 505;
    */
   revokedAt?: Timestamp;
 };

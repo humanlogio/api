@@ -141,15 +141,14 @@ func (x *Organization) GetCreatedAt() *timestamppb.Timestamp {
 type Invitation struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	InvitedTo        *Organization          `protobuf:"bytes,2,opt,name=invited_to,json=invitedTo,proto3" json:"invited_to,omitempty"`
-	InvitedBy        *PublicUser            `protobuf:"bytes,3,opt,name=invited_by,json=invitedBy,proto3" json:"invited_by,omitempty"`
-	InvitedUserEmail string                 `protobuf:"bytes,4,opt,name=invited_user_email,json=invitedUserEmail,proto3" json:"invited_user_email,omitempty"`
-	State            Invitation_State       `protobuf:"varint,5,opt,name=state,proto3,enum=types.v1.Invitation_State" json:"state,omitempty"`
-	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	ExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	AcceptedAt       *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=accepted_at,json=acceptedAt,proto3" json:"accepted_at,omitempty"`
-	RevokedAt        *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=revoked_at,json=revokedAt,proto3" json:"revoked_at,omitempty"`
+	InvitedBy        *PublicUser            `protobuf:"bytes,2,opt,name=invited_by,json=invitedBy,proto3" json:"invited_by,omitempty"`
+	InvitedUserEmail string                 `protobuf:"bytes,3,opt,name=invited_user_email,json=invitedUserEmail,proto3" json:"invited_user_email,omitempty"`
+	State            Invitation_State       `protobuf:"varint,4,opt,name=state,proto3,enum=types.v1.Invitation_State" json:"state,omitempty"`
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,501,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,502,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	ExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,503,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	AcceptedAt       *timestamppb.Timestamp `protobuf:"bytes,504,opt,name=accepted_at,json=acceptedAt,proto3" json:"accepted_at,omitempty"`
+	RevokedAt        *timestamppb.Timestamp `protobuf:"bytes,505,opt,name=revoked_at,json=revokedAt,proto3" json:"revoked_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -189,13 +188,6 @@ func (x *Invitation) GetId() int64 {
 		return x.Id
 	}
 	return 0
-}
-
-func (x *Invitation) GetInvitedTo() *Organization {
-	if x != nil {
-		return x.InvitedTo
-	}
-	return nil
 }
 
 func (x *Invitation) GetInvitedBy() *PublicUser {
@@ -263,27 +255,24 @@ const file_types_v1_organization_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x129\n" +
 	"\x04name\x18\x02 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x04name\x129\n" +
 	"\n" +
-	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xde\x04\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xac\x04\n" +
 	"\n" +
 	"Invitation\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x125\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x123\n" +
 	"\n" +
-	"invited_to\x18\x02 \x01(\v2\x16.types.v1.OrganizationR\tinvitedTo\x123\n" +
+	"invited_by\x18\x02 \x01(\v2\x14.types.v1.PublicUserR\tinvitedBy\x12,\n" +
+	"\x12invited_user_email\x18\x03 \x01(\tR\x10invitedUserEmail\x120\n" +
+	"\x05state\x18\x04 \x01(\x0e2\x1a.types.v1.Invitation.StateR\x05state\x12:\n" +
 	"\n" +
-	"invited_by\x18\x03 \x01(\v2\x14.types.v1.PublicUserR\tinvitedBy\x12,\n" +
-	"\x12invited_user_email\x18\x04 \x01(\tR\x10invitedUserEmail\x120\n" +
-	"\x05state\x18\x05 \x01(\x0e2\x1a.types.v1.Invitation.StateR\x05state\x129\n" +
+	"created_at\x18\xf5\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12:\n" +
 	"\n" +
-	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"updated_at\x18\xf6\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12:\n" +
 	"\n" +
-	"updated_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x129\n" +
+	"expires_at\x18\xf7\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12<\n" +
+	"\vaccepted_at\x18\xf8\x03 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"acceptedAt\x12:\n" +
 	"\n" +
-	"expires_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12;\n" +
-	"\vaccepted_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"acceptedAt\x129\n" +
-	"\n" +
-	"revoked_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\trevokedAt\"K\n" +
+	"revoked_at\x18\xf9\x03 \x01(\v2\x1a.google.protobuf.TimestampR\trevokedAt\"K\n" +
 	"\x05State\x12\r\n" +
 	"\tUNDEFINED\x10\x00\x12\v\n" +
 	"\aPENDING\x10\x01\x12\f\n" +
@@ -315,19 +304,18 @@ var file_types_v1_organization_proto_goTypes = []any{
 }
 var file_types_v1_organization_proto_depIdxs = []int32{
 	3, // 0: types.v1.Organization.created_at:type_name -> google.protobuf.Timestamp
-	1, // 1: types.v1.Invitation.invited_to:type_name -> types.v1.Organization
-	4, // 2: types.v1.Invitation.invited_by:type_name -> types.v1.PublicUser
-	0, // 3: types.v1.Invitation.state:type_name -> types.v1.Invitation.State
-	3, // 4: types.v1.Invitation.created_at:type_name -> google.protobuf.Timestamp
-	3, // 5: types.v1.Invitation.updated_at:type_name -> google.protobuf.Timestamp
-	3, // 6: types.v1.Invitation.expires_at:type_name -> google.protobuf.Timestamp
-	3, // 7: types.v1.Invitation.accepted_at:type_name -> google.protobuf.Timestamp
-	3, // 8: types.v1.Invitation.revoked_at:type_name -> google.protobuf.Timestamp
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	4, // 1: types.v1.Invitation.invited_by:type_name -> types.v1.PublicUser
+	0, // 2: types.v1.Invitation.state:type_name -> types.v1.Invitation.State
+	3, // 3: types.v1.Invitation.created_at:type_name -> google.protobuf.Timestamp
+	3, // 4: types.v1.Invitation.updated_at:type_name -> google.protobuf.Timestamp
+	3, // 5: types.v1.Invitation.expires_at:type_name -> google.protobuf.Timestamp
+	3, // 6: types.v1.Invitation.accepted_at:type_name -> google.protobuf.Timestamp
+	3, // 7: types.v1.Invitation.revoked_at:type_name -> google.protobuf.Timestamp
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_organization_proto_init() }
