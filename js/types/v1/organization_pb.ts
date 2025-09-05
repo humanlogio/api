@@ -7,13 +7,15 @@ import { enumDesc, fileDesc, messageDesc } from "@bufbuild/protobuf/codegenv2";
 import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
 import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { PublicUser } from "./user_pb";
+import { file_types_v1_user } from "./user_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file types/v1/organization.proto.
  */
 export const file_types_v1_organization: GenFile = /*@__PURE__*/
-  fileDesc("Cht0eXBlcy92MS9vcmdhbml6YXRpb24ucHJvdG8SCHR5cGVzLnYxIn8KDE9yZ2FuaXphdGlvbhIKCgJpZBgBIAEoAxIzCgRuYW1lGAIgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wItEDCgpJbnZpdGF0aW9uEgoKAmlkGAEgASgDEhkKEWludml0ZWRfdG9fb3JnX2lkGAIgASgDEhcKD2ludml0ZWRfdXNlcl9pZBgDIAEoAxIaChJpbnZpdGVkX3VzZXJfZW1haWwYBCABKAkSKQoFc3RhdGUYBSABKA4yGi50eXBlcy52MS5JbnZpdGF0aW9uLlN0YXRlEi4KCmNyZWF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCmV4cGlyZXNfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC2FjY2VwdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpyZXZva2VkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJLCgVTdGF0ZRINCglVTkRFRklORUQQABILCgdQRU5ESU5HEAESDAoIQUNDRVBURUQQAhILCgdSRVZPS0VEEAMSCwoHRVhQSVJFRBAEQpEBCgxjb20udHlwZXMudjFCEU9yZ2FuaXphdGlvblByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp]);
+  fileDesc("Cht0eXBlcy92MS9vcmdhbml6YXRpb24ucHJvdG8SCHR5cGVzLnYxIn8KDE9yZ2FuaXphdGlvbhIKCgJpZBgBIAEoAxIzCgRuYW1lGAIgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIvMDCgpJbnZpdGF0aW9uEgoKAmlkGAEgASgDEioKCmludml0ZWRfdG8YAiABKAsyFi50eXBlcy52MS5Pcmdhbml6YXRpb24SKAoKaW52aXRlZF9ieRgDIAEoCzIULnR5cGVzLnYxLlB1YmxpY1VzZXISGgoSaW52aXRlZF91c2VyX2VtYWlsGAQgASgJEikKBXN0YXRlGAUgASgOMhoudHlwZXMudjEuSW52aXRhdGlvbi5TdGF0ZRIuCgpjcmVhdGVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgp1cGRhdGVkX2F0GAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpleHBpcmVzX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgthY2NlcHRlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKcmV2b2tlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiSwoFU3RhdGUSDQoJVU5ERUZJTkVEEAASCwoHUEVORElORxABEgwKCEFDQ0VQVEVEEAISCwoHUkVWT0tFRBADEgsKB0VYUElSRUQQBEKRAQoMY29tLnR5cGVzLnYxQhFPcmdhbml6YXRpb25Qcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_timestamp, file_types_v1_user]);
 
 /**
  * @generated from message types.v1.Organization
@@ -52,14 +54,14 @@ export type Invitation = Message<"types.v1.Invitation"> & {
   id: bigint;
 
   /**
-   * @generated from field: int64 invited_to_org_id = 2;
+   * @generated from field: types.v1.Organization invited_to = 2;
    */
-  invitedToOrgId: bigint;
+  invitedTo?: Organization;
 
   /**
-   * @generated from field: int64 invited_user_id = 3;
+   * @generated from field: types.v1.PublicUser invited_by = 3;
    */
-  invitedUserId: bigint;
+  invitedBy?: PublicUser;
 
   /**
    * @generated from field: string invited_user_email = 4;
