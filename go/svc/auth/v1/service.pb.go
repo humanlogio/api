@@ -7,6 +7,7 @@
 package authv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -332,6 +333,7 @@ type BeginDeviceAuthRequest struct {
 	//	*BeginDeviceAuthRequest_ByName
 	Organization  isBeginDeviceAuthRequest_Organization `protobuf_oneof:"organization"`
 	ReturnToUrl   string                                `protobuf:"bytes,2,opt,name=return_to_url,json=returnToUrl,proto3" json:"return_to_url,omitempty"`
+	Username      string                                `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -394,6 +396,13 @@ func (x *BeginDeviceAuthRequest) GetByName() string {
 func (x *BeginDeviceAuthRequest) GetReturnToUrl() string {
 	if x != nil {
 		return x.ReturnToUrl
+	}
+	return ""
+}
+
+func (x *BeginDeviceAuthRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
 	}
 	return ""
 }
@@ -609,28 +618,29 @@ var File_svc_auth_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_auth_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x19svc/auth/v1/service.proto\x12\vsvc.auth.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1atypes/v1/environment.proto\x1a\x13types/v1/meta.proto\x1a\x19types/v1/user_token.proto\x1a\x16types/v1/version.proto\"2\n" +
-	"\x14CheckUsernameRequest\x12\x1a\n" +
-	"\busername\x18\x01 \x01(\tR\busername\"5\n" +
+	"\x19svc/auth/v1/service.proto\x12\vsvc.auth.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1atypes/v1/environment.proto\x1a\x13types/v1/meta.proto\x1a\x19types/v1/user_token.proto\x1a\x16types/v1/version.proto\"Y\n" +
+	"\x14CheckUsernameRequest\x12A\n" +
+	"\busername\x18\x01 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busername\"5\n" +
 	"\x15CheckUsernameResponse\x12\x1c\n" +
-	"\tavailable\x18\x01 \x01(\bR\tavailable\"\xd5\x01\n" +
+	"\tavailable\x18\x01 \x01(\bR\tavailable\"\xfc\x01\n" +
 	"\x11GetAuthURLRequest\x12\x15\n" +
 	"\x05by_id\x18d \x01(\x03H\x00R\x04byId\x12\x19\n" +
 	"\aby_name\x18e \x01(\tH\x00R\x06byName\x12\"\n" +
 	"\rreturn_to_url\x18\x02 \x01(\tR\vreturnToUrl\x12>\n" +
-	"\tlocalhost\x18\x03 \x01(\v2 .svc.auth.v1.LocalhostViaBrowserR\tlocalhost\x12\x1a\n" +
-	"\busername\x18\x04 \x01(\tR\busernameB\x0e\n" +
+	"\tlocalhost\x18\x03 \x01(\v2 .svc.auth.v1.LocalhostViaBrowserR\tlocalhost\x12A\n" +
+	"\busername\x18\x04 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busernameB\x0e\n" +
 	"\forganization\"\x9c\x01\n" +
 	"\x13LocalhostViaBrowser\x12\"\n" +
 	"\farchitecture\x18\x01 \x01(\tR\farchitecture\x12)\n" +
 	"\x10operating_system\x18\x02 \x01(\tR\x0foperatingSystem\x126\n" +
 	"\rusing_version\x18\x03 \x01(\v2\x11.types.v1.VersionR\fusingVersion\"/\n" +
 	"\x12GetAuthURLResponse\x12\x19\n" +
-	"\bauth_url\x18\x01 \x01(\tR\aauthUrl\"~\n" +
+	"\bauth_url\x18\x01 \x01(\tR\aauthUrl\"\xc1\x01\n" +
 	"\x16BeginDeviceAuthRequest\x12\x15\n" +
 	"\x05by_id\x18d \x01(\x03H\x00R\x04byId\x12\x19\n" +
 	"\aby_name\x18e \x01(\tH\x00R\x06byName\x12\"\n" +
-	"\rreturn_to_url\x18\x02 \x01(\tR\vreturnToUrlB\x0e\n" +
+	"\rreturn_to_url\x18\x02 \x01(\tR\vreturnToUrl\x12A\n" +
+	"\busername\x18\x03 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busernameB\x0e\n" +
 	"\forganization\"\xe4\x01\n" +
 	"\x17BeginDeviceAuthResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\x12\x1f\n" +
