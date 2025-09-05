@@ -27,13 +27,12 @@ message Invitation {
     EXPIRED = 4;
   }
   int64 id = 1;
-  Organization invited_to = 2;
-  PublicUser invited_by = 3;
-  string invited_user_email = 4;
-  State state = 5;
-  google.protobuf.Timestamp created_at = 6;
-  google.protobuf.Timestamp updated_at = 7;
-  google.protobuf.Timestamp expires_at = 8;
-  google.protobuf.Timestamp accepted_at = 9;
-  google.protobuf.Timestamp revoked_at = 10;
+  PublicUser invited_by = 2;
+  string invited_user_email = 3;
+  State state = 4;
+  google.protobuf.Timestamp created_at = 501;
+  google.protobuf.Timestamp updated_at = 502;
+  google.protobuf.Timestamp expires_at = 503;
+  google.protobuf.Timestamp accepted_at = 504;
+  google.protobuf.Timestamp revoked_at = 505;
 }
