@@ -27,6 +27,7 @@ type UserToken struct {
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Token         string                 `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	Username      string                 `protobuf:"bytes,3,opt,name=username,proto3" json:"username,omitempty"`
+	OrgId         int64                  `protobuf:"varint,4,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -82,15 +83,23 @@ func (x *UserToken) GetUsername() string {
 	return ""
 }
 
+func (x *UserToken) GetOrgId() int64 {
+	if x != nil {
+		return x.OrgId
+	}
+	return 0
+}
+
 var File_types_v1_user_token_proto protoreflect.FileDescriptor
 
 const file_types_v1_user_token_proto_rawDesc = "" +
 	"\n" +
-	"\x19types/v1/user_token.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"V\n" +
+	"\x19types/v1/user_token.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"m\n" +
 	"\tUserToken\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1a\n" +
-	"\busername\x18\x03 \x01(\tR\busernameB\x8e\x01\n" +
+	"\busername\x18\x03 \x01(\tR\busername\x12\x15\n" +
+	"\x06org_id\x18\x04 \x01(\x03R\x05orgIdB\x8e\x01\n" +
 	"\fcom.types.v1B\x0eUserTokenProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
 var (

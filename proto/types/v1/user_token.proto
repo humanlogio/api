@@ -10,4 +10,5 @@ message UserToken {
   int64 user_id = 1;
   string token = 2;
   string username = 3;
+  int64 org_id = 4;
 }
