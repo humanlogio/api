@@ -24,17 +24,15 @@ const (
 )
 
 type User struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	Id                int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Username          string                 `protobuf:"bytes,10,opt,name=username,proto3" json:"username,omitempty"`
-	Email             string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	ProfilePictureUrl string                 `protobuf:"bytes,3,opt,name=profile_picture_url,json=profilePictureUrl,proto3" json:"profile_picture_url,omitempty"`
-	FirstName         string                 `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName          string                 `protobuf:"bytes,5,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
-	EmailVerified     bool                   `protobuf:"varint,6,opt,name=email_verified,json=emailVerified,proto3" json:"email_verified,omitempty"`
-	CreatedAt         *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Immutable system metadata
+	Metadata *UserMetadata `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	// User-controllable fields
+	Spec *UserSpec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	// System-managed status fields
+	Status        *UserStatus `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *User) Reset() {
@@ -67,60 +65,197 @@ func (*User) Descriptor() ([]byte, []int) {
 	return file_types_v1_user_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *User) GetId() int64 {
+func (x *User) GetMetadata() *UserMetadata {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *User) GetSpec() *UserSpec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+func (x *User) GetStatus() *UserStatus {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+type UserMetadata struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserMetadata) Reset() {
+	*x = UserMetadata{}
+	mi := &file_types_v1_user_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserMetadata) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserMetadata) ProtoMessage() {}
+
+func (x *UserMetadata) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_user_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserMetadata.ProtoReflect.Descriptor instead.
+func (*UserMetadata) Descriptor() ([]byte, []int) {
+	return file_types_v1_user_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *UserMetadata) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *User) GetUsername() string {
+func (x *UserMetadata) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+type UserSpec struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	Username          string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Email             string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	FirstName         string                 `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName          string                 `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	ProfilePictureUrl string                 `protobuf:"bytes,5,opt,name=profile_picture_url,json=profilePictureUrl,proto3" json:"profile_picture_url,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *UserSpec) Reset() {
+	*x = UserSpec{}
+	mi := &file_types_v1_user_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserSpec) ProtoMessage() {}
+
+func (x *UserSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_user_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserSpec.ProtoReflect.Descriptor instead.
+func (*UserSpec) Descriptor() ([]byte, []int) {
+	return file_types_v1_user_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UserSpec) GetUsername() string {
 	if x != nil {
 		return x.Username
 	}
 	return ""
 }
 
-func (x *User) GetEmail() string {
+func (x *UserSpec) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *User) GetProfilePictureUrl() string {
-	if x != nil {
-		return x.ProfilePictureUrl
-	}
-	return ""
-}
-
-func (x *User) GetFirstName() string {
+func (x *UserSpec) GetFirstName() string {
 	if x != nil {
 		return x.FirstName
 	}
 	return ""
 }
 
-func (x *User) GetLastName() string {
+func (x *UserSpec) GetLastName() string {
 	if x != nil {
 		return x.LastName
 	}
 	return ""
 }
 
-func (x *User) GetEmailVerified() bool {
+func (x *UserSpec) GetProfilePictureUrl() string {
+	if x != nil {
+		return x.ProfilePictureUrl
+	}
+	return ""
+}
+
+type UserStatus struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EmailVerified bool                   `protobuf:"varint,1,opt,name=email_verified,json=emailVerified,proto3" json:"email_verified,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserStatus) Reset() {
+	*x = UserStatus{}
+	mi := &file_types_v1_user_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserStatus) ProtoMessage() {}
+
+func (x *UserStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_user_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserStatus.ProtoReflect.Descriptor instead.
+func (*UserStatus) Descriptor() ([]byte, []int) {
+	return file_types_v1_user_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *UserStatus) GetEmailVerified() bool {
 	if x != nil {
 		return x.EmailVerified
 	}
 	return false
-}
-
-func (x *User) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
 }
 
 type PublicUser struct {
@@ -136,7 +271,7 @@ type PublicUser struct {
 
 func (x *PublicUser) Reset() {
 	*x = PublicUser{}
-	mi := &file_types_v1_user_proto_msgTypes[1]
+	mi := &file_types_v1_user_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -148,7 +283,7 @@ func (x *PublicUser) String() string {
 func (*PublicUser) ProtoMessage() {}
 
 func (x *PublicUser) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_user_proto_msgTypes[1]
+	mi := &file_types_v1_user_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -161,7 +296,7 @@ func (x *PublicUser) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicUser.ProtoReflect.Descriptor instead.
 func (*PublicUser) Descriptor() ([]byte, []int) {
-	return file_types_v1_user_proto_rawDescGZIP(), []int{1}
+	return file_types_v1_user_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PublicUser) GetUsername() string {
@@ -203,19 +338,25 @@ var File_types_v1_user_proto protoreflect.FileDescriptor
 
 const file_types_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x13types/v1/user.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc6\x02\n" +
-	"\x04User\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12A\n" +
-	"\busername\x18\n" +
-	" \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busername\x12\x1d\n" +
-	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12.\n" +
-	"\x13profile_picture_url\x18\x03 \x01(\tR\x11profilePictureUrl\x12\x1d\n" +
+	"\x13types/v1/user.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x90\x01\n" +
+	"\x04User\x122\n" +
+	"\bmetadata\x18\x01 \x01(\v2\x16.types.v1.UserMetadataR\bmetadata\x12&\n" +
+	"\x04spec\x18\x02 \x01(\v2\x12.types.v1.UserSpecR\x04spec\x12,\n" +
+	"\x06status\x18\x03 \x01(\v2\x14.types.v1.UserStatusR\x06status\"Y\n" +
+	"\fUserMetadata\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x129\n" +
 	"\n" +
-	"first_name\x18\x04 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x05 \x01(\tR\blastName\x12%\n" +
-	"\x0eemail_verified\x18\x06 \x01(\bR\remailVerified\x129\n" +
+	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xd8\x01\n" +
+	"\bUserSpec\x12A\n" +
+	"\busername\x18\x01 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busername\x12\x1d\n" +
+	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xf6\x01\n" +
+	"first_name\x18\x03 \x01(\tR\tfirstName\x12\x1b\n" +
+	"\tlast_name\x18\x04 \x01(\tR\blastName\x12.\n" +
+	"\x13profile_picture_url\x18\x05 \x01(\tR\x11profilePictureUrl\"3\n" +
+	"\n" +
+	"UserStatus\x12%\n" +
+	"\x0eemail_verified\x18\x01 \x01(\bR\remailVerified\"\xf6\x01\n" +
 	"\n" +
 	"PublicUser\x12A\n" +
 	"\busername\x18\x01 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busername\x12.\n" +
@@ -239,20 +380,26 @@ func file_types_v1_user_proto_rawDescGZIP() []byte {
 	return file_types_v1_user_proto_rawDescData
 }
 
-var file_types_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_types_v1_user_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_types_v1_user_proto_goTypes = []any{
 	(*User)(nil),                  // 0: types.v1.User
-	(*PublicUser)(nil),            // 1: types.v1.PublicUser
-	(*timestamppb.Timestamp)(nil), // 2: google.protobuf.Timestamp
+	(*UserMetadata)(nil),          // 1: types.v1.UserMetadata
+	(*UserSpec)(nil),              // 2: types.v1.UserSpec
+	(*UserStatus)(nil),            // 3: types.v1.UserStatus
+	(*PublicUser)(nil),            // 4: types.v1.PublicUser
+	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
 }
 var file_types_v1_user_proto_depIdxs = []int32{
-	2, // 0: types.v1.User.created_at:type_name -> google.protobuf.Timestamp
-	2, // 1: types.v1.PublicUser.created_at:type_name -> google.protobuf.Timestamp
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	1, // 0: types.v1.User.metadata:type_name -> types.v1.UserMetadata
+	2, // 1: types.v1.User.spec:type_name -> types.v1.UserSpec
+	3, // 2: types.v1.User.status:type_name -> types.v1.UserStatus
+	5, // 3: types.v1.UserMetadata.created_at:type_name -> google.protobuf.Timestamp
+	5, // 4: types.v1.PublicUser.created_at:type_name -> google.protobuf.Timestamp
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_user_proto_init() }
@@ -266,7 +413,7 @@ func file_types_v1_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_user_proto_rawDesc), len(file_types_v1_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

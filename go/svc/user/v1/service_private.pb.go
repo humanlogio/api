@@ -306,9 +306,7 @@ func (x *RefreshUserTokenResponse) GetExpiresAt() *timestamppb.Timestamp {
 
 type UpdateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	FirstName     *string                `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
-	LastName      *string                `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	Username      *string                `protobuf:"bytes,3,opt,name=username,proto3,oneof" json:"username,omitempty"`
+	Spec          *v1.UserSpec           `protobuf:"bytes,1,opt,name=spec,proto3" json:"spec,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -343,25 +341,11 @@ func (*UpdateUserRequest) Descriptor() ([]byte, []int) {
 	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *UpdateUserRequest) GetFirstName() string {
-	if x != nil && x.FirstName != nil {
-		return *x.FirstName
+func (x *UpdateUserRequest) GetSpec() *v1.UserSpec {
+	if x != nil {
+		return x.Spec
 	}
-	return ""
-}
-
-func (x *UpdateUserRequest) GetLastName() string {
-	if x != nil && x.LastName != nil {
-		return *x.LastName
-	}
-	return ""
-}
-
-func (x *UpdateUserRequest) GetUsername() string {
-	if x != nil && x.Username != nil {
-		return *x.Username
-	}
-	return ""
+	return nil
 }
 
 type UpdateUserResponse struct {
@@ -1801,16 +1785,9 @@ const file_svc_user_v1_service_private_proto_rawDesc = "" +
 	"\n" +
 	"refresh_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\trefreshAt\x129\n" +
 	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xcb\x01\n" +
-	"\x11UpdateUserRequest\x12\"\n" +
-	"\n" +
-	"first_name\x18\x01 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12 \n" +
-	"\tlast_name\x18\x02 \x01(\tH\x01R\blastName\x88\x01\x01\x12F\n" +
-	"\busername\x18\x03 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$H\x02R\busername\x88\x01\x01B\r\n" +
-	"\v_first_nameB\f\n" +
-	"\n" +
-	"_last_nameB\v\n" +
-	"\t_username\"8\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\";\n" +
+	"\x11UpdateUserRequest\x12&\n" +
+	"\x04spec\x18\x01 \x01(\v2\x12.types.v1.UserSpecR\x04spec\"8\n" +
 	"\x12UpdateUserResponse\x12\"\n" +
 	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"V\n" +
 	"\x19CreateOrganizationRequest\x129\n" +
@@ -1959,11 +1936,12 @@ var file_svc_user_v1_service_private_proto_goTypes = []any{
 	(*v1.User)(nil),                            // 37: types.v1.User
 	(*v1.Organization)(nil),                    // 38: types.v1.Organization
 	(*timestamppb.Timestamp)(nil),              // 39: google.protobuf.Timestamp
-	(*v1.Cursor)(nil),                          // 40: types.v1.Cursor
-	(*v1.LocalhostConfig)(nil),                 // 41: types.v1.LocalhostConfig
-	(*v1.Query)(nil),                           // 42: types.v1.Query
-	(*v1.QueryHistoryEntry)(nil),               // 43: types.v1.QueryHistoryEntry
-	(*v1.FavoriteQuery)(nil),                   // 44: types.v1.FavoriteQuery
+	(*v1.UserSpec)(nil),                        // 40: types.v1.UserSpec
+	(*v1.Cursor)(nil),                          // 41: types.v1.Cursor
+	(*v1.LocalhostConfig)(nil),                 // 42: types.v1.LocalhostConfig
+	(*v1.Query)(nil),                           // 43: types.v1.Query
+	(*v1.QueryHistoryEntry)(nil),               // 44: types.v1.QueryHistoryEntry
+	(*v1.FavoriteQuery)(nil),                   // 45: types.v1.FavoriteQuery
 }
 var file_svc_user_v1_service_private_proto_depIdxs = []int32{
 	37, // 0: svc.user.v1.WhoamiResponse.user:type_name -> types.v1.User
@@ -1971,70 +1949,71 @@ var file_svc_user_v1_service_private_proto_depIdxs = []int32{
 	38, // 2: svc.user.v1.WhoamiResponse.default_organization:type_name -> types.v1.Organization
 	39, // 3: svc.user.v1.RefreshUserTokenResponse.refresh_at:type_name -> google.protobuf.Timestamp
 	39, // 4: svc.user.v1.RefreshUserTokenResponse.expires_at:type_name -> google.protobuf.Timestamp
-	37, // 5: svc.user.v1.UpdateUserResponse.user:type_name -> types.v1.User
-	38, // 6: svc.user.v1.CreateOrganizationResponse.organization:type_name -> types.v1.Organization
-	40, // 7: svc.user.v1.ListOrganizationRequest.cursor:type_name -> types.v1.Cursor
-	40, // 8: svc.user.v1.ListOrganizationResponse.next:type_name -> types.v1.Cursor
-	34, // 9: svc.user.v1.ListOrganizationResponse.items:type_name -> svc.user.v1.ListOrganizationResponse.ListItem
-	38, // 10: svc.user.v1.ListOrganizationResponse.default_organization:type_name -> types.v1.Organization
-	41, // 11: svc.user.v1.SaveLocalhostConfigRequest.config:type_name -> types.v1.LocalhostConfig
-	41, // 12: svc.user.v1.GetLocalhostConfigResponse.config:type_name -> types.v1.LocalhostConfig
-	42, // 13: svc.user.v1.RecordQueryHistoryRequest.query:type_name -> types.v1.Query
-	43, // 14: svc.user.v1.RecordQueryHistoryResponse.entry:type_name -> types.v1.QueryHistoryEntry
-	43, // 15: svc.user.v1.GetQueryHistoryResponse.entry:type_name -> types.v1.QueryHistoryEntry
-	40, // 16: svc.user.v1.ListQueryHistoryRequest.cursor:type_name -> types.v1.Cursor
-	40, // 17: svc.user.v1.ListQueryHistoryResponse.next:type_name -> types.v1.Cursor
-	35, // 18: svc.user.v1.ListQueryHistoryResponse.items:type_name -> svc.user.v1.ListQueryHistoryResponse.ListItem
-	42, // 19: svc.user.v1.CreateFavoriteQueryRequest.query:type_name -> types.v1.Query
-	44, // 20: svc.user.v1.CreateFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
-	44, // 21: svc.user.v1.GetFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
-	42, // 22: svc.user.v1.UpdateFavoriteQueryRequest.query:type_name -> types.v1.Query
-	44, // 23: svc.user.v1.UpdateFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
-	40, // 24: svc.user.v1.ListFavoriteQueryRequest.cursor:type_name -> types.v1.Cursor
-	40, // 25: svc.user.v1.ListFavoriteQueryResponse.next:type_name -> types.v1.Cursor
-	36, // 26: svc.user.v1.ListFavoriteQueryResponse.items:type_name -> svc.user.v1.ListFavoriteQueryResponse.ListItem
-	38, // 27: svc.user.v1.ListOrganizationResponse.ListItem.organization:type_name -> types.v1.Organization
-	43, // 28: svc.user.v1.ListQueryHistoryResponse.ListItem.entry:type_name -> types.v1.QueryHistoryEntry
-	44, // 29: svc.user.v1.ListFavoriteQueryResponse.ListItem.favorite:type_name -> types.v1.FavoriteQuery
-	0,  // 30: svc.user.v1.UserService.Whoami:input_type -> svc.user.v1.WhoamiRequest
-	2,  // 31: svc.user.v1.UserService.GetLogoutURL:input_type -> svc.user.v1.GetLogoutURLRequest
-	4,  // 32: svc.user.v1.UserService.RefreshUserToken:input_type -> svc.user.v1.RefreshUserTokenRequest
-	6,  // 33: svc.user.v1.UserService.UpdateUser:input_type -> svc.user.v1.UpdateUserRequest
-	8,  // 34: svc.user.v1.UserService.CreateOrganization:input_type -> svc.user.v1.CreateOrganizationRequest
-	10, // 35: svc.user.v1.UserService.ListOrganization:input_type -> svc.user.v1.ListOrganizationRequest
-	12, // 36: svc.user.v1.UserService.SaveLocalhostConfig:input_type -> svc.user.v1.SaveLocalhostConfigRequest
-	14, // 37: svc.user.v1.UserService.GetLocalhostConfig:input_type -> svc.user.v1.GetLocalhostConfigRequest
-	16, // 38: svc.user.v1.UserService.RecordQueryHistory:input_type -> svc.user.v1.RecordQueryHistoryRequest
-	18, // 39: svc.user.v1.UserService.GetQueryHistory:input_type -> svc.user.v1.GetQueryHistoryRequest
-	20, // 40: svc.user.v1.UserService.ListQueryHistory:input_type -> svc.user.v1.ListQueryHistoryRequest
-	22, // 41: svc.user.v1.UserService.DeleteQueryHistory:input_type -> svc.user.v1.DeleteQueryHistoryRequest
-	24, // 42: svc.user.v1.UserService.CreateFavoriteQuery:input_type -> svc.user.v1.CreateFavoriteQueryRequest
-	26, // 43: svc.user.v1.UserService.GetFavoriteQuery:input_type -> svc.user.v1.GetFavoriteQueryRequest
-	28, // 44: svc.user.v1.UserService.UpdateFavoriteQuery:input_type -> svc.user.v1.UpdateFavoriteQueryRequest
-	30, // 45: svc.user.v1.UserService.ListFavoriteQuery:input_type -> svc.user.v1.ListFavoriteQueryRequest
-	32, // 46: svc.user.v1.UserService.DeleteFavoriteQuery:input_type -> svc.user.v1.DeleteFavoriteQueryRequest
-	1,  // 47: svc.user.v1.UserService.Whoami:output_type -> svc.user.v1.WhoamiResponse
-	3,  // 48: svc.user.v1.UserService.GetLogoutURL:output_type -> svc.user.v1.GetLogoutURLResponse
-	5,  // 49: svc.user.v1.UserService.RefreshUserToken:output_type -> svc.user.v1.RefreshUserTokenResponse
-	7,  // 50: svc.user.v1.UserService.UpdateUser:output_type -> svc.user.v1.UpdateUserResponse
-	9,  // 51: svc.user.v1.UserService.CreateOrganization:output_type -> svc.user.v1.CreateOrganizationResponse
-	11, // 52: svc.user.v1.UserService.ListOrganization:output_type -> svc.user.v1.ListOrganizationResponse
-	13, // 53: svc.user.v1.UserService.SaveLocalhostConfig:output_type -> svc.user.v1.SaveLocalhostConfigResponse
-	15, // 54: svc.user.v1.UserService.GetLocalhostConfig:output_type -> svc.user.v1.GetLocalhostConfigResponse
-	17, // 55: svc.user.v1.UserService.RecordQueryHistory:output_type -> svc.user.v1.RecordQueryHistoryResponse
-	19, // 56: svc.user.v1.UserService.GetQueryHistory:output_type -> svc.user.v1.GetQueryHistoryResponse
-	21, // 57: svc.user.v1.UserService.ListQueryHistory:output_type -> svc.user.v1.ListQueryHistoryResponse
-	23, // 58: svc.user.v1.UserService.DeleteQueryHistory:output_type -> svc.user.v1.DeleteQueryHistoryResponse
-	25, // 59: svc.user.v1.UserService.CreateFavoriteQuery:output_type -> svc.user.v1.CreateFavoriteQueryResponse
-	27, // 60: svc.user.v1.UserService.GetFavoriteQuery:output_type -> svc.user.v1.GetFavoriteQueryResponse
-	29, // 61: svc.user.v1.UserService.UpdateFavoriteQuery:output_type -> svc.user.v1.UpdateFavoriteQueryResponse
-	31, // 62: svc.user.v1.UserService.ListFavoriteQuery:output_type -> svc.user.v1.ListFavoriteQueryResponse
-	33, // 63: svc.user.v1.UserService.DeleteFavoriteQuery:output_type -> svc.user.v1.DeleteFavoriteQueryResponse
-	47, // [47:64] is the sub-list for method output_type
-	30, // [30:47] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	40, // 5: svc.user.v1.UpdateUserRequest.spec:type_name -> types.v1.UserSpec
+	37, // 6: svc.user.v1.UpdateUserResponse.user:type_name -> types.v1.User
+	38, // 7: svc.user.v1.CreateOrganizationResponse.organization:type_name -> types.v1.Organization
+	41, // 8: svc.user.v1.ListOrganizationRequest.cursor:type_name -> types.v1.Cursor
+	41, // 9: svc.user.v1.ListOrganizationResponse.next:type_name -> types.v1.Cursor
+	34, // 10: svc.user.v1.ListOrganizationResponse.items:type_name -> svc.user.v1.ListOrganizationResponse.ListItem
+	38, // 11: svc.user.v1.ListOrganizationResponse.default_organization:type_name -> types.v1.Organization
+	42, // 12: svc.user.v1.SaveLocalhostConfigRequest.config:type_name -> types.v1.LocalhostConfig
+	42, // 13: svc.user.v1.GetLocalhostConfigResponse.config:type_name -> types.v1.LocalhostConfig
+	43, // 14: svc.user.v1.RecordQueryHistoryRequest.query:type_name -> types.v1.Query
+	44, // 15: svc.user.v1.RecordQueryHistoryResponse.entry:type_name -> types.v1.QueryHistoryEntry
+	44, // 16: svc.user.v1.GetQueryHistoryResponse.entry:type_name -> types.v1.QueryHistoryEntry
+	41, // 17: svc.user.v1.ListQueryHistoryRequest.cursor:type_name -> types.v1.Cursor
+	41, // 18: svc.user.v1.ListQueryHistoryResponse.next:type_name -> types.v1.Cursor
+	35, // 19: svc.user.v1.ListQueryHistoryResponse.items:type_name -> svc.user.v1.ListQueryHistoryResponse.ListItem
+	43, // 20: svc.user.v1.CreateFavoriteQueryRequest.query:type_name -> types.v1.Query
+	45, // 21: svc.user.v1.CreateFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
+	45, // 22: svc.user.v1.GetFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
+	43, // 23: svc.user.v1.UpdateFavoriteQueryRequest.query:type_name -> types.v1.Query
+	45, // 24: svc.user.v1.UpdateFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
+	41, // 25: svc.user.v1.ListFavoriteQueryRequest.cursor:type_name -> types.v1.Cursor
+	41, // 26: svc.user.v1.ListFavoriteQueryResponse.next:type_name -> types.v1.Cursor
+	36, // 27: svc.user.v1.ListFavoriteQueryResponse.items:type_name -> svc.user.v1.ListFavoriteQueryResponse.ListItem
+	38, // 28: svc.user.v1.ListOrganizationResponse.ListItem.organization:type_name -> types.v1.Organization
+	44, // 29: svc.user.v1.ListQueryHistoryResponse.ListItem.entry:type_name -> types.v1.QueryHistoryEntry
+	45, // 30: svc.user.v1.ListFavoriteQueryResponse.ListItem.favorite:type_name -> types.v1.FavoriteQuery
+	0,  // 31: svc.user.v1.UserService.Whoami:input_type -> svc.user.v1.WhoamiRequest
+	2,  // 32: svc.user.v1.UserService.GetLogoutURL:input_type -> svc.user.v1.GetLogoutURLRequest
+	4,  // 33: svc.user.v1.UserService.RefreshUserToken:input_type -> svc.user.v1.RefreshUserTokenRequest
+	6,  // 34: svc.user.v1.UserService.UpdateUser:input_type -> svc.user.v1.UpdateUserRequest
+	8,  // 35: svc.user.v1.UserService.CreateOrganization:input_type -> svc.user.v1.CreateOrganizationRequest
+	10, // 36: svc.user.v1.UserService.ListOrganization:input_type -> svc.user.v1.ListOrganizationRequest
+	12, // 37: svc.user.v1.UserService.SaveLocalhostConfig:input_type -> svc.user.v1.SaveLocalhostConfigRequest
+	14, // 38: svc.user.v1.UserService.GetLocalhostConfig:input_type -> svc.user.v1.GetLocalhostConfigRequest
+	16, // 39: svc.user.v1.UserService.RecordQueryHistory:input_type -> svc.user.v1.RecordQueryHistoryRequest
+	18, // 40: svc.user.v1.UserService.GetQueryHistory:input_type -> svc.user.v1.GetQueryHistoryRequest
+	20, // 41: svc.user.v1.UserService.ListQueryHistory:input_type -> svc.user.v1.ListQueryHistoryRequest
+	22, // 42: svc.user.v1.UserService.DeleteQueryHistory:input_type -> svc.user.v1.DeleteQueryHistoryRequest
+	24, // 43: svc.user.v1.UserService.CreateFavoriteQuery:input_type -> svc.user.v1.CreateFavoriteQueryRequest
+	26, // 44: svc.user.v1.UserService.GetFavoriteQuery:input_type -> svc.user.v1.GetFavoriteQueryRequest
+	28, // 45: svc.user.v1.UserService.UpdateFavoriteQuery:input_type -> svc.user.v1.UpdateFavoriteQueryRequest
+	30, // 46: svc.user.v1.UserService.ListFavoriteQuery:input_type -> svc.user.v1.ListFavoriteQueryRequest
+	32, // 47: svc.user.v1.UserService.DeleteFavoriteQuery:input_type -> svc.user.v1.DeleteFavoriteQueryRequest
+	1,  // 48: svc.user.v1.UserService.Whoami:output_type -> svc.user.v1.WhoamiResponse
+	3,  // 49: svc.user.v1.UserService.GetLogoutURL:output_type -> svc.user.v1.GetLogoutURLResponse
+	5,  // 50: svc.user.v1.UserService.RefreshUserToken:output_type -> svc.user.v1.RefreshUserTokenResponse
+	7,  // 51: svc.user.v1.UserService.UpdateUser:output_type -> svc.user.v1.UpdateUserResponse
+	9,  // 52: svc.user.v1.UserService.CreateOrganization:output_type -> svc.user.v1.CreateOrganizationResponse
+	11, // 53: svc.user.v1.UserService.ListOrganization:output_type -> svc.user.v1.ListOrganizationResponse
+	13, // 54: svc.user.v1.UserService.SaveLocalhostConfig:output_type -> svc.user.v1.SaveLocalhostConfigResponse
+	15, // 55: svc.user.v1.UserService.GetLocalhostConfig:output_type -> svc.user.v1.GetLocalhostConfigResponse
+	17, // 56: svc.user.v1.UserService.RecordQueryHistory:output_type -> svc.user.v1.RecordQueryHistoryResponse
+	19, // 57: svc.user.v1.UserService.GetQueryHistory:output_type -> svc.user.v1.GetQueryHistoryResponse
+	21, // 58: svc.user.v1.UserService.ListQueryHistory:output_type -> svc.user.v1.ListQueryHistoryResponse
+	23, // 59: svc.user.v1.UserService.DeleteQueryHistory:output_type -> svc.user.v1.DeleteQueryHistoryResponse
+	25, // 60: svc.user.v1.UserService.CreateFavoriteQuery:output_type -> svc.user.v1.CreateFavoriteQueryResponse
+	27, // 61: svc.user.v1.UserService.GetFavoriteQuery:output_type -> svc.user.v1.GetFavoriteQueryResponse
+	29, // 62: svc.user.v1.UserService.UpdateFavoriteQuery:output_type -> svc.user.v1.UpdateFavoriteQueryResponse
+	31, // 63: svc.user.v1.UserService.ListFavoriteQuery:output_type -> svc.user.v1.ListFavoriteQueryResponse
+	33, // 64: svc.user.v1.UserService.DeleteFavoriteQuery:output_type -> svc.user.v1.DeleteFavoriteQueryResponse
+	48, // [48:65] is the sub-list for method output_type
+	31, // [31:48] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_svc_user_v1_service_private_proto_init() }
@@ -2042,7 +2021,6 @@ func file_svc_user_v1_service_private_proto_init() {
 	if File_svc_user_v1_service_private_proto != nil {
 		return
 	}
-	file_svc_user_v1_service_private_proto_msgTypes[6].OneofWrappers = []any{}
 	file_svc_user_v1_service_private_proto_msgTypes[36].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

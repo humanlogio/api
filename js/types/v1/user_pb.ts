@@ -13,19 +13,69 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/user.proto.
  */
 export const file_types_v1_user: GenFile = /*@__PURE__*/
-  fileDesc("ChN0eXBlcy92MS91c2VyLnByb3RvEgh0eXBlcy52MSLvAQoEVXNlchIKCgJpZBgBIAEoAxI3Cgh1c2VybmFtZRgKIAEoCUIlukgiciAQAxgnMhpeW2EtekEtWjAtOV1bYS16QS1aMC05LV0rJBIWCgVlbWFpbBgCIAEoCUIHukgEcgJgARIbChNwcm9maWxlX3BpY3R1cmVfdXJsGAMgASgJEhIKCmZpcnN0X25hbWUYBCABKAkSEQoJbGFzdF9uYW1lGAUgASgJEhYKDmVtYWlsX3ZlcmlmaWVkGAYgASgIEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIrkBCgpQdWJsaWNVc2VyEjcKCHVzZXJuYW1lGAEgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEhsKE3Byb2ZpbGVfcGljdHVyZV91cmwYAiABKAkSEgoKZmlyc3RfbmFtZRgDIAEoCRIRCglsYXN0X25hbWUYBCABKAkSLgoKY3JlYXRlZF9hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCiQEKDGNvbS50eXBlcy52MUIJVXNlclByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp]);
+  fileDesc("ChN0eXBlcy92MS91c2VyLnByb3RvEgh0eXBlcy52MSJ4CgRVc2VyEigKCG1ldGFkYXRhGAEgASgLMhYudHlwZXMudjEuVXNlck1ldGFkYXRhEiAKBHNwZWMYAiABKAsyEi50eXBlcy52MS5Vc2VyU3BlYxIkCgZzdGF0dXMYAyABKAsyFC50eXBlcy52MS5Vc2VyU3RhdHVzIkoKDFVzZXJNZXRhZGF0YRIKCgJpZBgBIAEoAxIuCgpjcmVhdGVkX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCKfAQoIVXNlclNwZWMSNwoIdXNlcm5hbWUYASABKAlCJbpIInIgEAMYJzIaXlthLXpBLVowLTldW2EtekEtWjAtOS1dKyQSFgoFZW1haWwYAiABKAlCB7pIBHICYAESEgoKZmlyc3RfbmFtZRgDIAEoCRIRCglsYXN0X25hbWUYBCABKAkSGwoTcHJvZmlsZV9waWN0dXJlX3VybBgFIAEoCSIkCgpVc2VyU3RhdHVzEhYKDmVtYWlsX3ZlcmlmaWVkGAEgASgIIrkBCgpQdWJsaWNVc2VyEjcKCHVzZXJuYW1lGAEgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEhsKE3Byb2ZpbGVfcGljdHVyZV91cmwYAiABKAkSEgoKZmlyc3RfbmFtZRgDIAEoCRIRCglsYXN0X25hbWUYBCABKAkSLgoKY3JlYXRlZF9hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCiQEKDGNvbS50eXBlcy52MUIJVXNlclByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message types.v1.User
  */
 export type User = Message<"types.v1.User"> & {
   /**
+   * Immutable system metadata
+   *
+   * @generated from field: types.v1.UserMetadata metadata = 1;
+   */
+  metadata?: UserMetadata;
+
+  /**
+   * User-controllable fields
+   *
+   * @generated from field: types.v1.UserSpec spec = 2;
+   */
+  spec?: UserSpec;
+
+  /**
+   * System-managed status fields
+   *
+   * @generated from field: types.v1.UserStatus status = 3;
+   */
+  status?: UserStatus;
+};
+
+/**
+ * Describes the message types.v1.User.
+ * Use `create(UserSchema)` to create a new message.
+ */
+export const UserSchema: GenMessage<User> = /*@__PURE__*/
+  messageDesc(file_types_v1_user, 0);
+
+/**
+ * @generated from message types.v1.UserMetadata
+ */
+export type UserMetadata = Message<"types.v1.UserMetadata"> & {
+  /**
    * @generated from field: int64 id = 1;
    */
   id: bigint;
 
   /**
-   * @generated from field: string username = 10;
+   * @generated from field: google.protobuf.Timestamp created_at = 2;
+   */
+  createdAt?: Timestamp;
+};
+
+/**
+ * Describes the message types.v1.UserMetadata.
+ * Use `create(UserMetadataSchema)` to create a new message.
+ */
+export const UserMetadataSchema: GenMessage<UserMetadata> = /*@__PURE__*/
+  messageDesc(file_types_v1_user, 1);
+
+/**
+ * @generated from message types.v1.UserSpec
+ */
+export type UserSpec = Message<"types.v1.UserSpec"> & {
+  /**
+   * @generated from field: string username = 1;
    */
   username: string;
 
@@ -35,37 +85,44 @@ export type User = Message<"types.v1.User"> & {
   email: string;
 
   /**
-   * @generated from field: string profile_picture_url = 3;
-   */
-  profilePictureUrl: string;
-
-  /**
-   * @generated from field: string first_name = 4;
+   * @generated from field: string first_name = 3;
    */
   firstName: string;
 
   /**
-   * @generated from field: string last_name = 5;
+   * @generated from field: string last_name = 4;
    */
   lastName: string;
 
   /**
-   * @generated from field: bool email_verified = 6;
+   * @generated from field: string profile_picture_url = 5;
    */
-  emailVerified: boolean;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp created_at = 7;
-   */
-  createdAt?: Timestamp;
+  profilePictureUrl: string;
 };
 
 /**
- * Describes the message types.v1.User.
- * Use `create(UserSchema)` to create a new message.
+ * Describes the message types.v1.UserSpec.
+ * Use `create(UserSpecSchema)` to create a new message.
  */
-export const UserSchema: GenMessage<User> = /*@__PURE__*/
-  messageDesc(file_types_v1_user, 0);
+export const UserSpecSchema: GenMessage<UserSpec> = /*@__PURE__*/
+  messageDesc(file_types_v1_user, 2);
+
+/**
+ * @generated from message types.v1.UserStatus
+ */
+export type UserStatus = Message<"types.v1.UserStatus"> & {
+  /**
+   * @generated from field: bool email_verified = 1;
+   */
+  emailVerified: boolean;
+};
+
+/**
+ * Describes the message types.v1.UserStatus.
+ * Use `create(UserStatusSchema)` to create a new message.
+ */
+export const UserStatusSchema: GenMessage<UserStatus> = /*@__PURE__*/
+  messageDesc(file_types_v1_user, 3);
 
 /**
  * @generated from message types.v1.PublicUser
@@ -102,5 +159,5 @@ export type PublicUser = Message<"types.v1.PublicUser"> & {
  * Use `create(PublicUserSchema)` to create a new message.
  */
 export const PublicUserSchema: GenMessage<PublicUser> = /*@__PURE__*/
-  messageDesc(file_types_v1_user, 1);
+  messageDesc(file_types_v1_user, 4);
 
