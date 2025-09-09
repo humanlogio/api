@@ -1,0 +1,205 @@
+# HumanLog API Repository Rules
+
+## Project Structure & Organization
+
+This is a protobuf-first API repository that generates Go and TypeScript code. The repository follows a strict structure:
+
+```
+/proto/           - Protocol buffer definitions
+  /svc/           - Service definitions organized by domain/v1/
+  /types/v1/      - Shared type definitions
+/go/              - Generated Go code (DO NOT EDIT)
+/js/              - Generated TypeScript code (DO NOT EDIT)
+/script/          - Build and maintenance scripts
+```
+
+## Development Workflow
+
+### MANDATORY: Use Repository Scripts
+
+ALWAYS use the provided scripts for development tasks:
+
+- `script/generate` - Generate all protobuf code (Go + TypeScript)
+- `script/install_codegen_deps` - Install/update codegen dependencies
+- `script/lint` - Validate generated code is up-to-date
+- `script/test` - Run Go tests
+
+**NEVER generate code manually** - always use `script/generate`
+
+### When to Run Scripts
+
+- Run `script/generate` after ANY proto file changes
+- Run `script/lint` before committing to ensure generated code is current
+- The lint script will fail if generated files are out of date
+
+## Protocol Buffer Conventions
+
+### File Organization
+
+- **Services**: `proto/svc/{domain}/v1/service.proto`
+- **Types**: `proto/types/v1/{type_name}.proto`
+- **Versioning**: All APIs use `/v1/` for now
+- **Packages**: Follow pattern `svc.{domain}.v1` or `types.v1`
+
+### Proto File Structure
+
+```protobuf
+syntax = "proto3";
+
+package svc.{domain}.v1;
+
+// Imports will be automatically formatted by script/generate
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "types/v1/meta.proto";
+
+option go_package = "svc/{domain}/v1;{domain}v1";
+```
+
+### Field Numbering Conventions
+
+**IMPORTANT**: Follow these field numbering patterns:
+
+- **Regular fields**: Start at 1, increment sequentially if the field list is stable
+- **Fields that may need insertion**: Use 100+ block if it's predictable that fields will need to be inserted between existing ones
+  - `environment_id = 101`
+  - `cursor = 102`
+  - `limit = 103`
+- **Organization selectors**: Use 100+ block
+  - `by_id = 100`
+  - `by_name = 101`
+- **Response structure fields**: Use 100+ and 200+ blocks
+  - `next = 100` (for pagination)
+  - `data/items = 200`
+
+**Rule of thumb**: Use sequential numbering (1, 2, 3...) when field list is stable. Use 100+ blocks when you expect to need field insertions later.
+
+### Service Method Naming
+
+**Priority order for method naming**:
+1. **CRUD first**: Use standard CRUD patterns when possible:
+   - `Create{Resource}` / `Create{Resource}Request` / `Create{Resource}Response`
+   - `Get{Resource}` / `Get{Resource}Request` / `Get{Resource}Response`
+   - `Update{Resource}` / `Update{Resource}Request` / `Update{Resource}Response`
+   - `Delete{Resource}` / `Delete{Resource}Request` / `Delete{Resource}Response`
+   - `List{Resource}` / `List{Resource}Request` / `List{Resource}Response`
+
+2. **Domain-specific when CRUD is exhausted**: Create specific RPCs when CRUD doesn't cover the use case
+
+3. **Full domain-specific for specialized services**: Services like `QueryService` can ignore CRUD entirely when the domain is very specific
+
+**Consistency rule**: Ensure method names are consistent within a service (e.g., avoid mixing `InviteUser` with `RevokeUserInvitation` - choose either `InviteUser`/`RevokeInvitation` or `CreateUserInvitation`/`RevokeUserInvitation`)
+
+### Validation Patterns
+
+Use buf.validate consistently:
+
+```protobuf
+string username = 1 [
+  (buf.validate.field).string.min_len = 3,
+  (buf.validate.field).string.max_len = 39,
+  (buf.validate.field).string.pattern = "^[a-zA-Z0-9][a-zA-Z0-9-]+$"
+];
+```
+
+### Go Package Naming
+
+- **Format**: `option go_package = "svc/{domain}/v1;{domain}v1";`
+- **Types**: `option go_package = "types/v1;typesv1";`
+- **Connect services**: Auto-generated as `{domain}v1connect`
+
+## Code Generation Setup
+
+### Buf Configuration
+
+Uses buf.build for linting, breaking change detection, and code generation:
+
+- `buf.gen.yaml` - Controls code generation for Go (protoc-gen-go, protoc-gen-connect-go) and TypeScript (protoc-gen-es, protoc-gen-connect-query)
+- `proto/buf.yaml` - Linting and dependency configuration
+- Managed mode enabled with `go_package_prefix: github.com/humanlogio/api/go`
+
+### Dependencies
+
+**Go**:
+- connectrpc.com/connect for gRPC-Web/Connect protocol
+- google.golang.org/protobuf for protobuf runtime
+- buf.build/gen/go/bufbuild/protovalidate for validation
+
+**TypeScript**:
+- @connectrpc/connect family for Connect protocol
+- @bufbuild/protobuf for protobuf runtime
+- @bufbuild/protovalidate for validation
+
+## File Editing Rules
+
+### Generated Code - NEVER EDIT
+
+**DO NOT** edit any files in:
+- `/go/` directory (except go.mod/go.sum)
+- `/js/` directory
+
+These are auto-generated and will be overwritten.
+
+### Proto Files - Edit Carefully
+
+When editing `.proto` files:
+
+1. **ALWAYS** run `script/generate` after changes
+2. **NEVER** change field numbers of existing fields (breaking change)
+3. **Use** `reserved` for removed fields
+4. **Follow** the field numbering conventions above
+5. **Run** `script/generate` to format imports and generate code automatically
+6. **Validate** with `script/lint` before committing
+
+### Package Management
+
+**Go**:
+- Edit `go/go.mod` for Go dependencies
+- Run `go mod tidy` (done automatically by `script/generate`)
+
+**TypeScript**:
+- Edit `package.json` for npm dependencies
+- Use `script/install_codegen_deps` for codegen tool updates
+
+## Best Practices
+
+### Error Handling
+- Use standard gRPC status codes in services
+- Include validation rules in proto messages where appropriate
+
+### Documentation
+- Add comments to proto messages and fields
+- Use `//` style comments for proto documentation
+- Document service methods with their purpose
+
+### Testing
+- Run `script/test` regularly
+- Add Go tests in appropriate packages under `/go/`
+- Tests should not depend on generated code directly
+
+### Commits
+- Always run `script/lint` before committing
+- Commit proto changes and generated code together
+- Generated code changes should be obvious from proto diffs
+
+## Common Mistakes to Avoid
+
+1. **DON'T** edit generated Go/TypeScript files manually
+2. **DON'T** run protoc directly - use `script/generate`
+3. **DON'T** change existing field numbers in proto files
+4. **DON'T** forget to run generation after proto changes
+5. **DON'T** ignore linting failures from `script/lint`
+6. **DON'T** mix field numbering patterns within a service
+7. **DON'T** forget to add buf.validate rules for user inputs
+8. **DON'T** worry about import order - `script/generate` handles formatting
+
+## Known Issues to Fix
+
+- `proto/svc/alert/v1/service.proto` line 12: `go_package` should be `"svc/alert/v1;alertv1"` not `"svc/query/v1;queryv1"`
+
+## Questions? Issues?
+
+- Check that `script/generate` runs cleanly
+- Verify `script/lint` passes
+- Review this file for the correct patterns to follow
+- Generated code should never be manually edited
