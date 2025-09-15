@@ -16,7 +16,46 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file svc/product/v1/service.proto.
  */
 export const file_svc_product_v1_service: GenFile = /*@__PURE__*/
-  fileDesc("ChxzdmMvcHJvZHVjdC92MS9zZXJ2aWNlLnByb3RvEg5zdmMucHJvZHVjdC52MSKPAQoSTGlzdFByb2R1Y3RSZXF1ZXN0EiAKBmN1cnNvchgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchINCgVsaW1pdBgCIAEoBRIQCghjYXRlZ29yeRgDIAEoCRIsCgVzY29wZRiQAyABKA4yFy50eXBlcy52MS5Qcm9kdWN0LlNjb3BlSACIAQFCCAoGX3Njb3BlIu8BChNMaXN0UHJvZHVjdFJlc3BvbnNlEh4KBG5leHQYASABKAsyEC50eXBlcy52MS5DdXJzb3ISOwoFaXRlbXMYAiADKAsyLC5zdmMucHJvZHVjdC52MS5MaXN0UHJvZHVjdFJlc3BvbnNlLkxpc3RJdGVtEioKD2RlZmF1bHRfcHJvZHVjdBgDIAEoCzIRLnR5cGVzLnYxLlByb2R1Y3QaTwoITGlzdEl0ZW0SIgoHcHJvZHVjdBgBIAEoCzIRLnR5cGVzLnYxLlByb2R1Y3QSHwoGcHJpY2VzGAIgAygLMg8udHlwZXMudjEuUHJpY2UyaAoOUHJvZHVjdFNlcnZpY2USVgoLTGlzdFByb2R1Y3QSIi5zdmMucHJvZHVjdC52MS5MaXN0UHJvZHVjdFJlcXVlc3QaIy5zdmMucHJvZHVjdC52MS5MaXN0UHJvZHVjdFJlc3BvbnNlQrMBChJjb20uc3ZjLnByb2R1Y3QudjFCDFNlcnZpY2VQcm90b1ABWjVnaXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3N2Yy9wcm9kdWN0L3YxO3Byb2R1Y3R2MaICA1NQWKoCDlN2Yy5Qcm9kdWN0LlYxygIOU3ZjXFByb2R1Y3RcVjHiAhpTdmNcUHJvZHVjdFxWMVxHUEJNZXRhZGF0YeoCEFN2Yzo6UHJvZHVjdDo6VjFiBnByb3RvMw", [file_types_v1_cursor, file_types_v1_price, file_types_v1_product]);
+  fileDesc("ChxzdmMvcHJvZHVjdC92MS9zZXJ2aWNlLnByb3RvEg5zdmMucHJvZHVjdC52MSImChFHZXRQcm9kdWN0UmVxdWVzdBIRCglzdHJpcGVfaWQYASABKAkiWQoSR2V0UHJvZHVjdFJlc3BvbnNlEiIKB3Byb2R1Y3QYASABKAsyES50eXBlcy52MS5Qcm9kdWN0Eh8KBnByaWNlcxgCIAMoCzIPLnR5cGVzLnYxLlByaWNlIo8BChJMaXN0UHJvZHVjdFJlcXVlc3QSIAoGY3Vyc29yGAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEg0KBWxpbWl0GAIgASgFEhAKCGNhdGVnb3J5GAMgASgJEiwKBXNjb3BlGJADIAEoDjIXLnR5cGVzLnYxLlByb2R1Y3QuU2NvcGVIAIgBAUIICgZfc2NvcGUi7wEKE0xpc3RQcm9kdWN0UmVzcG9uc2USHgoEbmV4dBgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchI7CgVpdGVtcxgCIAMoCzIsLnN2Yy5wcm9kdWN0LnYxLkxpc3RQcm9kdWN0UmVzcG9uc2UuTGlzdEl0ZW0SKgoPZGVmYXVsdF9wcm9kdWN0GAMgASgLMhEudHlwZXMudjEuUHJvZHVjdBpPCghMaXN0SXRlbRIiCgdwcm9kdWN0GAEgASgLMhEudHlwZXMudjEuUHJvZHVjdBIfCgZwcmljZXMYAiADKAsyDy50eXBlcy52MS5QcmljZTK9AQoOUHJvZHVjdFNlcnZpY2USUwoKR2V0UHJvZHVjdBIhLnN2Yy5wcm9kdWN0LnYxLkdldFByb2R1Y3RSZXF1ZXN0GiIuc3ZjLnByb2R1Y3QudjEuR2V0UHJvZHVjdFJlc3BvbnNlElYKC0xpc3RQcm9kdWN0EiIuc3ZjLnByb2R1Y3QudjEuTGlzdFByb2R1Y3RSZXF1ZXN0GiMuc3ZjLnByb2R1Y3QudjEuTGlzdFByb2R1Y3RSZXNwb25zZUKzAQoSY29tLnN2Yy5wcm9kdWN0LnYxQgxTZXJ2aWNlUHJvdG9QAVo1Z2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby9zdmMvcHJvZHVjdC92MTtwcm9kdWN0djGiAgNTUFiqAg5TdmMuUHJvZHVjdC5WMcoCDlN2Y1xQcm9kdWN0XFYx4gIaU3ZjXFByb2R1Y3RcVjFcR1BCTWV0YWRhdGHqAhBTdmM6OlByb2R1Y3Q6OlYxYgZwcm90bzM", [file_types_v1_cursor, file_types_v1_price, file_types_v1_product]);
+
+/**
+ * @generated from message svc.product.v1.GetProductRequest
+ */
+export type GetProductRequest = Message<"svc.product.v1.GetProductRequest"> & {
+  /**
+   * @generated from field: string stripe_id = 1;
+   */
+  stripeId: string;
+};
+
+/**
+ * Describes the message svc.product.v1.GetProductRequest.
+ * Use `create(GetProductRequestSchema)` to create a new message.
+ */
+export const GetProductRequestSchema: GenMessage<GetProductRequest> = /*@__PURE__*/
+  messageDesc(file_svc_product_v1_service, 0);
+
+/**
+ * @generated from message svc.product.v1.GetProductResponse
+ */
+export type GetProductResponse = Message<"svc.product.v1.GetProductResponse"> & {
+  /**
+   * @generated from field: types.v1.Product product = 1;
+   */
+  product?: Product;
+
+  /**
+   * @generated from field: repeated types.v1.Price prices = 2;
+   */
+  prices: Price[];
+};
+
+/**
+ * Describes the message svc.product.v1.GetProductResponse.
+ * Use `create(GetProductResponseSchema)` to create a new message.
+ */
+export const GetProductResponseSchema: GenMessage<GetProductResponse> = /*@__PURE__*/
+  messageDesc(file_svc_product_v1_service, 1);
 
 /**
  * @generated from message svc.product.v1.ListProductRequest
@@ -50,7 +89,7 @@ export type ListProductRequest = Message<"svc.product.v1.ListProductRequest"> & 
  * Use `create(ListProductRequestSchema)` to create a new message.
  */
 export const ListProductRequestSchema: GenMessage<ListProductRequest> = /*@__PURE__*/
-  messageDesc(file_svc_product_v1_service, 0);
+  messageDesc(file_svc_product_v1_service, 2);
 
 /**
  * @generated from message svc.product.v1.ListProductResponse
@@ -77,7 +116,7 @@ export type ListProductResponse = Message<"svc.product.v1.ListProductResponse"> 
  * Use `create(ListProductResponseSchema)` to create a new message.
  */
 export const ListProductResponseSchema: GenMessage<ListProductResponse> = /*@__PURE__*/
-  messageDesc(file_svc_product_v1_service, 1);
+  messageDesc(file_svc_product_v1_service, 3);
 
 /**
  * @generated from message svc.product.v1.ListProductResponse.ListItem
@@ -99,12 +138,20 @@ export type ListProductResponse_ListItem = Message<"svc.product.v1.ListProductRe
  * Use `create(ListProductResponse_ListItemSchema)` to create a new message.
  */
 export const ListProductResponse_ListItemSchema: GenMessage<ListProductResponse_ListItem> = /*@__PURE__*/
-  messageDesc(file_svc_product_v1_service, 1, 0);
+  messageDesc(file_svc_product_v1_service, 3, 0);
 
 /**
  * @generated from service svc.product.v1.ProductService
  */
 export const ProductService: GenService<{
+  /**
+   * @generated from rpc svc.product.v1.ProductService.GetProduct
+   */
+  getProduct: {
+    methodKind: "unary";
+    input: typeof GetProductRequestSchema;
+    output: typeof GetProductResponseSchema;
+  },
   /**
    * @generated from rpc svc.product.v1.ProductService.ListProduct
    */

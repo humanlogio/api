@@ -33,6 +33,9 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
+	// ProductServiceGetProductProcedure is the fully-qualified name of the ProductService's GetProduct
+	// RPC.
+	ProductServiceGetProductProcedure = "/svc.product.v1.ProductService/GetProduct"
 	// ProductServiceListProductProcedure is the fully-qualified name of the ProductService's
 	// ListProduct RPC.
 	ProductServiceListProductProcedure = "/svc.product.v1.ProductService/ListProduct"
@@ -40,6 +43,7 @@ const (
 
 // ProductServiceClient is a client for the svc.product.v1.ProductService service.
 type ProductServiceClient interface {
+	GetProduct(context.Context, *connect.Request[v1.GetProductRequest]) (*connect.Response[v1.GetProductResponse], error)
 	ListProduct(context.Context, *connect.Request[v1.ListProductRequest]) (*connect.Response[v1.ListProductResponse], error)
 }
 
@@ -54,6 +58,12 @@ func NewProductServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 	baseURL = strings.TrimRight(baseURL, "/")
 	productServiceMethods := v1.File_svc_product_v1_service_proto.Services().ByName("ProductService").Methods()
 	return &productServiceClient{
+		getProduct: connect.NewClient[v1.GetProductRequest, v1.GetProductResponse](
+			httpClient,
+			baseURL+ProductServiceGetProductProcedure,
+			connect.WithSchema(productServiceMethods.ByName("GetProduct")),
+			connect.WithClientOptions(opts...),
+		),
 		listProduct: connect.NewClient[v1.ListProductRequest, v1.ListProductResponse](
 			httpClient,
 			baseURL+ProductServiceListProductProcedure,
@@ -65,7 +75,13 @@ func NewProductServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 
 // productServiceClient implements ProductServiceClient.
 type productServiceClient struct {
+	getProduct  *connect.Client[v1.GetProductRequest, v1.GetProductResponse]
 	listProduct *connect.Client[v1.ListProductRequest, v1.ListProductResponse]
+}
+
+// GetProduct calls svc.product.v1.ProductService.GetProduct.
+func (c *productServiceClient) GetProduct(ctx context.Context, req *connect.Request[v1.GetProductRequest]) (*connect.Response[v1.GetProductResponse], error) {
+	return c.getProduct.CallUnary(ctx, req)
 }
 
 // ListProduct calls svc.product.v1.ProductService.ListProduct.
@@ -75,6 +91,7 @@ func (c *productServiceClient) ListProduct(ctx context.Context, req *connect.Req
 
 // ProductServiceHandler is an implementation of the svc.product.v1.ProductService service.
 type ProductServiceHandler interface {
+	GetProduct(context.Context, *connect.Request[v1.GetProductRequest]) (*connect.Response[v1.GetProductResponse], error)
 	ListProduct(context.Context, *connect.Request[v1.ListProductRequest]) (*connect.Response[v1.ListProductResponse], error)
 }
 
@@ -85,6 +102,12 @@ type ProductServiceHandler interface {
 // and JSON codecs. They also support gzip compression.
 func NewProductServiceHandler(svc ProductServiceHandler, opts ...connect.HandlerOption) (string, http.Handler) {
 	productServiceMethods := v1.File_svc_product_v1_service_proto.Services().ByName("ProductService").Methods()
+	productServiceGetProductHandler := connect.NewUnaryHandler(
+		ProductServiceGetProductProcedure,
+		svc.GetProduct,
+		connect.WithSchema(productServiceMethods.ByName("GetProduct")),
+		connect.WithHandlerOptions(opts...),
+	)
 	productServiceListProductHandler := connect.NewUnaryHandler(
 		ProductServiceListProductProcedure,
 		svc.ListProduct,
@@ -93,6 +116,8 @@ func NewProductServiceHandler(svc ProductServiceHandler, opts ...connect.Handler
 	)
 	return "/svc.product.v1.ProductService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
+		case ProductServiceGetProductProcedure:
+			productServiceGetProductHandler.ServeHTTP(w, r)
 		case ProductServiceListProductProcedure:
 			productServiceListProductHandler.ServeHTTP(w, r)
 		default:
@@ -103,6 +128,10 @@ func NewProductServiceHandler(svc ProductServiceHandler, opts ...connect.Handler
 
 // UnimplementedProductServiceHandler returns CodeUnimplemented from all methods.
 type UnimplementedProductServiceHandler struct{}
+
+func (UnimplementedProductServiceHandler) GetProduct(context.Context, *connect.Request[v1.GetProductRequest]) (*connect.Response[v1.GetProductResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.product.v1.ProductService.GetProduct is not implemented"))
+}
 
 func (UnimplementedProductServiceHandler) ListProduct(context.Context, *connect.Request[v1.ListProductRequest]) (*connect.Response[v1.ListProductResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.product.v1.ProductService.ListProduct is not implemented"))

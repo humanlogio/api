@@ -22,6 +22,102 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type GetProductRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StripeId      string                 `protobuf:"bytes,1,opt,name=stripe_id,json=stripeId,proto3" json:"stripe_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductRequest) Reset() {
+	*x = GetProductRequest{}
+	mi := &file_svc_product_v1_service_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductRequest) ProtoMessage() {}
+
+func (x *GetProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_product_v1_service_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductRequest.ProtoReflect.Descriptor instead.
+func (*GetProductRequest) Descriptor() ([]byte, []int) {
+	return file_svc_product_v1_service_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *GetProductRequest) GetStripeId() string {
+	if x != nil {
+		return x.StripeId
+	}
+	return ""
+}
+
+type GetProductResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Product       *v1.Product            `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"`
+	Prices        []*v1.Price            `protobuf:"bytes,2,rep,name=prices,proto3" json:"prices,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetProductResponse) Reset() {
+	*x = GetProductResponse{}
+	mi := &file_svc_product_v1_service_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductResponse) ProtoMessage() {}
+
+func (x *GetProductResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_product_v1_service_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetProductResponse.ProtoReflect.Descriptor instead.
+func (*GetProductResponse) Descriptor() ([]byte, []int) {
+	return file_svc_product_v1_service_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetProductResponse) GetProduct() *v1.Product {
+	if x != nil {
+		return x.Product
+	}
+	return nil
+}
+
+func (x *GetProductResponse) GetPrices() []*v1.Price {
+	if x != nil {
+		return x.Prices
+	}
+	return nil
+}
+
 type ListProductRequest struct {
 	state    protoimpl.MessageState `protogen:"open.v1"`
 	Cursor   *v1.Cursor             `protobuf:"bytes,1,opt,name=cursor,proto3" json:"cursor,omitempty"`
@@ -35,7 +131,7 @@ type ListProductRequest struct {
 
 func (x *ListProductRequest) Reset() {
 	*x = ListProductRequest{}
-	mi := &file_svc_product_v1_service_proto_msgTypes[0]
+	mi := &file_svc_product_v1_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +143,7 @@ func (x *ListProductRequest) String() string {
 func (*ListProductRequest) ProtoMessage() {}
 
 func (x *ListProductRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_product_v1_service_proto_msgTypes[0]
+	mi := &file_svc_product_v1_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +156,7 @@ func (x *ListProductRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProductRequest.ProtoReflect.Descriptor instead.
 func (*ListProductRequest) Descriptor() ([]byte, []int) {
-	return file_svc_product_v1_service_proto_rawDescGZIP(), []int{0}
+	return file_svc_product_v1_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListProductRequest) GetCursor() *v1.Cursor {
@@ -102,7 +198,7 @@ type ListProductResponse struct {
 
 func (x *ListProductResponse) Reset() {
 	*x = ListProductResponse{}
-	mi := &file_svc_product_v1_service_proto_msgTypes[1]
+	mi := &file_svc_product_v1_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -114,7 +210,7 @@ func (x *ListProductResponse) String() string {
 func (*ListProductResponse) ProtoMessage() {}
 
 func (x *ListProductResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_product_v1_service_proto_msgTypes[1]
+	mi := &file_svc_product_v1_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -127,7 +223,7 @@ func (x *ListProductResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProductResponse.ProtoReflect.Descriptor instead.
 func (*ListProductResponse) Descriptor() ([]byte, []int) {
-	return file_svc_product_v1_service_proto_rawDescGZIP(), []int{1}
+	return file_svc_product_v1_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ListProductResponse) GetNext() *v1.Cursor {
@@ -161,7 +257,7 @@ type ListProductResponse_ListItem struct {
 
 func (x *ListProductResponse_ListItem) Reset() {
 	*x = ListProductResponse_ListItem{}
-	mi := &file_svc_product_v1_service_proto_msgTypes[2]
+	mi := &file_svc_product_v1_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -173,7 +269,7 @@ func (x *ListProductResponse_ListItem) String() string {
 func (*ListProductResponse_ListItem) ProtoMessage() {}
 
 func (x *ListProductResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_product_v1_service_proto_msgTypes[2]
+	mi := &file_svc_product_v1_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -186,7 +282,7 @@ func (x *ListProductResponse_ListItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProductResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListProductResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_product_v1_service_proto_rawDescGZIP(), []int{1, 0}
+	return file_svc_product_v1_service_proto_rawDescGZIP(), []int{3, 0}
 }
 
 func (x *ListProductResponse_ListItem) GetProduct() *v1.Product {
@@ -207,7 +303,12 @@ var File_svc_product_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_product_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1csvc/product/v1/service.proto\x12\x0esvc.product.v1\x1a\x15types/v1/cursor.proto\x1a\x14types/v1/price.proto\x1a\x16types/v1/product.proto\"\xaf\x01\n" +
+	"\x1csvc/product/v1/service.proto\x12\x0esvc.product.v1\x1a\x15types/v1/cursor.proto\x1a\x14types/v1/price.proto\x1a\x16types/v1/product.proto\"0\n" +
+	"\x11GetProductRequest\x12\x1b\n" +
+	"\tstripe_id\x18\x01 \x01(\tR\bstripeId\"j\n" +
+	"\x12GetProductResponse\x12+\n" +
+	"\aproduct\x18\x01 \x01(\v2\x11.types.v1.ProductR\aproduct\x12'\n" +
+	"\x06prices\x18\x02 \x03(\v2\x0f.types.v1.PriceR\x06prices\"\xaf\x01\n" +
 	"\x12ListProductRequest\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1a\n" +
@@ -220,8 +321,10 @@ const file_svc_product_v1_service_proto_rawDesc = "" +
 	"\x0fdefault_product\x18\x03 \x01(\v2\x11.types.v1.ProductR\x0edefaultProduct\x1a`\n" +
 	"\bListItem\x12+\n" +
 	"\aproduct\x18\x01 \x01(\v2\x11.types.v1.ProductR\aproduct\x12'\n" +
-	"\x06prices\x18\x02 \x03(\v2\x0f.types.v1.PriceR\x06prices2h\n" +
-	"\x0eProductService\x12V\n" +
+	"\x06prices\x18\x02 \x03(\v2\x0f.types.v1.PriceR\x06prices2\xbd\x01\n" +
+	"\x0eProductService\x12S\n" +
+	"\n" +
+	"GetProduct\x12!.svc.product.v1.GetProductRequest\x1a\".svc.product.v1.GetProductResponse\x12V\n" +
 	"\vListProduct\x12\".svc.product.v1.ListProductRequest\x1a#.svc.product.v1.ListProductResponseB\xb3\x01\n" +
 	"\x12com.svc.product.v1B\fServiceProtoP\x01Z5github.com/humanlogio/api/go/svc/product/v1;productv1\xa2\x02\x03SPX\xaa\x02\x0eSvc.Product.V1\xca\x02\x0eSvc\\Product\\V1\xe2\x02\x1aSvc\\Product\\V1\\GPBMetadata\xea\x02\x10Svc::Product::V1b\x06proto3"
 
@@ -237,31 +340,37 @@ func file_svc_product_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_product_v1_service_proto_rawDescData
 }
 
-var file_svc_product_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_svc_product_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_svc_product_v1_service_proto_goTypes = []any{
-	(*ListProductRequest)(nil),           // 0: svc.product.v1.ListProductRequest
-	(*ListProductResponse)(nil),          // 1: svc.product.v1.ListProductResponse
-	(*ListProductResponse_ListItem)(nil), // 2: svc.product.v1.ListProductResponse.ListItem
-	(*v1.Cursor)(nil),                    // 3: types.v1.Cursor
-	(v1.Product_Scope)(0),                // 4: types.v1.Product.Scope
+	(*GetProductRequest)(nil),            // 0: svc.product.v1.GetProductRequest
+	(*GetProductResponse)(nil),           // 1: svc.product.v1.GetProductResponse
+	(*ListProductRequest)(nil),           // 2: svc.product.v1.ListProductRequest
+	(*ListProductResponse)(nil),          // 3: svc.product.v1.ListProductResponse
+	(*ListProductResponse_ListItem)(nil), // 4: svc.product.v1.ListProductResponse.ListItem
 	(*v1.Product)(nil),                   // 5: types.v1.Product
 	(*v1.Price)(nil),                     // 6: types.v1.Price
+	(*v1.Cursor)(nil),                    // 7: types.v1.Cursor
+	(v1.Product_Scope)(0),                // 8: types.v1.Product.Scope
 }
 var file_svc_product_v1_service_proto_depIdxs = []int32{
-	3, // 0: svc.product.v1.ListProductRequest.cursor:type_name -> types.v1.Cursor
-	4, // 1: svc.product.v1.ListProductRequest.scope:type_name -> types.v1.Product.Scope
-	3, // 2: svc.product.v1.ListProductResponse.next:type_name -> types.v1.Cursor
-	2, // 3: svc.product.v1.ListProductResponse.items:type_name -> svc.product.v1.ListProductResponse.ListItem
-	5, // 4: svc.product.v1.ListProductResponse.default_product:type_name -> types.v1.Product
-	5, // 5: svc.product.v1.ListProductResponse.ListItem.product:type_name -> types.v1.Product
-	6, // 6: svc.product.v1.ListProductResponse.ListItem.prices:type_name -> types.v1.Price
-	0, // 7: svc.product.v1.ProductService.ListProduct:input_type -> svc.product.v1.ListProductRequest
-	1, // 8: svc.product.v1.ProductService.ListProduct:output_type -> svc.product.v1.ListProductResponse
-	8, // [8:9] is the sub-list for method output_type
-	7, // [7:8] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	5,  // 0: svc.product.v1.GetProductResponse.product:type_name -> types.v1.Product
+	6,  // 1: svc.product.v1.GetProductResponse.prices:type_name -> types.v1.Price
+	7,  // 2: svc.product.v1.ListProductRequest.cursor:type_name -> types.v1.Cursor
+	8,  // 3: svc.product.v1.ListProductRequest.scope:type_name -> types.v1.Product.Scope
+	7,  // 4: svc.product.v1.ListProductResponse.next:type_name -> types.v1.Cursor
+	4,  // 5: svc.product.v1.ListProductResponse.items:type_name -> svc.product.v1.ListProductResponse.ListItem
+	5,  // 6: svc.product.v1.ListProductResponse.default_product:type_name -> types.v1.Product
+	5,  // 7: svc.product.v1.ListProductResponse.ListItem.product:type_name -> types.v1.Product
+	6,  // 8: svc.product.v1.ListProductResponse.ListItem.prices:type_name -> types.v1.Price
+	0,  // 9: svc.product.v1.ProductService.GetProduct:input_type -> svc.product.v1.GetProductRequest
+	2,  // 10: svc.product.v1.ProductService.ListProduct:input_type -> svc.product.v1.ListProductRequest
+	1,  // 11: svc.product.v1.ProductService.GetProduct:output_type -> svc.product.v1.GetProductResponse
+	3,  // 12: svc.product.v1.ProductService.ListProduct:output_type -> svc.product.v1.ListProductResponse
+	11, // [11:13] is the sub-list for method output_type
+	9,  // [9:11] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_svc_product_v1_service_proto_init() }
@@ -269,14 +378,14 @@ func file_svc_product_v1_service_proto_init() {
 	if File_svc_product_v1_service_proto != nil {
 		return
 	}
-	file_svc_product_v1_service_proto_msgTypes[0].OneofWrappers = []any{}
+	file_svc_product_v1_service_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_product_v1_service_proto_rawDesc), len(file_svc_product_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
