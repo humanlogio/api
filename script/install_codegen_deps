@@ -19,8 +19,8 @@ function main() {
             @bufbuild/protoc-gen-es@^2.7.0 \
             @connectrpc/protoc-gen-connect-query@^2.1.1
 
-    go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-    go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
+    go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.36.9
+    go install connectrpc.com/connect/cmd/protoc-gen-connect-go@v1.18.1
 }
 
 main
