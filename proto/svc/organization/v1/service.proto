@@ -71,6 +71,7 @@ message GetEnvironmentRequest {
 
 message GetEnvironmentResponse {
   types.v1.Environment environment = 1;
+  types.v1.Product product = 2;
 }
 
 message ListEnvironmentRequest {
