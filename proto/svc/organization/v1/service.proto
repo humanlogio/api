@@ -83,7 +83,6 @@ message ListEnvironmentResponse {
   types.v1.Cursor next = 1;
   message ListItem {
     types.v1.Environment environment = 1;
-    types.v1.Product product = 2;
   }
   repeated ListItem items = 2;
 }

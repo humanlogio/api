@@ -1584,7 +1584,6 @@ func (x *CreateEnvironmentResponse_Stripe) GetClientSecret() string {
 type ListEnvironmentResponse_ListItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Environment   *v1.Environment        `protobuf:"bytes,1,opt,name=environment,proto3" json:"environment,omitempty"`
-	Product       *v1.Product            `protobuf:"bytes,2,opt,name=product,proto3" json:"product,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1622,13 +1621,6 @@ func (*ListEnvironmentResponse_ListItem) Descriptor() ([]byte, []int) {
 func (x *ListEnvironmentResponse_ListItem) GetEnvironment() *v1.Environment {
 	if x != nil {
 		return x.Environment
-	}
-	return nil
-}
-
-func (x *ListEnvironmentResponse_ListItem) GetProduct() *v1.Product {
-	if x != nil {
-		return x.Product
 	}
 	return nil
 }
@@ -2001,13 +1993,12 @@ const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\aproduct\x18\x02 \x01(\v2\x11.types.v1.ProductR\aproduct\"X\n" +
 	"\x16ListEnvironmentRequest\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\xfe\x01\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\xd1\x01\n" +
 	"\x17ListEnvironmentResponse\x12$\n" +
 	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12K\n" +
-	"\x05items\x18\x02 \x03(\v25.svc.organization.v1.ListEnvironmentResponse.ListItemR\x05items\x1ap\n" +
+	"\x05items\x18\x02 \x03(\v25.svc.organization.v1.ListEnvironmentResponse.ListItemR\x05items\x1aC\n" +
 	"\bListItem\x127\n" +
-	"\venvironment\x18\x01 \x01(\v2\x15.types.v1.EnvironmentR\venvironment\x12+\n" +
-	"\aproduct\x18\x02 \x01(\v2\x11.types.v1.ProductR\aproduct\"Q\n" +
+	"\venvironment\x18\x01 \x01(\v2\x15.types.v1.EnvironmentR\venvironment\"Q\n" +
 	"\x0fListUserRequest\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\xae\x01\n" +
@@ -2194,45 +2185,44 @@ var file_svc_organization_v1_service_proto_depIdxs = []int32{
 	40, // 24: svc.organization.v1.ListPaymentMethodResponse.next:type_name -> types.v1.Cursor
 	37, // 25: svc.organization.v1.ListPaymentMethodResponse.items:type_name -> svc.organization.v1.ListPaymentMethodResponse.ListItem
 	38, // 26: svc.organization.v1.ListEnvironmentResponse.ListItem.environment:type_name -> types.v1.Environment
-	39, // 27: svc.organization.v1.ListEnvironmentResponse.ListItem.product:type_name -> types.v1.Product
-	42, // 28: svc.organization.v1.ListUserResponse.ListItem.user:type_name -> types.v1.User
-	41, // 29: svc.organization.v1.ListUserInvitationResponse.ListItem.invitation:type_name -> types.v1.Invitation
-	39, // 30: svc.organization.v1.ListAddonSubscriptionResponse.ListItem.product:type_name -> types.v1.Product
-	43, // 31: svc.organization.v1.ListAddonSubscriptionResponse.ListItem.subscription:type_name -> types.v1.Subscription
-	44, // 32: svc.organization.v1.ListPaymentMethodResponse.ListItem.payment_method:type_name -> types.v1.PaymentMethod
-	0,  // 33: svc.organization.v1.OrganizationService.CreateEnvironment:input_type -> svc.organization.v1.CreateEnvironmentRequest
-	2,  // 34: svc.organization.v1.OrganizationService.GetEnvironment:input_type -> svc.organization.v1.GetEnvironmentRequest
-	4,  // 35: svc.organization.v1.OrganizationService.ListEnvironment:input_type -> svc.organization.v1.ListEnvironmentRequest
-	6,  // 36: svc.organization.v1.OrganizationService.ListUser:input_type -> svc.organization.v1.ListUserRequest
-	8,  // 37: svc.organization.v1.OrganizationService.InviteUser:input_type -> svc.organization.v1.InviteUserRequest
-	10, // 38: svc.organization.v1.OrganizationService.RevokeUserInvitation:input_type -> svc.organization.v1.RevokeUserInvitationRequest
-	12, // 39: svc.organization.v1.OrganizationService.ListUserInvitation:input_type -> svc.organization.v1.ListUserInvitationRequest
-	14, // 40: svc.organization.v1.OrganizationService.CreateAddonSubscription:input_type -> svc.organization.v1.CreateAddonSubscriptionRequest
-	16, // 41: svc.organization.v1.OrganizationService.ListAddonSubscription:input_type -> svc.organization.v1.ListAddonSubscriptionRequest
-	18, // 42: svc.organization.v1.OrganizationService.RemoveAddonSubscription:input_type -> svc.organization.v1.RemoveAddonSubscriptionRequest
-	20, // 43: svc.organization.v1.OrganizationService.GetStripePublishableKey:input_type -> svc.organization.v1.GetStripePublishableKeyRequest
-	22, // 44: svc.organization.v1.OrganizationService.GetStripeBillingPortal:input_type -> svc.organization.v1.GetStripeBillingPortalRequest
-	24, // 45: svc.organization.v1.OrganizationService.CreateStripeCustomerSession:input_type -> svc.organization.v1.CreateStripeCustomerSessionRequest
-	26, // 46: svc.organization.v1.OrganizationService.ListPaymentMethod:input_type -> svc.organization.v1.ListPaymentMethodRequest
-	1,  // 47: svc.organization.v1.OrganizationService.CreateEnvironment:output_type -> svc.organization.v1.CreateEnvironmentResponse
-	3,  // 48: svc.organization.v1.OrganizationService.GetEnvironment:output_type -> svc.organization.v1.GetEnvironmentResponse
-	5,  // 49: svc.organization.v1.OrganizationService.ListEnvironment:output_type -> svc.organization.v1.ListEnvironmentResponse
-	7,  // 50: svc.organization.v1.OrganizationService.ListUser:output_type -> svc.organization.v1.ListUserResponse
-	9,  // 51: svc.organization.v1.OrganizationService.InviteUser:output_type -> svc.organization.v1.InviteUserResponse
-	11, // 52: svc.organization.v1.OrganizationService.RevokeUserInvitation:output_type -> svc.organization.v1.RevokeUserInvitationResponse
-	13, // 53: svc.organization.v1.OrganizationService.ListUserInvitation:output_type -> svc.organization.v1.ListUserInvitationResponse
-	15, // 54: svc.organization.v1.OrganizationService.CreateAddonSubscription:output_type -> svc.organization.v1.CreateAddonSubscriptionResponse
-	17, // 55: svc.organization.v1.OrganizationService.ListAddonSubscription:output_type -> svc.organization.v1.ListAddonSubscriptionResponse
-	19, // 56: svc.organization.v1.OrganizationService.RemoveAddonSubscription:output_type -> svc.organization.v1.RemoveAddonSubscriptionResponse
-	21, // 57: svc.organization.v1.OrganizationService.GetStripePublishableKey:output_type -> svc.organization.v1.GetStripePublishableKeyResponse
-	23, // 58: svc.organization.v1.OrganizationService.GetStripeBillingPortal:output_type -> svc.organization.v1.GetStripeBillingPortalResponse
-	25, // 59: svc.organization.v1.OrganizationService.CreateStripeCustomerSession:output_type -> svc.organization.v1.CreateStripeCustomerSessionResponse
-	27, // 60: svc.organization.v1.OrganizationService.ListPaymentMethod:output_type -> svc.organization.v1.ListPaymentMethodResponse
-	47, // [47:61] is the sub-list for method output_type
-	33, // [33:47] is the sub-list for method input_type
-	33, // [33:33] is the sub-list for extension type_name
-	33, // [33:33] is the sub-list for extension extendee
-	0,  // [0:33] is the sub-list for field type_name
+	42, // 27: svc.organization.v1.ListUserResponse.ListItem.user:type_name -> types.v1.User
+	41, // 28: svc.organization.v1.ListUserInvitationResponse.ListItem.invitation:type_name -> types.v1.Invitation
+	39, // 29: svc.organization.v1.ListAddonSubscriptionResponse.ListItem.product:type_name -> types.v1.Product
+	43, // 30: svc.organization.v1.ListAddonSubscriptionResponse.ListItem.subscription:type_name -> types.v1.Subscription
+	44, // 31: svc.organization.v1.ListPaymentMethodResponse.ListItem.payment_method:type_name -> types.v1.PaymentMethod
+	0,  // 32: svc.organization.v1.OrganizationService.CreateEnvironment:input_type -> svc.organization.v1.CreateEnvironmentRequest
+	2,  // 33: svc.organization.v1.OrganizationService.GetEnvironment:input_type -> svc.organization.v1.GetEnvironmentRequest
+	4,  // 34: svc.organization.v1.OrganizationService.ListEnvironment:input_type -> svc.organization.v1.ListEnvironmentRequest
+	6,  // 35: svc.organization.v1.OrganizationService.ListUser:input_type -> svc.organization.v1.ListUserRequest
+	8,  // 36: svc.organization.v1.OrganizationService.InviteUser:input_type -> svc.organization.v1.InviteUserRequest
+	10, // 37: svc.organization.v1.OrganizationService.RevokeUserInvitation:input_type -> svc.organization.v1.RevokeUserInvitationRequest
+	12, // 38: svc.organization.v1.OrganizationService.ListUserInvitation:input_type -> svc.organization.v1.ListUserInvitationRequest
+	14, // 39: svc.organization.v1.OrganizationService.CreateAddonSubscription:input_type -> svc.organization.v1.CreateAddonSubscriptionRequest
+	16, // 40: svc.organization.v1.OrganizationService.ListAddonSubscription:input_type -> svc.organization.v1.ListAddonSubscriptionRequest
+	18, // 41: svc.organization.v1.OrganizationService.RemoveAddonSubscription:input_type -> svc.organization.v1.RemoveAddonSubscriptionRequest
+	20, // 42: svc.organization.v1.OrganizationService.GetStripePublishableKey:input_type -> svc.organization.v1.GetStripePublishableKeyRequest
+	22, // 43: svc.organization.v1.OrganizationService.GetStripeBillingPortal:input_type -> svc.organization.v1.GetStripeBillingPortalRequest
+	24, // 44: svc.organization.v1.OrganizationService.CreateStripeCustomerSession:input_type -> svc.organization.v1.CreateStripeCustomerSessionRequest
+	26, // 45: svc.organization.v1.OrganizationService.ListPaymentMethod:input_type -> svc.organization.v1.ListPaymentMethodRequest
+	1,  // 46: svc.organization.v1.OrganizationService.CreateEnvironment:output_type -> svc.organization.v1.CreateEnvironmentResponse
+	3,  // 47: svc.organization.v1.OrganizationService.GetEnvironment:output_type -> svc.organization.v1.GetEnvironmentResponse
+	5,  // 48: svc.organization.v1.OrganizationService.ListEnvironment:output_type -> svc.organization.v1.ListEnvironmentResponse
+	7,  // 49: svc.organization.v1.OrganizationService.ListUser:output_type -> svc.organization.v1.ListUserResponse
+	9,  // 50: svc.organization.v1.OrganizationService.InviteUser:output_type -> svc.organization.v1.InviteUserResponse
+	11, // 51: svc.organization.v1.OrganizationService.RevokeUserInvitation:output_type -> svc.organization.v1.RevokeUserInvitationResponse
+	13, // 52: svc.organization.v1.OrganizationService.ListUserInvitation:output_type -> svc.organization.v1.ListUserInvitationResponse
+	15, // 53: svc.organization.v1.OrganizationService.CreateAddonSubscription:output_type -> svc.organization.v1.CreateAddonSubscriptionResponse
+	17, // 54: svc.organization.v1.OrganizationService.ListAddonSubscription:output_type -> svc.organization.v1.ListAddonSubscriptionResponse
+	19, // 55: svc.organization.v1.OrganizationService.RemoveAddonSubscription:output_type -> svc.organization.v1.RemoveAddonSubscriptionResponse
+	21, // 56: svc.organization.v1.OrganizationService.GetStripePublishableKey:output_type -> svc.organization.v1.GetStripePublishableKeyResponse
+	23, // 57: svc.organization.v1.OrganizationService.GetStripeBillingPortal:output_type -> svc.organization.v1.GetStripeBillingPortalResponse
+	25, // 58: svc.organization.v1.OrganizationService.CreateStripeCustomerSession:output_type -> svc.organization.v1.CreateStripeCustomerSessionResponse
+	27, // 59: svc.organization.v1.OrganizationService.ListPaymentMethod:output_type -> svc.organization.v1.ListPaymentMethodResponse
+	46, // [46:60] is the sub-list for method output_type
+	32, // [32:46] is the sub-list for method input_type
+	32, // [32:32] is the sub-list for extension type_name
+	32, // [32:32] is the sub-list for extension extendee
+	0,  // [0:32] is the sub-list for field type_name
 }
 
 func init() { file_svc_organization_v1_service_proto_init() }
