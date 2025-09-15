@@ -5,6 +5,11 @@
 import { ProductService } from "./service_pb";
 
 /**
+ * @generated from rpc svc.product.v1.ProductService.GetProduct
+ */
+export const getProduct = ProductService.method.getProduct;
+
+/**
  * @generated from rpc svc.product.v1.ProductService.ListProduct
  */
 export const listProduct = ProductService.method.listProduct;

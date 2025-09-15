@@ -9,7 +9,17 @@ import "types/v1/product.proto";
 option go_package = "svc/product/v1;productv1";
 
 service ProductService {
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
   rpc ListProduct(ListProductRequest) returns (ListProductResponse);
+}
+
+message GetProductRequest {
+  string stripe_id = 1;
+}
+
+message GetProductResponse {
+  types.v1.Product product = 1;
+  repeated types.v1.Price prices = 2;
 }
 
 message ListProductRequest {
