@@ -7,6 +7,7 @@ import (
 
 	"go.opentelemetry.io/otel/attribute"
 	otlpv1 "go.opentelemetry.io/proto/otlp/common/v1"
+	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 	durationpb "google.golang.org/protobuf/types/known/durationpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -20,8 +21,20 @@ func FromOTLPKVs(attrs []*otlpv1.KeyValue) []*KV {
 	return out
 }
 
+func ToOTLPKVs(attrs []*KV) []*otlpv1.KeyValue {
+	out := make([]*otlpv1.KeyValue, 0, len(attrs))
+	for _, el := range attrs {
+		out = append(out, ToOTLPKV(el))
+	}
+	return out
+}
+
 func FromOTLPKV(attr *otlpv1.KeyValue) *KV {
 	return KeyVal(attr.Key, FromOTLPVal(attr.Value))
+}
+
+func ToOTLPKV(attr *KV) *otlpv1.KeyValue {
+	return &otlpv1.KeyValue{Key: attr.Key, Value: ToOTLPVal(attr.Value)}
 }
 
 func FromOTLPVal(v *otlpv1.AnyValue) *Val {
@@ -51,6 +64,70 @@ func FromOTLPVal(v *otlpv1.AnyValue) *Val {
 			out = append(out, KeyVal(kv.Key, FromOTLPVal(kv.Value)))
 		}
 		return ValObj(out...)
+	default:
+		panic(fmt.Sprintf("missing case: %#v (%T)", tt, tt))
+	}
+}
+
+func ToOTLPVal(v *Val) *otlpv1.AnyValue {
+	switch tt := v.Kind.(type) {
+	case *Val_Str:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_StringValue{StringValue: tt.Str}}
+	case *Val_F64:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_DoubleValue{DoubleValue: tt.F64}}
+	case *Val_I64:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_IntValue{IntValue: tt.I64}}
+	case *Val_Hash64:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_IntValue{IntValue: int64(tt.Hash64)}}
+	case *Val_Bool:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_BoolValue{BoolValue: tt.Bool}}
+	case *Val_Ts:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_IntValue{IntValue: tt.Ts.AsTime().UnixNano()}}
+	case *Val_Dur:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_IntValue{IntValue: tt.Dur.AsDuration().Nanoseconds()}}
+	case *Val_Blob:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_BytesValue{BytesValue: tt.Blob}}
+	case *Val_TraceId:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_BytesValue{BytesValue: TraceIDToBytes(tt.TraceId)}}
+	case *Val_SpanId:
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_BytesValue{BytesValue: SpanIDToBytes(tt.SpanId)}}
+	case *Val_Ulid:
+		bytes := ULIDToBytes(nil, tt.Ulid)
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_BytesValue{BytesValue: bytes[:]}}
+	case *Val_Arr:
+		arr := tt.Arr.Items
+		out := make([]*otlpv1.AnyValue, 0, len(arr))
+		for _, el := range arr {
+			out = append(out, ToOTLPVal(el))
+		}
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_ArrayValue{ArrayValue: &otlpv1.ArrayValue{Values: out}}}
+	case *Val_Obj:
+		kvs := tt.Obj.Kvs
+		out := make([]*otlpv1.KeyValue, 0, len(kvs))
+		for _, kv := range kvs {
+			out = append(out, ToOTLPKV(kv))
+		}
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_KvlistValue{KvlistValue: &otlpv1.KeyValueList{Values: out}}}
+	case *Val_Map:
+		kvs := tt.Map.Entries
+		out := make([]*otlpv1.KeyValue, 0, len(kvs))
+		for _, kv := range kvs {
+			el := &otlpv1.KeyValue{Value: ToOTLPVal(kv.Value)}
+			switch kk := kv.Key.Kind.(type) {
+			case *Val_Str:
+				el.Key = kk.Str
+			default:
+				key, err := protojson.Marshal(kv.Key)
+				if err != nil {
+					panic(err)
+				}
+				el.Key = string(key)
+			}
+			out = append(out, el)
+		}
+		return &otlpv1.AnyValue{Value: &otlpv1.AnyValue_KvlistValue{KvlistValue: &otlpv1.KeyValueList{Values: out}}}
+	case *Val_Null:
+		return &otlpv1.AnyValue{}
 	default:
 		panic(fmt.Sprintf("missing case: %#v (%T)", tt, tt))
 	}
