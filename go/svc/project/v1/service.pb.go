@@ -25,8 +25,7 @@ const (
 type CreateProjectRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Pointer       *v1.ProjectPointer     `protobuf:"bytes,2,opt,name=pointer,proto3" json:"pointer,omitempty"`
+	Spec          *v1.ProjectSpec        `protobuf:"bytes,1,opt,name=spec,proto3" json:"spec,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -68,16 +67,9 @@ func (x *CreateProjectRequest) GetEnvironmentId() int64 {
 	return 0
 }
 
-func (x *CreateProjectRequest) GetName() string {
+func (x *CreateProjectRequest) GetSpec() *v1.ProjectSpec {
 	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *CreateProjectRequest) GetPointer() *v1.ProjectPointer {
-	if x != nil {
-		return x.Pointer
+		return x.Spec
 	}
 	return nil
 }
@@ -239,10 +231,10 @@ func (x *GetProjectResponse) GetAlertGroups() []*v1.AlertGroup {
 }
 
 type UpdateProjectRequest struct {
-	state         protoimpl.MessageState           `protogen:"open.v1"`
-	EnvironmentId int64                            `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	Name          string                           `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Mutations     []*UpdateProjectRequest_Mutation `protobuf:"bytes,2,rep,name=mutations,proto3" json:"mutations,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Spec          *v1.ProjectSpec        `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -291,9 +283,9 @@ func (x *UpdateProjectRequest) GetName() string {
 	return ""
 }
 
-func (x *UpdateProjectRequest) GetMutations() []*UpdateProjectRequest_Mutation {
+func (x *UpdateProjectRequest) GetSpec() *v1.ProjectSpec {
 	if x != nil {
-		return x.Mutations
+		return x.Spec
 	}
 	return nil
 }
@@ -542,31 +534,28 @@ func (x *ListProjectResponse) GetItems() []*ListProjectResponse_ListItem {
 	return nil
 }
 
-type UpdateProjectRequest_Mutation struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Do:
-	//
-	//	*UpdateProjectRequest_Mutation_SetName
-	//	*UpdateProjectRequest_Mutation_SetPointer
-	Do            isUpdateProjectRequest_Mutation_Do `protobuf_oneof:"do"`
+type SyncProjectRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpdateProjectRequest_Mutation) Reset() {
-	*x = UpdateProjectRequest_Mutation{}
+func (x *SyncProjectRequest) Reset() {
+	*x = SyncProjectRequest{}
 	mi := &file_svc_project_v1_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpdateProjectRequest_Mutation) String() string {
+func (x *SyncProjectRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpdateProjectRequest_Mutation) ProtoMessage() {}
+func (*SyncProjectRequest) ProtoMessage() {}
 
-func (x *UpdateProjectRequest_Mutation) ProtoReflect() protoreflect.Message {
+func (x *SyncProjectRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_project_v1_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -578,51 +567,68 @@ func (x *UpdateProjectRequest_Mutation) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpdateProjectRequest_Mutation.ProtoReflect.Descriptor instead.
-func (*UpdateProjectRequest_Mutation) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{4, 0}
+// Deprecated: Use SyncProjectRequest.ProtoReflect.Descriptor instead.
+func (*SyncProjectRequest) Descriptor() ([]byte, []int) {
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *UpdateProjectRequest_Mutation) GetDo() isUpdateProjectRequest_Mutation_Do {
+func (x *SyncProjectRequest) GetEnvironmentId() int64 {
 	if x != nil {
-		return x.Do
+		return x.EnvironmentId
 	}
-	return nil
+	return 0
 }
 
-func (x *UpdateProjectRequest_Mutation) GetSetName() string {
+func (x *SyncProjectRequest) GetName() string {
 	if x != nil {
-		if x, ok := x.Do.(*UpdateProjectRequest_Mutation_SetName); ok {
-			return x.SetName
-		}
+		return x.Name
 	}
 	return ""
 }
 
-func (x *UpdateProjectRequest_Mutation) GetSetPointer() *v1.ProjectPointer {
+type SyncProjectResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Project       *v1.Project            `protobuf:"bytes,1,opt,name=project,proto3" json:"project,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SyncProjectResponse) Reset() {
+	*x = SyncProjectResponse{}
+	mi := &file_svc_project_v1_service_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SyncProjectResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SyncProjectResponse) ProtoMessage() {}
+
+func (x *SyncProjectResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_project_v1_service_proto_msgTypes[11]
 	if x != nil {
-		if x, ok := x.Do.(*UpdateProjectRequest_Mutation_SetPointer); ok {
-			return x.SetPointer
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
 		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SyncProjectResponse.ProtoReflect.Descriptor instead.
+func (*SyncProjectResponse) Descriptor() ([]byte, []int) {
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *SyncProjectResponse) GetProject() *v1.Project {
+	if x != nil {
+		return x.Project
 	}
 	return nil
 }
-
-type isUpdateProjectRequest_Mutation_Do interface {
-	isUpdateProjectRequest_Mutation_Do()
-}
-
-type UpdateProjectRequest_Mutation_SetName struct {
-	SetName string `protobuf:"bytes,1,opt,name=set_name,json=setName,proto3,oneof"`
-}
-
-type UpdateProjectRequest_Mutation_SetPointer struct {
-	SetPointer *v1.ProjectPointer `protobuf:"bytes,2,opt,name=set_pointer,json=setPointer,proto3,oneof"`
-}
-
-func (*UpdateProjectRequest_Mutation_SetName) isUpdateProjectRequest_Mutation_Do() {}
-
-func (*UpdateProjectRequest_Mutation_SetPointer) isUpdateProjectRequest_Mutation_Do() {}
 
 type ListProjectResponse_ListItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -633,7 +639,7 @@ type ListProjectResponse_ListItem struct {
 
 func (x *ListProjectResponse_ListItem) Reset() {
 	*x = ListProjectResponse_ListItem{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[11]
+	mi := &file_svc_project_v1_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -645,7 +651,7 @@ func (x *ListProjectResponse_ListItem) String() string {
 func (*ListProjectResponse_ListItem) ProtoMessage() {}
 
 func (x *ListProjectResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[11]
+	mi := &file_svc_project_v1_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -672,11 +678,10 @@ var File_svc_project_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_project_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1csvc/project/v1/service.proto\x12\x0esvc.project.v1\x1a\x14types/v1/alert.proto\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\x1a\x16types/v1/project.proto\"\x85\x01\n" +
+	"\x1csvc/project/v1/service.proto\x12\x0esvc.project.v1\x1a\x14types/v1/alert.proto\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\x1a\x16types/v1/project.proto\"h\n" +
 	"\x14CreateProjectRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x122\n" +
-	"\apointer\x18\x02 \x01(\v2\x18.types.v1.ProjectPointerR\apointer\"D\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\x04spec\x18\x01 \x01(\v2\x15.types.v1.ProjectSpecR\x04spec\"D\n" +
 	"\x15CreateProjectResponse\x12+\n" +
 	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"N\n" +
 	"\x11GetProjectRequest\x12%\n" +
@@ -687,16 +692,11 @@ const file_svc_project_v1_service_proto_rawDesc = "" +
 	"\n" +
 	"dashboards\x18\x02 \x03(\v2\x13.types.v1.DashboardR\n" +
 	"dashboards\x127\n" +
-	"\falert_groups\x18\x03 \x03(\v2\x14.types.v1.AlertGroupR\valertGroups\"\x8a\x02\n" +
+	"\falert_groups\x18\x03 \x03(\v2\x14.types.v1.AlertGroupR\valertGroups\"|\n" +
 	"\x14UpdateProjectRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12K\n" +
-	"\tmutations\x18\x02 \x03(\v2-.svc.project.v1.UpdateProjectRequest.MutationR\tmutations\x1aj\n" +
-	"\bMutation\x12\x1b\n" +
-	"\bset_name\x18\x01 \x01(\tH\x00R\asetName\x12;\n" +
-	"\vset_pointer\x18\x02 \x01(\v2\x18.types.v1.ProjectPointerH\x00R\n" +
-	"setPointerB\x04\n" +
-	"\x02do\"D\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12)\n" +
+	"\x04spec\x18\x02 \x01(\v2\x15.types.v1.ProjectSpecR\x04spec\"D\n" +
 	"\x15UpdateProjectResponse\x12+\n" +
 	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"Q\n" +
 	"\x14DeleteProjectRequest\x12%\n" +
@@ -711,14 +711,20 @@ const file_svc_project_v1_service_proto_rawDesc = "" +
 	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12B\n" +
 	"\x05items\x18\x02 \x03(\v2,.svc.project.v1.ListProjectResponse.ListItemR\x05items\x1a7\n" +
 	"\bListItem\x12+\n" +
-	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject2\xd7\x03\n" +
+	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"O\n" +
+	"\x12SyncProjectRequest\x12%\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\"B\n" +
+	"\x13SyncProjectResponse\x12+\n" +
+	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject2\xaf\x04\n" +
 	"\x0eProjectService\x12\\\n" +
 	"\rCreateProject\x12$.svc.project.v1.CreateProjectRequest\x1a%.svc.project.v1.CreateProjectResponse\x12S\n" +
 	"\n" +
 	"GetProject\x12!.svc.project.v1.GetProjectRequest\x1a\".svc.project.v1.GetProjectResponse\x12\\\n" +
 	"\rUpdateProject\x12$.svc.project.v1.UpdateProjectRequest\x1a%.svc.project.v1.UpdateProjectResponse\x12\\\n" +
 	"\rDeleteProject\x12$.svc.project.v1.DeleteProjectRequest\x1a%.svc.project.v1.DeleteProjectResponse\x12V\n" +
-	"\vListProject\x12\".svc.project.v1.ListProjectRequest\x1a#.svc.project.v1.ListProjectResponseB\xb3\x01\n" +
+	"\vListProject\x12\".svc.project.v1.ListProjectRequest\x1a#.svc.project.v1.ListProjectResponse\x12V\n" +
+	"\vSyncProject\x12\".svc.project.v1.SyncProjectRequest\x1a#.svc.project.v1.SyncProjectResponseB\xb3\x01\n" +
 	"\x12com.svc.project.v1B\fServiceProtoP\x01Z5github.com/humanlogio/api/go/svc/project/v1;projectv1\xa2\x02\x03SPX\xaa\x02\x0eSvc.Project.V1\xca\x02\x0eSvc\\Project\\V1\xe2\x02\x1aSvc\\Project\\V1\\GPBMetadata\xea\x02\x10Svc::Project::V1b\x06proto3"
 
 var (
@@ -733,51 +739,54 @@ func file_svc_project_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_project_v1_service_proto_rawDescData
 }
 
-var file_svc_project_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_svc_project_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_svc_project_v1_service_proto_goTypes = []any{
-	(*CreateProjectRequest)(nil),          // 0: svc.project.v1.CreateProjectRequest
-	(*CreateProjectResponse)(nil),         // 1: svc.project.v1.CreateProjectResponse
-	(*GetProjectRequest)(nil),             // 2: svc.project.v1.GetProjectRequest
-	(*GetProjectResponse)(nil),            // 3: svc.project.v1.GetProjectResponse
-	(*UpdateProjectRequest)(nil),          // 4: svc.project.v1.UpdateProjectRequest
-	(*UpdateProjectResponse)(nil),         // 5: svc.project.v1.UpdateProjectResponse
-	(*DeleteProjectRequest)(nil),          // 6: svc.project.v1.DeleteProjectRequest
-	(*DeleteProjectResponse)(nil),         // 7: svc.project.v1.DeleteProjectResponse
-	(*ListProjectRequest)(nil),            // 8: svc.project.v1.ListProjectRequest
-	(*ListProjectResponse)(nil),           // 9: svc.project.v1.ListProjectResponse
-	(*UpdateProjectRequest_Mutation)(nil), // 10: svc.project.v1.UpdateProjectRequest.Mutation
-	(*ListProjectResponse_ListItem)(nil),  // 11: svc.project.v1.ListProjectResponse.ListItem
-	(*v1.ProjectPointer)(nil),             // 12: types.v1.ProjectPointer
-	(*v1.Project)(nil),                    // 13: types.v1.Project
-	(*v1.Dashboard)(nil),                  // 14: types.v1.Dashboard
-	(*v1.AlertGroup)(nil),                 // 15: types.v1.AlertGroup
-	(*v1.Cursor)(nil),                     // 16: types.v1.Cursor
+	(*CreateProjectRequest)(nil),         // 0: svc.project.v1.CreateProjectRequest
+	(*CreateProjectResponse)(nil),        // 1: svc.project.v1.CreateProjectResponse
+	(*GetProjectRequest)(nil),            // 2: svc.project.v1.GetProjectRequest
+	(*GetProjectResponse)(nil),           // 3: svc.project.v1.GetProjectResponse
+	(*UpdateProjectRequest)(nil),         // 4: svc.project.v1.UpdateProjectRequest
+	(*UpdateProjectResponse)(nil),        // 5: svc.project.v1.UpdateProjectResponse
+	(*DeleteProjectRequest)(nil),         // 6: svc.project.v1.DeleteProjectRequest
+	(*DeleteProjectResponse)(nil),        // 7: svc.project.v1.DeleteProjectResponse
+	(*ListProjectRequest)(nil),           // 8: svc.project.v1.ListProjectRequest
+	(*ListProjectResponse)(nil),          // 9: svc.project.v1.ListProjectResponse
+	(*SyncProjectRequest)(nil),           // 10: svc.project.v1.SyncProjectRequest
+	(*SyncProjectResponse)(nil),          // 11: svc.project.v1.SyncProjectResponse
+	(*ListProjectResponse_ListItem)(nil), // 12: svc.project.v1.ListProjectResponse.ListItem
+	(*v1.ProjectSpec)(nil),               // 13: types.v1.ProjectSpec
+	(*v1.Project)(nil),                   // 14: types.v1.Project
+	(*v1.Dashboard)(nil),                 // 15: types.v1.Dashboard
+	(*v1.AlertGroup)(nil),                // 16: types.v1.AlertGroup
+	(*v1.Cursor)(nil),                    // 17: types.v1.Cursor
 }
 var file_svc_project_v1_service_proto_depIdxs = []int32{
-	12, // 0: svc.project.v1.CreateProjectRequest.pointer:type_name -> types.v1.ProjectPointer
-	13, // 1: svc.project.v1.CreateProjectResponse.project:type_name -> types.v1.Project
-	13, // 2: svc.project.v1.GetProjectResponse.project:type_name -> types.v1.Project
-	14, // 3: svc.project.v1.GetProjectResponse.dashboards:type_name -> types.v1.Dashboard
-	15, // 4: svc.project.v1.GetProjectResponse.alert_groups:type_name -> types.v1.AlertGroup
-	10, // 5: svc.project.v1.UpdateProjectRequest.mutations:type_name -> svc.project.v1.UpdateProjectRequest.Mutation
-	13, // 6: svc.project.v1.UpdateProjectResponse.project:type_name -> types.v1.Project
-	16, // 7: svc.project.v1.ListProjectRequest.cursor:type_name -> types.v1.Cursor
-	16, // 8: svc.project.v1.ListProjectResponse.next:type_name -> types.v1.Cursor
-	11, // 9: svc.project.v1.ListProjectResponse.items:type_name -> svc.project.v1.ListProjectResponse.ListItem
-	12, // 10: svc.project.v1.UpdateProjectRequest.Mutation.set_pointer:type_name -> types.v1.ProjectPointer
-	13, // 11: svc.project.v1.ListProjectResponse.ListItem.project:type_name -> types.v1.Project
+	13, // 0: svc.project.v1.CreateProjectRequest.spec:type_name -> types.v1.ProjectSpec
+	14, // 1: svc.project.v1.CreateProjectResponse.project:type_name -> types.v1.Project
+	14, // 2: svc.project.v1.GetProjectResponse.project:type_name -> types.v1.Project
+	15, // 3: svc.project.v1.GetProjectResponse.dashboards:type_name -> types.v1.Dashboard
+	16, // 4: svc.project.v1.GetProjectResponse.alert_groups:type_name -> types.v1.AlertGroup
+	13, // 5: svc.project.v1.UpdateProjectRequest.spec:type_name -> types.v1.ProjectSpec
+	14, // 6: svc.project.v1.UpdateProjectResponse.project:type_name -> types.v1.Project
+	17, // 7: svc.project.v1.ListProjectRequest.cursor:type_name -> types.v1.Cursor
+	17, // 8: svc.project.v1.ListProjectResponse.next:type_name -> types.v1.Cursor
+	12, // 9: svc.project.v1.ListProjectResponse.items:type_name -> svc.project.v1.ListProjectResponse.ListItem
+	14, // 10: svc.project.v1.SyncProjectResponse.project:type_name -> types.v1.Project
+	14, // 11: svc.project.v1.ListProjectResponse.ListItem.project:type_name -> types.v1.Project
 	0,  // 12: svc.project.v1.ProjectService.CreateProject:input_type -> svc.project.v1.CreateProjectRequest
 	2,  // 13: svc.project.v1.ProjectService.GetProject:input_type -> svc.project.v1.GetProjectRequest
 	4,  // 14: svc.project.v1.ProjectService.UpdateProject:input_type -> svc.project.v1.UpdateProjectRequest
 	6,  // 15: svc.project.v1.ProjectService.DeleteProject:input_type -> svc.project.v1.DeleteProjectRequest
 	8,  // 16: svc.project.v1.ProjectService.ListProject:input_type -> svc.project.v1.ListProjectRequest
-	1,  // 17: svc.project.v1.ProjectService.CreateProject:output_type -> svc.project.v1.CreateProjectResponse
-	3,  // 18: svc.project.v1.ProjectService.GetProject:output_type -> svc.project.v1.GetProjectResponse
-	5,  // 19: svc.project.v1.ProjectService.UpdateProject:output_type -> svc.project.v1.UpdateProjectResponse
-	7,  // 20: svc.project.v1.ProjectService.DeleteProject:output_type -> svc.project.v1.DeleteProjectResponse
-	9,  // 21: svc.project.v1.ProjectService.ListProject:output_type -> svc.project.v1.ListProjectResponse
-	17, // [17:22] is the sub-list for method output_type
-	12, // [12:17] is the sub-list for method input_type
+	10, // 17: svc.project.v1.ProjectService.SyncProject:input_type -> svc.project.v1.SyncProjectRequest
+	1,  // 18: svc.project.v1.ProjectService.CreateProject:output_type -> svc.project.v1.CreateProjectResponse
+	3,  // 19: svc.project.v1.ProjectService.GetProject:output_type -> svc.project.v1.GetProjectResponse
+	5,  // 20: svc.project.v1.ProjectService.UpdateProject:output_type -> svc.project.v1.UpdateProjectResponse
+	7,  // 21: svc.project.v1.ProjectService.DeleteProject:output_type -> svc.project.v1.DeleteProjectResponse
+	9,  // 22: svc.project.v1.ProjectService.ListProject:output_type -> svc.project.v1.ListProjectResponse
+	11, // 23: svc.project.v1.ProjectService.SyncProject:output_type -> svc.project.v1.SyncProjectResponse
+	18, // [18:24] is the sub-list for method output_type
+	12, // [12:18] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name
 	12, // [12:12] is the sub-list for extension extendee
 	0,  // [0:12] is the sub-list for field type_name
@@ -788,17 +797,13 @@ func file_svc_project_v1_service_proto_init() {
 	if File_svc_project_v1_service_proto != nil {
 		return
 	}
-	file_svc_project_v1_service_proto_msgTypes[10].OneofWrappers = []any{
-		(*UpdateProjectRequest_Mutation_SetName)(nil),
-		(*UpdateProjectRequest_Mutation_SetPointer)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_project_v1_service_proto_rawDesc), len(file_svc_project_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

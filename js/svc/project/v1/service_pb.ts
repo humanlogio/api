@@ -10,7 +10,7 @@ import type { Cursor } from "../../../types/v1/cursor_pb";
 import { file_types_v1_cursor } from "../../../types/v1/cursor_pb";
 import type { Dashboard } from "../../../types/v1/dashboard_pb";
 import { file_types_v1_dashboard } from "../../../types/v1/dashboard_pb";
-import type { Project, ProjectPointer } from "../../../types/v1/project_pb";
+import type { Project, ProjectSpec } from "../../../types/v1/project_pb";
 import { file_types_v1_project } from "../../../types/v1/project_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -18,7 +18,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file svc/project/v1/service.proto.
  */
 export const file_svc_project_v1_service: GenFile = /*@__PURE__*/
-  fileDesc("ChxzdmMvcHJvamVjdC92MS9zZXJ2aWNlLnByb3RvEg5zdmMucHJvamVjdC52MSJnChRDcmVhdGVQcm9qZWN0UmVxdWVzdBIWCg5lbnZpcm9ubWVudF9pZBhlIAEoAxIMCgRuYW1lGAEgASgJEikKB3BvaW50ZXIYAiABKAsyGC50eXBlcy52MS5Qcm9qZWN0UG9pbnRlciI7ChVDcmVhdGVQcm9qZWN0UmVzcG9uc2USIgoHcHJvamVjdBgBIAEoCzIRLnR5cGVzLnYxLlByb2plY3QiOQoRR2V0UHJvamVjdFJlcXVlc3QSFgoOZW52aXJvbm1lbnRfaWQYZSABKAMSDAoEbmFtZRgBIAEoCSKNAQoSR2V0UHJvamVjdFJlc3BvbnNlEiIKB3Byb2plY3QYASABKAsyES50eXBlcy52MS5Qcm9qZWN0EicKCmRhc2hib2FyZHMYAiADKAsyEy50eXBlcy52MS5EYXNoYm9hcmQSKgoMYWxlcnRfZ3JvdXBzGAMgAygLMhQudHlwZXMudjEuQWxlcnRHcm91cCLVAQoUVXBkYXRlUHJvamVjdFJlcXVlc3QSFgoOZW52aXJvbm1lbnRfaWQYZSABKAMSDAoEbmFtZRgBIAEoCRJACgltdXRhdGlvbnMYAiADKAsyLS5zdmMucHJvamVjdC52MS5VcGRhdGVQcm9qZWN0UmVxdWVzdC5NdXRhdGlvbhpVCghNdXRhdGlvbhISCghzZXRfbmFtZRgBIAEoCUgAEi8KC3NldF9wb2ludGVyGAIgASgLMhgudHlwZXMudjEuUHJvamVjdFBvaW50ZXJIAEIECgJkbyI7ChVVcGRhdGVQcm9qZWN0UmVzcG9uc2USIgoHcHJvamVjdBgBIAEoCzIRLnR5cGVzLnYxLlByb2plY3QiPAoURGVsZXRlUHJvamVjdFJlcXVlc3QSFgoOZW52aXJvbm1lbnRfaWQYZSABKAMSDAoEbmFtZRgBIAEoCSIXChVEZWxldGVQcm9qZWN0UmVzcG9uc2UiXQoSTGlzdFByb2plY3RSZXF1ZXN0EhYKDmVudmlyb25tZW50X2lkGGUgASgDEiAKBmN1cnNvchgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchINCgVsaW1pdBgCIAEoBSKiAQoTTGlzdFByb2plY3RSZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEjsKBWl0ZW1zGAIgAygLMiwuc3ZjLnByb2plY3QudjEuTGlzdFByb2plY3RSZXNwb25zZS5MaXN0SXRlbRouCghMaXN0SXRlbRIiCgdwcm9qZWN0GAEgASgLMhEudHlwZXMudjEuUHJvamVjdDLXAwoOUHJvamVjdFNlcnZpY2USXAoNQ3JlYXRlUHJvamVjdBIkLnN2Yy5wcm9qZWN0LnYxLkNyZWF0ZVByb2plY3RSZXF1ZXN0GiUuc3ZjLnByb2plY3QudjEuQ3JlYXRlUHJvamVjdFJlc3BvbnNlElMKCkdldFByb2plY3QSIS5zdmMucHJvamVjdC52MS5HZXRQcm9qZWN0UmVxdWVzdBoiLnN2Yy5wcm9qZWN0LnYxLkdldFByb2plY3RSZXNwb25zZRJcCg1VcGRhdGVQcm9qZWN0EiQuc3ZjLnByb2plY3QudjEuVXBkYXRlUHJvamVjdFJlcXVlc3QaJS5zdmMucHJvamVjdC52MS5VcGRhdGVQcm9qZWN0UmVzcG9uc2USXAoNRGVsZXRlUHJvamVjdBIkLnN2Yy5wcm9qZWN0LnYxLkRlbGV0ZVByb2plY3RSZXF1ZXN0GiUuc3ZjLnByb2plY3QudjEuRGVsZXRlUHJvamVjdFJlc3BvbnNlElYKC0xpc3RQcm9qZWN0EiIuc3ZjLnByb2plY3QudjEuTGlzdFByb2plY3RSZXF1ZXN0GiMuc3ZjLnByb2plY3QudjEuTGlzdFByb2plY3RSZXNwb25zZUKzAQoSY29tLnN2Yy5wcm9qZWN0LnYxQgxTZXJ2aWNlUHJvdG9QAVo1Z2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby9zdmMvcHJvamVjdC92MTtwcm9qZWN0djGiAgNTUFiqAg5TdmMuUHJvamVjdC5WMcoCDlN2Y1xQcm9qZWN0XFYx4gIaU3ZjXFByb2plY3RcVjFcR1BCTWV0YWRhdGHqAhBTdmM6OlByb2plY3Q6OlYxYgZwcm90bzM", [file_types_v1_alert, file_types_v1_cursor, file_types_v1_dashboard, file_types_v1_project]);
+  fileDesc("ChxzdmMvcHJvamVjdC92MS9zZXJ2aWNlLnByb3RvEg5zdmMucHJvamVjdC52MSJTChRDcmVhdGVQcm9qZWN0UmVxdWVzdBIWCg5lbnZpcm9ubWVudF9pZBhlIAEoAxIjCgRzcGVjGAEgASgLMhUudHlwZXMudjEuUHJvamVjdFNwZWMiOwoVQ3JlYXRlUHJvamVjdFJlc3BvbnNlEiIKB3Byb2plY3QYASABKAsyES50eXBlcy52MS5Qcm9qZWN0IjkKEUdldFByb2plY3RSZXF1ZXN0EhYKDmVudmlyb25tZW50X2lkGGUgASgDEgwKBG5hbWUYASABKAkijQEKEkdldFByb2plY3RSZXNwb25zZRIiCgdwcm9qZWN0GAEgASgLMhEudHlwZXMudjEuUHJvamVjdBInCgpkYXNoYm9hcmRzGAIgAygLMhMudHlwZXMudjEuRGFzaGJvYXJkEioKDGFsZXJ0X2dyb3VwcxgDIAMoCzIULnR5cGVzLnYxLkFsZXJ0R3JvdXAiYQoUVXBkYXRlUHJvamVjdFJlcXVlc3QSFgoOZW52aXJvbm1lbnRfaWQYZSABKAMSDAoEbmFtZRgBIAEoCRIjCgRzcGVjGAIgASgLMhUudHlwZXMudjEuUHJvamVjdFNwZWMiOwoVVXBkYXRlUHJvamVjdFJlc3BvbnNlEiIKB3Byb2plY3QYASABKAsyES50eXBlcy52MS5Qcm9qZWN0IjwKFERlbGV0ZVByb2plY3RSZXF1ZXN0EhYKDmVudmlyb25tZW50X2lkGGUgASgDEgwKBG5hbWUYASABKAkiFwoVRGVsZXRlUHJvamVjdFJlc3BvbnNlIl0KEkxpc3RQcm9qZWN0UmVxdWVzdBIWCg5lbnZpcm9ubWVudF9pZBhlIAEoAxIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUiogEKE0xpc3RQcm9qZWN0UmVzcG9uc2USHgoEbmV4dBgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchI7CgVpdGVtcxgCIAMoCzIsLnN2Yy5wcm9qZWN0LnYxLkxpc3RQcm9qZWN0UmVzcG9uc2UuTGlzdEl0ZW0aLgoITGlzdEl0ZW0SIgoHcHJvamVjdBgBIAEoCzIRLnR5cGVzLnYxLlByb2plY3QiOgoSU3luY1Byb2plY3RSZXF1ZXN0EhYKDmVudmlyb25tZW50X2lkGGUgASgDEgwKBG5hbWUYASABKAkiOQoTU3luY1Byb2plY3RSZXNwb25zZRIiCgdwcm9qZWN0GAEgASgLMhEudHlwZXMudjEuUHJvamVjdDKvBAoOUHJvamVjdFNlcnZpY2USXAoNQ3JlYXRlUHJvamVjdBIkLnN2Yy5wcm9qZWN0LnYxLkNyZWF0ZVByb2plY3RSZXF1ZXN0GiUuc3ZjLnByb2plY3QudjEuQ3JlYXRlUHJvamVjdFJlc3BvbnNlElMKCkdldFByb2plY3QSIS5zdmMucHJvamVjdC52MS5HZXRQcm9qZWN0UmVxdWVzdBoiLnN2Yy5wcm9qZWN0LnYxLkdldFByb2plY3RSZXNwb25zZRJcCg1VcGRhdGVQcm9qZWN0EiQuc3ZjLnByb2plY3QudjEuVXBkYXRlUHJvamVjdFJlcXVlc3QaJS5zdmMucHJvamVjdC52MS5VcGRhdGVQcm9qZWN0UmVzcG9uc2USXAoNRGVsZXRlUHJvamVjdBIkLnN2Yy5wcm9qZWN0LnYxLkRlbGV0ZVByb2plY3RSZXF1ZXN0GiUuc3ZjLnByb2plY3QudjEuRGVsZXRlUHJvamVjdFJlc3BvbnNlElYKC0xpc3RQcm9qZWN0EiIuc3ZjLnByb2plY3QudjEuTGlzdFByb2plY3RSZXF1ZXN0GiMuc3ZjLnByb2plY3QudjEuTGlzdFByb2plY3RSZXNwb25zZRJWCgtTeW5jUHJvamVjdBIiLnN2Yy5wcm9qZWN0LnYxLlN5bmNQcm9qZWN0UmVxdWVzdBojLnN2Yy5wcm9qZWN0LnYxLlN5bmNQcm9qZWN0UmVzcG9uc2VCswEKEmNvbS5zdmMucHJvamVjdC52MUIMU2VydmljZVByb3RvUAFaNWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vc3ZjL3Byb2plY3QvdjE7cHJvamVjdHYxogIDU1BYqgIOU3ZjLlByb2plY3QuVjHKAg5TdmNcUHJvamVjdFxWMeICGlN2Y1xQcm9qZWN0XFYxXEdQQk1ldGFkYXRh6gIQU3ZjOjpQcm9qZWN0OjpWMWIGcHJvdG8z", [file_types_v1_alert, file_types_v1_cursor, file_types_v1_dashboard, file_types_v1_project]);
 
 /**
  * @generated from message svc.project.v1.CreateProjectRequest
@@ -30,14 +30,9 @@ export type CreateProjectRequest = Message<"svc.project.v1.CreateProjectRequest"
   environmentId: bigint;
 
   /**
-   * @generated from field: string name = 1;
+   * @generated from field: types.v1.ProjectSpec spec = 1;
    */
-  name: string;
-
-  /**
-   * @generated from field: types.v1.ProjectPointer pointer = 2;
-   */
-  pointer?: ProjectPointer;
+  spec?: ProjectSpec;
 };
 
 /**
@@ -128,9 +123,9 @@ export type UpdateProjectRequest = Message<"svc.project.v1.UpdateProjectRequest"
   name: string;
 
   /**
-   * @generated from field: repeated svc.project.v1.UpdateProjectRequest.Mutation mutations = 2;
+   * @generated from field: types.v1.ProjectSpec spec = 2;
    */
-  mutations: UpdateProjectRequest_Mutation[];
+  spec?: ProjectSpec;
 };
 
 /**
@@ -139,35 +134,6 @@ export type UpdateProjectRequest = Message<"svc.project.v1.UpdateProjectRequest"
  */
 export const UpdateProjectRequestSchema: GenMessage<UpdateProjectRequest> = /*@__PURE__*/
   messageDesc(file_svc_project_v1_service, 4);
-
-/**
- * @generated from message svc.project.v1.UpdateProjectRequest.Mutation
- */
-export type UpdateProjectRequest_Mutation = Message<"svc.project.v1.UpdateProjectRequest.Mutation"> & {
-  /**
-   * @generated from oneof svc.project.v1.UpdateProjectRequest.Mutation.do
-   */
-  do: {
-    /**
-     * @generated from field: string set_name = 1;
-     */
-    value: string;
-    case: "setName";
-  } | {
-    /**
-     * @generated from field: types.v1.ProjectPointer set_pointer = 2;
-     */
-    value: ProjectPointer;
-    case: "setPointer";
-  } | { case: undefined; value?: undefined };
-};
-
-/**
- * Describes the message svc.project.v1.UpdateProjectRequest.Mutation.
- * Use `create(UpdateProjectRequest_MutationSchema)` to create a new message.
- */
-export const UpdateProjectRequest_MutationSchema: GenMessage<UpdateProjectRequest_Mutation> = /*@__PURE__*/
-  messageDesc(file_svc_project_v1_service, 4, 0);
 
 /**
  * @generated from message svc.project.v1.UpdateProjectResponse
@@ -288,6 +254,45 @@ export const ListProjectResponse_ListItemSchema: GenMessage<ListProjectResponse_
   messageDesc(file_svc_project_v1_service, 9, 0);
 
 /**
+ * @generated from message svc.project.v1.SyncProjectRequest
+ */
+export type SyncProjectRequest = Message<"svc.project.v1.SyncProjectRequest"> & {
+  /**
+   * @generated from field: int64 environment_id = 101;
+   */
+  environmentId: bigint;
+
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+};
+
+/**
+ * Describes the message svc.project.v1.SyncProjectRequest.
+ * Use `create(SyncProjectRequestSchema)` to create a new message.
+ */
+export const SyncProjectRequestSchema: GenMessage<SyncProjectRequest> = /*@__PURE__*/
+  messageDesc(file_svc_project_v1_service, 10);
+
+/**
+ * @generated from message svc.project.v1.SyncProjectResponse
+ */
+export type SyncProjectResponse = Message<"svc.project.v1.SyncProjectResponse"> & {
+  /**
+   * @generated from field: types.v1.Project project = 1;
+   */
+  project?: Project;
+};
+
+/**
+ * Describes the message svc.project.v1.SyncProjectResponse.
+ * Use `create(SyncProjectResponseSchema)` to create a new message.
+ */
+export const SyncProjectResponseSchema: GenMessage<SyncProjectResponse> = /*@__PURE__*/
+  messageDesc(file_svc_project_v1_service, 11);
+
+/**
  * @generated from service svc.project.v1.ProjectService
  */
 export const ProjectService: GenService<{
@@ -330,6 +335,17 @@ export const ProjectService: GenService<{
     methodKind: "unary";
     input: typeof ListProjectRequestSchema;
     output: typeof ListProjectResponseSchema;
+  },
+  /**
+   * SyncProject is like GetProject but guarantees that cached data
+   * gets updated.
+   *
+   * @generated from rpc svc.project.v1.ProjectService.SyncProject
+   */
+  syncProject: {
+    methodKind: "unary";
+    input: typeof SyncProjectRequestSchema;
+    output: typeof SyncProjectResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_svc_project_v1_service, 0);

@@ -23,6 +23,214 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Project struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Meta          *ProjectMeta           `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta,omitempty"`
+	Spec          *ProjectSpec           `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	Status        *ProjectStatus         `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Project) Reset() {
+	*x = Project{}
+	mi := &file_types_v1_project_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Project) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Project) ProtoMessage() {}
+
+func (x *Project) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_project_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Project.ProtoReflect.Descriptor instead.
+func (*Project) Descriptor() ([]byte, []int) {
+	return file_types_v1_project_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Project) GetMeta() *ProjectMeta {
+	if x != nil {
+		return x.Meta
+	}
+	return nil
+}
+
+func (x *Project) GetSpec() *ProjectSpec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+func (x *Project) GetStatus() *ProjectStatus {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+type ProjectMeta struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProjectMeta) Reset() {
+	*x = ProjectMeta{}
+	mi := &file_types_v1_project_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProjectMeta) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProjectMeta) ProtoMessage() {}
+
+func (x *ProjectMeta) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_project_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProjectMeta.ProtoReflect.Descriptor instead.
+func (*ProjectMeta) Descriptor() ([]byte, []int) {
+	return file_types_v1_project_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ProjectMeta) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type ProjectSpec struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Pointer       *ProjectPointer        `protobuf:"bytes,2,opt,name=pointer,proto3" json:"pointer,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProjectSpec) Reset() {
+	*x = ProjectSpec{}
+	mi := &file_types_v1_project_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProjectSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProjectSpec) ProtoMessage() {}
+
+func (x *ProjectSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_project_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProjectSpec.ProtoReflect.Descriptor instead.
+func (*ProjectSpec) Descriptor() ([]byte, []int) {
+	return file_types_v1_project_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ProjectSpec) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ProjectSpec) GetPointer() *ProjectPointer {
+	if x != nil {
+		return x.Pointer
+	}
+	return nil
+}
+
+type ProjectStatus struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProjectStatus) Reset() {
+	*x = ProjectStatus{}
+	mi := &file_types_v1_project_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProjectStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProjectStatus) ProtoMessage() {}
+
+func (x *ProjectStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_project_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProjectStatus.ProtoReflect.Descriptor instead.
+func (*ProjectStatus) Descriptor() ([]byte, []int) {
+	return file_types_v1_project_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ProjectStatus) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *ProjectStatus) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 type ProjectPointer struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Types that are valid to be assigned to Scheme:
@@ -37,7 +245,7 @@ type ProjectPointer struct {
 
 func (x *ProjectPointer) Reset() {
 	*x = ProjectPointer{}
-	mi := &file_types_v1_project_proto_msgTypes[0]
+	mi := &file_types_v1_project_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -49,7 +257,7 @@ func (x *ProjectPointer) String() string {
 func (*ProjectPointer) ProtoMessage() {}
 
 func (x *ProjectPointer) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_project_proto_msgTypes[0]
+	mi := &file_types_v1_project_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -62,7 +270,7 @@ func (x *ProjectPointer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProjectPointer.ProtoReflect.Descriptor instead.
 func (*ProjectPointer) Descriptor() ([]byte, []int) {
-	return file_types_v1_project_proto_rawDescGZIP(), []int{0}
+	return file_types_v1_project_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *ProjectPointer) GetScheme() isProjectPointer_Scheme {
@@ -121,74 +329,6 @@ func (*ProjectPointer_Localhost) isProjectPointer_Scheme() {}
 
 func (*ProjectPointer_Db) isProjectPointer_Scheme() {}
 
-type Project struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Pointer       *ProjectPointer        `protobuf:"bytes,2,opt,name=pointer,proto3" json:"pointer,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,300,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,301,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Project) Reset() {
-	*x = Project{}
-	mi := &file_types_v1_project_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Project) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Project) ProtoMessage() {}
-
-func (x *Project) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_project_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Project.ProtoReflect.Descriptor instead.
-func (*Project) Descriptor() ([]byte, []int) {
-	return file_types_v1_project_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Project) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *Project) GetPointer() *ProjectPointer {
-	if x != nil {
-		return x.Pointer
-	}
-	return nil
-}
-
-func (x *Project) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *Project) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
 type ProjectPointer_RemoteGit struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RemoteUrl     string                 `protobuf:"bytes,1,opt,name=remote_url,json=remoteUrl,proto3" json:"remote_url,omitempty"`
@@ -201,7 +341,7 @@ type ProjectPointer_RemoteGit struct {
 
 func (x *ProjectPointer_RemoteGit) Reset() {
 	*x = ProjectPointer_RemoteGit{}
-	mi := &file_types_v1_project_proto_msgTypes[2]
+	mi := &file_types_v1_project_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -213,7 +353,7 @@ func (x *ProjectPointer_RemoteGit) String() string {
 func (*ProjectPointer_RemoteGit) ProtoMessage() {}
 
 func (x *ProjectPointer_RemoteGit) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_project_proto_msgTypes[2]
+	mi := &file_types_v1_project_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -226,7 +366,7 @@ func (x *ProjectPointer_RemoteGit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProjectPointer_RemoteGit.ProtoReflect.Descriptor instead.
 func (*ProjectPointer_RemoteGit) Descriptor() ([]byte, []int) {
-	return file_types_v1_project_proto_rawDescGZIP(), []int{0, 0}
+	return file_types_v1_project_proto_rawDescGZIP(), []int{4, 0}
 }
 
 func (x *ProjectPointer_RemoteGit) GetRemoteUrl() string {
@@ -269,7 +409,7 @@ type ProjectPointer_LocalGit struct {
 
 func (x *ProjectPointer_LocalGit) Reset() {
 	*x = ProjectPointer_LocalGit{}
-	mi := &file_types_v1_project_proto_msgTypes[3]
+	mi := &file_types_v1_project_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -281,7 +421,7 @@ func (x *ProjectPointer_LocalGit) String() string {
 func (*ProjectPointer_LocalGit) ProtoMessage() {}
 
 func (x *ProjectPointer_LocalGit) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_project_proto_msgTypes[3]
+	mi := &file_types_v1_project_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -294,7 +434,7 @@ func (x *ProjectPointer_LocalGit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProjectPointer_LocalGit.ProtoReflect.Descriptor instead.
 func (*ProjectPointer_LocalGit) Descriptor() ([]byte, []int) {
-	return file_types_v1_project_proto_rawDescGZIP(), []int{0, 1}
+	return file_types_v1_project_proto_rawDescGZIP(), []int{4, 1}
 }
 
 func (x *ProjectPointer_LocalGit) GetPath() string {
@@ -334,7 +474,7 @@ type ProjectPointer_Virtual struct {
 
 func (x *ProjectPointer_Virtual) Reset() {
 	*x = ProjectPointer_Virtual{}
-	mi := &file_types_v1_project_proto_msgTypes[4]
+	mi := &file_types_v1_project_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -346,7 +486,7 @@ func (x *ProjectPointer_Virtual) String() string {
 func (*ProjectPointer_Virtual) ProtoMessage() {}
 
 func (x *ProjectPointer_Virtual) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_project_proto_msgTypes[4]
+	mi := &file_types_v1_project_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -359,7 +499,7 @@ func (x *ProjectPointer_Virtual) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProjectPointer_Virtual.ProtoReflect.Descriptor instead.
 func (*ProjectPointer_Virtual) Descriptor() ([]byte, []int) {
-	return file_types_v1_project_proto_rawDescGZIP(), []int{0, 2}
+	return file_types_v1_project_proto_rawDescGZIP(), []int{4, 2}
 }
 
 func (x *ProjectPointer_Virtual) GetUri() string {
@@ -373,7 +513,21 @@ var File_types_v1_project_proto protoreflect.FileDescriptor
 
 const file_types_v1_project_proto_rawDesc = "" +
 	"\n" +
-	"\x16types/v1/project.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xeb\x03\n" +
+	"\x16types/v1/project.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x90\x01\n" +
+	"\aProject\x12)\n" +
+	"\x04meta\x18\x01 \x01(\v2\x15.types.v1.ProjectMetaR\x04meta\x12)\n" +
+	"\x04spec\x18\x02 \x01(\v2\x15.types.v1.ProjectSpecR\x04spec\x12/\n" +
+	"\x06status\x18\x03 \x01(\v2\x17.types.v1.ProjectStatusR\x06status\"\x1d\n" +
+	"\vProjectMeta\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"U\n" +
+	"\vProjectSpec\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x122\n" +
+	"\apointer\x18\x02 \x01(\v2\x18.types.v1.ProjectPointerR\apointer\"\x85\x01\n" +
+	"\rProjectStatus\x129\n" +
+	"\n" +
+	"created_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xeb\x03\n" +
 	"\x0eProjectPointer\x12<\n" +
 	"\x06remote\x18\x01 \x01(\v2\".types.v1.ProjectPointer.RemoteGitH\x00R\x06remote\x12A\n" +
 	"\tlocalhost\x18\x02 \x01(\v2!.types.v1.ProjectPointer.LocalGitH\x00R\tlocalhost\x122\n" +
@@ -391,14 +545,7 @@ const file_types_v1_project_proto_rawDesc = "" +
 	"\tread_only\x18\x04 \x01(\bR\breadOnly\x1a\x1b\n" +
 	"\aVirtual\x12\x10\n" +
 	"\x03uri\x18\x01 \x01(\tR\x03uriB\b\n" +
-	"\x06scheme\"\xc9\x01\n" +
-	"\aProject\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x122\n" +
-	"\apointer\x18\x02 \x01(\v2\x18.types.v1.ProjectPointerR\apointer\x12:\n" +
-	"\n" +
-	"created_at\x18\xac\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12:\n" +
-	"\n" +
-	"updated_at\x18\xad\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x8c\x01\n" +
+	"\x06schemeB\x8c\x01\n" +
 	"\fcom.types.v1B\fProjectProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
 var (
@@ -413,27 +560,33 @@ func file_types_v1_project_proto_rawDescGZIP() []byte {
 	return file_types_v1_project_proto_rawDescData
 }
 
-var file_types_v1_project_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_types_v1_project_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_types_v1_project_proto_goTypes = []any{
-	(*ProjectPointer)(nil),           // 0: types.v1.ProjectPointer
-	(*Project)(nil),                  // 1: types.v1.Project
-	(*ProjectPointer_RemoteGit)(nil), // 2: types.v1.ProjectPointer.RemoteGit
-	(*ProjectPointer_LocalGit)(nil),  // 3: types.v1.ProjectPointer.LocalGit
-	(*ProjectPointer_Virtual)(nil),   // 4: types.v1.ProjectPointer.Virtual
-	(*timestamppb.Timestamp)(nil),    // 5: google.protobuf.Timestamp
+	(*Project)(nil),                  // 0: types.v1.Project
+	(*ProjectMeta)(nil),              // 1: types.v1.ProjectMeta
+	(*ProjectSpec)(nil),              // 2: types.v1.ProjectSpec
+	(*ProjectStatus)(nil),            // 3: types.v1.ProjectStatus
+	(*ProjectPointer)(nil),           // 4: types.v1.ProjectPointer
+	(*ProjectPointer_RemoteGit)(nil), // 5: types.v1.ProjectPointer.RemoteGit
+	(*ProjectPointer_LocalGit)(nil),  // 6: types.v1.ProjectPointer.LocalGit
+	(*ProjectPointer_Virtual)(nil),   // 7: types.v1.ProjectPointer.Virtual
+	(*timestamppb.Timestamp)(nil),    // 8: google.protobuf.Timestamp
 }
 var file_types_v1_project_proto_depIdxs = []int32{
-	2, // 0: types.v1.ProjectPointer.remote:type_name -> types.v1.ProjectPointer.RemoteGit
-	3, // 1: types.v1.ProjectPointer.localhost:type_name -> types.v1.ProjectPointer.LocalGit
-	4, // 2: types.v1.ProjectPointer.db:type_name -> types.v1.ProjectPointer.Virtual
-	0, // 3: types.v1.Project.pointer:type_name -> types.v1.ProjectPointer
-	5, // 4: types.v1.Project.created_at:type_name -> google.protobuf.Timestamp
-	5, // 5: types.v1.Project.updated_at:type_name -> google.protobuf.Timestamp
-	6, // [6:6] is the sub-list for method output_type
-	6, // [6:6] is the sub-list for method input_type
-	6, // [6:6] is the sub-list for extension type_name
-	6, // [6:6] is the sub-list for extension extendee
-	0, // [0:6] is the sub-list for field type_name
+	1, // 0: types.v1.Project.meta:type_name -> types.v1.ProjectMeta
+	2, // 1: types.v1.Project.spec:type_name -> types.v1.ProjectSpec
+	3, // 2: types.v1.Project.status:type_name -> types.v1.ProjectStatus
+	4, // 3: types.v1.ProjectSpec.pointer:type_name -> types.v1.ProjectPointer
+	8, // 4: types.v1.ProjectStatus.created_at:type_name -> google.protobuf.Timestamp
+	8, // 5: types.v1.ProjectStatus.updated_at:type_name -> google.protobuf.Timestamp
+	5, // 6: types.v1.ProjectPointer.remote:type_name -> types.v1.ProjectPointer.RemoteGit
+	6, // 7: types.v1.ProjectPointer.localhost:type_name -> types.v1.ProjectPointer.LocalGit
+	7, // 8: types.v1.ProjectPointer.db:type_name -> types.v1.ProjectPointer.Virtual
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_project_proto_init() }
@@ -441,7 +594,7 @@ func file_types_v1_project_proto_init() {
 	if File_types_v1_project_proto != nil {
 		return
 	}
-	file_types_v1_project_proto_msgTypes[0].OneofWrappers = []any{
+	file_types_v1_project_proto_msgTypes[4].OneofWrappers = []any{
 		(*ProjectPointer_Remote)(nil),
 		(*ProjectPointer_Localhost)(nil),
 		(*ProjectPointer_Db)(nil),
@@ -452,7 +605,7 @@ func file_types_v1_project_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_project_proto_rawDesc), len(file_types_v1_project_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

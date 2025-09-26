@@ -7,16 +7,27 @@ import "google/protobuf/timestamp.proto";
 option go_package = "types/v1;typesv1";
 
 message Dashboard {
-  string id = 100;
-  string name = 200;
-  string description = 201;
-  bool is_readonly = 202;
+  DashboardMeta meta = 1;
+  DashboardSpec spec = 2;
+  DashboardSpec status = 3;
+}
+
+message DashboardMeta {
+  string id = 1;
+}
+
+message DashboardSpec {
+  string name = 1;
+  string description = 2;
+  bool is_readonly = 3;
   oneof source {
-    string file = 203;
+    string file = 401;
   }
+  bytes perses_json = 5;
+}
 
-  bytes perses_json = 300;
-
-  google.protobuf.Timestamp created_at = 400;
-  google.protobuf.Timestamp updated_at = 401;
+message DashboardStatus {
+  google.protobuf.Timestamp created_at = 1;
+  google.protobuf.Timestamp updated_at = 2;
+  repeated string errors = 3;
 }

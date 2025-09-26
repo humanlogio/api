@@ -28,3 +28,11 @@ export const deleteProject = ProjectService.method.deleteProject;
  * @generated from rpc svc.project.v1.ProjectService.ListProject
  */
 export const listProject = ProjectService.method.listProject;
+
+/**
+ * SyncProject is like GetProject but guarantees that cached data
+ * gets updated.
+ *
+ * @generated from rpc svc.project.v1.ProjectService.SyncProject
+ */
+export const syncProject = ProjectService.method.syncProject;

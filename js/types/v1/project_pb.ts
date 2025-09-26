@@ -12,7 +12,95 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/project.proto.
  */
 export const file_types_v1_project: GenFile = /*@__PURE__*/
-  fileDesc("ChZ0eXBlcy92MS9wcm9qZWN0LnByb3RvEgh0eXBlcy52MSL/AgoOUHJvamVjdFBvaW50ZXISNAoGcmVtb3RlGAEgASgLMiIudHlwZXMudjEuUHJvamVjdFBvaW50ZXIuUmVtb3RlR2l0SAASNgoJbG9jYWxob3N0GAIgASgLMiEudHlwZXMudjEuUHJvamVjdFBvaW50ZXIuTG9jYWxHaXRIABIuCgJkYhgDIAEoCzIgLnR5cGVzLnYxLlByb2plY3RQb2ludGVyLlZpcnR1YWxIABpWCglSZW1vdGVHaXQSEgoKcmVtb3RlX3VybBgBIAEoCRILCgNyZWYYAiABKAkSFQoNZGFzaGJvYXJkX2RpchgDIAEoCRIRCglhbGVydF9kaXIYBCABKAkaVQoITG9jYWxHaXQSDAoEcGF0aBgBIAEoCRIVCg1kYXNoYm9hcmRfZGlyGAIgASgJEhEKCWFsZXJ0X2RpchgDIAEoCRIRCglyZWFkX29ubHkYBCABKAgaFgoHVmlydHVhbBILCgN1cmkYASABKAlCCAoGc2NoZW1lIqQBCgdQcm9qZWN0EgwKBG5hbWUYASABKAkSKQoHcG9pbnRlchgCIAEoCzIYLnR5cGVzLnYxLlByb2plY3RQb2ludGVyEi8KCmNyZWF0ZWRfYXQYrAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgp1cGRhdGVkX2F0GK0CIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCjAEKDGNvbS50eXBlcy52MUIMUHJvamVjdFByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_google_protobuf_duration, file_google_protobuf_timestamp]);
+  fileDesc("ChZ0eXBlcy92MS9wcm9qZWN0LnByb3RvEgh0eXBlcy52MSJ8CgdQcm9qZWN0EiMKBG1ldGEYASABKAsyFS50eXBlcy52MS5Qcm9qZWN0TWV0YRIjCgRzcGVjGAIgASgLMhUudHlwZXMudjEuUHJvamVjdFNwZWMSJwoGc3RhdHVzGAMgASgLMhcudHlwZXMudjEuUHJvamVjdFN0YXR1cyIZCgtQcm9qZWN0TWV0YRIKCgJpZBgBIAEoCSJGCgtQcm9qZWN0U3BlYxIMCgRuYW1lGAEgASgJEikKB3BvaW50ZXIYAiABKAsyGC50eXBlcy52MS5Qcm9qZWN0UG9pbnRlciJvCg1Qcm9qZWN0U3RhdHVzEi4KCmNyZWF0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIv8CCg5Qcm9qZWN0UG9pbnRlchI0CgZyZW1vdGUYASABKAsyIi50eXBlcy52MS5Qcm9qZWN0UG9pbnRlci5SZW1vdGVHaXRIABI2Cglsb2NhbGhvc3QYAiABKAsyIS50eXBlcy52MS5Qcm9qZWN0UG9pbnRlci5Mb2NhbEdpdEgAEi4KAmRiGAMgASgLMiAudHlwZXMudjEuUHJvamVjdFBvaW50ZXIuVmlydHVhbEgAGlYKCVJlbW90ZUdpdBISCgpyZW1vdGVfdXJsGAEgASgJEgsKA3JlZhgCIAEoCRIVCg1kYXNoYm9hcmRfZGlyGAMgASgJEhEKCWFsZXJ0X2RpchgEIAEoCRpVCghMb2NhbEdpdBIMCgRwYXRoGAEgASgJEhUKDWRhc2hib2FyZF9kaXIYAiABKAkSEQoJYWxlcnRfZGlyGAMgASgJEhEKCXJlYWRfb25seRgEIAEoCBoWCgdWaXJ0dWFsEgsKA3VyaRgBIAEoCUIICgZzY2hlbWVCjAEKDGNvbS50eXBlcy52MUIMUHJvamVjdFByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_google_protobuf_duration, file_google_protobuf_timestamp]);
+
+/**
+ * @generated from message types.v1.Project
+ */
+export type Project = Message<"types.v1.Project"> & {
+  /**
+   * @generated from field: types.v1.ProjectMeta meta = 1;
+   */
+  meta?: ProjectMeta;
+
+  /**
+   * @generated from field: types.v1.ProjectSpec spec = 2;
+   */
+  spec?: ProjectSpec;
+
+  /**
+   * @generated from field: types.v1.ProjectStatus status = 3;
+   */
+  status?: ProjectStatus;
+};
+
+/**
+ * Describes the message types.v1.Project.
+ * Use `create(ProjectSchema)` to create a new message.
+ */
+export const ProjectSchema: GenMessage<Project> = /*@__PURE__*/
+  messageDesc(file_types_v1_project, 0);
+
+/**
+ * @generated from message types.v1.ProjectMeta
+ */
+export type ProjectMeta = Message<"types.v1.ProjectMeta"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message types.v1.ProjectMeta.
+ * Use `create(ProjectMetaSchema)` to create a new message.
+ */
+export const ProjectMetaSchema: GenMessage<ProjectMeta> = /*@__PURE__*/
+  messageDesc(file_types_v1_project, 1);
+
+/**
+ * @generated from message types.v1.ProjectSpec
+ */
+export type ProjectSpec = Message<"types.v1.ProjectSpec"> & {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * @generated from field: types.v1.ProjectPointer pointer = 2;
+   */
+  pointer?: ProjectPointer;
+};
+
+/**
+ * Describes the message types.v1.ProjectSpec.
+ * Use `create(ProjectSpecSchema)` to create a new message.
+ */
+export const ProjectSpecSchema: GenMessage<ProjectSpec> = /*@__PURE__*/
+  messageDesc(file_types_v1_project, 2);
+
+/**
+ * @generated from message types.v1.ProjectStatus
+ */
+export type ProjectStatus = Message<"types.v1.ProjectStatus"> & {
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 1;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 2;
+   */
+  updatedAt?: Timestamp;
+};
+
+/**
+ * Describes the message types.v1.ProjectStatus.
+ * Use `create(ProjectStatusSchema)` to create a new message.
+ */
+export const ProjectStatusSchema: GenMessage<ProjectStatus> = /*@__PURE__*/
+  messageDesc(file_types_v1_project, 3);
 
 /**
  * @generated from message types.v1.ProjectPointer
@@ -47,7 +135,7 @@ export type ProjectPointer = Message<"types.v1.ProjectPointer"> & {
  * Use `create(ProjectPointerSchema)` to create a new message.
  */
 export const ProjectPointerSchema: GenMessage<ProjectPointer> = /*@__PURE__*/
-  messageDesc(file_types_v1_project, 0);
+  messageDesc(file_types_v1_project, 4);
 
 /**
  * @generated from message types.v1.ProjectPointer.RemoteGit
@@ -79,7 +167,7 @@ export type ProjectPointer_RemoteGit = Message<"types.v1.ProjectPointer.RemoteGi
  * Use `create(ProjectPointer_RemoteGitSchema)` to create a new message.
  */
 export const ProjectPointer_RemoteGitSchema: GenMessage<ProjectPointer_RemoteGit> = /*@__PURE__*/
-  messageDesc(file_types_v1_project, 0, 0);
+  messageDesc(file_types_v1_project, 4, 0);
 
 /**
  * @generated from message types.v1.ProjectPointer.LocalGit
@@ -111,7 +199,7 @@ export type ProjectPointer_LocalGit = Message<"types.v1.ProjectPointer.LocalGit"
  * Use `create(ProjectPointer_LocalGitSchema)` to create a new message.
  */
 export const ProjectPointer_LocalGitSchema: GenMessage<ProjectPointer_LocalGit> = /*@__PURE__*/
-  messageDesc(file_types_v1_project, 0, 1);
+  messageDesc(file_types_v1_project, 4, 1);
 
 /**
  * @generated from message types.v1.ProjectPointer.Virtual
@@ -128,37 +216,5 @@ export type ProjectPointer_Virtual = Message<"types.v1.ProjectPointer.Virtual"> 
  * Use `create(ProjectPointer_VirtualSchema)` to create a new message.
  */
 export const ProjectPointer_VirtualSchema: GenMessage<ProjectPointer_Virtual> = /*@__PURE__*/
-  messageDesc(file_types_v1_project, 0, 2);
-
-/**
- * @generated from message types.v1.Project
- */
-export type Project = Message<"types.v1.Project"> & {
-  /**
-   * @generated from field: string name = 1;
-   */
-  name: string;
-
-  /**
-   * @generated from field: types.v1.ProjectPointer pointer = 2;
-   */
-  pointer?: ProjectPointer;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp created_at = 300;
-   */
-  createdAt?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 301;
-   */
-  updatedAt?: Timestamp;
-};
-
-/**
- * Describes the message types.v1.Project.
- * Use `create(ProjectSchema)` to create a new message.
- */
-export const ProjectSchema: GenMessage<Project> = /*@__PURE__*/
-  messageDesc(file_types_v1_project, 1);
+  messageDesc(file_types_v1_project, 4, 2);
 
