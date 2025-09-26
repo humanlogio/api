@@ -9,7 +9,7 @@ option go_package = "types/v1;typesv1";
 message Dashboard {
   DashboardMeta meta = 1;
   DashboardSpec spec = 2;
-  DashboardSpec status = 3;
+  DashboardStatus status = 3;
 }
 
 message DashboardMeta {
