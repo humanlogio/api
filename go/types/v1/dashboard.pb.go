@@ -26,7 +26,7 @@ type Dashboard struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Meta          *DashboardMeta         `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta,omitempty"`
 	Spec          *DashboardSpec         `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
-	Status        *DashboardSpec         `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
+	Status        *DashboardStatus       `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -75,7 +75,7 @@ func (x *Dashboard) GetSpec() *DashboardSpec {
 	return nil
 }
 
-func (x *Dashboard) GetStatus() *DashboardSpec {
+func (x *Dashboard) GetStatus() *DashboardStatus {
 	if x != nil {
 		return x.Status
 	}
@@ -288,11 +288,11 @@ var File_types_v1_dashboard_proto protoreflect.FileDescriptor
 
 const file_types_v1_dashboard_proto_rawDesc = "" +
 	"\n" +
-	"\x18types/v1/dashboard.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x96\x01\n" +
+	"\x18types/v1/dashboard.proto\x12\btypes.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x98\x01\n" +
 	"\tDashboard\x12+\n" +
 	"\x04meta\x18\x01 \x01(\v2\x17.types.v1.DashboardMetaR\x04meta\x12+\n" +
-	"\x04spec\x18\x02 \x01(\v2\x17.types.v1.DashboardSpecR\x04spec\x12/\n" +
-	"\x06status\x18\x03 \x01(\v2\x17.types.v1.DashboardSpecR\x06status\"\x1f\n" +
+	"\x04spec\x18\x02 \x01(\v2\x17.types.v1.DashboardSpecR\x04spec\x121\n" +
+	"\x06status\x18\x03 \x01(\v2\x19.types.v1.DashboardStatusR\x06status\"\x1f\n" +
 	"\rDashboardMeta\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\xa8\x01\n" +
 	"\rDashboardSpec\x12\x12\n" +
@@ -335,7 +335,7 @@ var file_types_v1_dashboard_proto_goTypes = []any{
 var file_types_v1_dashboard_proto_depIdxs = []int32{
 	1, // 0: types.v1.Dashboard.meta:type_name -> types.v1.DashboardMeta
 	2, // 1: types.v1.Dashboard.spec:type_name -> types.v1.DashboardSpec
-	2, // 2: types.v1.Dashboard.status:type_name -> types.v1.DashboardSpec
+	3, // 2: types.v1.Dashboard.status:type_name -> types.v1.DashboardStatus
 	4, // 3: types.v1.DashboardStatus.created_at:type_name -> google.protobuf.Timestamp
 	4, // 4: types.v1.DashboardStatus.updated_at:type_name -> google.protobuf.Timestamp
 	5, // [5:5] is the sub-list for method output_type
