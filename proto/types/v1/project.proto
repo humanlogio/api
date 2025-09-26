@@ -25,6 +25,7 @@ message ProjectSpec {
 message ProjectStatus {
   google.protobuf.Timestamp created_at = 1;
   google.protobuf.Timestamp updated_at = 2;
+  repeated string errors = 3;
 }
 
 message ProjectPointer {
