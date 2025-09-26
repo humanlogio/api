@@ -7,6 +7,26 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "types/v1;typesv1";
 
+message Project {
+  ProjectMeta meta = 1;
+  ProjectSpec spec = 2;
+  ProjectStatus status = 3;
+}
+
+message ProjectMeta {
+  string id = 1;
+}
+
+message ProjectSpec {
+  string name = 1;
+  ProjectPointer pointer = 2;
+}
+
+message ProjectStatus {
+  google.protobuf.Timestamp created_at = 1;
+  google.protobuf.Timestamp updated_at = 2;
+}
+
 message ProjectPointer {
   message RemoteGit {
     string remote_url = 1;
@@ -28,11 +48,4 @@ message ProjectPointer {
     LocalGit localhost = 2;
     Virtual db = 3;
   }
-}
-
-message Project {
-  string name = 1;
-  ProjectPointer pointer = 2;
-  google.protobuf.Timestamp created_at = 300;
-  google.protobuf.Timestamp updated_at = 301;
 }

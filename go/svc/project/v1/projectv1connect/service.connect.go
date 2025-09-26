@@ -48,6 +48,9 @@ const (
 	// ProjectServiceListProjectProcedure is the fully-qualified name of the ProjectService's
 	// ListProject RPC.
 	ProjectServiceListProjectProcedure = "/svc.project.v1.ProjectService/ListProject"
+	// ProjectServiceSyncProjectProcedure is the fully-qualified name of the ProjectService's
+	// SyncProject RPC.
+	ProjectServiceSyncProjectProcedure = "/svc.project.v1.ProjectService/SyncProject"
 )
 
 // ProjectServiceClient is a client for the svc.project.v1.ProjectService service.
@@ -57,6 +60,9 @@ type ProjectServiceClient interface {
 	UpdateProject(context.Context, *connect.Request[v1.UpdateProjectRequest]) (*connect.Response[v1.UpdateProjectResponse], error)
 	DeleteProject(context.Context, *connect.Request[v1.DeleteProjectRequest]) (*connect.Response[v1.DeleteProjectResponse], error)
 	ListProject(context.Context, *connect.Request[v1.ListProjectRequest]) (*connect.Response[v1.ListProjectResponse], error)
+	// SyncProject is like GetProject but guarantees that cached data
+	// gets updated.
+	SyncProject(context.Context, *connect.Request[v1.SyncProjectRequest]) (*connect.Response[v1.SyncProjectResponse], error)
 }
 
 // NewProjectServiceClient constructs a client for the svc.project.v1.ProjectService service. By
@@ -100,6 +106,12 @@ func NewProjectServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			connect.WithSchema(projectServiceMethods.ByName("ListProject")),
 			connect.WithClientOptions(opts...),
 		),
+		syncProject: connect.NewClient[v1.SyncProjectRequest, v1.SyncProjectResponse](
+			httpClient,
+			baseURL+ProjectServiceSyncProjectProcedure,
+			connect.WithSchema(projectServiceMethods.ByName("SyncProject")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -110,6 +122,7 @@ type projectServiceClient struct {
 	updateProject *connect.Client[v1.UpdateProjectRequest, v1.UpdateProjectResponse]
 	deleteProject *connect.Client[v1.DeleteProjectRequest, v1.DeleteProjectResponse]
 	listProject   *connect.Client[v1.ListProjectRequest, v1.ListProjectResponse]
+	syncProject   *connect.Client[v1.SyncProjectRequest, v1.SyncProjectResponse]
 }
 
 // CreateProject calls svc.project.v1.ProjectService.CreateProject.
@@ -137,6 +150,11 @@ func (c *projectServiceClient) ListProject(ctx context.Context, req *connect.Req
 	return c.listProject.CallUnary(ctx, req)
 }
 
+// SyncProject calls svc.project.v1.ProjectService.SyncProject.
+func (c *projectServiceClient) SyncProject(ctx context.Context, req *connect.Request[v1.SyncProjectRequest]) (*connect.Response[v1.SyncProjectResponse], error) {
+	return c.syncProject.CallUnary(ctx, req)
+}
+
 // ProjectServiceHandler is an implementation of the svc.project.v1.ProjectService service.
 type ProjectServiceHandler interface {
 	CreateProject(context.Context, *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.CreateProjectResponse], error)
@@ -144,6 +162,9 @@ type ProjectServiceHandler interface {
 	UpdateProject(context.Context, *connect.Request[v1.UpdateProjectRequest]) (*connect.Response[v1.UpdateProjectResponse], error)
 	DeleteProject(context.Context, *connect.Request[v1.DeleteProjectRequest]) (*connect.Response[v1.DeleteProjectResponse], error)
 	ListProject(context.Context, *connect.Request[v1.ListProjectRequest]) (*connect.Response[v1.ListProjectResponse], error)
+	// SyncProject is like GetProject but guarantees that cached data
+	// gets updated.
+	SyncProject(context.Context, *connect.Request[v1.SyncProjectRequest]) (*connect.Response[v1.SyncProjectResponse], error)
 }
 
 // NewProjectServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -183,6 +204,12 @@ func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect.Handler
 		connect.WithSchema(projectServiceMethods.ByName("ListProject")),
 		connect.WithHandlerOptions(opts...),
 	)
+	projectServiceSyncProjectHandler := connect.NewUnaryHandler(
+		ProjectServiceSyncProjectProcedure,
+		svc.SyncProject,
+		connect.WithSchema(projectServiceMethods.ByName("SyncProject")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.project.v1.ProjectService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ProjectServiceCreateProjectProcedure:
@@ -195,6 +222,8 @@ func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect.Handler
 			projectServiceDeleteProjectHandler.ServeHTTP(w, r)
 		case ProjectServiceListProjectProcedure:
 			projectServiceListProjectHandler.ServeHTTP(w, r)
+		case ProjectServiceSyncProjectProcedure:
+			projectServiceSyncProjectHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -222,4 +251,8 @@ func (UnimplementedProjectServiceHandler) DeleteProject(context.Context, *connec
 
 func (UnimplementedProjectServiceHandler) ListProject(context.Context, *connect.Request[v1.ListProjectRequest]) (*connect.Response[v1.ListProjectResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.project.v1.ProjectService.ListProject is not implemented"))
+}
+
+func (UnimplementedProjectServiceHandler) SyncProject(context.Context, *connect.Request[v1.SyncProjectRequest]) (*connect.Response[v1.SyncProjectResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.project.v1.ProjectService.SyncProject is not implemented"))
 }

@@ -10,12 +10,26 @@ import "types/v1/types.proto";
 option go_package = "types/v1;typesv1";
 
 message AlertGroup {
+  AlertGroupMeta meta = 1;
+  AlertGroupSpec spec = 2;
+  AlertGroupStatus status = 3;
+}
+
+message AlertGroupMeta {}
+
+message AlertGroupSpec {
   string name = 1;
   google.protobuf.Duration interval = 2;
   google.protobuf.Duration query_offset = 3;
   int32 limit = 4;
   repeated AlertRule rules = 5;
   types.v1.Obj labels = 6;
+}
+
+message AlertGroupStatus {
+  google.protobuf.Timestamp created_at = 1;
+  google.protobuf.Timestamp updated_at = 2;
+  repeated string errors = 3;
 }
 
 message AlertRule {

@@ -12,57 +12,26 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/dashboard.proto.
  */
 export const file_types_v1_dashboard: GenFile = /*@__PURE__*/
-  fileDesc("Chh0eXBlcy92MS9kYXNoYm9hcmQucHJvdG8SCHR5cGVzLnYxIuUBCglEYXNoYm9hcmQSCgoCaWQYZCABKAkSDQoEbmFtZRjIASABKAkSFAoLZGVzY3JpcHRpb24YyQEgASgJEhQKC2lzX3JlYWRvbmx5GMoBIAEoCBIPCgRmaWxlGMsBIAEoCUgAEhQKC3BlcnNlc19qc29uGKwCIAEoDBIvCgpjcmVhdGVkX2F0GJADIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLwoKdXBkYXRlZF9hdBiRAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQggKBnNvdXJjZUKOAQoMY29tLnR5cGVzLnYxQg5EYXNoYm9hcmRQcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_google_protobuf_timestamp]);
+  fileDesc("Chh0eXBlcy92MS9kYXNoYm9hcmQucHJvdG8SCHR5cGVzLnYxIoIBCglEYXNoYm9hcmQSJQoEbWV0YRgBIAEoCzIXLnR5cGVzLnYxLkRhc2hib2FyZE1ldGESJQoEc3BlYxgCIAEoCzIXLnR5cGVzLnYxLkRhc2hib2FyZFNwZWMSJwoGc3RhdHVzGAMgASgLMhcudHlwZXMudjEuRGFzaGJvYXJkU3BlYyIbCg1EYXNoYm9hcmRNZXRhEgoKAmlkGAEgASgJIncKDURhc2hib2FyZFNwZWMSDAoEbmFtZRgBIAEoCRITCgtkZXNjcmlwdGlvbhgCIAEoCRITCgtpc19yZWFkb25seRgDIAEoCBIPCgRmaWxlGJEDIAEoCUgAEhMKC3BlcnNlc19qc29uGAUgASgMQggKBnNvdXJjZSKBAQoPRGFzaGJvYXJkU3RhdHVzEi4KCmNyZWF0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg4KBmVycm9ycxgDIAMoCUKOAQoMY29tLnR5cGVzLnYxQg5EYXNoYm9hcmRQcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message types.v1.Dashboard
  */
 export type Dashboard = Message<"types.v1.Dashboard"> & {
   /**
-   * @generated from field: string id = 100;
+   * @generated from field: types.v1.DashboardMeta meta = 1;
    */
-  id: string;
+  meta?: DashboardMeta;
 
   /**
-   * @generated from field: string name = 200;
+   * @generated from field: types.v1.DashboardSpec spec = 2;
    */
-  name: string;
+  spec?: DashboardSpec;
 
   /**
-   * @generated from field: string description = 201;
+   * @generated from field: types.v1.DashboardSpec status = 3;
    */
-  description: string;
-
-  /**
-   * @generated from field: bool is_readonly = 202;
-   */
-  isReadonly: boolean;
-
-  /**
-   * @generated from oneof types.v1.Dashboard.source
-   */
-  source: {
-    /**
-     * @generated from field: string file = 203;
-     */
-    value: string;
-    case: "file";
-  } | { case: undefined; value?: undefined };
-
-  /**
-   * @generated from field: bytes perses_json = 300;
-   */
-  persesJson: Uint8Array;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp created_at = 400;
-   */
-  createdAt?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 401;
-   */
-  updatedAt?: Timestamp;
+  status?: DashboardSpec;
 };
 
 /**
@@ -71,4 +40,91 @@ export type Dashboard = Message<"types.v1.Dashboard"> & {
  */
 export const DashboardSchema: GenMessage<Dashboard> = /*@__PURE__*/
   messageDesc(file_types_v1_dashboard, 0);
+
+/**
+ * @generated from message types.v1.DashboardMeta
+ */
+export type DashboardMeta = Message<"types.v1.DashboardMeta"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message types.v1.DashboardMeta.
+ * Use `create(DashboardMetaSchema)` to create a new message.
+ */
+export const DashboardMetaSchema: GenMessage<DashboardMeta> = /*@__PURE__*/
+  messageDesc(file_types_v1_dashboard, 1);
+
+/**
+ * @generated from message types.v1.DashboardSpec
+ */
+export type DashboardSpec = Message<"types.v1.DashboardSpec"> & {
+  /**
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * @generated from field: string description = 2;
+   */
+  description: string;
+
+  /**
+   * @generated from field: bool is_readonly = 3;
+   */
+  isReadonly: boolean;
+
+  /**
+   * @generated from oneof types.v1.DashboardSpec.source
+   */
+  source: {
+    /**
+     * @generated from field: string file = 401;
+     */
+    value: string;
+    case: "file";
+  } | { case: undefined; value?: undefined };
+
+  /**
+   * @generated from field: bytes perses_json = 5;
+   */
+  persesJson: Uint8Array;
+};
+
+/**
+ * Describes the message types.v1.DashboardSpec.
+ * Use `create(DashboardSpecSchema)` to create a new message.
+ */
+export const DashboardSpecSchema: GenMessage<DashboardSpec> = /*@__PURE__*/
+  messageDesc(file_types_v1_dashboard, 2);
+
+/**
+ * @generated from message types.v1.DashboardStatus
+ */
+export type DashboardStatus = Message<"types.v1.DashboardStatus"> & {
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 1;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 2;
+   */
+  updatedAt?: Timestamp;
+
+  /**
+   * @generated from field: repeated string errors = 3;
+   */
+  errors: string[];
+};
+
+/**
+ * Describes the message types.v1.DashboardStatus.
+ * Use `create(DashboardStatusSchema)` to create a new message.
+ */
+export const DashboardStatusSchema: GenMessage<DashboardStatus> = /*@__PURE__*/
+  messageDesc(file_types_v1_dashboard, 3);
 

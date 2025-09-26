@@ -25,12 +25,9 @@ const (
 
 type AlertGroup struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Interval      *durationpb.Duration   `protobuf:"bytes,2,opt,name=interval,proto3" json:"interval,omitempty"`
-	QueryOffset   *durationpb.Duration   `protobuf:"bytes,3,opt,name=query_offset,json=queryOffset,proto3" json:"query_offset,omitempty"`
-	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
-	Rules         []*AlertRule           `protobuf:"bytes,5,rep,name=rules,proto3" json:"rules,omitempty"`
-	Labels        *Obj                   `protobuf:"bytes,6,opt,name=labels,proto3" json:"labels,omitempty"`
+	Meta          *AlertGroupMeta        `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta,omitempty"`
+	Spec          *AlertGroupSpec        `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
+	Status        *AlertGroupStatus      `protobuf:"bytes,3,opt,name=status,proto3" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -65,44 +62,203 @@ func (*AlertGroup) Descriptor() ([]byte, []int) {
 	return file_types_v1_alert_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *AlertGroup) GetName() string {
+func (x *AlertGroup) GetMeta() *AlertGroupMeta {
+	if x != nil {
+		return x.Meta
+	}
+	return nil
+}
+
+func (x *AlertGroup) GetSpec() *AlertGroupSpec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+func (x *AlertGroup) GetStatus() *AlertGroupStatus {
+	if x != nil {
+		return x.Status
+	}
+	return nil
+}
+
+type AlertGroupMeta struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AlertGroupMeta) Reset() {
+	*x = AlertGroupMeta{}
+	mi := &file_types_v1_alert_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AlertGroupMeta) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlertGroupMeta) ProtoMessage() {}
+
+func (x *AlertGroupMeta) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_alert_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlertGroupMeta.ProtoReflect.Descriptor instead.
+func (*AlertGroupMeta) Descriptor() ([]byte, []int) {
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{1}
+}
+
+type AlertGroupSpec struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Interval      *durationpb.Duration   `protobuf:"bytes,2,opt,name=interval,proto3" json:"interval,omitempty"`
+	QueryOffset   *durationpb.Duration   `protobuf:"bytes,3,opt,name=query_offset,json=queryOffset,proto3" json:"query_offset,omitempty"`
+	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Rules         []*AlertRule           `protobuf:"bytes,5,rep,name=rules,proto3" json:"rules,omitempty"`
+	Labels        *Obj                   `protobuf:"bytes,6,opt,name=labels,proto3" json:"labels,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AlertGroupSpec) Reset() {
+	*x = AlertGroupSpec{}
+	mi := &file_types_v1_alert_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AlertGroupSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlertGroupSpec) ProtoMessage() {}
+
+func (x *AlertGroupSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_alert_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlertGroupSpec.ProtoReflect.Descriptor instead.
+func (*AlertGroupSpec) Descriptor() ([]byte, []int) {
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AlertGroupSpec) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *AlertGroup) GetInterval() *durationpb.Duration {
+func (x *AlertGroupSpec) GetInterval() *durationpb.Duration {
 	if x != nil {
 		return x.Interval
 	}
 	return nil
 }
 
-func (x *AlertGroup) GetQueryOffset() *durationpb.Duration {
+func (x *AlertGroupSpec) GetQueryOffset() *durationpb.Duration {
 	if x != nil {
 		return x.QueryOffset
 	}
 	return nil
 }
 
-func (x *AlertGroup) GetLimit() int32 {
+func (x *AlertGroupSpec) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
 	return 0
 }
 
-func (x *AlertGroup) GetRules() []*AlertRule {
+func (x *AlertGroupSpec) GetRules() []*AlertRule {
 	if x != nil {
 		return x.Rules
 	}
 	return nil
 }
 
-func (x *AlertGroup) GetLabels() *Obj {
+func (x *AlertGroupSpec) GetLabels() *Obj {
 	if x != nil {
 		return x.Labels
+	}
+	return nil
+}
+
+type AlertGroupStatus struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Errors        []string               `protobuf:"bytes,3,rep,name=errors,proto3" json:"errors,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AlertGroupStatus) Reset() {
+	*x = AlertGroupStatus{}
+	mi := &file_types_v1_alert_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AlertGroupStatus) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AlertGroupStatus) ProtoMessage() {}
+
+func (x *AlertGroupStatus) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_alert_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AlertGroupStatus.ProtoReflect.Descriptor instead.
+func (*AlertGroupStatus) Descriptor() ([]byte, []int) {
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AlertGroupStatus) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *AlertGroupStatus) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *AlertGroupStatus) GetErrors() []string {
+	if x != nil {
+		return x.Errors
 	}
 	return nil
 }
@@ -121,7 +277,7 @@ type AlertRule struct {
 
 func (x *AlertRule) Reset() {
 	*x = AlertRule{}
-	mi := &file_types_v1_alert_proto_msgTypes[1]
+	mi := &file_types_v1_alert_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -133,7 +289,7 @@ func (x *AlertRule) String() string {
 func (*AlertRule) ProtoMessage() {}
 
 func (x *AlertRule) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_alert_proto_msgTypes[1]
+	mi := &file_types_v1_alert_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -146,7 +302,7 @@ func (x *AlertRule) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlertRule.ProtoReflect.Descriptor instead.
 func (*AlertRule) Descriptor() ([]byte, []int) {
-	return file_types_v1_alert_proto_rawDescGZIP(), []int{1}
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *AlertRule) GetName() string {
@@ -199,7 +355,7 @@ type AlertUnknown struct {
 
 func (x *AlertUnknown) Reset() {
 	*x = AlertUnknown{}
-	mi := &file_types_v1_alert_proto_msgTypes[2]
+	mi := &file_types_v1_alert_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -211,7 +367,7 @@ func (x *AlertUnknown) String() string {
 func (*AlertUnknown) ProtoMessage() {}
 
 func (x *AlertUnknown) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_alert_proto_msgTypes[2]
+	mi := &file_types_v1_alert_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -224,7 +380,7 @@ func (x *AlertUnknown) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlertUnknown.ProtoReflect.Descriptor instead.
 func (*AlertUnknown) Descriptor() ([]byte, []int) {
-	return file_types_v1_alert_proto_rawDescGZIP(), []int{2}
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{5}
 }
 
 type AlertOk struct {
@@ -235,7 +391,7 @@ type AlertOk struct {
 
 func (x *AlertOk) Reset() {
 	*x = AlertOk{}
-	mi := &file_types_v1_alert_proto_msgTypes[3]
+	mi := &file_types_v1_alert_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -247,7 +403,7 @@ func (x *AlertOk) String() string {
 func (*AlertOk) ProtoMessage() {}
 
 func (x *AlertOk) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_alert_proto_msgTypes[3]
+	mi := &file_types_v1_alert_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -260,7 +416,7 @@ func (x *AlertOk) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlertOk.ProtoReflect.Descriptor instead.
 func (*AlertOk) Descriptor() ([]byte, []int) {
-	return file_types_v1_alert_proto_rawDescGZIP(), []int{3}
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{6}
 }
 
 type AlertPending struct {
@@ -271,7 +427,7 @@ type AlertPending struct {
 
 func (x *AlertPending) Reset() {
 	*x = AlertPending{}
-	mi := &file_types_v1_alert_proto_msgTypes[4]
+	mi := &file_types_v1_alert_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -283,7 +439,7 @@ func (x *AlertPending) String() string {
 func (*AlertPending) ProtoMessage() {}
 
 func (x *AlertPending) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_alert_proto_msgTypes[4]
+	mi := &file_types_v1_alert_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -296,7 +452,7 @@ func (x *AlertPending) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlertPending.ProtoReflect.Descriptor instead.
 func (*AlertPending) Descriptor() ([]byte, []int) {
-	return file_types_v1_alert_proto_rawDescGZIP(), []int{4}
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{7}
 }
 
 type AlertFiring struct {
@@ -308,7 +464,7 @@ type AlertFiring struct {
 
 func (x *AlertFiring) Reset() {
 	*x = AlertFiring{}
-	mi := &file_types_v1_alert_proto_msgTypes[5]
+	mi := &file_types_v1_alert_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -320,7 +476,7 @@ func (x *AlertFiring) String() string {
 func (*AlertFiring) ProtoMessage() {}
 
 func (x *AlertFiring) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_alert_proto_msgTypes[5]
+	mi := &file_types_v1_alert_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -333,7 +489,7 @@ func (x *AlertFiring) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlertFiring.ProtoReflect.Descriptor instead.
 func (*AlertFiring) Descriptor() ([]byte, []int) {
-	return file_types_v1_alert_proto_rawDescGZIP(), []int{5}
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *AlertFiring) GetLabels() *Obj {
@@ -361,7 +517,7 @@ type AlertState struct {
 
 func (x *AlertState) Reset() {
 	*x = AlertState{}
-	mi := &file_types_v1_alert_proto_msgTypes[6]
+	mi := &file_types_v1_alert_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -373,7 +529,7 @@ func (x *AlertState) String() string {
 func (*AlertState) ProtoMessage() {}
 
 func (x *AlertState) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_alert_proto_msgTypes[6]
+	mi := &file_types_v1_alert_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -386,7 +542,7 @@ func (x *AlertState) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AlertState.ProtoReflect.Descriptor instead.
 func (*AlertState) Descriptor() ([]byte, []int) {
-	return file_types_v1_alert_proto_rawDescGZIP(), []int{6}
+	return file_types_v1_alert_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *AlertState) GetRule() *AlertRule {
@@ -485,15 +641,26 @@ var File_types_v1_alert_proto protoreflect.FileDescriptor
 
 const file_types_v1_alert_proto_rawDesc = "" +
 	"\n" +
-	"\x14types/v1/alert.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\xfd\x01\n" +
+	"\x14types/v1/alert.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\x9c\x01\n" +
 	"\n" +
-	"AlertGroup\x12\x12\n" +
+	"AlertGroup\x12,\n" +
+	"\x04meta\x18\x01 \x01(\v2\x18.types.v1.AlertGroupMetaR\x04meta\x12,\n" +
+	"\x04spec\x18\x02 \x01(\v2\x18.types.v1.AlertGroupSpecR\x04spec\x122\n" +
+	"\x06status\x18\x03 \x01(\v2\x1a.types.v1.AlertGroupStatusR\x06status\"\x10\n" +
+	"\x0eAlertGroupMeta\"\x81\x02\n" +
+	"\x0eAlertGroupSpec\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x125\n" +
 	"\binterval\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\binterval\x12<\n" +
 	"\fquery_offset\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\vqueryOffset\x12\x14\n" +
 	"\x05limit\x18\x04 \x01(\x05R\x05limit\x12)\n" +
 	"\x05rules\x18\x05 \x03(\v2\x13.types.v1.AlertRuleR\x05rules\x12%\n" +
-	"\x06labels\x18\x06 \x01(\v2\r.types.v1.ObjR\x06labels\"\x8c\x02\n" +
+	"\x06labels\x18\x06 \x01(\v2\r.types.v1.ObjR\x06labels\"\xa0\x01\n" +
+	"\x10AlertGroupStatus\x129\n" +
+	"\n" +
+	"created_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x16\n" +
+	"\x06errors\x18\x03 \x03(\tR\x06errors\"\x8c\x02\n" +
 	"\tAlertRule\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12#\n" +
 	"\x04expr\x18\x02 \x01(\v2\x0f.types.v1.QueryR\x04expr\x12%\n" +
@@ -531,43 +698,51 @@ func file_types_v1_alert_proto_rawDescGZIP() []byte {
 	return file_types_v1_alert_proto_rawDescData
 }
 
-var file_types_v1_alert_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_types_v1_alert_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_types_v1_alert_proto_goTypes = []any{
 	(*AlertGroup)(nil),            // 0: types.v1.AlertGroup
-	(*AlertRule)(nil),             // 1: types.v1.AlertRule
-	(*AlertUnknown)(nil),          // 2: types.v1.AlertUnknown
-	(*AlertOk)(nil),               // 3: types.v1.AlertOk
-	(*AlertPending)(nil),          // 4: types.v1.AlertPending
-	(*AlertFiring)(nil),           // 5: types.v1.AlertFiring
-	(*AlertState)(nil),            // 6: types.v1.AlertState
-	(*durationpb.Duration)(nil),   // 7: google.protobuf.Duration
-	(*Obj)(nil),                   // 8: types.v1.Obj
-	(*Query)(nil),                 // 9: types.v1.Query
-	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
+	(*AlertGroupMeta)(nil),        // 1: types.v1.AlertGroupMeta
+	(*AlertGroupSpec)(nil),        // 2: types.v1.AlertGroupSpec
+	(*AlertGroupStatus)(nil),      // 3: types.v1.AlertGroupStatus
+	(*AlertRule)(nil),             // 4: types.v1.AlertRule
+	(*AlertUnknown)(nil),          // 5: types.v1.AlertUnknown
+	(*AlertOk)(nil),               // 6: types.v1.AlertOk
+	(*AlertPending)(nil),          // 7: types.v1.AlertPending
+	(*AlertFiring)(nil),           // 8: types.v1.AlertFiring
+	(*AlertState)(nil),            // 9: types.v1.AlertState
+	(*durationpb.Duration)(nil),   // 10: google.protobuf.Duration
+	(*Obj)(nil),                   // 11: types.v1.Obj
+	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
+	(*Query)(nil),                 // 13: types.v1.Query
 }
 var file_types_v1_alert_proto_depIdxs = []int32{
-	7,  // 0: types.v1.AlertGroup.interval:type_name -> google.protobuf.Duration
-	7,  // 1: types.v1.AlertGroup.query_offset:type_name -> google.protobuf.Duration
-	1,  // 2: types.v1.AlertGroup.rules:type_name -> types.v1.AlertRule
-	8,  // 3: types.v1.AlertGroup.labels:type_name -> types.v1.Obj
-	9,  // 4: types.v1.AlertRule.expr:type_name -> types.v1.Query
-	8,  // 5: types.v1.AlertRule.labels:type_name -> types.v1.Obj
-	8,  // 6: types.v1.AlertRule.annotations:type_name -> types.v1.Obj
-	7,  // 7: types.v1.AlertRule.for:type_name -> google.protobuf.Duration
-	7,  // 8: types.v1.AlertRule.keep_firing_for:type_name -> google.protobuf.Duration
-	8,  // 9: types.v1.AlertFiring.labels:type_name -> types.v1.Obj
-	1,  // 10: types.v1.AlertState.rule:type_name -> types.v1.AlertRule
-	2,  // 11: types.v1.AlertState.unknown:type_name -> types.v1.AlertUnknown
-	3,  // 12: types.v1.AlertState.ok:type_name -> types.v1.AlertOk
-	4,  // 13: types.v1.AlertState.pending:type_name -> types.v1.AlertPending
-	5,  // 14: types.v1.AlertState.firing:type_name -> types.v1.AlertFiring
-	10, // 15: types.v1.AlertState.transitioned_at:type_name -> google.protobuf.Timestamp
-	10, // 16: types.v1.AlertState.last_firing_at:type_name -> google.protobuf.Timestamp
-	17, // [17:17] is the sub-list for method output_type
-	17, // [17:17] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	1,  // 0: types.v1.AlertGroup.meta:type_name -> types.v1.AlertGroupMeta
+	2,  // 1: types.v1.AlertGroup.spec:type_name -> types.v1.AlertGroupSpec
+	3,  // 2: types.v1.AlertGroup.status:type_name -> types.v1.AlertGroupStatus
+	10, // 3: types.v1.AlertGroupSpec.interval:type_name -> google.protobuf.Duration
+	10, // 4: types.v1.AlertGroupSpec.query_offset:type_name -> google.protobuf.Duration
+	4,  // 5: types.v1.AlertGroupSpec.rules:type_name -> types.v1.AlertRule
+	11, // 6: types.v1.AlertGroupSpec.labels:type_name -> types.v1.Obj
+	12, // 7: types.v1.AlertGroupStatus.created_at:type_name -> google.protobuf.Timestamp
+	12, // 8: types.v1.AlertGroupStatus.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 9: types.v1.AlertRule.expr:type_name -> types.v1.Query
+	11, // 10: types.v1.AlertRule.labels:type_name -> types.v1.Obj
+	11, // 11: types.v1.AlertRule.annotations:type_name -> types.v1.Obj
+	10, // 12: types.v1.AlertRule.for:type_name -> google.protobuf.Duration
+	10, // 13: types.v1.AlertRule.keep_firing_for:type_name -> google.protobuf.Duration
+	11, // 14: types.v1.AlertFiring.labels:type_name -> types.v1.Obj
+	4,  // 15: types.v1.AlertState.rule:type_name -> types.v1.AlertRule
+	5,  // 16: types.v1.AlertState.unknown:type_name -> types.v1.AlertUnknown
+	6,  // 17: types.v1.AlertState.ok:type_name -> types.v1.AlertOk
+	7,  // 18: types.v1.AlertState.pending:type_name -> types.v1.AlertPending
+	8,  // 19: types.v1.AlertState.firing:type_name -> types.v1.AlertFiring
+	12, // 20: types.v1.AlertState.transitioned_at:type_name -> google.protobuf.Timestamp
+	12, // 21: types.v1.AlertState.last_firing_at:type_name -> google.protobuf.Timestamp
+	22, // [22:22] is the sub-list for method output_type
+	22, // [22:22] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_alert_proto_init() }
@@ -577,7 +752,7 @@ func file_types_v1_alert_proto_init() {
 	}
 	file_types_v1_query_proto_init()
 	file_types_v1_types_proto_init()
-	file_types_v1_alert_proto_msgTypes[6].OneofWrappers = []any{
+	file_types_v1_alert_proto_msgTypes[9].OneofWrappers = []any{
 		(*AlertState_Unknown)(nil),
 		(*AlertState_Ok)(nil),
 		(*AlertState_Pending)(nil),
@@ -589,7 +764,7 @@ func file_types_v1_alert_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_alert_proto_rawDesc), len(file_types_v1_alert_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
