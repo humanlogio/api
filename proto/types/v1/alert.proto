@@ -15,7 +15,9 @@ message AlertGroup {
   AlertGroupStatus status = 3;
 }
 
-message AlertGroupMeta {}
+message AlertGroupMeta {
+  string id = 1;
+}
 
 message AlertGroupSpec {
   string name = 1;

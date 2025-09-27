@@ -85,6 +85,7 @@ func (x *AlertGroup) GetStatus() *AlertGroupStatus {
 
 type AlertGroupMeta struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -117,6 +118,13 @@ func (x *AlertGroupMeta) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AlertGroupMeta.ProtoReflect.Descriptor instead.
 func (*AlertGroupMeta) Descriptor() ([]byte, []int) {
 	return file_types_v1_alert_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *AlertGroupMeta) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 type AlertGroupSpec struct {
@@ -646,8 +654,9 @@ const file_types_v1_alert_proto_rawDesc = "" +
 	"AlertGroup\x12,\n" +
 	"\x04meta\x18\x01 \x01(\v2\x18.types.v1.AlertGroupMetaR\x04meta\x12,\n" +
 	"\x04spec\x18\x02 \x01(\v2\x18.types.v1.AlertGroupSpecR\x04spec\x122\n" +
-	"\x06status\x18\x03 \x01(\v2\x1a.types.v1.AlertGroupStatusR\x06status\"\x10\n" +
-	"\x0eAlertGroupMeta\"\x81\x02\n" +
+	"\x06status\x18\x03 \x01(\v2\x1a.types.v1.AlertGroupStatusR\x06status\" \n" +
+	"\x0eAlertGroupMeta\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x81\x02\n" +
 	"\x0eAlertGroupSpec\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x125\n" +
 	"\binterval\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\binterval\x12<\n" +
