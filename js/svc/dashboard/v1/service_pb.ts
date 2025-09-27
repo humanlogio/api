@@ -6,7 +6,7 @@ import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegen
 import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Cursor } from "../../../types/v1/cursor_pb";
 import { file_types_v1_cursor } from "../../../types/v1/cursor_pb";
-import type { Dashboard } from "../../../types/v1/dashboard_pb";
+import type { Dashboard, DashboardSpec } from "../../../types/v1/dashboard_pb";
 import { file_types_v1_dashboard } from "../../../types/v1/dashboard_pb";
 import type { Message } from "@bufbuild/protobuf";
 
@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file svc/dashboard/v1/service.proto.
  */
 export const file_svc_dashboard_v1_service: GenFile = /*@__PURE__*/
-  fileDesc("Ch5zdmMvZGFzaGJvYXJkL3YxL3NlcnZpY2UucHJvdG8SEHN2Yy5kYXNoYm9hcmQudjEikwEKFkNyZWF0ZURhc2hib2FyZFJlcXVlc3QSFgoOZW52aXJvbm1lbnRfaWQYZSABKAMSFAoMcHJvamVjdF9uYW1lGGYgASgJEgwKBG5hbWUYASABKAkSEwoLZGVzY3JpcHRpb24YAiABKAkSEwoLaXNfcmVhZG9ubHkYAyABKAgSEwoLcGVyc2VzX2pzb24YBCABKAwiQQoXQ3JlYXRlRGFzaGJvYXJkUmVzcG9uc2USJgoJZGFzaGJvYXJkGAEgASgLMhMudHlwZXMudjEuRGFzaGJvYXJkIk8KE0dldERhc2hib2FyZFJlcXVlc3QSFgoOZW52aXJvbm1lbnRfaWQYZSABKAMSFAoMcHJvamVjdF9uYW1lGGYgASgJEgoKAmlkGAEgASgJIj4KFEdldERhc2hib2FyZFJlc3BvbnNlEiYKCWRhc2hib2FyZBgBIAEoCzITLnR5cGVzLnYxLkRhc2hib2FyZCKpAgoWVXBkYXRlRGFzaGJvYXJkUmVxdWVzdBIWCg5lbnZpcm9ubWVudF9pZBhlIAEoAxIUCgxwcm9qZWN0X25hbWUYZiABKAkSCgoCaWQYASABKAkSRAoJbXV0YXRpb25zGAIgAygLMjEuc3ZjLmRhc2hib2FyZC52MS5VcGRhdGVEYXNoYm9hcmRSZXF1ZXN0Lk11dGF0aW9uGo4BCghNdXRhdGlvbhISCghzZXRfbmFtZRgBIAEoCUgAEhkKD3NldF9kZXNjcmlwdGlvbhgCIAEoCUgAEhYKDHNldF9yZWFkb25seRgDIAEoCEgAEhoKD3NldF9zb3VyY2VfZmlsZRiRAyABKAlIABIZCg9zZXRfcGVyc2VzX2pzb24YBSABKAxIAEIECgJkbyJBChdVcGRhdGVEYXNoYm9hcmRSZXNwb25zZRImCglkYXNoYm9hcmQYASABKAsyEy50eXBlcy52MS5EYXNoYm9hcmQiUgoWRGVsZXRlRGFzaGJvYXJkUmVxdWVzdBIWCg5lbnZpcm9ubWVudF9pZBhlIAEoAxIUCgxwcm9qZWN0X25hbWUYZiABKAkSCgoCaWQYASABKAkiGQoXRGVsZXRlRGFzaGJvYXJkUmVzcG9uc2UiiwEKFExpc3REYXNoYm9hcmRSZXF1ZXN0EhYKDmVudmlyb25tZW50X2lkGGUgASgDEhQKDHByb2plY3RfbmFtZRhmIAEoCRIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUSFAoMZGFzaGJvYXJkX2lkGAMgASgDIqwBChVMaXN0RGFzaGJvYXJkUmVzcG9uc2USHgoEbmV4dBgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchI/CgVpdGVtcxgCIAMoCzIwLnN2Yy5kYXNoYm9hcmQudjEuTGlzdERhc2hib2FyZFJlc3BvbnNlLkxpc3RJdGVtGjIKCExpc3RJdGVtEiYKCWRhc2hib2FyZBgBIAEoCzITLnR5cGVzLnYxLkRhc2hib2FyZDKLBAoQRGFzaGJvYXJkU2VydmljZRJmCg9DcmVhdGVEYXNoYm9hcmQSKC5zdmMuZGFzaGJvYXJkLnYxLkNyZWF0ZURhc2hib2FyZFJlcXVlc3QaKS5zdmMuZGFzaGJvYXJkLnYxLkNyZWF0ZURhc2hib2FyZFJlc3BvbnNlEl0KDEdldERhc2hib2FyZBIlLnN2Yy5kYXNoYm9hcmQudjEuR2V0RGFzaGJvYXJkUmVxdWVzdBomLnN2Yy5kYXNoYm9hcmQudjEuR2V0RGFzaGJvYXJkUmVzcG9uc2USZgoPVXBkYXRlRGFzaGJvYXJkEiguc3ZjLmRhc2hib2FyZC52MS5VcGRhdGVEYXNoYm9hcmRSZXF1ZXN0Gikuc3ZjLmRhc2hib2FyZC52MS5VcGRhdGVEYXNoYm9hcmRSZXNwb25zZRJmCg9EZWxldGVEYXNoYm9hcmQSKC5zdmMuZGFzaGJvYXJkLnYxLkRlbGV0ZURhc2hib2FyZFJlcXVlc3QaKS5zdmMuZGFzaGJvYXJkLnYxLkRlbGV0ZURhc2hib2FyZFJlc3BvbnNlEmAKDUxpc3REYXNoYm9hcmQSJi5zdmMuZGFzaGJvYXJkLnYxLkxpc3REYXNoYm9hcmRSZXF1ZXN0Gicuc3ZjLmRhc2hib2FyZC52MS5MaXN0RGFzaGJvYXJkUmVzcG9uc2VCwQEKFGNvbS5zdmMuZGFzaGJvYXJkLnYxQgxTZXJ2aWNlUHJvdG9QAVo5Z2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby9zdmMvZGFzaGJvYXJkL3YxO2Rhc2hib2FyZHYxogIDU0RYqgIQU3ZjLkRhc2hib2FyZC5WMcoCEFN2Y1xEYXNoYm9hcmRcVjHiAhxTdmNcRGFzaGJvYXJkXFYxXEdQQk1ldGFkYXRh6gISU3ZjOjpEYXNoYm9hcmQ6OlYxYgZwcm90bzM", [file_types_v1_cursor, file_types_v1_dashboard]);
+  fileDesc("Ch5zdmMvZGFzaGJvYXJkL3YxL3NlcnZpY2UucHJvdG8SEHN2Yy5kYXNoYm9hcmQudjEibQoWQ3JlYXRlRGFzaGJvYXJkUmVxdWVzdBIWCg5lbnZpcm9ubWVudF9pZBhlIAEoAxIUCgxwcm9qZWN0X25hbWUYZiABKAkSJQoEc3BlYxgBIAEoCzIXLnR5cGVzLnYxLkRhc2hib2FyZFNwZWMiQQoXQ3JlYXRlRGFzaGJvYXJkUmVzcG9uc2USJgoJZGFzaGJvYXJkGAEgASgLMhMudHlwZXMudjEuRGFzaGJvYXJkIk8KE0dldERhc2hib2FyZFJlcXVlc3QSFgoOZW52aXJvbm1lbnRfaWQYZSABKAMSFAoMcHJvamVjdF9uYW1lGGYgASgJEgoKAmlkGAEgASgJIj4KFEdldERhc2hib2FyZFJlc3BvbnNlEiYKCWRhc2hib2FyZBgBIAEoCzITLnR5cGVzLnYxLkRhc2hib2FyZCJ5ChZVcGRhdGVEYXNoYm9hcmRSZXF1ZXN0EhYKDmVudmlyb25tZW50X2lkGGUgASgDEhQKDHByb2plY3RfbmFtZRhmIAEoCRIKCgJpZBgBIAEoCRIlCgRzcGVjGAIgASgLMhcudHlwZXMudjEuRGFzaGJvYXJkU3BlYyJBChdVcGRhdGVEYXNoYm9hcmRSZXNwb25zZRImCglkYXNoYm9hcmQYASABKAsyEy50eXBlcy52MS5EYXNoYm9hcmQiUgoWRGVsZXRlRGFzaGJvYXJkUmVxdWVzdBIWCg5lbnZpcm9ubWVudF9pZBhlIAEoAxIUCgxwcm9qZWN0X25hbWUYZiABKAkSCgoCaWQYASABKAkiGQoXRGVsZXRlRGFzaGJvYXJkUmVzcG9uc2UiiwEKFExpc3REYXNoYm9hcmRSZXF1ZXN0EhYKDmVudmlyb25tZW50X2lkGGUgASgDEhQKDHByb2plY3RfbmFtZRhmIAEoCRIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUSFAoMZGFzaGJvYXJkX2lkGAMgASgDIqwBChVMaXN0RGFzaGJvYXJkUmVzcG9uc2USHgoEbmV4dBgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchI/CgVpdGVtcxgCIAMoCzIwLnN2Yy5kYXNoYm9hcmQudjEuTGlzdERhc2hib2FyZFJlc3BvbnNlLkxpc3RJdGVtGjIKCExpc3RJdGVtEiYKCWRhc2hib2FyZBgBIAEoCzITLnR5cGVzLnYxLkRhc2hib2FyZDKLBAoQRGFzaGJvYXJkU2VydmljZRJmCg9DcmVhdGVEYXNoYm9hcmQSKC5zdmMuZGFzaGJvYXJkLnYxLkNyZWF0ZURhc2hib2FyZFJlcXVlc3QaKS5zdmMuZGFzaGJvYXJkLnYxLkNyZWF0ZURhc2hib2FyZFJlc3BvbnNlEl0KDEdldERhc2hib2FyZBIlLnN2Yy5kYXNoYm9hcmQudjEuR2V0RGFzaGJvYXJkUmVxdWVzdBomLnN2Yy5kYXNoYm9hcmQudjEuR2V0RGFzaGJvYXJkUmVzcG9uc2USZgoPVXBkYXRlRGFzaGJvYXJkEiguc3ZjLmRhc2hib2FyZC52MS5VcGRhdGVEYXNoYm9hcmRSZXF1ZXN0Gikuc3ZjLmRhc2hib2FyZC52MS5VcGRhdGVEYXNoYm9hcmRSZXNwb25zZRJmCg9EZWxldGVEYXNoYm9hcmQSKC5zdmMuZGFzaGJvYXJkLnYxLkRlbGV0ZURhc2hib2FyZFJlcXVlc3QaKS5zdmMuZGFzaGJvYXJkLnYxLkRlbGV0ZURhc2hib2FyZFJlc3BvbnNlEmAKDUxpc3REYXNoYm9hcmQSJi5zdmMuZGFzaGJvYXJkLnYxLkxpc3REYXNoYm9hcmRSZXF1ZXN0Gicuc3ZjLmRhc2hib2FyZC52MS5MaXN0RGFzaGJvYXJkUmVzcG9uc2VCwQEKFGNvbS5zdmMuZGFzaGJvYXJkLnYxQgxTZXJ2aWNlUHJvdG9QAVo5Z2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby9zdmMvZGFzaGJvYXJkL3YxO2Rhc2hib2FyZHYxogIDU0RYqgIQU3ZjLkRhc2hib2FyZC5WMcoCEFN2Y1xEYXNoYm9hcmRcVjHiAhxTdmNcRGFzaGJvYXJkXFYxXEdQQk1ldGFkYXRh6gISU3ZjOjpEYXNoYm9hcmQ6OlYxYgZwcm90bzM", [file_types_v1_cursor, file_types_v1_dashboard]);
 
 /**
  * @generated from message svc.dashboard.v1.CreateDashboardRequest
@@ -31,24 +31,9 @@ export type CreateDashboardRequest = Message<"svc.dashboard.v1.CreateDashboardRe
   projectName: string;
 
   /**
-   * @generated from field: string name = 1;
+   * @generated from field: types.v1.DashboardSpec spec = 1;
    */
-  name: string;
-
-  /**
-   * @generated from field: string description = 2;
-   */
-  description: string;
-
-  /**
-   * @generated from field: bool is_readonly = 3;
-   */
-  isReadonly: boolean;
-
-  /**
-   * @generated from field: bytes perses_json = 4;
-   */
-  persesJson: Uint8Array;
+  spec?: DashboardSpec;
 };
 
 /**
@@ -139,9 +124,9 @@ export type UpdateDashboardRequest = Message<"svc.dashboard.v1.UpdateDashboardRe
   id: string;
 
   /**
-   * @generated from field: repeated svc.dashboard.v1.UpdateDashboardRequest.Mutation mutations = 2;
+   * @generated from field: types.v1.DashboardSpec spec = 2;
    */
-  mutations: UpdateDashboardRequest_Mutation[];
+  spec?: DashboardSpec;
 };
 
 /**
@@ -150,53 +135,6 @@ export type UpdateDashboardRequest = Message<"svc.dashboard.v1.UpdateDashboardRe
  */
 export const UpdateDashboardRequestSchema: GenMessage<UpdateDashboardRequest> = /*@__PURE__*/
   messageDesc(file_svc_dashboard_v1_service, 4);
-
-/**
- * @generated from message svc.dashboard.v1.UpdateDashboardRequest.Mutation
- */
-export type UpdateDashboardRequest_Mutation = Message<"svc.dashboard.v1.UpdateDashboardRequest.Mutation"> & {
-  /**
-   * @generated from oneof svc.dashboard.v1.UpdateDashboardRequest.Mutation.do
-   */
-  do: {
-    /**
-     * @generated from field: string set_name = 1;
-     */
-    value: string;
-    case: "setName";
-  } | {
-    /**
-     * @generated from field: string set_description = 2;
-     */
-    value: string;
-    case: "setDescription";
-  } | {
-    /**
-     * @generated from field: bool set_readonly = 3;
-     */
-    value: boolean;
-    case: "setReadonly";
-  } | {
-    /**
-     * @generated from field: string set_source_file = 401;
-     */
-    value: string;
-    case: "setSourceFile";
-  } | {
-    /**
-     * @generated from field: bytes set_perses_json = 5;
-     */
-    value: Uint8Array;
-    case: "setPersesJson";
-  } | { case: undefined; value?: undefined };
-};
-
-/**
- * Describes the message svc.dashboard.v1.UpdateDashboardRequest.Mutation.
- * Use `create(UpdateDashboardRequest_MutationSchema)` to create a new message.
- */
-export const UpdateDashboardRequest_MutationSchema: GenMessage<UpdateDashboardRequest_Mutation> = /*@__PURE__*/
-  messageDesc(file_svc_dashboard_v1_service, 4, 0);
 
 /**
  * @generated from message svc.dashboard.v1.UpdateDashboardResponse

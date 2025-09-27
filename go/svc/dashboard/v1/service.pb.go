@@ -26,10 +26,7 @@ type CreateDashboardRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
 	ProjectName   string                 `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	IsReadonly    bool                   `protobuf:"varint,3,opt,name=is_readonly,json=isReadonly,proto3" json:"is_readonly,omitempty"`
-	PersesJson    []byte                 `protobuf:"bytes,4,opt,name=perses_json,json=persesJson,proto3" json:"perses_json,omitempty"`
+	Spec          *v1.DashboardSpec      `protobuf:"bytes,1,opt,name=spec,proto3" json:"spec,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -78,30 +75,9 @@ func (x *CreateDashboardRequest) GetProjectName() string {
 	return ""
 }
 
-func (x *CreateDashboardRequest) GetName() string {
+func (x *CreateDashboardRequest) GetSpec() *v1.DashboardSpec {
 	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *CreateDashboardRequest) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
-func (x *CreateDashboardRequest) GetIsReadonly() bool {
-	if x != nil {
-		return x.IsReadonly
-	}
-	return false
-}
-
-func (x *CreateDashboardRequest) GetPersesJson() []byte {
-	if x != nil {
-		return x.PersesJson
+		return x.Spec
 	}
 	return nil
 }
@@ -255,11 +231,11 @@ func (x *GetDashboardResponse) GetDashboard() *v1.Dashboard {
 }
 
 type UpdateDashboardRequest struct {
-	state         protoimpl.MessageState             `protogen:"open.v1"`
-	EnvironmentId int64                              `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	ProjectName   string                             `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
-	Id            string                             `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Mutations     []*UpdateDashboardRequest_Mutation `protobuf:"bytes,2,rep,name=mutations,proto3" json:"mutations,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	ProjectName   string                 `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Spec          *v1.DashboardSpec      `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -315,9 +291,9 @@ func (x *UpdateDashboardRequest) GetId() string {
 	return ""
 }
 
-func (x *UpdateDashboardRequest) GetMutations() []*UpdateDashboardRequest_Mutation {
+func (x *UpdateDashboardRequest) GetSpec() *v1.DashboardSpec {
 	if x != nil {
-		return x.Mutations
+		return x.Spec
 	}
 	return nil
 }
@@ -590,136 +566,6 @@ func (x *ListDashboardResponse) GetItems() []*ListDashboardResponse_ListItem {
 	return nil
 }
 
-type UpdateDashboardRequest_Mutation struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Do:
-	//
-	//	*UpdateDashboardRequest_Mutation_SetName
-	//	*UpdateDashboardRequest_Mutation_SetDescription
-	//	*UpdateDashboardRequest_Mutation_SetReadonly
-	//	*UpdateDashboardRequest_Mutation_SetSourceFile
-	//	*UpdateDashboardRequest_Mutation_SetPersesJson
-	Do            isUpdateDashboardRequest_Mutation_Do `protobuf_oneof:"do"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateDashboardRequest_Mutation) Reset() {
-	*x = UpdateDashboardRequest_Mutation{}
-	mi := &file_svc_dashboard_v1_service_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateDashboardRequest_Mutation) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateDashboardRequest_Mutation) ProtoMessage() {}
-
-func (x *UpdateDashboardRequest_Mutation) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_dashboard_v1_service_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateDashboardRequest_Mutation.ProtoReflect.Descriptor instead.
-func (*UpdateDashboardRequest_Mutation) Descriptor() ([]byte, []int) {
-	return file_svc_dashboard_v1_service_proto_rawDescGZIP(), []int{4, 0}
-}
-
-func (x *UpdateDashboardRequest_Mutation) GetDo() isUpdateDashboardRequest_Mutation_Do {
-	if x != nil {
-		return x.Do
-	}
-	return nil
-}
-
-func (x *UpdateDashboardRequest_Mutation) GetSetName() string {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateDashboardRequest_Mutation_SetName); ok {
-			return x.SetName
-		}
-	}
-	return ""
-}
-
-func (x *UpdateDashboardRequest_Mutation) GetSetDescription() string {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateDashboardRequest_Mutation_SetDescription); ok {
-			return x.SetDescription
-		}
-	}
-	return ""
-}
-
-func (x *UpdateDashboardRequest_Mutation) GetSetReadonly() bool {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateDashboardRequest_Mutation_SetReadonly); ok {
-			return x.SetReadonly
-		}
-	}
-	return false
-}
-
-func (x *UpdateDashboardRequest_Mutation) GetSetSourceFile() string {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateDashboardRequest_Mutation_SetSourceFile); ok {
-			return x.SetSourceFile
-		}
-	}
-	return ""
-}
-
-func (x *UpdateDashboardRequest_Mutation) GetSetPersesJson() []byte {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateDashboardRequest_Mutation_SetPersesJson); ok {
-			return x.SetPersesJson
-		}
-	}
-	return nil
-}
-
-type isUpdateDashboardRequest_Mutation_Do interface {
-	isUpdateDashboardRequest_Mutation_Do()
-}
-
-type UpdateDashboardRequest_Mutation_SetName struct {
-	SetName string `protobuf:"bytes,1,opt,name=set_name,json=setName,proto3,oneof"`
-}
-
-type UpdateDashboardRequest_Mutation_SetDescription struct {
-	SetDescription string `protobuf:"bytes,2,opt,name=set_description,json=setDescription,proto3,oneof"`
-}
-
-type UpdateDashboardRequest_Mutation_SetReadonly struct {
-	SetReadonly bool `protobuf:"varint,3,opt,name=set_readonly,json=setReadonly,proto3,oneof"`
-}
-
-type UpdateDashboardRequest_Mutation_SetSourceFile struct {
-	SetSourceFile string `protobuf:"bytes,401,opt,name=set_source_file,json=setSourceFile,proto3,oneof"`
-}
-
-type UpdateDashboardRequest_Mutation_SetPersesJson struct {
-	SetPersesJson []byte `protobuf:"bytes,5,opt,name=set_perses_json,json=setPersesJson,proto3,oneof"`
-}
-
-func (*UpdateDashboardRequest_Mutation_SetName) isUpdateDashboardRequest_Mutation_Do() {}
-
-func (*UpdateDashboardRequest_Mutation_SetDescription) isUpdateDashboardRequest_Mutation_Do() {}
-
-func (*UpdateDashboardRequest_Mutation_SetReadonly) isUpdateDashboardRequest_Mutation_Do() {}
-
-func (*UpdateDashboardRequest_Mutation_SetSourceFile) isUpdateDashboardRequest_Mutation_Do() {}
-
-func (*UpdateDashboardRequest_Mutation_SetPersesJson) isUpdateDashboardRequest_Mutation_Do() {}
-
 type ListDashboardResponse_ListItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Dashboard     *v1.Dashboard          `protobuf:"bytes,1,opt,name=dashboard,proto3" json:"dashboard,omitempty"`
@@ -729,7 +575,7 @@ type ListDashboardResponse_ListItem struct {
 
 func (x *ListDashboardResponse_ListItem) Reset() {
 	*x = ListDashboardResponse_ListItem{}
-	mi := &file_svc_dashboard_v1_service_proto_msgTypes[11]
+	mi := &file_svc_dashboard_v1_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -741,7 +587,7 @@ func (x *ListDashboardResponse_ListItem) String() string {
 func (*ListDashboardResponse_ListItem) ProtoMessage() {}
 
 func (x *ListDashboardResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_dashboard_v1_service_proto_msgTypes[11]
+	mi := &file_svc_dashboard_v1_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -768,16 +614,11 @@ var File_svc_dashboard_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_dashboard_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1esvc/dashboard/v1/service.proto\x12\x10svc.dashboard.v1\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\"\xda\x01\n" +
+	"\x1esvc/dashboard/v1/service.proto\x12\x10svc.dashboard.v1\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\"\x8f\x01\n" +
 	"\x16CreateDashboardRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
-	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1f\n" +
-	"\vis_readonly\x18\x03 \x01(\bR\n" +
-	"isReadonly\x12\x1f\n" +
-	"\vperses_json\x18\x04 \x01(\fR\n" +
-	"persesJson\"L\n" +
+	"\fproject_name\x18f \x01(\tR\vprojectName\x12+\n" +
+	"\x04spec\x18\x01 \x01(\v2\x17.types.v1.DashboardSpecR\x04spec\"L\n" +
 	"\x17CreateDashboardResponse\x121\n" +
 	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"o\n" +
 	"\x13GetDashboardRequest\x12%\n" +
@@ -785,19 +626,12 @@ const file_svc_dashboard_v1_service_proto_rawDesc = "" +
 	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"I\n" +
 	"\x14GetDashboardResponse\x121\n" +
-	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"\x98\x03\n" +
+	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"\x9f\x01\n" +
 	"\x16UpdateDashboardRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
 	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12O\n" +
-	"\tmutations\x18\x02 \x03(\v21.svc.dashboard.v1.UpdateDashboardRequest.MutationR\tmutations\x1a\xd2\x01\n" +
-	"\bMutation\x12\x1b\n" +
-	"\bset_name\x18\x01 \x01(\tH\x00R\asetName\x12)\n" +
-	"\x0fset_description\x18\x02 \x01(\tH\x00R\x0esetDescription\x12#\n" +
-	"\fset_readonly\x18\x03 \x01(\bH\x00R\vsetReadonly\x12)\n" +
-	"\x0fset_source_file\x18\x91\x03 \x01(\tH\x00R\rsetSourceFile\x12(\n" +
-	"\x0fset_perses_json\x18\x05 \x01(\fH\x00R\rsetPersesJsonB\x04\n" +
-	"\x02do\"L\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12+\n" +
+	"\x04spec\x18\x02 \x01(\v2\x17.types.v1.DashboardSpecR\x04spec\"L\n" +
 	"\x17UpdateDashboardResponse\x121\n" +
 	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"r\n" +
 	"\x16DeleteDashboardRequest\x12%\n" +
@@ -836,47 +670,48 @@ func file_svc_dashboard_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_dashboard_v1_service_proto_rawDescData
 }
 
-var file_svc_dashboard_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_svc_dashboard_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_svc_dashboard_v1_service_proto_goTypes = []any{
-	(*CreateDashboardRequest)(nil),          // 0: svc.dashboard.v1.CreateDashboardRequest
-	(*CreateDashboardResponse)(nil),         // 1: svc.dashboard.v1.CreateDashboardResponse
-	(*GetDashboardRequest)(nil),             // 2: svc.dashboard.v1.GetDashboardRequest
-	(*GetDashboardResponse)(nil),            // 3: svc.dashboard.v1.GetDashboardResponse
-	(*UpdateDashboardRequest)(nil),          // 4: svc.dashboard.v1.UpdateDashboardRequest
-	(*UpdateDashboardResponse)(nil),         // 5: svc.dashboard.v1.UpdateDashboardResponse
-	(*DeleteDashboardRequest)(nil),          // 6: svc.dashboard.v1.DeleteDashboardRequest
-	(*DeleteDashboardResponse)(nil),         // 7: svc.dashboard.v1.DeleteDashboardResponse
-	(*ListDashboardRequest)(nil),            // 8: svc.dashboard.v1.ListDashboardRequest
-	(*ListDashboardResponse)(nil),           // 9: svc.dashboard.v1.ListDashboardResponse
-	(*UpdateDashboardRequest_Mutation)(nil), // 10: svc.dashboard.v1.UpdateDashboardRequest.Mutation
-	(*ListDashboardResponse_ListItem)(nil),  // 11: svc.dashboard.v1.ListDashboardResponse.ListItem
-	(*v1.Dashboard)(nil),                    // 12: types.v1.Dashboard
-	(*v1.Cursor)(nil),                       // 13: types.v1.Cursor
+	(*CreateDashboardRequest)(nil),         // 0: svc.dashboard.v1.CreateDashboardRequest
+	(*CreateDashboardResponse)(nil),        // 1: svc.dashboard.v1.CreateDashboardResponse
+	(*GetDashboardRequest)(nil),            // 2: svc.dashboard.v1.GetDashboardRequest
+	(*GetDashboardResponse)(nil),           // 3: svc.dashboard.v1.GetDashboardResponse
+	(*UpdateDashboardRequest)(nil),         // 4: svc.dashboard.v1.UpdateDashboardRequest
+	(*UpdateDashboardResponse)(nil),        // 5: svc.dashboard.v1.UpdateDashboardResponse
+	(*DeleteDashboardRequest)(nil),         // 6: svc.dashboard.v1.DeleteDashboardRequest
+	(*DeleteDashboardResponse)(nil),        // 7: svc.dashboard.v1.DeleteDashboardResponse
+	(*ListDashboardRequest)(nil),           // 8: svc.dashboard.v1.ListDashboardRequest
+	(*ListDashboardResponse)(nil),          // 9: svc.dashboard.v1.ListDashboardResponse
+	(*ListDashboardResponse_ListItem)(nil), // 10: svc.dashboard.v1.ListDashboardResponse.ListItem
+	(*v1.DashboardSpec)(nil),               // 11: types.v1.DashboardSpec
+	(*v1.Dashboard)(nil),                   // 12: types.v1.Dashboard
+	(*v1.Cursor)(nil),                      // 13: types.v1.Cursor
 }
 var file_svc_dashboard_v1_service_proto_depIdxs = []int32{
-	12, // 0: svc.dashboard.v1.CreateDashboardResponse.dashboard:type_name -> types.v1.Dashboard
-	12, // 1: svc.dashboard.v1.GetDashboardResponse.dashboard:type_name -> types.v1.Dashboard
-	10, // 2: svc.dashboard.v1.UpdateDashboardRequest.mutations:type_name -> svc.dashboard.v1.UpdateDashboardRequest.Mutation
-	12, // 3: svc.dashboard.v1.UpdateDashboardResponse.dashboard:type_name -> types.v1.Dashboard
-	13, // 4: svc.dashboard.v1.ListDashboardRequest.cursor:type_name -> types.v1.Cursor
-	13, // 5: svc.dashboard.v1.ListDashboardResponse.next:type_name -> types.v1.Cursor
-	11, // 6: svc.dashboard.v1.ListDashboardResponse.items:type_name -> svc.dashboard.v1.ListDashboardResponse.ListItem
-	12, // 7: svc.dashboard.v1.ListDashboardResponse.ListItem.dashboard:type_name -> types.v1.Dashboard
-	0,  // 8: svc.dashboard.v1.DashboardService.CreateDashboard:input_type -> svc.dashboard.v1.CreateDashboardRequest
-	2,  // 9: svc.dashboard.v1.DashboardService.GetDashboard:input_type -> svc.dashboard.v1.GetDashboardRequest
-	4,  // 10: svc.dashboard.v1.DashboardService.UpdateDashboard:input_type -> svc.dashboard.v1.UpdateDashboardRequest
-	6,  // 11: svc.dashboard.v1.DashboardService.DeleteDashboard:input_type -> svc.dashboard.v1.DeleteDashboardRequest
-	8,  // 12: svc.dashboard.v1.DashboardService.ListDashboard:input_type -> svc.dashboard.v1.ListDashboardRequest
-	1,  // 13: svc.dashboard.v1.DashboardService.CreateDashboard:output_type -> svc.dashboard.v1.CreateDashboardResponse
-	3,  // 14: svc.dashboard.v1.DashboardService.GetDashboard:output_type -> svc.dashboard.v1.GetDashboardResponse
-	5,  // 15: svc.dashboard.v1.DashboardService.UpdateDashboard:output_type -> svc.dashboard.v1.UpdateDashboardResponse
-	7,  // 16: svc.dashboard.v1.DashboardService.DeleteDashboard:output_type -> svc.dashboard.v1.DeleteDashboardResponse
-	9,  // 17: svc.dashboard.v1.DashboardService.ListDashboard:output_type -> svc.dashboard.v1.ListDashboardResponse
-	13, // [13:18] is the sub-list for method output_type
-	8,  // [8:13] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	11, // 0: svc.dashboard.v1.CreateDashboardRequest.spec:type_name -> types.v1.DashboardSpec
+	12, // 1: svc.dashboard.v1.CreateDashboardResponse.dashboard:type_name -> types.v1.Dashboard
+	12, // 2: svc.dashboard.v1.GetDashboardResponse.dashboard:type_name -> types.v1.Dashboard
+	11, // 3: svc.dashboard.v1.UpdateDashboardRequest.spec:type_name -> types.v1.DashboardSpec
+	12, // 4: svc.dashboard.v1.UpdateDashboardResponse.dashboard:type_name -> types.v1.Dashboard
+	13, // 5: svc.dashboard.v1.ListDashboardRequest.cursor:type_name -> types.v1.Cursor
+	13, // 6: svc.dashboard.v1.ListDashboardResponse.next:type_name -> types.v1.Cursor
+	10, // 7: svc.dashboard.v1.ListDashboardResponse.items:type_name -> svc.dashboard.v1.ListDashboardResponse.ListItem
+	12, // 8: svc.dashboard.v1.ListDashboardResponse.ListItem.dashboard:type_name -> types.v1.Dashboard
+	0,  // 9: svc.dashboard.v1.DashboardService.CreateDashboard:input_type -> svc.dashboard.v1.CreateDashboardRequest
+	2,  // 10: svc.dashboard.v1.DashboardService.GetDashboard:input_type -> svc.dashboard.v1.GetDashboardRequest
+	4,  // 11: svc.dashboard.v1.DashboardService.UpdateDashboard:input_type -> svc.dashboard.v1.UpdateDashboardRequest
+	6,  // 12: svc.dashboard.v1.DashboardService.DeleteDashboard:input_type -> svc.dashboard.v1.DeleteDashboardRequest
+	8,  // 13: svc.dashboard.v1.DashboardService.ListDashboard:input_type -> svc.dashboard.v1.ListDashboardRequest
+	1,  // 14: svc.dashboard.v1.DashboardService.CreateDashboard:output_type -> svc.dashboard.v1.CreateDashboardResponse
+	3,  // 15: svc.dashboard.v1.DashboardService.GetDashboard:output_type -> svc.dashboard.v1.GetDashboardResponse
+	5,  // 16: svc.dashboard.v1.DashboardService.UpdateDashboard:output_type -> svc.dashboard.v1.UpdateDashboardResponse
+	7,  // 17: svc.dashboard.v1.DashboardService.DeleteDashboard:output_type -> svc.dashboard.v1.DeleteDashboardResponse
+	9,  // 18: svc.dashboard.v1.DashboardService.ListDashboard:output_type -> svc.dashboard.v1.ListDashboardResponse
+	14, // [14:19] is the sub-list for method output_type
+	9,  // [9:14] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_svc_dashboard_v1_service_proto_init() }
@@ -884,20 +719,13 @@ func file_svc_dashboard_v1_service_proto_init() {
 	if File_svc_dashboard_v1_service_proto != nil {
 		return
 	}
-	file_svc_dashboard_v1_service_proto_msgTypes[10].OneofWrappers = []any{
-		(*UpdateDashboardRequest_Mutation_SetName)(nil),
-		(*UpdateDashboardRequest_Mutation_SetDescription)(nil),
-		(*UpdateDashboardRequest_Mutation_SetReadonly)(nil),
-		(*UpdateDashboardRequest_Mutation_SetSourceFile)(nil),
-		(*UpdateDashboardRequest_Mutation_SetPersesJson)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_dashboard_v1_service_proto_rawDesc), len(file_svc_dashboard_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
