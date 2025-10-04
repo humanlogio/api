@@ -379,13 +379,14 @@ func (x *FormatResponse) GetFormatted() string {
 }
 
 type QueryRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	Cursor        *v1.Cursor             `protobuf:"bytes,102,opt,name=cursor,proto3" json:"cursor,omitempty"`
-	Limit         int32                  `protobuf:"varint,103,opt,name=limit,proto3" json:"limit,omitempty"`
-	Query         *v1.Query              `protobuf:"bytes,2,opt,name=query,proto3" json:"query,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"open.v1"`
+	EnvironmentId            int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	Cursor                   *v1.Cursor             `protobuf:"bytes,102,opt,name=cursor,proto3" json:"cursor,omitempty"`
+	Limit                    int32                  `protobuf:"varint,103,opt,name=limit,proto3" json:"limit,omitempty"`
+	Query                    *v1.Query              `protobuf:"bytes,2,opt,name=query,proto3" json:"query,omitempty"`
+	IncludeDetailedProfiling *bool                  `protobuf:"varint,304,opt,name=include_detailed_profiling,json=includeDetailedProfiling,proto3,oneof" json:"include_detailed_profiling,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *QueryRequest) Reset() {
@@ -446,10 +447,18 @@ func (x *QueryRequest) GetQuery() *v1.Query {
 	return nil
 }
 
+func (x *QueryRequest) GetIncludeDetailedProfiling() bool {
+	if x != nil && x.IncludeDetailedProfiling != nil {
+		return *x.IncludeDetailedProfiling
+	}
+	return false
+}
+
 type QueryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Next          *v1.Cursor             `protobuf:"bytes,100,opt,name=next,proto3" json:"next,omitempty"`
 	Data          *v1.Data               `protobuf:"bytes,200,opt,name=data,proto3" json:"data,omitempty"`
+	Metrics       *v1.QueryMetrics       `protobuf:"bytes,300,opt,name=metrics,proto3" json:"metrics,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -494,6 +503,13 @@ func (x *QueryResponse) GetNext() *v1.Cursor {
 func (x *QueryResponse) GetData() *v1.Data {
 	if x != nil {
 		return x.Data
+	}
+	return nil
+}
+
+func (x *QueryResponse) GetMetrics() *v1.QueryMetrics {
+	if x != nil {
+		return x.Metrics
 	}
 	return nil
 }
@@ -829,7 +845,7 @@ var File_svc_query_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_query_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1asvc/query/v1/service.proto\x12\fsvc.query.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15types/v1/cursor.proto\x1a\x13types/v1/data.proto\x1a\x14types/v1/query.proto\x1a\x16types/v1/session.proto\x1a\x15types/v1/symbol.proto\x1a\x14types/v1/types.proto\"\xd8\x01\n" +
+	"\x1asvc/query/v1/service.proto\x12\fsvc.query.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15types/v1/cursor.proto\x1a\x13types/v1/data.proto\x1a\x14types/v1/query.proto\x1a\x1ctypes/v1/query_metrics.proto\x1a\x16types/v1/session.proto\x1a\x15types/v1/symbol.proto\x1a\x14types/v1/types.proto\"\xd8\x01\n" +
 	"\x16SummarizeEventsRequest\x12%\n" +
 	"\x0eenvironment_id\x18\x01 \x01(\x03R\renvironmentId\x123\n" +
 	"\x04from\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x04from\x88\x01\x01\x12/\n" +
@@ -858,15 +874,18 @@ const file_svc_query_v1_service_proto_rawDesc = "" +
 	"\x06parsed\x18\x02 \x01(\v2\x0f.types.v1.QueryH\x00R\x06parsedB\a\n" +
 	"\x05query\".\n" +
 	"\x0eFormatResponse\x12\x1c\n" +
-	"\tformatted\x18\x01 \x01(\tR\tformatted\"\x9c\x01\n" +
+	"\tformatted\x18\x01 \x01(\tR\tformatted\"\xff\x01\n" +
 	"\fQueryRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12(\n" +
 	"\x06cursor\x18f \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18g \x01(\x05R\x05limit\x12%\n" +
-	"\x05query\x18\x02 \x01(\v2\x0f.types.v1.QueryR\x05query\"Z\n" +
+	"\x05query\x18\x02 \x01(\v2\x0f.types.v1.QueryR\x05query\x12B\n" +
+	"\x1ainclude_detailed_profiling\x18\xb0\x02 \x01(\bH\x00R\x18includeDetailedProfiling\x88\x01\x01B\x1d\n" +
+	"\x1b_include_detailed_profiling\"\x8d\x01\n" +
 	"\rQueryResponse\x12$\n" +
 	"\x04next\x18d \x01(\v2\x10.types.v1.CursorR\x04next\x12#\n" +
-	"\x04data\x18\xc8\x01 \x01(\v2\x0e.types.v1.DataR\x04data\"\xca\x01\n" +
+	"\x04data\x18\xc8\x01 \x01(\v2\x0e.types.v1.DataR\x04data\x121\n" +
+	"\ametrics\x18\xac\x02 \x01(\v2\x16.types.v1.QueryMetricsR\ametrics\"\xca\x01\n" +
 	"\rStreamRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12%\n" +
 	"\x05query\x18\x02 \x01(\v2\x0f.types.v1.QueryR\x05query\x12%\n" +
@@ -926,7 +945,8 @@ var file_svc_query_v1_service_proto_goTypes = []any{
 	(*v1.DataStreamType)(nil),              // 17: types.v1.DataStreamType
 	(*v1.Cursor)(nil),                      // 18: types.v1.Cursor
 	(*v1.Data)(nil),                        // 19: types.v1.Data
-	(*v1.Symbol)(nil),                      // 20: types.v1.Symbol
+	(*v1.QueryMetrics)(nil),                // 20: types.v1.QueryMetrics
+	(*v1.Symbol)(nil),                      // 21: types.v1.Symbol
 }
 var file_svc_query_v1_service_proto_depIdxs = []int32{
 	14, // 0: svc.query.v1.SummarizeEventsRequest.from:type_name -> google.protobuf.Timestamp
@@ -940,31 +960,32 @@ var file_svc_query_v1_service_proto_depIdxs = []int32{
 	16, // 8: svc.query.v1.QueryRequest.query:type_name -> types.v1.Query
 	18, // 9: svc.query.v1.QueryResponse.next:type_name -> types.v1.Cursor
 	19, // 10: svc.query.v1.QueryResponse.data:type_name -> types.v1.Data
-	16, // 11: svc.query.v1.StreamRequest.query:type_name -> types.v1.Query
-	15, // 12: svc.query.v1.StreamRequest.max_batching_for:type_name -> google.protobuf.Duration
-	19, // 13: svc.query.v1.StreamResponse.data:type_name -> types.v1.Data
-	18, // 14: svc.query.v1.ListSymbolsRequest.cursor:type_name -> types.v1.Cursor
-	18, // 15: svc.query.v1.ListSymbolsResponse.next:type_name -> types.v1.Cursor
-	13, // 16: svc.query.v1.ListSymbolsResponse.items:type_name -> svc.query.v1.ListSymbolsResponse.ListItem
-	14, // 17: svc.query.v1.SummarizeEventsResponse.Bucket.ts:type_name -> google.protobuf.Timestamp
-	20, // 18: svc.query.v1.ListSymbolsResponse.ListItem.symbol:type_name -> types.v1.Symbol
-	0,  // 19: svc.query.v1.QueryService.SummarizeEvents:input_type -> svc.query.v1.SummarizeEventsRequest
-	2,  // 20: svc.query.v1.QueryService.Parse:input_type -> svc.query.v1.ParseRequest
-	4,  // 21: svc.query.v1.QueryService.Format:input_type -> svc.query.v1.FormatRequest
-	6,  // 22: svc.query.v1.QueryService.Query:input_type -> svc.query.v1.QueryRequest
-	8,  // 23: svc.query.v1.QueryService.Stream:input_type -> svc.query.v1.StreamRequest
-	10, // 24: svc.query.v1.QueryService.ListSymbols:input_type -> svc.query.v1.ListSymbolsRequest
-	1,  // 25: svc.query.v1.QueryService.SummarizeEvents:output_type -> svc.query.v1.SummarizeEventsResponse
-	3,  // 26: svc.query.v1.QueryService.Parse:output_type -> svc.query.v1.ParseResponse
-	5,  // 27: svc.query.v1.QueryService.Format:output_type -> svc.query.v1.FormatResponse
-	7,  // 28: svc.query.v1.QueryService.Query:output_type -> svc.query.v1.QueryResponse
-	9,  // 29: svc.query.v1.QueryService.Stream:output_type -> svc.query.v1.StreamResponse
-	11, // 30: svc.query.v1.QueryService.ListSymbols:output_type -> svc.query.v1.ListSymbolsResponse
-	25, // [25:31] is the sub-list for method output_type
-	19, // [19:25] is the sub-list for method input_type
-	19, // [19:19] is the sub-list for extension type_name
-	19, // [19:19] is the sub-list for extension extendee
-	0,  // [0:19] is the sub-list for field type_name
+	20, // 11: svc.query.v1.QueryResponse.metrics:type_name -> types.v1.QueryMetrics
+	16, // 12: svc.query.v1.StreamRequest.query:type_name -> types.v1.Query
+	15, // 13: svc.query.v1.StreamRequest.max_batching_for:type_name -> google.protobuf.Duration
+	19, // 14: svc.query.v1.StreamResponse.data:type_name -> types.v1.Data
+	18, // 15: svc.query.v1.ListSymbolsRequest.cursor:type_name -> types.v1.Cursor
+	18, // 16: svc.query.v1.ListSymbolsResponse.next:type_name -> types.v1.Cursor
+	13, // 17: svc.query.v1.ListSymbolsResponse.items:type_name -> svc.query.v1.ListSymbolsResponse.ListItem
+	14, // 18: svc.query.v1.SummarizeEventsResponse.Bucket.ts:type_name -> google.protobuf.Timestamp
+	21, // 19: svc.query.v1.ListSymbolsResponse.ListItem.symbol:type_name -> types.v1.Symbol
+	0,  // 20: svc.query.v1.QueryService.SummarizeEvents:input_type -> svc.query.v1.SummarizeEventsRequest
+	2,  // 21: svc.query.v1.QueryService.Parse:input_type -> svc.query.v1.ParseRequest
+	4,  // 22: svc.query.v1.QueryService.Format:input_type -> svc.query.v1.FormatRequest
+	6,  // 23: svc.query.v1.QueryService.Query:input_type -> svc.query.v1.QueryRequest
+	8,  // 24: svc.query.v1.QueryService.Stream:input_type -> svc.query.v1.StreamRequest
+	10, // 25: svc.query.v1.QueryService.ListSymbols:input_type -> svc.query.v1.ListSymbolsRequest
+	1,  // 26: svc.query.v1.QueryService.SummarizeEvents:output_type -> svc.query.v1.SummarizeEventsResponse
+	3,  // 27: svc.query.v1.QueryService.Parse:output_type -> svc.query.v1.ParseResponse
+	5,  // 28: svc.query.v1.QueryService.Format:output_type -> svc.query.v1.FormatResponse
+	7,  // 29: svc.query.v1.QueryService.Query:output_type -> svc.query.v1.QueryResponse
+	9,  // 30: svc.query.v1.QueryService.Stream:output_type -> svc.query.v1.StreamResponse
+	11, // 31: svc.query.v1.QueryService.ListSymbols:output_type -> svc.query.v1.ListSymbolsResponse
+	26, // [26:32] is the sub-list for method output_type
+	20, // [20:26] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_svc_query_v1_service_proto_init() }
@@ -979,6 +1000,7 @@ func file_svc_query_v1_service_proto_init() {
 		(*FormatRequest_Raw)(nil),
 		(*FormatRequest_Parsed)(nil),
 	}
+	file_svc_query_v1_service_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
