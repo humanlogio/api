@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package types.v1;
+
+import "google/protobuf/duration.proto";
+import "types/v1/types.proto";
+
+option go_package = "types/v1;typesv1";
+
+message QueryMetrics {
+  string query_text = 1;
+  string generated_sql = 2;
+
+  google.protobuf.Duration total_latency = 3;
+  int64 rows_returned = 4;
+  int64 rows_scanned = 5;
+  int64 bytes_returned = 6;
+  int64 bytes_scanned = 7;
+
+  message Detailed {
+    bytes execution_plan = 1;
+    google.protobuf.Duration cpu_time = 2;
+    int64 memory_peak_bytes = 3;
+  }
+
+  // Detailed metrics (only included if profiling enabled)
+  Detailed detailed = 8;
+}

@@ -7,6 +7,7 @@ import "google/protobuf/timestamp.proto";
 import "types/v1/cursor.proto";
 import "types/v1/data.proto";
 import "types/v1/query.proto";
+import "types/v1/query_metrics.proto";
 import "types/v1/session.proto";
 import "types/v1/symbol.proto";
 import "types/v1/types.proto";
@@ -76,11 +77,13 @@ message QueryRequest {
   types.v1.Cursor cursor = 102;
   int32 limit = 103;
   types.v1.Query query = 2;
+  optional bool include_detailed_profiling = 304;
 }
 
 message QueryResponse {
   types.v1.Cursor next = 100;
   types.v1.Data data = 200;
+  types.v1.QueryMetrics metrics = 300;
 }
 
 message StreamRequest {
