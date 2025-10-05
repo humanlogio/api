@@ -25,12 +25,11 @@ const (
 type QueryMetrics struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	QueryText     string                 `protobuf:"bytes,1,opt,name=query_text,json=queryText,proto3" json:"query_text,omitempty"`
-	GeneratedSql  string                 `protobuf:"bytes,2,opt,name=generated_sql,json=generatedSql,proto3" json:"generated_sql,omitempty"`
-	TotalLatency  *durationpb.Duration   `protobuf:"bytes,3,opt,name=total_latency,json=totalLatency,proto3" json:"total_latency,omitempty"`
-	RowsReturned  int64                  `protobuf:"varint,4,opt,name=rows_returned,json=rowsReturned,proto3" json:"rows_returned,omitempty"`
-	RowsScanned   int64                  `protobuf:"varint,5,opt,name=rows_scanned,json=rowsScanned,proto3" json:"rows_scanned,omitempty"`
-	BytesReturned int64                  `protobuf:"varint,6,opt,name=bytes_returned,json=bytesReturned,proto3" json:"bytes_returned,omitempty"`
-	BytesScanned  int64                  `protobuf:"varint,7,opt,name=bytes_scanned,json=bytesScanned,proto3" json:"bytes_scanned,omitempty"`
+	TotalLatency  *durationpb.Duration   `protobuf:"bytes,2,opt,name=total_latency,json=totalLatency,proto3" json:"total_latency,omitempty"`
+	RowsReturned  int64                  `protobuf:"varint,3,opt,name=rows_returned,json=rowsReturned,proto3" json:"rows_returned,omitempty"`
+	RowsScanned   int64                  `protobuf:"varint,4,opt,name=rows_scanned,json=rowsScanned,proto3" json:"rows_scanned,omitempty"`
+	BytesReturned int64                  `protobuf:"varint,5,opt,name=bytes_returned,json=bytesReturned,proto3" json:"bytes_returned,omitempty"`
+	BytesScanned  int64                  `protobuf:"varint,6,opt,name=bytes_scanned,json=bytesScanned,proto3" json:"bytes_scanned,omitempty"`
 	// Detailed metrics (only included if profiling enabled)
 	Detailed      *QueryMetrics_Detailed `protobuf:"bytes,8,opt,name=detailed,proto3" json:"detailed,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -70,13 +69,6 @@ func (*QueryMetrics) Descriptor() ([]byte, []int) {
 func (x *QueryMetrics) GetQueryText() string {
 	if x != nil {
 		return x.QueryText
-	}
-	return ""
-}
-
-func (x *QueryMetrics) GetGeneratedSql() string {
-	if x != nil {
-		return x.GeneratedSql
 	}
 	return ""
 }
@@ -187,16 +179,15 @@ var File_types_v1_query_metrics_proto protoreflect.FileDescriptor
 
 const file_types_v1_query_metrics_proto_rawDesc = "" +
 	"\n" +
-	"\x1ctypes/v1/query_metrics.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x14types/v1/types.proto\"\xf9\x03\n" +
+	"\x1ctypes/v1/query_metrics.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x14types/v1/types.proto\"\xd4\x03\n" +
 	"\fQueryMetrics\x12\x1d\n" +
 	"\n" +
-	"query_text\x18\x01 \x01(\tR\tqueryText\x12#\n" +
-	"\rgenerated_sql\x18\x02 \x01(\tR\fgeneratedSql\x12>\n" +
-	"\rtotal_latency\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\ftotalLatency\x12#\n" +
-	"\rrows_returned\x18\x04 \x01(\x03R\frowsReturned\x12!\n" +
-	"\frows_scanned\x18\x05 \x01(\x03R\vrowsScanned\x12%\n" +
-	"\x0ebytes_returned\x18\x06 \x01(\x03R\rbytesReturned\x12#\n" +
-	"\rbytes_scanned\x18\a \x01(\x03R\fbytesScanned\x12;\n" +
+	"query_text\x18\x01 \x01(\tR\tqueryText\x12>\n" +
+	"\rtotal_latency\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\ftotalLatency\x12#\n" +
+	"\rrows_returned\x18\x03 \x01(\x03R\frowsReturned\x12!\n" +
+	"\frows_scanned\x18\x04 \x01(\x03R\vrowsScanned\x12%\n" +
+	"\x0ebytes_returned\x18\x05 \x01(\x03R\rbytesReturned\x12#\n" +
+	"\rbytes_scanned\x18\x06 \x01(\x03R\fbytesScanned\x12;\n" +
 	"\bdetailed\x18\b \x01(\v2\x1f.types.v1.QueryMetrics.DetailedR\bdetailed\x1a\x93\x01\n" +
 	"\bDetailed\x12%\n" +
 	"\x0eexecution_plan\x18\x01 \x01(\fR\rexecutionPlan\x124\n" +

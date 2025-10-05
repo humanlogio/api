@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/query_metrics.proto.
  */
 export const file_types_v1_query_metrics: GenFile = /*@__PURE__*/
-  fileDesc("Chx0eXBlcy92MS9xdWVyeV9tZXRyaWNzLnByb3RvEgh0eXBlcy52MSLmAgoMUXVlcnlNZXRyaWNzEhIKCnF1ZXJ5X3RleHQYASABKAkSFQoNZ2VuZXJhdGVkX3NxbBgCIAEoCRIwCg10b3RhbF9sYXRlbmN5GAMgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEhUKDXJvd3NfcmV0dXJuZWQYBCABKAMSFAoMcm93c19zY2FubmVkGAUgASgDEhYKDmJ5dGVzX3JldHVybmVkGAYgASgDEhUKDWJ5dGVzX3NjYW5uZWQYByABKAMSMQoIZGV0YWlsZWQYCCABKAsyHy50eXBlcy52MS5RdWVyeU1ldHJpY3MuRGV0YWlsZWQaagoIRGV0YWlsZWQSFgoOZXhlY3V0aW9uX3BsYW4YASABKAwSKwoIY3B1X3RpbWUYAiABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24SGQoRbWVtb3J5X3BlYWtfYnl0ZXMYAyABKANCkQEKDGNvbS50eXBlcy52MUIRUXVlcnlNZXRyaWNzUHJvdG9QAVotZ2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby90eXBlcy92MTt0eXBlc3YxogIDVFhYqgIIVHlwZXMuVjHKAghUeXBlc1xWMeICFFR5cGVzXFYxXEdQQk1ldGFkYXRh6gIJVHlwZXM6OlYxYgZwcm90bzM", [file_google_protobuf_duration, file_types_v1_types]);
+  fileDesc("Chx0eXBlcy92MS9xdWVyeV9tZXRyaWNzLnByb3RvEgh0eXBlcy52MSLPAgoMUXVlcnlNZXRyaWNzEhIKCnF1ZXJ5X3RleHQYASABKAkSMAoNdG90YWxfbGF0ZW5jeRgCIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhIVCg1yb3dzX3JldHVybmVkGAMgASgDEhQKDHJvd3Nfc2Nhbm5lZBgEIAEoAxIWCg5ieXRlc19yZXR1cm5lZBgFIAEoAxIVCg1ieXRlc19zY2FubmVkGAYgASgDEjEKCGRldGFpbGVkGAggASgLMh8udHlwZXMudjEuUXVlcnlNZXRyaWNzLkRldGFpbGVkGmoKCERldGFpbGVkEhYKDmV4ZWN1dGlvbl9wbGFuGAEgASgMEisKCGNwdV90aW1lGAIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEhkKEW1lbW9yeV9wZWFrX2J5dGVzGAMgASgDQpEBCgxjb20udHlwZXMudjFCEVF1ZXJ5TWV0cmljc1Byb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_google_protobuf_duration, file_types_v1_types]);
 
 /**
  * @generated from message types.v1.QueryMetrics
@@ -25,32 +25,27 @@ export type QueryMetrics = Message<"types.v1.QueryMetrics"> & {
   queryText: string;
 
   /**
-   * @generated from field: string generated_sql = 2;
-   */
-  generatedSql: string;
-
-  /**
-   * @generated from field: google.protobuf.Duration total_latency = 3;
+   * @generated from field: google.protobuf.Duration total_latency = 2;
    */
   totalLatency?: Duration;
 
   /**
-   * @generated from field: int64 rows_returned = 4;
+   * @generated from field: int64 rows_returned = 3;
    */
   rowsReturned: bigint;
 
   /**
-   * @generated from field: int64 rows_scanned = 5;
+   * @generated from field: int64 rows_scanned = 4;
    */
   rowsScanned: bigint;
 
   /**
-   * @generated from field: int64 bytes_returned = 6;
+   * @generated from field: int64 bytes_returned = 5;
    */
   bytesReturned: bigint;
 
   /**
-   * @generated from field: int64 bytes_scanned = 7;
+   * @generated from field: int64 bytes_scanned = 6;
    */
   bytesScanned: bigint;
 
