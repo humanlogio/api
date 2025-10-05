@@ -8,21 +8,20 @@ import "types/v1/types.proto";
 option go_package = "types/v1;typesv1";
 
 message QueryMetrics {
-  string query_text = 1;
+  string query_id = 1;
+  string query_text = 2;
 
-  google.protobuf.Duration total_latency = 2;
+  google.protobuf.Duration total_latency = 3;
 
-  int64 rows_returned = 3;
-  int64 rows_scanned = 4;
-  int64 bytes_returned = 5;
-  int64 bytes_scanned = 6;
+  int64 rows_returned = 4;
+  int64 rows_scanned = 5;
+  optional int64 bytes_returned = 6;
+  optional int64 bytes_scanned = 7;
 
   message Detailed {
     bytes execution_plan = 1;
     google.protobuf.Duration cpu_time = 2;
     int64 memory_peak_bytes = 3;
   }
-
-  // Detailed metrics (only included if profiling enabled)
   Detailed detailed = 8;
 }

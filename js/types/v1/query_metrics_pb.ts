@@ -13,45 +13,48 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/query_metrics.proto.
  */
 export const file_types_v1_query_metrics: GenFile = /*@__PURE__*/
-  fileDesc("Chx0eXBlcy92MS9xdWVyeV9tZXRyaWNzLnByb3RvEgh0eXBlcy52MSLPAgoMUXVlcnlNZXRyaWNzEhIKCnF1ZXJ5X3RleHQYASABKAkSMAoNdG90YWxfbGF0ZW5jeRgCIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhIVCg1yb3dzX3JldHVybmVkGAMgASgDEhQKDHJvd3Nfc2Nhbm5lZBgEIAEoAxIWCg5ieXRlc19yZXR1cm5lZBgFIAEoAxIVCg1ieXRlc19zY2FubmVkGAYgASgDEjEKCGRldGFpbGVkGAggASgLMh8udHlwZXMudjEuUXVlcnlNZXRyaWNzLkRldGFpbGVkGmoKCERldGFpbGVkEhYKDmV4ZWN1dGlvbl9wbGFuGAEgASgMEisKCGNwdV90aW1lGAIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEhkKEW1lbW9yeV9wZWFrX2J5dGVzGAMgASgDQpEBCgxjb20udHlwZXMudjFCEVF1ZXJ5TWV0cmljc1Byb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_google_protobuf_duration, file_types_v1_types]);
+  fileDesc("Chx0eXBlcy92MS9xdWVyeV9tZXRyaWNzLnByb3RvEgh0eXBlcy52MSKQAwoMUXVlcnlNZXRyaWNzEhAKCHF1ZXJ5X2lkGAEgASgJEhIKCnF1ZXJ5X3RleHQYAiABKAkSMAoNdG90YWxfbGF0ZW5jeRgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhIVCg1yb3dzX3JldHVybmVkGAQgASgDEhQKDHJvd3Nfc2Nhbm5lZBgFIAEoAxIbCg5ieXRlc19yZXR1cm5lZBgGIAEoA0gAiAEBEhoKDWJ5dGVzX3NjYW5uZWQYByABKANIAYgBARIxCghkZXRhaWxlZBgIIAEoCzIfLnR5cGVzLnYxLlF1ZXJ5TWV0cmljcy5EZXRhaWxlZBpqCghEZXRhaWxlZBIWCg5leGVjdXRpb25fcGxhbhgBIAEoDBIrCghjcHVfdGltZRgCIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhIZChFtZW1vcnlfcGVha19ieXRlcxgDIAEoA0IRCg9fYnl0ZXNfcmV0dXJuZWRCEAoOX2J5dGVzX3NjYW5uZWRCkQEKDGNvbS50eXBlcy52MUIRUXVlcnlNZXRyaWNzUHJvdG9QAVotZ2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby90eXBlcy92MTt0eXBlc3YxogIDVFhYqgIIVHlwZXMuVjHKAghUeXBlc1xWMeICFFR5cGVzXFYxXEdQQk1ldGFkYXRh6gIJVHlwZXM6OlYxYgZwcm90bzM", [file_google_protobuf_duration, file_types_v1_types]);
 
 /**
  * @generated from message types.v1.QueryMetrics
  */
 export type QueryMetrics = Message<"types.v1.QueryMetrics"> & {
   /**
-   * @generated from field: string query_text = 1;
+   * @generated from field: string query_id = 1;
+   */
+  queryId: string;
+
+  /**
+   * @generated from field: string query_text = 2;
    */
   queryText: string;
 
   /**
-   * @generated from field: google.protobuf.Duration total_latency = 2;
+   * @generated from field: google.protobuf.Duration total_latency = 3;
    */
   totalLatency?: Duration;
 
   /**
-   * @generated from field: int64 rows_returned = 3;
+   * @generated from field: int64 rows_returned = 4;
    */
   rowsReturned: bigint;
 
   /**
-   * @generated from field: int64 rows_scanned = 4;
+   * @generated from field: int64 rows_scanned = 5;
    */
   rowsScanned: bigint;
 
   /**
-   * @generated from field: int64 bytes_returned = 5;
+   * @generated from field: optional int64 bytes_returned = 6;
    */
-  bytesReturned: bigint;
+  bytesReturned?: bigint;
 
   /**
-   * @generated from field: int64 bytes_scanned = 6;
+   * @generated from field: optional int64 bytes_scanned = 7;
    */
-  bytesScanned: bigint;
+  bytesScanned?: bigint;
 
   /**
-   * Detailed metrics (only included if profiling enabled)
-   *
    * @generated from field: types.v1.QueryMetrics.Detailed detailed = 8;
    */
   detailed?: QueryMetrics_Detailed;
