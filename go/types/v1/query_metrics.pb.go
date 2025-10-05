@@ -24,13 +24,13 @@ const (
 
 type QueryMetrics struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	QueryText     string                 `protobuf:"bytes,1,opt,name=query_text,json=queryText,proto3" json:"query_text,omitempty"`
-	TotalLatency  *durationpb.Duration   `protobuf:"bytes,2,opt,name=total_latency,json=totalLatency,proto3" json:"total_latency,omitempty"`
-	RowsReturned  int64                  `protobuf:"varint,3,opt,name=rows_returned,json=rowsReturned,proto3" json:"rows_returned,omitempty"`
-	RowsScanned   int64                  `protobuf:"varint,4,opt,name=rows_scanned,json=rowsScanned,proto3" json:"rows_scanned,omitempty"`
-	BytesReturned int64                  `protobuf:"varint,5,opt,name=bytes_returned,json=bytesReturned,proto3" json:"bytes_returned,omitempty"`
-	BytesScanned  int64                  `protobuf:"varint,6,opt,name=bytes_scanned,json=bytesScanned,proto3" json:"bytes_scanned,omitempty"`
-	// Detailed metrics (only included if profiling enabled)
+	QueryId       string                 `protobuf:"bytes,1,opt,name=query_id,json=queryId,proto3" json:"query_id,omitempty"`
+	QueryText     string                 `protobuf:"bytes,2,opt,name=query_text,json=queryText,proto3" json:"query_text,omitempty"`
+	TotalLatency  *durationpb.Duration   `protobuf:"bytes,3,opt,name=total_latency,json=totalLatency,proto3" json:"total_latency,omitempty"`
+	RowsReturned  int64                  `protobuf:"varint,4,opt,name=rows_returned,json=rowsReturned,proto3" json:"rows_returned,omitempty"`
+	RowsScanned   int64                  `protobuf:"varint,5,opt,name=rows_scanned,json=rowsScanned,proto3" json:"rows_scanned,omitempty"`
+	BytesReturned *int64                 `protobuf:"varint,6,opt,name=bytes_returned,json=bytesReturned,proto3,oneof" json:"bytes_returned,omitempty"`
+	BytesScanned  *int64                 `protobuf:"varint,7,opt,name=bytes_scanned,json=bytesScanned,proto3,oneof" json:"bytes_scanned,omitempty"`
 	Detailed      *QueryMetrics_Detailed `protobuf:"bytes,8,opt,name=detailed,proto3" json:"detailed,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -66,6 +66,13 @@ func (*QueryMetrics) Descriptor() ([]byte, []int) {
 	return file_types_v1_query_metrics_proto_rawDescGZIP(), []int{0}
 }
 
+func (x *QueryMetrics) GetQueryId() string {
+	if x != nil {
+		return x.QueryId
+	}
+	return ""
+}
+
 func (x *QueryMetrics) GetQueryText() string {
 	if x != nil {
 		return x.QueryText
@@ -95,15 +102,15 @@ func (x *QueryMetrics) GetRowsScanned() int64 {
 }
 
 func (x *QueryMetrics) GetBytesReturned() int64 {
-	if x != nil {
-		return x.BytesReturned
+	if x != nil && x.BytesReturned != nil {
+		return *x.BytesReturned
 	}
 	return 0
 }
 
 func (x *QueryMetrics) GetBytesScanned() int64 {
-	if x != nil {
-		return x.BytesScanned
+	if x != nil && x.BytesScanned != nil {
+		return *x.BytesScanned
 	}
 	return 0
 }
@@ -179,20 +186,23 @@ var File_types_v1_query_metrics_proto protoreflect.FileDescriptor
 
 const file_types_v1_query_metrics_proto_rawDesc = "" +
 	"\n" +
-	"\x1ctypes/v1/query_metrics.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x14types/v1/types.proto\"\xd4\x03\n" +
-	"\fQueryMetrics\x12\x1d\n" +
+	"\x1ctypes/v1/query_metrics.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x14types/v1/types.proto\"\x9e\x04\n" +
+	"\fQueryMetrics\x12\x19\n" +
+	"\bquery_id\x18\x01 \x01(\tR\aqueryId\x12\x1d\n" +
 	"\n" +
-	"query_text\x18\x01 \x01(\tR\tqueryText\x12>\n" +
-	"\rtotal_latency\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\ftotalLatency\x12#\n" +
-	"\rrows_returned\x18\x03 \x01(\x03R\frowsReturned\x12!\n" +
-	"\frows_scanned\x18\x04 \x01(\x03R\vrowsScanned\x12%\n" +
-	"\x0ebytes_returned\x18\x05 \x01(\x03R\rbytesReturned\x12#\n" +
-	"\rbytes_scanned\x18\x06 \x01(\x03R\fbytesScanned\x12;\n" +
+	"query_text\x18\x02 \x01(\tR\tqueryText\x12>\n" +
+	"\rtotal_latency\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\ftotalLatency\x12#\n" +
+	"\rrows_returned\x18\x04 \x01(\x03R\frowsReturned\x12!\n" +
+	"\frows_scanned\x18\x05 \x01(\x03R\vrowsScanned\x12*\n" +
+	"\x0ebytes_returned\x18\x06 \x01(\x03H\x00R\rbytesReturned\x88\x01\x01\x12(\n" +
+	"\rbytes_scanned\x18\a \x01(\x03H\x01R\fbytesScanned\x88\x01\x01\x12;\n" +
 	"\bdetailed\x18\b \x01(\v2\x1f.types.v1.QueryMetrics.DetailedR\bdetailed\x1a\x93\x01\n" +
 	"\bDetailed\x12%\n" +
 	"\x0eexecution_plan\x18\x01 \x01(\fR\rexecutionPlan\x124\n" +
 	"\bcpu_time\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\acpuTime\x12*\n" +
-	"\x11memory_peak_bytes\x18\x03 \x01(\x03R\x0fmemoryPeakBytesB\x91\x01\n" +
+	"\x11memory_peak_bytes\x18\x03 \x01(\x03R\x0fmemoryPeakBytesB\x11\n" +
+	"\x0f_bytes_returnedB\x10\n" +
+	"\x0e_bytes_scannedB\x91\x01\n" +
 	"\fcom.types.v1B\x11QueryMetricsProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
 var (
@@ -230,6 +240,7 @@ func file_types_v1_query_metrics_proto_init() {
 		return
 	}
 	file_types_v1_types_proto_init()
+	file_types_v1_query_metrics_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
