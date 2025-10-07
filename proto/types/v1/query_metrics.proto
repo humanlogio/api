@@ -11,6 +11,9 @@ message QueryMetrics {
   string query_id = 1;
   string query_text = 2;
 
+  google.protobuf.Duration query_sent_latency = 300;
+  google.protobuf.Duration first_result_latency = 301;
+  google.protobuf.Duration final_result_latency = 302;
   google.protobuf.Duration total_latency = 3;
 
   int64 rows_returned = 4;

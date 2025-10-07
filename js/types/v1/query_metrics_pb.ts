@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/query_metrics.proto.
  */
 export const file_types_v1_query_metrics: GenFile = /*@__PURE__*/
-  fileDesc("Chx0eXBlcy92MS9xdWVyeV9tZXRyaWNzLnByb3RvEgh0eXBlcy52MSKQAwoMUXVlcnlNZXRyaWNzEhAKCHF1ZXJ5X2lkGAEgASgJEhIKCnF1ZXJ5X3RleHQYAiABKAkSMAoNdG90YWxfbGF0ZW5jeRgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhIVCg1yb3dzX3JldHVybmVkGAQgASgDEhQKDHJvd3Nfc2Nhbm5lZBgFIAEoAxIbCg5ieXRlc19yZXR1cm5lZBgGIAEoA0gAiAEBEhoKDWJ5dGVzX3NjYW5uZWQYByABKANIAYgBARIxCghkZXRhaWxlZBgIIAEoCzIfLnR5cGVzLnYxLlF1ZXJ5TWV0cmljcy5EZXRhaWxlZBpqCghEZXRhaWxlZBIWCg5leGVjdXRpb25fcGxhbhgBIAEoDBIrCghjcHVfdGltZRgCIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhIZChFtZW1vcnlfcGVha19ieXRlcxgDIAEoA0IRCg9fYnl0ZXNfcmV0dXJuZWRCEAoOX2J5dGVzX3NjYW5uZWRCkQEKDGNvbS50eXBlcy52MUIRUXVlcnlNZXRyaWNzUHJvdG9QAVotZ2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby90eXBlcy92MTt0eXBlc3YxogIDVFhYqgIIVHlwZXMuVjHKAghUeXBlc1xWMeICFFR5cGVzXFYxXEdQQk1ldGFkYXRh6gIJVHlwZXM6OlYxYgZwcm90bzM", [file_google_protobuf_duration, file_types_v1_types]);
+  fileDesc("Chx0eXBlcy92MS9xdWVyeV9tZXRyaWNzLnByb3RvEgh0eXBlcy52MSK8BAoMUXVlcnlNZXRyaWNzEhAKCHF1ZXJ5X2lkGAEgASgJEhIKCnF1ZXJ5X3RleHQYAiABKAkSNgoScXVlcnlfc2VudF9sYXRlbmN5GKwCIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhI4ChRmaXJzdF9yZXN1bHRfbGF0ZW5jeRitAiABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24SOAoUZmluYWxfcmVzdWx0X2xhdGVuY3kYrgIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEjAKDXRvdGFsX2xhdGVuY3kYAyABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24SFQoNcm93c19yZXR1cm5lZBgEIAEoAxIUCgxyb3dzX3NjYW5uZWQYBSABKAMSGwoOYnl0ZXNfcmV0dXJuZWQYBiABKANIAIgBARIaCg1ieXRlc19zY2FubmVkGAcgASgDSAGIAQESMQoIZGV0YWlsZWQYCCABKAsyHy50eXBlcy52MS5RdWVyeU1ldHJpY3MuRGV0YWlsZWQaagoIRGV0YWlsZWQSFgoOZXhlY3V0aW9uX3BsYW4YASABKAwSKwoIY3B1X3RpbWUYAiABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24SGQoRbWVtb3J5X3BlYWtfYnl0ZXMYAyABKANCEQoPX2J5dGVzX3JldHVybmVkQhAKDl9ieXRlc19zY2FubmVkQpEBCgxjb20udHlwZXMudjFCEVF1ZXJ5TWV0cmljc1Byb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_google_protobuf_duration, file_types_v1_types]);
 
 /**
  * @generated from message types.v1.QueryMetrics
@@ -28,6 +28,21 @@ export type QueryMetrics = Message<"types.v1.QueryMetrics"> & {
    * @generated from field: string query_text = 2;
    */
   queryText: string;
+
+  /**
+   * @generated from field: google.protobuf.Duration query_sent_latency = 300;
+   */
+  querySentLatency?: Duration;
+
+  /**
+   * @generated from field: google.protobuf.Duration first_result_latency = 301;
+   */
+  firstResultLatency?: Duration;
+
+  /**
+   * @generated from field: google.protobuf.Duration final_result_latency = 302;
+   */
+  finalResultLatency?: Duration;
 
   /**
    * @generated from field: google.protobuf.Duration total_latency = 3;
