@@ -23,20 +23,31 @@ const (
 )
 
 type QueryMetrics struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	QueryId            string                 `protobuf:"bytes,1,opt,name=query_id,json=queryId,proto3" json:"query_id,omitempty"`
-	QueryText          string                 `protobuf:"bytes,2,opt,name=query_text,json=queryText,proto3" json:"query_text,omitempty"`
-	QuerySentLatency   *durationpb.Duration   `protobuf:"bytes,300,opt,name=query_sent_latency,json=querySentLatency,proto3" json:"query_sent_latency,omitempty"`
-	FirstResultLatency *durationpb.Duration   `protobuf:"bytes,301,opt,name=first_result_latency,json=firstResultLatency,proto3" json:"first_result_latency,omitempty"`
-	FinalResultLatency *durationpb.Duration   `protobuf:"bytes,302,opt,name=final_result_latency,json=finalResultLatency,proto3" json:"final_result_latency,omitempty"`
-	TotalLatency       *durationpb.Duration   `protobuf:"bytes,3,opt,name=total_latency,json=totalLatency,proto3" json:"total_latency,omitempty"`
-	RowsReturned       int64                  `protobuf:"varint,4,opt,name=rows_returned,json=rowsReturned,proto3" json:"rows_returned,omitempty"`
-	RowsScanned        int64                  `protobuf:"varint,5,opt,name=rows_scanned,json=rowsScanned,proto3" json:"rows_scanned,omitempty"`
-	BytesReturned      *int64                 `protobuf:"varint,6,opt,name=bytes_returned,json=bytesReturned,proto3,oneof" json:"bytes_returned,omitempty"`
-	BytesScanned       *int64                 `protobuf:"varint,7,opt,name=bytes_scanned,json=bytesScanned,proto3,oneof" json:"bytes_scanned,omitempty"`
-	Detailed           *QueryMetrics_Detailed `protobuf:"bytes,8,opt,name=detailed,proto3" json:"detailed,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	QueryId   string                 `protobuf:"bytes,1,opt,name=query_id,json=queryId,proto3" json:"query_id,omitempty"`
+	QueryText string                 `protobuf:"bytes,2,opt,name=query_text,json=queryText,proto3" json:"query_text,omitempty"`
+	// Time from query start to query returning. Measures query submission overhead
+	// (network round-trip, connection setup).
+	QuerySentLatency *durationpb.Duration `protobuf:"bytes,300,opt,name=query_sent_latency,json=querySentLatency,proto3" json:"query_sent_latency,omitempty"`
+	// Time from query start to first row ready. Also known as "Time to First Row"
+	// (TTFR) or "Time to First Byte" (TTFB). Measures query execution latency on
+	// server.
+	FirstResultLatency *durationpb.Duration `protobuf:"bytes,301,opt,name=first_result_latency,json=firstResultLatency,proto3" json:"first_result_latency,omitempty"`
+	// Wall-clock time from first row to last row. Measures result fetching
+	// duration (not cumulative time spent). Calculated as
+	// `lastFetchTime - firstFetchTime`, so include serialization and
+	// row-processing overhead.
+	FinalResultLatency *durationpb.Duration `protobuf:"bytes,302,opt,name=final_result_latency,json=finalResultLatency,proto3" json:"final_result_latency,omitempty"`
+	// Full end-to-end time from query start to close. Total duration
+	// during which the server processed the request.
+	TotalLatency  *durationpb.Duration   `protobuf:"bytes,3,opt,name=total_latency,json=totalLatency,proto3" json:"total_latency,omitempty"`
+	RowsReturned  int64                  `protobuf:"varint,4,opt,name=rows_returned,json=rowsReturned,proto3" json:"rows_returned,omitempty"`
+	RowsScanned   int64                  `protobuf:"varint,5,opt,name=rows_scanned,json=rowsScanned,proto3" json:"rows_scanned,omitempty"`
+	BytesReturned *int64                 `protobuf:"varint,6,opt,name=bytes_returned,json=bytesReturned,proto3,oneof" json:"bytes_returned,omitempty"`
+	BytesScanned  *int64                 `protobuf:"varint,7,opt,name=bytes_scanned,json=bytesScanned,proto3,oneof" json:"bytes_scanned,omitempty"`
+	Detailed      *QueryMetrics_Detailed `protobuf:"bytes,8,opt,name=detailed,proto3" json:"detailed,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *QueryMetrics) Reset() {
