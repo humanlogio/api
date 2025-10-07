@@ -30,21 +30,36 @@ export type QueryMetrics = Message<"types.v1.QueryMetrics"> & {
   queryText: string;
 
   /**
+   * Time from query start to query returning. Measures query submission overhead
+   * (network round-trip, connection setup).
+   *
    * @generated from field: google.protobuf.Duration query_sent_latency = 300;
    */
   querySentLatency?: Duration;
 
   /**
+   * Time from query start to first row ready. Also known as "Time to First Row"
+   * (TTFR) or "Time to First Byte" (TTFB). Measures query execution latency on
+   * server.
+   *
    * @generated from field: google.protobuf.Duration first_result_latency = 301;
    */
   firstResultLatency?: Duration;
 
   /**
+   * Wall-clock time from first row to last row. Measures result fetching
+   * duration (not cumulative time spent). Calculated as
+   * `lastFetchTime - firstFetchTime`, so include serialization and
+   * row-processing overhead.
+   *
    * @generated from field: google.protobuf.Duration final_result_latency = 302;
    */
   finalResultLatency?: Duration;
 
   /**
+   * Full end-to-end time from query start to close. Total duration
+   * during which the server processed the request.
+   *
    * @generated from field: google.protobuf.Duration total_latency = 3;
    */
   totalLatency?: Duration;
