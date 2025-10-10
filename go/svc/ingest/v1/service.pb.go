@@ -7,6 +7,7 @@
 package ingestv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -220,16 +221,16 @@ var File_svc_ingest_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_ingest_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1bsvc/ingest/v1/service.proto\x12\rsvc.ingest.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1btypes/v1/otel_logging.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\"\x89\x01\n" +
-	"\rIngestRequest\x12.\n" +
-	"\bresource\x18\x01 \x01(\v2\x12.types.v1.ResourceR\bresource\x12%\n" +
-	"\x05scope\x18\x02 \x01(\v2\x0f.types.v1.ScopeR\x05scope\x12!\n" +
-	"\x04logs\x18\x03 \x03(\v2\r.types.v1.LogR\x04logs\"\x10\n" +
-	"\x0eIngestResponse\"\x8f\x01\n" +
-	"\x13IngestStreamRequest\x12.\n" +
-	"\bresource\x18\x01 \x01(\v2\x12.types.v1.ResourceR\bresource\x12%\n" +
-	"\x05scope\x18\x02 \x01(\v2\x0f.types.v1.ScopeR\x05scope\x12!\n" +
-	"\x04logs\x18\x03 \x03(\v2\r.types.v1.LogR\x04logs\"\x16\n" +
+	"\x1bsvc/ingest/v1/service.proto\x12\rsvc.ingest.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1btypes/v1/otel_logging.proto\x1a\x1ctypes/v1/otel_resource.proto\x1a\x19types/v1/otel_scope.proto\"\xa1\x01\n" +
+	"\rIngestRequest\x126\n" +
+	"\bresource\x18\x01 \x01(\v2\x12.types.v1.ResourceB\x06\xbaH\x03\xc8\x01\x01R\bresource\x12-\n" +
+	"\x05scope\x18\x02 \x01(\v2\x0f.types.v1.ScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12)\n" +
+	"\x04logs\x18\x03 \x03(\v2\r.types.v1.LogB\x06\xbaH\x03\xc8\x01\x01R\x04logs\"\x10\n" +
+	"\x0eIngestResponse\"\xa7\x01\n" +
+	"\x13IngestStreamRequest\x126\n" +
+	"\bresource\x18\x01 \x01(\v2\x12.types.v1.ResourceB\x06\xbaH\x03\xc8\x01\x01R\bresource\x12-\n" +
+	"\x05scope\x18\x02 \x01(\v2\x0f.types.v1.ScopeB\x06\xbaH\x03\xc8\x01\x01R\x05scope\x12)\n" +
+	"\x04logs\x18\x03 \x03(\v2\r.types.v1.LogB\x06\xbaH\x03\xc8\x01\x01R\x04logs\"\x16\n" +
 	"\x14IngestStreamResponse2\xb1\x01\n" +
 	"\rIngestService\x12E\n" +
 	"\x06Ingest\x12\x1c.svc.ingest.v1.IngestRequest\x1a\x1d.svc.ingest.v1.IngestResponse\x12Y\n" +

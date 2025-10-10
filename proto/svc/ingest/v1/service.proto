@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.ingest.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/duration.proto";
 import "types/v1/otel_logging.proto";
 import "types/v1/otel_resource.proto";
@@ -15,18 +16,18 @@ service IngestService {
 }
 
 message IngestRequest {
-  types.v1.Resource resource = 1;
-  types.v1.Scope scope = 2;
-  repeated types.v1.Log logs = 3;
+  types.v1.Resource resource = 1 [(buf.validate.field).required = true];
+  types.v1.Scope scope = 2 [(buf.validate.field).required = true];
+  repeated types.v1.Log logs = 3 [(buf.validate.field).required = true];
 }
 
 message IngestResponse {}
 
 message IngestStreamRequest {
   // only evaluated on the first message
-  types.v1.Resource resource = 1;
-  types.v1.Scope scope = 2;
-  repeated types.v1.Log logs = 3;
+  types.v1.Resource resource = 1 [(buf.validate.field).required = true];
+  types.v1.Scope scope = 2 [(buf.validate.field).required = true];
+  repeated types.v1.Log logs = 3 [(buf.validate.field).required = true];
 }
 
 message IngestStreamResponse {}

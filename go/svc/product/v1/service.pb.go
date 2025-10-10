@@ -7,6 +7,7 @@
 package productv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -303,9 +304,9 @@ var File_svc_product_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_product_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1csvc/product/v1/service.proto\x12\x0esvc.product.v1\x1a\x15types/v1/cursor.proto\x1a\x14types/v1/price.proto\x1a\x16types/v1/product.proto\"0\n" +
-	"\x11GetProductRequest\x12\x1b\n" +
-	"\tstripe_id\x18\x01 \x01(\tR\bstripeId\"j\n" +
+	"\x1csvc/product/v1/service.proto\x12\x0esvc.product.v1\x1a\x1bbuf/validate/validate.proto\x1a\x15types/v1/cursor.proto\x1a\x14types/v1/price.proto\x1a\x16types/v1/product.proto\"8\n" +
+	"\x11GetProductRequest\x12#\n" +
+	"\tstripe_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\bstripeId\"j\n" +
 	"\x12GetProductResponse\x12+\n" +
 	"\aproduct\x18\x01 \x01(\v2\x11.types.v1.ProductR\aproduct\x12'\n" +
 	"\x06prices\x18\x02 \x03(\v2\x0f.types.v1.PriceR\x06prices\"\xaf\x01\n" +

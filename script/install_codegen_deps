@@ -15,7 +15,7 @@ function main() {
         @bufbuild/protovalidate@^0.8.0
 
     # dev-time generators / tools
-    npm i -D @bufbuild/buf@latest \
+    npm i -D @bufbuild/buf@^1.58.0 \
             @bufbuild/protoc-gen-es@^2.7.0 \
             @connectrpc/protoc-gen-connect-query@^2.1.1
 

@@ -36,8 +36,8 @@ service OrganizationService {
 
 message CreateEnvironmentRequest {
   message Stripe {
-    string confirmation_token = 1;
-    string price_id = 2;
+    string confirmation_token = 1 [(buf.validate.field).required = true];
+    string price_id = 2 [(buf.validate.field).required = true];
   }
 
   string environment_name = 1 [
@@ -46,6 +46,7 @@ message CreateEnvironmentRequest {
     (buf.validate.field).string.pattern = "^[a-zA-Z0-9][a-zA-Z0-9-]+$"
   ];
   oneof payment {
+    option (buf.validate.oneof).required = true;
     Stripe stripe = 201;
   }
 }
@@ -64,6 +65,7 @@ message CreateEnvironmentResponse {
 
 message GetEnvironmentRequest {
   oneof by {
+    option (buf.validate.oneof).required = true;
     int64 id = 1;
     string name = 2;
   }
@@ -102,14 +104,14 @@ message ListUserResponse {
 }
 
 message InviteUserRequest {
-  string user_email = 1;
+  string user_email = 1 [(buf.validate.field).required = true];
 }
 message InviteUserResponse {
   types.v1.Invitation invitation = 1;
 }
 
 message RevokeUserInvitationRequest {
-  int64 invite_id = 1;
+  int64 invite_id = 1 [(buf.validate.field).required = true];
 }
 message RevokeUserInvitationResponse {
   types.v1.Invitation invitation = 1;
@@ -129,11 +131,12 @@ message ListUserInvitationResponse {
 
 message CreateAddonSubscriptionRequest {
   message Stripe {
-    string confirmation_token = 1;
-    string price_id = 2;
+    string confirmation_token = 1 [(buf.validate.field).required = true];
+    string price_id = 2 [(buf.validate.field).required = true];
   }
 
   oneof payment {
+    option (buf.validate.oneof).required = true;
     Stripe stripe = 201;
   }
 }
@@ -165,7 +168,7 @@ message RemoveAddonSubscriptionRequest {
     string comment = 1;
     string feedback = 2;
   }
-  types.v1.Product product = 1;
+  types.v1.Product product = 1 [(buf.validate.field).required = true];
   optional Reason cancel_reason = 2;
 }
 

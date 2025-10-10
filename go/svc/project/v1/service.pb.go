@@ -7,6 +7,7 @@
 package projectv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -678,30 +679,30 @@ var File_svc_project_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_project_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1csvc/project/v1/service.proto\x12\x0esvc.project.v1\x1a\x14types/v1/alert.proto\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\x1a\x16types/v1/project.proto\"h\n" +
+	"\x1csvc/project/v1/service.proto\x12\x0esvc.project.v1\x1a\x1bbuf/validate/validate.proto\x1a\x14types/v1/alert.proto\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\x1a\x16types/v1/project.proto\"p\n" +
 	"\x14CreateProjectRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
-	"\x04spec\x18\x01 \x01(\v2\x15.types.v1.ProjectSpecR\x04spec\"D\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x121\n" +
+	"\x04spec\x18\x01 \x01(\v2\x15.types.v1.ProjectSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"D\n" +
 	"\x15CreateProjectResponse\x12+\n" +
-	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"N\n" +
+	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"V\n" +
 	"\x11GetProjectRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"\xaf\x01\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"\xaf\x01\n" +
 	"\x12GetProjectResponse\x12+\n" +
 	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\x123\n" +
 	"\n" +
 	"dashboards\x18\x02 \x03(\v2\x13.types.v1.DashboardR\n" +
 	"dashboards\x127\n" +
-	"\falert_groups\x18\x03 \x03(\v2\x14.types.v1.AlertGroupR\valertGroups\"|\n" +
+	"\falert_groups\x18\x03 \x03(\v2\x14.types.v1.AlertGroupR\valertGroups\"\x8c\x01\n" +
 	"\x14UpdateProjectRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12)\n" +
-	"\x04spec\x18\x02 \x01(\v2\x15.types.v1.ProjectSpecR\x04spec\"D\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\x121\n" +
+	"\x04spec\x18\x02 \x01(\v2\x15.types.v1.ProjectSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"D\n" +
 	"\x15UpdateProjectResponse\x12+\n" +
-	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"Q\n" +
+	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"Y\n" +
 	"\x14DeleteProjectRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"\x17\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"\x17\n" +
 	"\x15DeleteProjectResponse\"{\n" +
 	"\x12ListProjectRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12(\n" +
@@ -711,10 +712,10 @@ const file_svc_project_v1_service_proto_rawDesc = "" +
 	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12B\n" +
 	"\x05items\x18\x02 \x03(\v2,.svc.project.v1.ListProjectResponse.ListItemR\x05items\x1a7\n" +
 	"\bListItem\x12+\n" +
-	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"O\n" +
+	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"W\n" +
 	"\x12SyncProjectRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"B\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"B\n" +
 	"\x13SyncProjectResponse\x12+\n" +
 	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject2\xaf\x04\n" +
 	"\x0eProjectService\x12\\\n" +
