@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.localhost.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/timestamp.proto";
 import "types/v1/database.proto";
 import "types/v1/localhost_config.proto";
@@ -67,7 +68,7 @@ message GetConfigResponse {
 }
 
 message SetConfigRequest {
-  types.v1.LocalhostConfig config = 1;
+  types.v1.LocalhostConfig config = 1 [(buf.validate.field).required = true];
 }
 message SetConfigResponse {}
 

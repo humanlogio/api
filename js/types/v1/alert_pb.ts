@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/alert.proto.
  */
 export const file_types_v1_alert: GenFile = /*@__PURE__*/
-  fileDesc("ChR0eXBlcy92MS9hbGVydC5wcm90bxIIdHlwZXMudjEiiAEKCkFsZXJ0R3JvdXASJgoEbWV0YRgBIAEoCzIYLnR5cGVzLnYxLkFsZXJ0R3JvdXBNZXRhEiYKBHNwZWMYAiABKAsyGC50eXBlcy52MS5BbGVydEdyb3VwU3BlYxIqCgZzdGF0dXMYAyABKAsyGi50eXBlcy52MS5BbGVydEdyb3VwU3RhdHVzIhwKDkFsZXJ0R3JvdXBNZXRhEgoKAmlkGAEgASgJIs4BCg5BbGVydEdyb3VwU3BlYxIMCgRuYW1lGAEgASgJEisKCGludGVydmFsGAIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEi8KDHF1ZXJ5X29mZnNldBgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhINCgVsaW1pdBgEIAEoBRIiCgVydWxlcxgFIAMoCzITLnR5cGVzLnYxLkFsZXJ0UnVsZRIdCgZsYWJlbHMYBiABKAsyDS50eXBlcy52MS5PYmoiggEKEEFsZXJ0R3JvdXBTdGF0dXMSLgoKY3JlYXRlZF9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDgoGZXJyb3JzGAMgAygJItcBCglBbGVydFJ1bGUSDAoEbmFtZRgBIAEoCRIdCgRleHByGAIgASgLMg8udHlwZXMudjEuUXVlcnkSHQoGbGFiZWxzGAMgASgLMg0udHlwZXMudjEuT2JqEiIKC2Fubm90YXRpb25zGAQgASgLMg0udHlwZXMudjEuT2JqEiYKA2ZvchgzIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhIyCg9rZWVwX2ZpcmluZ19mb3IYNCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24iDgoMQWxlcnRVbmtub3duIgkKB0FsZXJ0T2siDgoMQWxlcnRQZW5kaW5nIiwKC0FsZXJ0RmlyaW5nEh0KBmxhYmVscxgBIAEoCzINLnR5cGVzLnYxLk9iaiLGAgoKQWxlcnRTdGF0ZRIhCgRydWxlGAEgASgLMhMudHlwZXMudjEuQWxlcnRSdWxlEioKB3Vua25vd24YyAEgASgLMhYudHlwZXMudjEuQWxlcnRVbmtub3duSAASIAoCb2sYyQEgASgLMhEudHlwZXMudjEuQWxlcnRPa0gAEioKB3BlbmRpbmcYygEgASgLMhYudHlwZXMudjEuQWxlcnRQZW5kaW5nSAASKAoGZmlyaW5nGMsBIAEoCzIVLnR5cGVzLnYxLkFsZXJ0RmlyaW5nSAASMwoPdHJhbnNpdGlvbmVkX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIyCg5sYXN0X2ZpcmluZ19hdBgEIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCCAoGc3RhdHVzQooBCgxjb20udHlwZXMudjFCCkFsZXJ0UHJvdG9QAVotZ2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby90eXBlcy92MTt0eXBlc3YxogIDVFhYqgIIVHlwZXMuVjHKAghUeXBlc1xWMeICFFR5cGVzXFYxXEdQQk1ldGFkYXRh6gIJVHlwZXM6OlYxYgZwcm90bzM", [file_google_protobuf_duration, file_google_protobuf_timestamp, file_types_v1_query, file_types_v1_types]);
+  fileDesc("ChR0eXBlcy92MS9hbGVydC5wcm90bxIIdHlwZXMudjEiiAEKCkFsZXJ0R3JvdXASJgoEbWV0YRgBIAEoCzIYLnR5cGVzLnYxLkFsZXJ0R3JvdXBNZXRhEiYKBHNwZWMYAiABKAsyGC50eXBlcy52MS5BbGVydEdyb3VwU3BlYxIqCgZzdGF0dXMYAyABKAsyGi50eXBlcy52MS5BbGVydEdyb3VwU3RhdHVzIhwKDkFsZXJ0R3JvdXBNZXRhEgoKAmlkGAEgASgJItIBCg5BbGVydEdyb3VwU3BlYxIMCgRuYW1lGAEgASgJEisKCGludGVydmFsGAIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEi8KDHF1ZXJ5X29mZnNldBgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhINCgVsaW1pdBgEIAEoBRImCgVydWxlcxgFIAMoCzIXLnR5cGVzLnYxLkFsZXJ0UnVsZVNwZWMSHQoGbGFiZWxzGAYgASgLMg0udHlwZXMudjEuT2JqIqwBChBBbGVydEdyb3VwU3RhdHVzEi4KCmNyZWF0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg4KBmVycm9ycxgDIAMoCRIoCgVydWxlcxgEIAMoCzIZLnR5cGVzLnYxLkFsZXJ0UnVsZVN0YXR1cyKEAQoJQWxlcnRSdWxlEiUKBG1ldGEYASABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVNZXRhEiUKBHNwZWMYAiABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVTcGVjEikKBnN0YXR1cxgDIAEoCzIZLnR5cGVzLnYxLkFsZXJ0UnVsZVN0YXR1cyIbCg1BbGVydFJ1bGVNZXRhEgoKAmlkGAEgASgJIs0BCg1BbGVydFJ1bGVTcGVjEh0KBGV4cHIYASABKAsyDy50eXBlcy52MS5RdWVyeRIdCgZsYWJlbHMYAiABKAsyDS50eXBlcy52MS5PYmoSIgoLYW5ub3RhdGlvbnMYAyABKAsyDS50eXBlcy52MS5PYmoSJgoDZm9yGCkgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEjIKD2tlZXBfZmlyaW5nX2ZvchgqIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbiKoAgoPQWxlcnRSdWxlU3RhdHVzEjMKD3RyYW5zaXRpb25lZF9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMgoObGFzdF9maXJpbmdfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEioKB3Vua25vd24YrAIgASgLMhYudHlwZXMudjEuQWxlcnRVbmtub3duSAASIAoCb2sYrQIgASgLMhEudHlwZXMudjEuQWxlcnRPa0gAEioKB3BlbmRpbmcYrgIgASgLMhYudHlwZXMudjEuQWxlcnRQZW5kaW5nSAASKAoGZmlyaW5nGK8CIAEoCzIVLnR5cGVzLnYxLkFsZXJ0RmlyaW5nSABCCAoGc3RhdHVzIg4KDEFsZXJ0VW5rbm93biIJCgdBbGVydE9rIg4KDEFsZXJ0UGVuZGluZyIsCgtBbGVydEZpcmluZxIdCgZsYWJlbHMYASABKAsyDS50eXBlcy52MS5PYmpCigEKDGNvbS50eXBlcy52MUIKQWxlcnRQcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_google_protobuf_duration, file_google_protobuf_timestamp, file_types_v1_query, file_types_v1_types]);
 
 /**
  * @generated from message types.v1.AlertGroup
@@ -87,9 +87,9 @@ export type AlertGroupSpec = Message<"types.v1.AlertGroupSpec"> & {
   limit: number;
 
   /**
-   * @generated from field: repeated types.v1.AlertRule rules = 5;
+   * @generated from field: repeated types.v1.AlertRuleSpec rules = 5;
    */
-  rules: AlertRule[];
+  rules: AlertRuleSpec[];
 
   /**
    * @generated from field: types.v1.Obj labels = 6;
@@ -122,6 +122,11 @@ export type AlertGroupStatus = Message<"types.v1.AlertGroupStatus"> & {
    * @generated from field: repeated string errors = 3;
    */
   errors: string[];
+
+  /**
+   * @generated from field: repeated types.v1.AlertRuleStatus rules = 4;
+   */
+  rules: AlertRuleStatus[];
 };
 
 /**
@@ -136,34 +141,19 @@ export const AlertGroupStatusSchema: GenMessage<AlertGroupStatus> = /*@__PURE__*
  */
 export type AlertRule = Message<"types.v1.AlertRule"> & {
   /**
-   * @generated from field: string name = 1;
+   * @generated from field: types.v1.AlertRuleMeta meta = 1;
    */
-  name: string;
+  meta?: AlertRuleMeta;
 
   /**
-   * @generated from field: types.v1.Query expr = 2;
+   * @generated from field: types.v1.AlertRuleSpec spec = 2;
    */
-  expr?: Query;
+  spec?: AlertRuleSpec;
 
   /**
-   * @generated from field: types.v1.Obj labels = 3;
+   * @generated from field: types.v1.AlertRuleStatus status = 3;
    */
-  labels?: Obj;
-
-  /**
-   * @generated from field: types.v1.Obj annotations = 4;
-   */
-  annotations?: Obj;
-
-  /**
-   * @generated from field: google.protobuf.Duration for = 51;
-   */
-  for?: Duration;
-
-  /**
-   * @generated from field: google.protobuf.Duration keep_firing_for = 52;
-   */
-  keepFiringFor?: Duration;
+  status?: AlertRuleStatus;
 };
 
 /**
@@ -172,6 +162,111 @@ export type AlertRule = Message<"types.v1.AlertRule"> & {
  */
 export const AlertRuleSchema: GenMessage<AlertRule> = /*@__PURE__*/
   messageDesc(file_types_v1_alert, 4);
+
+/**
+ * @generated from message types.v1.AlertRuleMeta
+ */
+export type AlertRuleMeta = Message<"types.v1.AlertRuleMeta"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+};
+
+/**
+ * Describes the message types.v1.AlertRuleMeta.
+ * Use `create(AlertRuleMetaSchema)` to create a new message.
+ */
+export const AlertRuleMetaSchema: GenMessage<AlertRuleMeta> = /*@__PURE__*/
+  messageDesc(file_types_v1_alert, 5);
+
+/**
+ * @generated from message types.v1.AlertRuleSpec
+ */
+export type AlertRuleSpec = Message<"types.v1.AlertRuleSpec"> & {
+  /**
+   * @generated from field: types.v1.Query expr = 1;
+   */
+  expr?: Query;
+
+  /**
+   * @generated from field: types.v1.Obj labels = 2;
+   */
+  labels?: Obj;
+
+  /**
+   * @generated from field: types.v1.Obj annotations = 3;
+   */
+  annotations?: Obj;
+
+  /**
+   * @generated from field: google.protobuf.Duration for = 41;
+   */
+  for?: Duration;
+
+  /**
+   * @generated from field: google.protobuf.Duration keep_firing_for = 42;
+   */
+  keepFiringFor?: Duration;
+};
+
+/**
+ * Describes the message types.v1.AlertRuleSpec.
+ * Use `create(AlertRuleSpecSchema)` to create a new message.
+ */
+export const AlertRuleSpecSchema: GenMessage<AlertRuleSpec> = /*@__PURE__*/
+  messageDesc(file_types_v1_alert, 6);
+
+/**
+ * @generated from message types.v1.AlertRuleStatus
+ */
+export type AlertRuleStatus = Message<"types.v1.AlertRuleStatus"> & {
+  /**
+   * @generated from field: google.protobuf.Timestamp transitioned_at = 1;
+   */
+  transitionedAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp last_firing_at = 2;
+   */
+  lastFiringAt?: Timestamp;
+
+  /**
+   * @generated from oneof types.v1.AlertRuleStatus.status
+   */
+  status: {
+    /**
+     * @generated from field: types.v1.AlertUnknown unknown = 300;
+     */
+    value: AlertUnknown;
+    case: "unknown";
+  } | {
+    /**
+     * @generated from field: types.v1.AlertOk ok = 301;
+     */
+    value: AlertOk;
+    case: "ok";
+  } | {
+    /**
+     * @generated from field: types.v1.AlertPending pending = 302;
+     */
+    value: AlertPending;
+    case: "pending";
+  } | {
+    /**
+     * @generated from field: types.v1.AlertFiring firing = 303;
+     */
+    value: AlertFiring;
+    case: "firing";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message types.v1.AlertRuleStatus.
+ * Use `create(AlertRuleStatusSchema)` to create a new message.
+ */
+export const AlertRuleStatusSchema: GenMessage<AlertRuleStatus> = /*@__PURE__*/
+  messageDesc(file_types_v1_alert, 7);
 
 /**
  * @generated from message types.v1.AlertUnknown
@@ -184,7 +279,7 @@ export type AlertUnknown = Message<"types.v1.AlertUnknown"> & {
  * Use `create(AlertUnknownSchema)` to create a new message.
  */
 export const AlertUnknownSchema: GenMessage<AlertUnknown> = /*@__PURE__*/
-  messageDesc(file_types_v1_alert, 5);
+  messageDesc(file_types_v1_alert, 8);
 
 /**
  * @generated from message types.v1.AlertOk
@@ -197,7 +292,7 @@ export type AlertOk = Message<"types.v1.AlertOk"> & {
  * Use `create(AlertOkSchema)` to create a new message.
  */
 export const AlertOkSchema: GenMessage<AlertOk> = /*@__PURE__*/
-  messageDesc(file_types_v1_alert, 6);
+  messageDesc(file_types_v1_alert, 9);
 
 /**
  * @generated from message types.v1.AlertPending
@@ -210,7 +305,7 @@ export type AlertPending = Message<"types.v1.AlertPending"> & {
  * Use `create(AlertPendingSchema)` to create a new message.
  */
 export const AlertPendingSchema: GenMessage<AlertPending> = /*@__PURE__*/
-  messageDesc(file_types_v1_alert, 7);
+  messageDesc(file_types_v1_alert, 10);
 
 /**
  * @generated from message types.v1.AlertFiring
@@ -227,61 +322,5 @@ export type AlertFiring = Message<"types.v1.AlertFiring"> & {
  * Use `create(AlertFiringSchema)` to create a new message.
  */
 export const AlertFiringSchema: GenMessage<AlertFiring> = /*@__PURE__*/
-  messageDesc(file_types_v1_alert, 8);
-
-/**
- * @generated from message types.v1.AlertState
- */
-export type AlertState = Message<"types.v1.AlertState"> & {
-  /**
-   * @generated from field: types.v1.AlertRule rule = 1;
-   */
-  rule?: AlertRule;
-
-  /**
-   * @generated from oneof types.v1.AlertState.status
-   */
-  status: {
-    /**
-     * @generated from field: types.v1.AlertUnknown unknown = 200;
-     */
-    value: AlertUnknown;
-    case: "unknown";
-  } | {
-    /**
-     * @generated from field: types.v1.AlertOk ok = 201;
-     */
-    value: AlertOk;
-    case: "ok";
-  } | {
-    /**
-     * @generated from field: types.v1.AlertPending pending = 202;
-     */
-    value: AlertPending;
-    case: "pending";
-  } | {
-    /**
-     * @generated from field: types.v1.AlertFiring firing = 203;
-     */
-    value: AlertFiring;
-    case: "firing";
-  } | { case: undefined; value?: undefined };
-
-  /**
-   * @generated from field: google.protobuf.Timestamp transitioned_at = 3;
-   */
-  transitionedAt?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp last_firing_at = 4;
-   */
-  lastFiringAt?: Timestamp;
-};
-
-/**
- * Describes the message types.v1.AlertState.
- * Use `create(AlertStateSchema)` to create a new message.
- */
-export const AlertStateSchema: GenMessage<AlertState> = /*@__PURE__*/
-  messageDesc(file_types_v1_alert, 9);
+  messageDesc(file_types_v1_alert, 11);
 

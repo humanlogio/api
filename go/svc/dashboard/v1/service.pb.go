@@ -7,6 +7,7 @@
 package dashboardv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -614,34 +615,34 @@ var File_svc_dashboard_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_dashboard_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1esvc/dashboard/v1/service.proto\x12\x10svc.dashboard.v1\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\"\x8f\x01\n" +
+	"\x1esvc/dashboard/v1/service.proto\x12\x10svc.dashboard.v1\x1a\x1bbuf/validate/validate.proto\x1a\x15types/v1/cursor.proto\x1a\x18types/v1/dashboard.proto\"\x9f\x01\n" +
 	"\x16CreateDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12+\n" +
-	"\x04spec\x18\x01 \x01(\v2\x17.types.v1.DashboardSpecR\x04spec\"L\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x123\n" +
+	"\x04spec\x18\x01 \x01(\v2\x17.types.v1.DashboardSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"L\n" +
 	"\x17CreateDashboardResponse\x121\n" +
-	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"o\n" +
+	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"\x7f\n" +
 	"\x13GetDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"I\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x02id\"I\n" +
 	"\x14GetDashboardResponse\x121\n" +
-	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"\x9f\x01\n" +
+	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"\xb7\x01\n" +
 	"\x16UpdateDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12+\n" +
-	"\x04spec\x18\x02 \x01(\v2\x17.types.v1.DashboardSpecR\x04spec\"L\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x02id\x123\n" +
+	"\x04spec\x18\x02 \x01(\v2\x17.types.v1.DashboardSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"L\n" +
 	"\x17UpdateDashboardResponse\x121\n" +
-	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"r\n" +
+	"\tdashboard\x18\x01 \x01(\v2\x13.types.v1.DashboardR\tdashboard\"\x82\x01\n" +
 	"\x16DeleteDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x19\n" +
-	"\x17DeleteDashboardResponse\"\xc3\x01\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x02id\"\x19\n" +
+	"\x17DeleteDashboardResponse\"\xcb\x01\n" +
 	"\x14ListDashboardRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12(\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12!\n" +
 	"\fdashboard_id\x18\x03 \x01(\x03R\vdashboardId\"\xc4\x01\n" +

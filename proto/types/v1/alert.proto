@@ -24,7 +24,7 @@ message AlertGroupSpec {
   google.protobuf.Duration interval = 2;
   google.protobuf.Duration query_offset = 3;
   int32 limit = 4;
-  repeated AlertRule rules = 5;
+  repeated AlertRuleSpec rules = 5;
   types.v1.Obj labels = 6;
 }
 
@@ -32,15 +32,36 @@ message AlertGroupStatus {
   google.protobuf.Timestamp created_at = 1;
   google.protobuf.Timestamp updated_at = 2;
   repeated string errors = 3;
+  repeated AlertRuleStatus rules = 4;
 }
 
 message AlertRule {
-  string name = 1;
-  types.v1.Query expr = 2;
-  types.v1.Obj labels = 3;
-  types.v1.Obj annotations = 4;
-  google.protobuf.Duration for = 51;
-  google.protobuf.Duration keep_firing_for = 52;
+  AlertRuleMeta meta = 1;
+  AlertRuleSpec spec = 2;
+  AlertRuleStatus status = 3;
+}
+
+message AlertRuleMeta {
+  string id = 1;
+}
+
+message AlertRuleSpec {
+  types.v1.Query expr = 1;
+  types.v1.Obj labels = 2;
+  types.v1.Obj annotations = 3;
+  google.protobuf.Duration for = 41;
+  google.protobuf.Duration keep_firing_for = 42;
+}
+
+message AlertRuleStatus {
+  google.protobuf.Timestamp transitioned_at = 1;
+  google.protobuf.Timestamp last_firing_at = 2;
+  oneof status {
+    AlertUnknown unknown = 300;
+    AlertOk ok = 301;
+    AlertPending pending = 302;
+    AlertFiring firing = 303;
+  }
 }
 
 message AlertUnknown {}
@@ -48,16 +69,4 @@ message AlertOk {}
 message AlertPending {}
 message AlertFiring {
   types.v1.Obj labels = 1;
-}
-
-message AlertState {
-  AlertRule rule = 1;
-  oneof status {
-    AlertUnknown unknown = 200;
-    AlertOk ok = 201;
-    AlertPending pending = 202;
-    AlertFiring firing = 203;
-  }
-  google.protobuf.Timestamp transitioned_at = 3;
-  google.protobuf.Timestamp last_firing_at = 4;
 }

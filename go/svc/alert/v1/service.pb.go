@@ -7,6 +7,7 @@
 package alertv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -825,12 +826,11 @@ func (x *GetAlertRuleResponse) GetAlertRule() *v1.AlertRule {
 }
 
 type UpdateAlertRuleRequest struct {
-	state         protoimpl.MessageState             `protogen:"open.v1"`
-	EnvironmentId int64                              `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	ProjectName   string                             `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
-	GroupName     string                             `protobuf:"bytes,103,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
-	Name          string                             `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Mutations     []*UpdateAlertRuleRequest_Mutation `protobuf:"bytes,2,rep,name=mutations,proto3" json:"mutations,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	ProjectName   string                 `protobuf:"bytes,102,opt,name=project_name,json=projectName,proto3" json:"project_name,omitempty"`
+	GroupName     string                 `protobuf:"bytes,103,opt,name=group_name,json=groupName,proto3" json:"group_name,omitempty"`
+	Spec          *v1.AlertRuleSpec      `protobuf:"bytes,1,opt,name=spec,proto3" json:"spec,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -886,16 +886,9 @@ func (x *UpdateAlertRuleRequest) GetGroupName() string {
 	return ""
 }
 
-func (x *UpdateAlertRuleRequest) GetName() string {
+func (x *UpdateAlertRuleRequest) GetSpec() *v1.AlertRuleSpec {
 	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *UpdateAlertRuleRequest) GetMutations() []*UpdateAlertRuleRequest_Mutation {
-	if x != nil {
-		return x.Mutations
+		return x.Spec
 	}
 	return nil
 }
@@ -1220,152 +1213,6 @@ func (x *ListAlertGroupResponse_ListItem) GetAlertGroup() *v1.AlertGroup {
 	return nil
 }
 
-type UpdateAlertRuleRequest_Mutation struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Do:
-	//
-	//	*UpdateAlertRuleRequest_Mutation_SetName
-	//	*UpdateAlertRuleRequest_Mutation_SetExpr
-	//	*UpdateAlertRuleRequest_Mutation_SetLabels
-	//	*UpdateAlertRuleRequest_Mutation_SetAnnotations
-	//	*UpdateAlertRuleRequest_Mutation_SetFor
-	//	*UpdateAlertRuleRequest_Mutation_SetKeepFiringFor
-	Do            isUpdateAlertRuleRequest_Mutation_Do `protobuf_oneof:"do"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) Reset() {
-	*x = UpdateAlertRuleRequest_Mutation{}
-	mi := &file_svc_alert_v1_service_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateAlertRuleRequest_Mutation) ProtoMessage() {}
-
-func (x *UpdateAlertRuleRequest_Mutation) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_alert_v1_service_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateAlertRuleRequest_Mutation.ProtoReflect.Descriptor instead.
-func (*UpdateAlertRuleRequest_Mutation) Descriptor() ([]byte, []int) {
-	return file_svc_alert_v1_service_proto_rawDescGZIP(), []int{14, 0}
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) GetDo() isUpdateAlertRuleRequest_Mutation_Do {
-	if x != nil {
-		return x.Do
-	}
-	return nil
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) GetSetName() string {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateAlertRuleRequest_Mutation_SetName); ok {
-			return x.SetName
-		}
-	}
-	return ""
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) GetSetExpr() *v1.Query {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateAlertRuleRequest_Mutation_SetExpr); ok {
-			return x.SetExpr
-		}
-	}
-	return nil
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) GetSetLabels() *v1.Obj {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateAlertRuleRequest_Mutation_SetLabels); ok {
-			return x.SetLabels
-		}
-	}
-	return nil
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) GetSetAnnotations() *v1.Obj {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateAlertRuleRequest_Mutation_SetAnnotations); ok {
-			return x.SetAnnotations
-		}
-	}
-	return nil
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) GetSetFor() *durationpb.Duration {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateAlertRuleRequest_Mutation_SetFor); ok {
-			return x.SetFor
-		}
-	}
-	return nil
-}
-
-func (x *UpdateAlertRuleRequest_Mutation) GetSetKeepFiringFor() *durationpb.Duration {
-	if x != nil {
-		if x, ok := x.Do.(*UpdateAlertRuleRequest_Mutation_SetKeepFiringFor); ok {
-			return x.SetKeepFiringFor
-		}
-	}
-	return nil
-}
-
-type isUpdateAlertRuleRequest_Mutation_Do interface {
-	isUpdateAlertRuleRequest_Mutation_Do()
-}
-
-type UpdateAlertRuleRequest_Mutation_SetName struct {
-	SetName string `protobuf:"bytes,1,opt,name=set_name,json=setName,proto3,oneof"`
-}
-
-type UpdateAlertRuleRequest_Mutation_SetExpr struct {
-	SetExpr *v1.Query `protobuf:"bytes,2,opt,name=set_expr,json=setExpr,proto3,oneof"`
-}
-
-type UpdateAlertRuleRequest_Mutation_SetLabels struct {
-	SetLabels *v1.Obj `protobuf:"bytes,3,opt,name=set_labels,json=setLabels,proto3,oneof"`
-}
-
-type UpdateAlertRuleRequest_Mutation_SetAnnotations struct {
-	SetAnnotations *v1.Obj `protobuf:"bytes,4,opt,name=set_annotations,json=setAnnotations,proto3,oneof"`
-}
-
-type UpdateAlertRuleRequest_Mutation_SetFor struct {
-	SetFor *durationpb.Duration `protobuf:"bytes,51,opt,name=set_for,json=setFor,proto3,oneof"`
-}
-
-type UpdateAlertRuleRequest_Mutation_SetKeepFiringFor struct {
-	SetKeepFiringFor *durationpb.Duration `protobuf:"bytes,52,opt,name=set_keep_firing_for,json=setKeepFiringFor,proto3,oneof"`
-}
-
-func (*UpdateAlertRuleRequest_Mutation_SetName) isUpdateAlertRuleRequest_Mutation_Do() {}
-
-func (*UpdateAlertRuleRequest_Mutation_SetExpr) isUpdateAlertRuleRequest_Mutation_Do() {}
-
-func (*UpdateAlertRuleRequest_Mutation_SetLabels) isUpdateAlertRuleRequest_Mutation_Do() {}
-
-func (*UpdateAlertRuleRequest_Mutation_SetAnnotations) isUpdateAlertRuleRequest_Mutation_Do() {}
-
-func (*UpdateAlertRuleRequest_Mutation_SetFor) isUpdateAlertRuleRequest_Mutation_Do() {}
-
-func (*UpdateAlertRuleRequest_Mutation_SetKeepFiringFor) isUpdateAlertRuleRequest_Mutation_Do() {}
-
 type ListAlertRuleResponse_ListItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AlertRule     *v1.AlertRule          `protobuf:"bytes,1,opt,name=alert_rule,json=alertRule,proto3" json:"alert_rule,omitempty"`
@@ -1375,7 +1222,7 @@ type ListAlertRuleResponse_ListItem struct {
 
 func (x *ListAlertRuleResponse_ListItem) Reset() {
 	*x = ListAlertRuleResponse_ListItem{}
-	mi := &file_svc_alert_v1_service_proto_msgTypes[22]
+	mi := &file_svc_alert_v1_service_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1387,7 +1234,7 @@ func (x *ListAlertRuleResponse_ListItem) String() string {
 func (*ListAlertRuleResponse_ListItem) ProtoMessage() {}
 
 func (x *ListAlertRuleResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_alert_v1_service_proto_msgTypes[22]
+	mi := &file_svc_alert_v1_service_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1414,37 +1261,37 @@ var File_svc_alert_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_alert_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1asvc/alert/v1/service.proto\x12\fsvc.alert.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/alert.proto\x1a\x15types/v1/cursor.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\x91\x01\n" +
+	"\x1asvc/alert/v1/service.proto\x12\fsvc.alert.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/alert.proto\x1a\x15types/v1/cursor.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\xa1\x01\n" +
 	"\x17CreateAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12,\n" +
-	"\x04spec\x18\x01 \x01(\v2\x18.types.v1.AlertGroupSpecR\x04spec\"Q\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x124\n" +
+	"\x04spec\x18\x01 \x01(\v2\x18.types.v1.AlertGroupSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"Q\n" +
 	"\x18CreateAlertGroupResponse\x125\n" +
 	"\valert_group\x18\x01 \x01(\v2\x14.types.v1.AlertGroupR\n" +
-	"alertGroup\"t\n" +
+	"alertGroup\"\x84\x01\n" +
 	"\x14GetAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"N\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"N\n" +
 	"\x15GetAlertGroupResponse\x125\n" +
 	"\valert_group\x18\x01 \x01(\v2\x14.types.v1.AlertGroupR\n" +
-	"alertGroup\"\xa5\x01\n" +
+	"alertGroup\"\xbd\x01\n" +
 	"\x17UpdateAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12,\n" +
-	"\x04spec\x18\x02 \x01(\v2\x18.types.v1.AlertGroupSpecR\x04spec\"Q\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\x124\n" +
+	"\x04spec\x18\x02 \x01(\v2\x18.types.v1.AlertGroupSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"Q\n" +
 	"\x18UpdateAlertGroupResponse\x125\n" +
 	"\valert_group\x18\x01 \x01(\v2\x14.types.v1.AlertGroupR\n" +
-	"alertGroup\"w\n" +
+	"alertGroup\"\x87\x01\n" +
 	"\x17DeleteAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"\x1a\n" +
-	"\x18DeleteAlertGroupResponse\"\xa1\x01\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"\x1a\n" +
+	"\x18DeleteAlertGroupResponse\"\xa9\x01\n" +
 	"\x15ListAlertGroupRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12(\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12(\n" +
 	"\x06cursor\x18\x02 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\"\xc7\x01\n" +
 	"\x16ListAlertGroupResponse\x12$\n" +
@@ -1452,61 +1299,51 @@ const file_svc_alert_v1_service_proto_rawDesc = "" +
 	"\x05items\x18\xc8\x01 \x03(\v2-.svc.alert.v1.ListAlertGroupResponse.ListItemR\x05items\x1aA\n" +
 	"\bListItem\x125\n" +
 	"\valert_group\x18\x02 \x01(\v2\x14.types.v1.AlertGroupR\n" +
-	"alertGroup\"\x82\x03\n" +
+	"alertGroup\"\xa2\x03\n" +
 	"\x16CreateAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12%\n" +
 	"\n" +
-	"group_name\x18g \x01(\tR\tgroupName\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12#\n" +
-	"\x04expr\x18\x02 \x01(\v2\x0f.types.v1.QueryR\x04expr\x12%\n" +
+	"group_name\x18g \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tgroupName\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\x12+\n" +
+	"\x04expr\x18\x02 \x01(\v2\x0f.types.v1.QueryB\x06\xbaH\x03\xc8\x01\x01R\x04expr\x12%\n" +
 	"\x06labels\x18\x03 \x01(\v2\r.types.v1.ObjR\x06labels\x12/\n" +
 	"\vannotations\x18\x04 \x01(\v2\r.types.v1.ObjR\vannotations\x12+\n" +
 	"\x03for\x183 \x01(\v2\x19.google.protobuf.DurationR\x03for\x12A\n" +
 	"\x0fkeep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringFor\"M\n" +
 	"\x17CreateAlertRuleResponse\x122\n" +
 	"\n" +
-	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\x92\x01\n" +
+	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\xaa\x01\n" +
 	"\x13GetAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12%\n" +
 	"\n" +
-	"group_name\x18g \x01(\tR\tgroupName\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"J\n" +
+	"group_name\x18g \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tgroupName\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"J\n" +
 	"\x14GetAlertRuleResponse\x122\n" +
 	"\n" +
-	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\xac\x04\n" +
+	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\xb6\x01\n" +
 	"\x16UpdateAlertRuleRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
 	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x1d\n" +
 	"\n" +
-	"group_name\x18g \x01(\tR\tgroupName\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12K\n" +
-	"\tmutations\x18\x02 \x03(\v2-.svc.alert.v1.UpdateAlertRuleRequest.MutationR\tmutations\x1a\xc7\x02\n" +
-	"\bMutation\x12\x1b\n" +
-	"\bset_name\x18\x01 \x01(\tH\x00R\asetName\x12,\n" +
-	"\bset_expr\x18\x02 \x01(\v2\x0f.types.v1.QueryH\x00R\asetExpr\x12.\n" +
-	"\n" +
-	"set_labels\x18\x03 \x01(\v2\r.types.v1.ObjH\x00R\tsetLabels\x128\n" +
-	"\x0fset_annotations\x18\x04 \x01(\v2\r.types.v1.ObjH\x00R\x0esetAnnotations\x124\n" +
-	"\aset_for\x183 \x01(\v2\x19.google.protobuf.DurationH\x00R\x06setFor\x12J\n" +
-	"\x13set_keep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationH\x00R\x10setKeepFiringForB\x04\n" +
-	"\x02do\"M\n" +
+	"group_name\x18g \x01(\tR\tgroupName\x123\n" +
+	"\x04spec\x18\x01 \x01(\v2\x17.types.v1.AlertRuleSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"M\n" +
 	"\x17UpdateAlertRuleResponse\x122\n" +
 	"\n" +
-	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\x95\x01\n" +
+	"alert_rule\x18\x01 \x01(\v2\x13.types.v1.AlertRuleR\talertRule\"\xad\x01\n" +
 	"\x16DeleteAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12%\n" +
 	"\n" +
-	"group_name\x18g \x01(\tR\tgroupName\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"\x19\n" +
-	"\x17DeleteAlertRuleResponse\"\xbf\x01\n" +
+	"group_name\x18g \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tgroupName\x12\x1a\n" +
+	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"\x19\n" +
+	"\x17DeleteAlertRuleResponse\"\xcf\x01\n" +
 	"\x14ListAlertRuleRequest\x12%\n" +
-	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12!\n" +
-	"\fproject_name\x18f \x01(\tR\vprojectName\x12\x1d\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12)\n" +
+	"\fproject_name\x18f \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\vprojectName\x12%\n" +
 	"\n" +
-	"group_name\x18g \x01(\tR\tgroupName\x12(\n" +
+	"group_name\x18g \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tgroupName\x12(\n" +
 	"\x06cursor\x18\x02 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x03 \x01(\x05R\x05limit\"\xc2\x01\n" +
 	"\x15ListAlertRuleResponse\x12$\n" +
@@ -1540,7 +1377,7 @@ func file_svc_alert_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_alert_v1_service_proto_rawDescData
 }
 
-var file_svc_alert_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_svc_alert_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_svc_alert_v1_service_proto_goTypes = []any{
 	(*CreateAlertGroupRequest)(nil),         // 0: svc.alert.v1.CreateAlertGroupRequest
 	(*CreateAlertGroupResponse)(nil),        // 1: svc.alert.v1.CreateAlertGroupResponse
@@ -1563,69 +1400,64 @@ var file_svc_alert_v1_service_proto_goTypes = []any{
 	(*ListAlertRuleRequest)(nil),            // 18: svc.alert.v1.ListAlertRuleRequest
 	(*ListAlertRuleResponse)(nil),           // 19: svc.alert.v1.ListAlertRuleResponse
 	(*ListAlertGroupResponse_ListItem)(nil), // 20: svc.alert.v1.ListAlertGroupResponse.ListItem
-	(*UpdateAlertRuleRequest_Mutation)(nil), // 21: svc.alert.v1.UpdateAlertRuleRequest.Mutation
-	(*ListAlertRuleResponse_ListItem)(nil),  // 22: svc.alert.v1.ListAlertRuleResponse.ListItem
-	(*v1.AlertGroupSpec)(nil),               // 23: types.v1.AlertGroupSpec
-	(*v1.AlertGroup)(nil),                   // 24: types.v1.AlertGroup
-	(*v1.Cursor)(nil),                       // 25: types.v1.Cursor
-	(*v1.Query)(nil),                        // 26: types.v1.Query
-	(*v1.Obj)(nil),                          // 27: types.v1.Obj
-	(*durationpb.Duration)(nil),             // 28: google.protobuf.Duration
-	(*v1.AlertRule)(nil),                    // 29: types.v1.AlertRule
+	(*ListAlertRuleResponse_ListItem)(nil),  // 21: svc.alert.v1.ListAlertRuleResponse.ListItem
+	(*v1.AlertGroupSpec)(nil),               // 22: types.v1.AlertGroupSpec
+	(*v1.AlertGroup)(nil),                   // 23: types.v1.AlertGroup
+	(*v1.Cursor)(nil),                       // 24: types.v1.Cursor
+	(*v1.Query)(nil),                        // 25: types.v1.Query
+	(*v1.Obj)(nil),                          // 26: types.v1.Obj
+	(*durationpb.Duration)(nil),             // 27: google.protobuf.Duration
+	(*v1.AlertRule)(nil),                    // 28: types.v1.AlertRule
+	(*v1.AlertRuleSpec)(nil),                // 29: types.v1.AlertRuleSpec
 }
 var file_svc_alert_v1_service_proto_depIdxs = []int32{
-	23, // 0: svc.alert.v1.CreateAlertGroupRequest.spec:type_name -> types.v1.AlertGroupSpec
-	24, // 1: svc.alert.v1.CreateAlertGroupResponse.alert_group:type_name -> types.v1.AlertGroup
-	24, // 2: svc.alert.v1.GetAlertGroupResponse.alert_group:type_name -> types.v1.AlertGroup
-	23, // 3: svc.alert.v1.UpdateAlertGroupRequest.spec:type_name -> types.v1.AlertGroupSpec
-	24, // 4: svc.alert.v1.UpdateAlertGroupResponse.alert_group:type_name -> types.v1.AlertGroup
-	25, // 5: svc.alert.v1.ListAlertGroupRequest.cursor:type_name -> types.v1.Cursor
-	25, // 6: svc.alert.v1.ListAlertGroupResponse.next:type_name -> types.v1.Cursor
+	22, // 0: svc.alert.v1.CreateAlertGroupRequest.spec:type_name -> types.v1.AlertGroupSpec
+	23, // 1: svc.alert.v1.CreateAlertGroupResponse.alert_group:type_name -> types.v1.AlertGroup
+	23, // 2: svc.alert.v1.GetAlertGroupResponse.alert_group:type_name -> types.v1.AlertGroup
+	22, // 3: svc.alert.v1.UpdateAlertGroupRequest.spec:type_name -> types.v1.AlertGroupSpec
+	23, // 4: svc.alert.v1.UpdateAlertGroupResponse.alert_group:type_name -> types.v1.AlertGroup
+	24, // 5: svc.alert.v1.ListAlertGroupRequest.cursor:type_name -> types.v1.Cursor
+	24, // 6: svc.alert.v1.ListAlertGroupResponse.next:type_name -> types.v1.Cursor
 	20, // 7: svc.alert.v1.ListAlertGroupResponse.items:type_name -> svc.alert.v1.ListAlertGroupResponse.ListItem
-	26, // 8: svc.alert.v1.CreateAlertRuleRequest.expr:type_name -> types.v1.Query
-	27, // 9: svc.alert.v1.CreateAlertRuleRequest.labels:type_name -> types.v1.Obj
-	27, // 10: svc.alert.v1.CreateAlertRuleRequest.annotations:type_name -> types.v1.Obj
-	28, // 11: svc.alert.v1.CreateAlertRuleRequest.for:type_name -> google.protobuf.Duration
-	28, // 12: svc.alert.v1.CreateAlertRuleRequest.keep_firing_for:type_name -> google.protobuf.Duration
-	29, // 13: svc.alert.v1.CreateAlertRuleResponse.alert_rule:type_name -> types.v1.AlertRule
-	29, // 14: svc.alert.v1.GetAlertRuleResponse.alert_rule:type_name -> types.v1.AlertRule
-	21, // 15: svc.alert.v1.UpdateAlertRuleRequest.mutations:type_name -> svc.alert.v1.UpdateAlertRuleRequest.Mutation
-	29, // 16: svc.alert.v1.UpdateAlertRuleResponse.alert_rule:type_name -> types.v1.AlertRule
-	25, // 17: svc.alert.v1.ListAlertRuleRequest.cursor:type_name -> types.v1.Cursor
-	25, // 18: svc.alert.v1.ListAlertRuleResponse.next:type_name -> types.v1.Cursor
-	22, // 19: svc.alert.v1.ListAlertRuleResponse.items:type_name -> svc.alert.v1.ListAlertRuleResponse.ListItem
-	24, // 20: svc.alert.v1.ListAlertGroupResponse.ListItem.alert_group:type_name -> types.v1.AlertGroup
-	26, // 21: svc.alert.v1.UpdateAlertRuleRequest.Mutation.set_expr:type_name -> types.v1.Query
-	27, // 22: svc.alert.v1.UpdateAlertRuleRequest.Mutation.set_labels:type_name -> types.v1.Obj
-	27, // 23: svc.alert.v1.UpdateAlertRuleRequest.Mutation.set_annotations:type_name -> types.v1.Obj
-	28, // 24: svc.alert.v1.UpdateAlertRuleRequest.Mutation.set_for:type_name -> google.protobuf.Duration
-	28, // 25: svc.alert.v1.UpdateAlertRuleRequest.Mutation.set_keep_firing_for:type_name -> google.protobuf.Duration
-	29, // 26: svc.alert.v1.ListAlertRuleResponse.ListItem.alert_rule:type_name -> types.v1.AlertRule
-	0,  // 27: svc.alert.v1.AlertService.CreateAlertGroup:input_type -> svc.alert.v1.CreateAlertGroupRequest
-	2,  // 28: svc.alert.v1.AlertService.GetAlertGroup:input_type -> svc.alert.v1.GetAlertGroupRequest
-	4,  // 29: svc.alert.v1.AlertService.UpdateAlertGroup:input_type -> svc.alert.v1.UpdateAlertGroupRequest
-	6,  // 30: svc.alert.v1.AlertService.DeleteAlertGroup:input_type -> svc.alert.v1.DeleteAlertGroupRequest
-	8,  // 31: svc.alert.v1.AlertService.ListAlertGroup:input_type -> svc.alert.v1.ListAlertGroupRequest
-	10, // 32: svc.alert.v1.AlertService.CreateAlertRule:input_type -> svc.alert.v1.CreateAlertRuleRequest
-	12, // 33: svc.alert.v1.AlertService.GetAlertRule:input_type -> svc.alert.v1.GetAlertRuleRequest
-	14, // 34: svc.alert.v1.AlertService.UpdateAlertRule:input_type -> svc.alert.v1.UpdateAlertRuleRequest
-	16, // 35: svc.alert.v1.AlertService.DeleteAlertRule:input_type -> svc.alert.v1.DeleteAlertRuleRequest
-	18, // 36: svc.alert.v1.AlertService.ListAlertRule:input_type -> svc.alert.v1.ListAlertRuleRequest
-	1,  // 37: svc.alert.v1.AlertService.CreateAlertGroup:output_type -> svc.alert.v1.CreateAlertGroupResponse
-	3,  // 38: svc.alert.v1.AlertService.GetAlertGroup:output_type -> svc.alert.v1.GetAlertGroupResponse
-	5,  // 39: svc.alert.v1.AlertService.UpdateAlertGroup:output_type -> svc.alert.v1.UpdateAlertGroupResponse
-	7,  // 40: svc.alert.v1.AlertService.DeleteAlertGroup:output_type -> svc.alert.v1.DeleteAlertGroupResponse
-	9,  // 41: svc.alert.v1.AlertService.ListAlertGroup:output_type -> svc.alert.v1.ListAlertGroupResponse
-	11, // 42: svc.alert.v1.AlertService.CreateAlertRule:output_type -> svc.alert.v1.CreateAlertRuleResponse
-	13, // 43: svc.alert.v1.AlertService.GetAlertRule:output_type -> svc.alert.v1.GetAlertRuleResponse
-	15, // 44: svc.alert.v1.AlertService.UpdateAlertRule:output_type -> svc.alert.v1.UpdateAlertRuleResponse
-	17, // 45: svc.alert.v1.AlertService.DeleteAlertRule:output_type -> svc.alert.v1.DeleteAlertRuleResponse
-	19, // 46: svc.alert.v1.AlertService.ListAlertRule:output_type -> svc.alert.v1.ListAlertRuleResponse
-	37, // [37:47] is the sub-list for method output_type
-	27, // [27:37] is the sub-list for method input_type
-	27, // [27:27] is the sub-list for extension type_name
-	27, // [27:27] is the sub-list for extension extendee
-	0,  // [0:27] is the sub-list for field type_name
+	25, // 8: svc.alert.v1.CreateAlertRuleRequest.expr:type_name -> types.v1.Query
+	26, // 9: svc.alert.v1.CreateAlertRuleRequest.labels:type_name -> types.v1.Obj
+	26, // 10: svc.alert.v1.CreateAlertRuleRequest.annotations:type_name -> types.v1.Obj
+	27, // 11: svc.alert.v1.CreateAlertRuleRequest.for:type_name -> google.protobuf.Duration
+	27, // 12: svc.alert.v1.CreateAlertRuleRequest.keep_firing_for:type_name -> google.protobuf.Duration
+	28, // 13: svc.alert.v1.CreateAlertRuleResponse.alert_rule:type_name -> types.v1.AlertRule
+	28, // 14: svc.alert.v1.GetAlertRuleResponse.alert_rule:type_name -> types.v1.AlertRule
+	29, // 15: svc.alert.v1.UpdateAlertRuleRequest.spec:type_name -> types.v1.AlertRuleSpec
+	28, // 16: svc.alert.v1.UpdateAlertRuleResponse.alert_rule:type_name -> types.v1.AlertRule
+	24, // 17: svc.alert.v1.ListAlertRuleRequest.cursor:type_name -> types.v1.Cursor
+	24, // 18: svc.alert.v1.ListAlertRuleResponse.next:type_name -> types.v1.Cursor
+	21, // 19: svc.alert.v1.ListAlertRuleResponse.items:type_name -> svc.alert.v1.ListAlertRuleResponse.ListItem
+	23, // 20: svc.alert.v1.ListAlertGroupResponse.ListItem.alert_group:type_name -> types.v1.AlertGroup
+	28, // 21: svc.alert.v1.ListAlertRuleResponse.ListItem.alert_rule:type_name -> types.v1.AlertRule
+	0,  // 22: svc.alert.v1.AlertService.CreateAlertGroup:input_type -> svc.alert.v1.CreateAlertGroupRequest
+	2,  // 23: svc.alert.v1.AlertService.GetAlertGroup:input_type -> svc.alert.v1.GetAlertGroupRequest
+	4,  // 24: svc.alert.v1.AlertService.UpdateAlertGroup:input_type -> svc.alert.v1.UpdateAlertGroupRequest
+	6,  // 25: svc.alert.v1.AlertService.DeleteAlertGroup:input_type -> svc.alert.v1.DeleteAlertGroupRequest
+	8,  // 26: svc.alert.v1.AlertService.ListAlertGroup:input_type -> svc.alert.v1.ListAlertGroupRequest
+	10, // 27: svc.alert.v1.AlertService.CreateAlertRule:input_type -> svc.alert.v1.CreateAlertRuleRequest
+	12, // 28: svc.alert.v1.AlertService.GetAlertRule:input_type -> svc.alert.v1.GetAlertRuleRequest
+	14, // 29: svc.alert.v1.AlertService.UpdateAlertRule:input_type -> svc.alert.v1.UpdateAlertRuleRequest
+	16, // 30: svc.alert.v1.AlertService.DeleteAlertRule:input_type -> svc.alert.v1.DeleteAlertRuleRequest
+	18, // 31: svc.alert.v1.AlertService.ListAlertRule:input_type -> svc.alert.v1.ListAlertRuleRequest
+	1,  // 32: svc.alert.v1.AlertService.CreateAlertGroup:output_type -> svc.alert.v1.CreateAlertGroupResponse
+	3,  // 33: svc.alert.v1.AlertService.GetAlertGroup:output_type -> svc.alert.v1.GetAlertGroupResponse
+	5,  // 34: svc.alert.v1.AlertService.UpdateAlertGroup:output_type -> svc.alert.v1.UpdateAlertGroupResponse
+	7,  // 35: svc.alert.v1.AlertService.DeleteAlertGroup:output_type -> svc.alert.v1.DeleteAlertGroupResponse
+	9,  // 36: svc.alert.v1.AlertService.ListAlertGroup:output_type -> svc.alert.v1.ListAlertGroupResponse
+	11, // 37: svc.alert.v1.AlertService.CreateAlertRule:output_type -> svc.alert.v1.CreateAlertRuleResponse
+	13, // 38: svc.alert.v1.AlertService.GetAlertRule:output_type -> svc.alert.v1.GetAlertRuleResponse
+	15, // 39: svc.alert.v1.AlertService.UpdateAlertRule:output_type -> svc.alert.v1.UpdateAlertRuleResponse
+	17, // 40: svc.alert.v1.AlertService.DeleteAlertRule:output_type -> svc.alert.v1.DeleteAlertRuleResponse
+	19, // 41: svc.alert.v1.AlertService.ListAlertRule:output_type -> svc.alert.v1.ListAlertRuleResponse
+	32, // [32:42] is the sub-list for method output_type
+	22, // [22:32] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_svc_alert_v1_service_proto_init() }
@@ -1633,21 +1465,13 @@ func file_svc_alert_v1_service_proto_init() {
 	if File_svc_alert_v1_service_proto != nil {
 		return
 	}
-	file_svc_alert_v1_service_proto_msgTypes[21].OneofWrappers = []any{
-		(*UpdateAlertRuleRequest_Mutation_SetName)(nil),
-		(*UpdateAlertRuleRequest_Mutation_SetExpr)(nil),
-		(*UpdateAlertRuleRequest_Mutation_SetLabels)(nil),
-		(*UpdateAlertRuleRequest_Mutation_SetAnnotations)(nil),
-		(*UpdateAlertRuleRequest_Mutation_SetFor)(nil),
-		(*UpdateAlertRuleRequest_Mutation_SetKeepFiringFor)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_alert_v1_service_proto_rawDesc), len(file_svc_alert_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   23,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

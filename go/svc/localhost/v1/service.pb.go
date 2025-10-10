@@ -7,6 +7,7 @@
 package localhostv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -746,7 +747,7 @@ var File_svc_localhost_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_localhost_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1esvc/localhost/v1/service.proto\x12\x10svc.localhost.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17types/v1/database.proto\x1a\x1ftypes/v1/localhost_config.proto\x1a\x13types/v1/meta.proto\x1a\x1btypes/v1/organization.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/user.proto\x1a\x16types/v1/version.proto\"\r\n" +
+	"\x1esvc/localhost/v1/service.proto\x12\x10svc.localhost.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x17types/v1/database.proto\x1a\x1ftypes/v1/localhost_config.proto\x1a\x13types/v1/meta.proto\x1a\x1btypes/v1/organization.proto\x1a\x14types/v1/types.proto\x1a\x13types/v1/user.proto\x1a\x16types/v1/version.proto\"\r\n" +
 	"\vPingRequest\"\xdb\x03\n" +
 	"\fPingResponse\x128\n" +
 	"\x0eclient_version\x18\x01 \x01(\v2\x11.types.v1.VersionR\rclientVersion\x12\"\n" +
@@ -770,9 +771,9 @@ const file_svc_localhost_v1_service_proto_rawDesc = "" +
 	"\x11DoRestartResponse\"\x12\n" +
 	"\x10GetConfigRequest\"F\n" +
 	"\x11GetConfigResponse\x121\n" +
-	"\x06config\x18\x01 \x01(\v2\x19.types.v1.LocalhostConfigR\x06config\"E\n" +
-	"\x10SetConfigRequest\x121\n" +
-	"\x06config\x18\x01 \x01(\v2\x19.types.v1.LocalhostConfigR\x06config\"\x13\n" +
+	"\x06config\x18\x01 \x01(\v2\x19.types.v1.LocalhostConfigR\x06config\"M\n" +
+	"\x10SetConfigRequest\x129\n" +
+	"\x06config\x18\x01 \x01(\v2\x19.types.v1.LocalhostConfigB\x06\xbaH\x03\xc8\x01\x01R\x06config\"\x13\n" +
 	"\x11SetConfigResponse\"\x11\n" +
 	"\x0fGetStatsRequest\"R\n" +
 	"\x10GetStatsResponse\x12>\n" +

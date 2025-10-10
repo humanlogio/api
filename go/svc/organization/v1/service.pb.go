@@ -1977,25 +1977,25 @@ var File_svc_organization_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\n" +
-	"!svc/organization/v1/service.proto\x12\x13svc.organization.v1\x1a\x1bbuf/validate/validate.proto\x1a\x15types/v1/cursor.proto\x1a\x1atypes/v1/environment.proto\x1a\x1btypes/v1/organization.proto\x1a\x1dtypes/v1/payment_method.proto\x1a\x16types/v1/product.proto\x1a\x1btypes/v1/subscription.proto\x1a\x13types/v1/user.proto\"\x9c\x02\n" +
+	"!svc/organization/v1/service.proto\x12\x13svc.organization.v1\x1a\x1bbuf/validate/validate.proto\x1a\x15types/v1/cursor.proto\x1a\x1atypes/v1/environment.proto\x1a\x1btypes/v1/organization.proto\x1a\x1dtypes/v1/payment_method.proto\x1a\x16types/v1/product.proto\x1a\x1btypes/v1/subscription.proto\x1a\x13types/v1/user.proto\"\xb3\x02\n" +
 	"\x18CreateEnvironmentRequest\x12P\n" +
 	"\x10environment_name\x18\x01 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x0fenvironmentName\x12O\n" +
-	"\x06stripe\x18\xc9\x01 \x01(\v24.svc.organization.v1.CreateEnvironmentRequest.StripeH\x00R\x06stripe\x1aR\n" +
-	"\x06Stripe\x12-\n" +
-	"\x12confirmation_token\x18\x01 \x01(\tR\x11confirmationToken\x12\x19\n" +
-	"\bprice_id\x18\x02 \x01(\tR\apriceIdB\t\n" +
-	"\apayment\"\xf8\x01\n" +
+	"\x06stripe\x18\xc9\x01 \x01(\v24.svc.organization.v1.CreateEnvironmentRequest.StripeH\x00R\x06stripe\x1ab\n" +
+	"\x06Stripe\x125\n" +
+	"\x12confirmation_token\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x11confirmationToken\x12!\n" +
+	"\bprice_id\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\apriceIdB\x10\n" +
+	"\apayment\x12\x05\xbaH\x02\b\x01\"\xf8\x01\n" +
 	"\x19CreateEnvironmentResponse\x127\n" +
 	"\venvironment\x18\x01 \x01(\v2\x15.types.v1.EnvironmentR\venvironment\x12P\n" +
 	"\x06stripe\x18\xc9\x01 \x01(\v25.svc.organization.v1.CreateEnvironmentResponse.StripeH\x00R\x06stripe\x1aE\n" +
 	"\x06Stripe\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\x12#\n" +
 	"\rclient_secret\x18\x02 \x01(\tR\fclientSecretB\t\n" +
-	"\apayment\"E\n" +
+	"\apayment\"L\n" +
 	"\x15GetEnvironmentRequest\x12\x10\n" +
 	"\x02id\x18\x01 \x01(\x03H\x00R\x02id\x12\x14\n" +
-	"\x04name\x18\x02 \x01(\tH\x00R\x04nameB\x04\n" +
-	"\x02by\"~\n" +
+	"\x04name\x18\x02 \x01(\tH\x00R\x04nameB\v\n" +
+	"\x02by\x12\x05\xbaH\x02\b\x01\"~\n" +
 	"\x16GetEnvironmentResponse\x127\n" +
 	"\venvironment\x18\x01 \x01(\v2\x15.types.v1.EnvironmentR\venvironment\x12+\n" +
 	"\aproduct\x18\x02 \x01(\v2\x11.types.v1.ProductR\aproduct\"X\n" +
@@ -2015,16 +2015,16 @@ const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12D\n" +
 	"\x05items\x18\x02 \x03(\v2..svc.organization.v1.ListUserResponse.ListItemR\x05items\x1a.\n" +
 	"\bListItem\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"2\n" +
-	"\x11InviteUserRequest\x12\x1d\n" +
+	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\":\n" +
+	"\x11InviteUserRequest\x12%\n" +
 	"\n" +
-	"user_email\x18\x01 \x01(\tR\tuserEmail\"J\n" +
+	"user_email\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tuserEmail\"J\n" +
 	"\x12InviteUserResponse\x124\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x14.types.v1.InvitationR\n" +
-	"invitation\":\n" +
-	"\x1bRevokeUserInvitationRequest\x12\x1b\n" +
-	"\tinvite_id\x18\x01 \x01(\x03R\binviteId\"T\n" +
+	"invitation\"B\n" +
+	"\x1bRevokeUserInvitationRequest\x12#\n" +
+	"\tinvite_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\binviteId\"T\n" +
 	"\x1cRevokeUserInvitationResponse\x124\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x14.types.v1.InvitationR\n" +
@@ -2038,13 +2038,13 @@ const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\bListItem\x124\n" +
 	"\n" +
 	"invitation\x18\x01 \x01(\v2\x14.types.v1.InvitationR\n" +
-	"invitation\"\xd6\x01\n" +
+	"invitation\"\xed\x01\n" +
 	"\x1eCreateAddonSubscriptionRequest\x12U\n" +
-	"\x06stripe\x18\xc9\x01 \x01(\v2:.svc.organization.v1.CreateAddonSubscriptionRequest.StripeH\x00R\x06stripe\x1aR\n" +
-	"\x06Stripe\x12-\n" +
-	"\x12confirmation_token\x18\x01 \x01(\tR\x11confirmationToken\x12\x19\n" +
-	"\bprice_id\x18\x02 \x01(\tR\apriceIdB\t\n" +
-	"\apayment\"\xcb\x01\n" +
+	"\x06stripe\x18\xc9\x01 \x01(\v2:.svc.organization.v1.CreateAddonSubscriptionRequest.StripeH\x00R\x06stripe\x1ab\n" +
+	"\x06Stripe\x125\n" +
+	"\x12confirmation_token\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x11confirmationToken\x12!\n" +
+	"\bprice_id\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\apriceIdB\x10\n" +
+	"\apayment\x12\x05\xbaH\x02\b\x01\"\xcb\x01\n" +
 	"\x1fCreateAddonSubscriptionResponse\x12V\n" +
 	"\x06stripe\x18\xc9\x01 \x01(\v2;.svc.organization.v1.CreateAddonSubscriptionResponse.StripeH\x00R\x06stripe\x1aE\n" +
 	"\x06Stripe\x12\x16\n" +
@@ -2059,9 +2059,9 @@ const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\x05items\x18\x02 \x03(\v2;.svc.organization.v1.ListAddonSubscriptionResponse.ListItemR\x05items\x1as\n" +
 	"\bListItem\x12+\n" +
 	"\aproduct\x18\x01 \x01(\v2\x11.types.v1.ProductR\aproduct\x12:\n" +
-	"\fsubscription\x18\x02 \x01(\v2\x16.types.v1.SubscriptionR\fsubscription\"\x85\x02\n" +
-	"\x1eRemoveAddonSubscriptionRequest\x12+\n" +
-	"\aproduct\x18\x01 \x01(\v2\x11.types.v1.ProductR\aproduct\x12d\n" +
+	"\fsubscription\x18\x02 \x01(\v2\x16.types.v1.SubscriptionR\fsubscription\"\x8d\x02\n" +
+	"\x1eRemoveAddonSubscriptionRequest\x123\n" +
+	"\aproduct\x18\x01 \x01(\v2\x11.types.v1.ProductB\x06\xbaH\x03\xc8\x01\x01R\aproduct\x12d\n" +
 	"\rcancel_reason\x18\x02 \x01(\v2:.svc.organization.v1.RemoveAddonSubscriptionRequest.ReasonH\x00R\fcancelReason\x88\x01\x01\x1a>\n" +
 	"\x06Reason\x12\x18\n" +
 	"\acomment\x18\x01 \x01(\tR\acomment\x12\x1a\n" +

@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.dashboard.v1;
 
+import "buf/validate/validate.proto";
 import "types/v1/cursor.proto";
 import "types/v1/dashboard.proto";
 
@@ -17,8 +18,8 @@ service DashboardService {
 
 message CreateDashboardRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  types.v1.DashboardSpec spec = 1;
+  string project_name = 102 [(buf.validate.field).required = true];
+  types.v1.DashboardSpec spec = 1 [(buf.validate.field).required = true];
 }
 
 message CreateDashboardResponse {
@@ -27,8 +28,8 @@ message CreateDashboardResponse {
 
 message GetDashboardRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string id = 1;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string id = 1 [(buf.validate.field).required = true];
 }
 
 message GetDashboardResponse {
@@ -37,9 +38,9 @@ message GetDashboardResponse {
 
 message UpdateDashboardRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string id = 1;
-  types.v1.DashboardSpec spec = 2;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string id = 1 [(buf.validate.field).required = true];
+  types.v1.DashboardSpec spec = 2 [(buf.validate.field).required = true];
 }
 
 message UpdateDashboardResponse {
@@ -48,15 +49,15 @@ message UpdateDashboardResponse {
 
 message DeleteDashboardRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string id = 1;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string id = 1 [(buf.validate.field).required = true];
 }
 
 message DeleteDashboardResponse {}
 
 message ListDashboardRequest {
   int64 environment_id = 101;
-  string project_name = 102;
+  string project_name = 102 [(buf.validate.field).required = true];
   types.v1.Cursor cursor = 1;
   int32 limit = 2;
   int64 dashboard_id = 3;

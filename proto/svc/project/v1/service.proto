@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.project.v1;
 
+import "buf/validate/validate.proto";
 import "types/v1/alert.proto";
 import "types/v1/cursor.proto";
 import "types/v1/dashboard.proto";
@@ -23,7 +24,7 @@ service ProjectService {
 
 message CreateProjectRequest {
   int64 environment_id = 101;
-  types.v1.ProjectSpec spec = 1;
+  types.v1.ProjectSpec spec = 1 [(buf.validate.field).required = true];
 }
 
 message CreateProjectResponse {
@@ -32,7 +33,7 @@ message CreateProjectResponse {
 
 message GetProjectRequest {
   int64 environment_id = 101;
-  string name = 1;
+  string name = 1 [(buf.validate.field).required = true];
 }
 
 message GetProjectResponse {
@@ -43,8 +44,8 @@ message GetProjectResponse {
 
 message UpdateProjectRequest {
   int64 environment_id = 101;
-  string name = 1;
-  types.v1.ProjectSpec spec = 2;
+  string name = 1 [(buf.validate.field).required = true];
+  types.v1.ProjectSpec spec = 2 [(buf.validate.field).required = true];
 }
 
 message UpdateProjectResponse {
@@ -53,7 +54,7 @@ message UpdateProjectResponse {
 
 message DeleteProjectRequest {
   int64 environment_id = 101;
-  string name = 1;
+  string name = 1 [(buf.validate.field).required = true];
 }
 
 message DeleteProjectResponse {}
@@ -74,7 +75,7 @@ message ListProjectResponse {
 
 message SyncProjectRequest {
   int64 environment_id = 101;
-  string name = 1;
+  string name = 1 [(buf.validate.field).required = true];
 }
 
 message SyncProjectResponse {

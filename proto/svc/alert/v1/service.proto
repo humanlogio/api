@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.alert.v1;
 
+import "buf/validate/validate.proto";
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "types/v1/alert.proto";
@@ -27,8 +28,8 @@ service AlertService {
 
 message CreateAlertGroupRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  types.v1.AlertGroupSpec spec = 1;
+  string project_name = 102 [(buf.validate.field).required = true];
+  types.v1.AlertGroupSpec spec = 1 [(buf.validate.field).required = true];
 }
 
 message CreateAlertGroupResponse {
@@ -37,8 +38,8 @@ message CreateAlertGroupResponse {
 
 message GetAlertGroupRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string name = 1;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string name = 1 [(buf.validate.field).required = true];
 }
 
 message GetAlertGroupResponse {
@@ -47,9 +48,9 @@ message GetAlertGroupResponse {
 
 message UpdateAlertGroupRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string name = 1;
-  types.v1.AlertGroupSpec spec = 2;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string name = 1 [(buf.validate.field).required = true];
+  types.v1.AlertGroupSpec spec = 2 [(buf.validate.field).required = true];
 }
 
 message UpdateAlertGroupResponse {
@@ -58,15 +59,15 @@ message UpdateAlertGroupResponse {
 
 message DeleteAlertGroupRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string name = 1;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string name = 1 [(buf.validate.field).required = true];
 }
 
 message DeleteAlertGroupResponse {}
 
 message ListAlertGroupRequest {
   int64 environment_id = 101;
-  string project_name = 102;
+  string project_name = 102 [(buf.validate.field).required = true];
   types.v1.Cursor cursor = 2;
   int32 limit = 3;
 }
@@ -81,10 +82,10 @@ message ListAlertGroupResponse {
 
 message CreateAlertRuleRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string group_name = 103;
-  string name = 1;
-  types.v1.Query expr = 2;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string group_name = 103 [(buf.validate.field).required = true];
+  string name = 1 [(buf.validate.field).required = true];
+  types.v1.Query expr = 2 [(buf.validate.field).required = true];
   types.v1.Obj labels = 3;
   types.v1.Obj annotations = 4;
   google.protobuf.Duration for = 51;
@@ -97,9 +98,9 @@ message CreateAlertRuleResponse {
 
 message GetAlertRuleRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string group_name = 103;
-  string name = 1;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string group_name = 103 [(buf.validate.field).required = true];
+  string name = 1 [(buf.validate.field).required = true];
 }
 
 message GetAlertRuleResponse {
@@ -107,23 +108,11 @@ message GetAlertRuleResponse {
 }
 
 message UpdateAlertRuleRequest {
-  message Mutation {
-    oneof do {
-      string set_name = 1;
-      types.v1.Query set_expr = 2;
-      types.v1.Obj set_labels = 3;
-      types.v1.Obj set_annotations = 4;
-      google.protobuf.Duration set_for = 51;
-      google.protobuf.Duration set_keep_firing_for = 52;
-    }
-  }
-
   int64 environment_id = 101;
   string project_name = 102;
   string group_name = 103;
 
-  string name = 1;
-  repeated Mutation mutations = 2;
+  types.v1.AlertRuleSpec spec = 1 [(buf.validate.field).required = true];
 }
 
 message UpdateAlertRuleResponse {
@@ -132,18 +121,18 @@ message UpdateAlertRuleResponse {
 
 message DeleteAlertRuleRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string group_name = 103;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string group_name = 103 [(buf.validate.field).required = true];
 
-  string name = 1;
+  string name = 1 [(buf.validate.field).required = true];
 }
 
 message DeleteAlertRuleResponse {}
 
 message ListAlertRuleRequest {
   int64 environment_id = 101;
-  string project_name = 102;
-  string group_name = 103;
+  string project_name = 102 [(buf.validate.field).required = true];
+  string group_name = 103 [(buf.validate.field).required = true];
 
   types.v1.Cursor cursor = 2;
   int32 limit = 3;
