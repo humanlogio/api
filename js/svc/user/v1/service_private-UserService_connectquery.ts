@@ -25,6 +25,11 @@ export const refreshUserToken = UserService.method.refreshUserToken;
 export const updateUser = UserService.method.updateUser;
 
 /**
+ * @generated from rpc svc.user.v1.UserService.DeleteUser
+ */
+export const deleteUser = UserService.method.deleteUser;
+
+/**
  * @generated from rpc svc.user.v1.UserService.CreateOrganization
  */
 export const createOrganization = UserService.method.createOrganization;

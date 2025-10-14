@@ -28,7 +28,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file svc/user/v1/service_private.proto.
  */
 export const file_svc_user_v1_service_private: GenFile = /*@__PURE__*/
-  fileDesc("CiFzdmMvdXNlci92MS9zZXJ2aWNlX3ByaXZhdGUucHJvdG8SC3N2Yy51c2VyLnYxIg8KDVdob2FtaVJlcXVlc3QimgEKDldob2FtaVJlc3BvbnNlEhwKBHVzZXIYASABKAsyDi50eXBlcy52MS5Vc2VyEjQKFGN1cnJlbnRfb3JnYW5pemF0aW9uGAIgASgLMhYudHlwZXMudjEuT3JnYW5pemF0aW9uEjQKFGRlZmF1bHRfb3JnYW5pemF0aW9uGAMgASgLMhYudHlwZXMudjEuT3JnYW5pemF0aW9uIigKE0dldExvZ291dFVSTFJlcXVlc3QSEQoJcmV0dXJuX3RvGAEgASgJIioKFEdldExvZ291dFVSTFJlc3BvbnNlEhIKCmxvZ291dF91cmwYASABKAkiGQoXUmVmcmVzaFVzZXJUb2tlblJlcXVlc3QiiQEKGFJlZnJlc2hVc2VyVG9rZW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRIuCgpyZWZyZXNoX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpleHBpcmVzX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCKsAQoRVXBkYXRlVXNlclJlcXVlc3QSFwoKZmlyc3RfbmFtZRgBIAEoCUgAiAEBEhYKCWxhc3RfbmFtZRgCIAEoCUgBiAEBEjwKCHVzZXJuYW1lGAMgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskSAKIAQFCDQoLX2ZpcnN0X25hbWVCDAoKX2xhc3RfbmFtZUILCglfdXNlcm5hbWUiMgoSVXBkYXRlVXNlclJlc3BvbnNlEhwKBHVzZXIYASABKAsyDi50eXBlcy52MS5Vc2VyIlAKGUNyZWF0ZU9yZ2FuaXphdGlvblJlcXVlc3QSMwoEbmFtZRgBIAEoCUIlukgiciAQAxgnMhpeW2EtekEtWjAtOV1bYS16QS1aMC05LV0rJCJKChpDcmVhdGVPcmdhbml6YXRpb25SZXNwb25zZRIsCgxvcmdhbml6YXRpb24YASABKAsyFi50eXBlcy52MS5Pcmdhbml6YXRpb24iSgoXTGlzdE9yZ2FuaXphdGlvblJlcXVlc3QSIAoGY3Vyc29yGAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEg0KBWxpbWl0GAIgASgFIukBChhMaXN0T3JnYW5pemF0aW9uUmVzcG9uc2USHgoEbmV4dBgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchI9CgVpdGVtcxgCIAMoCzIuLnN2Yy51c2VyLnYxLkxpc3RPcmdhbml6YXRpb25SZXNwb25zZS5MaXN0SXRlbRI0ChRkZWZhdWx0X29yZ2FuaXphdGlvbhgDIAEoCzIWLnR5cGVzLnYxLk9yZ2FuaXphdGlvbho4CghMaXN0SXRlbRIsCgxvcmdhbml6YXRpb24YASABKAsyFi50eXBlcy52MS5Pcmdhbml6YXRpb24iRwoaU2F2ZUxvY2FsaG9zdENvbmZpZ1JlcXVlc3QSKQoGY29uZmlnGAEgASgLMhkudHlwZXMudjEuTG9jYWxob3N0Q29uZmlnIh0KG1NhdmVMb2NhbGhvc3RDb25maWdSZXNwb25zZSIbChlHZXRMb2NhbGhvc3RDb25maWdSZXF1ZXN0IkcKGkdldExvY2FsaG9zdENvbmZpZ1Jlc3BvbnNlEikKBmNvbmZpZxgBIAEoCzIZLnR5cGVzLnYxLkxvY2FsaG9zdENvbmZpZyJOChlSZWNvcmRRdWVyeUhpc3RvcnlSZXF1ZXN0EhEKCXJhd19xdWVyeRgBIAEoCRIeCgVxdWVyeRgCIAEoCzIPLnR5cGVzLnYxLlF1ZXJ5IkgKGlJlY29yZFF1ZXJ5SGlzdG9yeVJlc3BvbnNlEioKBWVudHJ5GAEgASgLMhsudHlwZXMudjEuUXVlcnlIaXN0b3J5RW50cnkiJAoWR2V0UXVlcnlIaXN0b3J5UmVxdWVzdBIKCgJpZBgBIAEoAyJFChdHZXRRdWVyeUhpc3RvcnlSZXNwb25zZRIqCgVlbnRyeRgBIAEoCzIbLnR5cGVzLnYxLlF1ZXJ5SGlzdG9yeUVudHJ5IkoKF0xpc3RRdWVyeUhpc3RvcnlSZXF1ZXN0EiAKBmN1cnNvchgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchINCgVsaW1pdBgCIAEoBSKxAQoYTGlzdFF1ZXJ5SGlzdG9yeVJlc3BvbnNlEh4KBG5leHQYASABKAsyEC50eXBlcy52MS5DdXJzb3ISPQoFaXRlbXMYAiADKAsyLi5zdmMudXNlci52MS5MaXN0UXVlcnlIaXN0b3J5UmVzcG9uc2UuTGlzdEl0ZW0aNgoITGlzdEl0ZW0SKgoFZW50cnkYASABKAsyGy50eXBlcy52MS5RdWVyeUhpc3RvcnlFbnRyeSInChlEZWxldGVRdWVyeUhpc3RvcnlSZXF1ZXN0EgoKAmlkGAEgASgDIhwKGkRlbGV0ZVF1ZXJ5SGlzdG9yeVJlc3BvbnNlImsKGkNyZWF0ZUZhdm9yaXRlUXVlcnlSZXF1ZXN0EgwKBG5hbWUYASABKAkSEQoJcmF3X3F1ZXJ5GAIgASgJEh4KBXF1ZXJ5GAMgASgLMg8udHlwZXMudjEuUXVlcnkSDAoEbm90ZRgEIAEoCSJIChtDcmVhdGVGYXZvcml0ZVF1ZXJ5UmVzcG9uc2USKQoIZmF2b3JpdGUYASABKAsyFy50eXBlcy52MS5GYXZvcml0ZVF1ZXJ5IiUKF0dldEZhdm9yaXRlUXVlcnlSZXF1ZXN0EgoKAmlkGAEgASgDIkUKGEdldEZhdm9yaXRlUXVlcnlSZXNwb25zZRIpCghmYXZvcml0ZRgBIAEoCzIXLnR5cGVzLnYxLkZhdm9yaXRlUXVlcnkidwoaVXBkYXRlRmF2b3JpdGVRdWVyeVJlcXVlc3QSCgoCaWQYASABKAMSDAoEbmFtZRgCIAEoCRIRCglyYXdfcXVlcnkYAyABKAkSHgoFcXVlcnkYBCABKAsyDy50eXBlcy52MS5RdWVyeRIMCgRub3RlGAUgASgJIkgKG1VwZGF0ZUZhdm9yaXRlUXVlcnlSZXNwb25zZRIpCghmYXZvcml0ZRgBIAEoCzIXLnR5cGVzLnYxLkZhdm9yaXRlUXVlcnkiSwoYTGlzdEZhdm9yaXRlUXVlcnlSZXF1ZXN0EiAKBmN1cnNvchgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchINCgVsaW1pdBgCIAEoBSLQAQoZTGlzdEZhdm9yaXRlUXVlcnlSZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEj4KBWl0ZW1zGAIgAygLMi8uc3ZjLnVzZXIudjEuTGlzdEZhdm9yaXRlUXVlcnlSZXNwb25zZS5MaXN0SXRlbRpTCghMaXN0SXRlbRIpCghmYXZvcml0ZRgBIAEoCzIXLnR5cGVzLnYxLkZhdm9yaXRlUXVlcnkSEgoFZXJyb3IYAiABKAlIAIgBAUIICgZfZXJyb3IiKAoaRGVsZXRlRmF2b3JpdGVRdWVyeVJlcXVlc3QSCgoCaWQYASABKAMiHQobRGVsZXRlRmF2b3JpdGVRdWVyeVJlc3BvbnNlMqANCgtVc2VyU2VydmljZRJDCgZXaG9hbWkSGi5zdmMudXNlci52MS5XaG9hbWlSZXF1ZXN0Ghsuc3ZjLnVzZXIudjEuV2hvYW1pUmVzcG9uc2UiABJVCgxHZXRMb2dvdXRVUkwSIC5zdmMudXNlci52MS5HZXRMb2dvdXRVUkxSZXF1ZXN0GiEuc3ZjLnVzZXIudjEuR2V0TG9nb3V0VVJMUmVzcG9uc2UiABJhChBSZWZyZXNoVXNlclRva2VuEiQuc3ZjLnVzZXIudjEuUmVmcmVzaFVzZXJUb2tlblJlcXVlc3QaJS5zdmMudXNlci52MS5SZWZyZXNoVXNlclRva2VuUmVzcG9uc2UiABJPCgpVcGRhdGVVc2VyEh4uc3ZjLnVzZXIudjEuVXBkYXRlVXNlclJlcXVlc3QaHy5zdmMudXNlci52MS5VcGRhdGVVc2VyUmVzcG9uc2UiABJnChJDcmVhdGVPcmdhbml6YXRpb24SJi5zdmMudXNlci52MS5DcmVhdGVPcmdhbml6YXRpb25SZXF1ZXN0Gicuc3ZjLnVzZXIudjEuQ3JlYXRlT3JnYW5pemF0aW9uUmVzcG9uc2UiABJhChBMaXN0T3JnYW5pemF0aW9uEiQuc3ZjLnVzZXIudjEuTGlzdE9yZ2FuaXphdGlvblJlcXVlc3QaJS5zdmMudXNlci52MS5MaXN0T3JnYW5pemF0aW9uUmVzcG9uc2UiABJqChNTYXZlTG9jYWxob3N0Q29uZmlnEicuc3ZjLnVzZXIudjEuU2F2ZUxvY2FsaG9zdENvbmZpZ1JlcXVlc3QaKC5zdmMudXNlci52MS5TYXZlTG9jYWxob3N0Q29uZmlnUmVzcG9uc2UiABJnChJHZXRMb2NhbGhvc3RDb25maWcSJi5zdmMudXNlci52MS5HZXRMb2NhbGhvc3RDb25maWdSZXF1ZXN0Gicuc3ZjLnVzZXIudjEuR2V0TG9jYWxob3N0Q29uZmlnUmVzcG9uc2UiABJnChJSZWNvcmRRdWVyeUhpc3RvcnkSJi5zdmMudXNlci52MS5SZWNvcmRRdWVyeUhpc3RvcnlSZXF1ZXN0Gicuc3ZjLnVzZXIudjEuUmVjb3JkUXVlcnlIaXN0b3J5UmVzcG9uc2UiABJeCg9HZXRRdWVyeUhpc3RvcnkSIy5zdmMudXNlci52MS5HZXRRdWVyeUhpc3RvcnlSZXF1ZXN0GiQuc3ZjLnVzZXIudjEuR2V0UXVlcnlIaXN0b3J5UmVzcG9uc2UiABJhChBMaXN0UXVlcnlIaXN0b3J5EiQuc3ZjLnVzZXIudjEuTGlzdFF1ZXJ5SGlzdG9yeVJlcXVlc3QaJS5zdmMudXNlci52MS5MaXN0UXVlcnlIaXN0b3J5UmVzcG9uc2UiABJnChJEZWxldGVRdWVyeUhpc3RvcnkSJi5zdmMudXNlci52MS5EZWxldGVRdWVyeUhpc3RvcnlSZXF1ZXN0Gicuc3ZjLnVzZXIudjEuRGVsZXRlUXVlcnlIaXN0b3J5UmVzcG9uc2UiABJqChNDcmVhdGVGYXZvcml0ZVF1ZXJ5Eicuc3ZjLnVzZXIudjEuQ3JlYXRlRmF2b3JpdGVRdWVyeVJlcXVlc3QaKC5zdmMudXNlci52MS5DcmVhdGVGYXZvcml0ZVF1ZXJ5UmVzcG9uc2UiABJhChBHZXRGYXZvcml0ZVF1ZXJ5EiQuc3ZjLnVzZXIudjEuR2V0RmF2b3JpdGVRdWVyeVJlcXVlc3QaJS5zdmMudXNlci52MS5HZXRGYXZvcml0ZVF1ZXJ5UmVzcG9uc2UiABJqChNVcGRhdGVGYXZvcml0ZVF1ZXJ5Eicuc3ZjLnVzZXIudjEuVXBkYXRlRmF2b3JpdGVRdWVyeVJlcXVlc3QaKC5zdmMudXNlci52MS5VcGRhdGVGYXZvcml0ZVF1ZXJ5UmVzcG9uc2UiABJkChFMaXN0RmF2b3JpdGVRdWVyeRIlLnN2Yy51c2VyLnYxLkxpc3RGYXZvcml0ZVF1ZXJ5UmVxdWVzdBomLnN2Yy51c2VyLnYxLkxpc3RGYXZvcml0ZVF1ZXJ5UmVzcG9uc2UiABJqChNEZWxldGVGYXZvcml0ZVF1ZXJ5Eicuc3ZjLnVzZXIudjEuRGVsZXRlRmF2b3JpdGVRdWVyeVJlcXVlc3QaKC5zdmMudXNlci52MS5EZWxldGVGYXZvcml0ZVF1ZXJ5UmVzcG9uc2UiAEKlAQoPY29tLnN2Yy51c2VyLnYxQhNTZXJ2aWNlUHJpdmF0ZVByb3RvUAFaL2dpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vc3ZjL3VzZXIvdjE7dXNlcnYxogIDU1VYqgILU3ZjLlVzZXIuVjHKAgtTdmNcVXNlclxWMeICF1N2Y1xVc2VyXFYxXEdQQk1ldGFkYXRh6gINU3ZjOjpVc2VyOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp, file_types_v1_cursor, file_types_v1_data, file_types_v1_favorite_query, file_types_v1_localhost_config, file_types_v1_organization, file_types_v1_query, file_types_v1_query_history_entry, file_types_v1_user]);
+  fileDesc("CiFzdmMvdXNlci92MS9zZXJ2aWNlX3ByaXZhdGUucHJvdG8SC3N2Yy51c2VyLnYxIg8KDVdob2FtaVJlcXVlc3QimgEKDldob2FtaVJlc3BvbnNlEhwKBHVzZXIYASABKAsyDi50eXBlcy52MS5Vc2VyEjQKFGN1cnJlbnRfb3JnYW5pemF0aW9uGAIgASgLMhYudHlwZXMudjEuT3JnYW5pemF0aW9uEjQKFGRlZmF1bHRfb3JnYW5pemF0aW9uGAMgASgLMhYudHlwZXMudjEuT3JnYW5pemF0aW9uIigKE0dldExvZ291dFVSTFJlcXVlc3QSEQoJcmV0dXJuX3RvGAEgASgJIioKFEdldExvZ291dFVSTFJlc3BvbnNlEhIKCmxvZ291dF91cmwYASABKAkiGQoXUmVmcmVzaFVzZXJUb2tlblJlcXVlc3QiiQEKGFJlZnJlc2hVc2VyVG9rZW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRIuCgpyZWZyZXNoX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpleHBpcmVzX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCKsAQoRVXBkYXRlVXNlclJlcXVlc3QSFwoKZmlyc3RfbmFtZRgBIAEoCUgAiAEBEhYKCWxhc3RfbmFtZRgCIAEoCUgBiAEBEjwKCHVzZXJuYW1lGAMgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskSAKIAQFCDQoLX2ZpcnN0X25hbWVCDAoKX2xhc3RfbmFtZUILCglfdXNlcm5hbWUiMgoSVXBkYXRlVXNlclJlc3BvbnNlEhwKBHVzZXIYASABKAsyDi50eXBlcy52MS5Vc2VyIhMKEURlbGV0ZVVzZXJSZXF1ZXN0IhQKEkRlbGV0ZVVzZXJSZXNwb25zZSJQChlDcmVhdGVPcmdhbml6YXRpb25SZXF1ZXN0EjMKBG5hbWUYASABKAlCJbpIInIgEAMYJzIaXlthLXpBLVowLTldW2EtekEtWjAtOS1dKyQiSgoaQ3JlYXRlT3JnYW5pemF0aW9uUmVzcG9uc2USLAoMb3JnYW5pemF0aW9uGAEgASgLMhYudHlwZXMudjEuT3JnYW5pemF0aW9uIkoKF0xpc3RPcmdhbml6YXRpb25SZXF1ZXN0EiAKBmN1cnNvchgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchINCgVsaW1pdBgCIAEoBSLpAQoYTGlzdE9yZ2FuaXphdGlvblJlc3BvbnNlEh4KBG5leHQYASABKAsyEC50eXBlcy52MS5DdXJzb3ISPQoFaXRlbXMYAiADKAsyLi5zdmMudXNlci52MS5MaXN0T3JnYW5pemF0aW9uUmVzcG9uc2UuTGlzdEl0ZW0SNAoUZGVmYXVsdF9vcmdhbml6YXRpb24YAyABKAsyFi50eXBlcy52MS5Pcmdhbml6YXRpb24aOAoITGlzdEl0ZW0SLAoMb3JnYW5pemF0aW9uGAEgASgLMhYudHlwZXMudjEuT3JnYW5pemF0aW9uIkcKGlNhdmVMb2NhbGhvc3RDb25maWdSZXF1ZXN0EikKBmNvbmZpZxgBIAEoCzIZLnR5cGVzLnYxLkxvY2FsaG9zdENvbmZpZyIdChtTYXZlTG9jYWxob3N0Q29uZmlnUmVzcG9uc2UiGwoZR2V0TG9jYWxob3N0Q29uZmlnUmVxdWVzdCJHChpHZXRMb2NhbGhvc3RDb25maWdSZXNwb25zZRIpCgZjb25maWcYASABKAsyGS50eXBlcy52MS5Mb2NhbGhvc3RDb25maWciTgoZUmVjb3JkUXVlcnlIaXN0b3J5UmVxdWVzdBIRCglyYXdfcXVlcnkYASABKAkSHgoFcXVlcnkYAiABKAsyDy50eXBlcy52MS5RdWVyeSJIChpSZWNvcmRRdWVyeUhpc3RvcnlSZXNwb25zZRIqCgVlbnRyeRgBIAEoCzIbLnR5cGVzLnYxLlF1ZXJ5SGlzdG9yeUVudHJ5IiQKFkdldFF1ZXJ5SGlzdG9yeVJlcXVlc3QSCgoCaWQYASABKAMiRQoXR2V0UXVlcnlIaXN0b3J5UmVzcG9uc2USKgoFZW50cnkYASABKAsyGy50eXBlcy52MS5RdWVyeUhpc3RvcnlFbnRyeSJKChdMaXN0UXVlcnlIaXN0b3J5UmVxdWVzdBIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUisQEKGExpc3RRdWVyeUhpc3RvcnlSZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEj0KBWl0ZW1zGAIgAygLMi4uc3ZjLnVzZXIudjEuTGlzdFF1ZXJ5SGlzdG9yeVJlc3BvbnNlLkxpc3RJdGVtGjYKCExpc3RJdGVtEioKBWVudHJ5GAEgASgLMhsudHlwZXMudjEuUXVlcnlIaXN0b3J5RW50cnkiJwoZRGVsZXRlUXVlcnlIaXN0b3J5UmVxdWVzdBIKCgJpZBgBIAEoAyIcChpEZWxldGVRdWVyeUhpc3RvcnlSZXNwb25zZSJrChpDcmVhdGVGYXZvcml0ZVF1ZXJ5UmVxdWVzdBIMCgRuYW1lGAEgASgJEhEKCXJhd19xdWVyeRgCIAEoCRIeCgVxdWVyeRgDIAEoCzIPLnR5cGVzLnYxLlF1ZXJ5EgwKBG5vdGUYBCABKAkiSAobQ3JlYXRlRmF2b3JpdGVRdWVyeVJlc3BvbnNlEikKCGZhdm9yaXRlGAEgASgLMhcudHlwZXMudjEuRmF2b3JpdGVRdWVyeSIlChdHZXRGYXZvcml0ZVF1ZXJ5UmVxdWVzdBIKCgJpZBgBIAEoAyJFChhHZXRGYXZvcml0ZVF1ZXJ5UmVzcG9uc2USKQoIZmF2b3JpdGUYASABKAsyFy50eXBlcy52MS5GYXZvcml0ZVF1ZXJ5IncKGlVwZGF0ZUZhdm9yaXRlUXVlcnlSZXF1ZXN0EgoKAmlkGAEgASgDEgwKBG5hbWUYAiABKAkSEQoJcmF3X3F1ZXJ5GAMgASgJEh4KBXF1ZXJ5GAQgASgLMg8udHlwZXMudjEuUXVlcnkSDAoEbm90ZRgFIAEoCSJIChtVcGRhdGVGYXZvcml0ZVF1ZXJ5UmVzcG9uc2USKQoIZmF2b3JpdGUYASABKAsyFy50eXBlcy52MS5GYXZvcml0ZVF1ZXJ5IksKGExpc3RGYXZvcml0ZVF1ZXJ5UmVxdWVzdBIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUi0AEKGUxpc3RGYXZvcml0ZVF1ZXJ5UmVzcG9uc2USHgoEbmV4dBgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchI+CgVpdGVtcxgCIAMoCzIvLnN2Yy51c2VyLnYxLkxpc3RGYXZvcml0ZVF1ZXJ5UmVzcG9uc2UuTGlzdEl0ZW0aUwoITGlzdEl0ZW0SKQoIZmF2b3JpdGUYASABKAsyFy50eXBlcy52MS5GYXZvcml0ZVF1ZXJ5EhIKBWVycm9yGAIgASgJSACIAQFCCAoGX2Vycm9yIigKGkRlbGV0ZUZhdm9yaXRlUXVlcnlSZXF1ZXN0EgoKAmlkGAEgASgDIh0KG0RlbGV0ZUZhdm9yaXRlUXVlcnlSZXNwb25zZTLxDQoLVXNlclNlcnZpY2USQwoGV2hvYW1pEhouc3ZjLnVzZXIudjEuV2hvYW1pUmVxdWVzdBobLnN2Yy51c2VyLnYxLldob2FtaVJlc3BvbnNlIgASVQoMR2V0TG9nb3V0VVJMEiAuc3ZjLnVzZXIudjEuR2V0TG9nb3V0VVJMUmVxdWVzdBohLnN2Yy51c2VyLnYxLkdldExvZ291dFVSTFJlc3BvbnNlIgASYQoQUmVmcmVzaFVzZXJUb2tlbhIkLnN2Yy51c2VyLnYxLlJlZnJlc2hVc2VyVG9rZW5SZXF1ZXN0GiUuc3ZjLnVzZXIudjEuUmVmcmVzaFVzZXJUb2tlblJlc3BvbnNlIgASTwoKVXBkYXRlVXNlchIeLnN2Yy51c2VyLnYxLlVwZGF0ZVVzZXJSZXF1ZXN0Gh8uc3ZjLnVzZXIudjEuVXBkYXRlVXNlclJlc3BvbnNlIgASTwoKRGVsZXRlVXNlchIeLnN2Yy51c2VyLnYxLkRlbGV0ZVVzZXJSZXF1ZXN0Gh8uc3ZjLnVzZXIudjEuRGVsZXRlVXNlclJlc3BvbnNlIgASZwoSQ3JlYXRlT3JnYW5pemF0aW9uEiYuc3ZjLnVzZXIudjEuQ3JlYXRlT3JnYW5pemF0aW9uUmVxdWVzdBonLnN2Yy51c2VyLnYxLkNyZWF0ZU9yZ2FuaXphdGlvblJlc3BvbnNlIgASYQoQTGlzdE9yZ2FuaXphdGlvbhIkLnN2Yy51c2VyLnYxLkxpc3RPcmdhbml6YXRpb25SZXF1ZXN0GiUuc3ZjLnVzZXIudjEuTGlzdE9yZ2FuaXphdGlvblJlc3BvbnNlIgASagoTU2F2ZUxvY2FsaG9zdENvbmZpZxInLnN2Yy51c2VyLnYxLlNhdmVMb2NhbGhvc3RDb25maWdSZXF1ZXN0Giguc3ZjLnVzZXIudjEuU2F2ZUxvY2FsaG9zdENvbmZpZ1Jlc3BvbnNlIgASZwoSR2V0TG9jYWxob3N0Q29uZmlnEiYuc3ZjLnVzZXIudjEuR2V0TG9jYWxob3N0Q29uZmlnUmVxdWVzdBonLnN2Yy51c2VyLnYxLkdldExvY2FsaG9zdENvbmZpZ1Jlc3BvbnNlIgASZwoSUmVjb3JkUXVlcnlIaXN0b3J5EiYuc3ZjLnVzZXIudjEuUmVjb3JkUXVlcnlIaXN0b3J5UmVxdWVzdBonLnN2Yy51c2VyLnYxLlJlY29yZFF1ZXJ5SGlzdG9yeVJlc3BvbnNlIgASXgoPR2V0UXVlcnlIaXN0b3J5EiMuc3ZjLnVzZXIudjEuR2V0UXVlcnlIaXN0b3J5UmVxdWVzdBokLnN2Yy51c2VyLnYxLkdldFF1ZXJ5SGlzdG9yeVJlc3BvbnNlIgASYQoQTGlzdFF1ZXJ5SGlzdG9yeRIkLnN2Yy51c2VyLnYxLkxpc3RRdWVyeUhpc3RvcnlSZXF1ZXN0GiUuc3ZjLnVzZXIudjEuTGlzdFF1ZXJ5SGlzdG9yeVJlc3BvbnNlIgASZwoSRGVsZXRlUXVlcnlIaXN0b3J5EiYuc3ZjLnVzZXIudjEuRGVsZXRlUXVlcnlIaXN0b3J5UmVxdWVzdBonLnN2Yy51c2VyLnYxLkRlbGV0ZVF1ZXJ5SGlzdG9yeVJlc3BvbnNlIgASagoTQ3JlYXRlRmF2b3JpdGVRdWVyeRInLnN2Yy51c2VyLnYxLkNyZWF0ZUZhdm9yaXRlUXVlcnlSZXF1ZXN0Giguc3ZjLnVzZXIudjEuQ3JlYXRlRmF2b3JpdGVRdWVyeVJlc3BvbnNlIgASYQoQR2V0RmF2b3JpdGVRdWVyeRIkLnN2Yy51c2VyLnYxLkdldEZhdm9yaXRlUXVlcnlSZXF1ZXN0GiUuc3ZjLnVzZXIudjEuR2V0RmF2b3JpdGVRdWVyeVJlc3BvbnNlIgASagoTVXBkYXRlRmF2b3JpdGVRdWVyeRInLnN2Yy51c2VyLnYxLlVwZGF0ZUZhdm9yaXRlUXVlcnlSZXF1ZXN0Giguc3ZjLnVzZXIudjEuVXBkYXRlRmF2b3JpdGVRdWVyeVJlc3BvbnNlIgASZAoRTGlzdEZhdm9yaXRlUXVlcnkSJS5zdmMudXNlci52MS5MaXN0RmF2b3JpdGVRdWVyeVJlcXVlc3QaJi5zdmMudXNlci52MS5MaXN0RmF2b3JpdGVRdWVyeVJlc3BvbnNlIgASagoTRGVsZXRlRmF2b3JpdGVRdWVyeRInLnN2Yy51c2VyLnYxLkRlbGV0ZUZhdm9yaXRlUXVlcnlSZXF1ZXN0Giguc3ZjLnVzZXIudjEuRGVsZXRlRmF2b3JpdGVRdWVyeVJlc3BvbnNlIgBCpQEKD2NvbS5zdmMudXNlci52MUITU2VydmljZVByaXZhdGVQcm90b1ABWi9naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3N2Yy91c2VyL3YxO3VzZXJ2MaICA1NVWKoCC1N2Yy5Vc2VyLlYxygILU3ZjXFVzZXJcVjHiAhdTdmNcVXNlclxWMVxHUEJNZXRhZGF0YeoCDVN2Yzo6VXNlcjo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_timestamp, file_types_v1_cursor, file_types_v1_data, file_types_v1_favorite_query, file_types_v1_localhost_config, file_types_v1_organization, file_types_v1_query, file_types_v1_query_history_entry, file_types_v1_user]);
 
 /**
  * @generated from message svc.user.v1.WhoamiRequest
@@ -189,6 +189,32 @@ export const UpdateUserResponseSchema: GenMessage<UpdateUserResponse> = /*@__PUR
   messageDesc(file_svc_user_v1_service_private, 7);
 
 /**
+ * @generated from message svc.user.v1.DeleteUserRequest
+ */
+export type DeleteUserRequest = Message<"svc.user.v1.DeleteUserRequest"> & {
+};
+
+/**
+ * Describes the message svc.user.v1.DeleteUserRequest.
+ * Use `create(DeleteUserRequestSchema)` to create a new message.
+ */
+export const DeleteUserRequestSchema: GenMessage<DeleteUserRequest> = /*@__PURE__*/
+  messageDesc(file_svc_user_v1_service_private, 8);
+
+/**
+ * @generated from message svc.user.v1.DeleteUserResponse
+ */
+export type DeleteUserResponse = Message<"svc.user.v1.DeleteUserResponse"> & {
+};
+
+/**
+ * Describes the message svc.user.v1.DeleteUserResponse.
+ * Use `create(DeleteUserResponseSchema)` to create a new message.
+ */
+export const DeleteUserResponseSchema: GenMessage<DeleteUserResponse> = /*@__PURE__*/
+  messageDesc(file_svc_user_v1_service_private, 9);
+
+/**
  * @generated from message svc.user.v1.CreateOrganizationRequest
  */
 export type CreateOrganizationRequest = Message<"svc.user.v1.CreateOrganizationRequest"> & {
@@ -203,7 +229,7 @@ export type CreateOrganizationRequest = Message<"svc.user.v1.CreateOrganizationR
  * Use `create(CreateOrganizationRequestSchema)` to create a new message.
  */
 export const CreateOrganizationRequestSchema: GenMessage<CreateOrganizationRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 8);
+  messageDesc(file_svc_user_v1_service_private, 10);
 
 /**
  * @generated from message svc.user.v1.CreateOrganizationResponse
@@ -220,7 +246,7 @@ export type CreateOrganizationResponse = Message<"svc.user.v1.CreateOrganization
  * Use `create(CreateOrganizationResponseSchema)` to create a new message.
  */
 export const CreateOrganizationResponseSchema: GenMessage<CreateOrganizationResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 9);
+  messageDesc(file_svc_user_v1_service_private, 11);
 
 /**
  * @generated from message svc.user.v1.ListOrganizationRequest
@@ -242,7 +268,7 @@ export type ListOrganizationRequest = Message<"svc.user.v1.ListOrganizationReque
  * Use `create(ListOrganizationRequestSchema)` to create a new message.
  */
 export const ListOrganizationRequestSchema: GenMessage<ListOrganizationRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 10);
+  messageDesc(file_svc_user_v1_service_private, 12);
 
 /**
  * @generated from message svc.user.v1.ListOrganizationResponse
@@ -269,7 +295,7 @@ export type ListOrganizationResponse = Message<"svc.user.v1.ListOrganizationResp
  * Use `create(ListOrganizationResponseSchema)` to create a new message.
  */
 export const ListOrganizationResponseSchema: GenMessage<ListOrganizationResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 11);
+  messageDesc(file_svc_user_v1_service_private, 13);
 
 /**
  * @generated from message svc.user.v1.ListOrganizationResponse.ListItem
@@ -286,7 +312,7 @@ export type ListOrganizationResponse_ListItem = Message<"svc.user.v1.ListOrganiz
  * Use `create(ListOrganizationResponse_ListItemSchema)` to create a new message.
  */
 export const ListOrganizationResponse_ListItemSchema: GenMessage<ListOrganizationResponse_ListItem> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 11, 0);
+  messageDesc(file_svc_user_v1_service_private, 13, 0);
 
 /**
  * @generated from message svc.user.v1.SaveLocalhostConfigRequest
@@ -303,7 +329,7 @@ export type SaveLocalhostConfigRequest = Message<"svc.user.v1.SaveLocalhostConfi
  * Use `create(SaveLocalhostConfigRequestSchema)` to create a new message.
  */
 export const SaveLocalhostConfigRequestSchema: GenMessage<SaveLocalhostConfigRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 12);
+  messageDesc(file_svc_user_v1_service_private, 14);
 
 /**
  * @generated from message svc.user.v1.SaveLocalhostConfigResponse
@@ -316,7 +342,7 @@ export type SaveLocalhostConfigResponse = Message<"svc.user.v1.SaveLocalhostConf
  * Use `create(SaveLocalhostConfigResponseSchema)` to create a new message.
  */
 export const SaveLocalhostConfigResponseSchema: GenMessage<SaveLocalhostConfigResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 13);
+  messageDesc(file_svc_user_v1_service_private, 15);
 
 /**
  * @generated from message svc.user.v1.GetLocalhostConfigRequest
@@ -329,7 +355,7 @@ export type GetLocalhostConfigRequest = Message<"svc.user.v1.GetLocalhostConfigR
  * Use `create(GetLocalhostConfigRequestSchema)` to create a new message.
  */
 export const GetLocalhostConfigRequestSchema: GenMessage<GetLocalhostConfigRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 14);
+  messageDesc(file_svc_user_v1_service_private, 16);
 
 /**
  * @generated from message svc.user.v1.GetLocalhostConfigResponse
@@ -346,7 +372,7 @@ export type GetLocalhostConfigResponse = Message<"svc.user.v1.GetLocalhostConfig
  * Use `create(GetLocalhostConfigResponseSchema)` to create a new message.
  */
 export const GetLocalhostConfigResponseSchema: GenMessage<GetLocalhostConfigResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 15);
+  messageDesc(file_svc_user_v1_service_private, 17);
 
 /**
  * @generated from message svc.user.v1.RecordQueryHistoryRequest
@@ -368,7 +394,7 @@ export type RecordQueryHistoryRequest = Message<"svc.user.v1.RecordQueryHistoryR
  * Use `create(RecordQueryHistoryRequestSchema)` to create a new message.
  */
 export const RecordQueryHistoryRequestSchema: GenMessage<RecordQueryHistoryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 16);
+  messageDesc(file_svc_user_v1_service_private, 18);
 
 /**
  * @generated from message svc.user.v1.RecordQueryHistoryResponse
@@ -385,7 +411,7 @@ export type RecordQueryHistoryResponse = Message<"svc.user.v1.RecordQueryHistory
  * Use `create(RecordQueryHistoryResponseSchema)` to create a new message.
  */
 export const RecordQueryHistoryResponseSchema: GenMessage<RecordQueryHistoryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 17);
+  messageDesc(file_svc_user_v1_service_private, 19);
 
 /**
  * @generated from message svc.user.v1.GetQueryHistoryRequest
@@ -402,7 +428,7 @@ export type GetQueryHistoryRequest = Message<"svc.user.v1.GetQueryHistoryRequest
  * Use `create(GetQueryHistoryRequestSchema)` to create a new message.
  */
 export const GetQueryHistoryRequestSchema: GenMessage<GetQueryHistoryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 18);
+  messageDesc(file_svc_user_v1_service_private, 20);
 
 /**
  * @generated from message svc.user.v1.GetQueryHistoryResponse
@@ -419,7 +445,7 @@ export type GetQueryHistoryResponse = Message<"svc.user.v1.GetQueryHistoryRespon
  * Use `create(GetQueryHistoryResponseSchema)` to create a new message.
  */
 export const GetQueryHistoryResponseSchema: GenMessage<GetQueryHistoryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 19);
+  messageDesc(file_svc_user_v1_service_private, 21);
 
 /**
  * @generated from message svc.user.v1.ListQueryHistoryRequest
@@ -441,7 +467,7 @@ export type ListQueryHistoryRequest = Message<"svc.user.v1.ListQueryHistoryReque
  * Use `create(ListQueryHistoryRequestSchema)` to create a new message.
  */
 export const ListQueryHistoryRequestSchema: GenMessage<ListQueryHistoryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 20);
+  messageDesc(file_svc_user_v1_service_private, 22);
 
 /**
  * @generated from message svc.user.v1.ListQueryHistoryResponse
@@ -463,7 +489,7 @@ export type ListQueryHistoryResponse = Message<"svc.user.v1.ListQueryHistoryResp
  * Use `create(ListQueryHistoryResponseSchema)` to create a new message.
  */
 export const ListQueryHistoryResponseSchema: GenMessage<ListQueryHistoryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 21);
+  messageDesc(file_svc_user_v1_service_private, 23);
 
 /**
  * @generated from message svc.user.v1.ListQueryHistoryResponse.ListItem
@@ -480,7 +506,7 @@ export type ListQueryHistoryResponse_ListItem = Message<"svc.user.v1.ListQueryHi
  * Use `create(ListQueryHistoryResponse_ListItemSchema)` to create a new message.
  */
 export const ListQueryHistoryResponse_ListItemSchema: GenMessage<ListQueryHistoryResponse_ListItem> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 21, 0);
+  messageDesc(file_svc_user_v1_service_private, 23, 0);
 
 /**
  * @generated from message svc.user.v1.DeleteQueryHistoryRequest
@@ -497,7 +523,7 @@ export type DeleteQueryHistoryRequest = Message<"svc.user.v1.DeleteQueryHistoryR
  * Use `create(DeleteQueryHistoryRequestSchema)` to create a new message.
  */
 export const DeleteQueryHistoryRequestSchema: GenMessage<DeleteQueryHistoryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 22);
+  messageDesc(file_svc_user_v1_service_private, 24);
 
 /**
  * @generated from message svc.user.v1.DeleteQueryHistoryResponse
@@ -510,7 +536,7 @@ export type DeleteQueryHistoryResponse = Message<"svc.user.v1.DeleteQueryHistory
  * Use `create(DeleteQueryHistoryResponseSchema)` to create a new message.
  */
 export const DeleteQueryHistoryResponseSchema: GenMessage<DeleteQueryHistoryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 23);
+  messageDesc(file_svc_user_v1_service_private, 25);
 
 /**
  * @generated from message svc.user.v1.CreateFavoriteQueryRequest
@@ -542,7 +568,7 @@ export type CreateFavoriteQueryRequest = Message<"svc.user.v1.CreateFavoriteQuer
  * Use `create(CreateFavoriteQueryRequestSchema)` to create a new message.
  */
 export const CreateFavoriteQueryRequestSchema: GenMessage<CreateFavoriteQueryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 24);
+  messageDesc(file_svc_user_v1_service_private, 26);
 
 /**
  * @generated from message svc.user.v1.CreateFavoriteQueryResponse
@@ -559,7 +585,7 @@ export type CreateFavoriteQueryResponse = Message<"svc.user.v1.CreateFavoriteQue
  * Use `create(CreateFavoriteQueryResponseSchema)` to create a new message.
  */
 export const CreateFavoriteQueryResponseSchema: GenMessage<CreateFavoriteQueryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 25);
+  messageDesc(file_svc_user_v1_service_private, 27);
 
 /**
  * @generated from message svc.user.v1.GetFavoriteQueryRequest
@@ -576,7 +602,7 @@ export type GetFavoriteQueryRequest = Message<"svc.user.v1.GetFavoriteQueryReque
  * Use `create(GetFavoriteQueryRequestSchema)` to create a new message.
  */
 export const GetFavoriteQueryRequestSchema: GenMessage<GetFavoriteQueryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 26);
+  messageDesc(file_svc_user_v1_service_private, 28);
 
 /**
  * @generated from message svc.user.v1.GetFavoriteQueryResponse
@@ -593,7 +619,7 @@ export type GetFavoriteQueryResponse = Message<"svc.user.v1.GetFavoriteQueryResp
  * Use `create(GetFavoriteQueryResponseSchema)` to create a new message.
  */
 export const GetFavoriteQueryResponseSchema: GenMessage<GetFavoriteQueryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 27);
+  messageDesc(file_svc_user_v1_service_private, 29);
 
 /**
  * @generated from message svc.user.v1.UpdateFavoriteQueryRequest
@@ -630,7 +656,7 @@ export type UpdateFavoriteQueryRequest = Message<"svc.user.v1.UpdateFavoriteQuer
  * Use `create(UpdateFavoriteQueryRequestSchema)` to create a new message.
  */
 export const UpdateFavoriteQueryRequestSchema: GenMessage<UpdateFavoriteQueryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 28);
+  messageDesc(file_svc_user_v1_service_private, 30);
 
 /**
  * @generated from message svc.user.v1.UpdateFavoriteQueryResponse
@@ -647,7 +673,7 @@ export type UpdateFavoriteQueryResponse = Message<"svc.user.v1.UpdateFavoriteQue
  * Use `create(UpdateFavoriteQueryResponseSchema)` to create a new message.
  */
 export const UpdateFavoriteQueryResponseSchema: GenMessage<UpdateFavoriteQueryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 29);
+  messageDesc(file_svc_user_v1_service_private, 31);
 
 /**
  * @generated from message svc.user.v1.ListFavoriteQueryRequest
@@ -669,7 +695,7 @@ export type ListFavoriteQueryRequest = Message<"svc.user.v1.ListFavoriteQueryReq
  * Use `create(ListFavoriteQueryRequestSchema)` to create a new message.
  */
 export const ListFavoriteQueryRequestSchema: GenMessage<ListFavoriteQueryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 30);
+  messageDesc(file_svc_user_v1_service_private, 32);
 
 /**
  * @generated from message svc.user.v1.ListFavoriteQueryResponse
@@ -691,7 +717,7 @@ export type ListFavoriteQueryResponse = Message<"svc.user.v1.ListFavoriteQueryRe
  * Use `create(ListFavoriteQueryResponseSchema)` to create a new message.
  */
 export const ListFavoriteQueryResponseSchema: GenMessage<ListFavoriteQueryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 31);
+  messageDesc(file_svc_user_v1_service_private, 33);
 
 /**
  * @generated from message svc.user.v1.ListFavoriteQueryResponse.ListItem
@@ -713,7 +739,7 @@ export type ListFavoriteQueryResponse_ListItem = Message<"svc.user.v1.ListFavori
  * Use `create(ListFavoriteQueryResponse_ListItemSchema)` to create a new message.
  */
 export const ListFavoriteQueryResponse_ListItemSchema: GenMessage<ListFavoriteQueryResponse_ListItem> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 31, 0);
+  messageDesc(file_svc_user_v1_service_private, 33, 0);
 
 /**
  * @generated from message svc.user.v1.DeleteFavoriteQueryRequest
@@ -730,7 +756,7 @@ export type DeleteFavoriteQueryRequest = Message<"svc.user.v1.DeleteFavoriteQuer
  * Use `create(DeleteFavoriteQueryRequestSchema)` to create a new message.
  */
 export const DeleteFavoriteQueryRequestSchema: GenMessage<DeleteFavoriteQueryRequest> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 32);
+  messageDesc(file_svc_user_v1_service_private, 34);
 
 /**
  * @generated from message svc.user.v1.DeleteFavoriteQueryResponse
@@ -743,7 +769,7 @@ export type DeleteFavoriteQueryResponse = Message<"svc.user.v1.DeleteFavoriteQue
  * Use `create(DeleteFavoriteQueryResponseSchema)` to create a new message.
  */
 export const DeleteFavoriteQueryResponseSchema: GenMessage<DeleteFavoriteQueryResponse> = /*@__PURE__*/
-  messageDesc(file_svc_user_v1_service_private, 33);
+  messageDesc(file_svc_user_v1_service_private, 35);
 
 /**
  * @generated from service svc.user.v1.UserService
@@ -780,6 +806,14 @@ export const UserService: GenService<{
     methodKind: "unary";
     input: typeof UpdateUserRequestSchema;
     output: typeof UpdateUserResponseSchema;
+  },
+  /**
+   * @generated from rpc svc.user.v1.UserService.DeleteUser
+   */
+  deleteUser: {
+    methodKind: "unary";
+    input: typeof DeleteUserRequestSchema;
+    output: typeof DeleteUserResponseSchema;
   },
   /**
    * @generated from rpc svc.user.v1.UserService.CreateOrganization

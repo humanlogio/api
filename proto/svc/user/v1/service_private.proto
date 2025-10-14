@@ -21,6 +21,7 @@ service UserService {
   rpc RefreshUserToken(RefreshUserTokenRequest) returns (RefreshUserTokenResponse) {}
 
   rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
+  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
 
   rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse) {}
   rpc ListOrganization(ListOrganizationRequest) returns (ListOrganizationResponse) {}
@@ -75,6 +76,9 @@ message UpdateUserRequest {
 message UpdateUserResponse {
   types.v1.User user = 1;
 }
+
+message DeleteUserRequest {}
+message DeleteUserResponse {}
 
 message CreateOrganizationRequest {
   string name = 1 [
