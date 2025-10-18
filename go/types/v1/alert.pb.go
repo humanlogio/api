@@ -340,8 +340,9 @@ func (x *AlertRule) GetStatus() *AlertRuleStatus {
 }
 
 type AlertRuleMeta struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// usually matches `spec.name` unless using virtual alert rules
+	Id            string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -385,11 +386,12 @@ func (x *AlertRuleMeta) GetId() string {
 
 type AlertRuleSpec struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Expr          *Query                 `protobuf:"bytes,1,opt,name=expr,proto3" json:"expr,omitempty"`
-	Labels        *Obj                   `protobuf:"bytes,2,opt,name=labels,proto3" json:"labels,omitempty"`
-	Annotations   *Obj                   `protobuf:"bytes,3,opt,name=annotations,proto3" json:"annotations,omitempty"`
-	For           *durationpb.Duration   `protobuf:"bytes,41,opt,name=for,proto3" json:"for,omitempty"`
-	KeepFiringFor *durationpb.Duration   `protobuf:"bytes,42,opt,name=keep_firing_for,json=keepFiringFor,proto3" json:"keep_firing_for,omitempty"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Expr          *Query                 `protobuf:"bytes,2,opt,name=expr,proto3" json:"expr,omitempty"`
+	Labels        *Obj                   `protobuf:"bytes,3,opt,name=labels,proto3" json:"labels,omitempty"`
+	Annotations   *Obj                   `protobuf:"bytes,4,opt,name=annotations,proto3" json:"annotations,omitempty"`
+	For           *durationpb.Duration   `protobuf:"bytes,51,opt,name=for,proto3" json:"for,omitempty"`
+	KeepFiringFor *durationpb.Duration   `protobuf:"bytes,52,opt,name=keep_firing_for,json=keepFiringFor,proto3" json:"keep_firing_for,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -422,6 +424,13 @@ func (x *AlertRuleSpec) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AlertRuleSpec.ProtoReflect.Descriptor instead.
 func (*AlertRuleSpec) Descriptor() ([]byte, []int) {
 	return file_types_v1_alert_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *AlertRuleSpec) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
 }
 
 func (x *AlertRuleSpec) GetExpr() *Query {
@@ -772,13 +781,14 @@ const file_types_v1_alert_proto_rawDesc = "" +
 	"\x04spec\x18\x02 \x01(\v2\x17.types.v1.AlertRuleSpecR\x04spec\x121\n" +
 	"\x06status\x18\x03 \x01(\v2\x19.types.v1.AlertRuleStatusR\x06status\"\x1f\n" +
 	"\rAlertRuleMeta\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xfc\x01\n" +
-	"\rAlertRuleSpec\x12#\n" +
-	"\x04expr\x18\x01 \x01(\v2\x0f.types.v1.QueryR\x04expr\x12%\n" +
-	"\x06labels\x18\x02 \x01(\v2\r.types.v1.ObjR\x06labels\x12/\n" +
-	"\vannotations\x18\x03 \x01(\v2\r.types.v1.ObjR\vannotations\x12+\n" +
-	"\x03for\x18) \x01(\v2\x19.google.protobuf.DurationR\x03for\x12A\n" +
-	"\x0fkeep_firing_for\x18* \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringFor\"\xe4\x02\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x90\x02\n" +
+	"\rAlertRuleSpec\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12#\n" +
+	"\x04expr\x18\x02 \x01(\v2\x0f.types.v1.QueryR\x04expr\x12%\n" +
+	"\x06labels\x18\x03 \x01(\v2\r.types.v1.ObjR\x06labels\x12/\n" +
+	"\vannotations\x18\x04 \x01(\v2\r.types.v1.ObjR\vannotations\x12+\n" +
+	"\x03for\x183 \x01(\v2\x19.google.protobuf.DurationR\x03for\x12A\n" +
+	"\x0fkeep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringFor\"\xe4\x02\n" +
 	"\x0fAlertRuleStatus\x12C\n" +
 	"\x0ftransitioned_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0etransitionedAt\x12@\n" +
 	"\x0elast_firing_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\flastFiringAt\x123\n" +

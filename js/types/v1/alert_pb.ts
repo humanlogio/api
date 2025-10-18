@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/alert.proto.
  */
 export const file_types_v1_alert: GenFile = /*@__PURE__*/
-  fileDesc("ChR0eXBlcy92MS9hbGVydC5wcm90bxIIdHlwZXMudjEiiAEKCkFsZXJ0R3JvdXASJgoEbWV0YRgBIAEoCzIYLnR5cGVzLnYxLkFsZXJ0R3JvdXBNZXRhEiYKBHNwZWMYAiABKAsyGC50eXBlcy52MS5BbGVydEdyb3VwU3BlYxIqCgZzdGF0dXMYAyABKAsyGi50eXBlcy52MS5BbGVydEdyb3VwU3RhdHVzIhwKDkFsZXJ0R3JvdXBNZXRhEgoKAmlkGAEgASgJItIBCg5BbGVydEdyb3VwU3BlYxIMCgRuYW1lGAEgASgJEisKCGludGVydmFsGAIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEi8KDHF1ZXJ5X29mZnNldBgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhINCgVsaW1pdBgEIAEoBRImCgVydWxlcxgFIAMoCzIXLnR5cGVzLnYxLkFsZXJ0UnVsZVNwZWMSHQoGbGFiZWxzGAYgASgLMg0udHlwZXMudjEuT2JqIqwBChBBbGVydEdyb3VwU3RhdHVzEi4KCmNyZWF0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg4KBmVycm9ycxgDIAMoCRIoCgVydWxlcxgEIAMoCzIZLnR5cGVzLnYxLkFsZXJ0UnVsZVN0YXR1cyKEAQoJQWxlcnRSdWxlEiUKBG1ldGEYASABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVNZXRhEiUKBHNwZWMYAiABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVTcGVjEikKBnN0YXR1cxgDIAEoCzIZLnR5cGVzLnYxLkFsZXJ0UnVsZVN0YXR1cyIbCg1BbGVydFJ1bGVNZXRhEgoKAmlkGAEgASgJIs0BCg1BbGVydFJ1bGVTcGVjEh0KBGV4cHIYASABKAsyDy50eXBlcy52MS5RdWVyeRIdCgZsYWJlbHMYAiABKAsyDS50eXBlcy52MS5PYmoSIgoLYW5ub3RhdGlvbnMYAyABKAsyDS50eXBlcy52MS5PYmoSJgoDZm9yGCkgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEjIKD2tlZXBfZmlyaW5nX2ZvchgqIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbiKoAgoPQWxlcnRSdWxlU3RhdHVzEjMKD3RyYW5zaXRpb25lZF9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMgoObGFzdF9maXJpbmdfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEioKB3Vua25vd24YrAIgASgLMhYudHlwZXMudjEuQWxlcnRVbmtub3duSAASIAoCb2sYrQIgASgLMhEudHlwZXMudjEuQWxlcnRPa0gAEioKB3BlbmRpbmcYrgIgASgLMhYudHlwZXMudjEuQWxlcnRQZW5kaW5nSAASKAoGZmlyaW5nGK8CIAEoCzIVLnR5cGVzLnYxLkFsZXJ0RmlyaW5nSABCCAoGc3RhdHVzIg4KDEFsZXJ0VW5rbm93biIJCgdBbGVydE9rIg4KDEFsZXJ0UGVuZGluZyIsCgtBbGVydEZpcmluZxIdCgZsYWJlbHMYASABKAsyDS50eXBlcy52MS5PYmpCigEKDGNvbS50eXBlcy52MUIKQWxlcnRQcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_google_protobuf_duration, file_google_protobuf_timestamp, file_types_v1_query, file_types_v1_types]);
+  fileDesc("ChR0eXBlcy92MS9hbGVydC5wcm90bxIIdHlwZXMudjEiiAEKCkFsZXJ0R3JvdXASJgoEbWV0YRgBIAEoCzIYLnR5cGVzLnYxLkFsZXJ0R3JvdXBNZXRhEiYKBHNwZWMYAiABKAsyGC50eXBlcy52MS5BbGVydEdyb3VwU3BlYxIqCgZzdGF0dXMYAyABKAsyGi50eXBlcy52MS5BbGVydEdyb3VwU3RhdHVzIhwKDkFsZXJ0R3JvdXBNZXRhEgoKAmlkGAEgASgJItIBCg5BbGVydEdyb3VwU3BlYxIMCgRuYW1lGAEgASgJEisKCGludGVydmFsGAIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEi8KDHF1ZXJ5X29mZnNldBgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhINCgVsaW1pdBgEIAEoBRImCgVydWxlcxgFIAMoCzIXLnR5cGVzLnYxLkFsZXJ0UnVsZVNwZWMSHQoGbGFiZWxzGAYgASgLMg0udHlwZXMudjEuT2JqIqwBChBBbGVydEdyb3VwU3RhdHVzEi4KCmNyZWF0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg4KBmVycm9ycxgDIAMoCRIoCgVydWxlcxgEIAMoCzIZLnR5cGVzLnYxLkFsZXJ0UnVsZVN0YXR1cyKEAQoJQWxlcnRSdWxlEiUKBG1ldGEYASABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVNZXRhEiUKBHNwZWMYAiABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVTcGVjEikKBnN0YXR1cxgDIAEoCzIZLnR5cGVzLnYxLkFsZXJ0UnVsZVN0YXR1cyIbCg1BbGVydFJ1bGVNZXRhEgoKAmlkGAEgASgJItsBCg1BbGVydFJ1bGVTcGVjEgwKBG5hbWUYASABKAkSHQoEZXhwchgCIAEoCzIPLnR5cGVzLnYxLlF1ZXJ5Eh0KBmxhYmVscxgDIAEoCzINLnR5cGVzLnYxLk9iahIiCgthbm5vdGF0aW9ucxgEIAEoCzINLnR5cGVzLnYxLk9iahImCgNmb3IYMyABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24SMgoPa2VlcF9maXJpbmdfZm9yGDQgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uIqgCCg9BbGVydFJ1bGVTdGF0dXMSMwoPdHJhbnNpdGlvbmVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIyCg5sYXN0X2ZpcmluZ19hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASKgoHdW5rbm93bhisAiABKAsyFi50eXBlcy52MS5BbGVydFVua25vd25IABIgCgJvaxitAiABKAsyES50eXBlcy52MS5BbGVydE9rSAASKgoHcGVuZGluZxiuAiABKAsyFi50eXBlcy52MS5BbGVydFBlbmRpbmdIABIoCgZmaXJpbmcYrwIgASgLMhUudHlwZXMudjEuQWxlcnRGaXJpbmdIAEIICgZzdGF0dXMiDgoMQWxlcnRVbmtub3duIgkKB0FsZXJ0T2siDgoMQWxlcnRQZW5kaW5nIiwKC0FsZXJ0RmlyaW5nEh0KBmxhYmVscxgBIAEoCzINLnR5cGVzLnYxLk9iakKKAQoMY29tLnR5cGVzLnYxQgpBbGVydFByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_google_protobuf_duration, file_google_protobuf_timestamp, file_types_v1_query, file_types_v1_types]);
 
 /**
  * @generated from message types.v1.AlertGroup
@@ -168,6 +168,8 @@ export const AlertRuleSchema: GenMessage<AlertRule> = /*@__PURE__*/
  */
 export type AlertRuleMeta = Message<"types.v1.AlertRuleMeta"> & {
   /**
+   * usually matches `spec.name` unless using virtual alert rules
+   *
    * @generated from field: string id = 1;
    */
   id: string;
@@ -185,27 +187,32 @@ export const AlertRuleMetaSchema: GenMessage<AlertRuleMeta> = /*@__PURE__*/
  */
 export type AlertRuleSpec = Message<"types.v1.AlertRuleSpec"> & {
   /**
-   * @generated from field: types.v1.Query expr = 1;
+   * @generated from field: string name = 1;
+   */
+  name: string;
+
+  /**
+   * @generated from field: types.v1.Query expr = 2;
    */
   expr?: Query;
 
   /**
-   * @generated from field: types.v1.Obj labels = 2;
+   * @generated from field: types.v1.Obj labels = 3;
    */
   labels?: Obj;
 
   /**
-   * @generated from field: types.v1.Obj annotations = 3;
+   * @generated from field: types.v1.Obj annotations = 4;
    */
   annotations?: Obj;
 
   /**
-   * @generated from field: google.protobuf.Duration for = 41;
+   * @generated from field: google.protobuf.Duration for = 51;
    */
   for?: Duration;
 
   /**
-   * @generated from field: google.protobuf.Duration keep_firing_for = 42;
+   * @generated from field: google.protobuf.Duration keep_firing_for = 52;
    */
   keepFiringFor?: Duration;
 };
