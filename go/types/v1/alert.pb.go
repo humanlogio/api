@@ -128,13 +128,13 @@ func (x *AlertGroupMeta) GetId() string {
 }
 
 type AlertGroupSpec struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Interval      *durationpb.Duration   `protobuf:"bytes,2,opt,name=interval,proto3" json:"interval,omitempty"`
-	QueryOffset   *durationpb.Duration   `protobuf:"bytes,3,opt,name=query_offset,json=queryOffset,proto3" json:"query_offset,omitempty"`
-	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
-	Rules         []*AlertRuleSpec       `protobuf:"bytes,5,rep,name=rules,proto3" json:"rules,omitempty"`
-	Labels        *Obj                   `protobuf:"bytes,6,opt,name=labels,proto3" json:"labels,omitempty"`
+	state         protoimpl.MessageState    `protogen:"open.v1"`
+	Name          string                    `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Interval      *durationpb.Duration      `protobuf:"bytes,2,opt,name=interval,proto3" json:"interval,omitempty"`
+	QueryOffset   *durationpb.Duration      `protobuf:"bytes,3,opt,name=query_offset,json=queryOffset,proto3" json:"query_offset,omitempty"`
+	Limit         int32                     `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Rules         map[string]*AlertRuleSpec `protobuf:"bytes,5,rep,name=rules,proto3" json:"rules,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Labels        *Obj                      `protobuf:"bytes,6,opt,name=labels,proto3" json:"labels,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -197,7 +197,7 @@ func (x *AlertGroupSpec) GetLimit() int32 {
 	return 0
 }
 
-func (x *AlertGroupSpec) GetRules() []*AlertRuleSpec {
+func (x *AlertGroupSpec) GetRules() map[string]*AlertRuleSpec {
 	if x != nil {
 		return x.Rules
 	}
@@ -212,11 +212,11 @@ func (x *AlertGroupSpec) GetLabels() *Obj {
 }
 
 type AlertGroupStatus struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Errors        []string               `protobuf:"bytes,3,rep,name=errors,proto3" json:"errors,omitempty"`
-	Rules         []*AlertRuleStatus     `protobuf:"bytes,4,rep,name=rules,proto3" json:"rules,omitempty"`
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	CreatedAt     *timestamppb.Timestamp      `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp      `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Errors        []string                    `protobuf:"bytes,3,rep,name=errors,proto3" json:"errors,omitempty"`
+	Rules         map[string]*AlertRuleStatus `protobuf:"bytes,4,rep,name=rules,proto3" json:"rules,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -272,7 +272,7 @@ func (x *AlertGroupStatus) GetErrors() []string {
 	return nil
 }
 
-func (x *AlertGroupStatus) GetRules() []*AlertRuleStatus {
+func (x *AlertGroupStatus) GetRules() map[string]*AlertRuleStatus {
 	if x != nil {
 		return x.Rules
 	}
@@ -761,21 +761,29 @@ const file_types_v1_alert_proto_rawDesc = "" +
 	"\x04spec\x18\x02 \x01(\v2\x18.types.v1.AlertGroupSpecR\x04spec\x122\n" +
 	"\x06status\x18\x03 \x01(\v2\x1a.types.v1.AlertGroupStatusR\x06status\" \n" +
 	"\x0eAlertGroupMeta\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x85\x02\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\xe4\x02\n" +
 	"\x0eAlertGroupSpec\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x125\n" +
 	"\binterval\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\binterval\x12<\n" +
 	"\fquery_offset\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\vqueryOffset\x12\x14\n" +
-	"\x05limit\x18\x04 \x01(\x05R\x05limit\x12-\n" +
-	"\x05rules\x18\x05 \x03(\v2\x17.types.v1.AlertRuleSpecR\x05rules\x12%\n" +
-	"\x06labels\x18\x06 \x01(\v2\r.types.v1.ObjR\x06labels\"\xd1\x01\n" +
+	"\x05limit\x18\x04 \x01(\x05R\x05limit\x129\n" +
+	"\x05rules\x18\x05 \x03(\v2#.types.v1.AlertGroupSpec.RulesEntryR\x05rules\x12%\n" +
+	"\x06labels\x18\x06 \x01(\v2\r.types.v1.ObjR\x06labels\x1aQ\n" +
+	"\n" +
+	"RulesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.types.v1.AlertRuleSpecR\x05value:\x028\x01\"\xb2\x02\n" +
 	"\x10AlertGroupStatus\x129\n" +
 	"\n" +
 	"created_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x16\n" +
-	"\x06errors\x18\x03 \x03(\tR\x06errors\x12/\n" +
-	"\x05rules\x18\x04 \x03(\v2\x19.types.v1.AlertRuleStatusR\x05rules\"\x98\x01\n" +
+	"\x06errors\x18\x03 \x03(\tR\x06errors\x12;\n" +
+	"\x05rules\x18\x04 \x03(\v2%.types.v1.AlertGroupStatus.RulesEntryR\x05rules\x1aS\n" +
+	"\n" +
+	"RulesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12/\n" +
+	"\x05value\x18\x02 \x01(\v2\x19.types.v1.AlertRuleStatusR\x05value:\x028\x01\"\x98\x01\n" +
 	"\tAlertRule\x12+\n" +
 	"\x04meta\x18\x01 \x01(\v2\x17.types.v1.AlertRuleMetaR\x04meta\x12+\n" +
 	"\x04spec\x18\x02 \x01(\v2\x17.types.v1.AlertRuleSpecR\x04spec\x121\n" +
@@ -817,7 +825,7 @@ func file_types_v1_alert_proto_rawDescGZIP() []byte {
 	return file_types_v1_alert_proto_rawDescData
 }
 
-var file_types_v1_alert_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_types_v1_alert_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_types_v1_alert_proto_goTypes = []any{
 	(*AlertGroup)(nil),            // 0: types.v1.AlertGroup
 	(*AlertGroupMeta)(nil),        // 1: types.v1.AlertGroupMeta
@@ -831,42 +839,46 @@ var file_types_v1_alert_proto_goTypes = []any{
 	(*AlertOk)(nil),               // 9: types.v1.AlertOk
 	(*AlertPending)(nil),          // 10: types.v1.AlertPending
 	(*AlertFiring)(nil),           // 11: types.v1.AlertFiring
-	(*durationpb.Duration)(nil),   // 12: google.protobuf.Duration
-	(*Obj)(nil),                   // 13: types.v1.Obj
-	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
-	(*Query)(nil),                 // 15: types.v1.Query
+	nil,                           // 12: types.v1.AlertGroupSpec.RulesEntry
+	nil,                           // 13: types.v1.AlertGroupStatus.RulesEntry
+	(*durationpb.Duration)(nil),   // 14: google.protobuf.Duration
+	(*Obj)(nil),                   // 15: types.v1.Obj
+	(*timestamppb.Timestamp)(nil), // 16: google.protobuf.Timestamp
+	(*Query)(nil),                 // 17: types.v1.Query
 }
 var file_types_v1_alert_proto_depIdxs = []int32{
 	1,  // 0: types.v1.AlertGroup.meta:type_name -> types.v1.AlertGroupMeta
 	2,  // 1: types.v1.AlertGroup.spec:type_name -> types.v1.AlertGroupSpec
 	3,  // 2: types.v1.AlertGroup.status:type_name -> types.v1.AlertGroupStatus
-	12, // 3: types.v1.AlertGroupSpec.interval:type_name -> google.protobuf.Duration
-	12, // 4: types.v1.AlertGroupSpec.query_offset:type_name -> google.protobuf.Duration
-	6,  // 5: types.v1.AlertGroupSpec.rules:type_name -> types.v1.AlertRuleSpec
-	13, // 6: types.v1.AlertGroupSpec.labels:type_name -> types.v1.Obj
-	14, // 7: types.v1.AlertGroupStatus.created_at:type_name -> google.protobuf.Timestamp
-	14, // 8: types.v1.AlertGroupStatus.updated_at:type_name -> google.protobuf.Timestamp
-	7,  // 9: types.v1.AlertGroupStatus.rules:type_name -> types.v1.AlertRuleStatus
+	14, // 3: types.v1.AlertGroupSpec.interval:type_name -> google.protobuf.Duration
+	14, // 4: types.v1.AlertGroupSpec.query_offset:type_name -> google.protobuf.Duration
+	12, // 5: types.v1.AlertGroupSpec.rules:type_name -> types.v1.AlertGroupSpec.RulesEntry
+	15, // 6: types.v1.AlertGroupSpec.labels:type_name -> types.v1.Obj
+	16, // 7: types.v1.AlertGroupStatus.created_at:type_name -> google.protobuf.Timestamp
+	16, // 8: types.v1.AlertGroupStatus.updated_at:type_name -> google.protobuf.Timestamp
+	13, // 9: types.v1.AlertGroupStatus.rules:type_name -> types.v1.AlertGroupStatus.RulesEntry
 	5,  // 10: types.v1.AlertRule.meta:type_name -> types.v1.AlertRuleMeta
 	6,  // 11: types.v1.AlertRule.spec:type_name -> types.v1.AlertRuleSpec
 	7,  // 12: types.v1.AlertRule.status:type_name -> types.v1.AlertRuleStatus
-	15, // 13: types.v1.AlertRuleSpec.expr:type_name -> types.v1.Query
-	13, // 14: types.v1.AlertRuleSpec.labels:type_name -> types.v1.Obj
-	13, // 15: types.v1.AlertRuleSpec.annotations:type_name -> types.v1.Obj
-	12, // 16: types.v1.AlertRuleSpec.for:type_name -> google.protobuf.Duration
-	12, // 17: types.v1.AlertRuleSpec.keep_firing_for:type_name -> google.protobuf.Duration
-	14, // 18: types.v1.AlertRuleStatus.transitioned_at:type_name -> google.protobuf.Timestamp
-	14, // 19: types.v1.AlertRuleStatus.last_firing_at:type_name -> google.protobuf.Timestamp
+	17, // 13: types.v1.AlertRuleSpec.expr:type_name -> types.v1.Query
+	15, // 14: types.v1.AlertRuleSpec.labels:type_name -> types.v1.Obj
+	15, // 15: types.v1.AlertRuleSpec.annotations:type_name -> types.v1.Obj
+	14, // 16: types.v1.AlertRuleSpec.for:type_name -> google.protobuf.Duration
+	14, // 17: types.v1.AlertRuleSpec.keep_firing_for:type_name -> google.protobuf.Duration
+	16, // 18: types.v1.AlertRuleStatus.transitioned_at:type_name -> google.protobuf.Timestamp
+	16, // 19: types.v1.AlertRuleStatus.last_firing_at:type_name -> google.protobuf.Timestamp
 	8,  // 20: types.v1.AlertRuleStatus.unknown:type_name -> types.v1.AlertUnknown
 	9,  // 21: types.v1.AlertRuleStatus.ok:type_name -> types.v1.AlertOk
 	10, // 22: types.v1.AlertRuleStatus.pending:type_name -> types.v1.AlertPending
 	11, // 23: types.v1.AlertRuleStatus.firing:type_name -> types.v1.AlertFiring
-	13, // 24: types.v1.AlertFiring.labels:type_name -> types.v1.Obj
-	25, // [25:25] is the sub-list for method output_type
-	25, // [25:25] is the sub-list for method input_type
-	25, // [25:25] is the sub-list for extension type_name
-	25, // [25:25] is the sub-list for extension extendee
-	0,  // [0:25] is the sub-list for field type_name
+	15, // 24: types.v1.AlertFiring.labels:type_name -> types.v1.Obj
+	6,  // 25: types.v1.AlertGroupSpec.RulesEntry.value:type_name -> types.v1.AlertRuleSpec
+	7,  // 26: types.v1.AlertGroupStatus.RulesEntry.value:type_name -> types.v1.AlertRuleStatus
+	27, // [27:27] is the sub-list for method output_type
+	27, // [27:27] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_alert_proto_init() }
@@ -888,7 +900,7 @@ func file_types_v1_alert_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_alert_proto_rawDesc), len(file_types_v1_alert_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
