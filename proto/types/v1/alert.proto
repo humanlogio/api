@@ -24,7 +24,7 @@ message AlertGroupSpec {
   google.protobuf.Duration interval = 2;
   google.protobuf.Duration query_offset = 3;
   int32 limit = 4;
-  repeated AlertRuleSpec rules = 5;
+  map<string, AlertRuleSpec> rules = 5;
   types.v1.Obj labels = 6;
 }
 
@@ -32,7 +32,7 @@ message AlertGroupStatus {
   google.protobuf.Timestamp created_at = 1;
   google.protobuf.Timestamp updated_at = 2;
   repeated string errors = 3;
-  repeated AlertRuleStatus rules = 4;
+  map<string, AlertRuleStatus> rules = 4;
 }
 
 message AlertRule {
