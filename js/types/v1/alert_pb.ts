@@ -16,7 +16,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/alert.proto.
  */
 export const file_types_v1_alert: GenFile = /*@__PURE__*/
-  fileDesc("ChR0eXBlcy92MS9hbGVydC5wcm90bxIIdHlwZXMudjEiiAEKCkFsZXJ0R3JvdXASJgoEbWV0YRgBIAEoCzIYLnR5cGVzLnYxLkFsZXJ0R3JvdXBNZXRhEiYKBHNwZWMYAiABKAsyGC50eXBlcy52MS5BbGVydEdyb3VwU3BlYxIqCgZzdGF0dXMYAyABKAsyGi50eXBlcy52MS5BbGVydEdyb3VwU3RhdHVzIhwKDkFsZXJ0R3JvdXBNZXRhEgoKAmlkGAEgASgJIqUCCg5BbGVydEdyb3VwU3BlYxIMCgRuYW1lGAEgASgJEisKCGludGVydmFsGAIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEi8KDHF1ZXJ5X29mZnNldBgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhINCgVsaW1pdBgEIAEoBRIyCgVydWxlcxgFIAMoCzIjLnR5cGVzLnYxLkFsZXJ0R3JvdXBTcGVjLlJ1bGVzRW50cnkSHQoGbGFiZWxzGAYgASgLMg0udHlwZXMudjEuT2JqGkUKClJ1bGVzRW50cnkSCwoDa2V5GAEgASgJEiYKBXZhbHVlGAIgASgLMhcudHlwZXMudjEuQWxlcnRSdWxlU3BlYzoCOAEigQIKEEFsZXJ0R3JvdXBTdGF0dXMSLgoKY3JlYXRlZF9hdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASDgoGZXJyb3JzGAMgAygJEjQKBXJ1bGVzGAQgAygLMiUudHlwZXMudjEuQWxlcnRHcm91cFN0YXR1cy5SdWxlc0VudHJ5GkcKClJ1bGVzRW50cnkSCwoDa2V5GAEgASgJEigKBXZhbHVlGAIgASgLMhkudHlwZXMudjEuQWxlcnRSdWxlU3RhdHVzOgI4ASKEAQoJQWxlcnRSdWxlEiUKBG1ldGEYASABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVNZXRhEiUKBHNwZWMYAiABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVTcGVjEikKBnN0YXR1cxgDIAEoCzIZLnR5cGVzLnYxLkFsZXJ0UnVsZVN0YXR1cyIbCg1BbGVydFJ1bGVNZXRhEgoKAmlkGAEgASgJItsBCg1BbGVydFJ1bGVTcGVjEgwKBG5hbWUYASABKAkSHQoEZXhwchgCIAEoCzIPLnR5cGVzLnYxLlF1ZXJ5Eh0KBmxhYmVscxgDIAEoCzINLnR5cGVzLnYxLk9iahIiCgthbm5vdGF0aW9ucxgEIAEoCzINLnR5cGVzLnYxLk9iahImCgNmb3IYMyABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24SMgoPa2VlcF9maXJpbmdfZm9yGDQgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uIqgCCg9BbGVydFJ1bGVTdGF0dXMSMwoPdHJhbnNpdGlvbmVkX2F0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIyCg5sYXN0X2ZpcmluZ19hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASKgoHdW5rbm93bhisAiABKAsyFi50eXBlcy52MS5BbGVydFVua25vd25IABIgCgJvaxitAiABKAsyES50eXBlcy52MS5BbGVydE9rSAASKgoHcGVuZGluZxiuAiABKAsyFi50eXBlcy52MS5BbGVydFBlbmRpbmdIABIoCgZmaXJpbmcYrwIgASgLMhUudHlwZXMudjEuQWxlcnRGaXJpbmdIAEIICgZzdGF0dXMiDgoMQWxlcnRVbmtub3duIgkKB0FsZXJ0T2siDgoMQWxlcnRQZW5kaW5nIiwKC0FsZXJ0RmlyaW5nEh0KBmxhYmVscxgBIAEoCzINLnR5cGVzLnYxLk9iakKKAQoMY29tLnR5cGVzLnYxQgpBbGVydFByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_google_protobuf_duration, file_google_protobuf_timestamp, file_types_v1_query, file_types_v1_types]);
+  fileDesc("ChR0eXBlcy92MS9hbGVydC5wcm90bxIIdHlwZXMudjEiiAEKCkFsZXJ0R3JvdXASJgoEbWV0YRgBIAEoCzIYLnR5cGVzLnYxLkFsZXJ0R3JvdXBNZXRhEiYKBHNwZWMYAiABKAsyGC50eXBlcy52MS5BbGVydEdyb3VwU3BlYxIqCgZzdGF0dXMYAyABKAsyGi50eXBlcy52MS5BbGVydEdyb3VwU3RhdHVzIhwKDkFsZXJ0R3JvdXBNZXRhEgoKAmlkGAEgASgJIq8CCg5BbGVydEdyb3VwU3BlYxIMCgRuYW1lGAEgASgJEisKCGludGVydmFsGAIgASgLMhkuZ29vZ2xlLnByb3RvYnVmLkR1cmF0aW9uEi8KDHF1ZXJ5X29mZnNldBgDIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhINCgVsaW1pdBgEIAEoBRI6CgVydWxlcxgFIAMoCzIrLnR5cGVzLnYxLkFsZXJ0R3JvdXBTcGVjLk5hbWVkQWxlcnRSdWxlU3BlYxIdCgZsYWJlbHMYBiABKAsyDS50eXBlcy52MS5PYmoaRwoSTmFtZWRBbGVydFJ1bGVTcGVjEgoKAmlkGAEgASgJEiUKBHNwZWMYAiABKAsyFy50eXBlcy52MS5BbGVydFJ1bGVTcGVjIpECChBBbGVydEdyb3VwU3RhdHVzEi4KCmNyZWF0ZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg4KBmVycm9ycxgDIAMoCRI+CgVydWxlcxgEIAMoCzIvLnR5cGVzLnYxLkFsZXJ0R3JvdXBTdGF0dXMuTmFtZWRBbGVydFJ1bGVTdGF0dXMaTQoUTmFtZWRBbGVydFJ1bGVTdGF0dXMSCgoCaWQYASABKAkSKQoGc3RhdHVzGAIgASgLMhkudHlwZXMudjEuQWxlcnRSdWxlU3RhdHVzIoQBCglBbGVydFJ1bGUSJQoEbWV0YRgBIAEoCzIXLnR5cGVzLnYxLkFsZXJ0UnVsZU1ldGESJQoEc3BlYxgCIAEoCzIXLnR5cGVzLnYxLkFsZXJ0UnVsZVNwZWMSKQoGc3RhdHVzGAMgASgLMhkudHlwZXMudjEuQWxlcnRSdWxlU3RhdHVzIhsKDUFsZXJ0UnVsZU1ldGESCgoCaWQYASABKAki2wEKDUFsZXJ0UnVsZVNwZWMSDAoEbmFtZRgBIAEoCRIdCgRleHByGAIgASgLMg8udHlwZXMudjEuUXVlcnkSHQoGbGFiZWxzGAMgASgLMg0udHlwZXMudjEuT2JqEiIKC2Fubm90YXRpb25zGAQgASgLMg0udHlwZXMudjEuT2JqEiYKA2ZvchgzIAEoCzIZLmdvb2dsZS5wcm90b2J1Zi5EdXJhdGlvbhIyCg9rZWVwX2ZpcmluZ19mb3IYNCABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb24iqAIKD0FsZXJ0UnVsZVN0YXR1cxIzCg90cmFuc2l0aW9uZWRfYXQYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjIKDmxhc3RfZmlyaW5nX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIqCgd1bmtub3duGKwCIAEoCzIWLnR5cGVzLnYxLkFsZXJ0VW5rbm93bkgAEiAKAm9rGK0CIAEoCzIRLnR5cGVzLnYxLkFsZXJ0T2tIABIqCgdwZW5kaW5nGK4CIAEoCzIWLnR5cGVzLnYxLkFsZXJ0UGVuZGluZ0gAEigKBmZpcmluZxivAiABKAsyFS50eXBlcy52MS5BbGVydEZpcmluZ0gAQggKBnN0YXR1cyIOCgxBbGVydFVua25vd24iCQoHQWxlcnRPayIOCgxBbGVydFBlbmRpbmciLAoLQWxlcnRGaXJpbmcSHQoGbGFiZWxzGAEgASgLMg0udHlwZXMudjEuT2JqQooBCgxjb20udHlwZXMudjFCCkFsZXJ0UHJvdG9QAVotZ2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby90eXBlcy92MTt0eXBlc3YxogIDVFhYqgIIVHlwZXMuVjHKAghUeXBlc1xWMeICFFR5cGVzXFYxXEdQQk1ldGFkYXRh6gIJVHlwZXM6OlYxYgZwcm90bzM", [file_google_protobuf_duration, file_google_protobuf_timestamp, file_types_v1_query, file_types_v1_types]);
 
 /**
  * @generated from message types.v1.AlertGroup
@@ -87,9 +87,9 @@ export type AlertGroupSpec = Message<"types.v1.AlertGroupSpec"> & {
   limit: number;
 
   /**
-   * @generated from field: map<string, types.v1.AlertRuleSpec> rules = 5;
+   * @generated from field: repeated types.v1.AlertGroupSpec.NamedAlertRuleSpec rules = 5;
    */
-  rules: { [key: string]: AlertRuleSpec };
+  rules: AlertGroupSpec_NamedAlertRuleSpec[];
 
   /**
    * @generated from field: types.v1.Obj labels = 6;
@@ -103,6 +103,28 @@ export type AlertGroupSpec = Message<"types.v1.AlertGroupSpec"> & {
  */
 export const AlertGroupSpecSchema: GenMessage<AlertGroupSpec> = /*@__PURE__*/
   messageDesc(file_types_v1_alert, 2);
+
+/**
+ * @generated from message types.v1.AlertGroupSpec.NamedAlertRuleSpec
+ */
+export type AlertGroupSpec_NamedAlertRuleSpec = Message<"types.v1.AlertGroupSpec.NamedAlertRuleSpec"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: types.v1.AlertRuleSpec spec = 2;
+   */
+  spec?: AlertRuleSpec;
+};
+
+/**
+ * Describes the message types.v1.AlertGroupSpec.NamedAlertRuleSpec.
+ * Use `create(AlertGroupSpec_NamedAlertRuleSpecSchema)` to create a new message.
+ */
+export const AlertGroupSpec_NamedAlertRuleSpecSchema: GenMessage<AlertGroupSpec_NamedAlertRuleSpec> = /*@__PURE__*/
+  messageDesc(file_types_v1_alert, 2, 0);
 
 /**
  * @generated from message types.v1.AlertGroupStatus
@@ -124,9 +146,9 @@ export type AlertGroupStatus = Message<"types.v1.AlertGroupStatus"> & {
   errors: string[];
 
   /**
-   * @generated from field: map<string, types.v1.AlertRuleStatus> rules = 4;
+   * @generated from field: repeated types.v1.AlertGroupStatus.NamedAlertRuleStatus rules = 4;
    */
-  rules: { [key: string]: AlertRuleStatus };
+  rules: AlertGroupStatus_NamedAlertRuleStatus[];
 };
 
 /**
@@ -135,6 +157,28 @@ export type AlertGroupStatus = Message<"types.v1.AlertGroupStatus"> & {
  */
 export const AlertGroupStatusSchema: GenMessage<AlertGroupStatus> = /*@__PURE__*/
   messageDesc(file_types_v1_alert, 3);
+
+/**
+ * @generated from message types.v1.AlertGroupStatus.NamedAlertRuleStatus
+ */
+export type AlertGroupStatus_NamedAlertRuleStatus = Message<"types.v1.AlertGroupStatus.NamedAlertRuleStatus"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: types.v1.AlertRuleStatus status = 2;
+   */
+  status?: AlertRuleStatus;
+};
+
+/**
+ * Describes the message types.v1.AlertGroupStatus.NamedAlertRuleStatus.
+ * Use `create(AlertGroupStatus_NamedAlertRuleStatusSchema)` to create a new message.
+ */
+export const AlertGroupStatus_NamedAlertRuleStatusSchema: GenMessage<AlertGroupStatus_NamedAlertRuleStatus> = /*@__PURE__*/
+  messageDesc(file_types_v1_alert, 3, 0);
 
 /**
  * @generated from message types.v1.AlertRule
