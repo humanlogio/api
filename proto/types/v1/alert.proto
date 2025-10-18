@@ -42,15 +42,17 @@ message AlertRule {
 }
 
 message AlertRuleMeta {
+  // usually matches `spec.name` unless using virtual alert rules
   string id = 1;
 }
 
 message AlertRuleSpec {
-  types.v1.Query expr = 1;
-  types.v1.Obj labels = 2;
-  types.v1.Obj annotations = 3;
-  google.protobuf.Duration for = 41;
-  google.protobuf.Duration keep_firing_for = 42;
+  string name = 1;
+  types.v1.Query expr = 2;
+  types.v1.Obj labels = 3;
+  types.v1.Obj annotations = 4;
+  google.protobuf.Duration for = 51;
+  google.protobuf.Duration keep_firing_for = 52;
 }
 
 message AlertRuleStatus {
