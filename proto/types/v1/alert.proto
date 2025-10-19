@@ -5,6 +5,7 @@ package types.v1;
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 import "types/v1/query.proto";
+import "types/v1/query_metrics.proto";
 import "types/v1/types.proto";
 
 option go_package = "types/v1;typesv1";
@@ -74,6 +75,10 @@ message AlertRuleStatus {
     AlertPending pending = 302;
     AlertFiring firing = 303;
   }
+
+  google.protobuf.Timestamp last_evaluated_at = 4;
+  types.v1.QueryMetrics last_evaluation_metrics = 5;
+  optional string error = 6;
 }
 
 message AlertUnknown {}
