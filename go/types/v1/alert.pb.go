@@ -478,9 +478,12 @@ type AlertRuleStatus struct {
 	//	*AlertRuleStatus_Ok
 	//	*AlertRuleStatus_Pending
 	//	*AlertRuleStatus_Firing
-	Status        isAlertRuleStatus_Status `protobuf_oneof:"status"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	Status                isAlertRuleStatus_Status `protobuf_oneof:"status"`
+	LastEvaluatedAt       *timestamppb.Timestamp   `protobuf:"bytes,4,opt,name=last_evaluated_at,json=lastEvaluatedAt,proto3" json:"last_evaluated_at,omitempty"`
+	LastEvaluationMetrics *QueryMetrics            `protobuf:"bytes,5,opt,name=last_evaluation_metrics,json=lastEvaluationMetrics,proto3" json:"last_evaluation_metrics,omitempty"`
+	Error                 *string                  `protobuf:"bytes,6,opt,name=error,proto3,oneof" json:"error,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *AlertRuleStatus) Reset() {
@@ -568,6 +571,27 @@ func (x *AlertRuleStatus) GetFiring() *AlertFiring {
 		}
 	}
 	return nil
+}
+
+func (x *AlertRuleStatus) GetLastEvaluatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastEvaluatedAt
+	}
+	return nil
+}
+
+func (x *AlertRuleStatus) GetLastEvaluationMetrics() *QueryMetrics {
+	if x != nil {
+		return x.LastEvaluationMetrics
+	}
+	return nil
+}
+
+func (x *AlertRuleStatus) GetError() string {
+	if x != nil && x.Error != nil {
+		return *x.Error
+	}
+	return ""
 }
 
 type isAlertRuleStatus_Status interface {
@@ -858,7 +882,7 @@ var File_types_v1_alert_proto protoreflect.FileDescriptor
 
 const file_types_v1_alert_proto_rawDesc = "" +
 	"\n" +
-	"\x14types/v1/alert.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/query.proto\x1a\x14types/v1/types.proto\"\x9c\x01\n" +
+	"\x14types/v1/alert.proto\x12\btypes.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x14types/v1/query.proto\x1a\x1ctypes/v1/query_metrics.proto\x1a\x14types/v1/types.proto\"\x9c\x01\n" +
 	"\n" +
 	"AlertGroup\x12,\n" +
 	"\x04meta\x18\x01 \x01(\v2\x18.types.v1.AlertGroupMetaR\x04meta\x12,\n" +
@@ -898,15 +922,19 @@ const file_types_v1_alert_proto_rawDesc = "" +
 	"\x06labels\x18\x03 \x01(\v2\r.types.v1.ObjR\x06labels\x12/\n" +
 	"\vannotations\x18\x04 \x01(\v2\r.types.v1.ObjR\vannotations\x12+\n" +
 	"\x03for\x183 \x01(\v2\x19.google.protobuf.DurationR\x03for\x12A\n" +
-	"\x0fkeep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringFor\"\xe4\x02\n" +
+	"\x0fkeep_firing_for\x184 \x01(\v2\x19.google.protobuf.DurationR\rkeepFiringFor\"\xa1\x04\n" +
 	"\x0fAlertRuleStatus\x12C\n" +
 	"\x0ftransitioned_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x0etransitionedAt\x12@\n" +
 	"\x0elast_firing_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\flastFiringAt\x123\n" +
 	"\aunknown\x18\xac\x02 \x01(\v2\x16.types.v1.AlertUnknownH\x00R\aunknown\x12$\n" +
 	"\x02ok\x18\xad\x02 \x01(\v2\x11.types.v1.AlertOkH\x00R\x02ok\x123\n" +
 	"\apending\x18\xae\x02 \x01(\v2\x16.types.v1.AlertPendingH\x00R\apending\x120\n" +
-	"\x06firing\x18\xaf\x02 \x01(\v2\x15.types.v1.AlertFiringH\x00R\x06firingB\b\n" +
-	"\x06status\"\x0e\n" +
+	"\x06firing\x18\xaf\x02 \x01(\v2\x15.types.v1.AlertFiringH\x00R\x06firing\x12F\n" +
+	"\x11last_evaluated_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\x0flastEvaluatedAt\x12N\n" +
+	"\x17last_evaluation_metrics\x18\x05 \x01(\v2\x16.types.v1.QueryMetricsR\x15lastEvaluationMetrics\x12\x19\n" +
+	"\x05error\x18\x06 \x01(\tH\x01R\x05error\x88\x01\x01B\b\n" +
+	"\x06statusB\b\n" +
+	"\x06_error\"\x0e\n" +
 	"\fAlertUnknown\"\t\n" +
 	"\aAlertOk\"\x0e\n" +
 	"\fAlertPending\"4\n" +
@@ -947,6 +975,7 @@ var file_types_v1_alert_proto_goTypes = []any{
 	(*Obj)(nil),                                   // 15: types.v1.Obj
 	(*timestamppb.Timestamp)(nil),                 // 16: google.protobuf.Timestamp
 	(*Query)(nil),                                 // 17: types.v1.Query
+	(*QueryMetrics)(nil),                          // 18: types.v1.QueryMetrics
 }
 var file_types_v1_alert_proto_depIdxs = []int32{
 	1,  // 0: types.v1.AlertGroup.meta:type_name -> types.v1.AlertGroupMeta
@@ -973,14 +1002,16 @@ var file_types_v1_alert_proto_depIdxs = []int32{
 	9,  // 21: types.v1.AlertRuleStatus.ok:type_name -> types.v1.AlertOk
 	10, // 22: types.v1.AlertRuleStatus.pending:type_name -> types.v1.AlertPending
 	11, // 23: types.v1.AlertRuleStatus.firing:type_name -> types.v1.AlertFiring
-	15, // 24: types.v1.AlertFiring.labels:type_name -> types.v1.Obj
-	6,  // 25: types.v1.AlertGroupSpec.NamedAlertRuleSpec.spec:type_name -> types.v1.AlertRuleSpec
-	7,  // 26: types.v1.AlertGroupStatus.NamedAlertRuleStatus.status:type_name -> types.v1.AlertRuleStatus
-	27, // [27:27] is the sub-list for method output_type
-	27, // [27:27] is the sub-list for method input_type
-	27, // [27:27] is the sub-list for extension type_name
-	27, // [27:27] is the sub-list for extension extendee
-	0,  // [0:27] is the sub-list for field type_name
+	16, // 24: types.v1.AlertRuleStatus.last_evaluated_at:type_name -> google.protobuf.Timestamp
+	18, // 25: types.v1.AlertRuleStatus.last_evaluation_metrics:type_name -> types.v1.QueryMetrics
+	15, // 26: types.v1.AlertFiring.labels:type_name -> types.v1.Obj
+	6,  // 27: types.v1.AlertGroupSpec.NamedAlertRuleSpec.spec:type_name -> types.v1.AlertRuleSpec
+	7,  // 28: types.v1.AlertGroupStatus.NamedAlertRuleStatus.status:type_name -> types.v1.AlertRuleStatus
+	29, // [29:29] is the sub-list for method output_type
+	29, // [29:29] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_alert_proto_init() }
@@ -989,6 +1020,7 @@ func file_types_v1_alert_proto_init() {
 		return
 	}
 	file_types_v1_query_proto_init()
+	file_types_v1_query_metrics_proto_init()
 	file_types_v1_types_proto_init()
 	file_types_v1_alert_proto_msgTypes[7].OneofWrappers = []any{
 		(*AlertRuleStatus_Unknown)(nil),
