@@ -127,14 +127,10 @@ func (x *DashboardMeta) GetId() string {
 }
 
 type DashboardSpec struct {
-	state       protoimpl.MessageState `protogen:"open.v1"`
-	Name        string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Description string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	IsReadonly  bool                   `protobuf:"varint,3,opt,name=is_readonly,json=isReadonly,proto3" json:"is_readonly,omitempty"`
-	// Types that are valid to be assigned to Source:
-	//
-	//	*DashboardSpec_File
-	Source        isDashboardSpec_Source `protobuf_oneof:"source"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	IsReadonly    bool                   `protobuf:"varint,3,opt,name=is_readonly,json=isReadonly,proto3" json:"is_readonly,omitempty"`
 	PersesJson    []byte                 `protobuf:"bytes,5,opt,name=perses_json,json=persesJson,proto3" json:"perses_json,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -191,22 +187,6 @@ func (x *DashboardSpec) GetIsReadonly() bool {
 	return false
 }
 
-func (x *DashboardSpec) GetSource() isDashboardSpec_Source {
-	if x != nil {
-		return x.Source
-	}
-	return nil
-}
-
-func (x *DashboardSpec) GetFile() string {
-	if x != nil {
-		if x, ok := x.Source.(*DashboardSpec_File); ok {
-			return x.File
-		}
-	}
-	return ""
-}
-
 func (x *DashboardSpec) GetPersesJson() []byte {
 	if x != nil {
 		return x.PersesJson
@@ -214,21 +194,18 @@ func (x *DashboardSpec) GetPersesJson() []byte {
 	return nil
 }
 
-type isDashboardSpec_Source interface {
-	isDashboardSpec_Source()
-}
-
-type DashboardSpec_File struct {
-	File string `protobuf:"bytes,401,opt,name=file,proto3,oneof"`
-}
-
-func (*DashboardSpec_File) isDashboardSpec_Source() {}
-
 type DashboardStatus struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Errors        []string               `protobuf:"bytes,3,rep,name=errors,proto3" json:"errors,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Errors    []string               `protobuf:"bytes,3,rep,name=errors,proto3" json:"errors,omitempty"`
+	// Types that are valid to be assigned to Origin:
+	//
+	//	*DashboardStatus_Managed
+	//	*DashboardStatus_Generated
+	//	*DashboardStatus_Builtin
+	//	*DashboardStatus_Remote
+	Origin        isDashboardStatus_Origin `protobuf_oneof:"origin"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -284,6 +261,277 @@ func (x *DashboardStatus) GetErrors() []string {
 	return nil
 }
 
+func (x *DashboardStatus) GetOrigin() isDashboardStatus_Origin {
+	if x != nil {
+		return x.Origin
+	}
+	return nil
+}
+
+func (x *DashboardStatus) GetManaged() *DashboardStatus_ManagedDashboard {
+	if x != nil {
+		if x, ok := x.Origin.(*DashboardStatus_Managed); ok {
+			return x.Managed
+		}
+	}
+	return nil
+}
+
+func (x *DashboardStatus) GetGenerated() *DashboardStatus_GeneratedDashboard {
+	if x != nil {
+		if x, ok := x.Origin.(*DashboardStatus_Generated); ok {
+			return x.Generated
+		}
+	}
+	return nil
+}
+
+func (x *DashboardStatus) GetBuiltin() *DashboardStatus_BuiltinDashboard {
+	if x != nil {
+		if x, ok := x.Origin.(*DashboardStatus_Builtin); ok {
+			return x.Builtin
+		}
+	}
+	return nil
+}
+
+func (x *DashboardStatus) GetRemote() *DashboardStatus_RemoteDashboard {
+	if x != nil {
+		if x, ok := x.Origin.(*DashboardStatus_Remote); ok {
+			return x.Remote
+		}
+	}
+	return nil
+}
+
+type isDashboardStatus_Origin interface {
+	isDashboardStatus_Origin()
+}
+
+type DashboardStatus_Managed struct {
+	Managed *DashboardStatus_ManagedDashboard `protobuf:"bytes,4,opt,name=managed,proto3,oneof"`
+}
+
+type DashboardStatus_Generated struct {
+	Generated *DashboardStatus_GeneratedDashboard `protobuf:"bytes,5,opt,name=generated,proto3,oneof"`
+}
+
+type DashboardStatus_Builtin struct {
+	Builtin *DashboardStatus_BuiltinDashboard `protobuf:"bytes,6,opt,name=builtin,proto3,oneof"`
+}
+
+type DashboardStatus_Remote struct {
+	Remote *DashboardStatus_RemoteDashboard `protobuf:"bytes,7,opt,name=remote,proto3,oneof"`
+}
+
+func (*DashboardStatus_Managed) isDashboardStatus_Origin() {}
+
+func (*DashboardStatus_Generated) isDashboardStatus_Origin() {}
+
+func (*DashboardStatus_Builtin) isDashboardStatus_Origin() {}
+
+func (*DashboardStatus_Remote) isDashboardStatus_Origin() {}
+
+type DashboardStatus_ManagedDashboard struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DashboardStatus_ManagedDashboard) Reset() {
+	*x = DashboardStatus_ManagedDashboard{}
+	mi := &file_types_v1_dashboard_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DashboardStatus_ManagedDashboard) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DashboardStatus_ManagedDashboard) ProtoMessage() {}
+
+func (x *DashboardStatus_ManagedDashboard) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_dashboard_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DashboardStatus_ManagedDashboard.ProtoReflect.Descriptor instead.
+func (*DashboardStatus_ManagedDashboard) Descriptor() ([]byte, []int) {
+	return file_types_v1_dashboard_proto_rawDescGZIP(), []int{3, 0}
+}
+
+func (x *DashboardStatus_ManagedDashboard) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+type DashboardStatus_GeneratedDashboard struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Path            string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	DetectionReason string                 `protobuf:"bytes,2,opt,name=detection_reason,json=detectionReason,proto3" json:"detection_reason,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *DashboardStatus_GeneratedDashboard) Reset() {
+	*x = DashboardStatus_GeneratedDashboard{}
+	mi := &file_types_v1_dashboard_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DashboardStatus_GeneratedDashboard) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DashboardStatus_GeneratedDashboard) ProtoMessage() {}
+
+func (x *DashboardStatus_GeneratedDashboard) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_dashboard_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DashboardStatus_GeneratedDashboard.ProtoReflect.Descriptor instead.
+func (*DashboardStatus_GeneratedDashboard) Descriptor() ([]byte, []int) {
+	return file_types_v1_dashboard_proto_rawDescGZIP(), []int{3, 1}
+}
+
+func (x *DashboardStatus_GeneratedDashboard) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+func (x *DashboardStatus_GeneratedDashboard) GetDetectionReason() string {
+	if x != nil {
+		return x.DetectionReason
+	}
+	return ""
+}
+
+type DashboardStatus_BuiltinDashboard struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DashboardStatus_BuiltinDashboard) Reset() {
+	*x = DashboardStatus_BuiltinDashboard{}
+	mi := &file_types_v1_dashboard_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DashboardStatus_BuiltinDashboard) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DashboardStatus_BuiltinDashboard) ProtoMessage() {}
+
+func (x *DashboardStatus_BuiltinDashboard) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_dashboard_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DashboardStatus_BuiltinDashboard.ProtoReflect.Descriptor instead.
+func (*DashboardStatus_BuiltinDashboard) Descriptor() ([]byte, []int) {
+	return file_types_v1_dashboard_proto_rawDescGZIP(), []int{3, 2}
+}
+
+func (x *DashboardStatus_BuiltinDashboard) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DashboardStatus_RemoteDashboard struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RepositoryUrl string                 `protobuf:"bytes,1,opt,name=repository_url,json=repositoryUrl,proto3" json:"repository_url,omitempty"`
+	Path          string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	Ref           string                 `protobuf:"bytes,3,opt,name=ref,proto3" json:"ref,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DashboardStatus_RemoteDashboard) Reset() {
+	*x = DashboardStatus_RemoteDashboard{}
+	mi := &file_types_v1_dashboard_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DashboardStatus_RemoteDashboard) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DashboardStatus_RemoteDashboard) ProtoMessage() {}
+
+func (x *DashboardStatus_RemoteDashboard) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_dashboard_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DashboardStatus_RemoteDashboard.ProtoReflect.Descriptor instead.
+func (*DashboardStatus_RemoteDashboard) Descriptor() ([]byte, []int) {
+	return file_types_v1_dashboard_proto_rawDescGZIP(), []int{3, 3}
+}
+
+func (x *DashboardStatus_RemoteDashboard) GetRepositoryUrl() string {
+	if x != nil {
+		return x.RepositoryUrl
+	}
+	return ""
+}
+
+func (x *DashboardStatus_RemoteDashboard) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
+func (x *DashboardStatus_RemoteDashboard) GetRef() string {
+	if x != nil {
+		return x.Ref
+	}
+	return ""
+}
+
 var File_types_v1_dashboard_proto protoreflect.FileDescriptor
 
 const file_types_v1_dashboard_proto_rawDesc = "" +
@@ -294,22 +542,36 @@ const file_types_v1_dashboard_proto_rawDesc = "" +
 	"\x04spec\x18\x02 \x01(\v2\x17.types.v1.DashboardSpecR\x04spec\x121\n" +
 	"\x06status\x18\x03 \x01(\v2\x19.types.v1.DashboardStatusR\x06status\"\x1f\n" +
 	"\rDashboardMeta\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\xa8\x01\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x87\x01\n" +
 	"\rDashboardSpec\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x1f\n" +
 	"\vis_readonly\x18\x03 \x01(\bR\n" +
-	"isReadonly\x12\x15\n" +
-	"\x04file\x18\x91\x03 \x01(\tH\x00R\x04file\x12\x1f\n" +
+	"isReadonly\x12\x1f\n" +
 	"\vperses_json\x18\x05 \x01(\fR\n" +
-	"persesJsonB\b\n" +
-	"\x06source\"\x9f\x01\n" +
+	"persesJson\"\xcd\x05\n" +
 	"\x0fDashboardStatus\x129\n" +
 	"\n" +
 	"created_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x16\n" +
-	"\x06errors\x18\x03 \x03(\tR\x06errorsB\x8e\x01\n" +
+	"\x06errors\x18\x03 \x03(\tR\x06errors\x12F\n" +
+	"\amanaged\x18\x04 \x01(\v2*.types.v1.DashboardStatus.ManagedDashboardH\x00R\amanaged\x12L\n" +
+	"\tgenerated\x18\x05 \x01(\v2,.types.v1.DashboardStatus.GeneratedDashboardH\x00R\tgenerated\x12F\n" +
+	"\abuiltin\x18\x06 \x01(\v2*.types.v1.DashboardStatus.BuiltinDashboardH\x00R\abuiltin\x12C\n" +
+	"\x06remote\x18\a \x01(\v2).types.v1.DashboardStatus.RemoteDashboardH\x00R\x06remote\x1a&\n" +
+	"\x10ManagedDashboard\x12\x12\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\x1aS\n" +
+	"\x12GeneratedDashboard\x12\x12\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\x12)\n" +
+	"\x10detection_reason\x18\x02 \x01(\tR\x0fdetectionReason\x1a\"\n" +
+	"\x10BuiltinDashboard\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x1a^\n" +
+	"\x0fRemoteDashboard\x12%\n" +
+	"\x0erepository_url\x18\x01 \x01(\tR\rrepositoryUrl\x12\x12\n" +
+	"\x04path\x18\x02 \x01(\tR\x04path\x12\x10\n" +
+	"\x03ref\x18\x03 \x01(\tR\x03refB\b\n" +
+	"\x06originB\x8e\x01\n" +
 	"\fcom.types.v1B\x0eDashboardProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
 
 var (
@@ -324,25 +586,33 @@ func file_types_v1_dashboard_proto_rawDescGZIP() []byte {
 	return file_types_v1_dashboard_proto_rawDescData
 }
 
-var file_types_v1_dashboard_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_types_v1_dashboard_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_types_v1_dashboard_proto_goTypes = []any{
-	(*Dashboard)(nil),             // 0: types.v1.Dashboard
-	(*DashboardMeta)(nil),         // 1: types.v1.DashboardMeta
-	(*DashboardSpec)(nil),         // 2: types.v1.DashboardSpec
-	(*DashboardStatus)(nil),       // 3: types.v1.DashboardStatus
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(*Dashboard)(nil),                          // 0: types.v1.Dashboard
+	(*DashboardMeta)(nil),                      // 1: types.v1.DashboardMeta
+	(*DashboardSpec)(nil),                      // 2: types.v1.DashboardSpec
+	(*DashboardStatus)(nil),                    // 3: types.v1.DashboardStatus
+	(*DashboardStatus_ManagedDashboard)(nil),   // 4: types.v1.DashboardStatus.ManagedDashboard
+	(*DashboardStatus_GeneratedDashboard)(nil), // 5: types.v1.DashboardStatus.GeneratedDashboard
+	(*DashboardStatus_BuiltinDashboard)(nil),   // 6: types.v1.DashboardStatus.BuiltinDashboard
+	(*DashboardStatus_RemoteDashboard)(nil),    // 7: types.v1.DashboardStatus.RemoteDashboard
+	(*timestamppb.Timestamp)(nil),              // 8: google.protobuf.Timestamp
 }
 var file_types_v1_dashboard_proto_depIdxs = []int32{
 	1, // 0: types.v1.Dashboard.meta:type_name -> types.v1.DashboardMeta
 	2, // 1: types.v1.Dashboard.spec:type_name -> types.v1.DashboardSpec
 	3, // 2: types.v1.Dashboard.status:type_name -> types.v1.DashboardStatus
-	4, // 3: types.v1.DashboardStatus.created_at:type_name -> google.protobuf.Timestamp
-	4, // 4: types.v1.DashboardStatus.updated_at:type_name -> google.protobuf.Timestamp
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	8, // 3: types.v1.DashboardStatus.created_at:type_name -> google.protobuf.Timestamp
+	8, // 4: types.v1.DashboardStatus.updated_at:type_name -> google.protobuf.Timestamp
+	4, // 5: types.v1.DashboardStatus.managed:type_name -> types.v1.DashboardStatus.ManagedDashboard
+	5, // 6: types.v1.DashboardStatus.generated:type_name -> types.v1.DashboardStatus.GeneratedDashboard
+	6, // 7: types.v1.DashboardStatus.builtin:type_name -> types.v1.DashboardStatus.BuiltinDashboard
+	7, // 8: types.v1.DashboardStatus.remote:type_name -> types.v1.DashboardStatus.RemoteDashboard
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_dashboard_proto_init() }
@@ -350,8 +620,11 @@ func file_types_v1_dashboard_proto_init() {
 	if File_types_v1_dashboard_proto != nil {
 		return
 	}
-	file_types_v1_dashboard_proto_msgTypes[2].OneofWrappers = []any{
-		(*DashboardSpec_File)(nil),
+	file_types_v1_dashboard_proto_msgTypes[3].OneofWrappers = []any{
+		(*DashboardStatus_Managed)(nil),
+		(*DashboardStatus_Generated)(nil),
+		(*DashboardStatus_Builtin)(nil),
+		(*DashboardStatus_Remote)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -359,7 +632,7 @@ func file_types_v1_dashboard_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_dashboard_proto_rawDesc), len(file_types_v1_dashboard_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
