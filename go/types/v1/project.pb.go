@@ -184,6 +184,7 @@ type ProjectStatus struct {
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	Errors        []string               `protobuf:"bytes,3,rep,name=errors,proto3" json:"errors,omitempty"`
+	Warnings      []string               `protobuf:"bytes,4,rep,name=warnings,proto3" json:"warnings,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -235,6 +236,13 @@ func (x *ProjectStatus) GetUpdatedAt() *timestamppb.Timestamp {
 func (x *ProjectStatus) GetErrors() []string {
 	if x != nil {
 		return x.Errors
+	}
+	return nil
+}
+
+func (x *ProjectStatus) GetWarnings() []string {
+	if x != nil {
+		return x.Warnings
 	}
 	return nil
 }
@@ -530,13 +538,14 @@ const file_types_v1_project_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"U\n" +
 	"\vProjectSpec\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x122\n" +
-	"\apointer\x18\x02 \x01(\v2\x18.types.v1.ProjectPointerR\apointer\"\x9d\x01\n" +
+	"\apointer\x18\x02 \x01(\v2\x18.types.v1.ProjectPointerR\apointer\"\xb9\x01\n" +
 	"\rProjectStatus\x129\n" +
 	"\n" +
 	"created_at\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x16\n" +
-	"\x06errors\x18\x03 \x03(\tR\x06errors\"\xeb\x03\n" +
+	"\x06errors\x18\x03 \x03(\tR\x06errors\x12\x1a\n" +
+	"\bwarnings\x18\x04 \x03(\tR\bwarnings\"\xeb\x03\n" +
 	"\x0eProjectPointer\x12<\n" +
 	"\x06remote\x18\x01 \x01(\v2\".types.v1.ProjectPointer.RemoteGitH\x00R\x06remote\x12A\n" +
 	"\tlocalhost\x18\x02 \x01(\v2!.types.v1.ProjectPointer.LocalGitH\x00R\tlocalhost\x122\n" +
