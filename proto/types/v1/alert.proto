@@ -27,6 +27,7 @@ message AlertGroupSpec {
   int32 limit = 4;
   repeated NamedAlertRuleSpec rules = 5;
   types.v1.Obj labels = 6;
+  bool is_readonly = 7;
 
   message NamedAlertRuleSpec {
     string id = 1;
@@ -40,9 +41,28 @@ message AlertGroupStatus {
   repeated string errors = 3;
   repeated NamedAlertRuleStatus rules = 4;
 
+  oneof origin {
+    ManagedAlertGroup managed = 5;
+    DiscoveredAlertGroup discovered = 6;
+    GeneratedAlertGroup generated = 7;
+  }
+
   message NamedAlertRuleStatus {
     string id = 1;
     AlertRuleStatus status = 2;
+  }
+
+  message ManagedAlertGroup {
+    string path = 1;
+  }
+
+  message DiscoveredAlertGroup {
+    string path = 1;
+  }
+
+  message GeneratedAlertGroup {
+    string path = 1;
+    string detection_reason = 2;
   }
 }
 
