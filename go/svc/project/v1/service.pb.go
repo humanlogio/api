@@ -119,6 +119,102 @@ func (x *CreateProjectResponse) GetProject() *v1.Project {
 	return nil
 }
 
+type ValidateProjectRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	Spec          *v1.ProjectSpec        `protobuf:"bytes,1,opt,name=spec,proto3" json:"spec,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateProjectRequest) Reset() {
+	*x = ValidateProjectRequest{}
+	mi := &file_svc_project_v1_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateProjectRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateProjectRequest) ProtoMessage() {}
+
+func (x *ValidateProjectRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_project_v1_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateProjectRequest.ProtoReflect.Descriptor instead.
+func (*ValidateProjectRequest) Descriptor() ([]byte, []int) {
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ValidateProjectRequest) GetEnvironmentId() int64 {
+	if x != nil {
+		return x.EnvironmentId
+	}
+	return 0
+}
+
+func (x *ValidateProjectRequest) GetSpec() *v1.ProjectSpec {
+	if x != nil {
+		return x.Spec
+	}
+	return nil
+}
+
+type ValidateProjectResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Warnings      []string               `protobuf:"bytes,1,rep,name=warnings,proto3" json:"warnings,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ValidateProjectResponse) Reset() {
+	*x = ValidateProjectResponse{}
+	mi := &file_svc_project_v1_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ValidateProjectResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ValidateProjectResponse) ProtoMessage() {}
+
+func (x *ValidateProjectResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_project_v1_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ValidateProjectResponse.ProtoReflect.Descriptor instead.
+func (*ValidateProjectResponse) Descriptor() ([]byte, []int) {
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ValidateProjectResponse) GetWarnings() []string {
+	if x != nil {
+		return x.Warnings
+	}
+	return nil
+}
+
 type GetProjectRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EnvironmentId int64                  `protobuf:"varint,101,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
@@ -129,7 +225,7 @@ type GetProjectRequest struct {
 
 func (x *GetProjectRequest) Reset() {
 	*x = GetProjectRequest{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[2]
+	mi := &file_svc_project_v1_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -141,7 +237,7 @@ func (x *GetProjectRequest) String() string {
 func (*GetProjectRequest) ProtoMessage() {}
 
 func (x *GetProjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[2]
+	mi := &file_svc_project_v1_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -154,7 +250,7 @@ func (x *GetProjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProjectRequest.ProtoReflect.Descriptor instead.
 func (*GetProjectRequest) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{2}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetProjectRequest) GetEnvironmentId() int64 {
@@ -182,7 +278,7 @@ type GetProjectResponse struct {
 
 func (x *GetProjectResponse) Reset() {
 	*x = GetProjectResponse{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[3]
+	mi := &file_svc_project_v1_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -194,7 +290,7 @@ func (x *GetProjectResponse) String() string {
 func (*GetProjectResponse) ProtoMessage() {}
 
 func (x *GetProjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[3]
+	mi := &file_svc_project_v1_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -207,7 +303,7 @@ func (x *GetProjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetProjectResponse.ProtoReflect.Descriptor instead.
 func (*GetProjectResponse) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{3}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetProjectResponse) GetProject() *v1.Project {
@@ -242,7 +338,7 @@ type UpdateProjectRequest struct {
 
 func (x *UpdateProjectRequest) Reset() {
 	*x = UpdateProjectRequest{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[4]
+	mi := &file_svc_project_v1_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -254,7 +350,7 @@ func (x *UpdateProjectRequest) String() string {
 func (*UpdateProjectRequest) ProtoMessage() {}
 
 func (x *UpdateProjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[4]
+	mi := &file_svc_project_v1_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -267,7 +363,7 @@ func (x *UpdateProjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProjectRequest.ProtoReflect.Descriptor instead.
 func (*UpdateProjectRequest) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{4}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateProjectRequest) GetEnvironmentId() int64 {
@@ -300,7 +396,7 @@ type UpdateProjectResponse struct {
 
 func (x *UpdateProjectResponse) Reset() {
 	*x = UpdateProjectResponse{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[5]
+	mi := &file_svc_project_v1_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -312,7 +408,7 @@ func (x *UpdateProjectResponse) String() string {
 func (*UpdateProjectResponse) ProtoMessage() {}
 
 func (x *UpdateProjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[5]
+	mi := &file_svc_project_v1_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -325,7 +421,7 @@ func (x *UpdateProjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateProjectResponse.ProtoReflect.Descriptor instead.
 func (*UpdateProjectResponse) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{5}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateProjectResponse) GetProject() *v1.Project {
@@ -345,7 +441,7 @@ type DeleteProjectRequest struct {
 
 func (x *DeleteProjectRequest) Reset() {
 	*x = DeleteProjectRequest{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[6]
+	mi := &file_svc_project_v1_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -357,7 +453,7 @@ func (x *DeleteProjectRequest) String() string {
 func (*DeleteProjectRequest) ProtoMessage() {}
 
 func (x *DeleteProjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[6]
+	mi := &file_svc_project_v1_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -370,7 +466,7 @@ func (x *DeleteProjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProjectRequest.ProtoReflect.Descriptor instead.
 func (*DeleteProjectRequest) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{6}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteProjectRequest) GetEnvironmentId() int64 {
@@ -395,7 +491,7 @@ type DeleteProjectResponse struct {
 
 func (x *DeleteProjectResponse) Reset() {
 	*x = DeleteProjectResponse{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[7]
+	mi := &file_svc_project_v1_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -407,7 +503,7 @@ func (x *DeleteProjectResponse) String() string {
 func (*DeleteProjectResponse) ProtoMessage() {}
 
 func (x *DeleteProjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[7]
+	mi := &file_svc_project_v1_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -420,7 +516,7 @@ func (x *DeleteProjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteProjectResponse.ProtoReflect.Descriptor instead.
 func (*DeleteProjectResponse) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{7}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{9}
 }
 
 type ListProjectRequest struct {
@@ -434,7 +530,7 @@ type ListProjectRequest struct {
 
 func (x *ListProjectRequest) Reset() {
 	*x = ListProjectRequest{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[8]
+	mi := &file_svc_project_v1_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -446,7 +542,7 @@ func (x *ListProjectRequest) String() string {
 func (*ListProjectRequest) ProtoMessage() {}
 
 func (x *ListProjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[8]
+	mi := &file_svc_project_v1_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -459,7 +555,7 @@ func (x *ListProjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProjectRequest.ProtoReflect.Descriptor instead.
 func (*ListProjectRequest) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{8}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListProjectRequest) GetEnvironmentId() int64 {
@@ -493,7 +589,7 @@ type ListProjectResponse struct {
 
 func (x *ListProjectResponse) Reset() {
 	*x = ListProjectResponse{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[9]
+	mi := &file_svc_project_v1_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -505,7 +601,7 @@ func (x *ListProjectResponse) String() string {
 func (*ListProjectResponse) ProtoMessage() {}
 
 func (x *ListProjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[9]
+	mi := &file_svc_project_v1_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -518,7 +614,7 @@ func (x *ListProjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProjectResponse.ProtoReflect.Descriptor instead.
 func (*ListProjectResponse) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{9}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListProjectResponse) GetNext() *v1.Cursor {
@@ -545,7 +641,7 @@ type SyncProjectRequest struct {
 
 func (x *SyncProjectRequest) Reset() {
 	*x = SyncProjectRequest{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[10]
+	mi := &file_svc_project_v1_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -557,7 +653,7 @@ func (x *SyncProjectRequest) String() string {
 func (*SyncProjectRequest) ProtoMessage() {}
 
 func (x *SyncProjectRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[10]
+	mi := &file_svc_project_v1_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -570,7 +666,7 @@ func (x *SyncProjectRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncProjectRequest.ProtoReflect.Descriptor instead.
 func (*SyncProjectRequest) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{10}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SyncProjectRequest) GetEnvironmentId() int64 {
@@ -596,7 +692,7 @@ type SyncProjectResponse struct {
 
 func (x *SyncProjectResponse) Reset() {
 	*x = SyncProjectResponse{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[11]
+	mi := &file_svc_project_v1_service_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -608,7 +704,7 @@ func (x *SyncProjectResponse) String() string {
 func (*SyncProjectResponse) ProtoMessage() {}
 
 func (x *SyncProjectResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[11]
+	mi := &file_svc_project_v1_service_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -621,7 +717,7 @@ func (x *SyncProjectResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SyncProjectResponse.ProtoReflect.Descriptor instead.
 func (*SyncProjectResponse) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{11}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *SyncProjectResponse) GetProject() *v1.Project {
@@ -640,7 +736,7 @@ type ListProjectResponse_ListItem struct {
 
 func (x *ListProjectResponse_ListItem) Reset() {
 	*x = ListProjectResponse_ListItem{}
-	mi := &file_svc_project_v1_service_proto_msgTypes[12]
+	mi := &file_svc_project_v1_service_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -652,7 +748,7 @@ func (x *ListProjectResponse_ListItem) String() string {
 func (*ListProjectResponse_ListItem) ProtoMessage() {}
 
 func (x *ListProjectResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_project_v1_service_proto_msgTypes[12]
+	mi := &file_svc_project_v1_service_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -665,7 +761,7 @@ func (x *ListProjectResponse_ListItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListProjectResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListProjectResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{9, 0}
+	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{11, 0}
 }
 
 func (x *ListProjectResponse_ListItem) GetProject() *v1.Project {
@@ -684,7 +780,12 @@ const file_svc_project_v1_service_proto_rawDesc = "" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x121\n" +
 	"\x04spec\x18\x01 \x01(\v2\x15.types.v1.ProjectSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"D\n" +
 	"\x15CreateProjectResponse\x12+\n" +
-	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"V\n" +
+	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"r\n" +
+	"\x16ValidateProjectRequest\x12%\n" +
+	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x121\n" +
+	"\x04spec\x18\x01 \x01(\v2\x15.types.v1.ProjectSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"5\n" +
+	"\x17ValidateProjectResponse\x12\x1a\n" +
+	"\bwarnings\x18\x01 \x03(\tR\bwarnings\"V\n" +
 	"\x11GetProjectRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1a\n" +
 	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"\xaf\x01\n" +
@@ -717,9 +818,10 @@ const file_svc_project_v1_service_proto_rawDesc = "" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1a\n" +
 	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"B\n" +
 	"\x13SyncProjectResponse\x12+\n" +
-	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject2\xaf\x04\n" +
+	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject2\x93\x05\n" +
 	"\x0eProjectService\x12\\\n" +
-	"\rCreateProject\x12$.svc.project.v1.CreateProjectRequest\x1a%.svc.project.v1.CreateProjectResponse\x12S\n" +
+	"\rCreateProject\x12$.svc.project.v1.CreateProjectRequest\x1a%.svc.project.v1.CreateProjectResponse\x12b\n" +
+	"\x0fValidateProject\x12&.svc.project.v1.ValidateProjectRequest\x1a'.svc.project.v1.ValidateProjectResponse\x12S\n" +
 	"\n" +
 	"GetProject\x12!.svc.project.v1.GetProjectRequest\x1a\".svc.project.v1.GetProjectResponse\x12\\\n" +
 	"\rUpdateProject\x12$.svc.project.v1.UpdateProjectRequest\x1a%.svc.project.v1.UpdateProjectResponse\x12\\\n" +
@@ -740,57 +842,62 @@ func file_svc_project_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_project_v1_service_proto_rawDescData
 }
 
-var file_svc_project_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_svc_project_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
 var file_svc_project_v1_service_proto_goTypes = []any{
 	(*CreateProjectRequest)(nil),         // 0: svc.project.v1.CreateProjectRequest
 	(*CreateProjectResponse)(nil),        // 1: svc.project.v1.CreateProjectResponse
-	(*GetProjectRequest)(nil),            // 2: svc.project.v1.GetProjectRequest
-	(*GetProjectResponse)(nil),           // 3: svc.project.v1.GetProjectResponse
-	(*UpdateProjectRequest)(nil),         // 4: svc.project.v1.UpdateProjectRequest
-	(*UpdateProjectResponse)(nil),        // 5: svc.project.v1.UpdateProjectResponse
-	(*DeleteProjectRequest)(nil),         // 6: svc.project.v1.DeleteProjectRequest
-	(*DeleteProjectResponse)(nil),        // 7: svc.project.v1.DeleteProjectResponse
-	(*ListProjectRequest)(nil),           // 8: svc.project.v1.ListProjectRequest
-	(*ListProjectResponse)(nil),          // 9: svc.project.v1.ListProjectResponse
-	(*SyncProjectRequest)(nil),           // 10: svc.project.v1.SyncProjectRequest
-	(*SyncProjectResponse)(nil),          // 11: svc.project.v1.SyncProjectResponse
-	(*ListProjectResponse_ListItem)(nil), // 12: svc.project.v1.ListProjectResponse.ListItem
-	(*v1.ProjectSpec)(nil),               // 13: types.v1.ProjectSpec
-	(*v1.Project)(nil),                   // 14: types.v1.Project
-	(*v1.Dashboard)(nil),                 // 15: types.v1.Dashboard
-	(*v1.AlertGroup)(nil),                // 16: types.v1.AlertGroup
-	(*v1.Cursor)(nil),                    // 17: types.v1.Cursor
+	(*ValidateProjectRequest)(nil),       // 2: svc.project.v1.ValidateProjectRequest
+	(*ValidateProjectResponse)(nil),      // 3: svc.project.v1.ValidateProjectResponse
+	(*GetProjectRequest)(nil),            // 4: svc.project.v1.GetProjectRequest
+	(*GetProjectResponse)(nil),           // 5: svc.project.v1.GetProjectResponse
+	(*UpdateProjectRequest)(nil),         // 6: svc.project.v1.UpdateProjectRequest
+	(*UpdateProjectResponse)(nil),        // 7: svc.project.v1.UpdateProjectResponse
+	(*DeleteProjectRequest)(nil),         // 8: svc.project.v1.DeleteProjectRequest
+	(*DeleteProjectResponse)(nil),        // 9: svc.project.v1.DeleteProjectResponse
+	(*ListProjectRequest)(nil),           // 10: svc.project.v1.ListProjectRequest
+	(*ListProjectResponse)(nil),          // 11: svc.project.v1.ListProjectResponse
+	(*SyncProjectRequest)(nil),           // 12: svc.project.v1.SyncProjectRequest
+	(*SyncProjectResponse)(nil),          // 13: svc.project.v1.SyncProjectResponse
+	(*ListProjectResponse_ListItem)(nil), // 14: svc.project.v1.ListProjectResponse.ListItem
+	(*v1.ProjectSpec)(nil),               // 15: types.v1.ProjectSpec
+	(*v1.Project)(nil),                   // 16: types.v1.Project
+	(*v1.Dashboard)(nil),                 // 17: types.v1.Dashboard
+	(*v1.AlertGroup)(nil),                // 18: types.v1.AlertGroup
+	(*v1.Cursor)(nil),                    // 19: types.v1.Cursor
 }
 var file_svc_project_v1_service_proto_depIdxs = []int32{
-	13, // 0: svc.project.v1.CreateProjectRequest.spec:type_name -> types.v1.ProjectSpec
-	14, // 1: svc.project.v1.CreateProjectResponse.project:type_name -> types.v1.Project
-	14, // 2: svc.project.v1.GetProjectResponse.project:type_name -> types.v1.Project
-	15, // 3: svc.project.v1.GetProjectResponse.dashboards:type_name -> types.v1.Dashboard
-	16, // 4: svc.project.v1.GetProjectResponse.alert_groups:type_name -> types.v1.AlertGroup
-	13, // 5: svc.project.v1.UpdateProjectRequest.spec:type_name -> types.v1.ProjectSpec
-	14, // 6: svc.project.v1.UpdateProjectResponse.project:type_name -> types.v1.Project
-	17, // 7: svc.project.v1.ListProjectRequest.cursor:type_name -> types.v1.Cursor
-	17, // 8: svc.project.v1.ListProjectResponse.next:type_name -> types.v1.Cursor
-	12, // 9: svc.project.v1.ListProjectResponse.items:type_name -> svc.project.v1.ListProjectResponse.ListItem
-	14, // 10: svc.project.v1.SyncProjectResponse.project:type_name -> types.v1.Project
-	14, // 11: svc.project.v1.ListProjectResponse.ListItem.project:type_name -> types.v1.Project
-	0,  // 12: svc.project.v1.ProjectService.CreateProject:input_type -> svc.project.v1.CreateProjectRequest
-	2,  // 13: svc.project.v1.ProjectService.GetProject:input_type -> svc.project.v1.GetProjectRequest
-	4,  // 14: svc.project.v1.ProjectService.UpdateProject:input_type -> svc.project.v1.UpdateProjectRequest
-	6,  // 15: svc.project.v1.ProjectService.DeleteProject:input_type -> svc.project.v1.DeleteProjectRequest
-	8,  // 16: svc.project.v1.ProjectService.ListProject:input_type -> svc.project.v1.ListProjectRequest
-	10, // 17: svc.project.v1.ProjectService.SyncProject:input_type -> svc.project.v1.SyncProjectRequest
-	1,  // 18: svc.project.v1.ProjectService.CreateProject:output_type -> svc.project.v1.CreateProjectResponse
-	3,  // 19: svc.project.v1.ProjectService.GetProject:output_type -> svc.project.v1.GetProjectResponse
-	5,  // 20: svc.project.v1.ProjectService.UpdateProject:output_type -> svc.project.v1.UpdateProjectResponse
-	7,  // 21: svc.project.v1.ProjectService.DeleteProject:output_type -> svc.project.v1.DeleteProjectResponse
-	9,  // 22: svc.project.v1.ProjectService.ListProject:output_type -> svc.project.v1.ListProjectResponse
-	11, // 23: svc.project.v1.ProjectService.SyncProject:output_type -> svc.project.v1.SyncProjectResponse
-	18, // [18:24] is the sub-list for method output_type
-	12, // [12:18] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	15, // 0: svc.project.v1.CreateProjectRequest.spec:type_name -> types.v1.ProjectSpec
+	16, // 1: svc.project.v1.CreateProjectResponse.project:type_name -> types.v1.Project
+	15, // 2: svc.project.v1.ValidateProjectRequest.spec:type_name -> types.v1.ProjectSpec
+	16, // 3: svc.project.v1.GetProjectResponse.project:type_name -> types.v1.Project
+	17, // 4: svc.project.v1.GetProjectResponse.dashboards:type_name -> types.v1.Dashboard
+	18, // 5: svc.project.v1.GetProjectResponse.alert_groups:type_name -> types.v1.AlertGroup
+	15, // 6: svc.project.v1.UpdateProjectRequest.spec:type_name -> types.v1.ProjectSpec
+	16, // 7: svc.project.v1.UpdateProjectResponse.project:type_name -> types.v1.Project
+	19, // 8: svc.project.v1.ListProjectRequest.cursor:type_name -> types.v1.Cursor
+	19, // 9: svc.project.v1.ListProjectResponse.next:type_name -> types.v1.Cursor
+	14, // 10: svc.project.v1.ListProjectResponse.items:type_name -> svc.project.v1.ListProjectResponse.ListItem
+	16, // 11: svc.project.v1.SyncProjectResponse.project:type_name -> types.v1.Project
+	16, // 12: svc.project.v1.ListProjectResponse.ListItem.project:type_name -> types.v1.Project
+	0,  // 13: svc.project.v1.ProjectService.CreateProject:input_type -> svc.project.v1.CreateProjectRequest
+	2,  // 14: svc.project.v1.ProjectService.ValidateProject:input_type -> svc.project.v1.ValidateProjectRequest
+	4,  // 15: svc.project.v1.ProjectService.GetProject:input_type -> svc.project.v1.GetProjectRequest
+	6,  // 16: svc.project.v1.ProjectService.UpdateProject:input_type -> svc.project.v1.UpdateProjectRequest
+	8,  // 17: svc.project.v1.ProjectService.DeleteProject:input_type -> svc.project.v1.DeleteProjectRequest
+	10, // 18: svc.project.v1.ProjectService.ListProject:input_type -> svc.project.v1.ListProjectRequest
+	12, // 19: svc.project.v1.ProjectService.SyncProject:input_type -> svc.project.v1.SyncProjectRequest
+	1,  // 20: svc.project.v1.ProjectService.CreateProject:output_type -> svc.project.v1.CreateProjectResponse
+	3,  // 21: svc.project.v1.ProjectService.ValidateProject:output_type -> svc.project.v1.ValidateProjectResponse
+	5,  // 22: svc.project.v1.ProjectService.GetProject:output_type -> svc.project.v1.GetProjectResponse
+	7,  // 23: svc.project.v1.ProjectService.UpdateProject:output_type -> svc.project.v1.UpdateProjectResponse
+	9,  // 24: svc.project.v1.ProjectService.DeleteProject:output_type -> svc.project.v1.DeleteProjectResponse
+	11, // 25: svc.project.v1.ProjectService.ListProject:output_type -> svc.project.v1.ListProjectResponse
+	13, // 26: svc.project.v1.ProjectService.SyncProject:output_type -> svc.project.v1.SyncProjectResponse
+	20, // [20:27] is the sub-list for method output_type
+	13, // [13:20] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_svc_project_v1_service_proto_init() }
@@ -804,7 +911,7 @@ func file_svc_project_v1_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_project_v1_service_proto_rawDesc), len(file_svc_project_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   15,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

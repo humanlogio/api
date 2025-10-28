@@ -10,6 +10,11 @@ import { ProjectService } from "./service_pb";
 export const createProject = ProjectService.method.createProject;
 
 /**
+ * @generated from rpc svc.project.v1.ProjectService.ValidateProject
+ */
+export const validateProject = ProjectService.method.validateProject;
+
+/**
  * @generated from rpc svc.project.v1.ProjectService.GetProject
  */
 export const getProject = ProjectService.method.getProject;

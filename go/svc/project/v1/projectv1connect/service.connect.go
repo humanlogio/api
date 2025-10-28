@@ -36,6 +36,9 @@ const (
 	// ProjectServiceCreateProjectProcedure is the fully-qualified name of the ProjectService's
 	// CreateProject RPC.
 	ProjectServiceCreateProjectProcedure = "/svc.project.v1.ProjectService/CreateProject"
+	// ProjectServiceValidateProjectProcedure is the fully-qualified name of the ProjectService's
+	// ValidateProject RPC.
+	ProjectServiceValidateProjectProcedure = "/svc.project.v1.ProjectService/ValidateProject"
 	// ProjectServiceGetProjectProcedure is the fully-qualified name of the ProjectService's GetProject
 	// RPC.
 	ProjectServiceGetProjectProcedure = "/svc.project.v1.ProjectService/GetProject"
@@ -56,6 +59,7 @@ const (
 // ProjectServiceClient is a client for the svc.project.v1.ProjectService service.
 type ProjectServiceClient interface {
 	CreateProject(context.Context, *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.CreateProjectResponse], error)
+	ValidateProject(context.Context, *connect.Request[v1.ValidateProjectRequest]) (*connect.Response[v1.ValidateProjectResponse], error)
 	GetProject(context.Context, *connect.Request[v1.GetProjectRequest]) (*connect.Response[v1.GetProjectResponse], error)
 	UpdateProject(context.Context, *connect.Request[v1.UpdateProjectRequest]) (*connect.Response[v1.UpdateProjectResponse], error)
 	DeleteProject(context.Context, *connect.Request[v1.DeleteProjectRequest]) (*connect.Response[v1.DeleteProjectResponse], error)
@@ -80,6 +84,12 @@ func NewProjectServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			httpClient,
 			baseURL+ProjectServiceCreateProjectProcedure,
 			connect.WithSchema(projectServiceMethods.ByName("CreateProject")),
+			connect.WithClientOptions(opts...),
+		),
+		validateProject: connect.NewClient[v1.ValidateProjectRequest, v1.ValidateProjectResponse](
+			httpClient,
+			baseURL+ProjectServiceValidateProjectProcedure,
+			connect.WithSchema(projectServiceMethods.ByName("ValidateProject")),
 			connect.WithClientOptions(opts...),
 		),
 		getProject: connect.NewClient[v1.GetProjectRequest, v1.GetProjectResponse](
@@ -117,17 +127,23 @@ func NewProjectServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 
 // projectServiceClient implements ProjectServiceClient.
 type projectServiceClient struct {
-	createProject *connect.Client[v1.CreateProjectRequest, v1.CreateProjectResponse]
-	getProject    *connect.Client[v1.GetProjectRequest, v1.GetProjectResponse]
-	updateProject *connect.Client[v1.UpdateProjectRequest, v1.UpdateProjectResponse]
-	deleteProject *connect.Client[v1.DeleteProjectRequest, v1.DeleteProjectResponse]
-	listProject   *connect.Client[v1.ListProjectRequest, v1.ListProjectResponse]
-	syncProject   *connect.Client[v1.SyncProjectRequest, v1.SyncProjectResponse]
+	createProject   *connect.Client[v1.CreateProjectRequest, v1.CreateProjectResponse]
+	validateProject *connect.Client[v1.ValidateProjectRequest, v1.ValidateProjectResponse]
+	getProject      *connect.Client[v1.GetProjectRequest, v1.GetProjectResponse]
+	updateProject   *connect.Client[v1.UpdateProjectRequest, v1.UpdateProjectResponse]
+	deleteProject   *connect.Client[v1.DeleteProjectRequest, v1.DeleteProjectResponse]
+	listProject     *connect.Client[v1.ListProjectRequest, v1.ListProjectResponse]
+	syncProject     *connect.Client[v1.SyncProjectRequest, v1.SyncProjectResponse]
 }
 
 // CreateProject calls svc.project.v1.ProjectService.CreateProject.
 func (c *projectServiceClient) CreateProject(ctx context.Context, req *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.CreateProjectResponse], error) {
 	return c.createProject.CallUnary(ctx, req)
+}
+
+// ValidateProject calls svc.project.v1.ProjectService.ValidateProject.
+func (c *projectServiceClient) ValidateProject(ctx context.Context, req *connect.Request[v1.ValidateProjectRequest]) (*connect.Response[v1.ValidateProjectResponse], error) {
+	return c.validateProject.CallUnary(ctx, req)
 }
 
 // GetProject calls svc.project.v1.ProjectService.GetProject.
@@ -158,6 +174,7 @@ func (c *projectServiceClient) SyncProject(ctx context.Context, req *connect.Req
 // ProjectServiceHandler is an implementation of the svc.project.v1.ProjectService service.
 type ProjectServiceHandler interface {
 	CreateProject(context.Context, *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.CreateProjectResponse], error)
+	ValidateProject(context.Context, *connect.Request[v1.ValidateProjectRequest]) (*connect.Response[v1.ValidateProjectResponse], error)
 	GetProject(context.Context, *connect.Request[v1.GetProjectRequest]) (*connect.Response[v1.GetProjectResponse], error)
 	UpdateProject(context.Context, *connect.Request[v1.UpdateProjectRequest]) (*connect.Response[v1.UpdateProjectResponse], error)
 	DeleteProject(context.Context, *connect.Request[v1.DeleteProjectRequest]) (*connect.Response[v1.DeleteProjectResponse], error)
@@ -178,6 +195,12 @@ func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect.Handler
 		ProjectServiceCreateProjectProcedure,
 		svc.CreateProject,
 		connect.WithSchema(projectServiceMethods.ByName("CreateProject")),
+		connect.WithHandlerOptions(opts...),
+	)
+	projectServiceValidateProjectHandler := connect.NewUnaryHandler(
+		ProjectServiceValidateProjectProcedure,
+		svc.ValidateProject,
+		connect.WithSchema(projectServiceMethods.ByName("ValidateProject")),
 		connect.WithHandlerOptions(opts...),
 	)
 	projectServiceGetProjectHandler := connect.NewUnaryHandler(
@@ -214,6 +237,8 @@ func NewProjectServiceHandler(svc ProjectServiceHandler, opts ...connect.Handler
 		switch r.URL.Path {
 		case ProjectServiceCreateProjectProcedure:
 			projectServiceCreateProjectHandler.ServeHTTP(w, r)
+		case ProjectServiceValidateProjectProcedure:
+			projectServiceValidateProjectHandler.ServeHTTP(w, r)
 		case ProjectServiceGetProjectProcedure:
 			projectServiceGetProjectHandler.ServeHTTP(w, r)
 		case ProjectServiceUpdateProjectProcedure:
@@ -235,6 +260,10 @@ type UnimplementedProjectServiceHandler struct{}
 
 func (UnimplementedProjectServiceHandler) CreateProject(context.Context, *connect.Request[v1.CreateProjectRequest]) (*connect.Response[v1.CreateProjectResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.project.v1.ProjectService.CreateProject is not implemented"))
+}
+
+func (UnimplementedProjectServiceHandler) ValidateProject(context.Context, *connect.Request[v1.ValidateProjectRequest]) (*connect.Response[v1.ValidateProjectResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.project.v1.ProjectService.ValidateProject is not implemented"))
 }
 
 func (UnimplementedProjectServiceHandler) GetProject(context.Context, *connect.Request[v1.GetProjectRequest]) (*connect.Response[v1.GetProjectResponse], error) {
