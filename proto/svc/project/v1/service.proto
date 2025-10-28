@@ -12,6 +12,7 @@ option go_package = "svc/project/v1;projectv1";
 
 service ProjectService {
   rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse);
+  rpc ValidateProject(ValidateProjectRequest) returns (ValidateProjectResponse);
   rpc GetProject(GetProjectRequest) returns (GetProjectResponse);
   rpc UpdateProject(UpdateProjectRequest) returns (UpdateProjectResponse);
   rpc DeleteProject(DeleteProjectRequest) returns (DeleteProjectResponse);
@@ -29,6 +30,15 @@ message CreateProjectRequest {
 
 message CreateProjectResponse {
   types.v1.Project project = 1;
+}
+
+message ValidateProjectRequest {
+  int64 environment_id = 101;
+  types.v1.ProjectSpec spec = 1 [(buf.validate.field).required = true];
+}
+
+message ValidateProjectResponse {
+  repeated string warnings = 1;
 }
 
 message GetProjectRequest {
