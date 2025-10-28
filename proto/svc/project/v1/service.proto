@@ -38,7 +38,7 @@ message ValidateProjectRequest {
 }
 
 message ValidateProjectResponse {
-  repeated string warnings = 1;
+  types.v1.ProjectStatus status = 1;
 }
 
 message GetProjectRequest {
