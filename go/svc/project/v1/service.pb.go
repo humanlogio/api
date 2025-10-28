@@ -173,7 +173,7 @@ func (x *ValidateProjectRequest) GetSpec() *v1.ProjectSpec {
 
 type ValidateProjectResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Warnings      []string               `protobuf:"bytes,1,rep,name=warnings,proto3" json:"warnings,omitempty"`
+	Status        *v1.ProjectStatus      `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -208,9 +208,9 @@ func (*ValidateProjectResponse) Descriptor() ([]byte, []int) {
 	return file_svc_project_v1_service_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ValidateProjectResponse) GetWarnings() []string {
+func (x *ValidateProjectResponse) GetStatus() *v1.ProjectStatus {
 	if x != nil {
-		return x.Warnings
+		return x.Status
 	}
 	return nil
 }
@@ -783,9 +783,9 @@ const file_svc_project_v1_service_proto_rawDesc = "" +
 	"\aproject\x18\x01 \x01(\v2\x11.types.v1.ProjectR\aproject\"r\n" +
 	"\x16ValidateProjectRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x121\n" +
-	"\x04spec\x18\x01 \x01(\v2\x15.types.v1.ProjectSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"5\n" +
-	"\x17ValidateProjectResponse\x12\x1a\n" +
-	"\bwarnings\x18\x01 \x03(\tR\bwarnings\"V\n" +
+	"\x04spec\x18\x01 \x01(\v2\x15.types.v1.ProjectSpecB\x06\xbaH\x03\xc8\x01\x01R\x04spec\"J\n" +
+	"\x17ValidateProjectResponse\x12/\n" +
+	"\x06status\x18\x01 \x01(\v2\x17.types.v1.ProjectStatusR\x06status\"V\n" +
 	"\x11GetProjectRequest\x12%\n" +
 	"\x0eenvironment_id\x18e \x01(\x03R\renvironmentId\x12\x1a\n" +
 	"\x04name\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x04name\"\xaf\x01\n" +
@@ -861,43 +861,45 @@ var file_svc_project_v1_service_proto_goTypes = []any{
 	(*ListProjectResponse_ListItem)(nil), // 14: svc.project.v1.ListProjectResponse.ListItem
 	(*v1.ProjectSpec)(nil),               // 15: types.v1.ProjectSpec
 	(*v1.Project)(nil),                   // 16: types.v1.Project
-	(*v1.Dashboard)(nil),                 // 17: types.v1.Dashboard
-	(*v1.AlertGroup)(nil),                // 18: types.v1.AlertGroup
-	(*v1.Cursor)(nil),                    // 19: types.v1.Cursor
+	(*v1.ProjectStatus)(nil),             // 17: types.v1.ProjectStatus
+	(*v1.Dashboard)(nil),                 // 18: types.v1.Dashboard
+	(*v1.AlertGroup)(nil),                // 19: types.v1.AlertGroup
+	(*v1.Cursor)(nil),                    // 20: types.v1.Cursor
 }
 var file_svc_project_v1_service_proto_depIdxs = []int32{
 	15, // 0: svc.project.v1.CreateProjectRequest.spec:type_name -> types.v1.ProjectSpec
 	16, // 1: svc.project.v1.CreateProjectResponse.project:type_name -> types.v1.Project
 	15, // 2: svc.project.v1.ValidateProjectRequest.spec:type_name -> types.v1.ProjectSpec
-	16, // 3: svc.project.v1.GetProjectResponse.project:type_name -> types.v1.Project
-	17, // 4: svc.project.v1.GetProjectResponse.dashboards:type_name -> types.v1.Dashboard
-	18, // 5: svc.project.v1.GetProjectResponse.alert_groups:type_name -> types.v1.AlertGroup
-	15, // 6: svc.project.v1.UpdateProjectRequest.spec:type_name -> types.v1.ProjectSpec
-	16, // 7: svc.project.v1.UpdateProjectResponse.project:type_name -> types.v1.Project
-	19, // 8: svc.project.v1.ListProjectRequest.cursor:type_name -> types.v1.Cursor
-	19, // 9: svc.project.v1.ListProjectResponse.next:type_name -> types.v1.Cursor
-	14, // 10: svc.project.v1.ListProjectResponse.items:type_name -> svc.project.v1.ListProjectResponse.ListItem
-	16, // 11: svc.project.v1.SyncProjectResponse.project:type_name -> types.v1.Project
-	16, // 12: svc.project.v1.ListProjectResponse.ListItem.project:type_name -> types.v1.Project
-	0,  // 13: svc.project.v1.ProjectService.CreateProject:input_type -> svc.project.v1.CreateProjectRequest
-	2,  // 14: svc.project.v1.ProjectService.ValidateProject:input_type -> svc.project.v1.ValidateProjectRequest
-	4,  // 15: svc.project.v1.ProjectService.GetProject:input_type -> svc.project.v1.GetProjectRequest
-	6,  // 16: svc.project.v1.ProjectService.UpdateProject:input_type -> svc.project.v1.UpdateProjectRequest
-	8,  // 17: svc.project.v1.ProjectService.DeleteProject:input_type -> svc.project.v1.DeleteProjectRequest
-	10, // 18: svc.project.v1.ProjectService.ListProject:input_type -> svc.project.v1.ListProjectRequest
-	12, // 19: svc.project.v1.ProjectService.SyncProject:input_type -> svc.project.v1.SyncProjectRequest
-	1,  // 20: svc.project.v1.ProjectService.CreateProject:output_type -> svc.project.v1.CreateProjectResponse
-	3,  // 21: svc.project.v1.ProjectService.ValidateProject:output_type -> svc.project.v1.ValidateProjectResponse
-	5,  // 22: svc.project.v1.ProjectService.GetProject:output_type -> svc.project.v1.GetProjectResponse
-	7,  // 23: svc.project.v1.ProjectService.UpdateProject:output_type -> svc.project.v1.UpdateProjectResponse
-	9,  // 24: svc.project.v1.ProjectService.DeleteProject:output_type -> svc.project.v1.DeleteProjectResponse
-	11, // 25: svc.project.v1.ProjectService.ListProject:output_type -> svc.project.v1.ListProjectResponse
-	13, // 26: svc.project.v1.ProjectService.SyncProject:output_type -> svc.project.v1.SyncProjectResponse
-	20, // [20:27] is the sub-list for method output_type
-	13, // [13:20] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	17, // 3: svc.project.v1.ValidateProjectResponse.status:type_name -> types.v1.ProjectStatus
+	16, // 4: svc.project.v1.GetProjectResponse.project:type_name -> types.v1.Project
+	18, // 5: svc.project.v1.GetProjectResponse.dashboards:type_name -> types.v1.Dashboard
+	19, // 6: svc.project.v1.GetProjectResponse.alert_groups:type_name -> types.v1.AlertGroup
+	15, // 7: svc.project.v1.UpdateProjectRequest.spec:type_name -> types.v1.ProjectSpec
+	16, // 8: svc.project.v1.UpdateProjectResponse.project:type_name -> types.v1.Project
+	20, // 9: svc.project.v1.ListProjectRequest.cursor:type_name -> types.v1.Cursor
+	20, // 10: svc.project.v1.ListProjectResponse.next:type_name -> types.v1.Cursor
+	14, // 11: svc.project.v1.ListProjectResponse.items:type_name -> svc.project.v1.ListProjectResponse.ListItem
+	16, // 12: svc.project.v1.SyncProjectResponse.project:type_name -> types.v1.Project
+	16, // 13: svc.project.v1.ListProjectResponse.ListItem.project:type_name -> types.v1.Project
+	0,  // 14: svc.project.v1.ProjectService.CreateProject:input_type -> svc.project.v1.CreateProjectRequest
+	2,  // 15: svc.project.v1.ProjectService.ValidateProject:input_type -> svc.project.v1.ValidateProjectRequest
+	4,  // 16: svc.project.v1.ProjectService.GetProject:input_type -> svc.project.v1.GetProjectRequest
+	6,  // 17: svc.project.v1.ProjectService.UpdateProject:input_type -> svc.project.v1.UpdateProjectRequest
+	8,  // 18: svc.project.v1.ProjectService.DeleteProject:input_type -> svc.project.v1.DeleteProjectRequest
+	10, // 19: svc.project.v1.ProjectService.ListProject:input_type -> svc.project.v1.ListProjectRequest
+	12, // 20: svc.project.v1.ProjectService.SyncProject:input_type -> svc.project.v1.SyncProjectRequest
+	1,  // 21: svc.project.v1.ProjectService.CreateProject:output_type -> svc.project.v1.CreateProjectResponse
+	3,  // 22: svc.project.v1.ProjectService.ValidateProject:output_type -> svc.project.v1.ValidateProjectResponse
+	5,  // 23: svc.project.v1.ProjectService.GetProject:output_type -> svc.project.v1.GetProjectResponse
+	7,  // 24: svc.project.v1.ProjectService.UpdateProject:output_type -> svc.project.v1.UpdateProjectResponse
+	9,  // 25: svc.project.v1.ProjectService.DeleteProject:output_type -> svc.project.v1.DeleteProjectResponse
+	11, // 26: svc.project.v1.ProjectService.ListProject:output_type -> svc.project.v1.ListProjectResponse
+	13, // 27: svc.project.v1.ProjectService.SyncProject:output_type -> svc.project.v1.SyncProjectResponse
+	21, // [21:28] is the sub-list for method output_type
+	14, // [14:21] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_svc_project_v1_service_proto_init() }
