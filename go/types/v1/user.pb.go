@@ -29,10 +29,10 @@ type User struct {
 	Username          string                 `protobuf:"bytes,10,opt,name=username,proto3" json:"username,omitempty"`
 	Email             string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
 	ProfilePictureUrl string                 `protobuf:"bytes,3,opt,name=profile_picture_url,json=profilePictureUrl,proto3" json:"profile_picture_url,omitempty"`
-	FirstName         string                 `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName          string                 `protobuf:"bytes,5,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Name              string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"` // display name from better-auth
 	EmailVerified     bool                   `protobuf:"varint,6,opt,name=email_verified,json=emailVerified,proto3" json:"email_verified,omitempty"`
 	CreatedAt         *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt         *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -95,16 +95,9 @@ func (x *User) GetProfilePictureUrl() string {
 	return ""
 }
 
-func (x *User) GetFirstName() string {
+func (x *User) GetName() string {
 	if x != nil {
-		return x.FirstName
-	}
-	return ""
-}
-
-func (x *User) GetLastName() string {
-	if x != nil {
-		return x.LastName
+		return x.Name
 	}
 	return ""
 }
@@ -123,12 +116,18 @@ func (x *User) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *User) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
 type PublicUser struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Username          string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
 	ProfilePictureUrl string                 `protobuf:"bytes,2,opt,name=profile_picture_url,json=profilePictureUrl,proto3" json:"profile_picture_url,omitempty"`
-	FirstName         string                 `protobuf:"bytes,3,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName          string                 `protobuf:"bytes,4,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
+	Name              string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"` // display name from better-auth
 	CreatedAt         *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
@@ -178,16 +177,9 @@ func (x *PublicUser) GetProfilePictureUrl() string {
 	return ""
 }
 
-func (x *PublicUser) GetFirstName() string {
+func (x *PublicUser) GetName() string {
 	if x != nil {
-		return x.FirstName
-	}
-	return ""
-}
-
-func (x *PublicUser) GetLastName() string {
-	if x != nil {
-		return x.LastName
+		return x.Name
 	}
 	return ""
 }
@@ -203,26 +195,24 @@ var File_types_v1_user_proto protoreflect.FileDescriptor
 
 const file_types_v1_user_proto_rawDesc = "" +
 	"\n" +
-	"\x13types/v1/user.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc6\x02\n" +
+	"\x13types/v1/user.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd9\x02\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12A\n" +
 	"\busername\x18\n" +
 	" \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busername\x12\x1d\n" +
 	"\x05email\x18\x02 \x01(\tB\a\xbaH\x04r\x02`\x01R\x05email\x12.\n" +
-	"\x13profile_picture_url\x18\x03 \x01(\tR\x11profilePictureUrl\x12\x1d\n" +
-	"\n" +
-	"first_name\x18\x04 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x05 \x01(\tR\blastName\x12%\n" +
+	"\x13profile_picture_url\x18\x03 \x01(\tR\x11profilePictureUrl\x12\x12\n" +
+	"\x04name\x18\x04 \x01(\tR\x04name\x12%\n" +
 	"\x0eemail_verified\x18\x06 \x01(\bR\remailVerified\x129\n" +
 	"\n" +
-	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xf6\x01\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xce\x01\n" +
 	"\n" +
 	"PublicUser\x12A\n" +
 	"\busername\x18\x01 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\busername\x12.\n" +
-	"\x13profile_picture_url\x18\x02 \x01(\tR\x11profilePictureUrl\x12\x1d\n" +
-	"\n" +
-	"first_name\x18\x03 \x01(\tR\tfirstName\x12\x1b\n" +
-	"\tlast_name\x18\x04 \x01(\tR\blastName\x129\n" +
+	"\x13profile_picture_url\x18\x02 \x01(\tR\x11profilePictureUrl\x12\x12\n" +
+	"\x04name\x18\x03 \x01(\tR\x04name\x129\n" +
 	"\n" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAtB\x89\x01\n" +
 	"\fcom.types.v1B\tUserProtoP\x01Z-github.com/humanlogio/api/go/types/v1;typesv1\xa2\x02\x03TXX\xaa\x02\bTypes.V1\xca\x02\bTypes\\V1\xe2\x02\x14Types\\V1\\GPBMetadata\xea\x02\tTypes::V1b\x06proto3"
@@ -247,12 +237,13 @@ var file_types_v1_user_proto_goTypes = []any{
 }
 var file_types_v1_user_proto_depIdxs = []int32{
 	2, // 0: types.v1.User.created_at:type_name -> google.protobuf.Timestamp
-	2, // 1: types.v1.PublicUser.created_at:type_name -> google.protobuf.Timestamp
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	2, // 1: types.v1.User.updated_at:type_name -> google.protobuf.Timestamp
+	2, // 2: types.v1.PublicUser.created_at:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_user_proto_init() }

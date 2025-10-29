@@ -513,182 +513,6 @@ func (x *ListUserResponse) GetItems() []*ListUserResponse_ListItem {
 	return nil
 }
 
-type InviteUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserEmail     string                 `protobuf:"bytes,1,opt,name=user_email,json=userEmail,proto3" json:"user_email,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InviteUserRequest) Reset() {
-	*x = InviteUserRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InviteUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InviteUserRequest) ProtoMessage() {}
-
-func (x *InviteUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InviteUserRequest.ProtoReflect.Descriptor instead.
-func (*InviteUserRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *InviteUserRequest) GetUserEmail() string {
-	if x != nil {
-		return x.UserEmail
-	}
-	return ""
-}
-
-type InviteUserResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Invitation    *v1.Invitation         `protobuf:"bytes,1,opt,name=invitation,proto3" json:"invitation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InviteUserResponse) Reset() {
-	*x = InviteUserResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InviteUserResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InviteUserResponse) ProtoMessage() {}
-
-func (x *InviteUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InviteUserResponse.ProtoReflect.Descriptor instead.
-func (*InviteUserResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *InviteUserResponse) GetInvitation() *v1.Invitation {
-	if x != nil {
-		return x.Invitation
-	}
-	return nil
-}
-
-type RevokeUserInvitationRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	InviteId      int64                  `protobuf:"varint,1,opt,name=invite_id,json=inviteId,proto3" json:"invite_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RevokeUserInvitationRequest) Reset() {
-	*x = RevokeUserInvitationRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RevokeUserInvitationRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RevokeUserInvitationRequest) ProtoMessage() {}
-
-func (x *RevokeUserInvitationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RevokeUserInvitationRequest.ProtoReflect.Descriptor instead.
-func (*RevokeUserInvitationRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *RevokeUserInvitationRequest) GetInviteId() int64 {
-	if x != nil {
-		return x.InviteId
-	}
-	return 0
-}
-
-type RevokeUserInvitationResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Invitation    *v1.Invitation         `protobuf:"bytes,1,opt,name=invitation,proto3" json:"invitation,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RevokeUserInvitationResponse) Reset() {
-	*x = RevokeUserInvitationResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RevokeUserInvitationResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RevokeUserInvitationResponse) ProtoMessage() {}
-
-func (x *RevokeUserInvitationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RevokeUserInvitationResponse.ProtoReflect.Descriptor instead.
-func (*RevokeUserInvitationResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *RevokeUserInvitationResponse) GetInvitation() *v1.Invitation {
-	if x != nil {
-		return x.Invitation
-	}
-	return nil
-}
-
 type ListUserInvitationRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Cursor        *v1.Cursor             `protobuf:"bytes,1,opt,name=cursor,proto3" json:"cursor,omitempty"`
@@ -699,7 +523,7 @@ type ListUserInvitationRequest struct {
 
 func (x *ListUserInvitationRequest) Reset() {
 	*x = ListUserInvitationRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[12]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -711,7 +535,7 @@ func (x *ListUserInvitationRequest) String() string {
 func (*ListUserInvitationRequest) ProtoMessage() {}
 
 func (x *ListUserInvitationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[12]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -724,7 +548,7 @@ func (x *ListUserInvitationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserInvitationRequest.ProtoReflect.Descriptor instead.
 func (*ListUserInvitationRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{12}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListUserInvitationRequest) GetCursor() *v1.Cursor {
@@ -751,7 +575,7 @@ type ListUserInvitationResponse struct {
 
 func (x *ListUserInvitationResponse) Reset() {
 	*x = ListUserInvitationResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[13]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -763,7 +587,7 @@ func (x *ListUserInvitationResponse) String() string {
 func (*ListUserInvitationResponse) ProtoMessage() {}
 
 func (x *ListUserInvitationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[13]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -776,7 +600,7 @@ func (x *ListUserInvitationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListUserInvitationResponse.ProtoReflect.Descriptor instead.
 func (*ListUserInvitationResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{13}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListUserInvitationResponse) GetNext() *v1.Cursor {
@@ -805,7 +629,7 @@ type CreateAddonSubscriptionRequest struct {
 
 func (x *CreateAddonSubscriptionRequest) Reset() {
 	*x = CreateAddonSubscriptionRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[14]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -817,7 +641,7 @@ func (x *CreateAddonSubscriptionRequest) String() string {
 func (*CreateAddonSubscriptionRequest) ProtoMessage() {}
 
 func (x *CreateAddonSubscriptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[14]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -830,7 +654,7 @@ func (x *CreateAddonSubscriptionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAddonSubscriptionRequest.ProtoReflect.Descriptor instead.
 func (*CreateAddonSubscriptionRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{14}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CreateAddonSubscriptionRequest) GetPayment() isCreateAddonSubscriptionRequest_Payment {
@@ -871,7 +695,7 @@ type CreateAddonSubscriptionResponse struct {
 
 func (x *CreateAddonSubscriptionResponse) Reset() {
 	*x = CreateAddonSubscriptionResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[15]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -883,7 +707,7 @@ func (x *CreateAddonSubscriptionResponse) String() string {
 func (*CreateAddonSubscriptionResponse) ProtoMessage() {}
 
 func (x *CreateAddonSubscriptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[15]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -896,7 +720,7 @@ func (x *CreateAddonSubscriptionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAddonSubscriptionResponse.ProtoReflect.Descriptor instead.
 func (*CreateAddonSubscriptionResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{15}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CreateAddonSubscriptionResponse) GetPayment() isCreateAddonSubscriptionResponse_Payment {
@@ -935,7 +759,7 @@ type ListAddonSubscriptionRequest struct {
 
 func (x *ListAddonSubscriptionRequest) Reset() {
 	*x = ListAddonSubscriptionRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[16]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -947,7 +771,7 @@ func (x *ListAddonSubscriptionRequest) String() string {
 func (*ListAddonSubscriptionRequest) ProtoMessage() {}
 
 func (x *ListAddonSubscriptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[16]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -960,7 +784,7 @@ func (x *ListAddonSubscriptionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAddonSubscriptionRequest.ProtoReflect.Descriptor instead.
 func (*ListAddonSubscriptionRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{16}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListAddonSubscriptionRequest) GetCursor() *v1.Cursor {
@@ -987,7 +811,7 @@ type ListAddonSubscriptionResponse struct {
 
 func (x *ListAddonSubscriptionResponse) Reset() {
 	*x = ListAddonSubscriptionResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[17]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -999,7 +823,7 @@ func (x *ListAddonSubscriptionResponse) String() string {
 func (*ListAddonSubscriptionResponse) ProtoMessage() {}
 
 func (x *ListAddonSubscriptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[17]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1012,7 +836,7 @@ func (x *ListAddonSubscriptionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAddonSubscriptionResponse.ProtoReflect.Descriptor instead.
 func (*ListAddonSubscriptionResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{17}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListAddonSubscriptionResponse) GetNext() *v1.Cursor {
@@ -1039,7 +863,7 @@ type RemoveAddonSubscriptionRequest struct {
 
 func (x *RemoveAddonSubscriptionRequest) Reset() {
 	*x = RemoveAddonSubscriptionRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[18]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1051,7 +875,7 @@ func (x *RemoveAddonSubscriptionRequest) String() string {
 func (*RemoveAddonSubscriptionRequest) ProtoMessage() {}
 
 func (x *RemoveAddonSubscriptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[18]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1064,7 +888,7 @@ func (x *RemoveAddonSubscriptionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveAddonSubscriptionRequest.ProtoReflect.Descriptor instead.
 func (*RemoveAddonSubscriptionRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{18}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *RemoveAddonSubscriptionRequest) GetProduct() *v1.Product {
@@ -1089,7 +913,7 @@ type RemoveAddonSubscriptionResponse struct {
 
 func (x *RemoveAddonSubscriptionResponse) Reset() {
 	*x = RemoveAddonSubscriptionResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[19]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1101,7 +925,7 @@ func (x *RemoveAddonSubscriptionResponse) String() string {
 func (*RemoveAddonSubscriptionResponse) ProtoMessage() {}
 
 func (x *RemoveAddonSubscriptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[19]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1114,7 +938,7 @@ func (x *RemoveAddonSubscriptionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveAddonSubscriptionResponse.ProtoReflect.Descriptor instead.
 func (*RemoveAddonSubscriptionResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{19}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{15}
 }
 
 type GetStripePublishableKeyRequest struct {
@@ -1125,7 +949,7 @@ type GetStripePublishableKeyRequest struct {
 
 func (x *GetStripePublishableKeyRequest) Reset() {
 	*x = GetStripePublishableKeyRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[20]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1137,7 +961,7 @@ func (x *GetStripePublishableKeyRequest) String() string {
 func (*GetStripePublishableKeyRequest) ProtoMessage() {}
 
 func (x *GetStripePublishableKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[20]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1150,7 +974,7 @@ func (x *GetStripePublishableKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStripePublishableKeyRequest.ProtoReflect.Descriptor instead.
 func (*GetStripePublishableKeyRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{20}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{16}
 }
 
 type GetStripePublishableKeyResponse struct {
@@ -1162,7 +986,7 @@ type GetStripePublishableKeyResponse struct {
 
 func (x *GetStripePublishableKeyResponse) Reset() {
 	*x = GetStripePublishableKeyResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[21]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1174,7 +998,7 @@ func (x *GetStripePublishableKeyResponse) String() string {
 func (*GetStripePublishableKeyResponse) ProtoMessage() {}
 
 func (x *GetStripePublishableKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[21]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1187,7 +1011,7 @@ func (x *GetStripePublishableKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStripePublishableKeyResponse.ProtoReflect.Descriptor instead.
 func (*GetStripePublishableKeyResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{21}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetStripePublishableKeyResponse) GetStripePublishableKey() string {
@@ -1206,7 +1030,7 @@ type GetStripeBillingPortalRequest struct {
 
 func (x *GetStripeBillingPortalRequest) Reset() {
 	*x = GetStripeBillingPortalRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[22]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1218,7 +1042,7 @@ func (x *GetStripeBillingPortalRequest) String() string {
 func (*GetStripeBillingPortalRequest) ProtoMessage() {}
 
 func (x *GetStripeBillingPortalRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[22]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1231,7 +1055,7 @@ func (x *GetStripeBillingPortalRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStripeBillingPortalRequest.ProtoReflect.Descriptor instead.
 func (*GetStripeBillingPortalRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{22}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetStripeBillingPortalRequest) GetReturnToUrl() string {
@@ -1251,7 +1075,7 @@ type GetStripeBillingPortalResponse struct {
 
 func (x *GetStripeBillingPortalResponse) Reset() {
 	*x = GetStripeBillingPortalResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[23]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1263,7 +1087,7 @@ func (x *GetStripeBillingPortalResponse) String() string {
 func (*GetStripeBillingPortalResponse) ProtoMessage() {}
 
 func (x *GetStripeBillingPortalResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[23]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1276,7 +1100,7 @@ func (x *GetStripeBillingPortalResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStripeBillingPortalResponse.ProtoReflect.Descriptor instead.
 func (*GetStripeBillingPortalResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{23}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetStripeBillingPortalResponse) GetReturnToUrl() string {
@@ -1301,7 +1125,7 @@ type CreateStripeCustomerSessionRequest struct {
 
 func (x *CreateStripeCustomerSessionRequest) Reset() {
 	*x = CreateStripeCustomerSessionRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[24]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1313,7 +1137,7 @@ func (x *CreateStripeCustomerSessionRequest) String() string {
 func (*CreateStripeCustomerSessionRequest) ProtoMessage() {}
 
 func (x *CreateStripeCustomerSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[24]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1326,7 +1150,7 @@ func (x *CreateStripeCustomerSessionRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use CreateStripeCustomerSessionRequest.ProtoReflect.Descriptor instead.
 func (*CreateStripeCustomerSessionRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{24}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{20}
 }
 
 type CreateStripeCustomerSessionResponse struct {
@@ -1338,7 +1162,7 @@ type CreateStripeCustomerSessionResponse struct {
 
 func (x *CreateStripeCustomerSessionResponse) Reset() {
 	*x = CreateStripeCustomerSessionResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[25]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1350,7 +1174,7 @@ func (x *CreateStripeCustomerSessionResponse) String() string {
 func (*CreateStripeCustomerSessionResponse) ProtoMessage() {}
 
 func (x *CreateStripeCustomerSessionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[25]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1363,7 +1187,7 @@ func (x *CreateStripeCustomerSessionResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use CreateStripeCustomerSessionResponse.ProtoReflect.Descriptor instead.
 func (*CreateStripeCustomerSessionResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{25}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *CreateStripeCustomerSessionResponse) GetCustomerSessionClientSecret() string {
@@ -1383,7 +1207,7 @@ type ListPaymentMethodRequest struct {
 
 func (x *ListPaymentMethodRequest) Reset() {
 	*x = ListPaymentMethodRequest{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[26]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1395,7 +1219,7 @@ func (x *ListPaymentMethodRequest) String() string {
 func (*ListPaymentMethodRequest) ProtoMessage() {}
 
 func (x *ListPaymentMethodRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[26]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1408,7 +1232,7 @@ func (x *ListPaymentMethodRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPaymentMethodRequest.ProtoReflect.Descriptor instead.
 func (*ListPaymentMethodRequest) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{26}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ListPaymentMethodRequest) GetCursor() *v1.Cursor {
@@ -1435,7 +1259,7 @@ type ListPaymentMethodResponse struct {
 
 func (x *ListPaymentMethodResponse) Reset() {
 	*x = ListPaymentMethodResponse{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[27]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1447,7 +1271,7 @@ func (x *ListPaymentMethodResponse) String() string {
 func (*ListPaymentMethodResponse) ProtoMessage() {}
 
 func (x *ListPaymentMethodResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[27]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1460,7 +1284,7 @@ func (x *ListPaymentMethodResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPaymentMethodResponse.ProtoReflect.Descriptor instead.
 func (*ListPaymentMethodResponse) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{27}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ListPaymentMethodResponse) GetNext() *v1.Cursor {
@@ -1487,7 +1311,7 @@ type CreateEnvironmentRequest_Stripe struct {
 
 func (x *CreateEnvironmentRequest_Stripe) Reset() {
 	*x = CreateEnvironmentRequest_Stripe{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[28]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1499,7 +1323,7 @@ func (x *CreateEnvironmentRequest_Stripe) String() string {
 func (*CreateEnvironmentRequest_Stripe) ProtoMessage() {}
 
 func (x *CreateEnvironmentRequest_Stripe) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[28]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1539,7 +1363,7 @@ type CreateEnvironmentResponse_Stripe struct {
 
 func (x *CreateEnvironmentResponse_Stripe) Reset() {
 	*x = CreateEnvironmentResponse_Stripe{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[29]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1551,7 +1375,7 @@ func (x *CreateEnvironmentResponse_Stripe) String() string {
 func (*CreateEnvironmentResponse_Stripe) ProtoMessage() {}
 
 func (x *CreateEnvironmentResponse_Stripe) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[29]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1591,7 +1415,7 @@ type ListEnvironmentResponse_ListItem struct {
 
 func (x *ListEnvironmentResponse_ListItem) Reset() {
 	*x = ListEnvironmentResponse_ListItem{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[30]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1603,7 +1427,7 @@ func (x *ListEnvironmentResponse_ListItem) String() string {
 func (*ListEnvironmentResponse_ListItem) ProtoMessage() {}
 
 func (x *ListEnvironmentResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[30]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1642,7 +1466,7 @@ type ListUserResponse_ListItem struct {
 
 func (x *ListUserResponse_ListItem) Reset() {
 	*x = ListUserResponse_ListItem{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[31]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1654,7 +1478,7 @@ func (x *ListUserResponse_ListItem) String() string {
 func (*ListUserResponse_ListItem) ProtoMessage() {}
 
 func (x *ListUserResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[31]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1686,7 +1510,7 @@ type ListUserInvitationResponse_ListItem struct {
 
 func (x *ListUserInvitationResponse_ListItem) Reset() {
 	*x = ListUserInvitationResponse_ListItem{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[32]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1698,7 +1522,7 @@ func (x *ListUserInvitationResponse_ListItem) String() string {
 func (*ListUserInvitationResponse_ListItem) ProtoMessage() {}
 
 func (x *ListUserInvitationResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[32]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1711,7 +1535,7 @@ func (x *ListUserInvitationResponse_ListItem) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use ListUserInvitationResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListUserInvitationResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{13, 0}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{9, 0}
 }
 
 func (x *ListUserInvitationResponse_ListItem) GetInvitation() *v1.Invitation {
@@ -1731,7 +1555,7 @@ type CreateAddonSubscriptionRequest_Stripe struct {
 
 func (x *CreateAddonSubscriptionRequest_Stripe) Reset() {
 	*x = CreateAddonSubscriptionRequest_Stripe{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[33]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1743,7 +1567,7 @@ func (x *CreateAddonSubscriptionRequest_Stripe) String() string {
 func (*CreateAddonSubscriptionRequest_Stripe) ProtoMessage() {}
 
 func (x *CreateAddonSubscriptionRequest_Stripe) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[33]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1756,7 +1580,7 @@ func (x *CreateAddonSubscriptionRequest_Stripe) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use CreateAddonSubscriptionRequest_Stripe.ProtoReflect.Descriptor instead.
 func (*CreateAddonSubscriptionRequest_Stripe) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{14, 0}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{10, 0}
 }
 
 func (x *CreateAddonSubscriptionRequest_Stripe) GetConfirmationToken() string {
@@ -1783,7 +1607,7 @@ type CreateAddonSubscriptionResponse_Stripe struct {
 
 func (x *CreateAddonSubscriptionResponse_Stripe) Reset() {
 	*x = CreateAddonSubscriptionResponse_Stripe{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[34]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1795,7 +1619,7 @@ func (x *CreateAddonSubscriptionResponse_Stripe) String() string {
 func (*CreateAddonSubscriptionResponse_Stripe) ProtoMessage() {}
 
 func (x *CreateAddonSubscriptionResponse_Stripe) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[34]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1808,7 +1632,7 @@ func (x *CreateAddonSubscriptionResponse_Stripe) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use CreateAddonSubscriptionResponse_Stripe.ProtoReflect.Descriptor instead.
 func (*CreateAddonSubscriptionResponse_Stripe) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{15, 0}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{11, 0}
 }
 
 func (x *CreateAddonSubscriptionResponse_Stripe) GetStatus() string {
@@ -1835,7 +1659,7 @@ type ListAddonSubscriptionResponse_ListItem struct {
 
 func (x *ListAddonSubscriptionResponse_ListItem) Reset() {
 	*x = ListAddonSubscriptionResponse_ListItem{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[35]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1847,7 +1671,7 @@ func (x *ListAddonSubscriptionResponse_ListItem) String() string {
 func (*ListAddonSubscriptionResponse_ListItem) ProtoMessage() {}
 
 func (x *ListAddonSubscriptionResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[35]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1860,7 +1684,7 @@ func (x *ListAddonSubscriptionResponse_ListItem) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use ListAddonSubscriptionResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListAddonSubscriptionResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{17, 0}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *ListAddonSubscriptionResponse_ListItem) GetProduct() *v1.Product {
@@ -1887,7 +1711,7 @@ type RemoveAddonSubscriptionRequest_Reason struct {
 
 func (x *RemoveAddonSubscriptionRequest_Reason) Reset() {
 	*x = RemoveAddonSubscriptionRequest_Reason{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[36]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1899,7 +1723,7 @@ func (x *RemoveAddonSubscriptionRequest_Reason) String() string {
 func (*RemoveAddonSubscriptionRequest_Reason) ProtoMessage() {}
 
 func (x *RemoveAddonSubscriptionRequest_Reason) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[36]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1912,7 +1736,7 @@ func (x *RemoveAddonSubscriptionRequest_Reason) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use RemoveAddonSubscriptionRequest_Reason.ProtoReflect.Descriptor instead.
 func (*RemoveAddonSubscriptionRequest_Reason) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{18, 0}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{14, 0}
 }
 
 func (x *RemoveAddonSubscriptionRequest_Reason) GetComment() string {
@@ -1938,7 +1762,7 @@ type ListPaymentMethodResponse_ListItem struct {
 
 func (x *ListPaymentMethodResponse_ListItem) Reset() {
 	*x = ListPaymentMethodResponse_ListItem{}
-	mi := &file_svc_organization_v1_service_proto_msgTypes[37]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1950,7 +1774,7 @@ func (x *ListPaymentMethodResponse_ListItem) String() string {
 func (*ListPaymentMethodResponse_ListItem) ProtoMessage() {}
 
 func (x *ListPaymentMethodResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_organization_v1_service_proto_msgTypes[37]
+	mi := &file_svc_organization_v1_service_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1963,7 +1787,7 @@ func (x *ListPaymentMethodResponse_ListItem) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListPaymentMethodResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListPaymentMethodResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{27, 0}
+	return file_svc_organization_v1_service_proto_rawDescGZIP(), []int{23, 0}
 }
 
 func (x *ListPaymentMethodResponse_ListItem) GetPaymentMethod() *v1.PaymentMethod {
@@ -2015,20 +1839,7 @@ const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12D\n" +
 	"\x05items\x18\x02 \x03(\v2..svc.organization.v1.ListUserResponse.ListItemR\x05items\x1a.\n" +
 	"\bListItem\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\":\n" +
-	"\x11InviteUserRequest\x12%\n" +
-	"\n" +
-	"user_email\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tuserEmail\"J\n" +
-	"\x12InviteUserResponse\x124\n" +
-	"\n" +
-	"invitation\x18\x01 \x01(\v2\x14.types.v1.InvitationR\n" +
-	"invitation\"B\n" +
-	"\x1bRevokeUserInvitationRequest\x12#\n" +
-	"\tinvite_id\x18\x01 \x01(\x03B\x06\xbaH\x03\xc8\x01\x01R\binviteId\"T\n" +
-	"\x1cRevokeUserInvitationResponse\x124\n" +
-	"\n" +
-	"invitation\x18\x01 \x01(\v2\x14.types.v1.InvitationR\n" +
-	"invitation\"[\n" +
+	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"[\n" +
 	"\x19ListUserInvitationRequest\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\xd4\x01\n" +
@@ -2087,15 +1898,12 @@ const file_svc_organization_v1_service_proto_rawDesc = "" +
 	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12M\n" +
 	"\x05items\x18\x02 \x03(\v27.svc.organization.v1.ListPaymentMethodResponse.ListItemR\x05items\x1aJ\n" +
 	"\bListItem\x12>\n" +
-	"\x0epayment_method\x18\x01 \x01(\v2\x17.types.v1.PaymentMethodR\rpaymentMethod2\xcb\r\n" +
+	"\x0epayment_method\x18\x01 \x01(\v2\x17.types.v1.PaymentMethodR\rpaymentMethod2\xeb\v\n" +
 	"\x13OrganizationService\x12t\n" +
 	"\x11CreateEnvironment\x12-.svc.organization.v1.CreateEnvironmentRequest\x1a..svc.organization.v1.CreateEnvironmentResponse\"\x00\x12k\n" +
 	"\x0eGetEnvironment\x12*.svc.organization.v1.GetEnvironmentRequest\x1a+.svc.organization.v1.GetEnvironmentResponse\"\x00\x12n\n" +
 	"\x0fListEnvironment\x12+.svc.organization.v1.ListEnvironmentRequest\x1a,.svc.organization.v1.ListEnvironmentResponse\"\x00\x12Y\n" +
-	"\bListUser\x12$.svc.organization.v1.ListUserRequest\x1a%.svc.organization.v1.ListUserResponse\"\x00\x12_\n" +
-	"\n" +
-	"InviteUser\x12&.svc.organization.v1.InviteUserRequest\x1a'.svc.organization.v1.InviteUserResponse\"\x00\x12}\n" +
-	"\x14RevokeUserInvitation\x120.svc.organization.v1.RevokeUserInvitationRequest\x1a1.svc.organization.v1.RevokeUserInvitationResponse\"\x00\x12w\n" +
+	"\bListUser\x12$.svc.organization.v1.ListUserRequest\x1a%.svc.organization.v1.ListUserResponse\"\x00\x12w\n" +
 	"\x12ListUserInvitation\x12..svc.organization.v1.ListUserInvitationRequest\x1a/.svc.organization.v1.ListUserInvitationResponse\"\x00\x12\x86\x01\n" +
 	"\x17CreateAddonSubscription\x123.svc.organization.v1.CreateAddonSubscriptionRequest\x1a4.svc.organization.v1.CreateAddonSubscriptionResponse\"\x00\x12\x80\x01\n" +
 	"\x15ListAddonSubscription\x121.svc.organization.v1.ListAddonSubscriptionRequest\x1a2.svc.organization.v1.ListAddonSubscriptionResponse\"\x00\x12\x86\x01\n" +
@@ -2118,7 +1926,7 @@ func file_svc_organization_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_organization_v1_service_proto_rawDescData
 }
 
-var file_svc_organization_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
+var file_svc_organization_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_svc_organization_v1_service_proto_goTypes = []any{
 	(*CreateEnvironmentRequest)(nil),               // 0: svc.organization.v1.CreateEnvironmentRequest
 	(*CreateEnvironmentResponse)(nil),              // 1: svc.organization.v1.CreateEnvironmentResponse
@@ -2128,111 +1936,101 @@ var file_svc_organization_v1_service_proto_goTypes = []any{
 	(*ListEnvironmentResponse)(nil),                // 5: svc.organization.v1.ListEnvironmentResponse
 	(*ListUserRequest)(nil),                        // 6: svc.organization.v1.ListUserRequest
 	(*ListUserResponse)(nil),                       // 7: svc.organization.v1.ListUserResponse
-	(*InviteUserRequest)(nil),                      // 8: svc.organization.v1.InviteUserRequest
-	(*InviteUserResponse)(nil),                     // 9: svc.organization.v1.InviteUserResponse
-	(*RevokeUserInvitationRequest)(nil),            // 10: svc.organization.v1.RevokeUserInvitationRequest
-	(*RevokeUserInvitationResponse)(nil),           // 11: svc.organization.v1.RevokeUserInvitationResponse
-	(*ListUserInvitationRequest)(nil),              // 12: svc.organization.v1.ListUserInvitationRequest
-	(*ListUserInvitationResponse)(nil),             // 13: svc.organization.v1.ListUserInvitationResponse
-	(*CreateAddonSubscriptionRequest)(nil),         // 14: svc.organization.v1.CreateAddonSubscriptionRequest
-	(*CreateAddonSubscriptionResponse)(nil),        // 15: svc.organization.v1.CreateAddonSubscriptionResponse
-	(*ListAddonSubscriptionRequest)(nil),           // 16: svc.organization.v1.ListAddonSubscriptionRequest
-	(*ListAddonSubscriptionResponse)(nil),          // 17: svc.organization.v1.ListAddonSubscriptionResponse
-	(*RemoveAddonSubscriptionRequest)(nil),         // 18: svc.organization.v1.RemoveAddonSubscriptionRequest
-	(*RemoveAddonSubscriptionResponse)(nil),        // 19: svc.organization.v1.RemoveAddonSubscriptionResponse
-	(*GetStripePublishableKeyRequest)(nil),         // 20: svc.organization.v1.GetStripePublishableKeyRequest
-	(*GetStripePublishableKeyResponse)(nil),        // 21: svc.organization.v1.GetStripePublishableKeyResponse
-	(*GetStripeBillingPortalRequest)(nil),          // 22: svc.organization.v1.GetStripeBillingPortalRequest
-	(*GetStripeBillingPortalResponse)(nil),         // 23: svc.organization.v1.GetStripeBillingPortalResponse
-	(*CreateStripeCustomerSessionRequest)(nil),     // 24: svc.organization.v1.CreateStripeCustomerSessionRequest
-	(*CreateStripeCustomerSessionResponse)(nil),    // 25: svc.organization.v1.CreateStripeCustomerSessionResponse
-	(*ListPaymentMethodRequest)(nil),               // 26: svc.organization.v1.ListPaymentMethodRequest
-	(*ListPaymentMethodResponse)(nil),              // 27: svc.organization.v1.ListPaymentMethodResponse
-	(*CreateEnvironmentRequest_Stripe)(nil),        // 28: svc.organization.v1.CreateEnvironmentRequest.Stripe
-	(*CreateEnvironmentResponse_Stripe)(nil),       // 29: svc.organization.v1.CreateEnvironmentResponse.Stripe
-	(*ListEnvironmentResponse_ListItem)(nil),       // 30: svc.organization.v1.ListEnvironmentResponse.ListItem
-	(*ListUserResponse_ListItem)(nil),              // 31: svc.organization.v1.ListUserResponse.ListItem
-	(*ListUserInvitationResponse_ListItem)(nil),    // 32: svc.organization.v1.ListUserInvitationResponse.ListItem
-	(*CreateAddonSubscriptionRequest_Stripe)(nil),  // 33: svc.organization.v1.CreateAddonSubscriptionRequest.Stripe
-	(*CreateAddonSubscriptionResponse_Stripe)(nil), // 34: svc.organization.v1.CreateAddonSubscriptionResponse.Stripe
-	(*ListAddonSubscriptionResponse_ListItem)(nil), // 35: svc.organization.v1.ListAddonSubscriptionResponse.ListItem
-	(*RemoveAddonSubscriptionRequest_Reason)(nil),  // 36: svc.organization.v1.RemoveAddonSubscriptionRequest.Reason
-	(*ListPaymentMethodResponse_ListItem)(nil),     // 37: svc.organization.v1.ListPaymentMethodResponse.ListItem
-	(*v1.Environment)(nil),                         // 38: types.v1.Environment
-	(*v1.Product)(nil),                             // 39: types.v1.Product
-	(*v1.Cursor)(nil),                              // 40: types.v1.Cursor
-	(*v1.Invitation)(nil),                          // 41: types.v1.Invitation
-	(*v1.User)(nil),                                // 42: types.v1.User
-	(*v1.Subscription)(nil),                        // 43: types.v1.Subscription
-	(*v1.PaymentMethod)(nil),                       // 44: types.v1.PaymentMethod
+	(*ListUserInvitationRequest)(nil),              // 8: svc.organization.v1.ListUserInvitationRequest
+	(*ListUserInvitationResponse)(nil),             // 9: svc.organization.v1.ListUserInvitationResponse
+	(*CreateAddonSubscriptionRequest)(nil),         // 10: svc.organization.v1.CreateAddonSubscriptionRequest
+	(*CreateAddonSubscriptionResponse)(nil),        // 11: svc.organization.v1.CreateAddonSubscriptionResponse
+	(*ListAddonSubscriptionRequest)(nil),           // 12: svc.organization.v1.ListAddonSubscriptionRequest
+	(*ListAddonSubscriptionResponse)(nil),          // 13: svc.organization.v1.ListAddonSubscriptionResponse
+	(*RemoveAddonSubscriptionRequest)(nil),         // 14: svc.organization.v1.RemoveAddonSubscriptionRequest
+	(*RemoveAddonSubscriptionResponse)(nil),        // 15: svc.organization.v1.RemoveAddonSubscriptionResponse
+	(*GetStripePublishableKeyRequest)(nil),         // 16: svc.organization.v1.GetStripePublishableKeyRequest
+	(*GetStripePublishableKeyResponse)(nil),        // 17: svc.organization.v1.GetStripePublishableKeyResponse
+	(*GetStripeBillingPortalRequest)(nil),          // 18: svc.organization.v1.GetStripeBillingPortalRequest
+	(*GetStripeBillingPortalResponse)(nil),         // 19: svc.organization.v1.GetStripeBillingPortalResponse
+	(*CreateStripeCustomerSessionRequest)(nil),     // 20: svc.organization.v1.CreateStripeCustomerSessionRequest
+	(*CreateStripeCustomerSessionResponse)(nil),    // 21: svc.organization.v1.CreateStripeCustomerSessionResponse
+	(*ListPaymentMethodRequest)(nil),               // 22: svc.organization.v1.ListPaymentMethodRequest
+	(*ListPaymentMethodResponse)(nil),              // 23: svc.organization.v1.ListPaymentMethodResponse
+	(*CreateEnvironmentRequest_Stripe)(nil),        // 24: svc.organization.v1.CreateEnvironmentRequest.Stripe
+	(*CreateEnvironmentResponse_Stripe)(nil),       // 25: svc.organization.v1.CreateEnvironmentResponse.Stripe
+	(*ListEnvironmentResponse_ListItem)(nil),       // 26: svc.organization.v1.ListEnvironmentResponse.ListItem
+	(*ListUserResponse_ListItem)(nil),              // 27: svc.organization.v1.ListUserResponse.ListItem
+	(*ListUserInvitationResponse_ListItem)(nil),    // 28: svc.organization.v1.ListUserInvitationResponse.ListItem
+	(*CreateAddonSubscriptionRequest_Stripe)(nil),  // 29: svc.organization.v1.CreateAddonSubscriptionRequest.Stripe
+	(*CreateAddonSubscriptionResponse_Stripe)(nil), // 30: svc.organization.v1.CreateAddonSubscriptionResponse.Stripe
+	(*ListAddonSubscriptionResponse_ListItem)(nil), // 31: svc.organization.v1.ListAddonSubscriptionResponse.ListItem
+	(*RemoveAddonSubscriptionRequest_Reason)(nil),  // 32: svc.organization.v1.RemoveAddonSubscriptionRequest.Reason
+	(*ListPaymentMethodResponse_ListItem)(nil),     // 33: svc.organization.v1.ListPaymentMethodResponse.ListItem
+	(*v1.Environment)(nil),                         // 34: types.v1.Environment
+	(*v1.Product)(nil),                             // 35: types.v1.Product
+	(*v1.Cursor)(nil),                              // 36: types.v1.Cursor
+	(*v1.User)(nil),                                // 37: types.v1.User
+	(*v1.Invitation)(nil),                          // 38: types.v1.Invitation
+	(*v1.Subscription)(nil),                        // 39: types.v1.Subscription
+	(*v1.PaymentMethod)(nil),                       // 40: types.v1.PaymentMethod
 }
 var file_svc_organization_v1_service_proto_depIdxs = []int32{
-	28, // 0: svc.organization.v1.CreateEnvironmentRequest.stripe:type_name -> svc.organization.v1.CreateEnvironmentRequest.Stripe
-	38, // 1: svc.organization.v1.CreateEnvironmentResponse.environment:type_name -> types.v1.Environment
-	29, // 2: svc.organization.v1.CreateEnvironmentResponse.stripe:type_name -> svc.organization.v1.CreateEnvironmentResponse.Stripe
-	38, // 3: svc.organization.v1.GetEnvironmentResponse.environment:type_name -> types.v1.Environment
-	39, // 4: svc.organization.v1.GetEnvironmentResponse.product:type_name -> types.v1.Product
-	40, // 5: svc.organization.v1.ListEnvironmentRequest.cursor:type_name -> types.v1.Cursor
-	40, // 6: svc.organization.v1.ListEnvironmentResponse.next:type_name -> types.v1.Cursor
-	30, // 7: svc.organization.v1.ListEnvironmentResponse.items:type_name -> svc.organization.v1.ListEnvironmentResponse.ListItem
-	40, // 8: svc.organization.v1.ListUserRequest.cursor:type_name -> types.v1.Cursor
-	40, // 9: svc.organization.v1.ListUserResponse.next:type_name -> types.v1.Cursor
-	31, // 10: svc.organization.v1.ListUserResponse.items:type_name -> svc.organization.v1.ListUserResponse.ListItem
-	41, // 11: svc.organization.v1.InviteUserResponse.invitation:type_name -> types.v1.Invitation
-	41, // 12: svc.organization.v1.RevokeUserInvitationResponse.invitation:type_name -> types.v1.Invitation
-	40, // 13: svc.organization.v1.ListUserInvitationRequest.cursor:type_name -> types.v1.Cursor
-	40, // 14: svc.organization.v1.ListUserInvitationResponse.next:type_name -> types.v1.Cursor
-	32, // 15: svc.organization.v1.ListUserInvitationResponse.items:type_name -> svc.organization.v1.ListUserInvitationResponse.ListItem
-	33, // 16: svc.organization.v1.CreateAddonSubscriptionRequest.stripe:type_name -> svc.organization.v1.CreateAddonSubscriptionRequest.Stripe
-	34, // 17: svc.organization.v1.CreateAddonSubscriptionResponse.stripe:type_name -> svc.organization.v1.CreateAddonSubscriptionResponse.Stripe
-	40, // 18: svc.organization.v1.ListAddonSubscriptionRequest.cursor:type_name -> types.v1.Cursor
-	40, // 19: svc.organization.v1.ListAddonSubscriptionResponse.next:type_name -> types.v1.Cursor
-	35, // 20: svc.organization.v1.ListAddonSubscriptionResponse.items:type_name -> svc.organization.v1.ListAddonSubscriptionResponse.ListItem
-	39, // 21: svc.organization.v1.RemoveAddonSubscriptionRequest.product:type_name -> types.v1.Product
-	36, // 22: svc.organization.v1.RemoveAddonSubscriptionRequest.cancel_reason:type_name -> svc.organization.v1.RemoveAddonSubscriptionRequest.Reason
-	40, // 23: svc.organization.v1.ListPaymentMethodRequest.cursor:type_name -> types.v1.Cursor
-	40, // 24: svc.organization.v1.ListPaymentMethodResponse.next:type_name -> types.v1.Cursor
-	37, // 25: svc.organization.v1.ListPaymentMethodResponse.items:type_name -> svc.organization.v1.ListPaymentMethodResponse.ListItem
-	38, // 26: svc.organization.v1.ListEnvironmentResponse.ListItem.environment:type_name -> types.v1.Environment
-	39, // 27: svc.organization.v1.ListEnvironmentResponse.ListItem.product:type_name -> types.v1.Product
-	42, // 28: svc.organization.v1.ListUserResponse.ListItem.user:type_name -> types.v1.User
-	41, // 29: svc.organization.v1.ListUserInvitationResponse.ListItem.invitation:type_name -> types.v1.Invitation
-	39, // 30: svc.organization.v1.ListAddonSubscriptionResponse.ListItem.product:type_name -> types.v1.Product
-	43, // 31: svc.organization.v1.ListAddonSubscriptionResponse.ListItem.subscription:type_name -> types.v1.Subscription
-	44, // 32: svc.organization.v1.ListPaymentMethodResponse.ListItem.payment_method:type_name -> types.v1.PaymentMethod
-	0,  // 33: svc.organization.v1.OrganizationService.CreateEnvironment:input_type -> svc.organization.v1.CreateEnvironmentRequest
-	2,  // 34: svc.organization.v1.OrganizationService.GetEnvironment:input_type -> svc.organization.v1.GetEnvironmentRequest
-	4,  // 35: svc.organization.v1.OrganizationService.ListEnvironment:input_type -> svc.organization.v1.ListEnvironmentRequest
-	6,  // 36: svc.organization.v1.OrganizationService.ListUser:input_type -> svc.organization.v1.ListUserRequest
-	8,  // 37: svc.organization.v1.OrganizationService.InviteUser:input_type -> svc.organization.v1.InviteUserRequest
-	10, // 38: svc.organization.v1.OrganizationService.RevokeUserInvitation:input_type -> svc.organization.v1.RevokeUserInvitationRequest
-	12, // 39: svc.organization.v1.OrganizationService.ListUserInvitation:input_type -> svc.organization.v1.ListUserInvitationRequest
-	14, // 40: svc.organization.v1.OrganizationService.CreateAddonSubscription:input_type -> svc.organization.v1.CreateAddonSubscriptionRequest
-	16, // 41: svc.organization.v1.OrganizationService.ListAddonSubscription:input_type -> svc.organization.v1.ListAddonSubscriptionRequest
-	18, // 42: svc.organization.v1.OrganizationService.RemoveAddonSubscription:input_type -> svc.organization.v1.RemoveAddonSubscriptionRequest
-	20, // 43: svc.organization.v1.OrganizationService.GetStripePublishableKey:input_type -> svc.organization.v1.GetStripePublishableKeyRequest
-	22, // 44: svc.organization.v1.OrganizationService.GetStripeBillingPortal:input_type -> svc.organization.v1.GetStripeBillingPortalRequest
-	24, // 45: svc.organization.v1.OrganizationService.CreateStripeCustomerSession:input_type -> svc.organization.v1.CreateStripeCustomerSessionRequest
-	26, // 46: svc.organization.v1.OrganizationService.ListPaymentMethod:input_type -> svc.organization.v1.ListPaymentMethodRequest
-	1,  // 47: svc.organization.v1.OrganizationService.CreateEnvironment:output_type -> svc.organization.v1.CreateEnvironmentResponse
-	3,  // 48: svc.organization.v1.OrganizationService.GetEnvironment:output_type -> svc.organization.v1.GetEnvironmentResponse
-	5,  // 49: svc.organization.v1.OrganizationService.ListEnvironment:output_type -> svc.organization.v1.ListEnvironmentResponse
-	7,  // 50: svc.organization.v1.OrganizationService.ListUser:output_type -> svc.organization.v1.ListUserResponse
-	9,  // 51: svc.organization.v1.OrganizationService.InviteUser:output_type -> svc.organization.v1.InviteUserResponse
-	11, // 52: svc.organization.v1.OrganizationService.RevokeUserInvitation:output_type -> svc.organization.v1.RevokeUserInvitationResponse
-	13, // 53: svc.organization.v1.OrganizationService.ListUserInvitation:output_type -> svc.organization.v1.ListUserInvitationResponse
-	15, // 54: svc.organization.v1.OrganizationService.CreateAddonSubscription:output_type -> svc.organization.v1.CreateAddonSubscriptionResponse
-	17, // 55: svc.organization.v1.OrganizationService.ListAddonSubscription:output_type -> svc.organization.v1.ListAddonSubscriptionResponse
-	19, // 56: svc.organization.v1.OrganizationService.RemoveAddonSubscription:output_type -> svc.organization.v1.RemoveAddonSubscriptionResponse
-	21, // 57: svc.organization.v1.OrganizationService.GetStripePublishableKey:output_type -> svc.organization.v1.GetStripePublishableKeyResponse
-	23, // 58: svc.organization.v1.OrganizationService.GetStripeBillingPortal:output_type -> svc.organization.v1.GetStripeBillingPortalResponse
-	25, // 59: svc.organization.v1.OrganizationService.CreateStripeCustomerSession:output_type -> svc.organization.v1.CreateStripeCustomerSessionResponse
-	27, // 60: svc.organization.v1.OrganizationService.ListPaymentMethod:output_type -> svc.organization.v1.ListPaymentMethodResponse
-	47, // [47:61] is the sub-list for method output_type
-	33, // [33:47] is the sub-list for method input_type
-	33, // [33:33] is the sub-list for extension type_name
-	33, // [33:33] is the sub-list for extension extendee
-	0,  // [0:33] is the sub-list for field type_name
+	24, // 0: svc.organization.v1.CreateEnvironmentRequest.stripe:type_name -> svc.organization.v1.CreateEnvironmentRequest.Stripe
+	34, // 1: svc.organization.v1.CreateEnvironmentResponse.environment:type_name -> types.v1.Environment
+	25, // 2: svc.organization.v1.CreateEnvironmentResponse.stripe:type_name -> svc.organization.v1.CreateEnvironmentResponse.Stripe
+	34, // 3: svc.organization.v1.GetEnvironmentResponse.environment:type_name -> types.v1.Environment
+	35, // 4: svc.organization.v1.GetEnvironmentResponse.product:type_name -> types.v1.Product
+	36, // 5: svc.organization.v1.ListEnvironmentRequest.cursor:type_name -> types.v1.Cursor
+	36, // 6: svc.organization.v1.ListEnvironmentResponse.next:type_name -> types.v1.Cursor
+	26, // 7: svc.organization.v1.ListEnvironmentResponse.items:type_name -> svc.organization.v1.ListEnvironmentResponse.ListItem
+	36, // 8: svc.organization.v1.ListUserRequest.cursor:type_name -> types.v1.Cursor
+	36, // 9: svc.organization.v1.ListUserResponse.next:type_name -> types.v1.Cursor
+	27, // 10: svc.organization.v1.ListUserResponse.items:type_name -> svc.organization.v1.ListUserResponse.ListItem
+	36, // 11: svc.organization.v1.ListUserInvitationRequest.cursor:type_name -> types.v1.Cursor
+	36, // 12: svc.organization.v1.ListUserInvitationResponse.next:type_name -> types.v1.Cursor
+	28, // 13: svc.organization.v1.ListUserInvitationResponse.items:type_name -> svc.organization.v1.ListUserInvitationResponse.ListItem
+	29, // 14: svc.organization.v1.CreateAddonSubscriptionRequest.stripe:type_name -> svc.organization.v1.CreateAddonSubscriptionRequest.Stripe
+	30, // 15: svc.organization.v1.CreateAddonSubscriptionResponse.stripe:type_name -> svc.organization.v1.CreateAddonSubscriptionResponse.Stripe
+	36, // 16: svc.organization.v1.ListAddonSubscriptionRequest.cursor:type_name -> types.v1.Cursor
+	36, // 17: svc.organization.v1.ListAddonSubscriptionResponse.next:type_name -> types.v1.Cursor
+	31, // 18: svc.organization.v1.ListAddonSubscriptionResponse.items:type_name -> svc.organization.v1.ListAddonSubscriptionResponse.ListItem
+	35, // 19: svc.organization.v1.RemoveAddonSubscriptionRequest.product:type_name -> types.v1.Product
+	32, // 20: svc.organization.v1.RemoveAddonSubscriptionRequest.cancel_reason:type_name -> svc.organization.v1.RemoveAddonSubscriptionRequest.Reason
+	36, // 21: svc.organization.v1.ListPaymentMethodRequest.cursor:type_name -> types.v1.Cursor
+	36, // 22: svc.organization.v1.ListPaymentMethodResponse.next:type_name -> types.v1.Cursor
+	33, // 23: svc.organization.v1.ListPaymentMethodResponse.items:type_name -> svc.organization.v1.ListPaymentMethodResponse.ListItem
+	34, // 24: svc.organization.v1.ListEnvironmentResponse.ListItem.environment:type_name -> types.v1.Environment
+	35, // 25: svc.organization.v1.ListEnvironmentResponse.ListItem.product:type_name -> types.v1.Product
+	37, // 26: svc.organization.v1.ListUserResponse.ListItem.user:type_name -> types.v1.User
+	38, // 27: svc.organization.v1.ListUserInvitationResponse.ListItem.invitation:type_name -> types.v1.Invitation
+	35, // 28: svc.organization.v1.ListAddonSubscriptionResponse.ListItem.product:type_name -> types.v1.Product
+	39, // 29: svc.organization.v1.ListAddonSubscriptionResponse.ListItem.subscription:type_name -> types.v1.Subscription
+	40, // 30: svc.organization.v1.ListPaymentMethodResponse.ListItem.payment_method:type_name -> types.v1.PaymentMethod
+	0,  // 31: svc.organization.v1.OrganizationService.CreateEnvironment:input_type -> svc.organization.v1.CreateEnvironmentRequest
+	2,  // 32: svc.organization.v1.OrganizationService.GetEnvironment:input_type -> svc.organization.v1.GetEnvironmentRequest
+	4,  // 33: svc.organization.v1.OrganizationService.ListEnvironment:input_type -> svc.organization.v1.ListEnvironmentRequest
+	6,  // 34: svc.organization.v1.OrganizationService.ListUser:input_type -> svc.organization.v1.ListUserRequest
+	8,  // 35: svc.organization.v1.OrganizationService.ListUserInvitation:input_type -> svc.organization.v1.ListUserInvitationRequest
+	10, // 36: svc.organization.v1.OrganizationService.CreateAddonSubscription:input_type -> svc.organization.v1.CreateAddonSubscriptionRequest
+	12, // 37: svc.organization.v1.OrganizationService.ListAddonSubscription:input_type -> svc.organization.v1.ListAddonSubscriptionRequest
+	14, // 38: svc.organization.v1.OrganizationService.RemoveAddonSubscription:input_type -> svc.organization.v1.RemoveAddonSubscriptionRequest
+	16, // 39: svc.organization.v1.OrganizationService.GetStripePublishableKey:input_type -> svc.organization.v1.GetStripePublishableKeyRequest
+	18, // 40: svc.organization.v1.OrganizationService.GetStripeBillingPortal:input_type -> svc.organization.v1.GetStripeBillingPortalRequest
+	20, // 41: svc.organization.v1.OrganizationService.CreateStripeCustomerSession:input_type -> svc.organization.v1.CreateStripeCustomerSessionRequest
+	22, // 42: svc.organization.v1.OrganizationService.ListPaymentMethod:input_type -> svc.organization.v1.ListPaymentMethodRequest
+	1,  // 43: svc.organization.v1.OrganizationService.CreateEnvironment:output_type -> svc.organization.v1.CreateEnvironmentResponse
+	3,  // 44: svc.organization.v1.OrganizationService.GetEnvironment:output_type -> svc.organization.v1.GetEnvironmentResponse
+	5,  // 45: svc.organization.v1.OrganizationService.ListEnvironment:output_type -> svc.organization.v1.ListEnvironmentResponse
+	7,  // 46: svc.organization.v1.OrganizationService.ListUser:output_type -> svc.organization.v1.ListUserResponse
+	9,  // 47: svc.organization.v1.OrganizationService.ListUserInvitation:output_type -> svc.organization.v1.ListUserInvitationResponse
+	11, // 48: svc.organization.v1.OrganizationService.CreateAddonSubscription:output_type -> svc.organization.v1.CreateAddonSubscriptionResponse
+	13, // 49: svc.organization.v1.OrganizationService.ListAddonSubscription:output_type -> svc.organization.v1.ListAddonSubscriptionResponse
+	15, // 50: svc.organization.v1.OrganizationService.RemoveAddonSubscription:output_type -> svc.organization.v1.RemoveAddonSubscriptionResponse
+	17, // 51: svc.organization.v1.OrganizationService.GetStripePublishableKey:output_type -> svc.organization.v1.GetStripePublishableKeyResponse
+	19, // 52: svc.organization.v1.OrganizationService.GetStripeBillingPortal:output_type -> svc.organization.v1.GetStripeBillingPortalResponse
+	21, // 53: svc.organization.v1.OrganizationService.CreateStripeCustomerSession:output_type -> svc.organization.v1.CreateStripeCustomerSessionResponse
+	23, // 54: svc.organization.v1.OrganizationService.ListPaymentMethod:output_type -> svc.organization.v1.ListPaymentMethodResponse
+	43, // [43:55] is the sub-list for method output_type
+	31, // [31:43] is the sub-list for method input_type
+	31, // [31:31] is the sub-list for extension type_name
+	31, // [31:31] is the sub-list for extension extendee
+	0,  // [0:31] is the sub-list for field type_name
 }
 
 func init() { file_svc_organization_v1_service_proto_init() }
@@ -2250,20 +2048,20 @@ func file_svc_organization_v1_service_proto_init() {
 		(*GetEnvironmentRequest_Id)(nil),
 		(*GetEnvironmentRequest_Name)(nil),
 	}
-	file_svc_organization_v1_service_proto_msgTypes[14].OneofWrappers = []any{
+	file_svc_organization_v1_service_proto_msgTypes[10].OneofWrappers = []any{
 		(*CreateAddonSubscriptionRequest_Stripe_)(nil),
 	}
-	file_svc_organization_v1_service_proto_msgTypes[15].OneofWrappers = []any{
+	file_svc_organization_v1_service_proto_msgTypes[11].OneofWrappers = []any{
 		(*CreateAddonSubscriptionResponse_Stripe_)(nil),
 	}
-	file_svc_organization_v1_service_proto_msgTypes[18].OneofWrappers = []any{}
+	file_svc_organization_v1_service_proto_msgTypes[14].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_organization_v1_service_proto_rawDesc), len(file_svc_organization_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   38,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

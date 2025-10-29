@@ -82,6 +82,9 @@ type Organization struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Slug          string                 `protobuf:"bytes,3,opt,name=slug,proto3" json:"slug,omitempty"`         // unique URL slug from better-auth
+	Logo          string                 `protobuf:"bytes,4,opt,name=logo,proto3" json:"logo,omitempty"`         // logo URL from better-auth
+	Metadata      string                 `protobuf:"bytes,5,opt,name=metadata,proto3" json:"metadata,omitempty"` // JSON metadata from better-auth
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -131,6 +134,27 @@ func (x *Organization) GetName() string {
 	return ""
 }
 
+func (x *Organization) GetSlug() string {
+	if x != nil {
+		return x.Slug
+	}
+	return ""
+}
+
+func (x *Organization) GetLogo() string {
+	if x != nil {
+		return x.Logo
+	}
+	return ""
+}
+
+func (x *Organization) GetMetadata() string {
+	if x != nil {
+		return x.Metadata
+	}
+	return ""
+}
+
 func (x *Organization) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreatedAt
@@ -144,11 +168,8 @@ type Invitation struct {
 	InvitedBy        *PublicUser            `protobuf:"bytes,2,opt,name=invited_by,json=invitedBy,proto3" json:"invited_by,omitempty"`
 	InvitedUserEmail string                 `protobuf:"bytes,3,opt,name=invited_user_email,json=invitedUserEmail,proto3" json:"invited_user_email,omitempty"`
 	State            Invitation_State       `protobuf:"varint,4,opt,name=state,proto3,enum=types.v1.Invitation_State" json:"state,omitempty"`
-	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,501,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,502,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	ExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,503,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	AcceptedAt       *timestamppb.Timestamp `protobuf:"bytes,504,opt,name=accepted_at,json=acceptedAt,proto3" json:"accepted_at,omitempty"`
-	RevokedAt        *timestamppb.Timestamp `protobuf:"bytes,505,opt,name=revoked_at,json=revokedAt,proto3" json:"revoked_at,omitempty"`
+	Role             string                 `protobuf:"bytes,5,opt,name=role,proto3" json:"role,omitempty"`                              // invitation role from better-auth
+	ExpiresAt        *timestamppb.Timestamp `protobuf:"bytes,503,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"` // only timestamp better-auth tracks
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -211,18 +232,11 @@ func (x *Invitation) GetState() Invitation_State {
 	return Invitation_UNDEFINED
 }
 
-func (x *Invitation) GetCreatedAt() *timestamppb.Timestamp {
+func (x *Invitation) GetRole() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.Role
 	}
-	return nil
-}
-
-func (x *Invitation) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
+	return ""
 }
 
 func (x *Invitation) GetExpiresAt() *timestamppb.Timestamp {
@@ -232,47 +246,29 @@ func (x *Invitation) GetExpiresAt() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *Invitation) GetAcceptedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.AcceptedAt
-	}
-	return nil
-}
-
-func (x *Invitation) GetRevokedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.RevokedAt
-	}
-	return nil
-}
-
 var File_types_v1_organization_proto protoreflect.FileDescriptor
 
 const file_types_v1_organization_proto_rawDesc = "" +
 	"\n" +
-	"\x1btypes/v1/organization.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13types/v1/user.proto\"\x94\x01\n" +
+	"\x1btypes/v1/organization.proto\x12\btypes.v1\x1a\x1bbuf/validate/validate.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x13types/v1/user.proto\"\xd8\x01\n" +
 	"\fOrganization\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x129\n" +
-	"\x04name\x18\x02 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x04name\x129\n" +
+	"\x04name\x18\x02 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x04name\x12\x12\n" +
+	"\x04slug\x18\x03 \x01(\tR\x04slug\x12\x12\n" +
+	"\x04logo\x18\x04 \x01(\tR\x04logo\x12\x1a\n" +
+	"\bmetadata\x18\x05 \x01(\tR\bmetadata\x129\n" +
 	"\n" +
-	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xac\x04\n" +
+	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xce\x02\n" +
 	"\n" +
 	"Invitation\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x123\n" +
 	"\n" +
 	"invited_by\x18\x02 \x01(\v2\x14.types.v1.PublicUserR\tinvitedBy\x12,\n" +
 	"\x12invited_user_email\x18\x03 \x01(\tR\x10invitedUserEmail\x120\n" +
-	"\x05state\x18\x04 \x01(\x0e2\x1a.types.v1.Invitation.StateR\x05state\x12:\n" +
+	"\x05state\x18\x04 \x01(\x0e2\x1a.types.v1.Invitation.StateR\x05state\x12\x12\n" +
+	"\x04role\x18\x05 \x01(\tR\x04role\x12:\n" +
 	"\n" +
-	"created_at\x18\xf5\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12:\n" +
-	"\n" +
-	"updated_at\x18\xf6\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12:\n" +
-	"\n" +
-	"expires_at\x18\xf7\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12<\n" +
-	"\vaccepted_at\x18\xf8\x03 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"acceptedAt\x12:\n" +
-	"\n" +
-	"revoked_at\x18\xf9\x03 \x01(\v2\x1a.google.protobuf.TimestampR\trevokedAt\"K\n" +
+	"expires_at\x18\xf7\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"K\n" +
 	"\x05State\x12\r\n" +
 	"\tUNDEFINED\x10\x00\x12\v\n" +
 	"\aPENDING\x10\x01\x12\f\n" +
@@ -306,16 +302,12 @@ var file_types_v1_organization_proto_depIdxs = []int32{
 	3, // 0: types.v1.Organization.created_at:type_name -> google.protobuf.Timestamp
 	4, // 1: types.v1.Invitation.invited_by:type_name -> types.v1.PublicUser
 	0, // 2: types.v1.Invitation.state:type_name -> types.v1.Invitation.State
-	3, // 3: types.v1.Invitation.created_at:type_name -> google.protobuf.Timestamp
-	3, // 4: types.v1.Invitation.updated_at:type_name -> google.protobuf.Timestamp
-	3, // 5: types.v1.Invitation.expires_at:type_name -> google.protobuf.Timestamp
-	3, // 6: types.v1.Invitation.accepted_at:type_name -> google.protobuf.Timestamp
-	3, // 7: types.v1.Invitation.revoked_at:type_name -> google.protobuf.Timestamp
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	3, // 3: types.v1.Invitation.expires_at:type_name -> google.protobuf.Timestamp
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_organization_proto_init() }

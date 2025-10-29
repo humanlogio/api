@@ -11,7 +11,7 @@ import (
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -120,454 +120,6 @@ func (x *WhoamiResponse) GetDefaultOrganization() *v1.Organization {
 	return nil
 }
 
-type GetLogoutURLRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ReturnTo      string                 `protobuf:"bytes,1,opt,name=return_to,json=returnTo,proto3" json:"return_to,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetLogoutURLRequest) Reset() {
-	*x = GetLogoutURLRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetLogoutURLRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetLogoutURLRequest) ProtoMessage() {}
-
-func (x *GetLogoutURLRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetLogoutURLRequest.ProtoReflect.Descriptor instead.
-func (*GetLogoutURLRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetLogoutURLRequest) GetReturnTo() string {
-	if x != nil {
-		return x.ReturnTo
-	}
-	return ""
-}
-
-type GetLogoutURLResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	LogoutUrl     string                 `protobuf:"bytes,1,opt,name=logout_url,json=logoutUrl,proto3" json:"logout_url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetLogoutURLResponse) Reset() {
-	*x = GetLogoutURLResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetLogoutURLResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetLogoutURLResponse) ProtoMessage() {}
-
-func (x *GetLogoutURLResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetLogoutURLResponse.ProtoReflect.Descriptor instead.
-func (*GetLogoutURLResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *GetLogoutURLResponse) GetLogoutUrl() string {
-	if x != nil {
-		return x.LogoutUrl
-	}
-	return ""
-}
-
-type RefreshUserTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RefreshUserTokenRequest) Reset() {
-	*x = RefreshUserTokenRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RefreshUserTokenRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RefreshUserTokenRequest) ProtoMessage() {}
-
-func (x *RefreshUserTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RefreshUserTokenRequest.ProtoReflect.Descriptor instead.
-func (*RefreshUserTokenRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{4}
-}
-
-type RefreshUserTokenResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	RefreshAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=refresh_at,json=refreshAt,proto3" json:"refresh_at,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RefreshUserTokenResponse) Reset() {
-	*x = RefreshUserTokenResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RefreshUserTokenResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RefreshUserTokenResponse) ProtoMessage() {}
-
-func (x *RefreshUserTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RefreshUserTokenResponse.ProtoReflect.Descriptor instead.
-func (*RefreshUserTokenResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *RefreshUserTokenResponse) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-func (x *RefreshUserTokenResponse) GetRefreshAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.RefreshAt
-	}
-	return nil
-}
-
-func (x *RefreshUserTokenResponse) GetExpiresAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.ExpiresAt
-	}
-	return nil
-}
-
-type UpdateUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	FirstName     *string                `protobuf:"bytes,1,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
-	LastName      *string                `protobuf:"bytes,2,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	Username      *string                `protobuf:"bytes,3,opt,name=username,proto3,oneof" json:"username,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateUserRequest) Reset() {
-	*x = UpdateUserRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateUserRequest) ProtoMessage() {}
-
-func (x *UpdateUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateUserRequest.ProtoReflect.Descriptor instead.
-func (*UpdateUserRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *UpdateUserRequest) GetFirstName() string {
-	if x != nil && x.FirstName != nil {
-		return *x.FirstName
-	}
-	return ""
-}
-
-func (x *UpdateUserRequest) GetLastName() string {
-	if x != nil && x.LastName != nil {
-		return *x.LastName
-	}
-	return ""
-}
-
-func (x *UpdateUserRequest) GetUsername() string {
-	if x != nil && x.Username != nil {
-		return *x.Username
-	}
-	return ""
-}
-
-type UpdateUserResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *v1.User               `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UpdateUserResponse) Reset() {
-	*x = UpdateUserResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UpdateUserResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UpdateUserResponse) ProtoMessage() {}
-
-func (x *UpdateUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UpdateUserResponse.ProtoReflect.Descriptor instead.
-func (*UpdateUserResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *UpdateUserResponse) GetUser() *v1.User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-type DeleteUserRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteUserRequest) Reset() {
-	*x = DeleteUserRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteUserRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteUserRequest) ProtoMessage() {}
-
-func (x *DeleteUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteUserRequest.ProtoReflect.Descriptor instead.
-func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{8}
-}
-
-type DeleteUserResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteUserResponse) Reset() {
-	*x = DeleteUserResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DeleteUserResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DeleteUserResponse) ProtoMessage() {}
-
-func (x *DeleteUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DeleteUserResponse.ProtoReflect.Descriptor instead.
-func (*DeleteUserResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{9}
-}
-
-type CreateOrganizationRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateOrganizationRequest) Reset() {
-	*x = CreateOrganizationRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateOrganizationRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateOrganizationRequest) ProtoMessage() {}
-
-func (x *CreateOrganizationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateOrganizationRequest.ProtoReflect.Descriptor instead.
-func (*CreateOrganizationRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *CreateOrganizationRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type CreateOrganizationResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Organization  *v1.Organization       `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateOrganizationResponse) Reset() {
-	*x = CreateOrganizationResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateOrganizationResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateOrganizationResponse) ProtoMessage() {}
-
-func (x *CreateOrganizationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateOrganizationResponse.ProtoReflect.Descriptor instead.
-func (*CreateOrganizationResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *CreateOrganizationResponse) GetOrganization() *v1.Organization {
-	if x != nil {
-		return x.Organization
-	}
-	return nil
-}
-
 type ListOrganizationRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Cursor        *v1.Cursor             `protobuf:"bytes,1,opt,name=cursor,proto3" json:"cursor,omitempty"`
@@ -578,7 +130,7 @@ type ListOrganizationRequest struct {
 
 func (x *ListOrganizationRequest) Reset() {
 	*x = ListOrganizationRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[12]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -590,7 +142,7 @@ func (x *ListOrganizationRequest) String() string {
 func (*ListOrganizationRequest) ProtoMessage() {}
 
 func (x *ListOrganizationRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[12]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -603,7 +155,7 @@ func (x *ListOrganizationRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOrganizationRequest.ProtoReflect.Descriptor instead.
 func (*ListOrganizationRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{12}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ListOrganizationRequest) GetCursor() *v1.Cursor {
@@ -631,7 +183,7 @@ type ListOrganizationResponse struct {
 
 func (x *ListOrganizationResponse) Reset() {
 	*x = ListOrganizationResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[13]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -643,7 +195,7 @@ func (x *ListOrganizationResponse) String() string {
 func (*ListOrganizationResponse) ProtoMessage() {}
 
 func (x *ListOrganizationResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[13]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -656,7 +208,7 @@ func (x *ListOrganizationResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListOrganizationResponse.ProtoReflect.Descriptor instead.
 func (*ListOrganizationResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{13}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ListOrganizationResponse) GetNext() *v1.Cursor {
@@ -689,7 +241,7 @@ type SaveLocalhostConfigRequest struct {
 
 func (x *SaveLocalhostConfigRequest) Reset() {
 	*x = SaveLocalhostConfigRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[14]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -701,7 +253,7 @@ func (x *SaveLocalhostConfigRequest) String() string {
 func (*SaveLocalhostConfigRequest) ProtoMessage() {}
 
 func (x *SaveLocalhostConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[14]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -714,7 +266,7 @@ func (x *SaveLocalhostConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveLocalhostConfigRequest.ProtoReflect.Descriptor instead.
 func (*SaveLocalhostConfigRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{14}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SaveLocalhostConfigRequest) GetConfig() *v1.LocalhostConfig {
@@ -732,7 +284,7 @@ type SaveLocalhostConfigResponse struct {
 
 func (x *SaveLocalhostConfigResponse) Reset() {
 	*x = SaveLocalhostConfigResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[15]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -744,7 +296,7 @@ func (x *SaveLocalhostConfigResponse) String() string {
 func (*SaveLocalhostConfigResponse) ProtoMessage() {}
 
 func (x *SaveLocalhostConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[15]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -757,7 +309,7 @@ func (x *SaveLocalhostConfigResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SaveLocalhostConfigResponse.ProtoReflect.Descriptor instead.
 func (*SaveLocalhostConfigResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{15}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{5}
 }
 
 type GetLocalhostConfigRequest struct {
@@ -768,7 +320,7 @@ type GetLocalhostConfigRequest struct {
 
 func (x *GetLocalhostConfigRequest) Reset() {
 	*x = GetLocalhostConfigRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[16]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -780,7 +332,7 @@ func (x *GetLocalhostConfigRequest) String() string {
 func (*GetLocalhostConfigRequest) ProtoMessage() {}
 
 func (x *GetLocalhostConfigRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[16]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -793,7 +345,7 @@ func (x *GetLocalhostConfigRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLocalhostConfigRequest.ProtoReflect.Descriptor instead.
 func (*GetLocalhostConfigRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{16}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{6}
 }
 
 type GetLocalhostConfigResponse struct {
@@ -805,7 +357,7 @@ type GetLocalhostConfigResponse struct {
 
 func (x *GetLocalhostConfigResponse) Reset() {
 	*x = GetLocalhostConfigResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[17]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -817,7 +369,7 @@ func (x *GetLocalhostConfigResponse) String() string {
 func (*GetLocalhostConfigResponse) ProtoMessage() {}
 
 func (x *GetLocalhostConfigResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[17]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -830,7 +382,7 @@ func (x *GetLocalhostConfigResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetLocalhostConfigResponse.ProtoReflect.Descriptor instead.
 func (*GetLocalhostConfigResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{17}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetLocalhostConfigResponse) GetConfig() *v1.LocalhostConfig {
@@ -850,7 +402,7 @@ type RecordQueryHistoryRequest struct {
 
 func (x *RecordQueryHistoryRequest) Reset() {
 	*x = RecordQueryHistoryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[18]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -862,7 +414,7 @@ func (x *RecordQueryHistoryRequest) String() string {
 func (*RecordQueryHistoryRequest) ProtoMessage() {}
 
 func (x *RecordQueryHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[18]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -875,7 +427,7 @@ func (x *RecordQueryHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecordQueryHistoryRequest.ProtoReflect.Descriptor instead.
 func (*RecordQueryHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{18}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *RecordQueryHistoryRequest) GetRawQuery() string {
@@ -901,7 +453,7 @@ type RecordQueryHistoryResponse struct {
 
 func (x *RecordQueryHistoryResponse) Reset() {
 	*x = RecordQueryHistoryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[19]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -913,7 +465,7 @@ func (x *RecordQueryHistoryResponse) String() string {
 func (*RecordQueryHistoryResponse) ProtoMessage() {}
 
 func (x *RecordQueryHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[19]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -926,7 +478,7 @@ func (x *RecordQueryHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecordQueryHistoryResponse.ProtoReflect.Descriptor instead.
 func (*RecordQueryHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{19}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *RecordQueryHistoryResponse) GetEntry() *v1.QueryHistoryEntry {
@@ -945,7 +497,7 @@ type GetQueryHistoryRequest struct {
 
 func (x *GetQueryHistoryRequest) Reset() {
 	*x = GetQueryHistoryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[20]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -957,7 +509,7 @@ func (x *GetQueryHistoryRequest) String() string {
 func (*GetQueryHistoryRequest) ProtoMessage() {}
 
 func (x *GetQueryHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[20]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -970,7 +522,7 @@ func (x *GetQueryHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetQueryHistoryRequest.ProtoReflect.Descriptor instead.
 func (*GetQueryHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{20}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetQueryHistoryRequest) GetId() int64 {
@@ -989,7 +541,7 @@ type GetQueryHistoryResponse struct {
 
 func (x *GetQueryHistoryResponse) Reset() {
 	*x = GetQueryHistoryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[21]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1001,7 +553,7 @@ func (x *GetQueryHistoryResponse) String() string {
 func (*GetQueryHistoryResponse) ProtoMessage() {}
 
 func (x *GetQueryHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[21]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1014,7 +566,7 @@ func (x *GetQueryHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetQueryHistoryResponse.ProtoReflect.Descriptor instead.
 func (*GetQueryHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{21}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetQueryHistoryResponse) GetEntry() *v1.QueryHistoryEntry {
@@ -1034,7 +586,7 @@ type ListQueryHistoryRequest struct {
 
 func (x *ListQueryHistoryRequest) Reset() {
 	*x = ListQueryHistoryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[22]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1046,7 +598,7 @@ func (x *ListQueryHistoryRequest) String() string {
 func (*ListQueryHistoryRequest) ProtoMessage() {}
 
 func (x *ListQueryHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[22]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1059,7 +611,7 @@ func (x *ListQueryHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListQueryHistoryRequest.ProtoReflect.Descriptor instead.
 func (*ListQueryHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{22}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListQueryHistoryRequest) GetCursor() *v1.Cursor {
@@ -1086,7 +638,7 @@ type ListQueryHistoryResponse struct {
 
 func (x *ListQueryHistoryResponse) Reset() {
 	*x = ListQueryHistoryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[23]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1098,7 +650,7 @@ func (x *ListQueryHistoryResponse) String() string {
 func (*ListQueryHistoryResponse) ProtoMessage() {}
 
 func (x *ListQueryHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[23]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1111,7 +663,7 @@ func (x *ListQueryHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListQueryHistoryResponse.ProtoReflect.Descriptor instead.
 func (*ListQueryHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{23}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ListQueryHistoryResponse) GetNext() *v1.Cursor {
@@ -1137,7 +689,7 @@ type DeleteQueryHistoryRequest struct {
 
 func (x *DeleteQueryHistoryRequest) Reset() {
 	*x = DeleteQueryHistoryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[24]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1149,7 +701,7 @@ func (x *DeleteQueryHistoryRequest) String() string {
 func (*DeleteQueryHistoryRequest) ProtoMessage() {}
 
 func (x *DeleteQueryHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[24]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1162,7 +714,7 @@ func (x *DeleteQueryHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteQueryHistoryRequest.ProtoReflect.Descriptor instead.
 func (*DeleteQueryHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{24}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DeleteQueryHistoryRequest) GetId() int64 {
@@ -1180,7 +732,7 @@ type DeleteQueryHistoryResponse struct {
 
 func (x *DeleteQueryHistoryResponse) Reset() {
 	*x = DeleteQueryHistoryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[25]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1192,7 +744,7 @@ func (x *DeleteQueryHistoryResponse) String() string {
 func (*DeleteQueryHistoryResponse) ProtoMessage() {}
 
 func (x *DeleteQueryHistoryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[25]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1205,7 +757,7 @@ func (x *DeleteQueryHistoryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteQueryHistoryResponse.ProtoReflect.Descriptor instead.
 func (*DeleteQueryHistoryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{25}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{15}
 }
 
 type CreateFavoriteQueryRequest struct {
@@ -1220,7 +772,7 @@ type CreateFavoriteQueryRequest struct {
 
 func (x *CreateFavoriteQueryRequest) Reset() {
 	*x = CreateFavoriteQueryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[26]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1232,7 +784,7 @@ func (x *CreateFavoriteQueryRequest) String() string {
 func (*CreateFavoriteQueryRequest) ProtoMessage() {}
 
 func (x *CreateFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[26]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1245,7 +797,7 @@ func (x *CreateFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFavoriteQueryRequest.ProtoReflect.Descriptor instead.
 func (*CreateFavoriteQueryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{26}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CreateFavoriteQueryRequest) GetName() string {
@@ -1285,7 +837,7 @@ type CreateFavoriteQueryResponse struct {
 
 func (x *CreateFavoriteQueryResponse) Reset() {
 	*x = CreateFavoriteQueryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[27]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1297,7 +849,7 @@ func (x *CreateFavoriteQueryResponse) String() string {
 func (*CreateFavoriteQueryResponse) ProtoMessage() {}
 
 func (x *CreateFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[27]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1310,7 +862,7 @@ func (x *CreateFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateFavoriteQueryResponse.ProtoReflect.Descriptor instead.
 func (*CreateFavoriteQueryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{27}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *CreateFavoriteQueryResponse) GetFavorite() *v1.FavoriteQuery {
@@ -1329,7 +881,7 @@ type GetFavoriteQueryRequest struct {
 
 func (x *GetFavoriteQueryRequest) Reset() {
 	*x = GetFavoriteQueryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[28]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1341,7 +893,7 @@ func (x *GetFavoriteQueryRequest) String() string {
 func (*GetFavoriteQueryRequest) ProtoMessage() {}
 
 func (x *GetFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[28]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1354,7 +906,7 @@ func (x *GetFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFavoriteQueryRequest.ProtoReflect.Descriptor instead.
 func (*GetFavoriteQueryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{28}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetFavoriteQueryRequest) GetId() int64 {
@@ -1373,7 +925,7 @@ type GetFavoriteQueryResponse struct {
 
 func (x *GetFavoriteQueryResponse) Reset() {
 	*x = GetFavoriteQueryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[29]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1385,7 +937,7 @@ func (x *GetFavoriteQueryResponse) String() string {
 func (*GetFavoriteQueryResponse) ProtoMessage() {}
 
 func (x *GetFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[29]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1398,7 +950,7 @@ func (x *GetFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFavoriteQueryResponse.ProtoReflect.Descriptor instead.
 func (*GetFavoriteQueryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{29}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetFavoriteQueryResponse) GetFavorite() *v1.FavoriteQuery {
@@ -1421,7 +973,7 @@ type UpdateFavoriteQueryRequest struct {
 
 func (x *UpdateFavoriteQueryRequest) Reset() {
 	*x = UpdateFavoriteQueryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[30]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1433,7 +985,7 @@ func (x *UpdateFavoriteQueryRequest) String() string {
 func (*UpdateFavoriteQueryRequest) ProtoMessage() {}
 
 func (x *UpdateFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[30]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1446,7 +998,7 @@ func (x *UpdateFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFavoriteQueryRequest.ProtoReflect.Descriptor instead.
 func (*UpdateFavoriteQueryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{30}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *UpdateFavoriteQueryRequest) GetId() int64 {
@@ -1493,7 +1045,7 @@ type UpdateFavoriteQueryResponse struct {
 
 func (x *UpdateFavoriteQueryResponse) Reset() {
 	*x = UpdateFavoriteQueryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[31]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1505,7 +1057,7 @@ func (x *UpdateFavoriteQueryResponse) String() string {
 func (*UpdateFavoriteQueryResponse) ProtoMessage() {}
 
 func (x *UpdateFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[31]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1518,7 +1070,7 @@ func (x *UpdateFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateFavoriteQueryResponse.ProtoReflect.Descriptor instead.
 func (*UpdateFavoriteQueryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{31}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *UpdateFavoriteQueryResponse) GetFavorite() *v1.FavoriteQuery {
@@ -1538,7 +1090,7 @@ type ListFavoriteQueryRequest struct {
 
 func (x *ListFavoriteQueryRequest) Reset() {
 	*x = ListFavoriteQueryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[32]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1550,7 +1102,7 @@ func (x *ListFavoriteQueryRequest) String() string {
 func (*ListFavoriteQueryRequest) ProtoMessage() {}
 
 func (x *ListFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[32]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1563,7 +1115,7 @@ func (x *ListFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFavoriteQueryRequest.ProtoReflect.Descriptor instead.
 func (*ListFavoriteQueryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{32}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ListFavoriteQueryRequest) GetCursor() *v1.Cursor {
@@ -1590,7 +1142,7 @@ type ListFavoriteQueryResponse struct {
 
 func (x *ListFavoriteQueryResponse) Reset() {
 	*x = ListFavoriteQueryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[33]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1602,7 +1154,7 @@ func (x *ListFavoriteQueryResponse) String() string {
 func (*ListFavoriteQueryResponse) ProtoMessage() {}
 
 func (x *ListFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[33]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1615,7 +1167,7 @@ func (x *ListFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFavoriteQueryResponse.ProtoReflect.Descriptor instead.
 func (*ListFavoriteQueryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{33}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ListFavoriteQueryResponse) GetNext() *v1.Cursor {
@@ -1641,7 +1193,7 @@ type DeleteFavoriteQueryRequest struct {
 
 func (x *DeleteFavoriteQueryRequest) Reset() {
 	*x = DeleteFavoriteQueryRequest{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[34]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1653,7 +1205,7 @@ func (x *DeleteFavoriteQueryRequest) String() string {
 func (*DeleteFavoriteQueryRequest) ProtoMessage() {}
 
 func (x *DeleteFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[34]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1666,7 +1218,7 @@ func (x *DeleteFavoriteQueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFavoriteQueryRequest.ProtoReflect.Descriptor instead.
 func (*DeleteFavoriteQueryRequest) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{34}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *DeleteFavoriteQueryRequest) GetId() int64 {
@@ -1684,7 +1236,7 @@ type DeleteFavoriteQueryResponse struct {
 
 func (x *DeleteFavoriteQueryResponse) Reset() {
 	*x = DeleteFavoriteQueryResponse{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[35]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1696,7 +1248,7 @@ func (x *DeleteFavoriteQueryResponse) String() string {
 func (*DeleteFavoriteQueryResponse) ProtoMessage() {}
 
 func (x *DeleteFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[35]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1709,7 +1261,7 @@ func (x *DeleteFavoriteQueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteFavoriteQueryResponse.ProtoReflect.Descriptor instead.
 func (*DeleteFavoriteQueryResponse) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{35}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{25}
 }
 
 type ListOrganizationResponse_ListItem struct {
@@ -1721,7 +1273,7 @@ type ListOrganizationResponse_ListItem struct {
 
 func (x *ListOrganizationResponse_ListItem) Reset() {
 	*x = ListOrganizationResponse_ListItem{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[36]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1733,7 +1285,7 @@ func (x *ListOrganizationResponse_ListItem) String() string {
 func (*ListOrganizationResponse_ListItem) ProtoMessage() {}
 
 func (x *ListOrganizationResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[36]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1746,7 +1298,7 @@ func (x *ListOrganizationResponse_ListItem) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListOrganizationResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListOrganizationResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{13, 0}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{3, 0}
 }
 
 func (x *ListOrganizationResponse_ListItem) GetOrganization() *v1.Organization {
@@ -1765,7 +1317,7 @@ type ListQueryHistoryResponse_ListItem struct {
 
 func (x *ListQueryHistoryResponse_ListItem) Reset() {
 	*x = ListQueryHistoryResponse_ListItem{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[37]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1777,7 +1329,7 @@ func (x *ListQueryHistoryResponse_ListItem) String() string {
 func (*ListQueryHistoryResponse_ListItem) ProtoMessage() {}
 
 func (x *ListQueryHistoryResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[37]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1790,7 +1342,7 @@ func (x *ListQueryHistoryResponse_ListItem) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use ListQueryHistoryResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListQueryHistoryResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{23, 0}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{13, 0}
 }
 
 func (x *ListQueryHistoryResponse_ListItem) GetEntry() *v1.QueryHistoryEntry {
@@ -1810,7 +1362,7 @@ type ListFavoriteQueryResponse_ListItem struct {
 
 func (x *ListFavoriteQueryResponse_ListItem) Reset() {
 	*x = ListFavoriteQueryResponse_ListItem{}
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[38]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1822,7 +1374,7 @@ func (x *ListFavoriteQueryResponse_ListItem) String() string {
 func (*ListFavoriteQueryResponse_ListItem) ProtoMessage() {}
 
 func (x *ListFavoriteQueryResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_user_v1_service_private_proto_msgTypes[38]
+	mi := &file_svc_user_v1_service_private_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1835,7 +1387,7 @@ func (x *ListFavoriteQueryResponse_ListItem) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use ListFavoriteQueryResponse_ListItem.ProtoReflect.Descriptor instead.
 func (*ListFavoriteQueryResponse_ListItem) Descriptor() ([]byte, []int) {
-	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{33, 0}
+	return file_svc_user_v1_service_private_proto_rawDescGZIP(), []int{23, 0}
 }
 
 func (x *ListFavoriteQueryResponse_ListItem) GetFavorite() *v1.FavoriteQuery {
@@ -1861,36 +1413,7 @@ const file_svc_user_v1_service_private_proto_rawDesc = "" +
 	"\x0eWhoamiResponse\x12\"\n" +
 	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\x12I\n" +
 	"\x14current_organization\x18\x02 \x01(\v2\x16.types.v1.OrganizationR\x13currentOrganization\x12I\n" +
-	"\x14default_organization\x18\x03 \x01(\v2\x16.types.v1.OrganizationR\x13defaultOrganization\"2\n" +
-	"\x13GetLogoutURLRequest\x12\x1b\n" +
-	"\treturn_to\x18\x01 \x01(\tR\breturnTo\"5\n" +
-	"\x14GetLogoutURLResponse\x12\x1d\n" +
-	"\n" +
-	"logout_url\x18\x01 \x01(\tR\tlogoutUrl\"\x19\n" +
-	"\x17RefreshUserTokenRequest\"\xa6\x01\n" +
-	"\x18RefreshUserTokenResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x129\n" +
-	"\n" +
-	"refresh_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\trefreshAt\x129\n" +
-	"\n" +
-	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\"\xcb\x01\n" +
-	"\x11UpdateUserRequest\x12\"\n" +
-	"\n" +
-	"first_name\x18\x01 \x01(\tH\x00R\tfirstName\x88\x01\x01\x12 \n" +
-	"\tlast_name\x18\x02 \x01(\tH\x01R\blastName\x88\x01\x01\x12F\n" +
-	"\busername\x18\x03 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$H\x02R\busername\x88\x01\x01B\r\n" +
-	"\v_first_nameB\f\n" +
-	"\n" +
-	"_last_nameB\v\n" +
-	"\t_username\"8\n" +
-	"\x12UpdateUserResponse\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.types.v1.UserR\x04user\"\x13\n" +
-	"\x11DeleteUserRequest\"\x14\n" +
-	"\x12DeleteUserResponse\"V\n" +
-	"\x19CreateOrganizationRequest\x129\n" +
-	"\x04name\x18\x01 \x01(\tB%\xbaH\"r \x10\x03\x18'2\x1a^[a-zA-Z0-9][a-zA-Z0-9-]+$R\x04name\"X\n" +
-	"\x1aCreateOrganizationResponse\x12:\n" +
-	"\forganization\x18\x01 \x01(\v2\x16.types.v1.OrganizationR\forganization\"Y\n" +
+	"\x14default_organization\x18\x03 \x01(\v2\x16.types.v1.OrganizationR\x13defaultOrganization\"Y\n" +
 	"\x17ListOrganizationRequest\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\x99\x02\n" +
@@ -1957,16 +1480,10 @@ const file_svc_user_v1_service_private_proto_rawDesc = "" +
 	"\x06_error\",\n" +
 	"\x1aDeleteFavoriteQueryRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"\x1d\n" +
-	"\x1bDeleteFavoriteQueryResponse2\xf1\r\n" +
+	"\x1bDeleteFavoriteQueryResponse2\xac\n" +
+	"\n" +
 	"\vUserService\x12C\n" +
-	"\x06Whoami\x12\x1a.svc.user.v1.WhoamiRequest\x1a\x1b.svc.user.v1.WhoamiResponse\"\x00\x12U\n" +
-	"\fGetLogoutURL\x12 .svc.user.v1.GetLogoutURLRequest\x1a!.svc.user.v1.GetLogoutURLResponse\"\x00\x12a\n" +
-	"\x10RefreshUserToken\x12$.svc.user.v1.RefreshUserTokenRequest\x1a%.svc.user.v1.RefreshUserTokenResponse\"\x00\x12O\n" +
-	"\n" +
-	"UpdateUser\x12\x1e.svc.user.v1.UpdateUserRequest\x1a\x1f.svc.user.v1.UpdateUserResponse\"\x00\x12O\n" +
-	"\n" +
-	"DeleteUser\x12\x1e.svc.user.v1.DeleteUserRequest\x1a\x1f.svc.user.v1.DeleteUserResponse\"\x00\x12g\n" +
-	"\x12CreateOrganization\x12&.svc.user.v1.CreateOrganizationRequest\x1a'.svc.user.v1.CreateOrganizationResponse\"\x00\x12a\n" +
+	"\x06Whoami\x12\x1a.svc.user.v1.WhoamiRequest\x1a\x1b.svc.user.v1.WhoamiResponse\"\x00\x12a\n" +
 	"\x10ListOrganization\x12$.svc.user.v1.ListOrganizationRequest\x1a%.svc.user.v1.ListOrganizationResponse\"\x00\x12j\n" +
 	"\x13SaveLocalhostConfig\x12'.svc.user.v1.SaveLocalhostConfigRequest\x1a(.svc.user.v1.SaveLocalhostConfigResponse\"\x00\x12g\n" +
 	"\x12GetLocalhostConfig\x12&.svc.user.v1.GetLocalhostConfigRequest\x1a'.svc.user.v1.GetLocalhostConfigResponse\"\x00\x12g\n" +
@@ -1993,128 +1510,103 @@ func file_svc_user_v1_service_private_proto_rawDescGZIP() []byte {
 	return file_svc_user_v1_service_private_proto_rawDescData
 }
 
-var file_svc_user_v1_service_private_proto_msgTypes = make([]protoimpl.MessageInfo, 39)
+var file_svc_user_v1_service_private_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_svc_user_v1_service_private_proto_goTypes = []any{
 	(*WhoamiRequest)(nil),                      // 0: svc.user.v1.WhoamiRequest
 	(*WhoamiResponse)(nil),                     // 1: svc.user.v1.WhoamiResponse
-	(*GetLogoutURLRequest)(nil),                // 2: svc.user.v1.GetLogoutURLRequest
-	(*GetLogoutURLResponse)(nil),               // 3: svc.user.v1.GetLogoutURLResponse
-	(*RefreshUserTokenRequest)(nil),            // 4: svc.user.v1.RefreshUserTokenRequest
-	(*RefreshUserTokenResponse)(nil),           // 5: svc.user.v1.RefreshUserTokenResponse
-	(*UpdateUserRequest)(nil),                  // 6: svc.user.v1.UpdateUserRequest
-	(*UpdateUserResponse)(nil),                 // 7: svc.user.v1.UpdateUserResponse
-	(*DeleteUserRequest)(nil),                  // 8: svc.user.v1.DeleteUserRequest
-	(*DeleteUserResponse)(nil),                 // 9: svc.user.v1.DeleteUserResponse
-	(*CreateOrganizationRequest)(nil),          // 10: svc.user.v1.CreateOrganizationRequest
-	(*CreateOrganizationResponse)(nil),         // 11: svc.user.v1.CreateOrganizationResponse
-	(*ListOrganizationRequest)(nil),            // 12: svc.user.v1.ListOrganizationRequest
-	(*ListOrganizationResponse)(nil),           // 13: svc.user.v1.ListOrganizationResponse
-	(*SaveLocalhostConfigRequest)(nil),         // 14: svc.user.v1.SaveLocalhostConfigRequest
-	(*SaveLocalhostConfigResponse)(nil),        // 15: svc.user.v1.SaveLocalhostConfigResponse
-	(*GetLocalhostConfigRequest)(nil),          // 16: svc.user.v1.GetLocalhostConfigRequest
-	(*GetLocalhostConfigResponse)(nil),         // 17: svc.user.v1.GetLocalhostConfigResponse
-	(*RecordQueryHistoryRequest)(nil),          // 18: svc.user.v1.RecordQueryHistoryRequest
-	(*RecordQueryHistoryResponse)(nil),         // 19: svc.user.v1.RecordQueryHistoryResponse
-	(*GetQueryHistoryRequest)(nil),             // 20: svc.user.v1.GetQueryHistoryRequest
-	(*GetQueryHistoryResponse)(nil),            // 21: svc.user.v1.GetQueryHistoryResponse
-	(*ListQueryHistoryRequest)(nil),            // 22: svc.user.v1.ListQueryHistoryRequest
-	(*ListQueryHistoryResponse)(nil),           // 23: svc.user.v1.ListQueryHistoryResponse
-	(*DeleteQueryHistoryRequest)(nil),          // 24: svc.user.v1.DeleteQueryHistoryRequest
-	(*DeleteQueryHistoryResponse)(nil),         // 25: svc.user.v1.DeleteQueryHistoryResponse
-	(*CreateFavoriteQueryRequest)(nil),         // 26: svc.user.v1.CreateFavoriteQueryRequest
-	(*CreateFavoriteQueryResponse)(nil),        // 27: svc.user.v1.CreateFavoriteQueryResponse
-	(*GetFavoriteQueryRequest)(nil),            // 28: svc.user.v1.GetFavoriteQueryRequest
-	(*GetFavoriteQueryResponse)(nil),           // 29: svc.user.v1.GetFavoriteQueryResponse
-	(*UpdateFavoriteQueryRequest)(nil),         // 30: svc.user.v1.UpdateFavoriteQueryRequest
-	(*UpdateFavoriteQueryResponse)(nil),        // 31: svc.user.v1.UpdateFavoriteQueryResponse
-	(*ListFavoriteQueryRequest)(nil),           // 32: svc.user.v1.ListFavoriteQueryRequest
-	(*ListFavoriteQueryResponse)(nil),          // 33: svc.user.v1.ListFavoriteQueryResponse
-	(*DeleteFavoriteQueryRequest)(nil),         // 34: svc.user.v1.DeleteFavoriteQueryRequest
-	(*DeleteFavoriteQueryResponse)(nil),        // 35: svc.user.v1.DeleteFavoriteQueryResponse
-	(*ListOrganizationResponse_ListItem)(nil),  // 36: svc.user.v1.ListOrganizationResponse.ListItem
-	(*ListQueryHistoryResponse_ListItem)(nil),  // 37: svc.user.v1.ListQueryHistoryResponse.ListItem
-	(*ListFavoriteQueryResponse_ListItem)(nil), // 38: svc.user.v1.ListFavoriteQueryResponse.ListItem
-	(*v1.User)(nil),                            // 39: types.v1.User
-	(*v1.Organization)(nil),                    // 40: types.v1.Organization
-	(*timestamppb.Timestamp)(nil),              // 41: google.protobuf.Timestamp
-	(*v1.Cursor)(nil),                          // 42: types.v1.Cursor
-	(*v1.LocalhostConfig)(nil),                 // 43: types.v1.LocalhostConfig
-	(*v1.Query)(nil),                           // 44: types.v1.Query
-	(*v1.QueryHistoryEntry)(nil),               // 45: types.v1.QueryHistoryEntry
-	(*v1.FavoriteQuery)(nil),                   // 46: types.v1.FavoriteQuery
+	(*ListOrganizationRequest)(nil),            // 2: svc.user.v1.ListOrganizationRequest
+	(*ListOrganizationResponse)(nil),           // 3: svc.user.v1.ListOrganizationResponse
+	(*SaveLocalhostConfigRequest)(nil),         // 4: svc.user.v1.SaveLocalhostConfigRequest
+	(*SaveLocalhostConfigResponse)(nil),        // 5: svc.user.v1.SaveLocalhostConfigResponse
+	(*GetLocalhostConfigRequest)(nil),          // 6: svc.user.v1.GetLocalhostConfigRequest
+	(*GetLocalhostConfigResponse)(nil),         // 7: svc.user.v1.GetLocalhostConfigResponse
+	(*RecordQueryHistoryRequest)(nil),          // 8: svc.user.v1.RecordQueryHistoryRequest
+	(*RecordQueryHistoryResponse)(nil),         // 9: svc.user.v1.RecordQueryHistoryResponse
+	(*GetQueryHistoryRequest)(nil),             // 10: svc.user.v1.GetQueryHistoryRequest
+	(*GetQueryHistoryResponse)(nil),            // 11: svc.user.v1.GetQueryHistoryResponse
+	(*ListQueryHistoryRequest)(nil),            // 12: svc.user.v1.ListQueryHistoryRequest
+	(*ListQueryHistoryResponse)(nil),           // 13: svc.user.v1.ListQueryHistoryResponse
+	(*DeleteQueryHistoryRequest)(nil),          // 14: svc.user.v1.DeleteQueryHistoryRequest
+	(*DeleteQueryHistoryResponse)(nil),         // 15: svc.user.v1.DeleteQueryHistoryResponse
+	(*CreateFavoriteQueryRequest)(nil),         // 16: svc.user.v1.CreateFavoriteQueryRequest
+	(*CreateFavoriteQueryResponse)(nil),        // 17: svc.user.v1.CreateFavoriteQueryResponse
+	(*GetFavoriteQueryRequest)(nil),            // 18: svc.user.v1.GetFavoriteQueryRequest
+	(*GetFavoriteQueryResponse)(nil),           // 19: svc.user.v1.GetFavoriteQueryResponse
+	(*UpdateFavoriteQueryRequest)(nil),         // 20: svc.user.v1.UpdateFavoriteQueryRequest
+	(*UpdateFavoriteQueryResponse)(nil),        // 21: svc.user.v1.UpdateFavoriteQueryResponse
+	(*ListFavoriteQueryRequest)(nil),           // 22: svc.user.v1.ListFavoriteQueryRequest
+	(*ListFavoriteQueryResponse)(nil),          // 23: svc.user.v1.ListFavoriteQueryResponse
+	(*DeleteFavoriteQueryRequest)(nil),         // 24: svc.user.v1.DeleteFavoriteQueryRequest
+	(*DeleteFavoriteQueryResponse)(nil),        // 25: svc.user.v1.DeleteFavoriteQueryResponse
+	(*ListOrganizationResponse_ListItem)(nil),  // 26: svc.user.v1.ListOrganizationResponse.ListItem
+	(*ListQueryHistoryResponse_ListItem)(nil),  // 27: svc.user.v1.ListQueryHistoryResponse.ListItem
+	(*ListFavoriteQueryResponse_ListItem)(nil), // 28: svc.user.v1.ListFavoriteQueryResponse.ListItem
+	(*v1.User)(nil),                            // 29: types.v1.User
+	(*v1.Organization)(nil),                    // 30: types.v1.Organization
+	(*v1.Cursor)(nil),                          // 31: types.v1.Cursor
+	(*v1.LocalhostConfig)(nil),                 // 32: types.v1.LocalhostConfig
+	(*v1.Query)(nil),                           // 33: types.v1.Query
+	(*v1.QueryHistoryEntry)(nil),               // 34: types.v1.QueryHistoryEntry
+	(*v1.FavoriteQuery)(nil),                   // 35: types.v1.FavoriteQuery
 }
 var file_svc_user_v1_service_private_proto_depIdxs = []int32{
-	39, // 0: svc.user.v1.WhoamiResponse.user:type_name -> types.v1.User
-	40, // 1: svc.user.v1.WhoamiResponse.current_organization:type_name -> types.v1.Organization
-	40, // 2: svc.user.v1.WhoamiResponse.default_organization:type_name -> types.v1.Organization
-	41, // 3: svc.user.v1.RefreshUserTokenResponse.refresh_at:type_name -> google.protobuf.Timestamp
-	41, // 4: svc.user.v1.RefreshUserTokenResponse.expires_at:type_name -> google.protobuf.Timestamp
-	39, // 5: svc.user.v1.UpdateUserResponse.user:type_name -> types.v1.User
-	40, // 6: svc.user.v1.CreateOrganizationResponse.organization:type_name -> types.v1.Organization
-	42, // 7: svc.user.v1.ListOrganizationRequest.cursor:type_name -> types.v1.Cursor
-	42, // 8: svc.user.v1.ListOrganizationResponse.next:type_name -> types.v1.Cursor
-	36, // 9: svc.user.v1.ListOrganizationResponse.items:type_name -> svc.user.v1.ListOrganizationResponse.ListItem
-	40, // 10: svc.user.v1.ListOrganizationResponse.default_organization:type_name -> types.v1.Organization
-	43, // 11: svc.user.v1.SaveLocalhostConfigRequest.config:type_name -> types.v1.LocalhostConfig
-	43, // 12: svc.user.v1.GetLocalhostConfigResponse.config:type_name -> types.v1.LocalhostConfig
-	44, // 13: svc.user.v1.RecordQueryHistoryRequest.query:type_name -> types.v1.Query
-	45, // 14: svc.user.v1.RecordQueryHistoryResponse.entry:type_name -> types.v1.QueryHistoryEntry
-	45, // 15: svc.user.v1.GetQueryHistoryResponse.entry:type_name -> types.v1.QueryHistoryEntry
-	42, // 16: svc.user.v1.ListQueryHistoryRequest.cursor:type_name -> types.v1.Cursor
-	42, // 17: svc.user.v1.ListQueryHistoryResponse.next:type_name -> types.v1.Cursor
-	37, // 18: svc.user.v1.ListQueryHistoryResponse.items:type_name -> svc.user.v1.ListQueryHistoryResponse.ListItem
-	44, // 19: svc.user.v1.CreateFavoriteQueryRequest.query:type_name -> types.v1.Query
-	46, // 20: svc.user.v1.CreateFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
-	46, // 21: svc.user.v1.GetFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
-	44, // 22: svc.user.v1.UpdateFavoriteQueryRequest.query:type_name -> types.v1.Query
-	46, // 23: svc.user.v1.UpdateFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
-	42, // 24: svc.user.v1.ListFavoriteQueryRequest.cursor:type_name -> types.v1.Cursor
-	42, // 25: svc.user.v1.ListFavoriteQueryResponse.next:type_name -> types.v1.Cursor
-	38, // 26: svc.user.v1.ListFavoriteQueryResponse.items:type_name -> svc.user.v1.ListFavoriteQueryResponse.ListItem
-	40, // 27: svc.user.v1.ListOrganizationResponse.ListItem.organization:type_name -> types.v1.Organization
-	45, // 28: svc.user.v1.ListQueryHistoryResponse.ListItem.entry:type_name -> types.v1.QueryHistoryEntry
-	46, // 29: svc.user.v1.ListFavoriteQueryResponse.ListItem.favorite:type_name -> types.v1.FavoriteQuery
-	0,  // 30: svc.user.v1.UserService.Whoami:input_type -> svc.user.v1.WhoamiRequest
-	2,  // 31: svc.user.v1.UserService.GetLogoutURL:input_type -> svc.user.v1.GetLogoutURLRequest
-	4,  // 32: svc.user.v1.UserService.RefreshUserToken:input_type -> svc.user.v1.RefreshUserTokenRequest
-	6,  // 33: svc.user.v1.UserService.UpdateUser:input_type -> svc.user.v1.UpdateUserRequest
-	8,  // 34: svc.user.v1.UserService.DeleteUser:input_type -> svc.user.v1.DeleteUserRequest
-	10, // 35: svc.user.v1.UserService.CreateOrganization:input_type -> svc.user.v1.CreateOrganizationRequest
-	12, // 36: svc.user.v1.UserService.ListOrganization:input_type -> svc.user.v1.ListOrganizationRequest
-	14, // 37: svc.user.v1.UserService.SaveLocalhostConfig:input_type -> svc.user.v1.SaveLocalhostConfigRequest
-	16, // 38: svc.user.v1.UserService.GetLocalhostConfig:input_type -> svc.user.v1.GetLocalhostConfigRequest
-	18, // 39: svc.user.v1.UserService.RecordQueryHistory:input_type -> svc.user.v1.RecordQueryHistoryRequest
-	20, // 40: svc.user.v1.UserService.GetQueryHistory:input_type -> svc.user.v1.GetQueryHistoryRequest
-	22, // 41: svc.user.v1.UserService.ListQueryHistory:input_type -> svc.user.v1.ListQueryHistoryRequest
-	24, // 42: svc.user.v1.UserService.DeleteQueryHistory:input_type -> svc.user.v1.DeleteQueryHistoryRequest
-	26, // 43: svc.user.v1.UserService.CreateFavoriteQuery:input_type -> svc.user.v1.CreateFavoriteQueryRequest
-	28, // 44: svc.user.v1.UserService.GetFavoriteQuery:input_type -> svc.user.v1.GetFavoriteQueryRequest
-	30, // 45: svc.user.v1.UserService.UpdateFavoriteQuery:input_type -> svc.user.v1.UpdateFavoriteQueryRequest
-	32, // 46: svc.user.v1.UserService.ListFavoriteQuery:input_type -> svc.user.v1.ListFavoriteQueryRequest
-	34, // 47: svc.user.v1.UserService.DeleteFavoriteQuery:input_type -> svc.user.v1.DeleteFavoriteQueryRequest
-	1,  // 48: svc.user.v1.UserService.Whoami:output_type -> svc.user.v1.WhoamiResponse
-	3,  // 49: svc.user.v1.UserService.GetLogoutURL:output_type -> svc.user.v1.GetLogoutURLResponse
-	5,  // 50: svc.user.v1.UserService.RefreshUserToken:output_type -> svc.user.v1.RefreshUserTokenResponse
-	7,  // 51: svc.user.v1.UserService.UpdateUser:output_type -> svc.user.v1.UpdateUserResponse
-	9,  // 52: svc.user.v1.UserService.DeleteUser:output_type -> svc.user.v1.DeleteUserResponse
-	11, // 53: svc.user.v1.UserService.CreateOrganization:output_type -> svc.user.v1.CreateOrganizationResponse
-	13, // 54: svc.user.v1.UserService.ListOrganization:output_type -> svc.user.v1.ListOrganizationResponse
-	15, // 55: svc.user.v1.UserService.SaveLocalhostConfig:output_type -> svc.user.v1.SaveLocalhostConfigResponse
-	17, // 56: svc.user.v1.UserService.GetLocalhostConfig:output_type -> svc.user.v1.GetLocalhostConfigResponse
-	19, // 57: svc.user.v1.UserService.RecordQueryHistory:output_type -> svc.user.v1.RecordQueryHistoryResponse
-	21, // 58: svc.user.v1.UserService.GetQueryHistory:output_type -> svc.user.v1.GetQueryHistoryResponse
-	23, // 59: svc.user.v1.UserService.ListQueryHistory:output_type -> svc.user.v1.ListQueryHistoryResponse
-	25, // 60: svc.user.v1.UserService.DeleteQueryHistory:output_type -> svc.user.v1.DeleteQueryHistoryResponse
-	27, // 61: svc.user.v1.UserService.CreateFavoriteQuery:output_type -> svc.user.v1.CreateFavoriteQueryResponse
-	29, // 62: svc.user.v1.UserService.GetFavoriteQuery:output_type -> svc.user.v1.GetFavoriteQueryResponse
-	31, // 63: svc.user.v1.UserService.UpdateFavoriteQuery:output_type -> svc.user.v1.UpdateFavoriteQueryResponse
-	33, // 64: svc.user.v1.UserService.ListFavoriteQuery:output_type -> svc.user.v1.ListFavoriteQueryResponse
-	35, // 65: svc.user.v1.UserService.DeleteFavoriteQuery:output_type -> svc.user.v1.DeleteFavoriteQueryResponse
-	48, // [48:66] is the sub-list for method output_type
-	30, // [30:48] is the sub-list for method input_type
-	30, // [30:30] is the sub-list for extension type_name
-	30, // [30:30] is the sub-list for extension extendee
-	0,  // [0:30] is the sub-list for field type_name
+	29, // 0: svc.user.v1.WhoamiResponse.user:type_name -> types.v1.User
+	30, // 1: svc.user.v1.WhoamiResponse.current_organization:type_name -> types.v1.Organization
+	30, // 2: svc.user.v1.WhoamiResponse.default_organization:type_name -> types.v1.Organization
+	31, // 3: svc.user.v1.ListOrganizationRequest.cursor:type_name -> types.v1.Cursor
+	31, // 4: svc.user.v1.ListOrganizationResponse.next:type_name -> types.v1.Cursor
+	26, // 5: svc.user.v1.ListOrganizationResponse.items:type_name -> svc.user.v1.ListOrganizationResponse.ListItem
+	30, // 6: svc.user.v1.ListOrganizationResponse.default_organization:type_name -> types.v1.Organization
+	32, // 7: svc.user.v1.SaveLocalhostConfigRequest.config:type_name -> types.v1.LocalhostConfig
+	32, // 8: svc.user.v1.GetLocalhostConfigResponse.config:type_name -> types.v1.LocalhostConfig
+	33, // 9: svc.user.v1.RecordQueryHistoryRequest.query:type_name -> types.v1.Query
+	34, // 10: svc.user.v1.RecordQueryHistoryResponse.entry:type_name -> types.v1.QueryHistoryEntry
+	34, // 11: svc.user.v1.GetQueryHistoryResponse.entry:type_name -> types.v1.QueryHistoryEntry
+	31, // 12: svc.user.v1.ListQueryHistoryRequest.cursor:type_name -> types.v1.Cursor
+	31, // 13: svc.user.v1.ListQueryHistoryResponse.next:type_name -> types.v1.Cursor
+	27, // 14: svc.user.v1.ListQueryHistoryResponse.items:type_name -> svc.user.v1.ListQueryHistoryResponse.ListItem
+	33, // 15: svc.user.v1.CreateFavoriteQueryRequest.query:type_name -> types.v1.Query
+	35, // 16: svc.user.v1.CreateFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
+	35, // 17: svc.user.v1.GetFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
+	33, // 18: svc.user.v1.UpdateFavoriteQueryRequest.query:type_name -> types.v1.Query
+	35, // 19: svc.user.v1.UpdateFavoriteQueryResponse.favorite:type_name -> types.v1.FavoriteQuery
+	31, // 20: svc.user.v1.ListFavoriteQueryRequest.cursor:type_name -> types.v1.Cursor
+	31, // 21: svc.user.v1.ListFavoriteQueryResponse.next:type_name -> types.v1.Cursor
+	28, // 22: svc.user.v1.ListFavoriteQueryResponse.items:type_name -> svc.user.v1.ListFavoriteQueryResponse.ListItem
+	30, // 23: svc.user.v1.ListOrganizationResponse.ListItem.organization:type_name -> types.v1.Organization
+	34, // 24: svc.user.v1.ListQueryHistoryResponse.ListItem.entry:type_name -> types.v1.QueryHistoryEntry
+	35, // 25: svc.user.v1.ListFavoriteQueryResponse.ListItem.favorite:type_name -> types.v1.FavoriteQuery
+	0,  // 26: svc.user.v1.UserService.Whoami:input_type -> svc.user.v1.WhoamiRequest
+	2,  // 27: svc.user.v1.UserService.ListOrganization:input_type -> svc.user.v1.ListOrganizationRequest
+	4,  // 28: svc.user.v1.UserService.SaveLocalhostConfig:input_type -> svc.user.v1.SaveLocalhostConfigRequest
+	6,  // 29: svc.user.v1.UserService.GetLocalhostConfig:input_type -> svc.user.v1.GetLocalhostConfigRequest
+	8,  // 30: svc.user.v1.UserService.RecordQueryHistory:input_type -> svc.user.v1.RecordQueryHistoryRequest
+	10, // 31: svc.user.v1.UserService.GetQueryHistory:input_type -> svc.user.v1.GetQueryHistoryRequest
+	12, // 32: svc.user.v1.UserService.ListQueryHistory:input_type -> svc.user.v1.ListQueryHistoryRequest
+	14, // 33: svc.user.v1.UserService.DeleteQueryHistory:input_type -> svc.user.v1.DeleteQueryHistoryRequest
+	16, // 34: svc.user.v1.UserService.CreateFavoriteQuery:input_type -> svc.user.v1.CreateFavoriteQueryRequest
+	18, // 35: svc.user.v1.UserService.GetFavoriteQuery:input_type -> svc.user.v1.GetFavoriteQueryRequest
+	20, // 36: svc.user.v1.UserService.UpdateFavoriteQuery:input_type -> svc.user.v1.UpdateFavoriteQueryRequest
+	22, // 37: svc.user.v1.UserService.ListFavoriteQuery:input_type -> svc.user.v1.ListFavoriteQueryRequest
+	24, // 38: svc.user.v1.UserService.DeleteFavoriteQuery:input_type -> svc.user.v1.DeleteFavoriteQueryRequest
+	1,  // 39: svc.user.v1.UserService.Whoami:output_type -> svc.user.v1.WhoamiResponse
+	3,  // 40: svc.user.v1.UserService.ListOrganization:output_type -> svc.user.v1.ListOrganizationResponse
+	5,  // 41: svc.user.v1.UserService.SaveLocalhostConfig:output_type -> svc.user.v1.SaveLocalhostConfigResponse
+	7,  // 42: svc.user.v1.UserService.GetLocalhostConfig:output_type -> svc.user.v1.GetLocalhostConfigResponse
+	9,  // 43: svc.user.v1.UserService.RecordQueryHistory:output_type -> svc.user.v1.RecordQueryHistoryResponse
+	11, // 44: svc.user.v1.UserService.GetQueryHistory:output_type -> svc.user.v1.GetQueryHistoryResponse
+	13, // 45: svc.user.v1.UserService.ListQueryHistory:output_type -> svc.user.v1.ListQueryHistoryResponse
+	15, // 46: svc.user.v1.UserService.DeleteQueryHistory:output_type -> svc.user.v1.DeleteQueryHistoryResponse
+	17, // 47: svc.user.v1.UserService.CreateFavoriteQuery:output_type -> svc.user.v1.CreateFavoriteQueryResponse
+	19, // 48: svc.user.v1.UserService.GetFavoriteQuery:output_type -> svc.user.v1.GetFavoriteQueryResponse
+	21, // 49: svc.user.v1.UserService.UpdateFavoriteQuery:output_type -> svc.user.v1.UpdateFavoriteQueryResponse
+	23, // 50: svc.user.v1.UserService.ListFavoriteQuery:output_type -> svc.user.v1.ListFavoriteQueryResponse
+	25, // 51: svc.user.v1.UserService.DeleteFavoriteQuery:output_type -> svc.user.v1.DeleteFavoriteQueryResponse
+	39, // [39:52] is the sub-list for method output_type
+	26, // [26:39] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	26, // [26:26] is the sub-list for extension extendee
+	0,  // [0:26] is the sub-list for field type_name
 }
 
 func init() { file_svc_user_v1_service_private_proto_init() }
@@ -2122,15 +1614,14 @@ func file_svc_user_v1_service_private_proto_init() {
 	if File_svc_user_v1_service_private_proto != nil {
 		return
 	}
-	file_svc_user_v1_service_private_proto_msgTypes[6].OneofWrappers = []any{}
-	file_svc_user_v1_service_private_proto_msgTypes[38].OneofWrappers = []any{}
+	file_svc_user_v1_service_private_proto_msgTypes[28].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_user_v1_service_private_proto_rawDesc), len(file_svc_user_v1_service_private_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   39,
+			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

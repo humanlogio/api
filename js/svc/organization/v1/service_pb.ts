@@ -25,7 +25,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file svc/organization/v1/service.proto.
  */
 export const file_svc_organization_v1_service: GenFile = /*@__PURE__*/
-  fileDesc("CiFzdmMvb3JnYW5pemF0aW9uL3YxL3NlcnZpY2UucHJvdG8SE3N2Yy5vcmdhbml6YXRpb24udjEi/gEKGENyZWF0ZUVudmlyb25tZW50UmVxdWVzdBI/ChBlbnZpcm9ubWVudF9uYW1lGAEgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEkcKBnN0cmlwZRjJASABKAsyNC5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUVudmlyb25tZW50UmVxdWVzdC5TdHJpcGVIABpGCgZTdHJpcGUSIgoSY29uZmlybWF0aW9uX3Rva2VuGAEgASgJQga6SAPIAQESGAoIcHJpY2VfaWQYAiABKAlCBrpIA8gBAUIQCgdwYXltZW50EgW6SAIIASLNAQoZQ3JlYXRlRW52aXJvbm1lbnRSZXNwb25zZRIqCgtlbnZpcm9ubWVudBgBIAEoCzIVLnR5cGVzLnYxLkVudmlyb25tZW50EkgKBnN0cmlwZRjJASABKAsyNS5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUVudmlyb25tZW50UmVzcG9uc2UuU3RyaXBlSAAaLwoGU3RyaXBlEg4KBnN0YXR1cxgBIAEoCRIVCg1jbGllbnRfc2VjcmV0GAIgASgJQgkKB3BheW1lbnQiQgoVR2V0RW52aXJvbm1lbnRSZXF1ZXN0EgwKAmlkGAEgASgDSAASDgoEbmFtZRgCIAEoCUgAQgsKAmJ5EgW6SAIIASJoChZHZXRFbnZpcm9ubWVudFJlc3BvbnNlEioKC2Vudmlyb25tZW50GAEgASgLMhUudHlwZXMudjEuRW52aXJvbm1lbnQSIgoHcHJvZHVjdBgCIAEoCzIRLnR5cGVzLnYxLlByb2R1Y3QiSQoWTGlzdEVudmlyb25tZW50UmVxdWVzdBIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUi2wEKF0xpc3RFbnZpcm9ubWVudFJlc3BvbnNlEh4KBG5leHQYASABKAsyEC50eXBlcy52MS5DdXJzb3ISRAoFaXRlbXMYAiADKAsyNS5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RFbnZpcm9ubWVudFJlc3BvbnNlLkxpc3RJdGVtGloKCExpc3RJdGVtEioKC2Vudmlyb25tZW50GAEgASgLMhUudHlwZXMudjEuRW52aXJvbm1lbnQSIgoHcHJvZHVjdBgCIAEoCzIRLnR5cGVzLnYxLlByb2R1Y3QiQgoPTGlzdFVzZXJSZXF1ZXN0EiAKBmN1cnNvchgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchINCgVsaW1pdBgCIAEoBSKbAQoQTGlzdFVzZXJSZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEj0KBWl0ZW1zGAIgAygLMi4uc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0VXNlclJlc3BvbnNlLkxpc3RJdGVtGigKCExpc3RJdGVtEhwKBHVzZXIYASABKAsyDi50eXBlcy52MS5Vc2VyIi8KEUludml0ZVVzZXJSZXF1ZXN0EhoKCnVzZXJfZW1haWwYASABKAlCBrpIA8gBASI+ChJJbnZpdGVVc2VyUmVzcG9uc2USKAoKaW52aXRhdGlvbhgBIAEoCzIULnR5cGVzLnYxLkludml0YXRpb24iOAobUmV2b2tlVXNlckludml0YXRpb25SZXF1ZXN0EhkKCWludml0ZV9pZBgBIAEoA0IGukgDyAEBIkgKHFJldm9rZVVzZXJJbnZpdGF0aW9uUmVzcG9uc2USKAoKaW52aXRhdGlvbhgBIAEoCzIULnR5cGVzLnYxLkludml0YXRpb24iTAoZTGlzdFVzZXJJbnZpdGF0aW9uUmVxdWVzdBIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUiuwEKGkxpc3RVc2VySW52aXRhdGlvblJlc3BvbnNlEh4KBG5leHQYASABKAsyEC50eXBlcy52MS5DdXJzb3ISRwoFaXRlbXMYAiADKAsyOC5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RVc2VySW52aXRhdGlvblJlc3BvbnNlLkxpc3RJdGVtGjQKCExpc3RJdGVtEigKCmludml0YXRpb24YASABKAsyFC50eXBlcy52MS5JbnZpdGF0aW9uIskBCh5DcmVhdGVBZGRvblN1YnNjcmlwdGlvblJlcXVlc3QSTQoGc3RyaXBlGMkBIAEoCzI6LnN2Yy5vcmdhbml6YXRpb24udjEuQ3JlYXRlQWRkb25TdWJzY3JpcHRpb25SZXF1ZXN0LlN0cmlwZUgAGkYKBlN0cmlwZRIiChJjb25maXJtYXRpb25fdG9rZW4YASABKAlCBrpIA8gBARIYCghwcmljZV9pZBgCIAEoCUIGukgDyAEBQhAKB3BheW1lbnQSBbpIAggBIq0BCh9DcmVhdGVBZGRvblN1YnNjcmlwdGlvblJlc3BvbnNlEk4KBnN0cmlwZRjJASABKAsyOy5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUFkZG9uU3Vic2NyaXB0aW9uUmVzcG9uc2UuU3RyaXBlSAAaLwoGU3RyaXBlEg4KBnN0YXR1cxgBIAEoCRIVCg1jbGllbnRfc2VjcmV0GAIgASgJQgkKB3BheW1lbnQiTwocTGlzdEFkZG9uU3Vic2NyaXB0aW9uUmVxdWVzdBIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUi6QEKHUxpc3RBZGRvblN1YnNjcmlwdGlvblJlc3BvbnNlEh4KBG5leHQYASABKAsyEC50eXBlcy52MS5DdXJzb3ISSgoFaXRlbXMYAiADKAsyOy5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RBZGRvblN1YnNjcmlwdGlvblJlc3BvbnNlLkxpc3RJdGVtGlwKCExpc3RJdGVtEiIKB3Byb2R1Y3QYASABKAsyES50eXBlcy52MS5Qcm9kdWN0EiwKDHN1YnNjcmlwdGlvbhgCIAEoCzIWLnR5cGVzLnYxLlN1YnNjcmlwdGlvbiLjAQoeUmVtb3ZlQWRkb25TdWJzY3JpcHRpb25SZXF1ZXN0EioKB3Byb2R1Y3QYASABKAsyES50eXBlcy52MS5Qcm9kdWN0Qga6SAPIAQESVgoNY2FuY2VsX3JlYXNvbhgCIAEoCzI6LnN2Yy5vcmdhbml6YXRpb24udjEuUmVtb3ZlQWRkb25TdWJzY3JpcHRpb25SZXF1ZXN0LlJlYXNvbkgAiAEBGisKBlJlYXNvbhIPCgdjb21tZW50GAEgASgJEhAKCGZlZWRiYWNrGAIgASgJQhAKDl9jYW5jZWxfcmVhc29uIiEKH1JlbW92ZUFkZG9uU3Vic2NyaXB0aW9uUmVzcG9uc2UiIAoeR2V0U3RyaXBlUHVibGlzaGFibGVLZXlSZXF1ZXN0IkEKH0dldFN0cmlwZVB1Ymxpc2hhYmxlS2V5UmVzcG9uc2USHgoWc3RyaXBlX3B1Ymxpc2hhYmxlX2tleRgCIAEoCSI2Ch1HZXRTdHJpcGVCaWxsaW5nUG9ydGFsUmVxdWVzdBIVCg1yZXR1cm5fdG9fdXJsGAEgASgJIksKHkdldFN0cmlwZUJpbGxpbmdQb3J0YWxSZXNwb25zZRIVCg1yZXR1cm5fdG9fdXJsGAEgASgJEhIKCnBvcnRhbF91cmwYAiABKAkiJAoiQ3JlYXRlU3RyaXBlQ3VzdG9tZXJTZXNzaW9uUmVxdWVzdCJNCiNDcmVhdGVTdHJpcGVDdXN0b21lclNlc3Npb25SZXNwb25zZRImCh5jdXN0b21lcl9zZXNzaW9uX2NsaWVudF9zZWNyZXQYASABKAkiSwoYTGlzdFBheW1lbnRNZXRob2RSZXF1ZXN0EiAKBmN1cnNvchgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchINCgVsaW1pdBgCIAEoBSLAAQoZTGlzdFBheW1lbnRNZXRob2RSZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEkYKBWl0ZW1zGAIgAygLMjcuc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0UGF5bWVudE1ldGhvZFJlc3BvbnNlLkxpc3RJdGVtGjsKCExpc3RJdGVtEi8KDnBheW1lbnRfbWV0aG9kGAEgASgLMhcudHlwZXMudjEuUGF5bWVudE1ldGhvZDLLDQoTT3JnYW5pemF0aW9uU2VydmljZRJ0ChFDcmVhdGVFbnZpcm9ubWVudBItLnN2Yy5vcmdhbml6YXRpb24udjEuQ3JlYXRlRW52aXJvbm1lbnRSZXF1ZXN0Gi4uc3ZjLm9yZ2FuaXphdGlvbi52MS5DcmVhdGVFbnZpcm9ubWVudFJlc3BvbnNlIgASawoOR2V0RW52aXJvbm1lbnQSKi5zdmMub3JnYW5pemF0aW9uLnYxLkdldEVudmlyb25tZW50UmVxdWVzdBorLnN2Yy5vcmdhbml6YXRpb24udjEuR2V0RW52aXJvbm1lbnRSZXNwb25zZSIAEm4KD0xpc3RFbnZpcm9ubWVudBIrLnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdEVudmlyb25tZW50UmVxdWVzdBosLnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdEVudmlyb25tZW50UmVzcG9uc2UiABJZCghMaXN0VXNlchIkLnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdFVzZXJSZXF1ZXN0GiUuc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0VXNlclJlc3BvbnNlIgASXwoKSW52aXRlVXNlchImLnN2Yy5vcmdhbml6YXRpb24udjEuSW52aXRlVXNlclJlcXVlc3QaJy5zdmMub3JnYW5pemF0aW9uLnYxLkludml0ZVVzZXJSZXNwb25zZSIAEn0KFFJldm9rZVVzZXJJbnZpdGF0aW9uEjAuc3ZjLm9yZ2FuaXphdGlvbi52MS5SZXZva2VVc2VySW52aXRhdGlvblJlcXVlc3QaMS5zdmMub3JnYW5pemF0aW9uLnYxLlJldm9rZVVzZXJJbnZpdGF0aW9uUmVzcG9uc2UiABJ3ChJMaXN0VXNlckludml0YXRpb24SLi5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RVc2VySW52aXRhdGlvblJlcXVlc3QaLy5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RVc2VySW52aXRhdGlvblJlc3BvbnNlIgAShgEKF0NyZWF0ZUFkZG9uU3Vic2NyaXB0aW9uEjMuc3ZjLm9yZ2FuaXphdGlvbi52MS5DcmVhdGVBZGRvblN1YnNjcmlwdGlvblJlcXVlc3QaNC5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUFkZG9uU3Vic2NyaXB0aW9uUmVzcG9uc2UiABKAAQoVTGlzdEFkZG9uU3Vic2NyaXB0aW9uEjEuc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0QWRkb25TdWJzY3JpcHRpb25SZXF1ZXN0GjIuc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0QWRkb25TdWJzY3JpcHRpb25SZXNwb25zZSIAEoYBChdSZW1vdmVBZGRvblN1YnNjcmlwdGlvbhIzLnN2Yy5vcmdhbml6YXRpb24udjEuUmVtb3ZlQWRkb25TdWJzY3JpcHRpb25SZXF1ZXN0GjQuc3ZjLm9yZ2FuaXphdGlvbi52MS5SZW1vdmVBZGRvblN1YnNjcmlwdGlvblJlc3BvbnNlIgAShgEKF0dldFN0cmlwZVB1Ymxpc2hhYmxlS2V5EjMuc3ZjLm9yZ2FuaXphdGlvbi52MS5HZXRTdHJpcGVQdWJsaXNoYWJsZUtleVJlcXVlc3QaNC5zdmMub3JnYW5pemF0aW9uLnYxLkdldFN0cmlwZVB1Ymxpc2hhYmxlS2V5UmVzcG9uc2UiABKDAQoWR2V0U3RyaXBlQmlsbGluZ1BvcnRhbBIyLnN2Yy5vcmdhbml6YXRpb24udjEuR2V0U3RyaXBlQmlsbGluZ1BvcnRhbFJlcXVlc3QaMy5zdmMub3JnYW5pemF0aW9uLnYxLkdldFN0cmlwZUJpbGxpbmdQb3J0YWxSZXNwb25zZSIAEpIBChtDcmVhdGVTdHJpcGVDdXN0b21lclNlc3Npb24SNy5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZVN0cmlwZUN1c3RvbWVyU2Vzc2lvblJlcXVlc3QaOC5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZVN0cmlwZUN1c3RvbWVyU2Vzc2lvblJlc3BvbnNlIgASdAoRTGlzdFBheW1lbnRNZXRob2QSLS5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RQYXltZW50TWV0aG9kUmVxdWVzdBouLnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdFBheW1lbnRNZXRob2RSZXNwb25zZSIAQtYBChdjb20uc3ZjLm9yZ2FuaXphdGlvbi52MUIMU2VydmljZVByb3RvUAFaP2dpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vc3ZjL29yZ2FuaXphdGlvbi92MTtvcmdhbml6YXRpb252MaICA1NPWKoCE1N2Yy5Pcmdhbml6YXRpb24uVjHKAhNTdmNcT3JnYW5pemF0aW9uXFYx4gIfU3ZjXE9yZ2FuaXphdGlvblxWMVxHUEJNZXRhZGF0YeoCFVN2Yzo6T3JnYW5pemF0aW9uOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_types_v1_cursor, file_types_v1_environment, file_types_v1_organization, file_types_v1_payment_method, file_types_v1_product, file_types_v1_subscription, file_types_v1_user]);
+  fileDesc("CiFzdmMvb3JnYW5pemF0aW9uL3YxL3NlcnZpY2UucHJvdG8SE3N2Yy5vcmdhbml6YXRpb24udjEi/gEKGENyZWF0ZUVudmlyb25tZW50UmVxdWVzdBI/ChBlbnZpcm9ubWVudF9uYW1lGAEgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEkcKBnN0cmlwZRjJASABKAsyNC5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUVudmlyb25tZW50UmVxdWVzdC5TdHJpcGVIABpGCgZTdHJpcGUSIgoSY29uZmlybWF0aW9uX3Rva2VuGAEgASgJQga6SAPIAQESGAoIcHJpY2VfaWQYAiABKAlCBrpIA8gBAUIQCgdwYXltZW50EgW6SAIIASLNAQoZQ3JlYXRlRW52aXJvbm1lbnRSZXNwb25zZRIqCgtlbnZpcm9ubWVudBgBIAEoCzIVLnR5cGVzLnYxLkVudmlyb25tZW50EkgKBnN0cmlwZRjJASABKAsyNS5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUVudmlyb25tZW50UmVzcG9uc2UuU3RyaXBlSAAaLwoGU3RyaXBlEg4KBnN0YXR1cxgBIAEoCRIVCg1jbGllbnRfc2VjcmV0GAIgASgJQgkKB3BheW1lbnQiQgoVR2V0RW52aXJvbm1lbnRSZXF1ZXN0EgwKAmlkGAEgASgDSAASDgoEbmFtZRgCIAEoCUgAQgsKAmJ5EgW6SAIIASJoChZHZXRFbnZpcm9ubWVudFJlc3BvbnNlEioKC2Vudmlyb25tZW50GAEgASgLMhUudHlwZXMudjEuRW52aXJvbm1lbnQSIgoHcHJvZHVjdBgCIAEoCzIRLnR5cGVzLnYxLlByb2R1Y3QiSQoWTGlzdEVudmlyb25tZW50UmVxdWVzdBIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUi2wEKF0xpc3RFbnZpcm9ubWVudFJlc3BvbnNlEh4KBG5leHQYASABKAsyEC50eXBlcy52MS5DdXJzb3ISRAoFaXRlbXMYAiADKAsyNS5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RFbnZpcm9ubWVudFJlc3BvbnNlLkxpc3RJdGVtGloKCExpc3RJdGVtEioKC2Vudmlyb25tZW50GAEgASgLMhUudHlwZXMudjEuRW52aXJvbm1lbnQSIgoHcHJvZHVjdBgCIAEoCzIRLnR5cGVzLnYxLlByb2R1Y3QiQgoPTGlzdFVzZXJSZXF1ZXN0EiAKBmN1cnNvchgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchINCgVsaW1pdBgCIAEoBSKbAQoQTGlzdFVzZXJSZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEj0KBWl0ZW1zGAIgAygLMi4uc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0VXNlclJlc3BvbnNlLkxpc3RJdGVtGigKCExpc3RJdGVtEhwKBHVzZXIYASABKAsyDi50eXBlcy52MS5Vc2VyIkwKGUxpc3RVc2VySW52aXRhdGlvblJlcXVlc3QSIAoGY3Vyc29yGAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEg0KBWxpbWl0GAIgASgFIrsBChpMaXN0VXNlckludml0YXRpb25SZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEkcKBWl0ZW1zGAIgAygLMjguc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0VXNlckludml0YXRpb25SZXNwb25zZS5MaXN0SXRlbRo0CghMaXN0SXRlbRIoCgppbnZpdGF0aW9uGAEgASgLMhQudHlwZXMudjEuSW52aXRhdGlvbiLJAQoeQ3JlYXRlQWRkb25TdWJzY3JpcHRpb25SZXF1ZXN0Ek0KBnN0cmlwZRjJASABKAsyOi5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUFkZG9uU3Vic2NyaXB0aW9uUmVxdWVzdC5TdHJpcGVIABpGCgZTdHJpcGUSIgoSY29uZmlybWF0aW9uX3Rva2VuGAEgASgJQga6SAPIAQESGAoIcHJpY2VfaWQYAiABKAlCBrpIA8gBAUIQCgdwYXltZW50EgW6SAIIASKtAQofQ3JlYXRlQWRkb25TdWJzY3JpcHRpb25SZXNwb25zZRJOCgZzdHJpcGUYyQEgASgLMjsuc3ZjLm9yZ2FuaXphdGlvbi52MS5DcmVhdGVBZGRvblN1YnNjcmlwdGlvblJlc3BvbnNlLlN0cmlwZUgAGi8KBlN0cmlwZRIOCgZzdGF0dXMYASABKAkSFQoNY2xpZW50X3NlY3JldBgCIAEoCUIJCgdwYXltZW50Ik8KHExpc3RBZGRvblN1YnNjcmlwdGlvblJlcXVlc3QSIAoGY3Vyc29yGAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEg0KBWxpbWl0GAIgASgFIukBCh1MaXN0QWRkb25TdWJzY3JpcHRpb25SZXNwb25zZRIeCgRuZXh0GAEgASgLMhAudHlwZXMudjEuQ3Vyc29yEkoKBWl0ZW1zGAIgAygLMjsuc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0QWRkb25TdWJzY3JpcHRpb25SZXNwb25zZS5MaXN0SXRlbRpcCghMaXN0SXRlbRIiCgdwcm9kdWN0GAEgASgLMhEudHlwZXMudjEuUHJvZHVjdBIsCgxzdWJzY3JpcHRpb24YAiABKAsyFi50eXBlcy52MS5TdWJzY3JpcHRpb24i4wEKHlJlbW92ZUFkZG9uU3Vic2NyaXB0aW9uUmVxdWVzdBIqCgdwcm9kdWN0GAEgASgLMhEudHlwZXMudjEuUHJvZHVjdEIGukgDyAEBElYKDWNhbmNlbF9yZWFzb24YAiABKAsyOi5zdmMub3JnYW5pemF0aW9uLnYxLlJlbW92ZUFkZG9uU3Vic2NyaXB0aW9uUmVxdWVzdC5SZWFzb25IAIgBARorCgZSZWFzb24SDwoHY29tbWVudBgBIAEoCRIQCghmZWVkYmFjaxgCIAEoCUIQCg5fY2FuY2VsX3JlYXNvbiIhCh9SZW1vdmVBZGRvblN1YnNjcmlwdGlvblJlc3BvbnNlIiAKHkdldFN0cmlwZVB1Ymxpc2hhYmxlS2V5UmVxdWVzdCJBCh9HZXRTdHJpcGVQdWJsaXNoYWJsZUtleVJlc3BvbnNlEh4KFnN0cmlwZV9wdWJsaXNoYWJsZV9rZXkYAiABKAkiNgodR2V0U3RyaXBlQmlsbGluZ1BvcnRhbFJlcXVlc3QSFQoNcmV0dXJuX3RvX3VybBgBIAEoCSJLCh5HZXRTdHJpcGVCaWxsaW5nUG9ydGFsUmVzcG9uc2USFQoNcmV0dXJuX3RvX3VybBgBIAEoCRISCgpwb3J0YWxfdXJsGAIgASgJIiQKIkNyZWF0ZVN0cmlwZUN1c3RvbWVyU2Vzc2lvblJlcXVlc3QiTQojQ3JlYXRlU3RyaXBlQ3VzdG9tZXJTZXNzaW9uUmVzcG9uc2USJgoeY3VzdG9tZXJfc2Vzc2lvbl9jbGllbnRfc2VjcmV0GAEgASgJIksKGExpc3RQYXltZW50TWV0aG9kUmVxdWVzdBIgCgZjdXJzb3IYASABKAsyEC50eXBlcy52MS5DdXJzb3ISDQoFbGltaXQYAiABKAUiwAEKGUxpc3RQYXltZW50TWV0aG9kUmVzcG9uc2USHgoEbmV4dBgBIAEoCzIQLnR5cGVzLnYxLkN1cnNvchJGCgVpdGVtcxgCIAMoCzI3LnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdFBheW1lbnRNZXRob2RSZXNwb25zZS5MaXN0SXRlbRo7CghMaXN0SXRlbRIvCg5wYXltZW50X21ldGhvZBgBIAEoCzIXLnR5cGVzLnYxLlBheW1lbnRNZXRob2Qy6wsKE09yZ2FuaXphdGlvblNlcnZpY2USdAoRQ3JlYXRlRW52aXJvbm1lbnQSLS5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUVudmlyb25tZW50UmVxdWVzdBouLnN2Yy5vcmdhbml6YXRpb24udjEuQ3JlYXRlRW52aXJvbm1lbnRSZXNwb25zZSIAEmsKDkdldEVudmlyb25tZW50Eiouc3ZjLm9yZ2FuaXphdGlvbi52MS5HZXRFbnZpcm9ubWVudFJlcXVlc3QaKy5zdmMub3JnYW5pemF0aW9uLnYxLkdldEVudmlyb25tZW50UmVzcG9uc2UiABJuCg9MaXN0RW52aXJvbm1lbnQSKy5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RFbnZpcm9ubWVudFJlcXVlc3QaLC5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RFbnZpcm9ubWVudFJlc3BvbnNlIgASWQoITGlzdFVzZXISJC5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RVc2VyUmVxdWVzdBolLnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdFVzZXJSZXNwb25zZSIAEncKEkxpc3RVc2VySW52aXRhdGlvbhIuLnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdFVzZXJJbnZpdGF0aW9uUmVxdWVzdBovLnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdFVzZXJJbnZpdGF0aW9uUmVzcG9uc2UiABKGAQoXQ3JlYXRlQWRkb25TdWJzY3JpcHRpb24SMy5zdmMub3JnYW5pemF0aW9uLnYxLkNyZWF0ZUFkZG9uU3Vic2NyaXB0aW9uUmVxdWVzdBo0LnN2Yy5vcmdhbml6YXRpb24udjEuQ3JlYXRlQWRkb25TdWJzY3JpcHRpb25SZXNwb25zZSIAEoABChVMaXN0QWRkb25TdWJzY3JpcHRpb24SMS5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RBZGRvblN1YnNjcmlwdGlvblJlcXVlc3QaMi5zdmMub3JnYW5pemF0aW9uLnYxLkxpc3RBZGRvblN1YnNjcmlwdGlvblJlc3BvbnNlIgAShgEKF1JlbW92ZUFkZG9uU3Vic2NyaXB0aW9uEjMuc3ZjLm9yZ2FuaXphdGlvbi52MS5SZW1vdmVBZGRvblN1YnNjcmlwdGlvblJlcXVlc3QaNC5zdmMub3JnYW5pemF0aW9uLnYxLlJlbW92ZUFkZG9uU3Vic2NyaXB0aW9uUmVzcG9uc2UiABKGAQoXR2V0U3RyaXBlUHVibGlzaGFibGVLZXkSMy5zdmMub3JnYW5pemF0aW9uLnYxLkdldFN0cmlwZVB1Ymxpc2hhYmxlS2V5UmVxdWVzdBo0LnN2Yy5vcmdhbml6YXRpb24udjEuR2V0U3RyaXBlUHVibGlzaGFibGVLZXlSZXNwb25zZSIAEoMBChZHZXRTdHJpcGVCaWxsaW5nUG9ydGFsEjIuc3ZjLm9yZ2FuaXphdGlvbi52MS5HZXRTdHJpcGVCaWxsaW5nUG9ydGFsUmVxdWVzdBozLnN2Yy5vcmdhbml6YXRpb24udjEuR2V0U3RyaXBlQmlsbGluZ1BvcnRhbFJlc3BvbnNlIgASkgEKG0NyZWF0ZVN0cmlwZUN1c3RvbWVyU2Vzc2lvbhI3LnN2Yy5vcmdhbml6YXRpb24udjEuQ3JlYXRlU3RyaXBlQ3VzdG9tZXJTZXNzaW9uUmVxdWVzdBo4LnN2Yy5vcmdhbml6YXRpb24udjEuQ3JlYXRlU3RyaXBlQ3VzdG9tZXJTZXNzaW9uUmVzcG9uc2UiABJ0ChFMaXN0UGF5bWVudE1ldGhvZBItLnN2Yy5vcmdhbml6YXRpb24udjEuTGlzdFBheW1lbnRNZXRob2RSZXF1ZXN0Gi4uc3ZjLm9yZ2FuaXphdGlvbi52MS5MaXN0UGF5bWVudE1ldGhvZFJlc3BvbnNlIgBC1gEKF2NvbS5zdmMub3JnYW5pemF0aW9uLnYxQgxTZXJ2aWNlUHJvdG9QAVo/Z2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby9zdmMvb3JnYW5pemF0aW9uL3YxO29yZ2FuaXphdGlvbnYxogIDU09YqgITU3ZjLk9yZ2FuaXphdGlvbi5WMcoCE1N2Y1xPcmdhbml6YXRpb25cVjHiAh9TdmNcT3JnYW5pemF0aW9uXFYxXEdQQk1ldGFkYXRh6gIVU3ZjOjpPcmdhbml6YXRpb246OlYxYgZwcm90bzM", [file_buf_validate_validate, file_types_v1_cursor, file_types_v1_environment, file_types_v1_organization, file_types_v1_payment_method, file_types_v1_product, file_types_v1_subscription, file_types_v1_user]);
 
 /**
  * @generated from message svc.organization.v1.CreateEnvironmentRequest
@@ -306,74 +306,6 @@ export const ListUserResponse_ListItemSchema: GenMessage<ListUserResponse_ListIt
   messageDesc(file_svc_organization_v1_service, 7, 0);
 
 /**
- * @generated from message svc.organization.v1.InviteUserRequest
- */
-export type InviteUserRequest = Message<"svc.organization.v1.InviteUserRequest"> & {
-  /**
-   * @generated from field: string user_email = 1;
-   */
-  userEmail: string;
-};
-
-/**
- * Describes the message svc.organization.v1.InviteUserRequest.
- * Use `create(InviteUserRequestSchema)` to create a new message.
- */
-export const InviteUserRequestSchema: GenMessage<InviteUserRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 8);
-
-/**
- * @generated from message svc.organization.v1.InviteUserResponse
- */
-export type InviteUserResponse = Message<"svc.organization.v1.InviteUserResponse"> & {
-  /**
-   * @generated from field: types.v1.Invitation invitation = 1;
-   */
-  invitation?: Invitation;
-};
-
-/**
- * Describes the message svc.organization.v1.InviteUserResponse.
- * Use `create(InviteUserResponseSchema)` to create a new message.
- */
-export const InviteUserResponseSchema: GenMessage<InviteUserResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 9);
-
-/**
- * @generated from message svc.organization.v1.RevokeUserInvitationRequest
- */
-export type RevokeUserInvitationRequest = Message<"svc.organization.v1.RevokeUserInvitationRequest"> & {
-  /**
-   * @generated from field: int64 invite_id = 1;
-   */
-  inviteId: bigint;
-};
-
-/**
- * Describes the message svc.organization.v1.RevokeUserInvitationRequest.
- * Use `create(RevokeUserInvitationRequestSchema)` to create a new message.
- */
-export const RevokeUserInvitationRequestSchema: GenMessage<RevokeUserInvitationRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 10);
-
-/**
- * @generated from message svc.organization.v1.RevokeUserInvitationResponse
- */
-export type RevokeUserInvitationResponse = Message<"svc.organization.v1.RevokeUserInvitationResponse"> & {
-  /**
-   * @generated from field: types.v1.Invitation invitation = 1;
-   */
-  invitation?: Invitation;
-};
-
-/**
- * Describes the message svc.organization.v1.RevokeUserInvitationResponse.
- * Use `create(RevokeUserInvitationResponseSchema)` to create a new message.
- */
-export const RevokeUserInvitationResponseSchema: GenMessage<RevokeUserInvitationResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 11);
-
-/**
  * @generated from message svc.organization.v1.ListUserInvitationRequest
  */
 export type ListUserInvitationRequest = Message<"svc.organization.v1.ListUserInvitationRequest"> & {
@@ -393,7 +325,7 @@ export type ListUserInvitationRequest = Message<"svc.organization.v1.ListUserInv
  * Use `create(ListUserInvitationRequestSchema)` to create a new message.
  */
 export const ListUserInvitationRequestSchema: GenMessage<ListUserInvitationRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 12);
+  messageDesc(file_svc_organization_v1_service, 8);
 
 /**
  * @generated from message svc.organization.v1.ListUserInvitationResponse
@@ -415,7 +347,7 @@ export type ListUserInvitationResponse = Message<"svc.organization.v1.ListUserIn
  * Use `create(ListUserInvitationResponseSchema)` to create a new message.
  */
 export const ListUserInvitationResponseSchema: GenMessage<ListUserInvitationResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 13);
+  messageDesc(file_svc_organization_v1_service, 9);
 
 /**
  * @generated from message svc.organization.v1.ListUserInvitationResponse.ListItem
@@ -432,7 +364,7 @@ export type ListUserInvitationResponse_ListItem = Message<"svc.organization.v1.L
  * Use `create(ListUserInvitationResponse_ListItemSchema)` to create a new message.
  */
 export const ListUserInvitationResponse_ListItemSchema: GenMessage<ListUserInvitationResponse_ListItem> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 13, 0);
+  messageDesc(file_svc_organization_v1_service, 9, 0);
 
 /**
  * @generated from message svc.organization.v1.CreateAddonSubscriptionRequest
@@ -455,7 +387,7 @@ export type CreateAddonSubscriptionRequest = Message<"svc.organization.v1.Create
  * Use `create(CreateAddonSubscriptionRequestSchema)` to create a new message.
  */
 export const CreateAddonSubscriptionRequestSchema: GenMessage<CreateAddonSubscriptionRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 14);
+  messageDesc(file_svc_organization_v1_service, 10);
 
 /**
  * @generated from message svc.organization.v1.CreateAddonSubscriptionRequest.Stripe
@@ -477,7 +409,7 @@ export type CreateAddonSubscriptionRequest_Stripe = Message<"svc.organization.v1
  * Use `create(CreateAddonSubscriptionRequest_StripeSchema)` to create a new message.
  */
 export const CreateAddonSubscriptionRequest_StripeSchema: GenMessage<CreateAddonSubscriptionRequest_Stripe> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 14, 0);
+  messageDesc(file_svc_organization_v1_service, 10, 0);
 
 /**
  * @generated from message svc.organization.v1.CreateAddonSubscriptionResponse
@@ -500,7 +432,7 @@ export type CreateAddonSubscriptionResponse = Message<"svc.organization.v1.Creat
  * Use `create(CreateAddonSubscriptionResponseSchema)` to create a new message.
  */
 export const CreateAddonSubscriptionResponseSchema: GenMessage<CreateAddonSubscriptionResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 15);
+  messageDesc(file_svc_organization_v1_service, 11);
 
 /**
  * @generated from message svc.organization.v1.CreateAddonSubscriptionResponse.Stripe
@@ -522,7 +454,7 @@ export type CreateAddonSubscriptionResponse_Stripe = Message<"svc.organization.v
  * Use `create(CreateAddonSubscriptionResponse_StripeSchema)` to create a new message.
  */
 export const CreateAddonSubscriptionResponse_StripeSchema: GenMessage<CreateAddonSubscriptionResponse_Stripe> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 15, 0);
+  messageDesc(file_svc_organization_v1_service, 11, 0);
 
 /**
  * @generated from message svc.organization.v1.ListAddonSubscriptionRequest
@@ -544,7 +476,7 @@ export type ListAddonSubscriptionRequest = Message<"svc.organization.v1.ListAddo
  * Use `create(ListAddonSubscriptionRequestSchema)` to create a new message.
  */
 export const ListAddonSubscriptionRequestSchema: GenMessage<ListAddonSubscriptionRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 16);
+  messageDesc(file_svc_organization_v1_service, 12);
 
 /**
  * @generated from message svc.organization.v1.ListAddonSubscriptionResponse
@@ -566,7 +498,7 @@ export type ListAddonSubscriptionResponse = Message<"svc.organization.v1.ListAdd
  * Use `create(ListAddonSubscriptionResponseSchema)` to create a new message.
  */
 export const ListAddonSubscriptionResponseSchema: GenMessage<ListAddonSubscriptionResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 17);
+  messageDesc(file_svc_organization_v1_service, 13);
 
 /**
  * @generated from message svc.organization.v1.ListAddonSubscriptionResponse.ListItem
@@ -588,7 +520,7 @@ export type ListAddonSubscriptionResponse_ListItem = Message<"svc.organization.v
  * Use `create(ListAddonSubscriptionResponse_ListItemSchema)` to create a new message.
  */
 export const ListAddonSubscriptionResponse_ListItemSchema: GenMessage<ListAddonSubscriptionResponse_ListItem> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 17, 0);
+  messageDesc(file_svc_organization_v1_service, 13, 0);
 
 /**
  * @generated from message svc.organization.v1.RemoveAddonSubscriptionRequest
@@ -610,7 +542,7 @@ export type RemoveAddonSubscriptionRequest = Message<"svc.organization.v1.Remove
  * Use `create(RemoveAddonSubscriptionRequestSchema)` to create a new message.
  */
 export const RemoveAddonSubscriptionRequestSchema: GenMessage<RemoveAddonSubscriptionRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 18);
+  messageDesc(file_svc_organization_v1_service, 14);
 
 /**
  * @generated from message svc.organization.v1.RemoveAddonSubscriptionRequest.Reason
@@ -632,7 +564,7 @@ export type RemoveAddonSubscriptionRequest_Reason = Message<"svc.organization.v1
  * Use `create(RemoveAddonSubscriptionRequest_ReasonSchema)` to create a new message.
  */
 export const RemoveAddonSubscriptionRequest_ReasonSchema: GenMessage<RemoveAddonSubscriptionRequest_Reason> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 18, 0);
+  messageDesc(file_svc_organization_v1_service, 14, 0);
 
 /**
  * @generated from message svc.organization.v1.RemoveAddonSubscriptionResponse
@@ -645,7 +577,7 @@ export type RemoveAddonSubscriptionResponse = Message<"svc.organization.v1.Remov
  * Use `create(RemoveAddonSubscriptionResponseSchema)` to create a new message.
  */
 export const RemoveAddonSubscriptionResponseSchema: GenMessage<RemoveAddonSubscriptionResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 19);
+  messageDesc(file_svc_organization_v1_service, 15);
 
 /**
  * @generated from message svc.organization.v1.GetStripePublishableKeyRequest
@@ -658,7 +590,7 @@ export type GetStripePublishableKeyRequest = Message<"svc.organization.v1.GetStr
  * Use `create(GetStripePublishableKeyRequestSchema)` to create a new message.
  */
 export const GetStripePublishableKeyRequestSchema: GenMessage<GetStripePublishableKeyRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 20);
+  messageDesc(file_svc_organization_v1_service, 16);
 
 /**
  * @generated from message svc.organization.v1.GetStripePublishableKeyResponse
@@ -675,7 +607,7 @@ export type GetStripePublishableKeyResponse = Message<"svc.organization.v1.GetSt
  * Use `create(GetStripePublishableKeyResponseSchema)` to create a new message.
  */
 export const GetStripePublishableKeyResponseSchema: GenMessage<GetStripePublishableKeyResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 21);
+  messageDesc(file_svc_organization_v1_service, 17);
 
 /**
  * @generated from message svc.organization.v1.GetStripeBillingPortalRequest
@@ -692,7 +624,7 @@ export type GetStripeBillingPortalRequest = Message<"svc.organization.v1.GetStri
  * Use `create(GetStripeBillingPortalRequestSchema)` to create a new message.
  */
 export const GetStripeBillingPortalRequestSchema: GenMessage<GetStripeBillingPortalRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 22);
+  messageDesc(file_svc_organization_v1_service, 18);
 
 /**
  * @generated from message svc.organization.v1.GetStripeBillingPortalResponse
@@ -714,7 +646,7 @@ export type GetStripeBillingPortalResponse = Message<"svc.organization.v1.GetStr
  * Use `create(GetStripeBillingPortalResponseSchema)` to create a new message.
  */
 export const GetStripeBillingPortalResponseSchema: GenMessage<GetStripeBillingPortalResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 23);
+  messageDesc(file_svc_organization_v1_service, 19);
 
 /**
  * @generated from message svc.organization.v1.CreateStripeCustomerSessionRequest
@@ -727,7 +659,7 @@ export type CreateStripeCustomerSessionRequest = Message<"svc.organization.v1.Cr
  * Use `create(CreateStripeCustomerSessionRequestSchema)` to create a new message.
  */
 export const CreateStripeCustomerSessionRequestSchema: GenMessage<CreateStripeCustomerSessionRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 24);
+  messageDesc(file_svc_organization_v1_service, 20);
 
 /**
  * @generated from message svc.organization.v1.CreateStripeCustomerSessionResponse
@@ -744,7 +676,7 @@ export type CreateStripeCustomerSessionResponse = Message<"svc.organization.v1.C
  * Use `create(CreateStripeCustomerSessionResponseSchema)` to create a new message.
  */
 export const CreateStripeCustomerSessionResponseSchema: GenMessage<CreateStripeCustomerSessionResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 25);
+  messageDesc(file_svc_organization_v1_service, 21);
 
 /**
  * @generated from message svc.organization.v1.ListPaymentMethodRequest
@@ -766,7 +698,7 @@ export type ListPaymentMethodRequest = Message<"svc.organization.v1.ListPaymentM
  * Use `create(ListPaymentMethodRequestSchema)` to create a new message.
  */
 export const ListPaymentMethodRequestSchema: GenMessage<ListPaymentMethodRequest> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 26);
+  messageDesc(file_svc_organization_v1_service, 22);
 
 /**
  * @generated from message svc.organization.v1.ListPaymentMethodResponse
@@ -788,7 +720,7 @@ export type ListPaymentMethodResponse = Message<"svc.organization.v1.ListPayment
  * Use `create(ListPaymentMethodResponseSchema)` to create a new message.
  */
 export const ListPaymentMethodResponseSchema: GenMessage<ListPaymentMethodResponse> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 27);
+  messageDesc(file_svc_organization_v1_service, 23);
 
 /**
  * @generated from message svc.organization.v1.ListPaymentMethodResponse.ListItem
@@ -805,7 +737,7 @@ export type ListPaymentMethodResponse_ListItem = Message<"svc.organization.v1.Li
  * Use `create(ListPaymentMethodResponse_ListItemSchema)` to create a new message.
  */
 export const ListPaymentMethodResponse_ListItemSchema: GenMessage<ListPaymentMethodResponse_ListItem> = /*@__PURE__*/
-  messageDesc(file_svc_organization_v1_service, 27, 0);
+  messageDesc(file_svc_organization_v1_service, 23, 0);
 
 /**
  * @generated from service svc.organization.v1.OrganizationService
@@ -842,22 +774,6 @@ export const OrganizationService: GenService<{
     methodKind: "unary";
     input: typeof ListUserRequestSchema;
     output: typeof ListUserResponseSchema;
-  },
-  /**
-   * @generated from rpc svc.organization.v1.OrganizationService.InviteUser
-   */
-  inviteUser: {
-    methodKind: "unary";
-    input: typeof InviteUserRequestSchema;
-    output: typeof InviteUserResponseSchema;
-  },
-  /**
-   * @generated from rpc svc.organization.v1.OrganizationService.RevokeUserInvitation
-   */
-  revokeUserInvitation: {
-    methodKind: "unary";
-    input: typeof RevokeUserInvitationRequestSchema;
-    output: typeof RevokeUserInvitationResponseSchema;
   },
   /**
    * @generated from rpc svc.organization.v1.OrganizationService.ListUserInvitation

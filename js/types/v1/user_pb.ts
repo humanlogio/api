@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/user.proto.
  */
 export const file_types_v1_user: GenFile = /*@__PURE__*/
-  fileDesc("ChN0eXBlcy92MS91c2VyLnByb3RvEgh0eXBlcy52MSLvAQoEVXNlchIKCgJpZBgBIAEoAxI3Cgh1c2VybmFtZRgKIAEoCUIlukgiciAQAxgnMhpeW2EtekEtWjAtOV1bYS16QS1aMC05LV0rJBIWCgVlbWFpbBgCIAEoCUIHukgEcgJgARIbChNwcm9maWxlX3BpY3R1cmVfdXJsGAMgASgJEhIKCmZpcnN0X25hbWUYBCABKAkSEQoJbGFzdF9uYW1lGAUgASgJEhYKDmVtYWlsX3ZlcmlmaWVkGAYgASgIEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIrkBCgpQdWJsaWNVc2VyEjcKCHVzZXJuYW1lGAEgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEhsKE3Byb2ZpbGVfcGljdHVyZV91cmwYAiABKAkSEgoKZmlyc3RfbmFtZRgDIAEoCRIRCglsYXN0X25hbWUYBCABKAkSLgoKY3JlYXRlZF9hdBgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBCiQEKDGNvbS50eXBlcy52MUIJVXNlclByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp]);
+  fileDesc("ChN0eXBlcy92MS91c2VyLnByb3RvEgh0eXBlcy52MSKGAgoEVXNlchIKCgJpZBgBIAEoAxI3Cgh1c2VybmFtZRgKIAEoCUIlukgiciAQAxgnMhpeW2EtekEtWjAtOV1bYS16QS1aMC05LV0rJBIWCgVlbWFpbBgCIAEoCUIHukgEcgJgARIbChNwcm9maWxlX3BpY3R1cmVfdXJsGAMgASgJEgwKBG5hbWUYBCABKAkSFgoOZW1haWxfdmVyaWZpZWQYBiABKAgSLgoKY3JlYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAioAEKClB1YmxpY1VzZXISNwoIdXNlcm5hbWUYASABKAlCJbpIInIgEAMYJzIaXlthLXpBLVowLTldW2EtekEtWjAtOS1dKyQSGwoTcHJvZmlsZV9waWN0dXJlX3VybBgCIAEoCRIMCgRuYW1lGAMgASgJEi4KCmNyZWF0ZWRfYXQYBSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQokBCgxjb20udHlwZXMudjFCCVVzZXJQcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message types.v1.User
@@ -40,14 +40,11 @@ export type User = Message<"types.v1.User"> & {
   profilePictureUrl: string;
 
   /**
-   * @generated from field: string first_name = 4;
+   * display name from better-auth
+   *
+   * @generated from field: string name = 4;
    */
-  firstName: string;
-
-  /**
-   * @generated from field: string last_name = 5;
-   */
-  lastName: string;
+  name: string;
 
   /**
    * @generated from field: bool email_verified = 6;
@@ -58,6 +55,11 @@ export type User = Message<"types.v1.User"> & {
    * @generated from field: google.protobuf.Timestamp created_at = 7;
    */
   createdAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 8;
+   */
+  updatedAt?: Timestamp;
 };
 
 /**
@@ -82,14 +84,11 @@ export type PublicUser = Message<"types.v1.PublicUser"> & {
   profilePictureUrl: string;
 
   /**
-   * @generated from field: string first_name = 3;
+   * display name from better-auth
+   *
+   * @generated from field: string name = 3;
    */
-  firstName: string;
-
-  /**
-   * @generated from field: string last_name = 4;
-   */
-  lastName: string;
+  name: string;
 
   /**
    * @generated from field: google.protobuf.Timestamp created_at = 5;

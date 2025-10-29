@@ -45,12 +45,6 @@ const (
 	// OrganizationServiceListUserProcedure is the fully-qualified name of the OrganizationService's
 	// ListUser RPC.
 	OrganizationServiceListUserProcedure = "/svc.organization.v1.OrganizationService/ListUser"
-	// OrganizationServiceInviteUserProcedure is the fully-qualified name of the OrganizationService's
-	// InviteUser RPC.
-	OrganizationServiceInviteUserProcedure = "/svc.organization.v1.OrganizationService/InviteUser"
-	// OrganizationServiceRevokeUserInvitationProcedure is the fully-qualified name of the
-	// OrganizationService's RevokeUserInvitation RPC.
-	OrganizationServiceRevokeUserInvitationProcedure = "/svc.organization.v1.OrganizationService/RevokeUserInvitation"
 	// OrganizationServiceListUserInvitationProcedure is the fully-qualified name of the
 	// OrganizationService's ListUserInvitation RPC.
 	OrganizationServiceListUserInvitationProcedure = "/svc.organization.v1.OrganizationService/ListUserInvitation"
@@ -83,8 +77,6 @@ type OrganizationServiceClient interface {
 	GetEnvironment(context.Context, *connect.Request[v1.GetEnvironmentRequest]) (*connect.Response[v1.GetEnvironmentResponse], error)
 	ListEnvironment(context.Context, *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error)
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
-	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
-	RevokeUserInvitation(context.Context, *connect.Request[v1.RevokeUserInvitationRequest]) (*connect.Response[v1.RevokeUserInvitationResponse], error)
 	ListUserInvitation(context.Context, *connect.Request[v1.ListUserInvitationRequest]) (*connect.Response[v1.ListUserInvitationResponse], error)
 	CreateAddonSubscription(context.Context, *connect.Request[v1.CreateAddonSubscriptionRequest]) (*connect.Response[v1.CreateAddonSubscriptionResponse], error)
 	ListAddonSubscription(context.Context, *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error)
@@ -129,18 +121,6 @@ func NewOrganizationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			httpClient,
 			baseURL+OrganizationServiceListUserProcedure,
 			connect.WithSchema(organizationServiceMethods.ByName("ListUser")),
-			connect.WithClientOptions(opts...),
-		),
-		inviteUser: connect.NewClient[v1.InviteUserRequest, v1.InviteUserResponse](
-			httpClient,
-			baseURL+OrganizationServiceInviteUserProcedure,
-			connect.WithSchema(organizationServiceMethods.ByName("InviteUser")),
-			connect.WithClientOptions(opts...),
-		),
-		revokeUserInvitation: connect.NewClient[v1.RevokeUserInvitationRequest, v1.RevokeUserInvitationResponse](
-			httpClient,
-			baseURL+OrganizationServiceRevokeUserInvitationProcedure,
-			connect.WithSchema(organizationServiceMethods.ByName("RevokeUserInvitation")),
 			connect.WithClientOptions(opts...),
 		),
 		listUserInvitation: connect.NewClient[v1.ListUserInvitationRequest, v1.ListUserInvitationResponse](
@@ -200,8 +180,6 @@ type organizationServiceClient struct {
 	getEnvironment              *connect.Client[v1.GetEnvironmentRequest, v1.GetEnvironmentResponse]
 	listEnvironment             *connect.Client[v1.ListEnvironmentRequest, v1.ListEnvironmentResponse]
 	listUser                    *connect.Client[v1.ListUserRequest, v1.ListUserResponse]
-	inviteUser                  *connect.Client[v1.InviteUserRequest, v1.InviteUserResponse]
-	revokeUserInvitation        *connect.Client[v1.RevokeUserInvitationRequest, v1.RevokeUserInvitationResponse]
 	listUserInvitation          *connect.Client[v1.ListUserInvitationRequest, v1.ListUserInvitationResponse]
 	createAddonSubscription     *connect.Client[v1.CreateAddonSubscriptionRequest, v1.CreateAddonSubscriptionResponse]
 	listAddonSubscription       *connect.Client[v1.ListAddonSubscriptionRequest, v1.ListAddonSubscriptionResponse]
@@ -230,16 +208,6 @@ func (c *organizationServiceClient) ListEnvironment(ctx context.Context, req *co
 // ListUser calls svc.organization.v1.OrganizationService.ListUser.
 func (c *organizationServiceClient) ListUser(ctx context.Context, req *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error) {
 	return c.listUser.CallUnary(ctx, req)
-}
-
-// InviteUser calls svc.organization.v1.OrganizationService.InviteUser.
-func (c *organizationServiceClient) InviteUser(ctx context.Context, req *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error) {
-	return c.inviteUser.CallUnary(ctx, req)
-}
-
-// RevokeUserInvitation calls svc.organization.v1.OrganizationService.RevokeUserInvitation.
-func (c *organizationServiceClient) RevokeUserInvitation(ctx context.Context, req *connect.Request[v1.RevokeUserInvitationRequest]) (*connect.Response[v1.RevokeUserInvitationResponse], error) {
-	return c.revokeUserInvitation.CallUnary(ctx, req)
 }
 
 // ListUserInvitation calls svc.organization.v1.OrganizationService.ListUserInvitation.
@@ -290,8 +258,6 @@ type OrganizationServiceHandler interface {
 	GetEnvironment(context.Context, *connect.Request[v1.GetEnvironmentRequest]) (*connect.Response[v1.GetEnvironmentResponse], error)
 	ListEnvironment(context.Context, *connect.Request[v1.ListEnvironmentRequest]) (*connect.Response[v1.ListEnvironmentResponse], error)
 	ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error)
-	InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error)
-	RevokeUserInvitation(context.Context, *connect.Request[v1.RevokeUserInvitationRequest]) (*connect.Response[v1.RevokeUserInvitationResponse], error)
 	ListUserInvitation(context.Context, *connect.Request[v1.ListUserInvitationRequest]) (*connect.Response[v1.ListUserInvitationResponse], error)
 	CreateAddonSubscription(context.Context, *connect.Request[v1.CreateAddonSubscriptionRequest]) (*connect.Response[v1.CreateAddonSubscriptionResponse], error)
 	ListAddonSubscription(context.Context, *connect.Request[v1.ListAddonSubscriptionRequest]) (*connect.Response[v1.ListAddonSubscriptionResponse], error)
@@ -332,18 +298,6 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 		OrganizationServiceListUserProcedure,
 		svc.ListUser,
 		connect.WithSchema(organizationServiceMethods.ByName("ListUser")),
-		connect.WithHandlerOptions(opts...),
-	)
-	organizationServiceInviteUserHandler := connect.NewUnaryHandler(
-		OrganizationServiceInviteUserProcedure,
-		svc.InviteUser,
-		connect.WithSchema(organizationServiceMethods.ByName("InviteUser")),
-		connect.WithHandlerOptions(opts...),
-	)
-	organizationServiceRevokeUserInvitationHandler := connect.NewUnaryHandler(
-		OrganizationServiceRevokeUserInvitationProcedure,
-		svc.RevokeUserInvitation,
-		connect.WithSchema(organizationServiceMethods.ByName("RevokeUserInvitation")),
 		connect.WithHandlerOptions(opts...),
 	)
 	organizationServiceListUserInvitationHandler := connect.NewUnaryHandler(
@@ -404,10 +358,6 @@ func NewOrganizationServiceHandler(svc OrganizationServiceHandler, opts ...conne
 			organizationServiceListEnvironmentHandler.ServeHTTP(w, r)
 		case OrganizationServiceListUserProcedure:
 			organizationServiceListUserHandler.ServeHTTP(w, r)
-		case OrganizationServiceInviteUserProcedure:
-			organizationServiceInviteUserHandler.ServeHTTP(w, r)
-		case OrganizationServiceRevokeUserInvitationProcedure:
-			organizationServiceRevokeUserInvitationHandler.ServeHTTP(w, r)
 		case OrganizationServiceListUserInvitationProcedure:
 			organizationServiceListUserInvitationHandler.ServeHTTP(w, r)
 		case OrganizationServiceCreateAddonSubscriptionProcedure:
@@ -447,14 +397,6 @@ func (UnimplementedOrganizationServiceHandler) ListEnvironment(context.Context, 
 
 func (UnimplementedOrganizationServiceHandler) ListUser(context.Context, *connect.Request[v1.ListUserRequest]) (*connect.Response[v1.ListUserResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.ListUser is not implemented"))
-}
-
-func (UnimplementedOrganizationServiceHandler) InviteUser(context.Context, *connect.Request[v1.InviteUserRequest]) (*connect.Response[v1.InviteUserResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.InviteUser is not implemented"))
-}
-
-func (UnimplementedOrganizationServiceHandler) RevokeUserInvitation(context.Context, *connect.Request[v1.RevokeUserInvitationRequest]) (*connect.Response[v1.RevokeUserInvitationResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.organization.v1.OrganizationService.RevokeUserInvitation is not implemented"))
 }
 
 func (UnimplementedOrganizationServiceHandler) ListUserInvitation(context.Context, *connect.Request[v1.ListUserInvitationRequest]) (*connect.Response[v1.ListUserInvitationResponse], error) {
