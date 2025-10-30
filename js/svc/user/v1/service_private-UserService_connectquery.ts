@@ -10,31 +10,6 @@ import { UserService } from "./service_private_pb";
 export const whoami = UserService.method.whoami;
 
 /**
- * @generated from rpc svc.user.v1.UserService.GetLogoutURL
- */
-export const getLogoutURL = UserService.method.getLogoutURL;
-
-/**
- * @generated from rpc svc.user.v1.UserService.RefreshUserToken
- */
-export const refreshUserToken = UserService.method.refreshUserToken;
-
-/**
- * @generated from rpc svc.user.v1.UserService.UpdateUser
- */
-export const updateUser = UserService.method.updateUser;
-
-/**
- * @generated from rpc svc.user.v1.UserService.DeleteUser
- */
-export const deleteUser = UserService.method.deleteUser;
-
-/**
- * @generated from rpc svc.user.v1.UserService.CreateOrganization
- */
-export const createOrganization = UserService.method.createOrganization;
-
-/**
  * @generated from rpc svc.user.v1.UserService.ListOrganization
  */
 export const listOrganization = UserService.method.listOrganization;

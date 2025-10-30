@@ -35,19 +35,6 @@ const (
 const (
 	// UserServiceWhoamiProcedure is the fully-qualified name of the UserService's Whoami RPC.
 	UserServiceWhoamiProcedure = "/svc.user.v1.UserService/Whoami"
-	// UserServiceGetLogoutURLProcedure is the fully-qualified name of the UserService's GetLogoutURL
-	// RPC.
-	UserServiceGetLogoutURLProcedure = "/svc.user.v1.UserService/GetLogoutURL"
-	// UserServiceRefreshUserTokenProcedure is the fully-qualified name of the UserService's
-	// RefreshUserToken RPC.
-	UserServiceRefreshUserTokenProcedure = "/svc.user.v1.UserService/RefreshUserToken"
-	// UserServiceUpdateUserProcedure is the fully-qualified name of the UserService's UpdateUser RPC.
-	UserServiceUpdateUserProcedure = "/svc.user.v1.UserService/UpdateUser"
-	// UserServiceDeleteUserProcedure is the fully-qualified name of the UserService's DeleteUser RPC.
-	UserServiceDeleteUserProcedure = "/svc.user.v1.UserService/DeleteUser"
-	// UserServiceCreateOrganizationProcedure is the fully-qualified name of the UserService's
-	// CreateOrganization RPC.
-	UserServiceCreateOrganizationProcedure = "/svc.user.v1.UserService/CreateOrganization"
 	// UserServiceListOrganizationProcedure is the fully-qualified name of the UserService's
 	// ListOrganization RPC.
 	UserServiceListOrganizationProcedure = "/svc.user.v1.UserService/ListOrganization"
@@ -89,11 +76,6 @@ const (
 // UserServiceClient is a client for the svc.user.v1.UserService service.
 type UserServiceClient interface {
 	Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error)
-	GetLogoutURL(context.Context, *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error)
-	RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error)
-	UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error)
-	DeleteUser(context.Context, *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error)
-	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error)
 	SaveLocalhostConfig(context.Context, *connect.Request[v1.SaveLocalhostConfigRequest]) (*connect.Response[v1.SaveLocalhostConfigResponse], error)
 	GetLocalhostConfig(context.Context, *connect.Request[v1.GetLocalhostConfigRequest]) (*connect.Response[v1.GetLocalhostConfigResponse], error)
@@ -123,36 +105,6 @@ func NewUserServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 			httpClient,
 			baseURL+UserServiceWhoamiProcedure,
 			connect.WithSchema(userServiceMethods.ByName("Whoami")),
-			connect.WithClientOptions(opts...),
-		),
-		getLogoutURL: connect.NewClient[v1.GetLogoutURLRequest, v1.GetLogoutURLResponse](
-			httpClient,
-			baseURL+UserServiceGetLogoutURLProcedure,
-			connect.WithSchema(userServiceMethods.ByName("GetLogoutURL")),
-			connect.WithClientOptions(opts...),
-		),
-		refreshUserToken: connect.NewClient[v1.RefreshUserTokenRequest, v1.RefreshUserTokenResponse](
-			httpClient,
-			baseURL+UserServiceRefreshUserTokenProcedure,
-			connect.WithSchema(userServiceMethods.ByName("RefreshUserToken")),
-			connect.WithClientOptions(opts...),
-		),
-		updateUser: connect.NewClient[v1.UpdateUserRequest, v1.UpdateUserResponse](
-			httpClient,
-			baseURL+UserServiceUpdateUserProcedure,
-			connect.WithSchema(userServiceMethods.ByName("UpdateUser")),
-			connect.WithClientOptions(opts...),
-		),
-		deleteUser: connect.NewClient[v1.DeleteUserRequest, v1.DeleteUserResponse](
-			httpClient,
-			baseURL+UserServiceDeleteUserProcedure,
-			connect.WithSchema(userServiceMethods.ByName("DeleteUser")),
-			connect.WithClientOptions(opts...),
-		),
-		createOrganization: connect.NewClient[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse](
-			httpClient,
-			baseURL+UserServiceCreateOrganizationProcedure,
-			connect.WithSchema(userServiceMethods.ByName("CreateOrganization")),
 			connect.WithClientOptions(opts...),
 		),
 		listOrganization: connect.NewClient[v1.ListOrganizationRequest, v1.ListOrganizationResponse](
@@ -233,11 +185,6 @@ func NewUserServiceClient(httpClient connect.HTTPClient, baseURL string, opts ..
 // userServiceClient implements UserServiceClient.
 type userServiceClient struct {
 	whoami              *connect.Client[v1.WhoamiRequest, v1.WhoamiResponse]
-	getLogoutURL        *connect.Client[v1.GetLogoutURLRequest, v1.GetLogoutURLResponse]
-	refreshUserToken    *connect.Client[v1.RefreshUserTokenRequest, v1.RefreshUserTokenResponse]
-	updateUser          *connect.Client[v1.UpdateUserRequest, v1.UpdateUserResponse]
-	deleteUser          *connect.Client[v1.DeleteUserRequest, v1.DeleteUserResponse]
-	createOrganization  *connect.Client[v1.CreateOrganizationRequest, v1.CreateOrganizationResponse]
 	listOrganization    *connect.Client[v1.ListOrganizationRequest, v1.ListOrganizationResponse]
 	saveLocalhostConfig *connect.Client[v1.SaveLocalhostConfigRequest, v1.SaveLocalhostConfigResponse]
 	getLocalhostConfig  *connect.Client[v1.GetLocalhostConfigRequest, v1.GetLocalhostConfigResponse]
@@ -255,31 +202,6 @@ type userServiceClient struct {
 // Whoami calls svc.user.v1.UserService.Whoami.
 func (c *userServiceClient) Whoami(ctx context.Context, req *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error) {
 	return c.whoami.CallUnary(ctx, req)
-}
-
-// GetLogoutURL calls svc.user.v1.UserService.GetLogoutURL.
-func (c *userServiceClient) GetLogoutURL(ctx context.Context, req *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error) {
-	return c.getLogoutURL.CallUnary(ctx, req)
-}
-
-// RefreshUserToken calls svc.user.v1.UserService.RefreshUserToken.
-func (c *userServiceClient) RefreshUserToken(ctx context.Context, req *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error) {
-	return c.refreshUserToken.CallUnary(ctx, req)
-}
-
-// UpdateUser calls svc.user.v1.UserService.UpdateUser.
-func (c *userServiceClient) UpdateUser(ctx context.Context, req *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error) {
-	return c.updateUser.CallUnary(ctx, req)
-}
-
-// DeleteUser calls svc.user.v1.UserService.DeleteUser.
-func (c *userServiceClient) DeleteUser(ctx context.Context, req *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error) {
-	return c.deleteUser.CallUnary(ctx, req)
-}
-
-// CreateOrganization calls svc.user.v1.UserService.CreateOrganization.
-func (c *userServiceClient) CreateOrganization(ctx context.Context, req *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error) {
-	return c.createOrganization.CallUnary(ctx, req)
 }
 
 // ListOrganization calls svc.user.v1.UserService.ListOrganization.
@@ -345,11 +267,6 @@ func (c *userServiceClient) DeleteFavoriteQuery(ctx context.Context, req *connec
 // UserServiceHandler is an implementation of the svc.user.v1.UserService service.
 type UserServiceHandler interface {
 	Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error)
-	GetLogoutURL(context.Context, *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error)
-	RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error)
-	UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error)
-	DeleteUser(context.Context, *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error)
-	CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error)
 	ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error)
 	SaveLocalhostConfig(context.Context, *connect.Request[v1.SaveLocalhostConfigRequest]) (*connect.Response[v1.SaveLocalhostConfigResponse], error)
 	GetLocalhostConfig(context.Context, *connect.Request[v1.GetLocalhostConfigRequest]) (*connect.Response[v1.GetLocalhostConfigResponse], error)
@@ -375,36 +292,6 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 		UserServiceWhoamiProcedure,
 		svc.Whoami,
 		connect.WithSchema(userServiceMethods.ByName("Whoami")),
-		connect.WithHandlerOptions(opts...),
-	)
-	userServiceGetLogoutURLHandler := connect.NewUnaryHandler(
-		UserServiceGetLogoutURLProcedure,
-		svc.GetLogoutURL,
-		connect.WithSchema(userServiceMethods.ByName("GetLogoutURL")),
-		connect.WithHandlerOptions(opts...),
-	)
-	userServiceRefreshUserTokenHandler := connect.NewUnaryHandler(
-		UserServiceRefreshUserTokenProcedure,
-		svc.RefreshUserToken,
-		connect.WithSchema(userServiceMethods.ByName("RefreshUserToken")),
-		connect.WithHandlerOptions(opts...),
-	)
-	userServiceUpdateUserHandler := connect.NewUnaryHandler(
-		UserServiceUpdateUserProcedure,
-		svc.UpdateUser,
-		connect.WithSchema(userServiceMethods.ByName("UpdateUser")),
-		connect.WithHandlerOptions(opts...),
-	)
-	userServiceDeleteUserHandler := connect.NewUnaryHandler(
-		UserServiceDeleteUserProcedure,
-		svc.DeleteUser,
-		connect.WithSchema(userServiceMethods.ByName("DeleteUser")),
-		connect.WithHandlerOptions(opts...),
-	)
-	userServiceCreateOrganizationHandler := connect.NewUnaryHandler(
-		UserServiceCreateOrganizationProcedure,
-		svc.CreateOrganization,
-		connect.WithSchema(userServiceMethods.ByName("CreateOrganization")),
 		connect.WithHandlerOptions(opts...),
 	)
 	userServiceListOrganizationHandler := connect.NewUnaryHandler(
@@ -483,16 +370,6 @@ func NewUserServiceHandler(svc UserServiceHandler, opts ...connect.HandlerOption
 		switch r.URL.Path {
 		case UserServiceWhoamiProcedure:
 			userServiceWhoamiHandler.ServeHTTP(w, r)
-		case UserServiceGetLogoutURLProcedure:
-			userServiceGetLogoutURLHandler.ServeHTTP(w, r)
-		case UserServiceRefreshUserTokenProcedure:
-			userServiceRefreshUserTokenHandler.ServeHTTP(w, r)
-		case UserServiceUpdateUserProcedure:
-			userServiceUpdateUserHandler.ServeHTTP(w, r)
-		case UserServiceDeleteUserProcedure:
-			userServiceDeleteUserHandler.ServeHTTP(w, r)
-		case UserServiceCreateOrganizationProcedure:
-			userServiceCreateOrganizationHandler.ServeHTTP(w, r)
 		case UserServiceListOrganizationProcedure:
 			userServiceListOrganizationHandler.ServeHTTP(w, r)
 		case UserServiceSaveLocalhostConfigProcedure:
@@ -528,26 +405,6 @@ type UnimplementedUserServiceHandler struct{}
 
 func (UnimplementedUserServiceHandler) Whoami(context.Context, *connect.Request[v1.WhoamiRequest]) (*connect.Response[v1.WhoamiResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.Whoami is not implemented"))
-}
-
-func (UnimplementedUserServiceHandler) GetLogoutURL(context.Context, *connect.Request[v1.GetLogoutURLRequest]) (*connect.Response[v1.GetLogoutURLResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.GetLogoutURL is not implemented"))
-}
-
-func (UnimplementedUserServiceHandler) RefreshUserToken(context.Context, *connect.Request[v1.RefreshUserTokenRequest]) (*connect.Response[v1.RefreshUserTokenResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.RefreshUserToken is not implemented"))
-}
-
-func (UnimplementedUserServiceHandler) UpdateUser(context.Context, *connect.Request[v1.UpdateUserRequest]) (*connect.Response[v1.UpdateUserResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.UpdateUser is not implemented"))
-}
-
-func (UnimplementedUserServiceHandler) DeleteUser(context.Context, *connect.Request[v1.DeleteUserRequest]) (*connect.Response[v1.DeleteUserResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.DeleteUser is not implemented"))
-}
-
-func (UnimplementedUserServiceHandler) CreateOrganization(context.Context, *connect.Request[v1.CreateOrganizationRequest]) (*connect.Response[v1.CreateOrganizationResponse], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.user.v1.UserService.CreateOrganization is not implemented"))
 }
 
 func (UnimplementedUserServiceHandler) ListOrganization(context.Context, *connect.Request[v1.ListOrganizationRequest]) (*connect.Response[v1.ListOrganizationResponse], error) {

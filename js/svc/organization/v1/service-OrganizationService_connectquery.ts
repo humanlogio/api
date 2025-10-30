@@ -25,16 +25,6 @@ export const listEnvironment = OrganizationService.method.listEnvironment;
 export const listUser = OrganizationService.method.listUser;
 
 /**
- * @generated from rpc svc.organization.v1.OrganizationService.InviteUser
- */
-export const inviteUser = OrganizationService.method.inviteUser;
-
-/**
- * @generated from rpc svc.organization.v1.OrganizationService.RevokeUserInvitation
- */
-export const revokeUserInvitation = OrganizationService.method.revokeUserInvitation;
-
-/**
  * @generated from rpc svc.organization.v1.OrganizationService.ListUserInvitation
  */
 export const listUserInvitation = OrganizationService.method.listUserInvitation;

@@ -17,13 +17,7 @@ option go_package = "svc/user/v1;userv1";
 
 service UserService {
   rpc Whoami(WhoamiRequest) returns (WhoamiResponse) {}
-  rpc GetLogoutURL(GetLogoutURLRequest) returns (GetLogoutURLResponse) {}
-  rpc RefreshUserToken(RefreshUserTokenRequest) returns (RefreshUserTokenResponse) {}
 
-  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {}
-  rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
-
-  rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse) {}
   rpc ListOrganization(ListOrganizationRequest) returns (ListOrganizationResponse) {}
 
   rpc SaveLocalhostConfig(SaveLocalhostConfigRequest) returns (SaveLocalhostConfigResponse) {}
@@ -46,50 +40,6 @@ message WhoamiResponse {
   types.v1.User user = 1;
   types.v1.Organization current_organization = 2;
   types.v1.Organization default_organization = 3;
-}
-
-message GetLogoutURLRequest {
-  string return_to = 1;
-}
-
-message GetLogoutURLResponse {
-  string logout_url = 1;
-}
-
-message RefreshUserTokenRequest {}
-
-message RefreshUserTokenResponse {
-  string token = 1;
-  google.protobuf.Timestamp refresh_at = 2;
-  google.protobuf.Timestamp expires_at = 3;
-}
-
-message UpdateUserRequest {
-  optional string first_name = 1;
-  optional string last_name = 2;
-  optional string username = 3 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 39,
-    (buf.validate.field).string.pattern = "^[a-zA-Z0-9][a-zA-Z0-9-]+$"
-  ];
-}
-message UpdateUserResponse {
-  types.v1.User user = 1;
-}
-
-message DeleteUserRequest {}
-message DeleteUserResponse {}
-
-message CreateOrganizationRequest {
-  string name = 1 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 39,
-    (buf.validate.field).string.pattern = "^[a-zA-Z0-9][a-zA-Z0-9-]+$"
-  ];
-}
-
-message CreateOrganizationResponse {
-  types.v1.Organization organization = 1;
 }
 
 message ListOrganizationRequest {

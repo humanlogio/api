@@ -15,6 +15,9 @@ message Organization {
     (buf.validate.field).string.max_len = 39,
     (buf.validate.field).string.pattern = "^[a-zA-Z0-9][a-zA-Z0-9-]+$"
   ];
+  string slug = 3; // unique URL slug from better-auth
+  string logo = 4; // logo URL from better-auth
+  string metadata = 5; // JSON metadata from better-auth
   google.protobuf.Timestamp created_at = 7;
 }
 
@@ -30,9 +33,6 @@ message Invitation {
   PublicUser invited_by = 2;
   string invited_user_email = 3;
   State state = 4;
-  google.protobuf.Timestamp created_at = 501;
-  google.protobuf.Timestamp updated_at = 502;
-  google.protobuf.Timestamp expires_at = 503;
-  google.protobuf.Timestamp accepted_at = 504;
-  google.protobuf.Timestamp revoked_at = 505;
+  string role = 5; // invitation role from better-auth
+  google.protobuf.Timestamp expires_at = 503; // only timestamp better-auth tracks
 }

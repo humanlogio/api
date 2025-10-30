@@ -19,8 +19,6 @@ service OrganizationService {
   rpc ListEnvironment(ListEnvironmentRequest) returns (ListEnvironmentResponse) {}
 
   rpc ListUser(ListUserRequest) returns (ListUserResponse) {}
-  rpc InviteUser(InviteUserRequest) returns (InviteUserResponse) {}
-  rpc RevokeUserInvitation(RevokeUserInvitationRequest) returns (RevokeUserInvitationResponse) {}
   rpc ListUserInvitation(ListUserInvitationRequest) returns (ListUserInvitationResponse) {}
 
   rpc CreateAddonSubscription(CreateAddonSubscriptionRequest) returns (CreateAddonSubscriptionResponse) {}
@@ -101,20 +99,6 @@ message ListUserResponse {
     types.v1.User user = 1;
   }
   repeated ListItem items = 2;
-}
-
-message InviteUserRequest {
-  string user_email = 1 [(buf.validate.field).required = true];
-}
-message InviteUserResponse {
-  types.v1.Invitation invitation = 1;
-}
-
-message RevokeUserInvitationRequest {
-  int64 invite_id = 1 [(buf.validate.field).required = true];
-}
-message RevokeUserInvitationResponse {
-  types.v1.Invitation invitation = 1;
 }
 
 message ListUserInvitationRequest {

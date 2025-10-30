@@ -15,7 +15,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/organization.proto.
  */
 export const file_types_v1_organization: GenFile = /*@__PURE__*/
-  fileDesc("Cht0eXBlcy92MS9vcmdhbml6YXRpb24ucHJvdG8SCHR5cGVzLnYxIn8KDE9yZ2FuaXphdGlvbhIKCgJpZBgBIAEoAxIzCgRuYW1lGAIgASgJQiW6SCJyIBADGCcyGl5bYS16QS1aMC05XVthLXpBLVowLTktXSskEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIswDCgpJbnZpdGF0aW9uEgoKAmlkGAEgASgDEigKCmludml0ZWRfYnkYAiABKAsyFC50eXBlcy52MS5QdWJsaWNVc2VyEhoKEmludml0ZWRfdXNlcl9lbWFpbBgDIAEoCRIpCgVzdGF0ZRgEIAEoDjIaLnR5cGVzLnYxLkludml0YXRpb24uU3RhdGUSLwoKY3JlYXRlZF9hdBj1AyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KCnVwZGF0ZWRfYXQY9gMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgpleHBpcmVzX2F0GPcDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASMAoLYWNjZXB0ZWRfYXQY+AMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgpyZXZva2VkX2F0GPkDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiSwoFU3RhdGUSDQoJVU5ERUZJTkVEEAASCwoHUEVORElORxABEgwKCEFDQ0VQVEVEEAISCwoHUkVWT0tFRBADEgsKB0VYUElSRUQQBEKRAQoMY29tLnR5cGVzLnYxQhFPcmdhbml6YXRpb25Qcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_buf_validate_validate, file_google_protobuf_timestamp, file_types_v1_user]);
+  fileDesc("Cht0eXBlcy92MS9vcmdhbml6YXRpb24ucHJvdG8SCHR5cGVzLnYxIq0BCgxPcmdhbml6YXRpb24SCgoCaWQYASABKAMSMwoEbmFtZRgCIAEoCUIlukgiciAQAxgnMhpeW2EtekEtWjAtOV1bYS16QS1aMC05LV0rJBIMCgRzbHVnGAMgASgJEgwKBGxvZ28YBCABKAkSEAoIbWV0YWRhdGEYBSABKAkSLgoKY3JlYXRlZF9hdBgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAilQIKCkludml0YXRpb24SCgoCaWQYASABKAMSKAoKaW52aXRlZF9ieRgCIAEoCzIULnR5cGVzLnYxLlB1YmxpY1VzZXISGgoSaW52aXRlZF91c2VyX2VtYWlsGAMgASgJEikKBXN0YXRlGAQgASgOMhoudHlwZXMudjEuSW52aXRhdGlvbi5TdGF0ZRIMCgRyb2xlGAUgASgJEi8KCmV4cGlyZXNfYXQY9wMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJLCgVTdGF0ZRINCglVTkRFRklORUQQABILCgdQRU5ESU5HEAESDAoIQUNDRVBURUQQAhILCgdSRVZPS0VEEAMSCwoHRVhQSVJFRBAEQpEBCgxjb20udHlwZXMudjFCEU9yZ2FuaXphdGlvblByb3RvUAFaLWdpdGh1Yi5jb20vaHVtYW5sb2dpby9hcGkvZ28vdHlwZXMvdjE7dHlwZXN2MaICA1RYWKoCCFR5cGVzLlYxygIIVHlwZXNcVjHiAhRUeXBlc1xWMVxHUEJNZXRhZGF0YeoCCVR5cGVzOjpWMWIGcHJvdG8z", [file_buf_validate_validate, file_google_protobuf_timestamp, file_types_v1_user]);
 
 /**
  * @generated from message types.v1.Organization
@@ -30,6 +30,27 @@ export type Organization = Message<"types.v1.Organization"> & {
    * @generated from field: string name = 2;
    */
   name: string;
+
+  /**
+   * unique URL slug from better-auth
+   *
+   * @generated from field: string slug = 3;
+   */
+  slug: string;
+
+  /**
+   * logo URL from better-auth
+   *
+   * @generated from field: string logo = 4;
+   */
+  logo: string;
+
+  /**
+   * JSON metadata from better-auth
+   *
+   * @generated from field: string metadata = 5;
+   */
+  metadata: string;
 
   /**
    * @generated from field: google.protobuf.Timestamp created_at = 7;
@@ -69,29 +90,18 @@ export type Invitation = Message<"types.v1.Invitation"> & {
   state: Invitation_State;
 
   /**
-   * @generated from field: google.protobuf.Timestamp created_at = 501;
+   * invitation role from better-auth
+   *
+   * @generated from field: string role = 5;
    */
-  createdAt?: Timestamp;
+  role: string;
 
   /**
-   * @generated from field: google.protobuf.Timestamp updated_at = 502;
-   */
-  updatedAt?: Timestamp;
-
-  /**
+   * only timestamp better-auth tracks
+   *
    * @generated from field: google.protobuf.Timestamp expires_at = 503;
    */
   expiresAt?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp accepted_at = 504;
-   */
-  acceptedAt?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp revoked_at = 505;
-   */
-  revokedAt?: Timestamp;
 };
 
 /**
