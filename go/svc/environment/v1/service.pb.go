@@ -10,6 +10,7 @@ import (
 	v1 "github.com/humanlogio/api/go/types/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -134,6 +135,140 @@ func (x *ListResourceResponse) GetItems() []*ListResourceResponse_ListItem {
 	return nil
 }
 
+type TrimRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EnvironmentId int64                  `protobuf:"varint,1,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
+	// Types that are valid to be assigned to By:
+	//
+	//	*TrimRequest_Size
+	//	*TrimRequest_Time
+	By            isTrimRequest_By `protobuf_oneof:"by"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TrimRequest) Reset() {
+	*x = TrimRequest{}
+	mi := &file_svc_environment_v1_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TrimRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TrimRequest) ProtoMessage() {}
+
+func (x *TrimRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_environment_v1_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TrimRequest.ProtoReflect.Descriptor instead.
+func (*TrimRequest) Descriptor() ([]byte, []int) {
+	return file_svc_environment_v1_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TrimRequest) GetEnvironmentId() int64 {
+	if x != nil {
+		return x.EnvironmentId
+	}
+	return 0
+}
+
+func (x *TrimRequest) GetBy() isTrimRequest_By {
+	if x != nil {
+		return x.By
+	}
+	return nil
+}
+
+func (x *TrimRequest) GetSize() *TrimRequest_BySize {
+	if x != nil {
+		if x, ok := x.By.(*TrimRequest_Size); ok {
+			return x.Size
+		}
+	}
+	return nil
+}
+
+func (x *TrimRequest) GetTime() *TrimRequest_ByTime {
+	if x != nil {
+		if x, ok := x.By.(*TrimRequest_Time); ok {
+			return x.Time
+		}
+	}
+	return nil
+}
+
+type isTrimRequest_By interface {
+	isTrimRequest_By()
+}
+
+type TrimRequest_Size struct {
+	Size *TrimRequest_BySize `protobuf:"bytes,2,opt,name=size,proto3,oneof"`
+}
+
+type TrimRequest_Time struct {
+	Time *TrimRequest_ByTime `protobuf:"bytes,3,opt,name=time,proto3,oneof"`
+}
+
+func (*TrimRequest_Size) isTrimRequest_By() {}
+
+func (*TrimRequest_Time) isTrimRequest_By() {}
+
+type TrimResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Trimmed       uint64                 `protobuf:"varint,1,opt,name=trimmed,proto3" json:"trimmed,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TrimResponse) Reset() {
+	*x = TrimResponse{}
+	mi := &file_svc_environment_v1_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TrimResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TrimResponse) ProtoMessage() {}
+
+func (x *TrimResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_environment_v1_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TrimResponse.ProtoReflect.Descriptor instead.
+func (*TrimResponse) Descriptor() ([]byte, []int) {
+	return file_svc_environment_v1_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TrimResponse) GetTrimmed() uint64 {
+	if x != nil {
+		return x.Trimmed
+	}
+	return 0
+}
+
 type ListResourceResponse_ListItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Resource      *v1.Resource           `protobuf:"bytes,1,opt,name=resource,proto3" json:"resource,omitempty"`
@@ -143,7 +278,7 @@ type ListResourceResponse_ListItem struct {
 
 func (x *ListResourceResponse_ListItem) Reset() {
 	*x = ListResourceResponse_ListItem{}
-	mi := &file_svc_environment_v1_service_proto_msgTypes[2]
+	mi := &file_svc_environment_v1_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -155,7 +290,7 @@ func (x *ListResourceResponse_ListItem) String() string {
 func (*ListResourceResponse_ListItem) ProtoMessage() {}
 
 func (x *ListResourceResponse_ListItem) ProtoReflect() protoreflect.Message {
-	mi := &file_svc_environment_v1_service_proto_msgTypes[2]
+	mi := &file_svc_environment_v1_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -178,11 +313,131 @@ func (x *ListResourceResponse_ListItem) GetResource() *v1.Resource {
 	return nil
 }
 
+type TrimRequest_BySize struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	LogSize       *uint64                `protobuf:"varint,1,opt,name=log_size,json=logSize,proto3,oneof" json:"log_size,omitempty"`
+	SpanSize      *uint64                `protobuf:"varint,2,opt,name=span_size,json=spanSize,proto3,oneof" json:"span_size,omitempty"`
+	MetricSize    *uint64                `protobuf:"varint,3,opt,name=metric_size,json=metricSize,proto3,oneof" json:"metric_size,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TrimRequest_BySize) Reset() {
+	*x = TrimRequest_BySize{}
+	mi := &file_svc_environment_v1_service_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TrimRequest_BySize) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TrimRequest_BySize) ProtoMessage() {}
+
+func (x *TrimRequest_BySize) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_environment_v1_service_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TrimRequest_BySize.ProtoReflect.Descriptor instead.
+func (*TrimRequest_BySize) Descriptor() ([]byte, []int) {
+	return file_svc_environment_v1_service_proto_rawDescGZIP(), []int{2, 0}
+}
+
+func (x *TrimRequest_BySize) GetLogSize() uint64 {
+	if x != nil && x.LogSize != nil {
+		return *x.LogSize
+	}
+	return 0
+}
+
+func (x *TrimRequest_BySize) GetSpanSize() uint64 {
+	if x != nil && x.SpanSize != nil {
+		return *x.SpanSize
+	}
+	return 0
+}
+
+func (x *TrimRequest_BySize) GetMetricSize() uint64 {
+	if x != nil && x.MetricSize != nil {
+		return *x.MetricSize
+	}
+	return 0
+}
+
+type TrimRequest_ByTime struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	OldestLog     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=oldest_log,json=oldestLog,proto3,oneof" json:"oldest_log,omitempty"`
+	OldestSpan    *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=oldest_span,json=oldestSpan,proto3,oneof" json:"oldest_span,omitempty"`
+	OldestMetric  *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=oldest_metric,json=oldestMetric,proto3,oneof" json:"oldest_metric,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TrimRequest_ByTime) Reset() {
+	*x = TrimRequest_ByTime{}
+	mi := &file_svc_environment_v1_service_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TrimRequest_ByTime) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TrimRequest_ByTime) ProtoMessage() {}
+
+func (x *TrimRequest_ByTime) ProtoReflect() protoreflect.Message {
+	mi := &file_svc_environment_v1_service_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TrimRequest_ByTime.ProtoReflect.Descriptor instead.
+func (*TrimRequest_ByTime) Descriptor() ([]byte, []int) {
+	return file_svc_environment_v1_service_proto_rawDescGZIP(), []int{2, 1}
+}
+
+func (x *TrimRequest_ByTime) GetOldestLog() *timestamppb.Timestamp {
+	if x != nil {
+		return x.OldestLog
+	}
+	return nil
+}
+
+func (x *TrimRequest_ByTime) GetOldestSpan() *timestamppb.Timestamp {
+	if x != nil {
+		return x.OldestSpan
+	}
+	return nil
+}
+
+func (x *TrimRequest_ByTime) GetOldestMetric() *timestamppb.Timestamp {
+	if x != nil {
+		return x.OldestMetric
+	}
+	return nil
+}
+
 var File_svc_environment_v1_service_proto protoreflect.FileDescriptor
 
 const file_svc_environment_v1_service_proto_rawDesc = "" +
 	"\n" +
-	" svc/environment/v1/service.proto\x12\x12svc.environment.v1\x1a\x15types/v1/cursor.proto\x1a\x1atypes/v1/environment.proto\x1a\x1ctypes/v1/otel_resource.proto\"|\n" +
+	" svc/environment/v1/service.proto\x12\x12svc.environment.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x15types/v1/cursor.proto\x1a\x1atypes/v1/environment.proto\x1a\x1ctypes/v1/otel_resource.proto\"|\n" +
 	"\x13ListResourceRequest\x12(\n" +
 	"\x06cursor\x18\x01 \x01(\v2\x10.types.v1.CursorR\x06cursor\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12%\n" +
@@ -191,9 +446,35 @@ const file_svc_environment_v1_service_proto_rawDesc = "" +
 	"\x04next\x18\x01 \x01(\v2\x10.types.v1.CursorR\x04next\x12G\n" +
 	"\x05items\x18\x02 \x03(\v21.svc.environment.v1.ListResourceResponse.ListItemR\x05items\x1a:\n" +
 	"\bListItem\x12.\n" +
-	"\bresource\x18\x01 \x01(\v2\x12.types.v1.ResourceR\bresource2w\n" +
+	"\bresource\x18\x01 \x01(\v2\x12.types.v1.ResourceR\bresource\"\xd8\x04\n" +
+	"\vTrimRequest\x12%\n" +
+	"\x0eenvironment_id\x18\x01 \x01(\x03R\renvironmentId\x12<\n" +
+	"\x04size\x18\x02 \x01(\v2&.svc.environment.v1.TrimRequest.BySizeH\x00R\x04size\x12<\n" +
+	"\x04time\x18\x03 \x01(\v2&.svc.environment.v1.TrimRequest.ByTimeH\x00R\x04time\x1a\x9b\x01\n" +
+	"\x06BySize\x12\x1e\n" +
+	"\blog_size\x18\x01 \x01(\x04H\x00R\alogSize\x88\x01\x01\x12 \n" +
+	"\tspan_size\x18\x02 \x01(\x04H\x01R\bspanSize\x88\x01\x01\x12$\n" +
+	"\vmetric_size\x18\x03 \x01(\x04H\x02R\n" +
+	"metricSize\x88\x01\x01B\v\n" +
+	"\t_log_sizeB\f\n" +
+	"\n" +
+	"_span_sizeB\x0e\n" +
+	"\f_metric_size\x1a\x81\x02\n" +
+	"\x06ByTime\x12>\n" +
+	"\n" +
+	"oldest_log\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\toldestLog\x88\x01\x01\x12@\n" +
+	"\voldest_span\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\n" +
+	"oldestSpan\x88\x01\x01\x12D\n" +
+	"\roldest_metric\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\foldestMetric\x88\x01\x01B\r\n" +
+	"\v_oldest_logB\x0e\n" +
+	"\f_oldest_spanB\x10\n" +
+	"\x0e_oldest_metricB\x04\n" +
+	"\x02by\"(\n" +
+	"\fTrimResponse\x12\x18\n" +
+	"\atrimmed\x18\x01 \x01(\x04R\atrimmed2\xc2\x01\n" +
 	"\x12EnvironmentService\x12a\n" +
-	"\fListResource\x12'.svc.environment.v1.ListResourceRequest\x1a(.svc.environment.v1.ListResourceResponseB\xcf\x01\n" +
+	"\fListResource\x12'.svc.environment.v1.ListResourceRequest\x1a(.svc.environment.v1.ListResourceResponse\x12I\n" +
+	"\x04Trim\x12\x1f.svc.environment.v1.TrimRequest\x1a .svc.environment.v1.TrimResponseB\xcf\x01\n" +
 	"\x16com.svc.environment.v1B\fServiceProtoP\x01Z=github.com/humanlogio/api/go/svc/environment/v1;environmentv1\xa2\x02\x03SEX\xaa\x02\x12Svc.Environment.V1\xca\x02\x12Svc\\Environment\\V1\xe2\x02\x1eSvc\\Environment\\V1\\GPBMetadata\xea\x02\x14Svc::Environment::V1b\x06proto3"
 
 var (
@@ -208,26 +489,38 @@ func file_svc_environment_v1_service_proto_rawDescGZIP() []byte {
 	return file_svc_environment_v1_service_proto_rawDescData
 }
 
-var file_svc_environment_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_svc_environment_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_svc_environment_v1_service_proto_goTypes = []any{
 	(*ListResourceRequest)(nil),           // 0: svc.environment.v1.ListResourceRequest
 	(*ListResourceResponse)(nil),          // 1: svc.environment.v1.ListResourceResponse
-	(*ListResourceResponse_ListItem)(nil), // 2: svc.environment.v1.ListResourceResponse.ListItem
-	(*v1.Cursor)(nil),                     // 3: types.v1.Cursor
-	(*v1.Resource)(nil),                   // 4: types.v1.Resource
+	(*TrimRequest)(nil),                   // 2: svc.environment.v1.TrimRequest
+	(*TrimResponse)(nil),                  // 3: svc.environment.v1.TrimResponse
+	(*ListResourceResponse_ListItem)(nil), // 4: svc.environment.v1.ListResourceResponse.ListItem
+	(*TrimRequest_BySize)(nil),            // 5: svc.environment.v1.TrimRequest.BySize
+	(*TrimRequest_ByTime)(nil),            // 6: svc.environment.v1.TrimRequest.ByTime
+	(*v1.Cursor)(nil),                     // 7: types.v1.Cursor
+	(*v1.Resource)(nil),                   // 8: types.v1.Resource
+	(*timestamppb.Timestamp)(nil),         // 9: google.protobuf.Timestamp
 }
 var file_svc_environment_v1_service_proto_depIdxs = []int32{
-	3, // 0: svc.environment.v1.ListResourceRequest.cursor:type_name -> types.v1.Cursor
-	3, // 1: svc.environment.v1.ListResourceResponse.next:type_name -> types.v1.Cursor
-	2, // 2: svc.environment.v1.ListResourceResponse.items:type_name -> svc.environment.v1.ListResourceResponse.ListItem
-	4, // 3: svc.environment.v1.ListResourceResponse.ListItem.resource:type_name -> types.v1.Resource
-	0, // 4: svc.environment.v1.EnvironmentService.ListResource:input_type -> svc.environment.v1.ListResourceRequest
-	1, // 5: svc.environment.v1.EnvironmentService.ListResource:output_type -> svc.environment.v1.ListResourceResponse
-	5, // [5:6] is the sub-list for method output_type
-	4, // [4:5] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	7,  // 0: svc.environment.v1.ListResourceRequest.cursor:type_name -> types.v1.Cursor
+	7,  // 1: svc.environment.v1.ListResourceResponse.next:type_name -> types.v1.Cursor
+	4,  // 2: svc.environment.v1.ListResourceResponse.items:type_name -> svc.environment.v1.ListResourceResponse.ListItem
+	5,  // 3: svc.environment.v1.TrimRequest.size:type_name -> svc.environment.v1.TrimRequest.BySize
+	6,  // 4: svc.environment.v1.TrimRequest.time:type_name -> svc.environment.v1.TrimRequest.ByTime
+	8,  // 5: svc.environment.v1.ListResourceResponse.ListItem.resource:type_name -> types.v1.Resource
+	9,  // 6: svc.environment.v1.TrimRequest.ByTime.oldest_log:type_name -> google.protobuf.Timestamp
+	9,  // 7: svc.environment.v1.TrimRequest.ByTime.oldest_span:type_name -> google.protobuf.Timestamp
+	9,  // 8: svc.environment.v1.TrimRequest.ByTime.oldest_metric:type_name -> google.protobuf.Timestamp
+	0,  // 9: svc.environment.v1.EnvironmentService.ListResource:input_type -> svc.environment.v1.ListResourceRequest
+	2,  // 10: svc.environment.v1.EnvironmentService.Trim:input_type -> svc.environment.v1.TrimRequest
+	1,  // 11: svc.environment.v1.EnvironmentService.ListResource:output_type -> svc.environment.v1.ListResourceResponse
+	3,  // 12: svc.environment.v1.EnvironmentService.Trim:output_type -> svc.environment.v1.TrimResponse
+	11, // [11:13] is the sub-list for method output_type
+	9,  // [9:11] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_svc_environment_v1_service_proto_init() }
@@ -235,13 +528,19 @@ func file_svc_environment_v1_service_proto_init() {
 	if File_svc_environment_v1_service_proto != nil {
 		return
 	}
+	file_svc_environment_v1_service_proto_msgTypes[2].OneofWrappers = []any{
+		(*TrimRequest_Size)(nil),
+		(*TrimRequest_Time)(nil),
+	}
+	file_svc_environment_v1_service_proto_msgTypes[5].OneofWrappers = []any{}
+	file_svc_environment_v1_service_proto_msgTypes[6].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_environment_v1_service_proto_rawDesc), len(file_svc_environment_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
