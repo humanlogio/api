@@ -8,3 +8,8 @@ import { EnvironmentService } from "./service_pb";
  * @generated from rpc svc.environment.v1.EnvironmentService.ListResource
  */
 export const listResource = EnvironmentService.method.listResource;
+
+/**
+ * @generated from rpc svc.environment.v1.EnvironmentService.Trim
+ */
+export const trim = EnvironmentService.method.trim;

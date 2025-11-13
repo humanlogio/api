@@ -36,11 +36,14 @@ const (
 	// EnvironmentServiceListResourceProcedure is the fully-qualified name of the EnvironmentService's
 	// ListResource RPC.
 	EnvironmentServiceListResourceProcedure = "/svc.environment.v1.EnvironmentService/ListResource"
+	// EnvironmentServiceTrimProcedure is the fully-qualified name of the EnvironmentService's Trim RPC.
+	EnvironmentServiceTrimProcedure = "/svc.environment.v1.EnvironmentService/Trim"
 )
 
 // EnvironmentServiceClient is a client for the svc.environment.v1.EnvironmentService service.
 type EnvironmentServiceClient interface {
 	ListResource(context.Context, *connect.Request[v1.ListResourceRequest]) (*connect.Response[v1.ListResourceResponse], error)
+	Trim(context.Context, *connect.Request[v1.TrimRequest]) (*connect.Response[v1.TrimResponse], error)
 }
 
 // NewEnvironmentServiceClient constructs a client for the svc.environment.v1.EnvironmentService
@@ -60,12 +63,19 @@ func NewEnvironmentServiceClient(httpClient connect.HTTPClient, baseURL string, 
 			connect.WithSchema(environmentServiceMethods.ByName("ListResource")),
 			connect.WithClientOptions(opts...),
 		),
+		trim: connect.NewClient[v1.TrimRequest, v1.TrimResponse](
+			httpClient,
+			baseURL+EnvironmentServiceTrimProcedure,
+			connect.WithSchema(environmentServiceMethods.ByName("Trim")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // environmentServiceClient implements EnvironmentServiceClient.
 type environmentServiceClient struct {
 	listResource *connect.Client[v1.ListResourceRequest, v1.ListResourceResponse]
+	trim         *connect.Client[v1.TrimRequest, v1.TrimResponse]
 }
 
 // ListResource calls svc.environment.v1.EnvironmentService.ListResource.
@@ -73,10 +83,16 @@ func (c *environmentServiceClient) ListResource(ctx context.Context, req *connec
 	return c.listResource.CallUnary(ctx, req)
 }
 
+// Trim calls svc.environment.v1.EnvironmentService.Trim.
+func (c *environmentServiceClient) Trim(ctx context.Context, req *connect.Request[v1.TrimRequest]) (*connect.Response[v1.TrimResponse], error) {
+	return c.trim.CallUnary(ctx, req)
+}
+
 // EnvironmentServiceHandler is an implementation of the svc.environment.v1.EnvironmentService
 // service.
 type EnvironmentServiceHandler interface {
 	ListResource(context.Context, *connect.Request[v1.ListResourceRequest]) (*connect.Response[v1.ListResourceResponse], error)
+	Trim(context.Context, *connect.Request[v1.TrimRequest]) (*connect.Response[v1.TrimResponse], error)
 }
 
 // NewEnvironmentServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -92,10 +108,18 @@ func NewEnvironmentServiceHandler(svc EnvironmentServiceHandler, opts ...connect
 		connect.WithSchema(environmentServiceMethods.ByName("ListResource")),
 		connect.WithHandlerOptions(opts...),
 	)
+	environmentServiceTrimHandler := connect.NewUnaryHandler(
+		EnvironmentServiceTrimProcedure,
+		svc.Trim,
+		connect.WithSchema(environmentServiceMethods.ByName("Trim")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/svc.environment.v1.EnvironmentService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case EnvironmentServiceListResourceProcedure:
 			environmentServiceListResourceHandler.ServeHTTP(w, r)
+		case EnvironmentServiceTrimProcedure:
+			environmentServiceTrimHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -107,4 +131,8 @@ type UnimplementedEnvironmentServiceHandler struct{}
 
 func (UnimplementedEnvironmentServiceHandler) ListResource(context.Context, *connect.Request[v1.ListResourceRequest]) (*connect.Response[v1.ListResourceResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.environment.v1.EnvironmentService.ListResource is not implemented"))
+}
+
+func (UnimplementedEnvironmentServiceHandler) Trim(context.Context, *connect.Request[v1.TrimRequest]) (*connect.Response[v1.TrimResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("svc.environment.v1.EnvironmentService.Trim is not implemented"))
 }

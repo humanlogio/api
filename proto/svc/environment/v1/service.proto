@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package svc.environment.v1;
 
+import "google/protobuf/timestamp.proto";
 import "types/v1/cursor.proto";
 import "types/v1/environment.proto";
 import "types/v1/otel_resource.proto";
@@ -10,6 +11,7 @@ option go_package = "svc/environment/v1;environmentv1";
 
 service EnvironmentService {
   rpc ListResource(ListResourceRequest) returns (ListResourceResponse);
+  rpc Trim(TrimRequest) returns (TrimResponse);
 }
 
 message ListResourceRequest {
@@ -24,4 +26,26 @@ message ListResourceResponse {
     types.v1.Resource resource = 1;
   }
   repeated ListItem items = 2;
+}
+
+message TrimRequest {
+  message BySize {
+    optional uint64 log_size = 1;
+    optional uint64 span_size = 2;
+    optional uint64 metric_size = 3;
+  }
+  message ByTime {
+    optional google.protobuf.Timestamp oldest_log = 1;
+    optional google.protobuf.Timestamp oldest_span = 2;
+    optional google.protobuf.Timestamp oldest_metric = 3;
+  }
+  int64 environment_id = 1;
+  oneof by {
+    BySize size = 2;
+    ByTime time = 3;
+  }
+}
+
+message TrimResponse {
+  uint64 trimmed = 1;
 }
