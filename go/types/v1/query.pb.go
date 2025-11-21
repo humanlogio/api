@@ -71,6 +71,52 @@ func (SearchOperator_Kind) EnumDescriptor() ([]byte, []int) {
 	return file_types_v1_query_proto_rawDescGZIP(), []int{14, 0}
 }
 
+type BinaryPredicate_Op int32
+
+const (
+	BinaryPredicate_AND BinaryPredicate_Op = 0
+	BinaryPredicate_OR  BinaryPredicate_Op = 1
+)
+
+// Enum value maps for BinaryPredicate_Op.
+var (
+	BinaryPredicate_Op_name = map[int32]string{
+		0: "AND",
+		1: "OR",
+	}
+	BinaryPredicate_Op_value = map[string]int32{
+		"AND": 0,
+		"OR":  1,
+	}
+)
+
+func (x BinaryPredicate_Op) Enum() *BinaryPredicate_Op {
+	p := new(BinaryPredicate_Op)
+	*p = x
+	return p
+}
+
+func (x BinaryPredicate_Op) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (BinaryPredicate_Op) Descriptor() protoreflect.EnumDescriptor {
+	return file_types_v1_query_proto_enumTypes[1].Descriptor()
+}
+
+func (BinaryPredicate_Op) Type() protoreflect.EnumType {
+	return &file_types_v1_query_proto_enumTypes[1]
+}
+
+func (x BinaryPredicate_Op) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use BinaryPredicate_Op.Descriptor instead.
+func (BinaryPredicate_Op) EnumDescriptor() ([]byte, []int) {
+	return file_types_v1_query_proto_rawDescGZIP(), []int{20, 0}
+}
+
 type SortOperator_Order int32
 
 const (
@@ -101,11 +147,11 @@ func (x SortOperator_Order) String() string {
 }
 
 func (SortOperator_Order) Descriptor() protoreflect.EnumDescriptor {
-	return file_types_v1_query_proto_enumTypes[1].Descriptor()
+	return file_types_v1_query_proto_enumTypes[2].Descriptor()
 }
 
 func (SortOperator_Order) Type() protoreflect.EnumType {
-	return &file_types_v1_query_proto_enumTypes[1]
+	return &file_types_v1_query_proto_enumTypes[2]
 }
 
 func (x SortOperator_Order) Number() protoreflect.EnumNumber {
@@ -114,7 +160,7 @@ func (x SortOperator_Order) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SortOperator_Order.Descriptor instead.
 func (SortOperator_Order) EnumDescriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{15, 0}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{21, 0}
 }
 
 type TopOperator_Order int32
@@ -147,11 +193,11 @@ func (x TopOperator_Order) String() string {
 }
 
 func (TopOperator_Order) Descriptor() protoreflect.EnumDescriptor {
-	return file_types_v1_query_proto_enumTypes[2].Descriptor()
+	return file_types_v1_query_proto_enumTypes[3].Descriptor()
 }
 
 func (TopOperator_Order) Type() protoreflect.EnumType {
-	return &file_types_v1_query_proto_enumTypes[2]
+	return &file_types_v1_query_proto_enumTypes[3]
 }
 
 func (x TopOperator_Order) Number() protoreflect.EnumNumber {
@@ -160,7 +206,7 @@ func (x TopOperator_Order) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TopOperator_Order.Descriptor instead.
 func (TopOperator_Order) EnumDescriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{17, 0}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{23, 0}
 }
 
 type UnaryOp_Operator int32
@@ -196,11 +242,11 @@ func (x UnaryOp_Operator) String() string {
 }
 
 func (UnaryOp_Operator) Descriptor() protoreflect.EnumDescriptor {
-	return file_types_v1_query_proto_enumTypes[3].Descriptor()
+	return file_types_v1_query_proto_enumTypes[4].Descriptor()
 }
 
 func (UnaryOp_Operator) Type() protoreflect.EnumType {
-	return &file_types_v1_query_proto_enumTypes[3]
+	return &file_types_v1_query_proto_enumTypes[4]
 }
 
 func (x UnaryOp_Operator) Number() protoreflect.EnumNumber {
@@ -209,7 +255,7 @@ func (x UnaryOp_Operator) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use UnaryOp_Operator.Descriptor instead.
 func (UnaryOp_Operator) EnumDescriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{22, 0}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{28, 0}
 }
 
 type BinaryOp_Operator int32
@@ -356,11 +402,11 @@ func (x BinaryOp_Operator) String() string {
 }
 
 func (BinaryOp_Operator) Descriptor() protoreflect.EnumDescriptor {
-	return file_types_v1_query_proto_enumTypes[4].Descriptor()
+	return file_types_v1_query_proto_enumTypes[5].Descriptor()
 }
 
 func (BinaryOp_Operator) Type() protoreflect.EnumType {
-	return &file_types_v1_query_proto_enumTypes[4]
+	return &file_types_v1_query_proto_enumTypes[5]
 }
 
 func (x BinaryOp_Operator) Number() protoreflect.EnumNumber {
@@ -369,7 +415,7 @@ func (x BinaryOp_Operator) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use BinaryOp_Operator.Descriptor instead.
 func (BinaryOp_Operator) EnumDescriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{23, 0}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{29, 0}
 }
 
 type Query struct {
@@ -1268,15 +1314,9 @@ func (x *SampleOperator) GetCount() int64 {
 }
 
 type SearchOperator struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Predicate:
-	//
-	//	*SearchOperator_Literal_
-	//	*SearchOperator_Field
-	//	*SearchOperator_Exact
-	//	*SearchOperator_Regex
-	Predicate     isSearchOperator_Predicate `protobuf_oneof:"predicate"`
-	Kind          *SearchOperator_Kind       `protobuf:"varint,2,opt,name=kind,proto3,enum=types.v1.SearchOperator_Kind,oneof" json:"kind,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Predicate     *SearchPredicate       `protobuf:"bytes,1,opt,name=predicate,proto3" json:"predicate,omitempty"`
+	Kind          *SearchOperator_Kind   `protobuf:"varint,2,opt,name=kind,proto3,enum=types.v1.SearchOperator_Kind,oneof" json:"kind,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1311,45 +1351,9 @@ func (*SearchOperator) Descriptor() ([]byte, []int) {
 	return file_types_v1_query_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *SearchOperator) GetPredicate() isSearchOperator_Predicate {
+func (x *SearchOperator) GetPredicate() *SearchPredicate {
 	if x != nil {
 		return x.Predicate
-	}
-	return nil
-}
-
-func (x *SearchOperator) GetLiteral() string {
-	if x != nil {
-		if x, ok := x.Predicate.(*SearchOperator_Literal_); ok {
-			return x.Literal
-		}
-	}
-	return ""
-}
-
-func (x *SearchOperator) GetField() *SearchOperator_FieldSearch {
-	if x != nil {
-		if x, ok := x.Predicate.(*SearchOperator_Field); ok {
-			return x.Field
-		}
-	}
-	return nil
-}
-
-func (x *SearchOperator) GetExact() *SearchOperator_ExactSearch {
-	if x != nil {
-		if x, ok := x.Predicate.(*SearchOperator_Exact); ok {
-			return x.Exact
-		}
-	}
-	return nil
-}
-
-func (x *SearchOperator) GetRegex() *SearchOperator_RegexSearch {
-	if x != nil {
-		if x, ok := x.Predicate.(*SearchOperator_Regex); ok {
-			return x.Regex
-		}
 	}
 	return nil
 }
@@ -1361,33 +1365,395 @@ func (x *SearchOperator) GetKind() SearchOperator_Kind {
 	return SearchOperator_Default
 }
 
-type isSearchOperator_Predicate interface {
-	isSearchOperator_Predicate()
+type SearchPredicate struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Predicate:
+	//
+	//	*SearchPredicate_Term
+	//	*SearchPredicate_Field
+	//	*SearchPredicate_Exact
+	//	*SearchPredicate_Regex
+	//	*SearchPredicate_Binary
+	Predicate     isSearchPredicate_Predicate `protobuf_oneof:"predicate"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-type SearchOperator_Literal_ struct {
-	Literal string `protobuf:"bytes,101,opt,name=literal,proto3,oneof"`
+func (x *SearchPredicate) Reset() {
+	*x = SearchPredicate{}
+	mi := &file_types_v1_query_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
 }
 
-type SearchOperator_Field struct {
-	Field *SearchOperator_FieldSearch `protobuf:"bytes,102,opt,name=field,proto3,oneof"`
+func (x *SearchPredicate) String() string {
+	return protoimpl.X.MessageStringOf(x)
 }
 
-type SearchOperator_Exact struct {
-	Exact *SearchOperator_ExactSearch `protobuf:"bytes,103,opt,name=exact,proto3,oneof"`
+func (*SearchPredicate) ProtoMessage() {}
+
+func (x *SearchPredicate) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_query_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
 }
 
-type SearchOperator_Regex struct {
-	Regex *SearchOperator_RegexSearch `protobuf:"bytes,104,opt,name=regex,proto3,oneof"`
+// Deprecated: Use SearchPredicate.ProtoReflect.Descriptor instead.
+func (*SearchPredicate) Descriptor() ([]byte, []int) {
+	return file_types_v1_query_proto_rawDescGZIP(), []int{15}
 }
 
-func (*SearchOperator_Literal_) isSearchOperator_Predicate() {}
+func (x *SearchPredicate) GetPredicate() isSearchPredicate_Predicate {
+	if x != nil {
+		return x.Predicate
+	}
+	return nil
+}
 
-func (*SearchOperator_Field) isSearchOperator_Predicate() {}
+func (x *SearchPredicate) GetTerm() *TermPredicate {
+	if x != nil {
+		if x, ok := x.Predicate.(*SearchPredicate_Term); ok {
+			return x.Term
+		}
+	}
+	return nil
+}
 
-func (*SearchOperator_Exact) isSearchOperator_Predicate() {}
+func (x *SearchPredicate) GetField() *FieldPredicate {
+	if x != nil {
+		if x, ok := x.Predicate.(*SearchPredicate_Field); ok {
+			return x.Field
+		}
+	}
+	return nil
+}
 
-func (*SearchOperator_Regex) isSearchOperator_Predicate() {}
+func (x *SearchPredicate) GetExact() *ExactPredicate {
+	if x != nil {
+		if x, ok := x.Predicate.(*SearchPredicate_Exact); ok {
+			return x.Exact
+		}
+	}
+	return nil
+}
+
+func (x *SearchPredicate) GetRegex() *RegexPredicate {
+	if x != nil {
+		if x, ok := x.Predicate.(*SearchPredicate_Regex); ok {
+			return x.Regex
+		}
+	}
+	return nil
+}
+
+func (x *SearchPredicate) GetBinary() *BinaryPredicate {
+	if x != nil {
+		if x, ok := x.Predicate.(*SearchPredicate_Binary); ok {
+			return x.Binary
+		}
+	}
+	return nil
+}
+
+type isSearchPredicate_Predicate interface {
+	isSearchPredicate_Predicate()
+}
+
+type SearchPredicate_Term struct {
+	Term *TermPredicate `protobuf:"bytes,1,opt,name=term,proto3,oneof"`
+}
+
+type SearchPredicate_Field struct {
+	Field *FieldPredicate `protobuf:"bytes,2,opt,name=field,proto3,oneof"`
+}
+
+type SearchPredicate_Exact struct {
+	Exact *ExactPredicate `protobuf:"bytes,3,opt,name=exact,proto3,oneof"`
+}
+
+type SearchPredicate_Regex struct {
+	Regex *RegexPredicate `protobuf:"bytes,4,opt,name=regex,proto3,oneof"`
+}
+
+type SearchPredicate_Binary struct {
+	Binary *BinaryPredicate `protobuf:"bytes,5,opt,name=binary,proto3,oneof"`
+}
+
+func (*SearchPredicate_Term) isSearchPredicate_Predicate() {}
+
+func (*SearchPredicate_Field) isSearchPredicate_Predicate() {}
+
+func (*SearchPredicate_Exact) isSearchPredicate_Predicate() {}
+
+func (*SearchPredicate_Regex) isSearchPredicate_Predicate() {}
+
+func (*SearchPredicate_Binary) isSearchPredicate_Predicate() {}
+
+type TermPredicate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TermPredicate) Reset() {
+	*x = TermPredicate{}
+	mi := &file_types_v1_query_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TermPredicate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TermPredicate) ProtoMessage() {}
+
+func (x *TermPredicate) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_query_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TermPredicate.ProtoReflect.Descriptor instead.
+func (*TermPredicate) Descriptor() ([]byte, []int) {
+	return file_types_v1_query_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *TermPredicate) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+type FieldPredicate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Column        string                 `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
+	Term          string                 `protobuf:"bytes,2,opt,name=term,proto3" json:"term,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FieldPredicate) Reset() {
+	*x = FieldPredicate{}
+	mi := &file_types_v1_query_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FieldPredicate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FieldPredicate) ProtoMessage() {}
+
+func (x *FieldPredicate) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_query_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FieldPredicate.ProtoReflect.Descriptor instead.
+func (*FieldPredicate) Descriptor() ([]byte, []int) {
+	return file_types_v1_query_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *FieldPredicate) GetColumn() string {
+	if x != nil {
+		return x.Column
+	}
+	return ""
+}
+
+func (x *FieldPredicate) GetTerm() string {
+	if x != nil {
+		return x.Term
+	}
+	return ""
+}
+
+type ExactPredicate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Column        string                 `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
+	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ExactPredicate) Reset() {
+	*x = ExactPredicate{}
+	mi := &file_types_v1_query_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ExactPredicate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExactPredicate) ProtoMessage() {}
+
+func (x *ExactPredicate) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_query_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExactPredicate.ProtoReflect.Descriptor instead.
+func (*ExactPredicate) Descriptor() ([]byte, []int) {
+	return file_types_v1_query_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *ExactPredicate) GetColumn() string {
+	if x != nil {
+		return x.Column
+	}
+	return ""
+}
+
+func (x *ExactPredicate) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+type RegexPredicate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Column        string                 `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
+	Pattern       string                 `protobuf:"bytes,2,opt,name=pattern,proto3" json:"pattern,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RegexPredicate) Reset() {
+	*x = RegexPredicate{}
+	mi := &file_types_v1_query_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RegexPredicate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RegexPredicate) ProtoMessage() {}
+
+func (x *RegexPredicate) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_query_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RegexPredicate.ProtoReflect.Descriptor instead.
+func (*RegexPredicate) Descriptor() ([]byte, []int) {
+	return file_types_v1_query_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *RegexPredicate) GetColumn() string {
+	if x != nil {
+		return x.Column
+	}
+	return ""
+}
+
+func (x *RegexPredicate) GetPattern() string {
+	if x != nil {
+		return x.Pattern
+	}
+	return ""
+}
+
+type BinaryPredicate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Op            BinaryPredicate_Op     `protobuf:"varint,1,opt,name=op,proto3,enum=types.v1.BinaryPredicate_Op" json:"op,omitempty"`
+	Left          *SearchPredicate       `protobuf:"bytes,2,opt,name=left,proto3" json:"left,omitempty"`
+	Right         *SearchPredicate       `protobuf:"bytes,3,opt,name=right,proto3" json:"right,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *BinaryPredicate) Reset() {
+	*x = BinaryPredicate{}
+	mi := &file_types_v1_query_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *BinaryPredicate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BinaryPredicate) ProtoMessage() {}
+
+func (x *BinaryPredicate) ProtoReflect() protoreflect.Message {
+	mi := &file_types_v1_query_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BinaryPredicate.ProtoReflect.Descriptor instead.
+func (*BinaryPredicate) Descriptor() ([]byte, []int) {
+	return file_types_v1_query_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *BinaryPredicate) GetOp() BinaryPredicate_Op {
+	if x != nil {
+		return x.Op
+	}
+	return BinaryPredicate_AND
+}
+
+func (x *BinaryPredicate) GetLeft() *SearchPredicate {
+	if x != nil {
+		return x.Left
+	}
+	return nil
+}
+
+func (x *BinaryPredicate) GetRight() *SearchPredicate {
+	if x != nil {
+		return x.Right
+	}
+	return nil
+}
 
 type SortOperator struct {
 	state         protoimpl.MessageState   `protogen:"open.v1"`
@@ -1398,7 +1764,7 @@ type SortOperator struct {
 
 func (x *SortOperator) Reset() {
 	*x = SortOperator{}
-	mi := &file_types_v1_query_proto_msgTypes[15]
+	mi := &file_types_v1_query_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1410,7 +1776,7 @@ func (x *SortOperator) String() string {
 func (*SortOperator) ProtoMessage() {}
 
 func (x *SortOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[15]
+	mi := &file_types_v1_query_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1423,7 +1789,7 @@ func (x *SortOperator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SortOperator.ProtoReflect.Descriptor instead.
 func (*SortOperator) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{15}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *SortOperator) GetByColumns() []*SortOperator_ByColumn {
@@ -1442,7 +1808,7 @@ type TakeOperator struct {
 
 func (x *TakeOperator) Reset() {
 	*x = TakeOperator{}
-	mi := &file_types_v1_query_proto_msgTypes[16]
+	mi := &file_types_v1_query_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1454,7 +1820,7 @@ func (x *TakeOperator) String() string {
 func (*TakeOperator) ProtoMessage() {}
 
 func (x *TakeOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[16]
+	mi := &file_types_v1_query_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1467,7 +1833,7 @@ func (x *TakeOperator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TakeOperator.ProtoReflect.Descriptor instead.
 func (*TakeOperator) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{16}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *TakeOperator) GetCount() int64 {
@@ -1487,7 +1853,7 @@ type TopOperator struct {
 
 func (x *TopOperator) Reset() {
 	*x = TopOperator{}
-	mi := &file_types_v1_query_proto_msgTypes[17]
+	mi := &file_types_v1_query_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1499,7 +1865,7 @@ func (x *TopOperator) String() string {
 func (*TopOperator) ProtoMessage() {}
 
 func (x *TopOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[17]
+	mi := &file_types_v1_query_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1512,7 +1878,7 @@ func (x *TopOperator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TopOperator.ProtoReflect.Descriptor instead.
 func (*TopOperator) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{17}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *TopOperator) GetCount() int64 {
@@ -1537,7 +1903,7 @@ type GetSchemaOperator struct {
 
 func (x *GetSchemaOperator) Reset() {
 	*x = GetSchemaOperator{}
-	mi := &file_types_v1_query_proto_msgTypes[18]
+	mi := &file_types_v1_query_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1549,7 +1915,7 @@ func (x *GetSchemaOperator) String() string {
 func (*GetSchemaOperator) ProtoMessage() {}
 
 func (x *GetSchemaOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[18]
+	mi := &file_types_v1_query_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1562,7 +1928,7 @@ func (x *GetSchemaOperator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSchemaOperator.ProtoReflect.Descriptor instead.
 func (*GetSchemaOperator) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{18}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{24}
 }
 
 type RenderStatement struct {
@@ -1577,7 +1943,7 @@ type RenderStatement struct {
 
 func (x *RenderStatement) Reset() {
 	*x = RenderStatement{}
-	mi := &file_types_v1_query_proto_msgTypes[19]
+	mi := &file_types_v1_query_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1589,7 +1955,7 @@ func (x *RenderStatement) String() string {
 func (*RenderStatement) ProtoMessage() {}
 
 func (x *RenderStatement) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[19]
+	mi := &file_types_v1_query_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1602,7 +1968,7 @@ func (x *RenderStatement) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RenderStatement.ProtoReflect.Descriptor instead.
 func (*RenderStatement) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{19}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *RenderStatement) GetStmt() isRenderStatement_Stmt {
@@ -1640,7 +2006,7 @@ type SplitOperator struct {
 
 func (x *SplitOperator) Reset() {
 	*x = SplitOperator{}
-	mi := &file_types_v1_query_proto_msgTypes[20]
+	mi := &file_types_v1_query_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1652,7 +2018,7 @@ func (x *SplitOperator) String() string {
 func (*SplitOperator) ProtoMessage() {}
 
 func (x *SplitOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[20]
+	mi := &file_types_v1_query_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1665,7 +2031,7 @@ func (x *SplitOperator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SplitOperator.ProtoReflect.Descriptor instead.
 func (*SplitOperator) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{20}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *SplitOperator) GetBy() *SplitOperator_ByOperator {
@@ -1692,7 +2058,7 @@ type Expr struct {
 
 func (x *Expr) Reset() {
 	*x = Expr{}
-	mi := &file_types_v1_query_proto_msgTypes[21]
+	mi := &file_types_v1_query_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1704,7 +2070,7 @@ func (x *Expr) String() string {
 func (*Expr) ProtoMessage() {}
 
 func (x *Expr) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[21]
+	mi := &file_types_v1_query_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1717,7 +2083,7 @@ func (x *Expr) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Expr.ProtoReflect.Descriptor instead.
 func (*Expr) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{21}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *Expr) GetExpr() isExpr_Expr {
@@ -1831,7 +2197,7 @@ type UnaryOp struct {
 
 func (x *UnaryOp) Reset() {
 	*x = UnaryOp{}
-	mi := &file_types_v1_query_proto_msgTypes[22]
+	mi := &file_types_v1_query_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1843,7 +2209,7 @@ func (x *UnaryOp) String() string {
 func (*UnaryOp) ProtoMessage() {}
 
 func (x *UnaryOp) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[22]
+	mi := &file_types_v1_query_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1856,7 +2222,7 @@ func (x *UnaryOp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UnaryOp.ProtoReflect.Descriptor instead.
 func (*UnaryOp) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{22}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *UnaryOp) GetOp() UnaryOp_Operator {
@@ -1884,7 +2250,7 @@ type BinaryOp struct {
 
 func (x *BinaryOp) Reset() {
 	*x = BinaryOp{}
-	mi := &file_types_v1_query_proto_msgTypes[23]
+	mi := &file_types_v1_query_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1896,7 +2262,7 @@ func (x *BinaryOp) String() string {
 func (*BinaryOp) ProtoMessage() {}
 
 func (x *BinaryOp) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[23]
+	mi := &file_types_v1_query_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1909,7 +2275,7 @@ func (x *BinaryOp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BinaryOp.ProtoReflect.Descriptor instead.
 func (*BinaryOp) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{23}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *BinaryOp) GetLhs() *Expr {
@@ -1943,7 +2309,7 @@ type FuncCall struct {
 
 func (x *FuncCall) Reset() {
 	*x = FuncCall{}
-	mi := &file_types_v1_query_proto_msgTypes[24]
+	mi := &file_types_v1_query_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1955,7 +2321,7 @@ func (x *FuncCall) String() string {
 func (*FuncCall) ProtoMessage() {}
 
 func (x *FuncCall) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[24]
+	mi := &file_types_v1_query_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1968,7 +2334,7 @@ func (x *FuncCall) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FuncCall.ProtoReflect.Descriptor instead.
 func (*FuncCall) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{24}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *FuncCall) GetName() string {
@@ -1994,7 +2360,7 @@ type Identifier struct {
 
 func (x *Identifier) Reset() {
 	*x = Identifier{}
-	mi := &file_types_v1_query_proto_msgTypes[25]
+	mi := &file_types_v1_query_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2006,7 +2372,7 @@ func (x *Identifier) String() string {
 func (*Identifier) ProtoMessage() {}
 
 func (x *Identifier) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[25]
+	mi := &file_types_v1_query_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2019,7 +2385,7 @@ func (x *Identifier) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Identifier.ProtoReflect.Descriptor instead.
 func (*Identifier) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{25}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *Identifier) GetName() string {
@@ -2039,7 +2405,7 @@ type Indexor struct {
 
 func (x *Indexor) Reset() {
 	*x = Indexor{}
-	mi := &file_types_v1_query_proto_msgTypes[26]
+	mi := &file_types_v1_query_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2051,7 +2417,7 @@ func (x *Indexor) String() string {
 func (*Indexor) ProtoMessage() {}
 
 func (x *Indexor) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[26]
+	mi := &file_types_v1_query_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2064,7 +2430,7 @@ func (x *Indexor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Indexor.ProtoReflect.Descriptor instead.
 func (*Indexor) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{26}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *Indexor) GetX() *Expr {
@@ -2090,7 +2456,7 @@ type SummarizeOperator_Parameters struct {
 
 func (x *SummarizeOperator_Parameters) Reset() {
 	*x = SummarizeOperator_Parameters{}
-	mi := &file_types_v1_query_proto_msgTypes[27]
+	mi := &file_types_v1_query_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2102,7 +2468,7 @@ func (x *SummarizeOperator_Parameters) String() string {
 func (*SummarizeOperator_Parameters) ProtoMessage() {}
 
 func (x *SummarizeOperator_Parameters) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[27]
+	mi := &file_types_v1_query_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2135,7 +2501,7 @@ type SummarizeOperator_Parameter struct {
 
 func (x *SummarizeOperator_Parameter) Reset() {
 	*x = SummarizeOperator_Parameter{}
-	mi := &file_types_v1_query_proto_msgTypes[28]
+	mi := &file_types_v1_query_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2147,7 +2513,7 @@ func (x *SummarizeOperator_Parameter) String() string {
 func (*SummarizeOperator_Parameter) ProtoMessage() {}
 
 func (x *SummarizeOperator_Parameter) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[28]
+	mi := &file_types_v1_query_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2186,7 +2552,7 @@ type SummarizeOperator_ByGroupExpressions struct {
 
 func (x *SummarizeOperator_ByGroupExpressions) Reset() {
 	*x = SummarizeOperator_ByGroupExpressions{}
-	mi := &file_types_v1_query_proto_msgTypes[29]
+	mi := &file_types_v1_query_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2198,7 +2564,7 @@ func (x *SummarizeOperator_ByGroupExpressions) String() string {
 func (*SummarizeOperator_ByGroupExpressions) ProtoMessage() {}
 
 func (x *SummarizeOperator_ByGroupExpressions) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[29]
+	mi := &file_types_v1_query_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2231,7 +2597,7 @@ type SummarizeOperator_ByGroupExpression struct {
 
 func (x *SummarizeOperator_ByGroupExpression) Reset() {
 	*x = SummarizeOperator_ByGroupExpression{}
-	mi := &file_types_v1_query_proto_msgTypes[30]
+	mi := &file_types_v1_query_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2243,7 +2609,7 @@ func (x *SummarizeOperator_ByGroupExpression) String() string {
 func (*SummarizeOperator_ByGroupExpression) ProtoMessage() {}
 
 func (x *SummarizeOperator_ByGroupExpression) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[30]
+	mi := &file_types_v1_query_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2283,7 +2649,7 @@ type ProjectOperator_Projection struct {
 
 func (x *ProjectOperator_Projection) Reset() {
 	*x = ProjectOperator_Projection{}
-	mi := &file_types_v1_query_proto_msgTypes[31]
+	mi := &file_types_v1_query_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2295,7 +2661,7 @@ func (x *ProjectOperator_Projection) String() string {
 func (*ProjectOperator_Projection) ProtoMessage() {}
 
 func (x *ProjectOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[31]
+	mi := &file_types_v1_query_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2334,7 +2700,7 @@ type ProjectAwayOperator_Projection struct {
 
 func (x *ProjectAwayOperator_Projection) Reset() {
 	*x = ProjectAwayOperator_Projection{}
-	mi := &file_types_v1_query_proto_msgTypes[32]
+	mi := &file_types_v1_query_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2346,7 +2712,7 @@ func (x *ProjectAwayOperator_Projection) String() string {
 func (*ProjectAwayOperator_Projection) ProtoMessage() {}
 
 func (x *ProjectAwayOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[32]
+	mi := &file_types_v1_query_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2378,7 +2744,7 @@ type ProjectKeepOperator_Projection struct {
 
 func (x *ProjectKeepOperator_Projection) Reset() {
 	*x = ProjectKeepOperator_Projection{}
-	mi := &file_types_v1_query_proto_msgTypes[33]
+	mi := &file_types_v1_query_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2390,7 +2756,7 @@ func (x *ProjectKeepOperator_Projection) String() string {
 func (*ProjectKeepOperator_Projection) ProtoMessage() {}
 
 func (x *ProjectKeepOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[33]
+	mi := &file_types_v1_query_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2423,7 +2789,7 @@ type ExtendOperator_Projection struct {
 
 func (x *ExtendOperator_Projection) Reset() {
 	*x = ExtendOperator_Projection{}
-	mi := &file_types_v1_query_proto_msgTypes[34]
+	mi := &file_types_v1_query_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2435,7 +2801,7 @@ func (x *ExtendOperator_Projection) String() string {
 func (*ExtendOperator_Projection) ProtoMessage() {}
 
 func (x *ExtendOperator_Projection) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[34]
+	mi := &file_types_v1_query_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2465,206 +2831,6 @@ func (x *ExtendOperator_Projection) GetValue() *Expr {
 	return nil
 }
 
-type SearchOperator_Literal struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Literal       string                 `protobuf:"bytes,1,opt,name=literal,proto3" json:"literal,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchOperator_Literal) Reset() {
-	*x = SearchOperator_Literal{}
-	mi := &file_types_v1_query_proto_msgTypes[35]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchOperator_Literal) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchOperator_Literal) ProtoMessage() {}
-
-func (x *SearchOperator_Literal) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[35]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchOperator_Literal.ProtoReflect.Descriptor instead.
-func (*SearchOperator_Literal) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{14, 0}
-}
-
-func (x *SearchOperator_Literal) GetLiteral() string {
-	if x != nil {
-		return x.Literal
-	}
-	return ""
-}
-
-type SearchOperator_FieldSearch struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Column        string                 `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
-	Literal       string                 `protobuf:"bytes,2,opt,name=literal,proto3" json:"literal,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchOperator_FieldSearch) Reset() {
-	*x = SearchOperator_FieldSearch{}
-	mi := &file_types_v1_query_proto_msgTypes[36]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchOperator_FieldSearch) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchOperator_FieldSearch) ProtoMessage() {}
-
-func (x *SearchOperator_FieldSearch) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[36]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchOperator_FieldSearch.ProtoReflect.Descriptor instead.
-func (*SearchOperator_FieldSearch) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{14, 1}
-}
-
-func (x *SearchOperator_FieldSearch) GetColumn() string {
-	if x != nil {
-		return x.Column
-	}
-	return ""
-}
-
-func (x *SearchOperator_FieldSearch) GetLiteral() string {
-	if x != nil {
-		return x.Literal
-	}
-	return ""
-}
-
-type SearchOperator_ExactSearch struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Column        string                 `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
-	Literal       string                 `protobuf:"bytes,2,opt,name=literal,proto3" json:"literal,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchOperator_ExactSearch) Reset() {
-	*x = SearchOperator_ExactSearch{}
-	mi := &file_types_v1_query_proto_msgTypes[37]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchOperator_ExactSearch) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchOperator_ExactSearch) ProtoMessage() {}
-
-func (x *SearchOperator_ExactSearch) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[37]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchOperator_ExactSearch.ProtoReflect.Descriptor instead.
-func (*SearchOperator_ExactSearch) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{14, 2}
-}
-
-func (x *SearchOperator_ExactSearch) GetColumn() string {
-	if x != nil {
-		return x.Column
-	}
-	return ""
-}
-
-func (x *SearchOperator_ExactSearch) GetLiteral() string {
-	if x != nil {
-		return x.Literal
-	}
-	return ""
-}
-
-type SearchOperator_RegexSearch struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Column        string                 `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
-	Regex         string                 `protobuf:"bytes,2,opt,name=regex,proto3" json:"regex,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchOperator_RegexSearch) Reset() {
-	*x = SearchOperator_RegexSearch{}
-	mi := &file_types_v1_query_proto_msgTypes[38]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchOperator_RegexSearch) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchOperator_RegexSearch) ProtoMessage() {}
-
-func (x *SearchOperator_RegexSearch) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[38]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchOperator_RegexSearch.ProtoReflect.Descriptor instead.
-func (*SearchOperator_RegexSearch) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{14, 3}
-}
-
-func (x *SearchOperator_RegexSearch) GetColumn() string {
-	if x != nil {
-		return x.Column
-	}
-	return ""
-}
-
-func (x *SearchOperator_RegexSearch) GetRegex() string {
-	if x != nil {
-		return x.Regex
-	}
-	return ""
-}
-
 type SortOperator_ByColumn struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Column        *Identifier            `protobuf:"bytes,1,opt,name=column,proto3" json:"column,omitempty"`
@@ -2675,7 +2841,7 @@ type SortOperator_ByColumn struct {
 
 func (x *SortOperator_ByColumn) Reset() {
 	*x = SortOperator_ByColumn{}
-	mi := &file_types_v1_query_proto_msgTypes[39]
+	mi := &file_types_v1_query_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2687,7 +2853,7 @@ func (x *SortOperator_ByColumn) String() string {
 func (*SortOperator_ByColumn) ProtoMessage() {}
 
 func (x *SortOperator_ByColumn) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[39]
+	mi := &file_types_v1_query_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2700,7 +2866,7 @@ func (x *SortOperator_ByColumn) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SortOperator_ByColumn.ProtoReflect.Descriptor instead.
 func (*SortOperator_ByColumn) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{15, 0}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{21, 0}
 }
 
 func (x *SortOperator_ByColumn) GetColumn() *Identifier {
@@ -2727,7 +2893,7 @@ type TopOperator_ByColumn struct {
 
 func (x *TopOperator_ByColumn) Reset() {
 	*x = TopOperator_ByColumn{}
-	mi := &file_types_v1_query_proto_msgTypes[40]
+	mi := &file_types_v1_query_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2739,7 +2905,7 @@ func (x *TopOperator_ByColumn) String() string {
 func (*TopOperator_ByColumn) ProtoMessage() {}
 
 func (x *TopOperator_ByColumn) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[40]
+	mi := &file_types_v1_query_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2752,7 +2918,7 @@ func (x *TopOperator_ByColumn) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TopOperator_ByColumn.ProtoReflect.Descriptor instead.
 func (*TopOperator_ByColumn) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{17, 0}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{23, 0}
 }
 
 func (x *TopOperator_ByColumn) GetScalar() *Expr {
@@ -2778,7 +2944,7 @@ type SplitOperator_ByOperator struct {
 
 func (x *SplitOperator_ByOperator) Reset() {
 	*x = SplitOperator_ByOperator{}
-	mi := &file_types_v1_query_proto_msgTypes[41]
+	mi := &file_types_v1_query_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2790,7 +2956,7 @@ func (x *SplitOperator_ByOperator) String() string {
 func (*SplitOperator_ByOperator) ProtoMessage() {}
 
 func (x *SplitOperator_ByOperator) ProtoReflect() protoreflect.Message {
-	mi := &file_types_v1_query_proto_msgTypes[41]
+	mi := &file_types_v1_query_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2803,7 +2969,7 @@ func (x *SplitOperator_ByOperator) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SplitOperator_ByOperator.ProtoReflect.Descriptor instead.
 func (*SplitOperator_ByOperator) Descriptor() ([]byte, []int) {
-	return file_types_v1_query_proto_rawDescGZIP(), []int{20, 0}
+	return file_types_v1_query_proto_rawDescGZIP(), []int{26, 0}
 }
 
 func (x *SplitOperator_ByOperator) GetScalars() []*Expr {
@@ -2908,30 +3074,40 @@ const file_types_v1_query_proto_rawDesc = "" +
 	"\x10DistinctOperator\x12,\n" +
 	"\x06fields\x18\x01 \x03(\v2\x14.types.v1.IdentifierR\x06fields\"&\n" +
 	"\x0eSampleOperator\x12\x14\n" +
-	"\x05count\x18\x01 \x01(\x03R\x05count\"\xd5\x04\n" +
-	"\x0eSearchOperator\x12\x1a\n" +
-	"\aliteral\x18e \x01(\tH\x00R\aliteral\x12<\n" +
-	"\x05field\x18f \x01(\v2$.types.v1.SearchOperator.FieldSearchH\x00R\x05field\x12<\n" +
-	"\x05exact\x18g \x01(\v2$.types.v1.SearchOperator.ExactSearchH\x00R\x05exact\x12<\n" +
-	"\x05regex\x18h \x01(\v2$.types.v1.SearchOperator.RegexSearchH\x00R\x05regex\x126\n" +
-	"\x04kind\x18\x02 \x01(\x0e2\x1d.types.v1.SearchOperator.KindH\x01R\x04kind\x88\x01\x01\x1a#\n" +
-	"\aLiteral\x12\x18\n" +
-	"\aliteral\x18\x01 \x01(\tR\aliteral\x1a?\n" +
-	"\vFieldSearch\x12\x16\n" +
-	"\x06column\x18\x01 \x01(\tR\x06column\x12\x18\n" +
-	"\aliteral\x18\x02 \x01(\tR\aliteral\x1a?\n" +
-	"\vExactSearch\x12\x16\n" +
-	"\x06column\x18\x01 \x01(\tR\x06column\x12\x18\n" +
-	"\aliteral\x18\x02 \x01(\tR\aliteral\x1a;\n" +
-	"\vRegexSearch\x12\x16\n" +
-	"\x06column\x18\x01 \x01(\tR\x06column\x12\x14\n" +
-	"\x05regex\x18\x02 \x01(\tR\x05regex\";\n" +
+	"\x05count\x18\x01 \x01(\x03R\x05count\"\xc7\x01\n" +
+	"\x0eSearchOperator\x127\n" +
+	"\tpredicate\x18\x01 \x01(\v2\x19.types.v1.SearchPredicateR\tpredicate\x126\n" +
+	"\x04kind\x18\x02 \x01(\x0e2\x1d.types.v1.SearchOperator.KindH\x00R\x04kind\x88\x01\x01\";\n" +
 	"\x04Kind\x12\v\n" +
 	"\aDefault\x10\x00\x12\x13\n" +
 	"\x0fCaseInsensitive\x10\x01\x12\x11\n" +
-	"\rCaseSensitive\x10\x02B\v\n" +
-	"\tpredicateB\a\n" +
-	"\x05_kind\"\xe7\x01\n" +
+	"\rCaseSensitive\x10\x02B\a\n" +
+	"\x05_kind\"\x98\x02\n" +
+	"\x0fSearchPredicate\x12-\n" +
+	"\x04term\x18\x01 \x01(\v2\x17.types.v1.TermPredicateH\x00R\x04term\x120\n" +
+	"\x05field\x18\x02 \x01(\v2\x18.types.v1.FieldPredicateH\x00R\x05field\x120\n" +
+	"\x05exact\x18\x03 \x01(\v2\x18.types.v1.ExactPredicateH\x00R\x05exact\x120\n" +
+	"\x05regex\x18\x04 \x01(\v2\x18.types.v1.RegexPredicateH\x00R\x05regex\x123\n" +
+	"\x06binary\x18\x05 \x01(\v2\x19.types.v1.BinaryPredicateH\x00R\x06binaryB\v\n" +
+	"\tpredicate\"%\n" +
+	"\rTermPredicate\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\tR\x05value\"<\n" +
+	"\x0eFieldPredicate\x12\x16\n" +
+	"\x06column\x18\x01 \x01(\tR\x06column\x12\x12\n" +
+	"\x04term\x18\x02 \x01(\tR\x04term\">\n" +
+	"\x0eExactPredicate\x12\x16\n" +
+	"\x06column\x18\x01 \x01(\tR\x06column\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value\"B\n" +
+	"\x0eRegexPredicate\x12\x16\n" +
+	"\x06column\x18\x01 \x01(\tR\x06column\x12\x18\n" +
+	"\apattern\x18\x02 \x01(\tR\apattern\"\xb6\x01\n" +
+	"\x0fBinaryPredicate\x12,\n" +
+	"\x02op\x18\x01 \x01(\x0e2\x1c.types.v1.BinaryPredicate.OpR\x02op\x12-\n" +
+	"\x04left\x18\x02 \x01(\v2\x19.types.v1.SearchPredicateR\x04left\x12/\n" +
+	"\x05right\x18\x03 \x01(\v2\x19.types.v1.SearchPredicateR\x05right\"\x15\n" +
+	"\x02Op\x12\a\n" +
+	"\x03AND\x10\x00\x12\x06\n" +
+	"\x02OR\x10\x01\"\xe7\x01\n" +
 	"\fSortOperator\x12>\n" +
 	"\n" +
 	"by_columns\x18\x01 \x03(\v2\x1f.types.v1.SortOperator.ByColumnR\tbyColumns\x1a{\n" +
@@ -3053,135 +3229,144 @@ func file_types_v1_query_proto_rawDescGZIP() []byte {
 	return file_types_v1_query_proto_rawDescData
 }
 
-var file_types_v1_query_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_types_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 42)
+var file_types_v1_query_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
+var file_types_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
 var file_types_v1_query_proto_goTypes = []any{
 	(SearchOperator_Kind)(0),                     // 0: types.v1.SearchOperator.Kind
-	(SortOperator_Order)(0),                      // 1: types.v1.SortOperator.Order
-	(TopOperator_Order)(0),                       // 2: types.v1.TopOperator.Order
-	(UnaryOp_Operator)(0),                        // 3: types.v1.UnaryOp.Operator
-	(BinaryOp_Operator)(0),                       // 4: types.v1.BinaryOp.Operator
-	(*Query)(nil),                                // 5: types.v1.Query
-	(*Timerange)(nil),                            // 6: types.v1.Timerange
-	(*Context)(nil),                              // 7: types.v1.Context
-	(*Statements)(nil),                           // 8: types.v1.Statements
-	(*Statement)(nil),                            // 9: types.v1.Statement
-	(*FilterOperator)(nil),                       // 10: types.v1.FilterOperator
-	(*SummarizeOperator)(nil),                    // 11: types.v1.SummarizeOperator
-	(*ProjectOperator)(nil),                      // 12: types.v1.ProjectOperator
-	(*ProjectAwayOperator)(nil),                  // 13: types.v1.ProjectAwayOperator
-	(*ProjectKeepOperator)(nil),                  // 14: types.v1.ProjectKeepOperator
-	(*ExtendOperator)(nil),                       // 15: types.v1.ExtendOperator
-	(*CountOperator)(nil),                        // 16: types.v1.CountOperator
-	(*DistinctOperator)(nil),                     // 17: types.v1.DistinctOperator
-	(*SampleOperator)(nil),                       // 18: types.v1.SampleOperator
-	(*SearchOperator)(nil),                       // 19: types.v1.SearchOperator
-	(*SortOperator)(nil),                         // 20: types.v1.SortOperator
-	(*TakeOperator)(nil),                         // 21: types.v1.TakeOperator
-	(*TopOperator)(nil),                          // 22: types.v1.TopOperator
-	(*GetSchemaOperator)(nil),                    // 23: types.v1.GetSchemaOperator
-	(*RenderStatement)(nil),                      // 24: types.v1.RenderStatement
-	(*SplitOperator)(nil),                        // 25: types.v1.SplitOperator
-	(*Expr)(nil),                                 // 26: types.v1.Expr
-	(*UnaryOp)(nil),                              // 27: types.v1.UnaryOp
-	(*BinaryOp)(nil),                             // 28: types.v1.BinaryOp
-	(*FuncCall)(nil),                             // 29: types.v1.FuncCall
-	(*Identifier)(nil),                           // 30: types.v1.Identifier
-	(*Indexor)(nil),                              // 31: types.v1.Indexor
-	(*SummarizeOperator_Parameters)(nil),         // 32: types.v1.SummarizeOperator.Parameters
-	(*SummarizeOperator_Parameter)(nil),          // 33: types.v1.SummarizeOperator.Parameter
-	(*SummarizeOperator_ByGroupExpressions)(nil), // 34: types.v1.SummarizeOperator.ByGroupExpressions
-	(*SummarizeOperator_ByGroupExpression)(nil),  // 35: types.v1.SummarizeOperator.ByGroupExpression
-	(*ProjectOperator_Projection)(nil),           // 36: types.v1.ProjectOperator.Projection
-	(*ProjectAwayOperator_Projection)(nil),       // 37: types.v1.ProjectAwayOperator.Projection
-	(*ProjectKeepOperator_Projection)(nil),       // 38: types.v1.ProjectKeepOperator.Projection
-	(*ExtendOperator_Projection)(nil),            // 39: types.v1.ExtendOperator.Projection
-	(*SearchOperator_Literal)(nil),               // 40: types.v1.SearchOperator.Literal
-	(*SearchOperator_FieldSearch)(nil),           // 41: types.v1.SearchOperator.FieldSearch
-	(*SearchOperator_ExactSearch)(nil),           // 42: types.v1.SearchOperator.ExactSearch
-	(*SearchOperator_RegexSearch)(nil),           // 43: types.v1.SearchOperator.RegexSearch
-	(*SortOperator_ByColumn)(nil),                // 44: types.v1.SortOperator.ByColumn
-	(*TopOperator_ByColumn)(nil),                 // 45: types.v1.TopOperator.ByColumn
-	(*SplitOperator_ByOperator)(nil),             // 46: types.v1.SplitOperator.ByOperator
-	(*Val)(nil),                                  // 47: types.v1.Val
+	(BinaryPredicate_Op)(0),                      // 1: types.v1.BinaryPredicate.Op
+	(SortOperator_Order)(0),                      // 2: types.v1.SortOperator.Order
+	(TopOperator_Order)(0),                       // 3: types.v1.TopOperator.Order
+	(UnaryOp_Operator)(0),                        // 4: types.v1.UnaryOp.Operator
+	(BinaryOp_Operator)(0),                       // 5: types.v1.BinaryOp.Operator
+	(*Query)(nil),                                // 6: types.v1.Query
+	(*Timerange)(nil),                            // 7: types.v1.Timerange
+	(*Context)(nil),                              // 8: types.v1.Context
+	(*Statements)(nil),                           // 9: types.v1.Statements
+	(*Statement)(nil),                            // 10: types.v1.Statement
+	(*FilterOperator)(nil),                       // 11: types.v1.FilterOperator
+	(*SummarizeOperator)(nil),                    // 12: types.v1.SummarizeOperator
+	(*ProjectOperator)(nil),                      // 13: types.v1.ProjectOperator
+	(*ProjectAwayOperator)(nil),                  // 14: types.v1.ProjectAwayOperator
+	(*ProjectKeepOperator)(nil),                  // 15: types.v1.ProjectKeepOperator
+	(*ExtendOperator)(nil),                       // 16: types.v1.ExtendOperator
+	(*CountOperator)(nil),                        // 17: types.v1.CountOperator
+	(*DistinctOperator)(nil),                     // 18: types.v1.DistinctOperator
+	(*SampleOperator)(nil),                       // 19: types.v1.SampleOperator
+	(*SearchOperator)(nil),                       // 20: types.v1.SearchOperator
+	(*SearchPredicate)(nil),                      // 21: types.v1.SearchPredicate
+	(*TermPredicate)(nil),                        // 22: types.v1.TermPredicate
+	(*FieldPredicate)(nil),                       // 23: types.v1.FieldPredicate
+	(*ExactPredicate)(nil),                       // 24: types.v1.ExactPredicate
+	(*RegexPredicate)(nil),                       // 25: types.v1.RegexPredicate
+	(*BinaryPredicate)(nil),                      // 26: types.v1.BinaryPredicate
+	(*SortOperator)(nil),                         // 27: types.v1.SortOperator
+	(*TakeOperator)(nil),                         // 28: types.v1.TakeOperator
+	(*TopOperator)(nil),                          // 29: types.v1.TopOperator
+	(*GetSchemaOperator)(nil),                    // 30: types.v1.GetSchemaOperator
+	(*RenderStatement)(nil),                      // 31: types.v1.RenderStatement
+	(*SplitOperator)(nil),                        // 32: types.v1.SplitOperator
+	(*Expr)(nil),                                 // 33: types.v1.Expr
+	(*UnaryOp)(nil),                              // 34: types.v1.UnaryOp
+	(*BinaryOp)(nil),                             // 35: types.v1.BinaryOp
+	(*FuncCall)(nil),                             // 36: types.v1.FuncCall
+	(*Identifier)(nil),                           // 37: types.v1.Identifier
+	(*Indexor)(nil),                              // 38: types.v1.Indexor
+	(*SummarizeOperator_Parameters)(nil),         // 39: types.v1.SummarizeOperator.Parameters
+	(*SummarizeOperator_Parameter)(nil),          // 40: types.v1.SummarizeOperator.Parameter
+	(*SummarizeOperator_ByGroupExpressions)(nil), // 41: types.v1.SummarizeOperator.ByGroupExpressions
+	(*SummarizeOperator_ByGroupExpression)(nil),  // 42: types.v1.SummarizeOperator.ByGroupExpression
+	(*ProjectOperator_Projection)(nil),           // 43: types.v1.ProjectOperator.Projection
+	(*ProjectAwayOperator_Projection)(nil),       // 44: types.v1.ProjectAwayOperator.Projection
+	(*ProjectKeepOperator_Projection)(nil),       // 45: types.v1.ProjectKeepOperator.Projection
+	(*ExtendOperator_Projection)(nil),            // 46: types.v1.ExtendOperator.Projection
+	(*SortOperator_ByColumn)(nil),                // 47: types.v1.SortOperator.ByColumn
+	(*TopOperator_ByColumn)(nil),                 // 48: types.v1.TopOperator.ByColumn
+	(*SplitOperator_ByOperator)(nil),             // 49: types.v1.SplitOperator.ByOperator
+	(*Val)(nil),                                  // 50: types.v1.Val
 }
 var file_types_v1_query_proto_depIdxs = []int32{
-	6,  // 0: types.v1.Query.timerange:type_name -> types.v1.Timerange
-	7,  // 1: types.v1.Query.context:type_name -> types.v1.Context
-	8,  // 2: types.v1.Query.query:type_name -> types.v1.Statements
-	26, // 3: types.v1.Timerange.from:type_name -> types.v1.Expr
-	26, // 4: types.v1.Timerange.to:type_name -> types.v1.Expr
-	26, // 5: types.v1.Context.resource_fingerprint:type_name -> types.v1.Expr
-	26, // 6: types.v1.Context.scope_fingerprint:type_name -> types.v1.Expr
-	26, // 7: types.v1.Context.dataset:type_name -> types.v1.Expr
-	9,  // 8: types.v1.Statements.statements:type_name -> types.v1.Statement
-	24, // 9: types.v1.Statements.render:type_name -> types.v1.RenderStatement
-	10, // 10: types.v1.Statement.filter:type_name -> types.v1.FilterOperator
-	11, // 11: types.v1.Statement.summarize:type_name -> types.v1.SummarizeOperator
-	12, // 12: types.v1.Statement.project:type_name -> types.v1.ProjectOperator
-	13, // 13: types.v1.Statement.project_away:type_name -> types.v1.ProjectAwayOperator
-	14, // 14: types.v1.Statement.project_keep:type_name -> types.v1.ProjectKeepOperator
-	15, // 15: types.v1.Statement.extend:type_name -> types.v1.ExtendOperator
-	16, // 16: types.v1.Statement.count:type_name -> types.v1.CountOperator
-	17, // 17: types.v1.Statement.distinct:type_name -> types.v1.DistinctOperator
-	18, // 18: types.v1.Statement.sample:type_name -> types.v1.SampleOperator
-	19, // 19: types.v1.Statement.search:type_name -> types.v1.SearchOperator
-	20, // 20: types.v1.Statement.sort:type_name -> types.v1.SortOperator
-	21, // 21: types.v1.Statement.take:type_name -> types.v1.TakeOperator
-	22, // 22: types.v1.Statement.top:type_name -> types.v1.TopOperator
-	23, // 23: types.v1.Statement.get_schema:type_name -> types.v1.GetSchemaOperator
-	26, // 24: types.v1.FilterOperator.expr:type_name -> types.v1.Expr
-	32, // 25: types.v1.SummarizeOperator.parameters:type_name -> types.v1.SummarizeOperator.Parameters
-	34, // 26: types.v1.SummarizeOperator.by_group_expressions:type_name -> types.v1.SummarizeOperator.ByGroupExpressions
-	36, // 27: types.v1.ProjectOperator.projections:type_name -> types.v1.ProjectOperator.Projection
-	37, // 28: types.v1.ProjectAwayOperator.projections:type_name -> types.v1.ProjectAwayOperator.Projection
-	38, // 29: types.v1.ProjectKeepOperator.projections:type_name -> types.v1.ProjectKeepOperator.Projection
-	39, // 30: types.v1.ExtendOperator.projections:type_name -> types.v1.ExtendOperator.Projection
-	30, // 31: types.v1.DistinctOperator.fields:type_name -> types.v1.Identifier
-	41, // 32: types.v1.SearchOperator.field:type_name -> types.v1.SearchOperator.FieldSearch
-	42, // 33: types.v1.SearchOperator.exact:type_name -> types.v1.SearchOperator.ExactSearch
-	43, // 34: types.v1.SearchOperator.regex:type_name -> types.v1.SearchOperator.RegexSearch
-	0,  // 35: types.v1.SearchOperator.kind:type_name -> types.v1.SearchOperator.Kind
-	44, // 36: types.v1.SortOperator.by_columns:type_name -> types.v1.SortOperator.ByColumn
-	45, // 37: types.v1.TopOperator.by_column:type_name -> types.v1.TopOperator.ByColumn
-	25, // 38: types.v1.RenderStatement.split:type_name -> types.v1.SplitOperator
-	46, // 39: types.v1.SplitOperator.by:type_name -> types.v1.SplitOperator.ByOperator
-	47, // 40: types.v1.Expr.literal:type_name -> types.v1.Val
-	27, // 41: types.v1.Expr.unary:type_name -> types.v1.UnaryOp
-	28, // 42: types.v1.Expr.binary:type_name -> types.v1.BinaryOp
-	29, // 43: types.v1.Expr.func_call:type_name -> types.v1.FuncCall
-	30, // 44: types.v1.Expr.identifier:type_name -> types.v1.Identifier
-	31, // 45: types.v1.Expr.indexor:type_name -> types.v1.Indexor
-	3,  // 46: types.v1.UnaryOp.op:type_name -> types.v1.UnaryOp.Operator
-	26, // 47: types.v1.UnaryOp.arg:type_name -> types.v1.Expr
-	26, // 48: types.v1.BinaryOp.lhs:type_name -> types.v1.Expr
-	4,  // 49: types.v1.BinaryOp.op:type_name -> types.v1.BinaryOp.Operator
-	26, // 50: types.v1.BinaryOp.rhs:type_name -> types.v1.Expr
-	26, // 51: types.v1.FuncCall.args:type_name -> types.v1.Expr
-	26, // 52: types.v1.Indexor.x:type_name -> types.v1.Expr
-	26, // 53: types.v1.Indexor.index:type_name -> types.v1.Expr
-	33, // 54: types.v1.SummarizeOperator.Parameters.parameters:type_name -> types.v1.SummarizeOperator.Parameter
-	30, // 55: types.v1.SummarizeOperator.Parameter.column:type_name -> types.v1.Identifier
-	29, // 56: types.v1.SummarizeOperator.Parameter.aggregate_function:type_name -> types.v1.FuncCall
-	35, // 57: types.v1.SummarizeOperator.ByGroupExpressions.groups:type_name -> types.v1.SummarizeOperator.ByGroupExpression
-	30, // 58: types.v1.SummarizeOperator.ByGroupExpression.column:type_name -> types.v1.Identifier
-	26, // 59: types.v1.SummarizeOperator.ByGroupExpression.scalar:type_name -> types.v1.Expr
-	30, // 60: types.v1.ProjectOperator.Projection.column:type_name -> types.v1.Identifier
-	26, // 61: types.v1.ProjectOperator.Projection.value:type_name -> types.v1.Expr
-	30, // 62: types.v1.ProjectAwayOperator.Projection.column:type_name -> types.v1.Identifier
-	30, // 63: types.v1.ProjectKeepOperator.Projection.column:type_name -> types.v1.Identifier
-	30, // 64: types.v1.ExtendOperator.Projection.column:type_name -> types.v1.Identifier
-	26, // 65: types.v1.ExtendOperator.Projection.value:type_name -> types.v1.Expr
-	30, // 66: types.v1.SortOperator.ByColumn.column:type_name -> types.v1.Identifier
-	1,  // 67: types.v1.SortOperator.ByColumn.order:type_name -> types.v1.SortOperator.Order
-	26, // 68: types.v1.TopOperator.ByColumn.scalar:type_name -> types.v1.Expr
-	2,  // 69: types.v1.TopOperator.ByColumn.order:type_name -> types.v1.TopOperator.Order
-	26, // 70: types.v1.SplitOperator.ByOperator.scalars:type_name -> types.v1.Expr
-	71, // [71:71] is the sub-list for method output_type
-	71, // [71:71] is the sub-list for method input_type
-	71, // [71:71] is the sub-list for extension type_name
-	71, // [71:71] is the sub-list for extension extendee
-	0,  // [0:71] is the sub-list for field type_name
+	7,  // 0: types.v1.Query.timerange:type_name -> types.v1.Timerange
+	8,  // 1: types.v1.Query.context:type_name -> types.v1.Context
+	9,  // 2: types.v1.Query.query:type_name -> types.v1.Statements
+	33, // 3: types.v1.Timerange.from:type_name -> types.v1.Expr
+	33, // 4: types.v1.Timerange.to:type_name -> types.v1.Expr
+	33, // 5: types.v1.Context.resource_fingerprint:type_name -> types.v1.Expr
+	33, // 6: types.v1.Context.scope_fingerprint:type_name -> types.v1.Expr
+	33, // 7: types.v1.Context.dataset:type_name -> types.v1.Expr
+	10, // 8: types.v1.Statements.statements:type_name -> types.v1.Statement
+	31, // 9: types.v1.Statements.render:type_name -> types.v1.RenderStatement
+	11, // 10: types.v1.Statement.filter:type_name -> types.v1.FilterOperator
+	12, // 11: types.v1.Statement.summarize:type_name -> types.v1.SummarizeOperator
+	13, // 12: types.v1.Statement.project:type_name -> types.v1.ProjectOperator
+	14, // 13: types.v1.Statement.project_away:type_name -> types.v1.ProjectAwayOperator
+	15, // 14: types.v1.Statement.project_keep:type_name -> types.v1.ProjectKeepOperator
+	16, // 15: types.v1.Statement.extend:type_name -> types.v1.ExtendOperator
+	17, // 16: types.v1.Statement.count:type_name -> types.v1.CountOperator
+	18, // 17: types.v1.Statement.distinct:type_name -> types.v1.DistinctOperator
+	19, // 18: types.v1.Statement.sample:type_name -> types.v1.SampleOperator
+	20, // 19: types.v1.Statement.search:type_name -> types.v1.SearchOperator
+	27, // 20: types.v1.Statement.sort:type_name -> types.v1.SortOperator
+	28, // 21: types.v1.Statement.take:type_name -> types.v1.TakeOperator
+	29, // 22: types.v1.Statement.top:type_name -> types.v1.TopOperator
+	30, // 23: types.v1.Statement.get_schema:type_name -> types.v1.GetSchemaOperator
+	33, // 24: types.v1.FilterOperator.expr:type_name -> types.v1.Expr
+	39, // 25: types.v1.SummarizeOperator.parameters:type_name -> types.v1.SummarizeOperator.Parameters
+	41, // 26: types.v1.SummarizeOperator.by_group_expressions:type_name -> types.v1.SummarizeOperator.ByGroupExpressions
+	43, // 27: types.v1.ProjectOperator.projections:type_name -> types.v1.ProjectOperator.Projection
+	44, // 28: types.v1.ProjectAwayOperator.projections:type_name -> types.v1.ProjectAwayOperator.Projection
+	45, // 29: types.v1.ProjectKeepOperator.projections:type_name -> types.v1.ProjectKeepOperator.Projection
+	46, // 30: types.v1.ExtendOperator.projections:type_name -> types.v1.ExtendOperator.Projection
+	37, // 31: types.v1.DistinctOperator.fields:type_name -> types.v1.Identifier
+	21, // 32: types.v1.SearchOperator.predicate:type_name -> types.v1.SearchPredicate
+	0,  // 33: types.v1.SearchOperator.kind:type_name -> types.v1.SearchOperator.Kind
+	22, // 34: types.v1.SearchPredicate.term:type_name -> types.v1.TermPredicate
+	23, // 35: types.v1.SearchPredicate.field:type_name -> types.v1.FieldPredicate
+	24, // 36: types.v1.SearchPredicate.exact:type_name -> types.v1.ExactPredicate
+	25, // 37: types.v1.SearchPredicate.regex:type_name -> types.v1.RegexPredicate
+	26, // 38: types.v1.SearchPredicate.binary:type_name -> types.v1.BinaryPredicate
+	1,  // 39: types.v1.BinaryPredicate.op:type_name -> types.v1.BinaryPredicate.Op
+	21, // 40: types.v1.BinaryPredicate.left:type_name -> types.v1.SearchPredicate
+	21, // 41: types.v1.BinaryPredicate.right:type_name -> types.v1.SearchPredicate
+	47, // 42: types.v1.SortOperator.by_columns:type_name -> types.v1.SortOperator.ByColumn
+	48, // 43: types.v1.TopOperator.by_column:type_name -> types.v1.TopOperator.ByColumn
+	32, // 44: types.v1.RenderStatement.split:type_name -> types.v1.SplitOperator
+	49, // 45: types.v1.SplitOperator.by:type_name -> types.v1.SplitOperator.ByOperator
+	50, // 46: types.v1.Expr.literal:type_name -> types.v1.Val
+	34, // 47: types.v1.Expr.unary:type_name -> types.v1.UnaryOp
+	35, // 48: types.v1.Expr.binary:type_name -> types.v1.BinaryOp
+	36, // 49: types.v1.Expr.func_call:type_name -> types.v1.FuncCall
+	37, // 50: types.v1.Expr.identifier:type_name -> types.v1.Identifier
+	38, // 51: types.v1.Expr.indexor:type_name -> types.v1.Indexor
+	4,  // 52: types.v1.UnaryOp.op:type_name -> types.v1.UnaryOp.Operator
+	33, // 53: types.v1.UnaryOp.arg:type_name -> types.v1.Expr
+	33, // 54: types.v1.BinaryOp.lhs:type_name -> types.v1.Expr
+	5,  // 55: types.v1.BinaryOp.op:type_name -> types.v1.BinaryOp.Operator
+	33, // 56: types.v1.BinaryOp.rhs:type_name -> types.v1.Expr
+	33, // 57: types.v1.FuncCall.args:type_name -> types.v1.Expr
+	33, // 58: types.v1.Indexor.x:type_name -> types.v1.Expr
+	33, // 59: types.v1.Indexor.index:type_name -> types.v1.Expr
+	40, // 60: types.v1.SummarizeOperator.Parameters.parameters:type_name -> types.v1.SummarizeOperator.Parameter
+	37, // 61: types.v1.SummarizeOperator.Parameter.column:type_name -> types.v1.Identifier
+	36, // 62: types.v1.SummarizeOperator.Parameter.aggregate_function:type_name -> types.v1.FuncCall
+	42, // 63: types.v1.SummarizeOperator.ByGroupExpressions.groups:type_name -> types.v1.SummarizeOperator.ByGroupExpression
+	37, // 64: types.v1.SummarizeOperator.ByGroupExpression.column:type_name -> types.v1.Identifier
+	33, // 65: types.v1.SummarizeOperator.ByGroupExpression.scalar:type_name -> types.v1.Expr
+	37, // 66: types.v1.ProjectOperator.Projection.column:type_name -> types.v1.Identifier
+	33, // 67: types.v1.ProjectOperator.Projection.value:type_name -> types.v1.Expr
+	37, // 68: types.v1.ProjectAwayOperator.Projection.column:type_name -> types.v1.Identifier
+	37, // 69: types.v1.ProjectKeepOperator.Projection.column:type_name -> types.v1.Identifier
+	37, // 70: types.v1.ExtendOperator.Projection.column:type_name -> types.v1.Identifier
+	33, // 71: types.v1.ExtendOperator.Projection.value:type_name -> types.v1.Expr
+	37, // 72: types.v1.SortOperator.ByColumn.column:type_name -> types.v1.Identifier
+	2,  // 73: types.v1.SortOperator.ByColumn.order:type_name -> types.v1.SortOperator.Order
+	33, // 74: types.v1.TopOperator.ByColumn.scalar:type_name -> types.v1.Expr
+	3,  // 75: types.v1.TopOperator.ByColumn.order:type_name -> types.v1.TopOperator.Order
+	33, // 76: types.v1.SplitOperator.ByOperator.scalars:type_name -> types.v1.Expr
+	77, // [77:77] is the sub-list for method output_type
+	77, // [77:77] is the sub-list for method input_type
+	77, // [77:77] is the sub-list for extension type_name
+	77, // [77:77] is the sub-list for extension extendee
+	0,  // [0:77] is the sub-list for field type_name
 }
 
 func init() { file_types_v1_query_proto_init() }
@@ -3209,17 +3394,19 @@ func file_types_v1_query_proto_init() {
 		(*Statement_GetSchema)(nil),
 	}
 	file_types_v1_query_proto_msgTypes[6].OneofWrappers = []any{}
-	file_types_v1_query_proto_msgTypes[14].OneofWrappers = []any{
-		(*SearchOperator_Literal_)(nil),
-		(*SearchOperator_Field)(nil),
-		(*SearchOperator_Exact)(nil),
-		(*SearchOperator_Regex)(nil),
+	file_types_v1_query_proto_msgTypes[14].OneofWrappers = []any{}
+	file_types_v1_query_proto_msgTypes[15].OneofWrappers = []any{
+		(*SearchPredicate_Term)(nil),
+		(*SearchPredicate_Field)(nil),
+		(*SearchPredicate_Exact)(nil),
+		(*SearchPredicate_Regex)(nil),
+		(*SearchPredicate_Binary)(nil),
 	}
-	file_types_v1_query_proto_msgTypes[17].OneofWrappers = []any{}
-	file_types_v1_query_proto_msgTypes[19].OneofWrappers = []any{
+	file_types_v1_query_proto_msgTypes[23].OneofWrappers = []any{}
+	file_types_v1_query_proto_msgTypes[25].OneofWrappers = []any{
 		(*RenderStatement_Split)(nil),
 	}
-	file_types_v1_query_proto_msgTypes[21].OneofWrappers = []any{
+	file_types_v1_query_proto_msgTypes[27].OneofWrappers = []any{
 		(*Expr_Literal)(nil),
 		(*Expr_Unary)(nil),
 		(*Expr_Binary)(nil),
@@ -3227,18 +3414,18 @@ func file_types_v1_query_proto_init() {
 		(*Expr_Identifier)(nil),
 		(*Expr_Indexor)(nil),
 	}
-	file_types_v1_query_proto_msgTypes[28].OneofWrappers = []any{}
-	file_types_v1_query_proto_msgTypes[30].OneofWrappers = []any{}
-	file_types_v1_query_proto_msgTypes[31].OneofWrappers = []any{}
-	file_types_v1_query_proto_msgTypes[39].OneofWrappers = []any{}
-	file_types_v1_query_proto_msgTypes[40].OneofWrappers = []any{}
+	file_types_v1_query_proto_msgTypes[34].OneofWrappers = []any{}
+	file_types_v1_query_proto_msgTypes[36].OneofWrappers = []any{}
+	file_types_v1_query_proto_msgTypes[37].OneofWrappers = []any{}
+	file_types_v1_query_proto_msgTypes[41].OneofWrappers = []any{}
+	file_types_v1_query_proto_msgTypes[42].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_types_v1_query_proto_rawDesc), len(file_types_v1_query_proto_rawDesc)),
-			NumEnums:      5,
-			NumMessages:   42,
+			NumEnums:      6,
+			NumMessages:   44,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

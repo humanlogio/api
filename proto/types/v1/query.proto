@@ -118,28 +118,47 @@ message SearchOperator {
     CaseInsensitive = 1;
     CaseSensitive = 2;
   }
-  message Literal {
-    string literal = 1;
-  }
-  message FieldSearch {
-    string column = 1;
-    string literal = 2;
-  }
-  message ExactSearch {
-    string column = 1;
-    string literal = 2;
-  }
-  message RegexSearch {
-    string column = 1;
-    string regex = 2;
-  }
-  oneof predicate {
-    string literal = 101;
-    FieldSearch field = 102;
-    ExactSearch exact = 103;
-    RegexSearch regex = 104;
-  }
+  SearchPredicate predicate = 1;
   optional Kind kind = 2;
+}
+
+message SearchPredicate {
+  oneof predicate {
+    TermPredicate term = 1;
+    FieldPredicate field = 2;
+    ExactPredicate exact = 3;
+    RegexPredicate regex = 4;
+    BinaryPredicate binary = 5;
+  }
+}
+
+message TermPredicate {
+  string value = 1;
+}
+
+message FieldPredicate {
+  string column = 1;
+  string term = 2;
+}
+
+message ExactPredicate {
+  string column = 1;
+  string value = 2;
+}
+
+message RegexPredicate {
+  string column = 1;
+  string pattern = 2;
+}
+
+message BinaryPredicate {
+  enum Op {
+    AND = 0;
+    OR = 1;
+  }
+  Op op = 1;
+  SearchPredicate left = 2;
+  SearchPredicate right = 3;
 }
 
 message SortOperator {
