@@ -13,7 +13,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file types/v1/query.proto.
  */
 export const file_types_v1_query: GenFile = /*@__PURE__*/
-  fileDesc("ChR0eXBlcy92MS9xdWVyeS5wcm90bxIIdHlwZXMudjEieAoFUXVlcnkSJgoJdGltZXJhbmdlGAEgASgLMhMudHlwZXMudjEuVGltZXJhbmdlEiIKB2NvbnRleHQYAiABKAsyES50eXBlcy52MS5Db250ZXh0EiMKBXF1ZXJ5GAMgASgLMhQudHlwZXMudjEuU3RhdGVtZW50cyJRCglUaW1lcmFuZ2USHAoEZnJvbRgBIAEoCzIOLnR5cGVzLnYxLkV4cHISHwoCdG8YAiABKAsyDi50eXBlcy52MS5FeHBySACIAQFCBQoDX3RvIs0BCgdDb250ZXh0EjEKFHJlc291cmNlX2ZpbmdlcnByaW50GGUgASgLMg4udHlwZXMudjEuRXhwckgAiAEBEi4KEXNjb3BlX2ZpbmdlcnByaW50GGYgASgLMg4udHlwZXMudjEuRXhwckgBiAEBEiQKB2RhdGFzZXQYZyABKAsyDi50eXBlcy52MS5FeHBySAKIAQFCFwoVX3Jlc291cmNlX2ZpbmdlcnByaW50QhQKEl9zY29wZV9maW5nZXJwcmludEIKCghfZGF0YXNldCJgCgpTdGF0ZW1lbnRzEicKCnN0YXRlbWVudHMYASADKAsyEy50eXBlcy52MS5TdGF0ZW1lbnQSKQoGcmVuZGVyGAIgASgLMhkudHlwZXMudjEuUmVuZGVyU3RhdGVtZW50IpcFCglTdGF0ZW1lbnQSKgoGZmlsdGVyGAEgASgLMhgudHlwZXMudjEuRmlsdGVyT3BlcmF0b3JIABIwCglzdW1tYXJpemUYAiABKAsyGy50eXBlcy52MS5TdW1tYXJpemVPcGVyYXRvckgAEi0KB3Byb2plY3QYrAIgASgLMhkudHlwZXMudjEuUHJvamVjdE9wZXJhdG9ySAASNgoMcHJvamVjdF9hd2F5GK0CIAEoCzIdLnR5cGVzLnYxLlByb2plY3RBd2F5T3BlcmF0b3JIABI2Cgxwcm9qZWN0X2tlZXAYrgIgASgLMh0udHlwZXMudjEuUHJvamVjdEtlZXBPcGVyYXRvckgAEioKBmV4dGVuZBgEIAEoCzIYLnR5cGVzLnYxLkV4dGVuZE9wZXJhdG9ySAASKAoFY291bnQYBSABKAsyFy50eXBlcy52MS5Db3VudE9wZXJhdG9ySAASLgoIZGlzdGluY3QYBiABKAsyGi50eXBlcy52MS5EaXN0aW5jdE9wZXJhdG9ySAASKgoGc2FtcGxlGAcgASgLMhgudHlwZXMudjEuU2FtcGxlT3BlcmF0b3JIABIqCgZzZWFyY2gYCCABKAsyGC50eXBlcy52MS5TZWFyY2hPcGVyYXRvckgAEiYKBHNvcnQYCSABKAsyFi50eXBlcy52MS5Tb3J0T3BlcmF0b3JIABImCgR0YWtlGAogASgLMhYudHlwZXMudjEuVGFrZU9wZXJhdG9ySAASJAoDdG9wGAsgASgLMhUudHlwZXMudjEuVG9wT3BlcmF0b3JIABIxCgpnZXRfc2NoZW1hGAwgASgLMhsudHlwZXMudjEuR2V0U2NoZW1hT3BlcmF0b3JIAEIGCgRzdG10Ii4KDkZpbHRlck9wZXJhdG9yEhwKBGV4cHIYASABKAsyDi50eXBlcy52MS5FeHByIrcEChFTdW1tYXJpemVPcGVyYXRvchI6CgpwYXJhbWV0ZXJzGAEgASgLMiYudHlwZXMudjEuU3VtbWFyaXplT3BlcmF0b3IuUGFyYW1ldGVycxJRChRieV9ncm91cF9leHByZXNzaW9ucxgCIAEoCzIuLnR5cGVzLnYxLlN1bW1hcml6ZU9wZXJhdG9yLkJ5R3JvdXBFeHByZXNzaW9uc0gAiAEBGkcKClBhcmFtZXRlcnMSOQoKcGFyYW1ldGVycxgBIAMoCzIlLnR5cGVzLnYxLlN1bW1hcml6ZU9wZXJhdG9yLlBhcmFtZXRlchpxCglQYXJhbWV0ZXISKQoGY29sdW1uGAEgASgLMhQudHlwZXMudjEuSWRlbnRpZmllckgAiAEBEi4KEmFnZ3JlZ2F0ZV9mdW5jdGlvbhgCIAEoCzISLnR5cGVzLnYxLkZ1bmNDYWxsQgkKB19jb2x1bW4aUwoSQnlHcm91cEV4cHJlc3Npb25zEj0KBmdyb3VwcxgCIAMoCzItLnR5cGVzLnYxLlN1bW1hcml6ZU9wZXJhdG9yLkJ5R3JvdXBFeHByZXNzaW9uGmkKEUJ5R3JvdXBFeHByZXNzaW9uEikKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXJIAIgBARIeCgZzY2FsYXIYAiABKAsyDi50eXBlcy52MS5FeHByQgkKB19jb2x1bW5CFwoVX2J5X2dyb3VwX2V4cHJlc3Npb25zIq4BCg9Qcm9qZWN0T3BlcmF0b3ISOQoLcHJvamVjdGlvbnMYASADKAsyJC50eXBlcy52MS5Qcm9qZWN0T3BlcmF0b3IuUHJvamVjdGlvbhpgCgpQcm9qZWN0aW9uEiQKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXISIgoFdmFsdWUYAiABKAsyDi50eXBlcy52MS5FeHBySACIAQFCCAoGX3ZhbHVlIogBChNQcm9qZWN0QXdheU9wZXJhdG9yEj0KC3Byb2plY3Rpb25zGAEgAygLMigudHlwZXMudjEuUHJvamVjdEF3YXlPcGVyYXRvci5Qcm9qZWN0aW9uGjIKClByb2plY3Rpb24SJAoGY29sdW1uGAEgASgLMhQudHlwZXMudjEuSWRlbnRpZmllciKIAQoTUHJvamVjdEtlZXBPcGVyYXRvchI9Cgtwcm9qZWN0aW9ucxgBIAMoCzIoLnR5cGVzLnYxLlByb2plY3RLZWVwT3BlcmF0b3IuUHJvamVjdGlvbhoyCgpQcm9qZWN0aW9uEiQKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXIinQEKDkV4dGVuZE9wZXJhdG9yEjgKC3Byb2plY3Rpb25zGAEgAygLMiMudHlwZXMudjEuRXh0ZW5kT3BlcmF0b3IuUHJvamVjdGlvbhpRCgpQcm9qZWN0aW9uEiQKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXISHQoFdmFsdWUYAiABKAsyDi50eXBlcy52MS5FeHByIg8KDUNvdW50T3BlcmF0b3IiOAoQRGlzdGluY3RPcGVyYXRvchIkCgZmaWVsZHMYASADKAsyFC50eXBlcy52MS5JZGVudGlmaWVyIh8KDlNhbXBsZU9wZXJhdG9yEg0KBWNvdW50GAEgASgDIvcDCg5TZWFyY2hPcGVyYXRvchIRCgdsaXRlcmFsGGUgASgJSAASNQoFZmllbGQYZiABKAsyJC50eXBlcy52MS5TZWFyY2hPcGVyYXRvci5GaWVsZFNlYXJjaEgAEjUKBWV4YWN0GGcgASgLMiQudHlwZXMudjEuU2VhcmNoT3BlcmF0b3IuRXhhY3RTZWFyY2hIABI1CgVyZWdleBhoIAEoCzIkLnR5cGVzLnYxLlNlYXJjaE9wZXJhdG9yLlJlZ2V4U2VhcmNoSAASMAoEa2luZBgCIAEoDjIdLnR5cGVzLnYxLlNlYXJjaE9wZXJhdG9yLktpbmRIAYgBARoaCgdMaXRlcmFsEg8KB2xpdGVyYWwYASABKAkaLgoLRmllbGRTZWFyY2gSDgoGY29sdW1uGAEgASgJEg8KB2xpdGVyYWwYAiABKAkaLgoLRXhhY3RTZWFyY2gSDgoGY29sdW1uGAEgASgJEg8KB2xpdGVyYWwYAiABKAkaLAoLUmVnZXhTZWFyY2gSDgoGY29sdW1uGAEgASgJEg0KBXJlZ2V4GAIgASgJIjsKBEtpbmQSCwoHRGVmYXVsdBAAEhMKD0Nhc2VJbnNlbnNpdGl2ZRABEhEKDUNhc2VTZW5zaXRpdmUQAkILCglwcmVkaWNhdGVCBwoFX2tpbmQizQEKDFNvcnRPcGVyYXRvchIzCgpieV9jb2x1bW5zGAEgAygLMh8udHlwZXMudjEuU29ydE9wZXJhdG9yLkJ5Q29sdW1uGmwKCEJ5Q29sdW1uEiQKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXISMAoFb3JkZXIYAiABKA4yHC50eXBlcy52MS5Tb3J0T3BlcmF0b3IuT3JkZXJIAIgBAUIICgZfb3JkZXIiGgoFT3JkZXISCAoERGVzYxAAEgcKA0FzYxABIh0KDFRha2VPcGVyYXRvchINCgVjb3VudBgBIAEoAyLlAQoLVG9wT3BlcmF0b3ISDQoFY291bnQYASABKAMSNgoJYnlfY29sdW1uGAIgASgLMh4udHlwZXMudjEuVG9wT3BlcmF0b3IuQnlDb2x1bW5IAIgBARplCghCeUNvbHVtbhIeCgZzY2FsYXIYASABKAsyDi50eXBlcy52MS5FeHByEi8KBW9yZGVyGAIgASgOMhsudHlwZXMudjEuVG9wT3BlcmF0b3IuT3JkZXJIAIgBAUIICgZfb3JkZXIiGgoFT3JkZXISCAoERGVzYxAAEgcKA0FzYxABQgwKCl9ieV9jb2x1bW4iEwoRR2V0U2NoZW1hT3BlcmF0b3IiQwoPUmVuZGVyU3RhdGVtZW50EigKBXNwbGl0GAEgASgLMhcudHlwZXMudjEuU3BsaXRPcGVyYXRvckgAQgYKBHN0bXQibgoNU3BsaXRPcGVyYXRvchIuCgJieRgCIAEoCzIiLnR5cGVzLnYxLlNwbGl0T3BlcmF0b3IuQnlPcGVyYXRvchotCgpCeU9wZXJhdG9yEh8KB3NjYWxhcnMYASADKAsyDi50eXBlcy52MS5FeHByIvUBCgRFeHByEiAKB2xpdGVyYWwYZSABKAsyDS50eXBlcy52MS5WYWxIABIiCgV1bmFyeRhmIAEoCzIRLnR5cGVzLnYxLlVuYXJ5T3BIABIkCgZiaW5hcnkYZyABKAsyEi50eXBlcy52MS5CaW5hcnlPcEgAEicKCWZ1bmNfY2FsbBhoIAEoCzISLnR5cGVzLnYxLkZ1bmNDYWxsSAASKgoKaWRlbnRpZmllchhpIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXJIABIkCgdpbmRleG9yGGogASgLMhEudHlwZXMudjEuSW5kZXhvckgAQgYKBGV4cHIieQoHVW5hcnlPcBImCgJvcBgBIAEoDjIaLnR5cGVzLnYxLlVuYXJ5T3AuT3BlcmF0b3ISGwoDYXJnGAIgASgLMg4udHlwZXMudjEuRXhwciIpCghPcGVyYXRvchILCgdJTlZBTElEEAASBwoDTk9UEAESBwoDTkVHEAIi5AYKCEJpbmFyeU9wEhsKA2xocxgBIAEoCzIOLnR5cGVzLnYxLkV4cHISJwoCb3AYAiABKA4yGy50eXBlcy52MS5CaW5hcnlPcC5PcGVyYXRvchIbCgNyaHMYAyABKAsyDi50eXBlcy52MS5FeHByIvQFCghPcGVyYXRvchILCgdJTlZBTElEEAASCwoHTE9HX0FORBBlEgoKBkxPR19PUhBmEgwKB05VTV9BREQQyQESDAoHTlVNX1NVQhDKARIMCgdOVU1fRElWEMsBEgwKB05VTV9NVUwQzAESDAoHTlVNX01PRBDNARILCgZDTVBfRVEQrQISDgoJQ01QX05PVEVREK4CEgsKBkNNUF9HVBCvAhIMCgdDTVBfR1RFELACEgsKBkNNUF9MVBCxAhIMCgdDTVBfTFRFELICEgsKBlNFVF9JThCRAxIOCglTRVRfTk9USU4QkgMSEAoLU1RSX0VRX05PQ1MQ9QMSEwoOU1RSX05PVEVRX05PQ1MQ9gMSEQoMU1RSX0NPTlRBSU5TEPcDEhUKEFNUUl9OT1RfQ09OVEFJTlMQ+AMSFAoPU1RSX0NPTlRBSU5TX0NTEPkDEhgKE1NUUl9OT1RfQ09OVEFJTlNfQ1MQ+gMSEwoOU1RSX1NUQVJUU1dJVEgQ+wMSFwoSU1RSX05PVF9TVEFSVFNXSVRIEPwDEhYKEVNUUl9TVEFSVFNXSVRIX0NTEP0DEhoKFVNUUl9OT1RfU1RBUlRTV0lUSF9DUxD+AxIRCgxTVFJfRU5EU1dJVEgQ/wMSFQoQU1RSX05PVF9FTkRTV0lUSBCABBIUCg9TVFJfRU5EU1dJVEhfQ1MQgQQSGAoTU1RSX05PVF9FTkRTV0lUSF9DUxCCBBIQCgtTVFJfSU5fTk9DUxCDBBIUCg9TVFJfTk9UX0lOX05PQ1MQhAQSGgoVU1RSX05PVF9NQVRDSEVTX1JFR0VYEIUEEhYKEVNUUl9NQVRDSEVTX1JFR0VYEIYEEgwKB1NUUl9IQVMQhwQSDwoKU1RSX0hBU19DUxCIBBISCg1TVFJfSEFTU1VGRklYEIkEEhUKEFNUUl9IQVNTVUZGSVhfQ1MQigQSEgoNU1RSX0hBU1BSRUZJWBCLBBIVChBTVFJfSEFTUFJFRklYX0NTEIwEIjYKCEZ1bmNDYWxsEgwKBG5hbWUYASABKAkSHAoEYXJncxgCIAMoCzIOLnR5cGVzLnYxLkV4cHIiGgoKSWRlbnRpZmllchIMCgRuYW1lGAEgASgJIkMKB0luZGV4b3ISGQoBeBgBIAEoCzIOLnR5cGVzLnYxLkV4cHISHQoFaW5kZXgYAiABKAsyDi50eXBlcy52MS5FeHByQooBCgxjb20udHlwZXMudjFCClF1ZXJ5UHJvdG9QAVotZ2l0aHViLmNvbS9odW1hbmxvZ2lvL2FwaS9nby90eXBlcy92MTt0eXBlc3YxogIDVFhYqgIIVHlwZXMuVjHKAghUeXBlc1xWMeICFFR5cGVzXFYxXEdQQk1ldGFkYXRh6gIJVHlwZXM6OlYxYgZwcm90bzM", [file_google_protobuf_timestamp, file_types_v1_types]);
+  fileDesc("ChR0eXBlcy92MS9xdWVyeS5wcm90bxIIdHlwZXMudjEieAoFUXVlcnkSJgoJdGltZXJhbmdlGAEgASgLMhMudHlwZXMudjEuVGltZXJhbmdlEiIKB2NvbnRleHQYAiABKAsyES50eXBlcy52MS5Db250ZXh0EiMKBXF1ZXJ5GAMgASgLMhQudHlwZXMudjEuU3RhdGVtZW50cyJRCglUaW1lcmFuZ2USHAoEZnJvbRgBIAEoCzIOLnR5cGVzLnYxLkV4cHISHwoCdG8YAiABKAsyDi50eXBlcy52MS5FeHBySACIAQFCBQoDX3RvIs0BCgdDb250ZXh0EjEKFHJlc291cmNlX2ZpbmdlcnByaW50GGUgASgLMg4udHlwZXMudjEuRXhwckgAiAEBEi4KEXNjb3BlX2ZpbmdlcnByaW50GGYgASgLMg4udHlwZXMudjEuRXhwckgBiAEBEiQKB2RhdGFzZXQYZyABKAsyDi50eXBlcy52MS5FeHBySAKIAQFCFwoVX3Jlc291cmNlX2ZpbmdlcnByaW50QhQKEl9zY29wZV9maW5nZXJwcmludEIKCghfZGF0YXNldCJgCgpTdGF0ZW1lbnRzEicKCnN0YXRlbWVudHMYASADKAsyEy50eXBlcy52MS5TdGF0ZW1lbnQSKQoGcmVuZGVyGAIgASgLMhkudHlwZXMudjEuUmVuZGVyU3RhdGVtZW50IpcFCglTdGF0ZW1lbnQSKgoGZmlsdGVyGAEgASgLMhgudHlwZXMudjEuRmlsdGVyT3BlcmF0b3JIABIwCglzdW1tYXJpemUYAiABKAsyGy50eXBlcy52MS5TdW1tYXJpemVPcGVyYXRvckgAEi0KB3Byb2plY3QYrAIgASgLMhkudHlwZXMudjEuUHJvamVjdE9wZXJhdG9ySAASNgoMcHJvamVjdF9hd2F5GK0CIAEoCzIdLnR5cGVzLnYxLlByb2plY3RBd2F5T3BlcmF0b3JIABI2Cgxwcm9qZWN0X2tlZXAYrgIgASgLMh0udHlwZXMudjEuUHJvamVjdEtlZXBPcGVyYXRvckgAEioKBmV4dGVuZBgEIAEoCzIYLnR5cGVzLnYxLkV4dGVuZE9wZXJhdG9ySAASKAoFY291bnQYBSABKAsyFy50eXBlcy52MS5Db3VudE9wZXJhdG9ySAASLgoIZGlzdGluY3QYBiABKAsyGi50eXBlcy52MS5EaXN0aW5jdE9wZXJhdG9ySAASKgoGc2FtcGxlGAcgASgLMhgudHlwZXMudjEuU2FtcGxlT3BlcmF0b3JIABIqCgZzZWFyY2gYCCABKAsyGC50eXBlcy52MS5TZWFyY2hPcGVyYXRvckgAEiYKBHNvcnQYCSABKAsyFi50eXBlcy52MS5Tb3J0T3BlcmF0b3JIABImCgR0YWtlGAogASgLMhYudHlwZXMudjEuVGFrZU9wZXJhdG9ySAASJAoDdG9wGAsgASgLMhUudHlwZXMudjEuVG9wT3BlcmF0b3JIABIxCgpnZXRfc2NoZW1hGAwgASgLMhsudHlwZXMudjEuR2V0U2NoZW1hT3BlcmF0b3JIAEIGCgRzdG10Ii4KDkZpbHRlck9wZXJhdG9yEhwKBGV4cHIYASABKAsyDi50eXBlcy52MS5FeHByIrcEChFTdW1tYXJpemVPcGVyYXRvchI6CgpwYXJhbWV0ZXJzGAEgASgLMiYudHlwZXMudjEuU3VtbWFyaXplT3BlcmF0b3IuUGFyYW1ldGVycxJRChRieV9ncm91cF9leHByZXNzaW9ucxgCIAEoCzIuLnR5cGVzLnYxLlN1bW1hcml6ZU9wZXJhdG9yLkJ5R3JvdXBFeHByZXNzaW9uc0gAiAEBGkcKClBhcmFtZXRlcnMSOQoKcGFyYW1ldGVycxgBIAMoCzIlLnR5cGVzLnYxLlN1bW1hcml6ZU9wZXJhdG9yLlBhcmFtZXRlchpxCglQYXJhbWV0ZXISKQoGY29sdW1uGAEgASgLMhQudHlwZXMudjEuSWRlbnRpZmllckgAiAEBEi4KEmFnZ3JlZ2F0ZV9mdW5jdGlvbhgCIAEoCzISLnR5cGVzLnYxLkZ1bmNDYWxsQgkKB19jb2x1bW4aUwoSQnlHcm91cEV4cHJlc3Npb25zEj0KBmdyb3VwcxgCIAMoCzItLnR5cGVzLnYxLlN1bW1hcml6ZU9wZXJhdG9yLkJ5R3JvdXBFeHByZXNzaW9uGmkKEUJ5R3JvdXBFeHByZXNzaW9uEikKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXJIAIgBARIeCgZzY2FsYXIYAiABKAsyDi50eXBlcy52MS5FeHByQgkKB19jb2x1bW5CFwoVX2J5X2dyb3VwX2V4cHJlc3Npb25zIq4BCg9Qcm9qZWN0T3BlcmF0b3ISOQoLcHJvamVjdGlvbnMYASADKAsyJC50eXBlcy52MS5Qcm9qZWN0T3BlcmF0b3IuUHJvamVjdGlvbhpgCgpQcm9qZWN0aW9uEiQKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXISIgoFdmFsdWUYAiABKAsyDi50eXBlcy52MS5FeHBySACIAQFCCAoGX3ZhbHVlIogBChNQcm9qZWN0QXdheU9wZXJhdG9yEj0KC3Byb2plY3Rpb25zGAEgAygLMigudHlwZXMudjEuUHJvamVjdEF3YXlPcGVyYXRvci5Qcm9qZWN0aW9uGjIKClByb2plY3Rpb24SJAoGY29sdW1uGAEgASgLMhQudHlwZXMudjEuSWRlbnRpZmllciKIAQoTUHJvamVjdEtlZXBPcGVyYXRvchI9Cgtwcm9qZWN0aW9ucxgBIAMoCzIoLnR5cGVzLnYxLlByb2plY3RLZWVwT3BlcmF0b3IuUHJvamVjdGlvbhoyCgpQcm9qZWN0aW9uEiQKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXIinQEKDkV4dGVuZE9wZXJhdG9yEjgKC3Byb2plY3Rpb25zGAEgAygLMiMudHlwZXMudjEuRXh0ZW5kT3BlcmF0b3IuUHJvamVjdGlvbhpRCgpQcm9qZWN0aW9uEiQKBmNvbHVtbhgBIAEoCzIULnR5cGVzLnYxLklkZW50aWZpZXISHQoFdmFsdWUYAiABKAsyDi50eXBlcy52MS5FeHByIg8KDUNvdW50T3BlcmF0b3IiOAoQRGlzdGluY3RPcGVyYXRvchIkCgZmaWVsZHMYASADKAsyFC50eXBlcy52MS5JZGVudGlmaWVyIh8KDlNhbXBsZU9wZXJhdG9yEg0KBWNvdW50GAEgASgDIrYBCg5TZWFyY2hPcGVyYXRvchIsCglwcmVkaWNhdGUYASABKAsyGS50eXBlcy52MS5TZWFyY2hQcmVkaWNhdGUSMAoEa2luZBgCIAEoDjIdLnR5cGVzLnYxLlNlYXJjaE9wZXJhdG9yLktpbmRIAIgBASI7CgRLaW5kEgsKB0RlZmF1bHQQABITCg9DYXNlSW5zZW5zaXRpdmUQARIRCg1DYXNlU2Vuc2l0aXZlEAJCBwoFX2tpbmQi9QEKD1NlYXJjaFByZWRpY2F0ZRInCgR0ZXJtGAEgASgLMhcudHlwZXMudjEuVGVybVByZWRpY2F0ZUgAEikKBWZpZWxkGAIgASgLMhgudHlwZXMudjEuRmllbGRQcmVkaWNhdGVIABIpCgVleGFjdBgDIAEoCzIYLnR5cGVzLnYxLkV4YWN0UHJlZGljYXRlSAASKQoFcmVnZXgYBCABKAsyGC50eXBlcy52MS5SZWdleFByZWRpY2F0ZUgAEisKBmJpbmFyeRgFIAEoCzIZLnR5cGVzLnYxLkJpbmFyeVByZWRpY2F0ZUgAQgsKCXByZWRpY2F0ZSIeCg1UZXJtUHJlZGljYXRlEg0KBXZhbHVlGAEgASgJIi4KDkZpZWxkUHJlZGljYXRlEg4KBmNvbHVtbhgBIAEoCRIMCgR0ZXJtGAIgASgJIi8KDkV4YWN0UHJlZGljYXRlEg4KBmNvbHVtbhgBIAEoCRINCgV2YWx1ZRgCIAEoCSIxCg5SZWdleFByZWRpY2F0ZRIOCgZjb2x1bW4YASABKAkSDwoHcGF0dGVybhgCIAEoCSKlAQoPQmluYXJ5UHJlZGljYXRlEigKAm9wGAEgASgOMhwudHlwZXMudjEuQmluYXJ5UHJlZGljYXRlLk9wEicKBGxlZnQYAiABKAsyGS50eXBlcy52MS5TZWFyY2hQcmVkaWNhdGUSKAoFcmlnaHQYAyABKAsyGS50eXBlcy52MS5TZWFyY2hQcmVkaWNhdGUiFQoCT3ASBwoDQU5EEAASBgoCT1IQASLNAQoMU29ydE9wZXJhdG9yEjMKCmJ5X2NvbHVtbnMYASADKAsyHy50eXBlcy52MS5Tb3J0T3BlcmF0b3IuQnlDb2x1bW4abAoIQnlDb2x1bW4SJAoGY29sdW1uGAEgASgLMhQudHlwZXMudjEuSWRlbnRpZmllchIwCgVvcmRlchgCIAEoDjIcLnR5cGVzLnYxLlNvcnRPcGVyYXRvci5PcmRlckgAiAEBQggKBl9vcmRlciIaCgVPcmRlchIICgREZXNjEAASBwoDQXNjEAEiHQoMVGFrZU9wZXJhdG9yEg0KBWNvdW50GAEgASgDIuUBCgtUb3BPcGVyYXRvchINCgVjb3VudBgBIAEoAxI2CglieV9jb2x1bW4YAiABKAsyHi50eXBlcy52MS5Ub3BPcGVyYXRvci5CeUNvbHVtbkgAiAEBGmUKCEJ5Q29sdW1uEh4KBnNjYWxhchgBIAEoCzIOLnR5cGVzLnYxLkV4cHISLwoFb3JkZXIYAiABKA4yGy50eXBlcy52MS5Ub3BPcGVyYXRvci5PcmRlckgAiAEBQggKBl9vcmRlciIaCgVPcmRlchIICgREZXNjEAASBwoDQXNjEAFCDAoKX2J5X2NvbHVtbiITChFHZXRTY2hlbWFPcGVyYXRvciJDCg9SZW5kZXJTdGF0ZW1lbnQSKAoFc3BsaXQYASABKAsyFy50eXBlcy52MS5TcGxpdE9wZXJhdG9ySABCBgoEc3RtdCJuCg1TcGxpdE9wZXJhdG9yEi4KAmJ5GAIgASgLMiIudHlwZXMudjEuU3BsaXRPcGVyYXRvci5CeU9wZXJhdG9yGi0KCkJ5T3BlcmF0b3ISHwoHc2NhbGFycxgBIAMoCzIOLnR5cGVzLnYxLkV4cHIi9QEKBEV4cHISIAoHbGl0ZXJhbBhlIAEoCzINLnR5cGVzLnYxLlZhbEgAEiIKBXVuYXJ5GGYgASgLMhEudHlwZXMudjEuVW5hcnlPcEgAEiQKBmJpbmFyeRhnIAEoCzISLnR5cGVzLnYxLkJpbmFyeU9wSAASJwoJZnVuY19jYWxsGGggASgLMhIudHlwZXMudjEuRnVuY0NhbGxIABIqCgppZGVudGlmaWVyGGkgASgLMhQudHlwZXMudjEuSWRlbnRpZmllckgAEiQKB2luZGV4b3IYaiABKAsyES50eXBlcy52MS5JbmRleG9ySABCBgoEZXhwciJ5CgdVbmFyeU9wEiYKAm9wGAEgASgOMhoudHlwZXMudjEuVW5hcnlPcC5PcGVyYXRvchIbCgNhcmcYAiABKAsyDi50eXBlcy52MS5FeHByIikKCE9wZXJhdG9yEgsKB0lOVkFMSUQQABIHCgNOT1QQARIHCgNORUcQAiLkBgoIQmluYXJ5T3ASGwoDbGhzGAEgASgLMg4udHlwZXMudjEuRXhwchInCgJvcBgCIAEoDjIbLnR5cGVzLnYxLkJpbmFyeU9wLk9wZXJhdG9yEhsKA3JocxgDIAEoCzIOLnR5cGVzLnYxLkV4cHIi9AUKCE9wZXJhdG9yEgsKB0lOVkFMSUQQABILCgdMT0dfQU5EEGUSCgoGTE9HX09SEGYSDAoHTlVNX0FERBDJARIMCgdOVU1fU1VCEMoBEgwKB05VTV9ESVYQywESDAoHTlVNX01VTBDMARIMCgdOVU1fTU9EEM0BEgsKBkNNUF9FURCtAhIOCglDTVBfTk9URVEQrgISCwoGQ01QX0dUEK8CEgwKB0NNUF9HVEUQsAISCwoGQ01QX0xUELECEgwKB0NNUF9MVEUQsgISCwoGU0VUX0lOEJEDEg4KCVNFVF9OT1RJThCSAxIQCgtTVFJfRVFfTk9DUxD1AxITCg5TVFJfTk9URVFfTk9DUxD2AxIRCgxTVFJfQ09OVEFJTlMQ9wMSFQoQU1RSX05PVF9DT05UQUlOUxD4AxIUCg9TVFJfQ09OVEFJTlNfQ1MQ+QMSGAoTU1RSX05PVF9DT05UQUlOU19DUxD6AxITCg5TVFJfU1RBUlRTV0lUSBD7AxIXChJTVFJfTk9UX1NUQVJUU1dJVEgQ/AMSFgoRU1RSX1NUQVJUU1dJVEhfQ1MQ/QMSGgoVU1RSX05PVF9TVEFSVFNXSVRIX0NTEP4DEhEKDFNUUl9FTkRTV0lUSBD/AxIVChBTVFJfTk9UX0VORFNXSVRIEIAEEhQKD1NUUl9FTkRTV0lUSF9DUxCBBBIYChNTVFJfTk9UX0VORFNXSVRIX0NTEIIEEhAKC1NUUl9JTl9OT0NTEIMEEhQKD1NUUl9OT1RfSU5fTk9DUxCEBBIaChVTVFJfTk9UX01BVENIRVNfUkVHRVgQhQQSFgoRU1RSX01BVENIRVNfUkVHRVgQhgQSDAoHU1RSX0hBUxCHBBIPCgpTVFJfSEFTX0NTEIgEEhIKDVNUUl9IQVNTVUZGSVgQiQQSFQoQU1RSX0hBU1NVRkZJWF9DUxCKBBISCg1TVFJfSEFTUFJFRklYEIsEEhUKEFNUUl9IQVNQUkVGSVhfQ1MQjAQiNgoIRnVuY0NhbGwSDAoEbmFtZRgBIAEoCRIcCgRhcmdzGAIgAygLMg4udHlwZXMudjEuRXhwciIaCgpJZGVudGlmaWVyEgwKBG5hbWUYASABKAkiQwoHSW5kZXhvchIZCgF4GAEgASgLMg4udHlwZXMudjEuRXhwchIdCgVpbmRleBgCIAEoCzIOLnR5cGVzLnYxLkV4cHJCigEKDGNvbS50eXBlcy52MUIKUXVlcnlQcm90b1ABWi1naXRodWIuY29tL2h1bWFubG9naW8vYXBpL2dvL3R5cGVzL3YxO3R5cGVzdjGiAgNUWFiqAghUeXBlcy5WMcoCCFR5cGVzXFYx4gIUVHlwZXNcVjFcR1BCTWV0YWRhdGHqAglUeXBlczo6VjFiBnByb3RvMw", [file_google_protobuf_timestamp, file_types_v1_types]);
 
 /**
  * @generated from message types.v1.Query
@@ -531,33 +531,9 @@ export const SampleOperatorSchema: GenMessage<SampleOperator> = /*@__PURE__*/
  */
 export type SearchOperator = Message<"types.v1.SearchOperator"> & {
   /**
-   * @generated from oneof types.v1.SearchOperator.predicate
+   * @generated from field: types.v1.SearchPredicate predicate = 1;
    */
-  predicate: {
-    /**
-     * @generated from field: string literal = 101;
-     */
-    value: string;
-    case: "literal";
-  } | {
-    /**
-     * @generated from field: types.v1.SearchOperator.FieldSearch field = 102;
-     */
-    value: SearchOperator_FieldSearch;
-    case: "field";
-  } | {
-    /**
-     * @generated from field: types.v1.SearchOperator.ExactSearch exact = 103;
-     */
-    value: SearchOperator_ExactSearch;
-    case: "exact";
-  } | {
-    /**
-     * @generated from field: types.v1.SearchOperator.RegexSearch regex = 104;
-     */
-    value: SearchOperator_RegexSearch;
-    case: "regex";
-  } | { case: undefined; value?: undefined };
+  predicate?: SearchPredicate;
 
   /**
    * @generated from field: optional types.v1.SearchOperator.Kind kind = 2;
@@ -571,89 +547,6 @@ export type SearchOperator = Message<"types.v1.SearchOperator"> & {
  */
 export const SearchOperatorSchema: GenMessage<SearchOperator> = /*@__PURE__*/
   messageDesc(file_types_v1_query, 14);
-
-/**
- * @generated from message types.v1.SearchOperator.Literal
- */
-export type SearchOperator_Literal = Message<"types.v1.SearchOperator.Literal"> & {
-  /**
-   * @generated from field: string literal = 1;
-   */
-  literal: string;
-};
-
-/**
- * Describes the message types.v1.SearchOperator.Literal.
- * Use `create(SearchOperator_LiteralSchema)` to create a new message.
- */
-export const SearchOperator_LiteralSchema: GenMessage<SearchOperator_Literal> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 14, 0);
-
-/**
- * @generated from message types.v1.SearchOperator.FieldSearch
- */
-export type SearchOperator_FieldSearch = Message<"types.v1.SearchOperator.FieldSearch"> & {
-  /**
-   * @generated from field: string column = 1;
-   */
-  column: string;
-
-  /**
-   * @generated from field: string literal = 2;
-   */
-  literal: string;
-};
-
-/**
- * Describes the message types.v1.SearchOperator.FieldSearch.
- * Use `create(SearchOperator_FieldSearchSchema)` to create a new message.
- */
-export const SearchOperator_FieldSearchSchema: GenMessage<SearchOperator_FieldSearch> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 14, 1);
-
-/**
- * @generated from message types.v1.SearchOperator.ExactSearch
- */
-export type SearchOperator_ExactSearch = Message<"types.v1.SearchOperator.ExactSearch"> & {
-  /**
-   * @generated from field: string column = 1;
-   */
-  column: string;
-
-  /**
-   * @generated from field: string literal = 2;
-   */
-  literal: string;
-};
-
-/**
- * Describes the message types.v1.SearchOperator.ExactSearch.
- * Use `create(SearchOperator_ExactSearchSchema)` to create a new message.
- */
-export const SearchOperator_ExactSearchSchema: GenMessage<SearchOperator_ExactSearch> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 14, 2);
-
-/**
- * @generated from message types.v1.SearchOperator.RegexSearch
- */
-export type SearchOperator_RegexSearch = Message<"types.v1.SearchOperator.RegexSearch"> & {
-  /**
-   * @generated from field: string column = 1;
-   */
-  column: string;
-
-  /**
-   * @generated from field: string regex = 2;
-   */
-  regex: string;
-};
-
-/**
- * Describes the message types.v1.SearchOperator.RegexSearch.
- * Use `create(SearchOperator_RegexSearchSchema)` to create a new message.
- */
-export const SearchOperator_RegexSearchSchema: GenMessage<SearchOperator_RegexSearch> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 14, 3);
 
 /**
  * @generated from enum types.v1.SearchOperator.Kind
@@ -682,6 +575,184 @@ export const SearchOperator_KindSchema: GenEnum<SearchOperator_Kind> = /*@__PURE
   enumDesc(file_types_v1_query, 14, 0);
 
 /**
+ * @generated from message types.v1.SearchPredicate
+ */
+export type SearchPredicate = Message<"types.v1.SearchPredicate"> & {
+  /**
+   * @generated from oneof types.v1.SearchPredicate.predicate
+   */
+  predicate: {
+    /**
+     * @generated from field: types.v1.TermPredicate term = 1;
+     */
+    value: TermPredicate;
+    case: "term";
+  } | {
+    /**
+     * @generated from field: types.v1.FieldPredicate field = 2;
+     */
+    value: FieldPredicate;
+    case: "field";
+  } | {
+    /**
+     * @generated from field: types.v1.ExactPredicate exact = 3;
+     */
+    value: ExactPredicate;
+    case: "exact";
+  } | {
+    /**
+     * @generated from field: types.v1.RegexPredicate regex = 4;
+     */
+    value: RegexPredicate;
+    case: "regex";
+  } | {
+    /**
+     * @generated from field: types.v1.BinaryPredicate binary = 5;
+     */
+    value: BinaryPredicate;
+    case: "binary";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message types.v1.SearchPredicate.
+ * Use `create(SearchPredicateSchema)` to create a new message.
+ */
+export const SearchPredicateSchema: GenMessage<SearchPredicate> = /*@__PURE__*/
+  messageDesc(file_types_v1_query, 15);
+
+/**
+ * @generated from message types.v1.TermPredicate
+ */
+export type TermPredicate = Message<"types.v1.TermPredicate"> & {
+  /**
+   * @generated from field: string value = 1;
+   */
+  value: string;
+};
+
+/**
+ * Describes the message types.v1.TermPredicate.
+ * Use `create(TermPredicateSchema)` to create a new message.
+ */
+export const TermPredicateSchema: GenMessage<TermPredicate> = /*@__PURE__*/
+  messageDesc(file_types_v1_query, 16);
+
+/**
+ * @generated from message types.v1.FieldPredicate
+ */
+export type FieldPredicate = Message<"types.v1.FieldPredicate"> & {
+  /**
+   * @generated from field: string column = 1;
+   */
+  column: string;
+
+  /**
+   * @generated from field: string term = 2;
+   */
+  term: string;
+};
+
+/**
+ * Describes the message types.v1.FieldPredicate.
+ * Use `create(FieldPredicateSchema)` to create a new message.
+ */
+export const FieldPredicateSchema: GenMessage<FieldPredicate> = /*@__PURE__*/
+  messageDesc(file_types_v1_query, 17);
+
+/**
+ * @generated from message types.v1.ExactPredicate
+ */
+export type ExactPredicate = Message<"types.v1.ExactPredicate"> & {
+  /**
+   * @generated from field: string column = 1;
+   */
+  column: string;
+
+  /**
+   * @generated from field: string value = 2;
+   */
+  value: string;
+};
+
+/**
+ * Describes the message types.v1.ExactPredicate.
+ * Use `create(ExactPredicateSchema)` to create a new message.
+ */
+export const ExactPredicateSchema: GenMessage<ExactPredicate> = /*@__PURE__*/
+  messageDesc(file_types_v1_query, 18);
+
+/**
+ * @generated from message types.v1.RegexPredicate
+ */
+export type RegexPredicate = Message<"types.v1.RegexPredicate"> & {
+  /**
+   * @generated from field: string column = 1;
+   */
+  column: string;
+
+  /**
+   * @generated from field: string pattern = 2;
+   */
+  pattern: string;
+};
+
+/**
+ * Describes the message types.v1.RegexPredicate.
+ * Use `create(RegexPredicateSchema)` to create a new message.
+ */
+export const RegexPredicateSchema: GenMessage<RegexPredicate> = /*@__PURE__*/
+  messageDesc(file_types_v1_query, 19);
+
+/**
+ * @generated from message types.v1.BinaryPredicate
+ */
+export type BinaryPredicate = Message<"types.v1.BinaryPredicate"> & {
+  /**
+   * @generated from field: types.v1.BinaryPredicate.Op op = 1;
+   */
+  op: BinaryPredicate_Op;
+
+  /**
+   * @generated from field: types.v1.SearchPredicate left = 2;
+   */
+  left?: SearchPredicate;
+
+  /**
+   * @generated from field: types.v1.SearchPredicate right = 3;
+   */
+  right?: SearchPredicate;
+};
+
+/**
+ * Describes the message types.v1.BinaryPredicate.
+ * Use `create(BinaryPredicateSchema)` to create a new message.
+ */
+export const BinaryPredicateSchema: GenMessage<BinaryPredicate> = /*@__PURE__*/
+  messageDesc(file_types_v1_query, 20);
+
+/**
+ * @generated from enum types.v1.BinaryPredicate.Op
+ */
+export enum BinaryPredicate_Op {
+  /**
+   * @generated from enum value: AND = 0;
+   */
+  AND = 0,
+
+  /**
+   * @generated from enum value: OR = 1;
+   */
+  OR = 1,
+}
+
+/**
+ * Describes the enum types.v1.BinaryPredicate.Op.
+ */
+export const BinaryPredicate_OpSchema: GenEnum<BinaryPredicate_Op> = /*@__PURE__*/
+  enumDesc(file_types_v1_query, 20, 0);
+
+/**
  * @generated from message types.v1.SortOperator
  */
 export type SortOperator = Message<"types.v1.SortOperator"> & {
@@ -696,7 +767,7 @@ export type SortOperator = Message<"types.v1.SortOperator"> & {
  * Use `create(SortOperatorSchema)` to create a new message.
  */
 export const SortOperatorSchema: GenMessage<SortOperator> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 15);
+  messageDesc(file_types_v1_query, 21);
 
 /**
  * @generated from message types.v1.SortOperator.ByColumn
@@ -718,7 +789,7 @@ export type SortOperator_ByColumn = Message<"types.v1.SortOperator.ByColumn"> & 
  * Use `create(SortOperator_ByColumnSchema)` to create a new message.
  */
 export const SortOperator_ByColumnSchema: GenMessage<SortOperator_ByColumn> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 15, 0);
+  messageDesc(file_types_v1_query, 21, 0);
 
 /**
  * @generated from enum types.v1.SortOperator.Order
@@ -739,7 +810,7 @@ export enum SortOperator_Order {
  * Describes the enum types.v1.SortOperator.Order.
  */
 export const SortOperator_OrderSchema: GenEnum<SortOperator_Order> = /*@__PURE__*/
-  enumDesc(file_types_v1_query, 15, 0);
+  enumDesc(file_types_v1_query, 21, 0);
 
 /**
  * @generated from message types.v1.TakeOperator
@@ -756,7 +827,7 @@ export type TakeOperator = Message<"types.v1.TakeOperator"> & {
  * Use `create(TakeOperatorSchema)` to create a new message.
  */
 export const TakeOperatorSchema: GenMessage<TakeOperator> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 16);
+  messageDesc(file_types_v1_query, 22);
 
 /**
  * @generated from message types.v1.TopOperator
@@ -778,7 +849,7 @@ export type TopOperator = Message<"types.v1.TopOperator"> & {
  * Use `create(TopOperatorSchema)` to create a new message.
  */
 export const TopOperatorSchema: GenMessage<TopOperator> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 17);
+  messageDesc(file_types_v1_query, 23);
 
 /**
  * @generated from message types.v1.TopOperator.ByColumn
@@ -800,7 +871,7 @@ export type TopOperator_ByColumn = Message<"types.v1.TopOperator.ByColumn"> & {
  * Use `create(TopOperator_ByColumnSchema)` to create a new message.
  */
 export const TopOperator_ByColumnSchema: GenMessage<TopOperator_ByColumn> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 17, 0);
+  messageDesc(file_types_v1_query, 23, 0);
 
 /**
  * @generated from enum types.v1.TopOperator.Order
@@ -821,7 +892,7 @@ export enum TopOperator_Order {
  * Describes the enum types.v1.TopOperator.Order.
  */
 export const TopOperator_OrderSchema: GenEnum<TopOperator_Order> = /*@__PURE__*/
-  enumDesc(file_types_v1_query, 17, 0);
+  enumDesc(file_types_v1_query, 23, 0);
 
 /**
  * @generated from message types.v1.GetSchemaOperator
@@ -834,7 +905,7 @@ export type GetSchemaOperator = Message<"types.v1.GetSchemaOperator"> & {
  * Use `create(GetSchemaOperatorSchema)` to create a new message.
  */
 export const GetSchemaOperatorSchema: GenMessage<GetSchemaOperator> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 18);
+  messageDesc(file_types_v1_query, 24);
 
 /**
  * @generated from message types.v1.RenderStatement
@@ -857,7 +928,7 @@ export type RenderStatement = Message<"types.v1.RenderStatement"> & {
  * Use `create(RenderStatementSchema)` to create a new message.
  */
 export const RenderStatementSchema: GenMessage<RenderStatement> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 19);
+  messageDesc(file_types_v1_query, 25);
 
 /**
  * @generated from message types.v1.SplitOperator
@@ -874,7 +945,7 @@ export type SplitOperator = Message<"types.v1.SplitOperator"> & {
  * Use `create(SplitOperatorSchema)` to create a new message.
  */
 export const SplitOperatorSchema: GenMessage<SplitOperator> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 20);
+  messageDesc(file_types_v1_query, 26);
 
 /**
  * @generated from message types.v1.SplitOperator.ByOperator
@@ -891,7 +962,7 @@ export type SplitOperator_ByOperator = Message<"types.v1.SplitOperator.ByOperato
  * Use `create(SplitOperator_ByOperatorSchema)` to create a new message.
  */
 export const SplitOperator_ByOperatorSchema: GenMessage<SplitOperator_ByOperator> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 20, 0);
+  messageDesc(file_types_v1_query, 26, 0);
 
 /**
  * @generated from message types.v1.Expr
@@ -946,7 +1017,7 @@ export type Expr = Message<"types.v1.Expr"> & {
  * Use `create(ExprSchema)` to create a new message.
  */
 export const ExprSchema: GenMessage<Expr> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 21);
+  messageDesc(file_types_v1_query, 27);
 
 /**
  * @generated from message types.v1.UnaryOp
@@ -968,7 +1039,7 @@ export type UnaryOp = Message<"types.v1.UnaryOp"> & {
  * Use `create(UnaryOpSchema)` to create a new message.
  */
 export const UnaryOpSchema: GenMessage<UnaryOp> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 22);
+  messageDesc(file_types_v1_query, 28);
 
 /**
  * @generated from enum types.v1.UnaryOp.Operator
@@ -994,7 +1065,7 @@ export enum UnaryOp_Operator {
  * Describes the enum types.v1.UnaryOp.Operator.
  */
 export const UnaryOp_OperatorSchema: GenEnum<UnaryOp_Operator> = /*@__PURE__*/
-  enumDesc(file_types_v1_query, 22, 0);
+  enumDesc(file_types_v1_query, 28, 0);
 
 /**
  * @generated from message types.v1.BinaryOp
@@ -1021,7 +1092,7 @@ export type BinaryOp = Message<"types.v1.BinaryOp"> & {
  * Use `create(BinaryOpSchema)` to create a new message.
  */
 export const BinaryOpSchema: GenMessage<BinaryOp> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 23);
+  messageDesc(file_types_v1_query, 29);
 
 /**
  * @generated from enum types.v1.BinaryOp.Operator
@@ -1232,7 +1303,7 @@ export enum BinaryOp_Operator {
  * Describes the enum types.v1.BinaryOp.Operator.
  */
 export const BinaryOp_OperatorSchema: GenEnum<BinaryOp_Operator> = /*@__PURE__*/
-  enumDesc(file_types_v1_query, 23, 0);
+  enumDesc(file_types_v1_query, 29, 0);
 
 /**
  * @generated from message types.v1.FuncCall
@@ -1254,7 +1325,7 @@ export type FuncCall = Message<"types.v1.FuncCall"> & {
  * Use `create(FuncCallSchema)` to create a new message.
  */
 export const FuncCallSchema: GenMessage<FuncCall> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 24);
+  messageDesc(file_types_v1_query, 30);
 
 /**
  * @generated from message types.v1.Identifier
@@ -1271,7 +1342,7 @@ export type Identifier = Message<"types.v1.Identifier"> & {
  * Use `create(IdentifierSchema)` to create a new message.
  */
 export const IdentifierSchema: GenMessage<Identifier> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 25);
+  messageDesc(file_types_v1_query, 31);
 
 /**
  * @generated from message types.v1.Indexor
@@ -1293,5 +1364,5 @@ export type Indexor = Message<"types.v1.Indexor"> & {
  * Use `create(IndexorSchema)` to create a new message.
  */
 export const IndexorSchema: GenMessage<Indexor> = /*@__PURE__*/
-  messageDesc(file_types_v1_query, 26);
+  messageDesc(file_types_v1_query, 32);
 
